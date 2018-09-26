@@ -1,0 +1,63 @@
+@import './color.scss';
+// global css
+html {
+  font-size: 14px;
+  height: 100%;
+  min-height: 100%;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+video {
+  max-width: unset;
+}
+
+.ag- {
+  &header,
+  &footer {
+    position: absolute;
+    height: 5rem;
+    width: 100%;
+    opacity: .8;
+    color: $white;
+  }
+  &header {
+    top: 0;
+  }
+  &footer {
+    bottom: 0;
+  }
+  &main {
+    height: 100%;
+    width: 100%;
+    padding: 4.5rem 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+  }
+  &rounded {
+    // border-radius: 1.43rem;
+    border-radius: 1.5rem!important;
+  }
+  &href {
+    color: $white;
+    cursor: pointer;
+    &:hover {
+      color: $white;
+    }
+  }
+}

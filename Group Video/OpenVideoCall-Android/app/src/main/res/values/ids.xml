@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <item name="small_video_view_dock" type="id" />
+    <item name="full_screen_container" type="id" />
+    <item name="customized_function_id" type="id" />
+</resources>

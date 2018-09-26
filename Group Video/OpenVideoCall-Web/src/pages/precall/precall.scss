@@ -1,0 +1,238 @@
+@import '../../assets/color.scss';
+
+#page-precall {
+  background: $dark-cyan;
+  min-height: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  .ag {
+    &-header {
+      padding: 1.43rem 2.14rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-lead {
+        font-size: 1.14rem;
+        line-height: 2.5rem;
+      }
+      &-logo {
+        width: 4.29rem;
+        height: 2.5rem;
+        margin-right: .86rem;
+      }
+    }
+    &-footer {
+      padding: 0 2.14rem;
+      display: flex;
+      align-items: center;
+      :first-child {
+        margin-right: 5.71rem;
+      }
+    }
+    &-container {
+      width: calc(100% - 4.29rem);
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+    &-info {
+      font-size: 1rem;
+      color: $grey;
+      line-height: 3.3;
+      width: 21.43rem;
+      margin: 5rem auto;
+      &-footer {
+        margin: 5.71rem 0 0 0;
+        text-align: center;
+      }
+    }
+    &-cards {
+      position: relative;
+    }
+    &-card {
+      background: rgba(216, 216, 216, .1);
+      padding: .5rem 1.29rem;
+      color: $white;
+      margin: .43rem auto;
+      border-radius: .86rem;
+      max-width: 25rem;
+      &-header {
+        font-size: 1.29rem;
+        .ag-icon {
+          font-size: 2.57rem;
+        }
+      }
+      &-body {
+        margin: 1rem 0;
+        position: relative;
+        .initial>div {
+          margin: 0.71rem 0;
+        }
+      }
+      &-tip {
+        color: $grey;
+      }
+    }
+    &-cards-title {
+      width: 100%;
+      padding: 0 4.29rem;
+      position: absolute;
+      top: -4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &-steps {
+      width: 100%;
+      max-width: 25rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      >.step {
+        color: $light-blue;
+        font-size: 1.14rem;
+        width: 2.29rem;
+        height: 2.29rem;
+        border-radius: 50%;
+        border: 0.14rem solid transparentize($light-blue, .8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &.active {
+          border-color: $light-blue;
+          transition: border .2s ease-in-out;
+        }
+      }
+    } 
+    &-select {
+      width: 100%;
+      max-width: 25rem;
+      >select {
+        border: .07rem solid #FFF;
+        background: transparent;
+        color: white;
+        padding-left: 1rem;
+      }
+    }
+      
+    &-video-test {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 25rem;
+    }
+    &-audio-test {
+      display: flex;
+      max-width: 25rem;
+      align-items: center;
+      .ag-icon {
+        color: #00B6ED;
+        font-size: 2.29rem;
+      }
+    }
+    &-browser-test {
+      display: flex;
+      max-width: 25rem;
+      align-items: center;
+      >img {
+        width: 1.71rem;
+        height: 1.71rem;
+      }
+      >p {
+        color: $grey;
+        padding: .43rem .86rem;
+        font-size: 1rem;
+      }
+    }
+    &-test-result {
+      font-size: 1.14rem;
+      color: $grey;
+      line-height: 3;
+    }
+  }
+
+  .select:not(.is-multiple):after {
+    border-color: #FFF!important;
+  }
+
+  #quickJoinBtn {
+    width: 16.07rem;
+    font-size: 1.29rem;
+    height: 2.86rem;
+    color: $light-blue;
+    background: transparent;
+    border: .07rem solid $light-blue;
+    &:hover {
+      transition: background .1s ease-in-out;
+      background: $cyan;
+    }
+  }
+
+  #videoItem {
+    display: inline-block;
+    border-radius: .43rem;
+    border: .14rem $light-blue solid;
+    background: url('../../assets/images/avatar.png') center no-repeat;
+    background-size: 80% 80%;
+    height: 7.5rem;
+    width: 7.5rem;
+  }
+
+  .progress {
+    flex-grow: 1;
+  }
+
+  #videoDevice, #audioDevice, .ag-connect-test {
+    width: 100%;
+    max-width: 25rem;
+    option {
+      color: black;
+    }
+  }
+
+  #testDuration {
+    display: none;
+    border-radius: 1rem;
+    background-color: $light-blue;
+    height: 100%;
+    width: 100%;
+    height: 10px;
+    display: inherit!important;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
+    animation: progress-bar-stripes 1s linear infinite,
+                progress-bar-grow 10s linear;
+    animation-play-state: running;
+  }
+
+  #testDuration::before {
+    content: '';
+    border-radius: 1rem;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: $grey;
+    opacity: .3;
+  }
+
+  @keyframes progress-bar-stripes {
+    from {
+      background-position-x: 0;
+    }
+    to {
+      background-position-x: 40px;
+    }
+  }
+  @keyframes progress-bar-grow {
+    from {
+      max-width: 0;
+    }
+    to {
+      max-width: 25rem;
+    }
+  }
+}

@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		077322E71E8A68A100ABE911 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 077322E61E8A68A100ABE911 /* libresolv.tbd */; };
+		0F2747CD1FB45A6F005D3DBA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE7D1D383C7C007DE451 /* SystemConfiguration.framework */; };
+		1A2655D51D3F35E700BDBA68 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2655D41D3F35E700BDBA68 /* AppID.swift */; };
+		1ABDEE421D383BE4007DE451 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDEE411D383BE4007DE451 /* AppDelegate.swift */; };
+		1ABDEE441D383BE4007DE451 /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDEE431D383BE4007DE451 /* VideoChatViewController.swift */; };
+		1ABDEE471D383BE4007DE451 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE451D383BE4007DE451 /* Main.storyboard */; };
+		1ABDEE491D383BE4007DE451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE481D383BE4007DE451 /* Assets.xcassets */; };
+		1ABDEE4C1D383BE4007DE451 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */; };
+		1ABDEE701D383C26007DE451 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */; };
+		1ABDEE721D383C2C007DE451 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE711D383C2C007DE451 /* AVFoundation.framework */; };
+		1ABDEE741D383C34007DE451 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE731D383C34007DE451 /* CoreMotion.framework */; };
+		1ABDEE761D383C39007DE451 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE751D383C39007DE451 /* CoreTelephony.framework */; };
+		1ABDEE781D383C62007DE451 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE771D383C62007DE451 /* AudioToolbox.framework */; };
+		1ABDEE7A1D383C66007DE451 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE791D383C66007DE451 /* VideoToolbox.framework */; };
+		1ABDEE7C1D383C71007DE451 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE7B1D383C71007DE451 /* CoreMedia.framework */; };
+		20BB0F231E8A828C003225FC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BB0F221E8A828C003225FC /* libc++.tbd */; };
+		319EBD1F6F4C0B321F845479 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02150D9018B109EC69CE3FC7 /* Accelerate.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02150D9018B109EC69CE3FC7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../../../../Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
+		077322E61E8A68A100ABE911 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		1A2655D41D3F35E700BDBA68 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppID.swift; path = VideoChat/AppID.swift; sourceTree = "<group>"; };
+		1ABDEE3E1D383BE4007DE451 /* Agora iOS Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora iOS Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ABDEE411D383BE4007DE451 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1ABDEE431D383BE4007DE451 /* VideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoChatViewController.swift; path = VideoChat/VideoChatViewController.swift; sourceTree = "<group>"; };
+		1ABDEE461D383BE4007DE451 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1ABDEE481D383BE4007DE451 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1ABDEE4B1D383BE4007DE451 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1ABDEE4D1D383BE4007DE451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		1ABDEE711D383C2C007DE451 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1ABDEE731D383C34007DE451 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		1ABDEE751D383C39007DE451 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1ABDEE771D383C62007DE451 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1ABDEE791D383C66007DE451 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		1ABDEE7B1D383C71007DE451 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1ABDEE7D1D383C7C007DE451 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		20BB0F221E8A828C003225FC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1ABDEE3B1D383BE4007DE451 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F2747CD1FB45A6F005D3DBA /* SystemConfiguration.framework in Frameworks */,
+				20BB0F231E8A828C003225FC /* libc++.tbd in Frameworks */,
+				077322E71E8A68A100ABE911 /* libresolv.tbd in Frameworks */,
+				1ABDEE7C1D383C71007DE451 /* CoreMedia.framework in Frameworks */,
+				1ABDEE7A1D383C66007DE451 /* VideoToolbox.framework in Frameworks */,
+				1ABDEE781D383C62007DE451 /* AudioToolbox.framework in Frameworks */,
+				1ABDEE761D383C39007DE451 /* CoreTelephony.framework in Frameworks */,
+				1ABDEE741D383C34007DE451 /* CoreMotion.framework in Frameworks */,
+				1ABDEE721D383C2C007DE451 /* AVFoundation.framework in Frameworks */,
+				1ABDEE701D383C26007DE451 /* AgoraRtcEngineKit.framework in Frameworks */,
+				319EBD1F6F4C0B321F845479 /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1ABDEE351D383BE4007DE451 = {
+			isa = PBXGroup;
+			children = (
+				1ABDEE401D383BE4007DE451 /* Agora iOS Tutorial */,
+				1ABDEE811D383C96007DE451 /* Frameworks */,
+				1ABDEE3F1D383BE4007DE451 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1ABDEE3F1D383BE4007DE451 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1ABDEE3E1D383BE4007DE451 /* Agora iOS Tutorial.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1ABDEE401D383BE4007DE451 /* Agora iOS Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				1ABDEE841D383EB3007DE451 /* Video Chat */,
+				1ABDEE411D383BE4007DE451 /* AppDelegate.swift */,
+				1ABDEE451D383BE4007DE451 /* Main.storyboard */,
+				1ABDEE481D383BE4007DE451 /* Assets.xcassets */,
+				1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */,
+				1ABDEE4D1D383BE4007DE451 /* Info.plist */,
+			);
+			path = "Agora iOS Tutorial";
+			sourceTree = "<group>";
+		};
+		1ABDEE811D383C96007DE451 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20BB0F221E8A828C003225FC /* libc++.tbd */,
+				077322E61E8A68A100ABE911 /* libresolv.tbd */,
+				1ABDEE7D1D383C7C007DE451 /* SystemConfiguration.framework */,
+				1ABDEE7B1D383C71007DE451 /* CoreMedia.framework */,
+				1ABDEE791D383C66007DE451 /* VideoToolbox.framework */,
+				1ABDEE771D383C62007DE451 /* AudioToolbox.framework */,
+				1ABDEE751D383C39007DE451 /* CoreTelephony.framework */,
+				1ABDEE731D383C34007DE451 /* CoreMotion.framework */,
+				1ABDEE711D383C2C007DE451 /* AVFoundation.framework */,
+				1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */,
+				02150D9018B109EC69CE3FC7 /* Accelerate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1ABDEE841D383EB3007DE451 /* Video Chat */ = {
+			isa = PBXGroup;
+			children = (
+				1ABDEE431D383BE4007DE451 /* VideoChatViewController.swift */,
+				1A2655D41D3F35E700BDBA68 /* AppID.swift */,
+			);
+			name = "Video Chat";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1ABDEE3D1D383BE4007DE451 /* Agora iOS Tutorial */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ABDEE661D383BE4007DE451 /* Build configuration list for PBXNativeTarget "Agora iOS Tutorial" */;
+			buildPhases = (
+				1ABDEE3A1D383BE4007DE451 /* Sources */,
+				1ABDEE3B1D383BE4007DE451 /* Frameworks */,
+				1ABDEE3C1D383BE4007DE451 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Agora iOS Tutorial";
+			productName = "Agora iOS Tutorial";
+			productReference = 1ABDEE3E1D383BE4007DE451 /* Agora iOS Tutorial.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1ABDEE361D383BE4007DE451 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Agora.io;
+				TargetAttributes = {
+					1ABDEE3D1D383BE4007DE451 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 48TB6ZZL5S;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 1ABDEE391D383BE4007DE451 /* Build configuration list for PBXProject "Agora iOS Tutorial" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1ABDEE351D383BE4007DE451;
+			productRefGroup = 1ABDEE3F1D383BE4007DE451 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1ABDEE3D1D383BE4007DE451 /* Agora iOS Tutorial */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1ABDEE3C1D383BE4007DE451 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ABDEE4C1D383BE4007DE451 /* LaunchScreen.storyboard in Resources */,
+				1ABDEE491D383BE4007DE451 /* Assets.xcassets in Resources */,
+				1ABDEE471D383BE4007DE451 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1ABDEE3A1D383BE4007DE451 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ABDEE441D383BE4007DE451 /* VideoChatViewController.swift in Sources */,
+				1ABDEE421D383BE4007DE451 /* AppDelegate.swift in Sources */,
+				1A2655D51D3F35E700BDBA68 /* AppID.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1ABDEE451D383BE4007DE451 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1ABDEE461D383BE4007DE451 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1ABDEE4B1D383BE4007DE451 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1ABDEE641D383BE4007DE451 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1ABDEE651D383BE4007DE451 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1ABDEE671D383BE4007DE451 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libs",
+				);
+				INFOPLIST_FILE = "Agora iOS Tutorial/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		1ABDEE681D383BE4007DE451 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhua Gong (TH5SJ72C94)";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libs",
+				);
+				INFOPLIST_FILE = "Agora iOS Tutorial/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1ABDEE391D383BE4007DE451 /* Build configuration list for PBXProject "Agora iOS Tutorial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ABDEE641D383BE4007DE451 /* Debug */,
+				1ABDEE651D383BE4007DE451 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1ABDEE661D383BE4007DE451 /* Build configuration list for PBXNativeTarget "Agora iOS Tutorial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ABDEE671D383BE4007DE451 /* Debug */,
+				1ABDEE681D383BE4007DE451 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1ABDEE361D383BE4007DE451 /* Project object */;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="cache-control" content="max-age=0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/favicon.ico">
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/minllpmhdgpndnkomcoccfekfegnlikg">
+  <title>AgoraWeb</title>
+</head>
+
+<body>
+  <div class="wrapper" id="page-meeting">
+    <div class="ag-header">
+      <div class="ag-header-lead">
+        <img class="ag-header-logo" src="../../assets/images/ag-logo.png" alt="">
+        <span>AgoraWeb v2.2</span>
+      </div>
+      <div class="ag-header-msg">
+        Room:&nbsp;
+        <span id="room-name">--</span>
+      </div>
+    </div>
+    <div class="ag-main">
+      <div class="ag-container" id="ag-canvas">
+
+        <!-- btn group -->
+        <div class="ag-btn-group">
+          <span class="ag-btn exitBtn" title="Exit">
+            <i class="ag-icon icon-call-ends"></i>
+          </span>
+          <span class="ag-btn videoControlBtn" title="Enable/Disable Video">
+            <i class="ag-icon icon-camera"></i>
+            <i class="ag-icon icon-camera-off"></i>
+          </span>
+          <span class="ag-btn audioControlBtn" title="Enable/Disable Audio">
+            <i class="ag-icon icon-mic"></i>
+            <i class="ag-icon icon-mic-off"></i>
+          </span>
+          <span class="ag-btn shareScreenBtn" title="Share Screen">
+            <i class="ag-icon icon-screen-share"></i>
+          </span>
+          <span class="ag-btn displayModeBtn" title="Switch Display Mode">
+            <i class="ag-icon icon-switch-layout"></i>
+          </span>
+          <!-- <span class="ag-btn ctrlBtn" title="Control">
+            <i class="ag-icon icon-ctrl"></i>
+          </span> -->
+          <!-- <span class="ag-btn disableRemoteBtn" title="Hide/Show Remote Stream">
+            <i class="ag-icon icon-visible"></i>
+             <i class="ag-icon icon-invisible"></i>
+          </span> -->
+          <!-- <span class="ag-btn inviteBtn"></span>
+            <span class="ag-btn shareBtn"></span> -->
+        </div>
+      </div>
+
+    </div>
+    <div class="ag-footer">
+      <a class="ag-href" target="_blank" href="https://www.agora.io">
+        <span>Powered By Agora</span>
+      </a>
+      <span>Talk to Support: 400 632 6626</span>
+    </div>
+
+    <!-- modal/messages/notifications -->
+  </div>
+  <script src="https://cdn.agora.io/sdk/web/AgoraRTCSDK-2.3.1.js"></script>
+  <!-- inject -->
+</body>
+
+</html>

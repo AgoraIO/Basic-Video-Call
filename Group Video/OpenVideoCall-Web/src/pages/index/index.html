@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="cache-control" content="max-age=0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/favicon.ico">
+  <title>AgoraWeb</title>
+</head>
+
+<body>
+  <div class="wrapper" id="page-index">
+    <div class="ag-header"></div>
+    <div class="ag-main">
+      <section class="login-wrapper">
+        <div class="login-header">
+          <img src="../../assets/images/ag-logo.png" alt="">
+          <p class="login-title">AgoraWeb v2.2</p>
+          <p class="login-subtitle">Powering Real-Time Communications</p>
+        </div>
+        <div class="login-body">
+          <div class="columns">
+            <div class="column is-12">
+              <div id="channel-wrapper" class="control has-icons-left">
+                <input id="channel" class="ag-rounded input" type="text" placeholder="Input a room name here">
+                <span class="icon is-small is-left">
+                  <img src="../../assets/images/ag-login.png" alt="">
+                </span>
+                <span class="validate-icon">
+
+                </span>
+                <div class="validate-msg"></div>
+              </div>
+            </div>
+          </div>
+          <div id="dropdown-container">
+            <div class="dropdown" id="baseModeDropdown">
+              <div class="dropdown-trigger">
+                <a id="baseMode" data-value="avc" class="ag-rounded button" aria-haspopup="true" aria-controls="baseModeOptions">
+                  <span id="baseModeLabel">Agora Video Call</span>
+                  <span class="icon is-small">
+                    <i class="ag-icon icon-arrow-down" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </div>
+              <div class="dropdown-menu" id="baseModeOptions" role="menu">
+                <div class="dropdown-content">
+                  <div class="dropdown-item" data-value="avc" data-msg="Agora Video Call">
+                    <p>Agora Video Call</p>
+                    <hr>
+                    <p>One to one and group calls</p>
+                  </div>
+                  <!-- <div class="dropdown-item" data-value="al" data-msg="Agora Live">
+                    <p>Agora Live</p>
+                    <hr>
+                    <p>Enabling real-time interactions between the host and the audience</p>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="dropdown" id="advanceProfileDropdown">
+              <div class="dropdown-trigger">
+                <a id="advancedProfile" class="ag-rounded button" aria-haspopup="true" aria-controls="advancedOptions">
+                  <span>Advanced</span>
+                </a>
+              </div>
+              <div class="dropdown-menu" id="advancedOptions" role="menu">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">
+                    <div class="control">
+                      <label class="radio">
+                        <input value="interop" type="radio" checked name="transcode">
+                        <span>VP8 &amp; H264</span>
+                      </label>
+                      <label class="radio">
+                        <input value="h264_interop" type="radio" name="transcode">
+                        <span>H264-only</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="dropdown-item">
+                    <span>High Stream</span>
+                    &nbsp;
+                    <div class="select is-rounded">
+                      <select id="videoProfile" class="ag-rounded is-clipped">
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="dropdown-item">
+                    <span>Low Stream</span>
+                    &nbsp;
+                    <div class="select is-rounded">
+                      <select id="videoProfileLow" class="ag-rounded is-clipped">
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <div id="attendeeMode" class="control">
+                <label class="radio video">
+                  <input value="video" type="radio" name="attendee" checked>
+                  <span class="radio-btn">
+                  </span>
+                  <span class="radio-img video">
+                  </span>
+                  <span class="radio-msg">Video Call : join with video call</span>
+                </label>
+                <br>
+                <label class="radio audio-only">
+                  <input value="audio-only" type="radio" name="attendee">
+                  <span class="radio-btn">
+                  </span>
+                  <span class="radio-img audio">
+                  </span>
+                  <span class="radio-msg">Audio-only : join with audio call</span>
+                </label>
+                <br>
+                <label class="radio audience">
+                  <input value="audience" type="radio" name="attendee">
+                  <span class="radio-btn">
+                  </span>
+                  <span class="radio-img audience">
+                  </span>
+                  <span class="radio-msg">Audience : join as an audience</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="login-footer">
+          <a id="joinBtn" class="ag-rounded button is-info">Join</a>
+        </div>
+      </section>
+    </div>
+    <div class="ag-footer">
+      <a class="ag-href" target="_blank" href="https://www.agora.io">
+        <span>Powered By Agora</span>
+      </a>
+      <div>
+        <span>Interested in Agora video call SDK? Contact </span>
+        <span class="ag-contact">sales@agora.io</span>
+      </div>
+    </div>
+  </div>
+  <!-- inject -->
+</body>
+
+</html>

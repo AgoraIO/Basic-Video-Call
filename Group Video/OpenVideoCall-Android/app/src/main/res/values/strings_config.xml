@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <!-- PLEASE KEEP THIS App ID IN SAFE PLACE -->
+    <!-- Get your own App ID at https://dashboard.agora.io/ -->
+    <!-- After you entered the App ID, remove <##> outside of Your App ID -->
+    <!-- For formal released project, please use Dynamic Key
+        https://docs.agora.io/en/2.3.1/product/Video/Agora%20Platform/key_native?platform=Android -->
+    <string name="private_app_id"><#YOUR APP ID#></string>
+
+    <string-array name="encryption_mode_values">
+        <item>AES-128-XTS</item>
+        <item>AES-256-XTS</item>
+    </string-array>
+
+    <string-array
+        name="string_array_resolutions">
+        <item>160x120</item> // 120P
+        <item>320x180</item> // 180P
+        <item>320x240</item> // 240P the default one
+        <item>640x360</item> // 360P
+        <item>640x480</item> // 480P
+        <item>1280x720</item> // 720P
+    </string-array>
+
+    <string-array
+        name="string_array_frame_rate">
+        <item>15</item> // 120P
+        <item>15</item> // 180P
+        <item>15</item> // 240P
+        <item>15</item> // 360P
+        <item>15</item> // 480P
+        <item>15</item> // 720P
+    </string-array>
+
+    <string-array
+        name="string_array_bit_rate">
+        <item>80</item> // 120P
+        <item>160</item> // 180P
+        <item>200</item> // 240P
+        <item>400</item> // 360P
+        <item>500</item> // 480P
+        <item>1000</item> // 720P
+    </string-array>
+
+    <string name="legal_channel_name_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;()+,-:;&lt;=.>?@[]^_`{|}~</string>
+
+</resources>

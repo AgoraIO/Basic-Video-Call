@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <string name="app_name">Open Video Call</string>
+
+    <string name="label_settings">Settings</string>
+
+    <string name="msg_welcome_message">Welcome to Open Video Call!</string>
+
+    <string name="label_channel_name_hint">Channel name</string>
+
+    <string name="label_encryption_key_hint">Encryption key</string>
+
+    <string name="label_join">Join</string>
+
+    <string name="label_confirm">Confirm</string>
+
+    <string name="label_send">Send</string>
+
+    <string name="msg_say_something">Say something…</string>
+
+    <string name="msg_no_network_connection">No network connection, please check the network settings</string>
+
+    <string name="label_title_resolution">Resolution\n(Width * Height)</string>
+    <string name="label_title_frame_rate">Frame Rate\n(fps)</string>
+    <string name="label_title_bit_rate">Bit Rate\n(kbps)</string>
+
+    // DO NOT TRANSLATE
+    <string name="bit_rate_value_with_unit">%d kbps</string>
+    <string name="frame_rate_value_with_unit">%d fps</string>
+</resources>

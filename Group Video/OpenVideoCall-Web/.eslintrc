@@ -1,0 +1,21 @@
+{
+  "extends": ["xo", "prettier"],
+  "plugins": [
+    "prettier"
+  ],
+  "env": {
+    "jest": true,
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "printWidth": 90
+      }
+    ],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }]
+  }
+}

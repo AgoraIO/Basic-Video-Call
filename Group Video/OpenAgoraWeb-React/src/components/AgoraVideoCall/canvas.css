@@ -1,0 +1,108 @@
+#ag-canvas {
+  height: 100%;
+}
+
+.ag-item :first-child {
+  border-radius: 6px;
+}
+
+.ag-item {
+  border-radius: 6px;
+  border: 2px #00B6ED solid;
+  background: url('../../assets/images/avatar.png') center no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+#ag-resize-container {
+  background-image: none!important;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  height: center;
+}
+
+#ag-resize-container .ag-item {
+  border: none!important;
+}
+
+
+/* button group */
+
+.ag-btn-group {
+  height: 70px;
+  width: calc(100% - 60px);
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  background: transparent;
+  z-index: 11;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ag-btn-group:hover,
+.ag-btn-group.active {
+  background: rgba(18, 74, 99, .8);
+}
+
+.ag-btn {
+  z-index: 12;
+  opacity: 0;
+  color: white;
+  /* width: 35px;
+    height: 35px; */
+  cursor: pointer;
+  font-size: 60px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ag-btn:hover {
+  color: #00B6ED;
+}
+
+.ag-btn.disabled,
+.ag-btn.disabled:hover {
+  color: #637C8E;
+  cursor: not-allowed;
+}
+
+.ag-btn-group:hover .ag-btn,
+.ag-btn-group.active .ag-btn {
+  opacity: 1;
+}
+
+.ag-btn.off.videoControlBtn .ag-icon-camera {
+  display: none;
+}
+
+.ag-btn.videoControlBtn .ag-icon-camera-off {
+  display: none;
+}
+
+.ag-btn.videoControlBtn .ag-icon-camera {
+  display: inline-block;
+}
+
+.ag-btn.off.videoControlBtn .ag-icon-camera-off {
+  display: inline-block;
+}
+
+.ag-btn.off.audioControlBtn .ag-icon-mic {
+  display: none;
+}
+
+.ag-btn.audioControlBtn .ag-icon-mic-off {
+  display: none;
+}
+
+.ag-btn.audioControlBtn .ag-icon-mic {
+  display: inline-block;
+}
+
+.ag-btn.off.audioControlBtn .ag-icon-mic-off {
+  display: inline-block;
+}

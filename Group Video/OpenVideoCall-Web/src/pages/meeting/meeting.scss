@@ -1,0 +1,119 @@
+@import '../../assets/color.scss';
+#page-meeting {
+  background: $dark-cyan;
+  height: 100%;
+
+  #addExtensionBtn {
+    margin: 0 auto;
+  }
+
+  .ag {
+    &-header {
+      padding: 1.43rem 2.14rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-lead {
+        font-size: 1.14rem;
+        line-height: 2.5rem;
+      }
+      &-logo {
+        width: 4.29rem;
+        height: 2.5rem;
+        margin-right: .86rem;
+      }
+    }
+    &-footer {
+      padding: 0 2.14rem;
+      display: flex;
+      align-items: center;
+      :first-child {
+        margin-right: 5.71rem;
+      }
+    }
+    &-container {
+      width: calc(100% - 4.29rem);
+      height: 100%;
+      margin: 0 auto;
+      background: rgb(52, 72, 88);
+      border-radius: 0.86rem;
+      position: relative;
+    }
+    /* button group */
+    &-btn-group {
+      height: 5rem;
+      width: 100%;
+      margin: 0 auto;
+      position: absolute;
+      bottom: 0;
+      background: transparent;
+      z-index: 11111;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      &:hover,
+      &.active {
+        background: rgba(18, 74, 99, .8);
+        .ag-btn {
+          opacity: 1;
+        }
+      }
+    }
+    &-btn {
+      z-index: 12;
+      opacity: 0;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      .ag-icon {
+        line-height: 35px;
+      }
+      &:hover {
+        color: #00B6ED;
+      }
+      &.disabled,
+      &.disabled:hover {
+        color: rgba(255, 255, 255, .56) !important;
+        cursor: not-allowed;
+      }
+      &.off {
+        .icon-camera-off,
+        .icon-mic-off,
+        .icon-invisible {
+          display: inline-block;
+        }
+        .icon-camera,
+        .icon-mic,
+        .icon-visible {
+          display: none;
+        }
+      }
+      & {
+        .icon-camera-off,
+        .icon-mic-off,
+        .icon-invisible {
+          display: none;
+        }
+        .icon-camera,
+        .icon-mic,
+        .icon-visible {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .video-item {
+    border-radius: .5rem;
+    border: .14rem $light-blue solid;
+    background: url('../../assets/images/avatar.png') center no-repeat;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    div {
+      border-radius: .5rem
+    }
+  }
+}

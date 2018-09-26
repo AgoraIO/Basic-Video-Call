@@ -1,0 +1,49 @@
+<configuration>
+    <!-- config THESE PROPERTIES in code for more flexibility -->
+    <property
+        name="LOG_DIR"
+        value="/sdcard/io.agora.openvcall/log" />
+    <property
+        name="FILE_PREFIX"
+        value="app" />
+    <property
+        name="FILE_POSTFIX"
+        value=".log" />
+
+    <appender
+        name="ROLLING"
+        class="ch.qos.logback.core.rolling.RollingFileAppender" >
+        <file>
+            ${LOG_DIR}/${FILE_PREFIX}${FILE_POSTFIX}
+        </file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>
+                ${LOG_DIR}/${FILE_PREFIX}.%i${FILE_POSTFIX}
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>7</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>
+                <!-- %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n -->
+                %d{yyyy-MM-dd HH:mm:ss.SSSZ} [%thread] %-5level %logger{0} %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>[%thread] %-5level %logger{0} %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!-- Write TRACE (and higher-level, from TRACE to ERROR) messages to the log file -->
+    <root level="TRACE" >
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </root>
+</configuration>
