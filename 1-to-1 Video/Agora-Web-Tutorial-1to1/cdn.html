@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Agora Web Sample</title>
+<link rel="stylesheet" href="vendor/bootstrap.min.css">
+<script src="build/AgoraRTC-development.js"></script>
+<script src="vendor/jquery.js"></script>
+</head>
+
+<body>
+<div id="div_device" class="panel panel-default" style="display:none">
+<div class="select">
+<label for="audioSource">Audio source: </label><select id="audioSource"></select>
+</div>
+<div class="select">
+<label for="videoSource">Video source: </label><select id="videoSource"></select>
+</div>
+</div>
+
+<div id="div_join" class="panel panel-default">
+<div class="panel-profile">
+<h4>Profile</h4>
+<select id = "profile">
+<option value ="1">320x180@15fps@140k</option>
+<option value ="2">640x360@30fps@400k</option>
+<option value ="3">1280x720@24fps@1130k</option>
+</select>
+</div>
+<div class="panel-body">
+Key: <input id="key" type="text" value="aab8b8f5a8cd4469a63042fcfafe7063" size="36"></input>
+Channel: <input id="channel" type="text" value="1000" size="4"></input>
+Host: <input id="video" type="checkbox" checked></input>
+<button id="join" class="btn btn-primary" onclick="join()">Join</button>
+<button id="leave" class="btn btn-primary" onclick="leave()">Leave</button>
+<button id="publish" class="btn btn-primary" onclick="publish()">Publish</button>
+<button id="unpublish" class="btn btn-primary" onclick="unpublish()">Unpublish</button>
+<button id="enableAudio" class="btn btn-primary" onclick="enableAudio()">Enable Audio</button>
+<button id="disableAudio" class="btn btn-primary" onclick="disableAudio()">Disable Audio</button>
+<button id="enableVideo" class="btn btn-primary" onclick="enableVideo()">Enable Video</button>
+<button id="disableVideo" class="btn btn-primary" onclick="disableVideo()">Disable Video</button>
+</div>
+</div>
+
+    <!--style>
+    .video__box{width:910px; margin:0 auto; overflow:hidden;}
+    .video__main{ width:810px; height:607px;float:left }
+    .video__list{ width:200px; height:607px; float:left;}
+    .video__item{ width:200px; height:174px; hei background:url(/img/icon_live.png) center center no-repeat; }
+    </style>
+    <div class="video__main">
+    </div>
+    <div class="video__list">
+        <div class="video__item"></div>
+        <div id="video" class="video__item">
+            <div id="agora_local"></div>
+        </div>
+    </div-->
+
+<div id="video" style="margin:0 auto;">
+    <div id="agora_local" style="float:right;width:210px;height:147px;display:inline-block;"></div>
+</div>
+
+<script language="javascript">
+var client, localStream, camera, microphone;
+
+var audioSelect = document.querySelector('select#audioSource');
+var videoSelect = document.querySelector('select#videoSource');
+
+function join() {
+  document.getElementById("join").disabled = true;
+  document.getElementById("video").disabled = true;
+  var dynamic_key = null;
+  // for dynamic key
+  /*console.log("Try to get dynamic key");
+  var use_https = ('https:' == document.location.protocol ? true : false);
+  if (use_https) {
+    var url_str = "https://ip:port/dynamic_key?channelName=" + channel.value;
+  } else {
+    var url_str = "http://ip:port/dynamic_key?channelName=" + channel.value;
+  }
+  $.ajax({
+    url: url_str,
+    error: function() {
+      console.log("Failed to get dynamic key");
+    },
+    success: function(response) {
+      console.log(response.key);
+      dynamic_key = response.key;*/
+
+  console.log("Init AgoraRTC client with vendor key: " + key.value);
+  client = AgoraRTC.createClient({mode: 'interop'});
+  client.init(key.value, function () {
+    console.log("AgoraRTC client initialized");
+    var profile = document.getElementById("profile");
+    var index = profile.selectedIndex;
+    var width = 640;
+    var height = 360;
+    var framerate = 30;
+    var bitrate = 400;
+    if (profile.options[index].value === "1") {
+      console.log("Select 1");
+      width = 320;
+      height = 180;
+      framerate = 15;
+      bitrate = 140;
+    } else if (profile.options[index].value === "2") {
+      console.log("Select 2");
+    } else if (profile.options[index].value === "3") {
+      console.log("Select 3");
+      width = 1280;
+      height = 720;
+      framerate = 24;
+      bitrate = 1130;
+    }
+    client.configPublisher({width: width, height: height, framerate: framerate, bitrate: bitrate, defaultLayout: 1, publishUrl: "rtmp://vid-130451.pull.fastweb.broadcastapp.agoraio.cn/live/" + channel.value});
+    client.join(dynamic_key, channel.value, null, function(uid) {
+      console.log("User " + uid + " join channel successfully");
+
+      if (document.getElementById("video").checked) {
+        camera = videoSource.value;
+        microphone = audioSource.value;
+        localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
+        if (document.getElementById("video").checked) {
+          localStream.setVideoProfile('720p_3');
+        }
+        localStream.init(function() {
+          console.log("getUserMedia successfully");
+          localStream.play('agora_local');
+
+          client.publish(localStream, function (err) {
+            console.log("Publish local stream error: " + err);
+          });
+
+          client.on('stream-published', function (evt) {
+            console.log("Publish local stream successfully");
+          });
+        }, function (err) {
+          console.log("getUserMedia failed", err);
+        });
+      }
+    }, function(err) {
+      console.log("Join channel failed", err);
+    });
+  }, function (err) {
+    console.log("AgoraRTC client init failed", err);
+  });
+
+  channelKey = "";
+  client.on('error', function(err) {
+    console.log("Got error msg:", err.reason);
+    if (err.reason === 'DYNAMIC_KEY_TIMEOUT') {
+      client.renewChannelKey(channelKey, function(){
+        console.log("Renew channel key successfully");
+      }, function(err){
+        console.log("Renew channel key failed: ", err);
+      });
+    }
+  });
+
+
+  client.on('stream-added', function (evt) {
+    var stream = evt.stream;
+    console.log("New stream added: " + stream.getId());
+    console.log("Subscribe ", stream);
+    client.subscribe(stream, function (err) {
+      console.log("Subscribe stream failed", err);
+    });
+  });
+
+  client.on('stream-subscribed', function (evt) {
+    var stream = evt.stream;
+    console.log("Subscribe remote stream successfully: " + stream.getId());
+    if ($('div#video #agora_remote'+stream.getId()).length === 0) {
+      $('div#video').append('<div id="agora_remote'+stream.getId()+'" style="float:left; width:810px;height:607px;display:inline-block;"></div>');
+    }
+    stream.play('agora_remote' + stream.getId());
+  });
+
+  client.on('stream-removed', function (evt) {
+    var stream = evt.stream;
+    stream.stop();
+    $('#agora_remote' + stream.getId()).remove();
+    console.log("Remote stream is removed " + stream.getId());
+  });
+
+  client.on('peer-leave', function (evt) {
+    var stream = evt.stream;
+    if (stream) {
+      stream.stop();
+      $('#agora_remote' + stream.getId()).remove();
+      console.log(evt.uid + " leaved from this channel");
+    }
+  });
+  // for dynamic key
+  /*}
+  });*/
+}
+
+function leave() {
+  document.getElementById("leave").disabled = true;
+  client.leave(function () {
+    console.log("Leavel channel successfully");
+  }, function (err) {
+    console.log("Leave channel failed");
+  });
+}
+
+function publish() {
+  document.getElementById("publish").disabled = true;
+  document.getElementById("unpublish").disabled = false;
+  client.publish(localStream, function (err) {
+    console.log("Publish local stream error: " + err);
+  });
+}
+
+function unpublish() {
+  document.getElementById("publish").disabled = false;
+  document.getElementById("unpublish").disabled = true;
+  client.unpublish(localStream, function (err) {
+    console.log("Unpublish local stream failed" + err);
+  });
+}
+
+function enableAudio() {
+  //document.getElementById("disableAudio").disabled = true;
+  //document.getElementById("enableAudio").disabled = false;
+  console.log("enableAudio");
+  localStream.enableAudio();
+}
+
+function disableAudio() {
+  //document.getElementById("disableAudio").disabled = false;
+  //document.getElementById("enableAudio").disabled = true;
+  localStream.disableAudio();
+}
+
+function enableVideo() {
+  //document.getElementById("disableVideo").disabled = true;
+  //document.getElementById("enableVideo").disabled = false;
+  localStream.enableVideo();
+}
+
+function disableVideo() {
+  //document.getElementById("disableVideo").disabled = false;
+  //document.getElementById("enableVideo").disabled = true;
+  localStream.disableVideo();
+}
+
+function getDevices() {
+  AgoraRTC.getDevices(function (devices) {
+    for (var i = 0; i !== devices.length; ++i) {
+      var device = devices[i];
+      var option = document.createElement('option');
+      option.value = device.deviceId;
+      if (device.kind === 'audioinput') {
+        option.text = device.label || 'microphone ' + (audioSelect.length + 1);
+        audioSelect.appendChild(option);
+      } else if (device.kind === 'videoinput') {
+        option.text = device.label || 'camera ' + (videoSelect.length + 1);
+        videoSelect.appendChild(option);
+      } else {
+        console.log('Some other kind of source/device: ', device);
+      }
+    }
+  });
+}
+
+//audioSelect.onchange = getDevices;
+//videoSelect.onchange = getDevices;
+//getDevices();
+</script>
+</body>
+</html>
