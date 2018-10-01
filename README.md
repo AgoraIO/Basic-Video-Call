@@ -22,7 +22,7 @@ The 1-to-1 video call sample applications, demonstrate how to:
 Project Folder Name|Platform|Description
 ---|---|---
 [Agora-Android-Tutorial-1to1](./1-to-1%20Video/Agora-Android-Tutorial-1to1)|Android (Java)|Android tutorial for 1-to-1 video calls
-[Agora-Android-Tutorial-Kotlin-1to1](./1-to-1%20Video/Agora-Android-Tutorial-Kotlin-1to1)|Android (Kotlin)|Android tutorial for 1-to-1 video calls using [Kotlin](https://developer.android.com/kotlin/)
+[Agora-Android-Tutorial-Kotlin-1to1](./1-to-1%20Video/Agora-Android-Tutorial-Kotlin-1to1)|Android ([Kotlin](https://developer.android.com/kotlin/))|Android tutorial for 1-to-1 video calls using [Kotlin](https://developer.android.com/kotlin/)
 [Agora-iOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-iOS-Tutorial-Objective-C-1to1)|iOS (Objective-C)|iOS tutorial for 1-to-1 video calls using Objective-C
 [Agora-iOS-Tutorial-Swift-1to1](./1-to-1%20Video/Agora-iOS-Tutorial-Swift-1to1)|iOS (Swift)|iOS tutorial for 1-to-1 video calls using Swift
 [Agora-macOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Objective-C-1to1)|MacOS (Objective-C)|MacOS tutorial for 1-to-1 video calls using Objective-C 
@@ -50,7 +50,7 @@ Project Folder Name|Platform|Description|README
 [OpenAgoraWeb-Vue](./Group%20Video/OpenAgoraWeb-Vue)|Web ([VueJS](https://vuejs.org/))|Web tutorial for group video calls using [VueJS](https://vuejs.org/)
 [OpenVideoCall-Android](./Group%20Video/OpenVideoCall-Android)|Android|Android tutorial for group video calls
 [OpenVideoCall-iOS](./Group%20Video/OpenVideoCall-iOS)|iOS (Swift)|iOS tutorial for group video calls using Swift
-[OpenVideoCall-iOS-Objectice-C](./Group%20Video/OpenVideoCall-iOS-Objectice-C)|iOS (Objective-C)|iOS tutorial for group video calls using Objective-C
+[OpenVideoCall-iOS-Objective-C](./Group%20Video/OpenVideoCall-iOS-Objective-C)|iOS (Objective-C)|iOS tutorial for group video calls using Objective-C
 [OpenVideoCall-macOS](./Group%20Video/OpenVideoCall-macOS)|MacOS (Swift)|MacOS tutorial for group video calls using Swift
 [OpenVideoCall-Windows](./Group%20Video/OpenVideoCall-Windows)|Windows|Windows tutorial for group video calls
 [OpenVideoCall-Linux](./Group%20Video/OpenVideoCall-Linux)|Linux|Linux tutorial for group video calls
