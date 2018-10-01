@@ -21,7 +21,7 @@ The 1-to-1 video call sample applications, demonstrate how to:
 
 Project Folder Name|Platform|Description|README
 ---|---|---|---
-[Agora-Android-Tutorial-1to1](1-to-1 Video/Agora-Android-Tutorial-1to1)|Android (Java)|Android tutorial for 1-to-1 video calls|[View README](1-to-1 Video/Agora-Android-Tutorial-1to1/README.md)
+[Agora-Android-Tutorial-1to1](./1-to-1 Video/Agora-Android-Tutorial-1to1)|Android (Java)|Android tutorial for 1-to-1 video calls|[View README](1-to-1 Video/Agora-Android-Tutorial-1to1/README.md)
 [Agora-Android-Tutorial-Kotlin-1to1](1-to-1 Video/Agora-Android-Tutorial-Kotlin-1to1)|Android ([Kotlin](https://developer.android.com/kotlin/))|Android tutorial for 1-to-1 video calls using [Kotlin](https://developer.android.com/kotlin/)|[View README](1-to-1 Video/Agora-Android-Tutorial-Kotlin-1to1/README.md)
 [Agora-iOS-Tutorial-Objective-C-1to1](1-to-1 Video/Agora-iOS-Tutorial-Objective-C-1to1)|iOS (Objective-C)|iOS tutorial for 1-to-1 video calls using Objective-C|[View README](1-to-1 Video/Agora-iOS-Tutorial-Objective-C-1to1/README.md)
 [Agora-iOS-Tutorial-Swift-1to1](1-to-1 Video/Agora-iOS-Tutorial-Swift-1to1)|iOS (Swift)|iOS tutorial for 1-to-1 video calls using Swift|[View README](1-to-1 Video/Agora-iOS-Tutorial-Swift-1to1/README.md)
