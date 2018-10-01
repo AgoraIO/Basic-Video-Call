@@ -25,7 +25,7 @@ Project Folder Name|Platform|Description
 [Agora-Android-Tutorial-Kotlin-1to1](./1-to-1%20Video/Agora-Android-Tutorial-Kotlin-1to1)|Android ([Kotlin](https://developer.android.com/kotlin/))|Android tutorial for 1-to-1 video calls using [Kotlin](https://developer.android.com/kotlin/)
 [Agora-iOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-iOS-Tutorial-Objective-C-1to1)|iOS (Objective-C)|iOS tutorial for 1-to-1 video calls using Objective-C
 [Agora-iOS-Tutorial-Swift-1to1](./1-to-1%20Video/Agora-iOS-Tutorial-Swift-1to1)|iOS (Swift)|iOS tutorial for 1-to-1 video calls using Swift
-[Agora-macOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Objective-C-1to1)|MacOS (Objective-C)|MacOS tutorial for 1-to-1 video calls using Objective-C 
+[Agora-macOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Objective-C-1to1)|MacOS (Objective-C) <img width=200/>|MacOS tutorial for 1-to-1 video calls using Objective-C 
 [Agora-macOS-Tutorial-Swift-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Swift-1to1)|MacOS (Swift)|MacOS tutorial for 1-to-1 video calls using Swift
 [Agora-Windows-Tutorial-1to1](./1-to-1%20Video/Agora-Windows-Tutorial-1to1)|Windows|Windows tutorial for 1-to-1 video calls
 
