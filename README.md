@@ -31,7 +31,7 @@ Project Folder Name|Platform|Description
 
 ### Group Video Calls
 
-Sample applications for group video calls are provided for Android, iOS, MacOS, and Windows.
+Sample applications for group video calls are provided for Web, Android, iOS, MacOS, Windows and Linux.
 
 
 The group video call sample applications, demonstrate how to:
@@ -43,8 +43,8 @@ The group video call sample applications, demonstrate how to:
 - Send messages to a channel
 - Setup resolution, frame rate and bit rate
 
-Project Folder Name|Platform|Description|README
----|---|---|---
+Project Folder Name|Platform|Description
+---|---|---
 [OpenVideoCall-Web](./Group%20Video/OpenVideoCall-Web)|Web|Web tutorial for group video calls
 [OpenAgoraWeb-React](./Group%20Video/OpenAgoraWeb-React)|Web ([ReactJS](https://reactjs.org/))|Web tutorial for group video calls using [ReactJS](https://reactjs.org/)
 [OpenAgoraWeb-Vue](./Group%20Video/OpenAgoraWeb-Vue)|Web ([VueJS](https://vuejs.org/))|Web tutorial for group video calls using [VueJS](https://vuejs.org/)
