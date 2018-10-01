@@ -57,7 +57,7 @@ Project Folder Name|Platform|Description
 
 ## Resources
 
-Full API documentation is available in the [Document Center](https://docs.agora.io/en/)
+Full API documentation is available in the [Document Center](https://docs.agora.io/en/).
 
 
 ## License
