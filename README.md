@@ -45,7 +45,7 @@ The group video call sample applications, demonstrate how to:
 
 Project Folder Name|Platform|Description
 ---|---|---
-[OpenVideoCall-Web](./Group%20Video/OpenVideoCall-Web)|Web <img width=30/>|Web tutorial for group video calls
+[OpenVideoCall-Web](./Group%20Video/OpenVideoCall-Web)|Web|Web tutorial for group video calls
 [OpenAgoraWeb-React](./Group%20Video/OpenAgoraWeb-React)|Web ([ReactJS](https://reactjs.org/))|Web tutorial for group video calls using [ReactJS](https://reactjs.org/)
 [OpenAgoraWeb-Vue](./Group%20Video/OpenAgoraWeb-Vue)|Web ([VueJS](https://vuejs.org/))|Web tutorial for group video calls using [VueJS](https://vuejs.org/)
 [OpenVideoCall-Android](./Group%20Video/OpenVideoCall-Android)|Android|Android tutorial for group video calls
