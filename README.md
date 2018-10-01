@@ -26,7 +26,7 @@ Project Folder Name|Platform|Description
 [Agora-iOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-iOS-Tutorial-Objective-C-1to1)|iOS (Objective-C)|iOS tutorial for 1-to-1 video calls using Objective-C
 [Agora-iOS-Tutorial-Swift-1to1](./1-to-1%20Video/Agora-iOS-Tutorial-Swift-1to1)|iOS (Swift)|iOS tutorial for 1-to-1 video calls using Swift
 [Agora-macOS-Tutorial-Objective-C-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Objective-C-1to1)|MacOS (Objective-C)|MacOS tutorial for 1-to-1 video calls using Objective-C 
-[Agora-macOS-Tutorial-Swift-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Swift-1to1)|MacOS (Swift)|MacOS tutorial for 1-to-1 video calls using SwiftAgora-macOS-Tutorial-Swift-1to1/README.md)
+[Agora-macOS-Tutorial-Swift-1to1](./1-to-1%20Video/Agora-macOS-Tutorial-Swift-1to1)|MacOS (Swift)|MacOS tutorial for 1-to-1 video calls using Swift
 [Agora-Windows-Tutorial-1to1](./1-to-1%20Video/Agora-Windows-Tutorial-1to1)|Windows|Windows tutorial for 1-to-1 video calls
 
 ### Group Video Calls
