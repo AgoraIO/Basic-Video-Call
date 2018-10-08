@@ -42,10 +42,7 @@ class VideoChatViewController: UIViewController {
 
     func setupVideo() {
         agoraKit.enableVideo()  // Default mode is disableVideo
-        agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: AgoraVideoDimension640x360,
-                                                                             frameRate: .fps15,
-                                                                             bitrate: AgoraVideoBitrateStandard,
-                                                                             orientationMode: .adaptative))
+        agoraKit.setVideoProfile(.landscape360P, swapWidthAndHeight: false)
     }
     
     func setupLocalVideo() {

@@ -46,12 +46,7 @@
     [self.agoraKit enableVideo];
     // Default mode is disableVideo
     
-    AgoraVideoEncoderConfiguration *encoderConfiguration =
-    [[AgoraVideoEncoderConfiguration alloc] initWithSize:AgoraVideoDimension640x360
-                                               frameRate:AgoraVideoFrameRateFps15
-                                                 bitrate:AgoraVideoBitrateStandard
-                                         orientationMode:AgoraVideoOutputOrientationModeAdaptative];
-    [self.agoraKit setVideoEncoderConfiguration:encoderConfiguration];
+    [self.agoraKit setVideoProfile:AgoraVideoProfileLandscape360P swapWidthAndHeight: false];
 }
 
 - (void)setupLocalVideo {
