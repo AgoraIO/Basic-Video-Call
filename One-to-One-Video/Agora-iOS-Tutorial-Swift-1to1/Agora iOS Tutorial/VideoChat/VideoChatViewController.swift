@@ -42,20 +42,20 @@ class VideoChatViewController: UIViewController {
 
     func setupVideo() {
         agoraKit.enableVideo()  // Default mode is disableVideo
-        agoraKit.setVideoProfile(.landscape360P, swapWidthAndHeight: false)
+        agoraKit.setVideoProfile(._VideoProfile_360P, swapWidthAndHeight: false)
     }
     
     func setupLocalVideo() {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = 0
         videoCanvas.view = localVideo
-        videoCanvas.renderMode = .hidden
+        videoCanvas.renderMode = .render_Hidden
         agoraKit.setupLocalVideo(videoCanvas)
     }
     
     func joinChannel() {
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
-        agoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) {[weak self] (sid, uid, elapsed) -> Void in
+        agoraKit.joinChannel(byKey: nil, channelName: "demoChannel1", info:nil, uid:0) {[weak self] (sid, uid, elapsed) -> Void in
             // Join channel "demoChannel1"
             if let weakSelf = self {
                 UIApplication.shared.isIdleTimerDisabled = true
@@ -134,11 +134,11 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = uid
         videoCanvas.view = remoteVideo
-        videoCanvas.renderMode = .adaptive
+        videoCanvas.renderMode = .render_Adaptive
         agoraKit.setupRemoteVideo(videoCanvas)
     }
     
-    internal func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraUserOfflineReason) {
+    internal func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraRtcUserOfflineReason) {
         self.remoteVideo.isHidden = true
     }
     

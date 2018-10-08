@@ -57,7 +57,7 @@
     [self.agoraKit enableVideo];
     // Default mode is disableVideo
     
-    [self.agoraKit setVideoProfile:AgoraVideoProfileLandscape720P swapWidthAndHeight:false];
+    [self.agoraKit setVideoProfile:AgoraRtc_VideoProfile_720P swapWidthAndHeight:false];
     // Default video profile is 360P
 }
 
@@ -67,13 +67,13 @@
     // UID = 0 means we let Agora pick a UID for us
     
     videoCanvas.view = self.localVideo;
-    videoCanvas.renderMode = AgoraVideoRenderModeAdaptive;
+    videoCanvas.renderMode = AgoraRtc_Render_Adaptive;
     [self.agoraKit setupLocalVideo:videoCanvas];
     // Bind local video stream to view
 }
 
 - (void)joinChannel {
-    [self.agoraKit joinChannelByToken:nil channelId:@"demoChannel1" info:nil uid:0 joinSuccess:^(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed) {
+    [self.agoraKit joinChannelByKey:nil channelName:@"demoChannel1" info:nil uid:0 joinSuccess:^(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed) {
         // Join channel "demoChannel1"
     }];
     // The UID database is maintained by your app to track which users joined which channels. If not assigned (or set to 0), the SDK will allocate one and returns it in joinSuccessBlock callback. The App needs to record and maintain the returned value as the SDK does not maintain it.
@@ -87,7 +87,7 @@
     // Since we are making a simple 1:1 video chat app, for simplicity sake, we are not storing the UIDs. You could use a mechanism such as an array to store the UIDs in a channel.
     
     videoCanvas.view = self.remoteVideo;
-    videoCanvas.renderMode = AgoraVideoRenderModeAdaptive;
+    videoCanvas.renderMode = AgoraRtc_Render_Adaptive;
     [self.agoraKit setupRemoteVideo:videoCanvas];
     // Bind remote video stream to view
 }
@@ -105,7 +105,7 @@
     [self.view.window close];
 }
 
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraRtcUserOfflineReason)reason {
     self.remoteVideo.hidden = true;
 }
 
@@ -190,7 +190,7 @@
     self.screenShare = !self.screenShare;
     if (self.screenShare) {
         [sender setImage:[NSImage imageNamed:@"screenShareButtonSelected"]];
-        [self.agoraKit startScreenCapture:0 withCaptureFreq:15 bitRate:0 andRect:CGRectZero];
+        [self.agoraKit startScreenCapture:0 withCaptureFreq:15 andRect:CGRectZero];
     } else {
         [sender setImage:[NSImage imageNamed:@"screenShareButton"]];
         [self.agoraKit stopScreenCapture];

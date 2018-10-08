@@ -56,19 +56,19 @@ class VideoChatViewController: NSViewController {
     
     func setupVideo() {
         AgoraKit.enableVideo()  // Default mode is disableVideo
-        AgoraKit.setVideoProfile(.landscape720P, swapWidthAndHeight: false)
+        AgoraKit.setVideoProfile(._VideoProfile_720P, swapWidthAndHeight: false)
     }
     
     func setupLocalVideo() {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = 0
         videoCanvas.view = localVideo
-        videoCanvas.renderMode = .adaptive
+        videoCanvas.renderMode = .render_Adaptive
         AgoraKit.setupLocalVideo(videoCanvas)
     }
     
     func joinChannel() {
-        AgoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
+        AgoraKit.joinChannel(byKey: nil, channelName: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
             // Join channel "demoChannel1"
         }
     }
@@ -166,7 +166,7 @@ class VideoChatViewController: NSViewController {
         screenShare = !screenShare
         if (screenShare) {
             sender.image = NSImage(named:"screenShareButtonSelected")
-            AgoraKit.startScreenCapture(0, withCaptureFreq: 15, bitRate: 0, andRect: CGRect.zero)
+            AgoraKit.startScreenCapture(0, withCaptureFreq: 15, andRect: CGRect.zero)
         } else {
             sender.image = NSImage(named:"screenShareButton")
             AgoraKit.stopScreenCapture()
@@ -182,11 +182,11 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = uid
         videoCanvas.view = remoteVideo
-        videoCanvas.renderMode = .adaptive
+        videoCanvas.renderMode = .render_Adaptive
         AgoraKit.setupRemoteVideo(videoCanvas)
     }
     
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraUserOfflineReason) {
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraRtcUserOfflineReason) {
         self.remoteVideo.isHidden = true
     }
     
