@@ -263,7 +263,7 @@ Property|Value|Description
 `bitrate`|`AgoraVideoBitrateStandard`|Bit rate for the video
 `orientationMode`|`AgoraVideoOutputOrientationModeAdaptative`|Orientation of the video
 
-3. Set the video encoder configuration using `setVideoEncoderConfiguration`
+3. Set the video encoder configuration using `setVideoEncoderConfiguration`.
 
 
 The `setupLocalVideo` method sets the local video for the Agora SDK.
@@ -281,7 +281,7 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
 }
 ```
 
-1. Initialize an `AgoraRtcVideoCanvas` object
+1. Initialize an `AgoraRtcVideoCanvas` object.
 2. Set the following properties for `videoCanvas`:
 	- `uid`: User ID
 	- `view`: UI view where the video will display
