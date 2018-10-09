@@ -107,7 +107,7 @@ Create the layout for the `VideoChatViewController`.
 
 ### Create the VideoChatViewController Class
 
-*VideoChatViewController.swift* defines and connects application functionality with the [VideoChatViewController UI](#create-the-videochatviewcontroller-ui).
+*VideoChatViewController.m* defines and connects application functionality with the [VideoChatViewController UI](#create-the-videochatviewcontroller-ui).
 
 - [Define Global Variables](#define-global-variables)
 - [Initialize Application](#initialize-application)
@@ -134,10 +134,10 @@ Variable|Description
 ``` Objective-C
 @interface VideoChatViewController ()
 
-@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;          // Tutorial Step 1
-@property (weak, nonatomic) IBOutlet UIView *localVideo;            // Tutorial Step 3
-@property (weak, nonatomic) IBOutlet UIView *remoteVideo;           // Tutorial Step 5
-@property (weak, nonatomic) IBOutlet UIView *controlButtons;        // Tutorial Step 8
+@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
+@property (weak, nonatomic) IBOutlet UIView *localVideo;  
+@property (weak, nonatomic) IBOutlet UIView *remoteVideo; 
+@property (weak, nonatomic) IBOutlet UIView *controlButtons;
 @property (weak, nonatomic) IBOutlet UIImageView *remoteVideoMutedIndicator;
 @property (weak, nonatomic) IBOutlet UIImageView *localVideoMutedBg;
 @property (weak, nonatomic) IBOutlet UIImageView *localVideoMutedIndicator;
@@ -160,12 +160,12 @@ Initialize the application using the `viewDidLoad()` method.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupButtons];            // Tutorial Step 8
-    [self hideVideoMuted];          // Tutorial Step 10
-    [self initializeAgoraEngine];   // Tutorial Step 1
-    [self setupVideo];              // Tutorial Step 2
-    [self setupLocalVideo];         // Tutorial Step 3
-    [self joinChannel];             // Tutorial Step 4
+    [self setupButtons];            
+    [self hideVideoMuted];          
+    [self initializeAgoraEngine];   
+    [self setupVideo];              
+    [self setupLocalVideo];         
+    [self joinChannel];             
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,7 +183,6 @@ Initialize the application using the `viewDidLoad()` method.
 Initialize the Agora RTC engine using the SDK, by passing `appID` into `sharedEngineWithAppId`.
 
 ``` Objective-C
-// Tutorial Step 1
 - (void)initializeAgoraEngine {
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:appID delegate:self];
 }
@@ -202,7 +201,6 @@ When the engine decodes the first remote video frame from a user, apply the foll
 
 
 ``` Objective-C
-// Tutorial Step 5
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size: (CGSize)size elapsed:(NSInteger)elapsed {
     if (self.remoteVideo.hidden)
         self.remoteVideo.hidden = false;
@@ -223,7 +221,6 @@ When the engine decodes the first remote video frame from a user, apply the foll
 When a user goes offline, hide `self.remoteVideo` by setting the `hidden` property to `true`.
 
 ``` Objective-C
-// Tutorial Step 7
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
     self.remoteVideo.hidden = true;
 }
@@ -243,7 +240,6 @@ When a user's video is muted / unmuted, hide / unhide `self.remoteVideo` and `se
 The `setupVideo` method enables video and sets the video encoder configuration for the Agora SDK.
 
 ``` Objective-C
-// Tutorial Step 2
 - (void)setupVideo {
     [self.agoraKit enableVideo];
     // Default mode is disableVideo
@@ -273,7 +269,6 @@ The `setupVideo` method enables video and sets the video encoder configuration f
 The `setupLocalVideo` method sets the local video for the Agora SDK.
 
 ``` Objective-C
-// Tutorial Step 3
 - (void)setupLocalVideo {
     AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
     videoCanvas.uid = 0;
@@ -300,7 +295,6 @@ The `joinChannel` method joins the user to the channel using `joinChannelByToken
 When the channel is joined successfully, enable the speakerphone using `setEnableSpeakerphone` and disable the timer using `idleTimerDisabled`.
 
 ``` Objective-C
-// Tutorial Step 4
 - (void)joinChannel {
     [self.agoraKit joinChannelByToken:nil channelId:@"demoChannel1" info:nil uid:0 joinSuccess:^(NSString *channel, NSUInteger uid, NSInteger elapsed) {
         // Join channel "demoChannel1"
@@ -314,7 +308,6 @@ When the channel is joined successfully, enable the speakerphone using `setEnabl
 The `hangUpButton` method exits the user from the channel using `leaveChannel`. This method is applied to the hang up button UI created in [Design the User Interface](#design-the-user-interface).
 
 ``` Objective-C
-// Tutorial Step 6
 - (IBAction)hangUpButton:(UIButton *)sender {
     [self leaveChannel];
 }
@@ -322,15 +315,15 @@ The `hangUpButton` method exits the user from the channel using `leaveChannel`. 
 
 The `leaveChannel` method exits the user from the channel through the Agora SDK using `leaveChannel`. Once the user successfully leaves the channel, apply the following:
 
-1. Hide the control buttons using `hideControlButtons`
-2. Enable the idle timer by setting `idleTimerDisabled` to `NO`
-3. Remove `self.remoteVideo` and `self.localVideo` by using `removeFromSuperview `
-4. Release the Agora SDK by setting `self.agoraKit` to `nil`
+1. Hide the control buttons using `hideControlButtons`.
+2. Enable the idle timer by setting `idleTimerDisabled` to `NO`.
+3. Remove `self.remoteVideo` and `self.localVideo` by using `removeFromSuperview `.
+4. Release the Agora SDK by setting `self.agoraKit` to `nil`.
 
 ``` Objective-C
 - (void)leaveChannel {
     [self.agoraKit leaveChannel:^(AgoraChannelStats *stat) {
-        [self hideControlButtons];     // Tutorial Step 8
+        [self hideControlButtons];     
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         [self.remoteVideo removeFromSuperview];
         [self.localVideo removeFromSuperview];
@@ -343,13 +336,12 @@ The `leaveChannel` method exits the user from the channel through the Agora SDK 
 
 The `setupButtons` method initializes the UI layout and adds event listeners to the UI objects.
 
-1. Hide the control buttons after a `3` second delay by invoking `hideControlButtons` through `performSelector`
-2. Initialize a `UITapGestureRecognizer` object, which will invoke `remoteVideoTapped`
-3. Apply `tapGestureRecognizer` to `self.view` using `addGestureRecognizer`
-4. Enable user interaction by setting `userInteractionEnabled` to `true`
+1. Hide the control buttons after a `3` second delay by invoking `hideControlButtons` through `performSelector`.
+2. Initialize a `UITapGestureRecognizer` object, which will invoke `remoteVideoTapped`.
+3. Apply `tapGestureRecognizer` to `self.view` using `addGestureRecognizer`.
+4. Enable user interaction by setting `userInteractionEnabled` to `true`.
 
 ``` Objective-C
-// Tutorial Step 8
 - (void)setupButtons {
     [self performSelector:@selector(hideControlButtons) withObject:nil afterDelay:3];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(remoteVideoTapped:)];
@@ -394,12 +386,11 @@ Invoke `hideControlButtons` after a `3` second delay using `performSelector`.
 
 The `didClickMuteButton` method is applied to the mute button UI created in [Design the User Interface](#design-the-user-interface).
 
-1. Update the button's `selected` state
-2. Mute / unmute the local audio stream using `muteLocalAudioStream`
-3. Reset the timer to hide the buttons using `resetHideButtonsTimer`
+1. Update the button's `selected` state.
+2. Mute / unmute the local audio stream using `muteLocalAudioStream`.
+3. Reset the timer to hide the buttons using `resetHideButtonsTimer`.
 
 ``` Objective-C
-// Tutorial Step 9
 - (IBAction)didClickMuteButton:(UIButton *)sender {
     sender.selected = !sender.selected;
     [self.agoraKit muteLocalAudioStream:sender.selected];
@@ -409,15 +400,14 @@ The `didClickMuteButton` method is applied to the mute button UI created in [Des
 
 The `didClickVideoMuteButton` method is applied to the video mute button UI created in [Design the User Interface](#design-the-user-interface).
 
-1. Update the button's `selected` state
-2. Mute / unmute the local audio stream using `muteLocalVideoStream`
-3. Hide / unhide the local video using the `self.localVideo.hidden`
-4. Hide / unhide the local video muted background image using the `self.localVideoMutedBg.hidden`
-5. Hide / unhide the local video muted indicator image using the `self.localVideoMutedIndicator.hidden`
-6. Reset the timer to hide the buttons using `resetHideButtonsTimer`
+1. Update the button's `selected` state.
+2. Mute / unmute the local audio stream using `muteLocalVideoStream`.
+3. Hide / unhide the local video using the `self.localVideo.hidden`.
+4. Hide / unhide the local video muted background image using the `self.localVideoMutedBg.hidden`.
+5. Hide / unhide the local video muted indicator image using the `self.localVideoMutedIndicator.hidden`.
+6. Reset the timer to hide the buttons using `resetHideButtonsTimer`.
 
 ``` Objective-C
-// Tutorial Step 10
 - (IBAction)didClickVideoMuteButton:(UIButton *)sender {
     sender.selected = !sender.selected;
     [self.agoraKit muteLocalVideoStream:sender.selected];
@@ -445,7 +435,6 @@ The `didClickSwitchCameraButton` method switches the video camera.
 3. Reset the timer to hide the buttons using `resetHideButtonsTimer`
 
 ``` Objective-C
-// Tutorial Step 11
 - (IBAction)didClickSwitchCameraButton:(UIButton *)sender {
     sender.selected = !sender.selected;
     [self.agoraKit switchCamera];
