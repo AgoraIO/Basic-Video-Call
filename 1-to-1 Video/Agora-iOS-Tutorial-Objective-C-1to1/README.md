@@ -149,10 +149,10 @@ Variable|Description
 
 Initialize the application using the `viewDidLoad()` method.
 
-1. Initialize the UI layout using the `setupButtons` and `hideVideoMuted` methods
-2. Initialize the Agora RTC engine using `initializeAgoraEngine`
-3. Setup the video streams using `setupVideo` and `setupLocalVideo`
-4. Join the channel using `joinChannel`
+1. Initialize the UI layout using the `setupButtons` and `hideVideoMuted` methods.
+2. Initialize the Agora RTC engine using `initializeAgoraEngine`.
+3. Setup the video streams using `setupVideo` and `setupLocalVideo`.
+4. Join the channel using `joinChannel`.
 
 ``` Objective-C
 @implementation VideoChatViewController
@@ -190,14 +190,14 @@ Initialize the Agora RTC engine using the SDK, by passing `appID` into `sharedEn
 
 When the engine decodes the first remote video frame from a user, apply the following:
 
-1. If `self.remoteVideo` is `hidden`, display `self.remoteVideo`
+1. If `self.remoteVideo` is `hidden`, display `self.remoteVideo`.
 2. Initialize a new `AgoraRtcVideoCanvas` object and set the following properties:
 	- `uid`: User ID
 	- `view`: Where the video will display
 	- `renderMode`: How the video will render
 
-3. Pass `videoCanvas` to the SDK using `setupRemoteVideo` to bind the video stream to the UI view
-4. If `self.remoteVideo` is `hidden`, display `self.remoteVideo` 
+3. Pass `videoCanvas` to the SDK using `setupRemoteVideo` to bind the video stream to the UI view.
+4. If `self.remoteVideo` is `hidden`, display `self.remoteVideo`:
 
 
 ``` Objective-C
@@ -218,7 +218,7 @@ When the engine decodes the first remote video frame from a user, apply the foll
 }
 ```
 
-When a user goes offline, hide `self.remoteVideo` by setting the `hidden` property to `true`.
+When a user goes offline, hide `self.remoteVideo` by setting the `hidden` property to `true`:
 
 ``` Objective-C
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
@@ -226,7 +226,7 @@ When a user goes offline, hide `self.remoteVideo` by setting the `hidden` proper
 }
 ```
 
-When a user's video is muted / unmuted, hide / unhide `self.remoteVideo` and `self.remoteVideoMutedIndicator` by updating the `hidden` property.
+When a user's video is muted / unmuted, hide / unhide `self.remoteVideo` and `self.remoteVideoMutedIndicator` by updating the `hidden` property:
 
 ```
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
@@ -286,7 +286,7 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
 	- `uid`: User ID
 	- `view`: UI view where the video will display
 	- `rendermode`: How the video will render
-3. Bind the local video stream to the view using `setupLocalVideo`
+3. Bind the local video stream to the view using `setupLocalVideo`.
 
 #### Add Join / Leave Channel Methods
 
