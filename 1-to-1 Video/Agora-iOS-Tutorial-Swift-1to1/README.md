@@ -301,7 +301,7 @@ The `setupVideo()` method enables video and sets the video encoder configuration
 1. Enable video using `enableVideo()`.
 2. Set the video encoding profile using `setVideoEncoderConfiguration()` with a new `AgoraVideoEncoderConfiguration` object with the following properties:
 
-	Property|Value|Description
+Property|Value|Description
 ---|---|---
 `size`|`AgoraVideoDimension640x360`|Size of the video
 `frameRate`|`.fps15`|Frame rate for the video
