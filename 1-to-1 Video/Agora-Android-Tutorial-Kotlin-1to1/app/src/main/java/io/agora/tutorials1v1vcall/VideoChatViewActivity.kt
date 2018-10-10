@@ -22,17 +22,17 @@ import io.agora.rtc.video.VideoEncoderConfiguration
 
 class VideoChatViewActivity : AppCompatActivity() {
 
-    private var mRtcEngine: RtcEngine? = null // Tutorial Step 1
-    private val mRtcEventHandler = object : IRtcEngineEventHandler() { // Tutorial Step 1
-        override fun onFirstRemoteVideoDecoded(uid: Int, width: Int, height: Int, elapsed: Int) { // Tutorial Step 5
+    private var mRtcEngine: RtcEngine? = null
+    private val mRtcEventHandler = object : IRtcEngineEventHandler() {
+        override fun onFirstRemoteVideoDecoded(uid: Int, width: Int, height: Int, elapsed: Int) {
             runOnUiThread { setupRemoteVideo(uid) }
         }
 
-        override fun onUserOffline(uid: Int, reason: Int) { // Tutorial Step 7
+        override fun onUserOffline(uid: Int, reason: Int) {
             runOnUiThread { onRemoteUserLeft() }
         }
 
-        override fun onUserMuteVideo(uid: Int, muted: Boolean) { // Tutorial Step 10
+        override fun onUserMuteVideo(uid: Int, muted: Boolean) {
             runOnUiThread { onRemoteUserVideoMuted(uid, muted) }
         }
     }
@@ -47,10 +47,10 @@ class VideoChatViewActivity : AppCompatActivity() {
     }
 
     private fun initAgoraEngineAndJoinChannel() {
-        initializeAgoraEngine()     // Tutorial Step 1
-        setupVideoProfile()         // Tutorial Step 2
-        setupLocalVideo()           // Tutorial Step 3
-        joinChannel()               // Tutorial Step 4
+        initializeAgoraEngine()
+        setupVideoProfile()
+        setupLocalVideo()
+        joinChannel()
     }
 
     fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
@@ -102,7 +102,6 @@ class VideoChatViewActivity : AppCompatActivity() {
         mRtcEngine = null
     }
 
-    // Tutorial Step 10
     fun onLocalVideoMuteClicked(view: View) {
         val iv = view as ImageView
         if (iv.isSelected) {
@@ -121,7 +120,6 @@ class VideoChatViewActivity : AppCompatActivity() {
         surfaceView.visibility = if (iv.isSelected) View.GONE else View.VISIBLE
     }
 
-    // Tutorial Step 9
     fun onLocalAudioMuteClicked(view: View) {
         val iv = view as ImageView
         if (iv.isSelected) {
@@ -135,17 +133,14 @@ class VideoChatViewActivity : AppCompatActivity() {
         mRtcEngine!!.muteLocalAudioStream(iv.isSelected)
     }
 
-    // Tutorial Step 8
     fun onSwitchCameraClicked(view: View) {
         mRtcEngine!!.switchCamera()
     }
 
-    // Tutorial Step 6
     fun onEncCallClicked(view: View) {
         finish()
     }
 
-    // Tutorial Step 1
     private fun initializeAgoraEngine() {
         try {
             mRtcEngine = RtcEngine.create(baseContext, getString(R.string.agora_app_id), mRtcEventHandler)
@@ -156,7 +151,6 @@ class VideoChatViewActivity : AppCompatActivity() {
         }
     }
 
-    // Tutorial Step 2
     private fun setupVideoProfile() {
         mRtcEngine!!.enableVideo()
 //      mRtcEngine!!.setVideoProfile(Constants.VIDEO_PROFILE_360P, false) // Earlier than 2.3.0
@@ -166,7 +160,6 @@ class VideoChatViewActivity : AppCompatActivity() {
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT))
     }
 
-    // Tutorial Step 3
     private fun setupLocalVideo() {
         val container = findViewById(R.id.local_video_view_container) as FrameLayout
         val surfaceView = RtcEngine.CreateRendererView(baseContext)
@@ -175,12 +168,10 @@ class VideoChatViewActivity : AppCompatActivity() {
         mRtcEngine!!.setupLocalVideo(VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0))
     }
 
-    // Tutorial Step 4
     private fun joinChannel() {
         mRtcEngine!!.joinChannel(null, "demoChannel1", "Extra Optional Data", 0) // if you do not specify the uid, we will generate the uid for you
     }
 
-    // Tutorial Step 5
     private fun setupRemoteVideo(uid: Int) {
         val container = findViewById(R.id.remote_video_view_container) as FrameLayout
 
@@ -197,12 +188,10 @@ class VideoChatViewActivity : AppCompatActivity() {
         tipMsg.visibility = View.GONE
     }
 
-    // Tutorial Step 6
     private fun leaveChannel() {
         mRtcEngine!!.leaveChannel()
     }
 
-    // Tutorial Step 7
     private fun onRemoteUserLeft() {
         val container = findViewById(R.id.remote_video_view_container) as FrameLayout
         container.removeAllViews()
@@ -211,7 +200,6 @@ class VideoChatViewActivity : AppCompatActivity() {
         tipMsg.visibility = View.VISIBLE
     }
 
-    // Tutorial Step 10
     private fun onRemoteUserVideoMuted(uid: Int, muted: Boolean) {
         val container = findViewById(R.id.remote_video_view_container) as FrameLayout
 

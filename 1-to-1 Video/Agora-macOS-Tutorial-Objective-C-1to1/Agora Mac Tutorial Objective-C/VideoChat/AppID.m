@@ -8,4 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *const AppID = <#Your App ID#>;        // Tutorial Step 1
+NSString *const AppID = <#Your App ID#>;

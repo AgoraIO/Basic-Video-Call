@@ -10,17 +10,17 @@
 
 @interface VideoChatViewController ()
 
-@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;          // Tutorial Step 1
-@property (weak) IBOutlet NSView *localVideo;                       // Tutorial Step 3
-@property (weak) IBOutlet NSView *remoteVideo;                      // Tutorial Step 5
-@property (weak) IBOutlet NSView *controlButtons;                   // Tutorial Step 8
+@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
+@property (weak) IBOutlet NSView *localVideo;
+@property (weak) IBOutlet NSView *remoteVideo;
+@property (weak) IBOutlet NSView *controlButtons;
 @property (weak) IBOutlet NSImageView *remoteVideoMutedIndicator;
 @property (weak) IBOutlet NSImageView *localVideoMutedBg;
 @property (weak) IBOutlet NSImageView *localVideoMutedIndicator;
 
-@property (nonatomic) BOOL muteAudio;                               // Tutorial Step 9
-@property (nonatomic) BOOL muteVideo;                               // Tutorial Step 10
-@property (nonatomic) BOOL screenShare;                             // Tutorial Step 12
+@property (nonatomic) BOOL muteAudio;
+@property (nonatomic) BOOL muteVideo;
+@property (nonatomic) BOOL screenShare;
 
 @end
 
@@ -33,12 +33,12 @@
     self.remoteVideo.wantsLayer = YES;
     self.localVideo.wantsLayer = YES;
     
-    [self setupButtons];            // Tutorial Step 8
-    [self hideVideoMuted];          // Tutorial Step 10
-    [self initializeAgoraEngine];   // Tutorial Step 1
-    [self setupVideo];              // Tutorial Step 2
-    [self setupLocalVideo];         // Tutorial Step 3
-    [self joinChannel];             // Tutorial Step 4
+    [self setupButtons];
+    [self hideVideoMuted];
+    [self initializeAgoraEngine];
+    [self setupVideo];
+    [self setupLocalVideo];
+    [self joinChannel];
 }
 
 - (void)viewWillAppear {
@@ -49,12 +49,10 @@
     self.localVideo.layer.backgroundColor = [NSColor clearColor].CGColor;
 }
 
-// Tutorial Step 1
 - (void)initializeAgoraEngine {
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:AppID delegate:self];
 }
 
-// Tutorial Step 2
 - (void)setupVideo {
     [self.agoraKit enableVideo];
     // Default mode is disableVideo
@@ -63,7 +61,6 @@
     // Default video profile is 360P
 }
 
-// Tutorial Step 3
 - (void)setupLocalVideo {
     AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
     videoCanvas.uid = 0;
@@ -75,7 +72,6 @@
     // Bind local video stream to view
 }
 
-// Tutorial Step 4
 - (void)joinChannel {
     [self.agoraKit joinChannelByToken:nil channelId:@"demoChannel1" info:nil uid:0 joinSuccess:^(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed) {
         // Join channel "demoChannel1"
@@ -83,7 +79,6 @@
     // The UID database is maintained by your app to track which users joined which channels. If not assigned (or set to 0), the SDK will allocate one and returns it in joinSuccessBlock callback. The App needs to record and maintain the returned value as the SDK does not maintain it.
 }
 
-// Tutorial Step 5
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size: (CGSize)size elapsed:(NSInteger)elapsed {
     if (self.remoteVideo.hidden)
         self.remoteVideo.hidden = false;
@@ -97,7 +92,6 @@
     // Bind remote video stream to view
 }
 
-// Tutorial Step 6
 - (IBAction)didClickHangUpButton:(NSButton *)sender {
     [self leaveChannel];
 }
@@ -111,12 +105,10 @@
     [self.view.window close];
 }
 
-// Tutorial Step 7
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
     self.remoteVideo.hidden = true;
 }
 
-// Tutorial Step 8
 - (void)setupButtons {
     [self performSelector:@selector(hideControlButtons) withObject:nil afterDelay:3];
     
@@ -150,7 +142,6 @@
     [self performSelector:@selector(hideControlButtons) withObject:nil afterDelay:3];
 }
 
-// Tutorial Step 9
 - (IBAction)didClickMuteButton:(NSButton *)sender {
     self.muteAudio = !self.muteAudio;
     [self.agoraKit muteLocalAudioStream:self.muteAudio];
@@ -162,7 +153,6 @@
     }
 }
 
-// Tutorial Step 10
 - (IBAction)didClickVideoMuteButton:(NSButton *)sender {
     self.muteVideo = !self.muteVideo;
     [self.agoraKit muteLocalVideoStream:self.muteVideo];
@@ -188,7 +178,6 @@
     self.localVideoMutedIndicator.hidden = true;
 }
 
-// Tutorial Step 11
 - (IBAction)didClickDeviceSelectionButton:(NSButton *)sender {
     DeviceSelectionViewController *deviceSelectionViewController = [self.storyboard instantiateControllerWithIdentifier:@"DeviceSelectionViewController"];
     deviceSelectionViewController.agoraKit = self.agoraKit;
@@ -197,7 +186,6 @@
     // Segue to sheet view controller DeviceSelectionViewController
 }
 
-// Tutorial Step 12
 - (IBAction)didClickScreenShareButton:(NSButton *)sender {
     self.screenShare = !self.screenShare;
     if (self.screenShare) {

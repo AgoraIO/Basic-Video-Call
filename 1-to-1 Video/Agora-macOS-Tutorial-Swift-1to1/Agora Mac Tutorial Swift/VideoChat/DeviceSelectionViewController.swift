@@ -23,7 +23,6 @@ class DeviceSelectionViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Tutorial Step 11
         self.preferredContentSize = NSMakeSize(500, 250)
         loadDevicesInPopUpButtons()
     }

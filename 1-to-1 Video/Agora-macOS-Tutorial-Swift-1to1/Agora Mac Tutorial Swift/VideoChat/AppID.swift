@@ -6,4 +6,4 @@
 //  Copyright © 2016 Agora.io. All rights reserved.
 //
 
-let AppID: String = <#Your App ID#>                   // Tutorial Step 1
+let AppID: String = <#Your App ID#>
