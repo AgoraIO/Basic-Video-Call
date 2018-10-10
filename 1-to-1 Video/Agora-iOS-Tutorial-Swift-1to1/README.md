@@ -85,7 +85,7 @@ Under the **Build Phases** tab, add the following frameworks and libraries to yo
 
 ### Import the Agora SDK
 
-To integrate the Agora SDK using CocoaPods, initialize the application with a new pod file. In Terminal, navigate to the folder containing `Agora iOS Tutorial.xcodeproj`. Execute the command:
+To integrate the Agora SDK using CocoaPods, initialize the application with a new pod file. In the terminal, navigate to the folder containing `Agora iOS Tutorial.xcodeproj`. Execute the following command:
 
 ```bash
 pod init
@@ -100,7 +100,7 @@ target 'AgoraVideoQuickstart' do
 end
 ```
 
-In Terminal, install the pod file by executing:
+In the terminal, install the pod file by executing the following command:
 
 ```bash
 pod install
@@ -137,7 +137,7 @@ Component|Description
 ---|---
 `remoteVideo`|A view for the incoming remote video feed. This is the video the user will see.
 `remoteVideoMutedIndicator`|An icon to indicate remote video is enabled / disabled.
-`localVideo`|A small view for the local video feed
+`localVideo`|A small view for the local video feed.
 `localVideoMutedBg`|A gray background image indicating the local video is enabled / disabled.
 `localVideoMutedIndicator`|An icon overlay for `localVideoMutedBg`, to indicate local video is disabled.
 `controlButtons`|A container for the following four control buttons: **Pause Video**, **Audio Mute**, **Switch Camera**, and **Hang Up**.
@@ -227,7 +227,7 @@ The `hideVideoMuted()` method hides `remoteVideoMutedIndicator`, `localVideoMute
 
 #### Add Agora Engine Methods
 
-THe `initializeAgoraEngine()` method initializes the Agora RTC engine. Pass `appID` into `AgoraRtcEngineKit.sharedEngine()` to initialize the engine using the Agora SDK.
+The `initializeAgoraEngine()` method initializes the Agora RTC engine. Pass `appID` into `AgoraRtcEngineKit.sharedEngine()` to initialize the engine using the Agora SDK.
 
 ``` Swift
     // Tutorial Step 1
@@ -249,7 +249,7 @@ When the engine decodes the first remote video frame from a user, apply the foll
 1. If `remoteVideo` is hidden, display `self.remoteVideo` using `isHidden`.
 2. Initialize a new `AgoraRtcVideoCanvas` object and set the following properties:
 	- `uid`: User ID. The value of `0` allows Agora to choose a random `uid` for the stream.
-	- `view`: Where the video will display. The `remoteVideo` value is the view created in the storyboard
+	- `view`: Where the video will display. The `remoteVideo` value is the view created in the storyboard.
 	- `renderMode`: How the video will render. The `adaptive` value ensures the video is resized proportionally to fit the display window.
 
 3. Pass `videoCanvas` to the SDK using `agoraKit.setupRemoteVideo()` to bind the video stream to the UI view.
@@ -275,7 +275,7 @@ When a user goes offline, hide `self.remoteVideo` by setting the `isHidden` prop
     }
 ```
 
-When a user's video is muted / unmuted, hide / unhide `self.remoteVideo` and `self.remoteVideoMutedIndicator` by updating the `isHidden` property.
+When a user's video is muted or unmuted, hide or unhide `self.remoteVideo` and `self.remoteVideoMutedIndicator` by updating the `isHidden` property.
 
 ``` Swift
     func rtcEngine(_ engine: AgoraRtcEngineKit, didVideoMuted muted:Bool, byUid:UInt) {
@@ -322,7 +322,7 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
 
 1. Initialize an `AgoraRtcVideoCanvas` object.
 2. Set the following properties for `videoCanvas`:
-	- `uid`: User ID. A value of `0` allows Agora to chose a random ID for the stream.
+	- `uid`: User ID. A value of `0` allows Agora to choose a random ID for the stream.
 	- `view`: UI view where the video will display. The `localVideo` value is the view create in the storyboard.
 	- `rendermode`: How the video will render. The `adaptive` value ensures the video is resized proportionally to fit the display window.
 3. Bind the local video stream to the view using `setupLocalVideo`.
@@ -331,14 +331,14 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
 
 The `joinChannel()` method joins the user to the channel.
 
-**Note:** This configuration takes place prior entering a channel, therefore the end user will initially begin in video mode, not audio mode. 
+**Note:** This configuration takes place prior entering a channel, so the end user will initially begin in video mode instead of audio mode. 
 
 1. Set the audio to use the speakerphone using `agoraKit.setDefaultAudioRouteToSpeakerphone()`.
 2. Use `agoraKit.joinChannel()` passing `demoChannel1` as the `channelId` and `0` as the `uid`.
 
-	**Note:** Using `0` for the `uid` allows Agora to chose a random ID for the channel ID
+	**Note:** Using `0` for the `uid` allows Agora to choose a random ID for the channel ID.
 	
-3. When the channel is joined successfully, disable the application's timer by setting `UIApplication.shared.isIdleTimerDisabled` to `true`. This prevents the application from transitioning to idle mode, while the app is running.
+3. When the channel is joined successfully, disable the application's timer by setting `UIApplication.shared.isIdleTimerDisabled` to `true`. This prevents the application from transitioning to idle mode while the app is running.
 
 **Note**: To allow users to talk to each other, they must be in the same channel and use the same App ID.
 
