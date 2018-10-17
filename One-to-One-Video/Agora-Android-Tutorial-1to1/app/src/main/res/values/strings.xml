@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Agora RTC Tutorial - 1to1</string>
+
+    <!-- PLEASE KEEP THIS App ID IN SAFE PLACE -->
+    <!-- Get your own App ID at https://dashboard.agora.io/ -->
+    <!-- After you entered the App ID, remove <##> outside of Your App ID -->
+    <!-- For formal released project, please use Security Keys/Token
+        https://docs.agora.io/en/2.3.1/product/Video/Agora%20Platform/key_native?platform=Android -->
+    <string name="agora_app_id"><#YOUR APP ID#></string>
+</resources>
