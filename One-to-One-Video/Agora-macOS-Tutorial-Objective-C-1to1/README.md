@@ -25,8 +25,8 @@ This section shows you how to prepare, build, and run the sample application.
 
 To build and run the sample application, you must obtain an app ID: 
 
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the sign-up process, you are redirected to the dashboard.
-2. Navigate in the dashboard tree on the left to **Projects** > **Project List**.
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). When you finish the sign-up process, you are redirected to the dashboard.
+2. In the dashboard tree on the left, navigate to **Projects** > **Project List**.
 3. Copy the app ID that you obtained from the dashboard into a text file. You will use this when you launch the app.
 
 ### Update and Run the Sample Application 
@@ -90,11 +90,11 @@ Add the following assets to `Assets.xcassets`.
 Asset|Description
 ------|------
 `deviceSelectionButton`|An image representing a device selection button.
-`hangUpButton`|An image of a red telephone for a hang up button.
+`hangUpButton`|An image of a red telephone to disconnect the call.
 `localVideoMutedBg`|The background image for a video mute button.
-`muteButton` and `muteButtonSelected`|A picture of a microphone to mute / unmute audio.
-`screenshareCameraButton` and `screenshareCameraButtonSelected`|A picture of a computer to turn on / off screenshare.
-`videoMuteButton` and `videoMuteButtonSelected`|A picture of a camera to enable / disable video.
+`muteButton` and `muteButtonSelected`|A picture of a microphone to mute/unmute audio.
+`screenshareCameraButton` and `screenshareCameraButtonSelected`|A picture of a computer to turn on/off screenshare.
+`videoMuteButton` and `videoMuteButtonSelected`|A picture of a camera to enable/disable video.
 `videoMuteButtonIndicator`|A picture of a crossed-out camera, to indicate the camera is off.
 
 #### Create the VideoChatViewController UI
@@ -108,10 +108,10 @@ Below are the key aspects of the `VideoChatViewController` UI:
 Component|Description
 ---|---
 `remoteVideo`|A view for the incoming remote video feed. This is the video the user will see.
-`remoteVideoMutedIndicator`|An icon to indicate remote video is enabled / disabled.
+`remoteVideoMutedIndicator`|An icon to indicate that the remote video is disabled
 `localVideo`|A small view for the local video feed
-`localVideoMutedBg`|A gray background image indicating the local video is enabled / disabled.
-`localVideoMutedIndicator`|An icon overlay for `localVideoMutedBg`, to indicate local video is disabled.
+`localVideoMutedBg`|A gray background image to indicate that the local video is disabled
+`localVideoMutedIndicator`|An icon overlay for `localVideoMutedBg` to indicate that local video is disabled.
 `controlButtons`|A container for the following four control buttons: **Device Manager**, **Video Off**, **Audio Mute**, **Screenshare On**, and **Hang Up**.
 
 #### Create the DeviceSelectionViewController UI
@@ -137,7 +137,7 @@ The `VideoChatViewController` class connects the application functionality with 
 - [Initialize Application](#initialize-application)
 - [Add Agora Engine Methods](#add-agora-engine-methods)
 - [Add Video Setup Methods](#add-video-setup-methods)
-- [Add Join / Leave Channel Methods](#add-join-leave-channel-methods)
+- [Add Join/Leave Channel Methods](#add-join-leave-channel-methods)
 - [Add UI Handler Methods](#add-ui-handler-methods)
 - [Add Add IBAction Methods](#add-ibaction-methods)
 
@@ -154,9 +154,9 @@ Variable|Description
 `remoteVideoMutedIndicator`|`UIImageView` to indicate if the remote video is muted
 `localVideoMutedBg`|`UIImageView` for the local video indicator background
 `localVideoMutedIndicator`|`UIImageView` to indicate if the remote video is muted
-`muteAudio`|Boolean value to determine of audio is muted
-`muteVideo`|Boolean value to determine of audio is disabled
-`screenShare`|Boolean value to determine of audio is enabled
+`muteAudio`|Boolean value to determine if audio is muted
+`muteVideo`|Boolean value to determine if audio is disabled
+`screenShare`|Boolean value to determine if audio is enabled
 
 ``` Objective-C
 #import "VideoChatViewController.h"
@@ -185,7 +185,7 @@ Initialize the application using the `viewDidLoad` method.
 1. Allow `self.view`, `self.remoteVideo`, and `self.localVideo` to use a CALayer object to manage its rendered content, by setting the `wantsLayer` properties to `YES`.
 2. Initialize the UI layout using the `setupButtons` and `hideVideoMuted` methods.
 3. Initialize the Agora RTC engine using `initializeAgoraEngine`.
-4. Setup the video streams using `setupVideo` and `setupLocalVideo`.
+4. Set up the video streams using `setupVideo` and `setupLocalVideo`.
 5. Join the channel using `joinChannel`.
 
 ``` Objective-C
@@ -312,7 +312,7 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
 1. Initialize an `AgoraRtcVideoCanvas` object.
 2. Set the following properties for `videoCanvas`:
 	- `uid`: User ID. A value of `0` allows Agora to choose a random ID for the stream.
-	- `view`: UI view where the video will display. The `self.localVideo` value is the view create in the storyboard.
+	- `view`: UI view where the video will display. The `self.localVideo` value is the view created in the storyboard.
 	- `rendermode`: How the video will render. The `AgoraVideoRenderModeAdaptive` value ensures the video is resized proportionally to fit the display window.
 3. Bind the local video stream to the view using the Agora SDK's `setupLocalVideo` method.
 
@@ -329,7 +329,7 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
 }
 ```
 
-#### Add Join / Leave Channel Methods
+#### Add Join/Leave Channel Methods
 
 The `joinChannel` method joins the user to the channel using `AgoraKit.joinChannel` and passing `demoChannel1` as the `channelId` and `0` as the `uid`.
 
@@ -442,7 +442,7 @@ The `mouseExited` method tracks when the mouse exits the specified object and hi
 The `didClickMuteButton` method is applied to the mute button UI created in [Design the User Interface](#design-the-user-interface).
 
 1. Update `self.muteAudio`.
-2. Mute / unmute the local audio stream using the Agora SDK's `muteLocalAudioStream` method.
+2. Mute/unmute the local audio stream using the Agora SDK's `muteLocalAudioStream` method.
 3. Update the button's image using `setImage`.
 
 ``` Objective-C
@@ -461,11 +461,11 @@ The `didClickMuteButton` method is applied to the mute button UI created in [Des
 The `didClickVideoMuteButton` method is applied to the video mute button UI created in [Design the User Interface](#design-the-user-interface).
 
 1. Update `self.muteVideo`.
-2. Mute / unmute the local video stream using the Agora SDK method `muteLocalVideoStream`.
+2. Mute/unmute the local video stream using the Agora SDK method `muteLocalVideoStream`.
 3. Update the button's image using `setImage`.
-4. Hide / unhide the local video using `self.localVideo.hidden`.
-5. Hide / unhide the local video muted background image using the `self.localVideoMutedBg.hidden`.
-6. Hide / unhide the local video muted indicator image using the `self.localVideoMutedIndicator.hidden`.
+4. Hide/unhide the local video using `self.localVideo.hidden`.
+5. Hide/unhide the local video muted background image using the `self.localVideoMutedBg.hidden`.
+6. Hide/unhide the local video muted indicator image using the `self.localVideoMutedIndicator.hidden`.
 
 ``` Objective-C
 - (IBAction)didClickVideoMuteButton:(NSButton *)sender {
@@ -615,7 +615,7 @@ The `didClickConfirmButton` method sets the new device settings.
 For each `self.connectedRecordingDevices`, `self.connectedPlaybackDevices`, `self.connectedVideoCaptureDevices` array:
 
 1. Find the selected device by using the index of the respective dropdown menu using `indexOfSelectedItem`.
-2. Set the new device device using the Agora SDK method `setDevice`.
+2. Set the new device using the Agora SDK method `setDevice`.
 
 Close the device selection view using `self.dismiss`.
 
@@ -643,8 +643,8 @@ When a user's device changes, load the devices into the dropdown menus using `lo
 ```
 
 ## Resources
-- Find full API documentation in the [Document Center](https://docs.agora.io/en/)
-- File bugs about this demo [here](https://github.com/AgoraIO/Agora-macOS-Tutorial-Objective-C-1to1/issues)
+- For full API documentation, see the [Document Center](https://docs.agora.io/en/)
+- To file bugs about this demo, click [here](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1/issues)
 
 
 ## Learn More

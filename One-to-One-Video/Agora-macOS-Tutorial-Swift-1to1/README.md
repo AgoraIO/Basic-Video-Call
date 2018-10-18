@@ -91,9 +91,9 @@ Asset|Description
 `deviceSelectionButton`|An image representing a device selection button.
 `hangUpButton`|An image of a red telephone to disconnect the call.
 `localVideoMutedBg`|The background image for a video mute button.
-`muteButton` and `muteButtonSelected`|A picture of a microphone to mute or unmute audio.
-`screenshareCameraButton` and `screenshareCameraButtonSelected`|A picture of a computer to start or stop screensharing.
-`videoMuteButton` and `videoMuteButtonSelected`|A picture of a camera to enable or disable video.
+`muteButton` and `muteButtonSelected`|A picture of a microphone to mute/unmute audio.
+`screenshareCameraButton` and `screenshareCameraButtonSelected`|A picture of a computer to turn on/off screenshare.
+`videoMuteButton` and `videoMuteButtonSelected`|A picture of a camera to enable/disable video.
 `videoMuteButtonIndicator`|A picture of a crossed-out camera, to indicate the camera is off.
 
 #### Create the VideoChatViewController UI
@@ -107,10 +107,10 @@ Below are the key aspects of the `VideoChatViewController` UI:
 Component|Description
 ---|---
 `remoteVideo`|A view for the incoming remote video feed. This is the video the user will see.
-`remoteVideoMutedIndicator`|An icon that indicates whether the remote video is enabled or disabled.
-`localVideo`|A small view for the local video feed.
-`localVideoMutedBg`|A gray background image that indicates whether the local video is enabled or disabled.
-`localVideoMutedIndicator`|An icon overlay for `localVideoMutedBg` that indicates whether the local video is disabled.
+`remoteVideoMutedIndicator`|An icon to indicate that the remote video is disabled
+`localVideo`|A small view for the local video feed
+`localVideoMutedBg`|A gray background image to indicate that the local video is disabled.
+`localVideoMutedIndicator`|An icon overlay for `localVideoMutedBg`, to indicate that local video is disabled.
 `controlButtons`|A container for the following four control buttons: **Device Manager**, **Video Off**, **Audio Mute**, **Screenshare On**, and **Hang Up**.
 
 #### Create the DeviceSelectionViewController UI
@@ -136,7 +136,7 @@ The `VideoChatViewController` class connects the application functionality with 
 - [Initialize Application](#initialize-application)
 - [Add Agora Engine Methods](#add-agora-engine-methods)
 - [Add Video Setup Methods](#add-video-setup-methods)
-- [Add Join or Leave Channel Methods](#add-join-or-leave-channel-methods)
+- [Add Join/Leave Channel Methods](#add-join-leave-channel-methods)
 - [Add UI Handler Methods](#add-ui-handler-methods)
 - [Add Add IBAction Methods](#add-ibaction-methods)
 
@@ -154,13 +154,13 @@ The `VideoChatViewController` class defines the global `IBOutlet` variables and 
 
 Variable|Description
 ----|----
-`localVideo`|`UIView` for the local video.
-`remoteVideo`|`UIView` for the remote video.
-`controlButtons`|`UIView` to contain the button controls.
-`remoteVideoMutedIndicator`|`UIImageView` to indicate if the remote video is muted.
-`localVideoMutedBg`|`UIImageView` for the local video indicator background.
-`localVideoMutedIndicator`|`UIImageView` to indicate if the remote video is muted.
-`agoraKit`|`AgoraRtcEngineKit` object for the Agora RTC engine SDK.
+`localVideo`|`UIView` for the local video
+`remoteVideo`|`UIView` for the remote video
+`controlButtons`|`UIView` to contain the button controls
+`remoteVideoMutedIndicator`|`UIImageView` to indicate if the remote video is muted
+`localVideoMutedBg`|`UIImageView` for the local video indicator background
+`localVideoMutedIndicator`|`UIImageView` to indicate if the remote video is muted
+`agoraKit`|`AgoraRtcEngineKit` object for the Agora RTC engine SDK
 
 ``` Swift
 var AgoraKit: AgoraRtcEngineKit!
@@ -328,13 +328,13 @@ The `setupLocalVideo` method sets the local video for the Agora SDK.
     }
 ```
 
-#### Add Join or Leave Channel Methods
+#### Add Join / Leave Channel Methods
 
 The `joinChannel()` method joins the user to the channel using `AgoraKit.joinChannel()` and passing `demoChannel1` as the `channelId` and `0` as the `uid`.
 
 **Note:** 
 - Using `0` for the `uid` allows Agora to choose a random ID for the channel ID.
-- For users to talk to each other, they must be in the same channel and use the same App ID.
+- To allow users to talk to each other, they must be in the same channel and use the same App ID.
 
 ``` Swift
     func joinChannel() {
@@ -446,7 +446,7 @@ The `mouseExited()` method tracks when the mouse exits the specified object and 
 The `didClickMuteButton()` method is applied to the mute button UI created in [Design the User Interface](#design-the-user-interface).
 
 1. Update `muteAudio`.
-2. Mute or unmute the local audio stream using `AgoraKit.muteLocalAudioStream()`.
+2. Mute / unmute the local audio stream using `AgoraKit.muteLocalAudioStream()`.
 3. Update the button's `image` property.
 
 ``` Swift
@@ -465,11 +465,11 @@ The `didClickMuteButton()` method is applied to the mute button UI created in [D
 The `didClickVideoMuteButton()` method is applied to the video mute button UI created in [Design the User Interface](#design-the-user-interface).
 
 1. Update `muteVideo `.
-2. Mute or unmute the local video stream using `AgoraKit.muteLocalVideoStream()`.
+2. Mute / unmute the local video stream using `AgoraKit.muteLocalVideoStream()`.
 3. Update the button's `image` property.
-4. Hide or unhide the local video using `localVideo.isHidden`.
-5. Hide or unhide the local video muted background image using the `localVideoMutedBg.isHidden`.
-6. Hide or unhide the local video muted indicator image using the `localVideoMutedIndicator.isHidden`.
+4. Hide / unhide the local video using `localVideo.isHidden`.
+5. Hide / unhide the local video muted background image using the `localVideoMutedBg.isHidden`.
+6. Hide / unhide the local video muted indicator image using the `localVideoMutedIndicator.isHidden`.
 
 ``` Swift
     @IBAction func didClickVideoMuteButton(_ sender: NSButton) {
