@@ -104,14 +104,12 @@ BOOL COpenVideoCallDlg::OnInitDialog()
     m_ftDes.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
     m_ftPhone.CreateFont(15, 0, 0, 0, FW_BOLD, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
 
-	CString strAppID = CAgoraObject::LoadAppID();
-
-	if (_tcslen(strAppID) == 0) {
+	if (_tcslen(APP_ID) == 0) {
 		MessageBox(_T("Please define your own APP_ID in source code"), _T("information"), MB_OK | MB_ICONINFORMATION);
 		::PostQuitMessage(0);
 	}
 
-	m_lpAgoraObject = CAgoraObject::GetAgoraObject(strAppID);
+	m_lpAgoraObject = CAgoraObject::GetAgoraObject(APP_ID);
 	m_lpRtcEngine = CAgoraObject::GetEngine();
     m_lpAgoraObject->EnableVideo(TRUE);
     m_lpAgoraObject->SetLogFilePath(NULL);
@@ -323,7 +321,6 @@ LRESULT COpenVideoCallDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 	vc.view = m_dlgVideo.GetLocalVideoWnd();
 	vc.renderMode = RENDER_MODE_TYPE::RENDER_MODE_FIT;
 
-	//cancel setVideoProfile bitrate since version 2.1.0
     m_nVideoSolution = m_dlgSetup.GetVideoSolution();
     lpRtcEngine->setVideoProfile((VIDEO_PROFILE_TYPE)m_nVideoSolution, m_dlgSetup.IsWHSwap());
     lpAgoraObject->EnableVideo(TRUE);

@@ -72,7 +72,7 @@ static AgoraVideoFrameObserver s_videoFrameObserver;
 int load_preprocessing_plugin(agora::rtc::IRtcEngine* engine)
 {
   agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-  mediaEngine.queryInterface(engine, agora::AGORA_IID_MEDIA_ENGINE);
+  mediaEngine.queryInterface(engine, agora::rtc::AGORA_IID_MEDIA_ENGINE);
   if (mediaEngine)
   {
     mediaEngine->registerAudioFrameObserver(&s_audioFrameObserver);
@@ -84,7 +84,7 @@ int load_preprocessing_plugin(agora::rtc::IRtcEngine* engine)
 int unload_preprocessing_plugin(agora::rtc::IRtcEngine* engine)
 {
   agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-  mediaEngine.queryInterface(engine, agora::AGORA_IID_MEDIA_ENGINE);
+  mediaEngine.queryInterface(engine, agora::rtc::AGORA_IID_MEDIA_ENGINE);
   if (mediaEngine)
   {
     mediaEngine->registerAudioFrameObserver(NULL);

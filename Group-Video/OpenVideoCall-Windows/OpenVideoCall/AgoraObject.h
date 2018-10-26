@@ -26,8 +26,6 @@ class CAgoraObject
 public:
 	~CAgoraObject(void);
 
-	static CString LoadAppID();
-
 	void SetNetworkTestFlag(BOOL bEnable);
 	BOOL GetNetworkTestFlag();
 
@@ -60,7 +58,7 @@ public:
 	BOOL EnableVideo(BOOL bEnable = TRUE);
 	BOOL IsVideoEnabled();
 
-	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL, BOOL bEnable = TRUE, int nBitrate = 0);
+	BOOL EnableScreenCapture(HWND hWnd, int nCapFPS = 15, LPCRECT lpCapRect = NULL, BOOL bEnable = TRUE);
 	BOOL IsScreenCaptureEnabled();
 
 	BOOL MuteLocalAudio(BOOL bMuted = TRUE);
@@ -78,7 +76,7 @@ public:
 
 	BOOL LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn = TRUE);
 
-	BOOL SetLogFilter(UINT logFilterType, LPCTSTR lpLogPath);
+	BOOL SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath);
 
     BOOL SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType = 0);
 

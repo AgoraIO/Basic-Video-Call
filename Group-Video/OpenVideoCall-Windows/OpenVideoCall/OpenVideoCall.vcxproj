@@ -341,14 +341,6 @@
   <ItemGroup>
     <Media Include="res\ID_TEST_AUDIO.wav" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Language\ChineseSimplified\ChineseSimplified.vcxproj">
-      <Project>{898289d0-0d57-4b8e-97ae-013114f85de9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Language\English\English.vcxproj">
-      <Project>{de1d9363-5455-4448-8d69-d22be47f5a82}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
