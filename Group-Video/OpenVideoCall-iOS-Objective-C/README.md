@@ -149,10 +149,10 @@ The `MainViewController` class has two `IBOutlet` variables. These map to the [M
 
 Variable|Description
 ----|----
-`roomNameTextField`|Maps to the **Channel name** `UITextField` in the `MainViewController` layout
-`encrypTextField`|Maps to the **Encryption key** `UITextField` in the `MainViewController` layout
-`videoProfile`|Indicates the video profile for the Agora SDK
-`videoProfile`|Indicates the encryption type for the Agora SDK
+`roomNameTextField`|Maps to the **Channel name** `UITextField` in the `MainViewController` layout.
+`encrypTextField`|Maps to the **Encryption key** `UITextField` in the `MainViewController` layout.
+`videoProfile`|Indicates the video profile for the Agora SDK.
+`videoProfile`|Indicates the encryption type for the Agora SDK.
 
 ``` Objective-C
 #import "MainViewController.h"
@@ -326,20 +326,20 @@ The `RoomViewController` class has `IBOutlet` variables to manage buttons, view 
 
 Variable|Description
 ----|----
-`containerView`|Container for the videos in the room
-`flowViews`|Set of key UI elements that need to be visually managed by the controller
-`roomNameLabel`|Label for the room name in the header of the layout
-`controlView`|Container for the room control buttons
-`muteVideoButton`|Button to mute/unmute the video
-`muteAudioButton`|Button to mute/unmute the audio
-`cameraButton`|Button for the camera
-`speakerButton`|Button for the speakerphone
-`backgroundTap`|Single-tap gesture recognizer
-`backgroundDoubleTap`|Double-tap gesture recognizer
-`msgInputViewBottom`|Layout constraint for the message creation container
-`msgTextField`|Text field for the message creation
-`msgTableView`|List of messages
-`msgInputView`|Container for message creation
+`containerView`|Container for the videos in the room.
+`flowViews`|Set of key UI elements that need to be visually managed by the controller.
+`roomNameLabel`|Label for the room name in the header of the layout.
+`controlView`|Container for the room control buttons.
+`muteVideoButton`|Button to mute/unmute the video.
+`muteAudioButton`|Button to mute/unmute the audio.
+`cameraButton`|Button for the camera.
+`speakerButton`|Button for the speakerphone.
+`backgroundTap`|Single-tap gesture recognizer.
+`backgroundDoubleTap`|Double-tap gesture recognizer.
+`msgInputViewBottom`|Layout constraint for the message creation container.
+`msgTextField`|Text field for the message creation.
+`msgTableView`|List of messages.
+`msgInputView`|Container for message creation.
 
 ``` Objective-C
 #import "RoomViewController.h"
