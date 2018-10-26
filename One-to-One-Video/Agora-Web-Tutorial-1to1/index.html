@@ -78,7 +78,7 @@ function join() {
   var channel_key = null;
 
   console.log("Init AgoraRTC client with App ID: " + appId.value);
-  client = AgoraRTC.createClient({mode: 'interop'});
+  client = AgoraRTC.createClient({mode: 'live'});
   client.init(appId.value, function () {
     console.log("AgoraRTC client initialized");
     client.join(channel_key, channel.value, null, function(uid) {
