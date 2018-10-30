@@ -145,7 +145,7 @@ private extension VideoView {
 
 private extension NSView {
     func lowerContentCompressionResistancePriority() {
-        setContentCompressionResistancePriority(200, for: .horizontal)
-        setContentCompressionResistancePriority(200, for: .vertical)
+        setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 200), for: .horizontal)
+        setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 200), for: .vertical)
     }
 }

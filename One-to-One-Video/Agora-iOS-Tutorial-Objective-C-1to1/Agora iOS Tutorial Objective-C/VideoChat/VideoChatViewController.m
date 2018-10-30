@@ -68,15 +68,18 @@
 - (void)joinChannel {
     [self.agoraKit joinChannelByToken:nil channelId:@"demoChannel1" info:nil uid:0 joinSuccess:^(NSString *channel, NSUInteger uid, NSInteger elapsed) {
         // Join channel "demoChannel1"
-        [self.agoraKit setEnableSpeakerphone:YES];
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
     }];
     // The UID database is maintained by your app to track which users joined which channels. If not assigned (or set to 0), the SDK will allocate one and returns it in joinSuccessBlock callback. The App needs to record and maintain the returned value as the SDK does not maintain it.
+    
+    [self.agoraKit setEnableSpeakerphone:YES];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size: (CGSize)size elapsed:(NSInteger)elapsed {
-    if (self.remoteVideo.hidden)
-        self.remoteVideo.hidden = false;
+    if (self.remoteVideo.hidden) {
+        self.remoteVideo.hidden = NO;
+    }
+    
     AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
     videoCanvas.uid = uid;
     // Since we are making a simple 1:1 video chat app, for simplicity sake, we are not storing the UIDs. You could use a mechanism such as an array to store the UIDs in a channel.
@@ -85,9 +88,6 @@
     videoCanvas.renderMode = AgoraVideoRenderModeHidden;
     [self.agoraKit setupRemoteVideo:videoCanvas];
     // Bind remote video stream to view
-    
-    if (self.remoteVideo.hidden)
-        self.remoteVideo.hidden = false;
 }
 
 - (IBAction)hangUpButton:(UIButton *)sender {
@@ -100,7 +100,6 @@
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         [self.remoteVideo removeFromSuperview];
         [self.localVideo removeFromSuperview];
-        self.agoraKit = nil;
     }];
 }
 

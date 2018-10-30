@@ -330,10 +330,18 @@ static NSInteger streamID = 0;
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:[KeyCenter AppId] delegate:self];
     [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
     [self.agoraKit enableVideo];
-    [self.agoraKit setVideoProfile:self.videoProfile swapWidthAndHeight:NO];
     
-    [self.agoraKit setEncryptionMode:[EncryptionType modeStringWithEncrypType:self.encrypType]];
-    [self.agoraKit setEncryptionSecret:self.encrypSecret];
+    AgoraVideoEncoderConfiguration *configuration =
+        [[AgoraVideoEncoderConfiguration alloc] initWithSize:self.dimension
+                                                   frameRate:AgoraVideoFrameRateFps15
+                                                     bitrate:AgoraVideoBitrateStandard
+                                             orientationMode:AgoraVideoOutputOrientationModeAdaptative];
+    [self.agoraKit setVideoEncoderConfiguration:configuration];
+    
+    if (self.encrypSecret.length) {
+        [self.agoraKit setEncryptionMode:[EncryptionType modeStringWithEncrypType:self.encrypType]];
+        [self.agoraKit setEncryptionSecret:self.encrypSecret];
+    }
     
     [self.agoraKit createDataStream:&streamID reliable:YES ordered:YES];
     

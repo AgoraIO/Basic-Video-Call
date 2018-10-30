@@ -9,36 +9,36 @@
 import UIKit
 
 protocol SettingsVCDelegate: NSObjectProtocol {
-    func settingsVC(_ settingsVC: SettingsViewController, didSelectProfile profile: AgoraVideoProfile)
+    func settingsVC(_ settingsVC: SettingsViewController, didSelectDimension dimension: CGSize)
 }
 
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var profileTableView: UITableView!
 
-    var videoProfile: AgoraVideoProfile! {
+    var dimension: CGSize! {
         didSet {
             profileTableView?.reloadData()
         }
     }
     weak var delegate: SettingsVCDelegate?
     
-    fileprivate let profiles: [AgoraVideoProfile] = AgoraVideoProfile.list()
+    fileprivate let dimensionList: [CGSize] = CGSize.validDimensionList()
     
     @IBAction func doConfirmPressed(_ sender: UIButton) {
-        delegate?.settingsVC(self, didSelectProfile: videoProfile)
+        delegate?.settingsVC(self, didSelectDimension: dimension)
     }
 }
 
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profiles.count
+        return dimensionList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileCell
-        let selectedProfile = profiles[indexPath.row]
-        cell.update(with: selectedProfile, isSelected: (selectedProfile == videoProfile))
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dimensionCell", for: indexPath) as! DimensionCell
+        let selectedDimension = dimensionList[indexPath.row]
+        cell.update(with: selectedDimension, isSelected: (selectedDimension == dimension))
         
         return cell
     }
@@ -46,13 +46,6 @@ extension SettingsViewController: UITableViewDataSource {
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedProfile = profiles[indexPath.row]
-        videoProfile = selectedProfile
-    }
-}
-
-private extension AgoraVideoProfile {
-    static func list() -> [AgoraVideoProfile] {
-        return AgoraVideoProfile.validProfileList()
+        dimension = dimensionList[indexPath.row]
     }
 }

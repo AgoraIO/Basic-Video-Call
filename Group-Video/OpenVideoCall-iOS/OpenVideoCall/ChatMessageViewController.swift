@@ -17,7 +17,7 @@ class ChatMessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageTableView.rowHeight = UITableViewAutomaticDimension
+        messageTableView.rowHeight = UITableView.automaticDimension
         messageTableView.estimatedRowHeight = 24
     }
     

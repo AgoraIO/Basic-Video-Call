@@ -7,52 +7,52 @@
 //
 
 #import "SettingsViewController.h"
-#import "ProfileCell.h"
+#import "DimensionCell.h"
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *profileTableView;
-@property (strong, nonatomic) NSArray *profiles;
+@property (strong, nonatomic) NSArray *dimensionList;
 @end
 
 @implementation SettingsViewController
-- (NSArray *)profiles {
-    if (!_profiles) {
-        _profiles = @[@(AgoraVideoProfileLandscape120P),
-                      @(AgoraVideoProfileLandscape180P),
-                      @(AgoraVideoProfileLandscape240P),
-                      @(AgoraVideoProfileLandscape360P),
-                      @(AgoraVideoProfileLandscape480P),
-                      @(AgoraVideoProfileLandscape720P)];
+- (NSArray *)dimensionList {
+    if (!_dimensionList) {
+        _dimensionList = @[@(AgoraVideoDimension160x120),
+                           @(AgoraVideoDimension240x180),
+                           @(AgoraVideoDimension320x240),
+                           @(AgoraVideoDimension640x360),
+                           @(AgoraVideoDimension640x480),
+                           @(AgoraVideoDimension960x720)];
     }
-    return _profiles;
+    return _dimensionList;
 }
 
-- (void)setVideoProfile:(AgoraVideoProfile)videoProfile {
-    _videoProfile = videoProfile;
+- (void)setDimension:(CGSize)dimension {
+    _dimension = dimension;
     [self.profileTableView reloadData];
 }
 
 - (IBAction)doConfirmPressed:(UIButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(settingsVC:didSelectProfile:)]) {
-        [self.delegate settingsVC:self didSelectProfile:self.videoProfile];
+    if ([self.delegate respondsToSelector:@selector(settingsVC:didSelectDimension:)]) {
+        [self.delegate settingsVC:self didSelectDimension:self.dimension];
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.profiles.count;
+    return self.dimensionList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"profileCell" forIndexPath:indexPath];
-    AgoraVideoProfile selectedProfile = [self.profiles[indexPath.row] integerValue];
-    [cell updateWithProfile:selectedProfile isSelected:(selectedProfile == self.videoProfile)];
+    DimensionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"profileCell" forIndexPath:indexPath];
+    CGSize dimension = [self.dimensionList[indexPath.row] CGSizeValue];
+    [cell updateWithDimension:dimension isSelected:CGSizeEqualToSize(self.dimension, dimension)];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AgoraVideoProfile selectedProfile = [self.profiles[indexPath.row] integerValue];
-    self.videoProfile = selectedProfile;
+    CGSize selectedDimension = [self.dimensionList[indexPath.row] CGSizeValue];
+    self.dimension = selectedDimension;
 }
 @end
