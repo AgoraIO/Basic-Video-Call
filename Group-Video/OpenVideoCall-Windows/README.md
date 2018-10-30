@@ -962,10 +962,10 @@ CAgoraAudInputManager::~CAgoraAudInputManager()
 The `Create()` method updates the available devices.
 
 1. Set `m_ptrDeviceManager` to a `AAudioDeviceManager` object with the Agora engine `lpRtcEngine`.
-2. If `m_ptrDeviceManager` is not valid or `m_ptrDeviceManager->get()` is `NULL` return `FALSE` indicate failed creation.
+2. If `m_ptrDeviceManager` is not valid or `m_ptrDeviceManager->get()` is `NULL` return `FALSE` to indicate failed creation.
 3. Retrieve the list of recording devices using `(*m_ptrDeviceManager)->enumerateRecordingDevices()`.
 4. If `m_lpCollection` is `NULL`, delete `m_ptrDeviceManager` and set it to `NULL`.
-5. Return `TRUE` if `m_lpCollection` is valid, otherwise return `FALSE`.
+5. Return `TRUE` if `m_lpCollection` is valid; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraAudInputManager::Create(IRtcEngine *lpRtcEngine)
@@ -1032,7 +1032,7 @@ The `SetVolume()` method sets the current volume.
 
 1. If `m_ptrDeviceManager` or `m_ptrDeviceManager->get()` is `NULL`, return `FALSE`.
 2. Set the volume with `nVol` using `(*m_ptrDeviceManager)->getRecordingDeviceVolume()` and initialize `nRet` with the result.
-3. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+3. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 
 ``` C++
@@ -1051,7 +1051,7 @@ BOOL CAgoraAudInputManager::SetVolume(UINT nVol)
 
 The `GetDeviceCount()` method retrieves the number of devices.
 
-If `m_lpCollection` is not `NULL`, return the device count using `m_lpCollection->getCount()`, otherwise return `0`.
+If `m_lpCollection` is not `NULL`, return the device count using `m_lpCollection->getCount()`; otherwise return `0`.
 
 ``` C++
 UINT CAgoraAudInputManager::GetDeviceCount()
@@ -1251,7 +1251,7 @@ The `Create()` method updates the available video devices.
 2. If `m_ptrDeviceManager` is not valid or `m_ptrDeviceManager->get()` is `NULL` return `FALSE` indicate failed creation.
 3. Retrieve the list of video devices using `(*m_ptrDeviceManager)->enumerateVideoDevices()`.
 4. If `m_lpCollection` is `NULL`, delete `m_ptrDeviceManager` and set it to `NULL`.
-5. Return `TRUE` if `m_lpCollection` is valid, otherwise return `FALSE`.
+5. Return `TRUE` if `m_lpCollection` is valid; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraCameraManager::Create(IRtcEngine *lpRtcEngine)
@@ -1296,7 +1296,7 @@ void CAgoraCameraManager::Close()
 
 The `GetDeviceCount()` method retrieves the number of devices.
 
-If `m_lpCollection` is not `NULL`, return the device count using `m_lpCollection->getCount()`, otherwise return `0`.
+If `m_lpCollection` is not `NULL`, return the device count using `m_lpCollection->getCount()`; otherwise return `0`.
 
 ``` C++
 UINT CAgoraCameraManager::GetDeviceCount()
@@ -1478,7 +1478,7 @@ The `Create()` method updates the available devices.
 2. If `m_ptrDeviceManager` is not valid or `m_ptrDeviceManager->get()` is `NULL` return `FALSE` indicate failed creation.
 3. Retrieve the list of playback devices using `(*m_ptrDeviceManager)->enumeratePlaybackDevices()`.
 4. If `m_lpCollection` is `NULL`, delete `m_ptrDeviceManager` and set it to `NULL`.
-5. Return `TRUE` if `m_lpCollection` is valid, otherwise return `FALSE`.
+5. Return `TRUE` if `m_lpCollection` is valid; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraPlayoutManager::Create(IRtcEngine *lpRtcEngine)
@@ -1544,7 +1544,7 @@ The `SetVolume()` method sets the current volume.
 
 1. If `m_ptrDeviceManager` or `m_ptrDeviceManager->get()` is `NULL`, return `0`.
 2. Set the volume with `nVol` using `(*m_ptrDeviceManager)-> setPlaybackDeviceVolume()` and initialize `nRet` with the result.
-3. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+3. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraPlayoutManager::SetVolume(UINT nVol)
@@ -1562,7 +1562,7 @@ BOOL CAgoraPlayoutManager::SetVolume(UINT nVol)
 
 The `GetDeviceCount()` method retrieves the number of devices.
 
-If `m_lpCollection` is not `NULL`, return the device count using `m_lpCollection->getCount()`, otherwise return `0`.
+If `m_lpCollection` is not `NULL`, return the device count using `m_lpCollection->getCount()`; otherwise return `0`.
 
 ``` C++
 UINT CAgoraPlayoutManager::GetDeviceCount()
@@ -1653,7 +1653,7 @@ The `SetCurDevice()` method sets the current device.
 	- Set the playback device with `szDeviceID` using `(*m_ptrDeviceManager)-> setPlaybackDevice()`.
 3. Otherwise, set the playback device with `lpDeviceID ` using `(*m_ptrDeviceManager)-> setPlaybackDevice()`.
 
-Close the method by returning `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+Close the method by returning `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraPlayoutManager::SetCurDevice(LPCTSTR lpDeviceID)
@@ -1985,7 +1985,7 @@ The `SendChatMessage()` method sends a chat message.
 2. Ensure `nMessageLen` is less than `128` and initialize `szUTF8`.
 3. If using `UNICODE`, convert `lpChatMessage` using `WideCharToMultiByte()`. Otherwise, convert `lpChatMessage` using `MultiByteToWideChar()`.
 4. Send the stream message using `m_lpAgoraEngine->sendStreamMessage()`.
-5. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+5. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::SendChatMessage(int nStreamID, LPCTSTR lpChatMessage)
@@ -2015,7 +2015,7 @@ The `JoinChannel()` method joins the user `nUID` to the channel `lpChannelName`.
 1. Initialize `nRet` to `0` and declare `szChannelName`.
 2. If using `UNICODE`, convert `lpChatMessage` using `WideCharToMultiByte()` and join the channel with `szChannelName` using `m_lpAgoraEngine->joinChannel()`. Otherwise, join the channel with `lpChannelName` using `m_lpAgoraEngine->joinChannel()`.
 4. If `nRet` is equal to `0`, update set `m_strChannelName` to `lpChannelName`.
-5. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+5. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID)
@@ -2043,7 +2043,7 @@ The `LeaveCahnnel()` method exists the user from the channel.
 
 1. Stop the preview using `m_lpAgoraEngine->stopPreview()`.
 2. Leave the channel using `m_lpAgoraEngine->leaveChannel()`.
-5. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+5. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::LeaveCahnnel()
@@ -2097,7 +2097,7 @@ The `EnableVideo()` method enables video.
 1. Initialize `nRet` to `0`.
 2. If `bEnable` is true, enable video using `m_lpAgoraEngine->enableVideo()`. Otherwise, disable video using `m_lpAgoraEngine->disableVideo()`.
 3. If `nRet` is equal to `0`, update `m_bVideoEnable`.
-4. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+4. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::EnableVideo(BOOL bEnable)
@@ -2131,7 +2131,7 @@ The `MuteLocalVideo()` method stops video.
 2. Declare a `RtcEngineParameters` object.
 2. Stop the local video using `rep.muteLocalVideoStream()`.
 3. If `nRet` is equal to `0`, update `m_bLocalVideoMuted`.
-4. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+4. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::MuteLocalVideo(BOOL bMuted)
@@ -2166,7 +2166,7 @@ The `LocalVideoPreview()` method sets the window for the local video preview.
 	3. Setup the local video using `m_lpAgoraEngine->setupLocalVideo()`.
 	4. Start the preview using `m_lpAgoraEngine->startPreview()`.
 2. If `bPreviewOn` is false, stop the preview using `m_lpAgoraEngine->stopPreview()`.
-3. Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+3. Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn)
@@ -2201,7 +2201,7 @@ Initialize `ret` to `0` and declare new `RtcEngineParameters` and `Rect` objects
 	- Otherwise, Set the `left`, `right`, `top`, and `bottom` properties for `rcCap` and pass `rcCap` into the screencapture method for `hWnd` using `m_lpAgoraEngine->startScreenCapture()`.
 - Otherwise, stop the screencapture using `m_lpAgoraEngine->stopScreenCapture()`.
 
-Return `TRUE` if `ret` is equal to `0`, otherwise return `FALSE`.
+Return `TRUE` if `ret` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::EnableScreenCapture(HWND hWnd, int nCapFPS, LPCRECT lpCapRect, BOOL bEnable, int nBitrate)
@@ -2252,7 +2252,7 @@ The `MuteLocalAudio()` method mutes/unmutes local audio.
 2. Declare a new `RtcEngineParameters` object.
 3. Mute/unmute the local audio stream `rep.muteLocalAudioStream()`.
 4. If `ret` is equal to `0`, the mute/unmute execution is successful. Set `m_bLocalAudioMuted` to `bMuted`.
-5. Return `TRUE` if `ret` is equal to `0`, otherwise return `FALSE`.
+5. Return `TRUE` if `ret` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::MuteLocalAudio(BOOL bMuted)
@@ -2289,7 +2289,7 @@ If `bEnable` is true:
 
 If `bEnable` is false, stop audio recording using `rep.stopAudioRecording()`.
 
-Return `TRUE` if `ret` is equal to `0`, otherwise return `FALSE`.
+Return `TRUE` if `ret` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::EnableAudioRecording(BOOL bEnable, LPCTSTR lpFilePath)
@@ -2325,7 +2325,7 @@ Set the appropriate encryption mode based on `nEncryptType` using `m_lpAgoraEngi
 
 Set the encryption secret key using `m_lpAgoraEngine->setEncryptionSecret()`.
 
-Return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+Return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType)
@@ -2359,7 +2359,7 @@ BOOL CAgoraObject::SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType)
 
 The `EnableLocalRender()` method enables/disables local rendering.
 
-Initialize `nRet` to `0` and return `TRUE` if `nRet` is equal to `0`, otherwise return `FALSE`.
+Initialize `nRet` to `0` and return `TRUE` if `nRet` is equal to `0`; otherwise return `FALSE`.
 
 **Note:** This method can be used to optionally set local rendering parameters.
 
@@ -2385,7 +2385,7 @@ The `EnableWhiteboardVer()` method enables/disables the whiteboard version.
 4. Initialize `dwIEVer` to `11001`.
 5. If `bEnable` is true, set `lStatus` using `RegSetValueEx()`, otherwise use `RegDeleteKeyValue()`.
 6. Close the key using `RegCloseKey()`.
-7. Return `TRUE` if `lStatus` is equal to `ERROR_SUCCESS`, otherwise return `FALSE`.
+7. Return `TRUE` if `lStatus` is equal to `ERROR_SUCCESS`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::EnableWhiteboardVer(BOOL bEnable)
@@ -2420,7 +2420,7 @@ The `EnableWhiteboardFeq()` method enables/disables the whiteboard feq.
 4. Initialize `dwValue` to `1`.
 5. If `bEnable` is true, set `lStatus` using `RegSetValueEx()`, otherwise use `RegDeleteKeyValue()`.
 6. Close the key using `RegCloseKey()`.
-7. Return `TRUE` if `lStatus` is equal to `ERROR_SUCCESS`, otherwise return `FALSE`.
+7. Return `TRUE` if `lStatus` is equal to `ERROR_SUCCESS`; otherwise return `FALSE`.
 
 ``` C++
 BOOL CAgoraObject::EnableWhiteboardFeq(BOOL bEnable)
@@ -2465,7 +2465,7 @@ void CAgoraObject::SetNetworkTestFlag(BOOL bEnable)
 
 The `GetNetworkTestFlag()` method retrieves the network test flag.
 
-If `m_dwEngineFlag` and `AG_ENGFLAG_ENNETTEST` both equal `0` return true, otherwise return false.
+If `m_dwEngineFlag` and `AG_ENGFLAG_ENNETTEST` both equal `0` return true; otherwise return false.
 
 ``` C++
 BOOL CAgoraObject::GetNetworkTestFlag()
@@ -2490,7 +2490,7 @@ void CAgoraObject::SetEchoTestFlag(BOOL bEnable)
 
 The `GetEchoTestFlag()` method retrieves the echo test flag.
 
-If `m_dwEngineFlag` and `AG_ENGFLAG_ECHOTEST` both equal `0` return true, otherwise return false.
+If `m_dwEngineFlag` and `AG_ENGFLAG_ECHOTEST` both equal `0` return true; otherwise return false.
 
 ``` C++
 BOOL CAgoraObject::GetEchoTestFlag()
@@ -2562,7 +2562,7 @@ void CAgoraObject::SetSpeakerphoneTestFlag(BOOL bEnable)
 
 The `GetSpeakerphoneTestFlag()` method retrieves the speakerphone test flag.
 
-If `m_dwEngineFlag` and `AG_ENGFLAG_SPKPHTEST` both equal `0` return true, otherwise return false.
+If `m_dwEngineFlag` and `AG_ENGFLAG_SPKPHTEST` both equal `0` return true; otherwise return false.
 
 ``` C++
 BOOL CAgoraObject::GetSpeakerphoneTestFlag()
@@ -2587,7 +2587,7 @@ void CAgoraObject::SetMicrophoneTestFlag(BOOL bEnable)
 
 The `GetMicrophoneTestFlag()` method retrieves the microphone test flag.
 
-If `m_dwEngineFlag` and `AG_ENGFLAG_MICPHTEST` both equal `0` return true, otherwise return false.
+If `m_dwEngineFlag` and `AG_ENGFLAG_MICPHTEST` both equal `0` return true; otherwise return false.
 
 ``` C++
 BOOL CAgoraObject::GetMicrophoneTestFlag()
@@ -2614,7 +2614,7 @@ void CAgoraObject::SetVideoTestFlag(BOOL bEnable)
 
 The `GetVideoTestFlag()` method retrieves the video test flag.
 
-If `m_dwEngineFlag` and `AG_ENGFLAG_VIDEOTEST` both equal `0` return true, otherwise return false.
+If `m_dwEngineFlag` and `AG_ENGFLAG_VIDEOTEST` both equal `0` return true; otherwise return false.
 
 ``` C++
 BOOL CAgoraObject::GetVideoTestFlag()
