@@ -9,7 +9,7 @@ This tutorial enables you to quickly get started in your development efforts to 
 * Switch between the front and rear cameras.
 
 ## Prerequisites
-- Xcode
+- Xcode 10.0+
 - An Agora.io Developer Account
 
 ## Quick Start
