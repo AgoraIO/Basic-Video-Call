@@ -13,7 +13,7 @@
 		076C59821DDDBC3500F813E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 076C59811DDDBC3500F813E2 /* Assets.xcassets */; };
 		076C59851DDDBC3500F813E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076C59831DDDBC3500F813E2 /* LaunchScreen.storyboard */; };
 		076C59961DDDBDE300F813E2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 076C59931DDDBDE200F813E2 /* SettingsViewController.m */; };
-		076C59971DDDBDE300F813E2 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 076C59951DDDBDE300F813E2 /* ProfileCell.m */; };
+		076C59971DDDBDE300F813E2 /* DimensionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 076C59951DDDBDE300F813E2 /* DimensionCell.m */; };
 		076C599A1DDDBF1500F813E2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 076C59991DDDBF1500F813E2 /* MainViewController.m */; };
 		076C599F1DDDBF2200F813E2 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 076C599C1DDDBF2200F813E2 /* RoomViewController.m */; };
 		076C59A01DDDBF2200F813E2 /* KeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 076C599E1DDDBF2200F813E2 /* KeyCenter.m */; };
@@ -28,11 +28,10 @@
 		076C59B61DDDDE7A00F813E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076C59B51DDDDE7A00F813E2 /* AVFoundation.framework */; };
 		07D29C5B1E9E1ED900C3583C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5A1E9E1ED900C3583C /* AgoraRtcEngineKit.framework */; };
 		07D29C5D1E9E1EFE00C3583C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */; };
-		07F531B91E28AE69009BFE58 /* OpenVideoCallUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F531B81E28AE69009BFE58 /* OpenVideoCallUITests.m */; };
 		0FB4FB651FF1F979006C7AE3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */; };
 		385F305B2122CB13005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F305A2122CB13005D5301 /* Accelerate.framework */; };
-		A7327ECA1FC7B51900882882 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7327EC81FC7B51900882882 /* libcrypto.a */; };
-		A7327ECB1FC7B51900882882 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7327EC91FC7B51900882882 /* AgoraRtcCryptoLoader.framework */; };
+		389D99A7218831C900BFD852 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */; };
+		389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A8218831D000BFD852 /* libcrypto.a */; };
 		A7327ECE1FC7B5E300882882 /* EncryptionType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ECD1FC7B5E300882882 /* EncryptionType.m */; };
 		A7327ED11FC7C7C900882882 /* MsgTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED01FC7C7C900882882 /* MsgTableView.m */; };
 		A7327ED41FC7C7DB00882882 /* MsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED31FC7C7DB00882882 /* MsgCell.m */; };
@@ -40,16 +39,6 @@
 		A7327EDA1FC7C99C00882882 /* MessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED91FC7C99C00882882 /* MessageType.m */; };
 		A7327EDF1FC7D3D700882882 /* AGVideoPreProcessing.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7327EDE1FC7D3D700882882 /* AGVideoPreProcessing.mm */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		07F531BB1E28AE69009BFE58 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076C596A1DDDBC3500F813E2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 076C59711DDDBC3500F813E2;
-			remoteInfo = OpenVideoCall;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		076C59721DDDBC3500F813E2 /* OpenVideoCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenVideoCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,8 +51,8 @@
 		076C59861DDDBC3500F813E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		076C59921DDDBDE200F813E2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		076C59931DDDBDE200F813E2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		076C59941DDDBDE300F813E2 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
-		076C59951DDDBDE300F813E2 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		076C59941DDDBDE300F813E2 /* DimensionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimensionCell.h; sourceTree = "<group>"; };
+		076C59951DDDBDE300F813E2 /* DimensionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimensionCell.m; sourceTree = "<group>"; };
 		076C59981DDDBF1500F813E2 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		076C59991DDDBF1500F813E2 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		076C599B1DDDBF2200F813E2 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
@@ -84,13 +73,10 @@
 		076C59B51DDDDE7A00F813E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		07D29C5A1E9E1ED900C3583C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		07F531B61E28AE69009BFE58 /* OpenVideoCallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenVideoCallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07F531B81E28AE69009BFE58 /* OpenVideoCallUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenVideoCallUITests.m; sourceTree = "<group>"; };
-		07F531BA1E28AE69009BFE58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		385F305A2122CB13005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		A7327EC81FC7B51900882882 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = OpenVideoCall/libcrypto.a; sourceTree = "<group>"; };
-		A7327EC91FC7B51900882882 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcCryptoLoader.framework; path = OpenVideoCall/AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
+		389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
+		389D99A8218831D000BFD852 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		A7327ECC1FC7B5E300882882 /* EncryptionType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EncryptionType.h; sourceTree = "<group>"; };
 		A7327ECD1FC7B5E300882882 /* EncryptionType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EncryptionType.m; sourceTree = "<group>"; };
 		A7327ECF1FC7C7C900882882 /* MsgTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgTableView.h; sourceTree = "<group>"; };
@@ -112,23 +98,16 @@
 			files = (
 				385F305B2122CB13005D5301 /* Accelerate.framework in Frameworks */,
 				0FB4FB651FF1F979006C7AE3 /* SystemConfiguration.framework in Frameworks */,
-				A7327ECA1FC7B51900882882 /* libcrypto.a in Frameworks */,
-				A7327ECB1FC7B51900882882 /* AgoraRtcCryptoLoader.framework in Frameworks */,
+				389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */,
 				07D29C5D1E9E1EFE00C3583C /* libresolv.tbd in Frameworks */,
 				076C59B61DDDDE7A00F813E2 /* AVFoundation.framework in Frameworks */,
+				389D99A7218831C900BFD852 /* AgoraRtcCryptoLoader.framework in Frameworks */,
 				076C59B41DDDDE7600F813E2 /* libc++.tbd in Frameworks */,
 				076C59B21DDDDE7000F813E2 /* AudioToolbox.framework in Frameworks */,
 				076C59B01DDDDE6900F813E2 /* VideoToolbox.framework in Frameworks */,
 				07D29C5B1E9E1ED900C3583C /* AgoraRtcEngineKit.framework in Frameworks */,
 				076C59AE1DDDDE6100F813E2 /* CoreMedia.framework in Frameworks */,
 				076C59AC1DDDDE5D00F813E2 /* CoreTelephony.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07F531B31E28AE69009BFE58 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				076C59741DDDBC3500F813E2 /* OpenVideoCall */,
-				07F531B71E28AE69009BFE58 /* OpenVideoCallUITests */,
 				076C59731DDDBC3500F813E2 /* Products */,
 				076C59AA1DDDDE5C00F813E2 /* Frameworks */,
 			);
@@ -149,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				076C59721DDDBC3500F813E2 /* OpenVideoCall.app */,
-				07F531B61E28AE69009BFE58 /* OpenVideoCallUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +138,8 @@
 				076C59901DDDBD0600F813E2 /* Views */,
 				076C59911DDDBD0D00F813E2 /* Models */,
 				07D29C5A1E9E1ED900C3583C /* AgoraRtcEngineKit.framework */,
+				389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */,
+				389D99A8218831D000BFD852 /* libcrypto.a */,
 				076C59781DDDBC3500F813E2 /* AppDelegate.h */,
 				076C59791DDDBC3500F813E2 /* AppDelegate.m */,
 				076C59811DDDBC3500F813E2 /* Assets.xcassets */,
@@ -196,8 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				076C597E1DDDBC3500F813E2 /* Main.storyboard */,
-				076C59941DDDBDE300F813E2 /* ProfileCell.h */,
-				076C59951DDDBDE300F813E2 /* ProfileCell.m */,
+				076C59941DDDBDE300F813E2 /* DimensionCell.h */,
+				076C59951DDDBDE300F813E2 /* DimensionCell.m */,
 				A7327ECF1FC7C7C900882882 /* MsgTableView.h */,
 				A7327ED01FC7C7C900882882 /* MsgTableView.m */,
 				A7327ED21FC7C7DB00882882 /* MsgCell.h */,
@@ -234,8 +213,6 @@
 			children = (
 				385F305A2122CB13005D5301 /* Accelerate.framework */,
 				0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */,
-				A7327EC91FC7B51900882882 /* AgoraRtcCryptoLoader.framework */,
-				A7327EC81FC7B51900882882 /* libcrypto.a */,
 				07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */,
 				076C59B51DDDDE7A00F813E2 /* AVFoundation.framework */,
 				076C59B31DDDDE7600F813E2 /* libc++.tbd */,
@@ -245,15 +222,6 @@
 				076C59AB1DDDDE5D00F813E2 /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		07F531B71E28AE69009BFE58 /* OpenVideoCallUITests */ = {
-			isa = PBXGroup;
-			children = (
-				07F531B81E28AE69009BFE58 /* OpenVideoCallUITests.m */,
-				07F531BA1E28AE69009BFE58 /* Info.plist */,
-			);
-			path = OpenVideoCallUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,42 +244,18 @@
 			productReference = 076C59721DDDBC3500F813E2 /* OpenVideoCall.app */;
 			productType = "com.apple.product-type.application";
 		};
-		07F531B51E28AE69009BFE58 /* OpenVideoCallUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 07F531BF1E28AE69009BFE58 /* Build configuration list for PBXNativeTarget "OpenVideoCallUITests" */;
-			buildPhases = (
-				07F531B21E28AE69009BFE58 /* Sources */,
-				07F531B31E28AE69009BFE58 /* Frameworks */,
-				07F531B41E28AE69009BFE58 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				07F531BC1E28AE69009BFE58 /* PBXTargetDependency */,
-			);
-			name = OpenVideoCallUITests;
-			productName = OpenVideoCallUITests;
-			productReference = 07F531B61E28AE69009BFE58 /* OpenVideoCallUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		076C596A1DDDBC3500F813E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Agora;
 				TargetAttributes = {
 					076C59711DDDBC3500F813E2 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 48TB6ZZL5S;
-						ProvisioningStyle = Manual;
-					};
-					07F531B51E28AE69009BFE58 = {
-						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 076C59711DDDBC3500F813E2;
 					};
 				};
 			};
@@ -329,7 +273,6 @@
 			projectRoot = "";
 			targets = (
 				076C59711DDDBC3500F813E2 /* OpenVideoCall */,
-				07F531B51E28AE69009BFE58 /* OpenVideoCallUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -342,13 +285,6 @@
 				076C59851DDDBC3500F813E2 /* LaunchScreen.storyboard in Resources */,
 				076C59821DDDBC3500F813E2 /* Assets.xcassets in Resources */,
 				076C59801DDDBC3500F813E2 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07F531B41E28AE69009BFE58 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +301,7 @@
 				076C59961DDDBDE300F813E2 /* SettingsViewController.m in Sources */,
 				076C59A61DDDBF3100F813E2 /* VideoViewLayouter.m in Sources */,
 				076C599F1DDDBF2200F813E2 /* RoomViewController.m in Sources */,
-				076C59971DDDBDE300F813E2 /* ProfileCell.m in Sources */,
+				076C59971DDDBDE300F813E2 /* DimensionCell.m in Sources */,
 				076C59A51DDDBF3100F813E2 /* VideoSession.m in Sources */,
 				076C59A91DDDC9FD00F813E2 /* VideoView.m in Sources */,
 				A7327ED11FC7C7C900882882 /* MsgTableView.m in Sources */,
@@ -378,23 +314,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		07F531B21E28AE69009BFE58 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				07F531B91E28AE69009BFE58 /* OpenVideoCallUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		07F531BC1E28AE69009BFE58 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 076C59711DDDBC3500F813E2 /* OpenVideoCall */;
-			targetProxy = 07F531BB1E28AE69009BFE58 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		076C597E1DDDBC3500F813E2 /* Main.storyboard */ = {
@@ -425,15 +345,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -474,15 +402,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -512,8 +448,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -529,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.OpenVideoCall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dc253ab3-71e4-40a3-a57c-a3a763407202";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2017;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -538,8 +475,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,36 +493,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.OpenVideoCall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dc253ab3-71e4-40a3-a57c-a3a763407202";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraIODev2017;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		07F531BD1E28AE69009BFE58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = OpenVideoCallUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.OpenVideoCallUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = OpenVideoCall;
-			};
-			name = Debug;
-		};
-		07F531BE1E28AE69009BFE58 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = OpenVideoCallUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.agora.OpenVideoCallUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = OpenVideoCall;
 			};
 			name = Release;
 		};
@@ -605,15 +515,6 @@
 			buildConfigurations = (
 				076C598A1DDDBC3500F813E2 /* Debug */,
 				076C598B1DDDBC3500F813E2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		07F531BF1E28AE69009BFE58 /* Build configuration list for PBXNativeTarget "OpenVideoCallUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				07F531BD1E28AE69009BFE58 /* Debug */,
-				07F531BE1E28AE69009BFE58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

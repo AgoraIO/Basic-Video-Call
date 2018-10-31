@@ -15,16 +15,6 @@
 - 设置加密模式；
 - 开启和关闭黑白滤镜；
 
-本开源项目使用 **Swift** 语言，你可以在这里找到使用 **Objective-C** 的项目：[OpenVideoCall-iOS-Objective-C](https://github.com/AgoraIO/OpenVideoCall-iOS-Objective-C)
-
-你也可以在这里查看入门版的示例项目：[Agora-iOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
-
-Agora视频SDK支持 iOS / Android / Windows / macOS 等多个平台，你可以查看对应各平台的示例项目：
-
-- [OpenVideoCall-Android](https://github.com/AgoraIO/OpenVideoCall-Android)
-- [OpenVideoCall-Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
-- [OpenVideoCall-macOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
-
 ## 运行示例程序
 首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。将 AppID 填写进 KeyCenter.swift
 
@@ -43,7 +33,7 @@ static let AppId: String = "Your App ID"
 最后使用 XCode 打开 OpenVideoCall.xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
 
 ## 运行环境
-* XCode 8.0 +
+* XCode 10.0 +
 * iOS 真机设备
 * 不支持模拟器
 
@@ -53,7 +43,7 @@ static let AppId: String = "Your App ID"
 - 如果在集成中遇到问题，你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
 - 如果有售前咨询问题，可以拨打 400 632 6626，或加入官方Q群 12742516 提问
 - 如果需要售后技术支持，你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的bug，欢迎提交 [issue](https://github.com/AgoraIO/OpenVideoCall-iOS/issues)
+- 如果发现了示例代码的bug，欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## 代码许可
 

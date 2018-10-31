@@ -7,29 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		077537BE1ED5424F00EF0878 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 077537BD1ED5424F00EF0878 /* libresolv.tbd */; };
 		1A0466241D5E75A2004987C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0466231D5E75A2004987C6 /* AppDelegate.swift */; };
 		1A0466261D5E75A2004987C6 /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */; };
 		1A0466281D5E75A2004987C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0466271D5E75A2004987C6 /* Assets.xcassets */; };
 		1A04662B1D5E75A2004987C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0466291D5E75A2004987C6 /* Main.storyboard */; };
 		1A0466341D5E76D7004987C6 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466321D5E76CB004987C6 /* AgoraRtcEngineKit.framework */; };
-		1A0466361D5E76E1004987C6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466351D5E76E1004987C6 /* AudioToolbox.framework */; };
-		1A0466381D5E76E5004987C6 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466371D5E76E5004987C6 /* VideoToolbox.framework */; };
-		1A04663A1D5E76E9004987C6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466391D5E76E9004987C6 /* AVFoundation.framework */; };
-		1A04663C1D5E76EF004987C6 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A04663B1D5E76EF004987C6 /* CoreMedia.framework */; };
-		1A04663E1D5E76F4004987C6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A04663D1D5E76F4004987C6 /* CoreAudio.framework */; };
-		1A0466401D5E76F8004987C6 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A04663F1D5E76F8004987C6 /* QTKit.framework */; };
-		1A0466421D5E76FD004987C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466411D5E76FD004987C6 /* Foundation.framework */; };
-		1A0466441D5E7702004987C6 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466431D5E7702004987C6 /* CoreWLAN.framework */; };
-		1A0466461D5E7707004987C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466451D5E7707004987C6 /* SystemConfiguration.framework */; };
-		1A0466481D5E7711004987C6 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0466471D5E7711004987C6 /* libc++.1.dylib */; };
 		1A04664C1D5E7892004987C6 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664B1D5E7892004987C6 /* AppID.swift */; };
 		1A04664F1D5EA139004987C6 /* DeviceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */; };
-		B1173915A54D56BBB8B13A44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E296E3A617EAE51618035F /* Accelerate.framework */; };
+		389D9978218816CE00BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D9977218816CE00BFD852 /* libresolv.9.tbd */; };
+		389D997C218816E700BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997B218816E700BFD852 /* libc++.tbd */; };
+		389D997E218816F300BFD852 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997D218816F300BFD852 /* VideoToolbox.framework */; };
+		389D9980218816F900BFD852 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997F218816F900BFD852 /* CoreWLAN.framework */; };
+		389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99812188170C00BFD852 /* Accelerate.framework */; };
+		389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99832188174900BFD852 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		077537BD1ED5424F00EF0878 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1A0466201D5E75A2004987C6 /* Agora Mac Tutorial Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora Mac Tutorial Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0466231D5E75A2004987C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoChatViewController.swift; path = VideoChat/VideoChatViewController.swift; sourceTree = "<group>"; };
@@ -37,20 +30,14 @@
 		1A04662A1D5E75A2004987C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A04662C1D5E75A2004987C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A0466321D5E76CB004987C6 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		1A0466351D5E76E1004987C6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		1A0466371D5E76E5004987C6 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		1A0466391D5E76E9004987C6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		1A04663B1D5E76EF004987C6 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		1A04663D1D5E76F4004987C6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		1A04663F1D5E76F8004987C6 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
-		1A0466411D5E76FD004987C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1A0466431D5E7702004987C6 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
-		1A0466451D5E7707004987C6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1A0466471D5E7711004987C6 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
 		1A04664B1D5E7892004987C6 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppID.swift; path = VideoChat/AppID.swift; sourceTree = "<group>"; };
-		1A04664D1D5E78C3004987C6 /* Agora-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Agora-Bridging-Header.h"; sourceTree = "<group>"; };
 		1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceSelectionViewController.swift; path = VideoChat/DeviceSelectionViewController.swift; sourceTree = "<group>"; };
-		65E296E3A617EAE51618035F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../../../../Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
+		389D9977218816CE00BFD852 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
+		389D997B218816E700BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		389D997D218816F300BFD852 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		389D997F218816F900BFD852 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		389D99812188170C00BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		389D99832188174900BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,19 +45,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077537BE1ED5424F00EF0878 /* libresolv.tbd in Frameworks */,
-				1A0466481D5E7711004987C6 /* libc++.1.dylib in Frameworks */,
-				1A0466461D5E7707004987C6 /* SystemConfiguration.framework in Frameworks */,
-				1A0466441D5E7702004987C6 /* CoreWLAN.framework in Frameworks */,
-				1A0466421D5E76FD004987C6 /* Foundation.framework in Frameworks */,
-				1A0466401D5E76F8004987C6 /* QTKit.framework in Frameworks */,
-				1A04663E1D5E76F4004987C6 /* CoreAudio.framework in Frameworks */,
-				1A04663C1D5E76EF004987C6 /* CoreMedia.framework in Frameworks */,
-				1A04663A1D5E76E9004987C6 /* AVFoundation.framework in Frameworks */,
-				1A0466381D5E76E5004987C6 /* VideoToolbox.framework in Frameworks */,
-				1A0466361D5E76E1004987C6 /* AudioToolbox.framework in Frameworks */,
 				1A0466341D5E76D7004987C6 /* AgoraRtcEngineKit.framework in Frameworks */,
-				B1173915A54D56BBB8B13A44 /* Accelerate.framework in Frameworks */,
+				389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */,
+				389D9980218816F900BFD852 /* CoreWLAN.framework in Frameworks */,
+				389D997C218816E700BFD852 /* libc++.tbd in Frameworks */,
+				389D9978218816CE00BFD852 /* libresolv.9.tbd in Frameworks */,
+				389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */,
+				389D997E218816F300BFD852 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,8 +61,9 @@
 		1A0466171D5E75A2004987C6 = {
 			isa = PBXGroup;
 			children = (
-				1A0466491D5E7718004987C6 /* Frameworks */,
 				1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */,
+				1A0466321D5E76CB004987C6 /* AgoraRtcEngineKit.framework */,
+				1A0466491D5E7718004987C6 /* Frameworks */,
 				1A0466211D5E75A2004987C6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				1A04664A1D5E7728004987C6 /* Video Chat */,
-				1A04664D1D5E78C3004987C6 /* Agora-Bridging-Header.h */,
 				1A0466231D5E75A2004987C6 /* AppDelegate.swift */,
 				1A0466291D5E75A2004987C6 /* Main.storyboard */,
 				1A0466271D5E75A2004987C6 /* Assets.xcassets */,
@@ -110,19 +91,12 @@
 		1A0466491D5E7718004987C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				077537BD1ED5424F00EF0878 /* libresolv.tbd */,
-				1A0466471D5E7711004987C6 /* libc++.1.dylib */,
-				1A0466451D5E7707004987C6 /* SystemConfiguration.framework */,
-				1A0466431D5E7702004987C6 /* CoreWLAN.framework */,
-				1A0466411D5E76FD004987C6 /* Foundation.framework */,
-				1A04663F1D5E76F8004987C6 /* QTKit.framework */,
-				1A04663D1D5E76F4004987C6 /* CoreAudio.framework */,
-				1A04663B1D5E76EF004987C6 /* CoreMedia.framework */,
-				1A0466391D5E76E9004987C6 /* AVFoundation.framework */,
-				1A0466371D5E76E5004987C6 /* VideoToolbox.framework */,
-				1A0466351D5E76E1004987C6 /* AudioToolbox.framework */,
-				1A0466321D5E76CB004987C6 /* AgoraRtcEngineKit.framework */,
-				65E296E3A617EAE51618035F /* Accelerate.framework */,
+				389D99832188174900BFD852 /* SystemConfiguration.framework */,
+				389D99812188170C00BFD852 /* Accelerate.framework */,
+				389D997F218816F900BFD852 /* CoreWLAN.framework */,
+				389D997D218816F300BFD852 /* VideoToolbox.framework */,
+				389D997B218816E700BFD852 /* libc++.tbd */,
+				389D9977218816CE00BFD852 /* libresolv.9.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -164,12 +138,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
 					1A04661F1D5E75A2004987C6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -239,14 +213,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -286,14 +268,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -321,7 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -333,8 +323,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Agora Mac Tutorial Swift/Agora-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -342,9 +333,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",
@@ -354,8 +345,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Agora Mac Tutorial Swift/Agora-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

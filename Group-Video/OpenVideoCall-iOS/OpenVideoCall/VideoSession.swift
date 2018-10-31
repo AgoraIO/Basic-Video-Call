@@ -43,7 +43,7 @@ extension VideoSession {
     
     func updateMediaInfo(resolution: CGSize? = nil, fps: Int? = nil) {
         if let resolution = resolution {
-            mediaInfo.resolution = resolution
+            mediaInfo.dimension = resolution
         }
         
         if let fps = fps {

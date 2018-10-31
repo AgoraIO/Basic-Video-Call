@@ -37,7 +37,7 @@ class RoomViewController: NSViewController {
     var roomName: String!
     var encryptionSecret: String?
     var encryptionType: EncryptionType!
-    var videoProfile: AgoraVideoProfile!
+    var dimension: CGSize!
     var delegate: RoomVCDelegate?
     
     //MARK: hide & show
@@ -327,12 +327,12 @@ private extension RoomViewController {
     }
     
     func setupWindowListView() {
-        windowListView.setContentResizingMask(Int(NSAutoresizingMaskOptions.viewWidthSizable.rawValue))
+        windowListView.setContentResizingMask(Int(NSView.AutoresizingMask.width.rawValue))
         windowListView.setValue(NSColor(white: 0, alpha: 0.75), forKey:IKImageBrowserBackgroundColorKey)
         
         let oldAttributres = windowListView.value(forKey: IKImageBrowserCellsTitleAttributesKey) as! NSDictionary
         let attributres = oldAttributres.mutableCopy() as! NSMutableDictionary
-        attributres.setObject(NSColor.white, forKey: NSForegroundColorAttributeName as NSCopying)
+        attributres.setObject(NSColor.white, forKey: NSAttributedString.Key.foregroundColor as NSCopying)
         windowListView.setValue(attributres, forKey:IKImageBrowserCellsTitleAttributesKey)
     }
     
@@ -361,7 +361,13 @@ private extension RoomViewController {
         agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
         agoraKit.setChannelProfile(.communication)
         agoraKit.enableVideo()
-        agoraKit.setVideoProfile(videoProfile, swapWidthAndHeight: false)
+        
+        let configuration =
+            AgoraVideoEncoderConfiguration(size: dimension,
+                                           frameRate: .fps15,
+                                           bitrate: AgoraVideoBitrateStandard,
+                                           orientationMode: .adaptative)
+        agoraKit.setVideoEncoderConfiguration(configuration)
         
         addLocalSession()
         agoraKit.startPreview()
@@ -384,9 +390,8 @@ private extension RoomViewController {
         let localSession = VideoSession.localSession()
         videoSessions.append(localSession)
         agoraKit.setupLocalVideo(localSession.canvas)
-        if let mediaInfo = MediaInfo(videoProfile: videoProfile) {
-            localSession.mediaInfo = mediaInfo
-        }
+        let mediaInfo = MediaInfo(dimension: dimension, fps: 15)
+        localSession.mediaInfo = mediaInfo
     }
     
     func leaveChannel() {
@@ -480,7 +485,7 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     //remote stat
     func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
         if let session = fetchSession(of: stats.uid) {
-            session.updateMediaInfo(resolution: CGSize(width: CGFloat(stats.width), height: CGFloat(stats.height)), bitRate: Int(stats.receivedBitrate), fps: Int(stats.receivedFrameRate))
+            session.updateMediaInfo(resolution: CGSize(width: CGFloat(stats.width), height: CGFloat(stats.height)), fps: Int(stats.receivedFrameRate))
         }
     }
     
@@ -530,7 +535,7 @@ extension RoomViewController {
 
 //MARK: - window
 extension RoomViewController: NSWindowDelegate {
-    func windowShouldClose(_ sender: Any) -> Bool {
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
         leaveChannel()
         return false
     }

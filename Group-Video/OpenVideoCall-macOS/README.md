@@ -15,7 +15,7 @@ With this sample app, you can:
 - [Enable encryption](#create-the-loadagorakit-method)
 
 ## Prerequisites
-- Xcode 8.0+
+- Xcode 10.0+
 
 ## Quick Start
 
@@ -2424,16 +2424,7 @@ private extension SettingsViewController {
 
 ## Resources
 - Find full [API documentation in the Developer Center](https://docs.agora.io/en/). 
-- [File bugs about this sample](https://github.com/AgoraIO/OpenVideoCall-macOS/issues).
-
-## Learn More
-- [1 to 1 Video Tutorial for MacOS/Swift](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1)
-- Agora Video SDK samples are also available for the following platforms:
-	- OpenVideoCall for [iOS (Swift)](https://github.com/AgoraIO/OpenVideoCall-iOS)
-	- OpenVideoCall for [iOS (Objective-C)](https://github.com/AgoraIO/OpenVideoCall-iOS-Objective-C)
-	- OpenVideoCall for [Android](https://github.com/AgoraIO/OpenVideoCall-Android)
-	- OpenVideoCall for [Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
-	- OpenVideoCall for [MacOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
+- [File bugs about this sample](https://github.com/AgoraIO/Basic-Video-Call/issues).
 
 
 ## License

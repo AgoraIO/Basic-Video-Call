@@ -58,12 +58,11 @@ class VideoChatViewController: UIViewController {
     
     func joinChannel() {
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
-        agoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) {[weak self] (sid, uid, elapsed) -> Void in
-            // Join channel "demoChannel1"
-            if let weakSelf = self {
-                UIApplication.shared.isIdleTimerDisabled = true
-            }
+        agoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) {(sid, uid, elapsed) -> Void in
+            // Did join channel "demoChannel1"
         }
+        
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     @IBAction func didClickHangUpButton(_ sender: UIButton) {
@@ -137,7 +136,7 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = uid
         videoCanvas.view = remoteVideo
-        videoCanvas.renderMode = .adaptive
+        videoCanvas.renderMode = .hidden
         agoraKit.setupRemoteVideo(videoCanvas)
     }
     

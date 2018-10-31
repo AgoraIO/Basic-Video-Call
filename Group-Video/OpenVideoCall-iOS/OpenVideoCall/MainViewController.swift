@@ -14,10 +14,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var encryptionTextField: UITextField!
     @IBOutlet weak var encryptionButton: UIButton!
     
-    fileprivate var videoProfile = AgoraVideoProfile.defaultProfile()
+    fileprivate var dimension = CGSize.defaultDimension()
     fileprivate var encryptionType = EncryptionType.xts128 {
         didSet {
-            encryptionButton?.setTitle(encryptionType.description(), for: UIControlState())
+            encryptionButton?.setTitle(encryptionType.description(), for: .normal)
         }
     }
     
@@ -29,14 +29,14 @@ class MainViewController: UIViewController {
         switch segueId {
         case "mainToSettings":
             let settingsVC = segue.destination as! SettingsViewController
-            settingsVC.videoProfile = videoProfile
+            settingsVC.dimension = dimension
             settingsVC.delegate = self
         case "mainToRoom":
             let roomVC = segue.destination as! RoomViewController
             roomVC.roomName = (sender as! String)
             roomVC.encryptionSecret = encryptionTextField.text
             roomVC.encryptionType = encryptionType
-            roomVC.videoProfile = videoProfile
+            roomVC.dimension = dimension
             roomVC.delegate = self
         default:
             break
@@ -89,8 +89,8 @@ private extension MainViewController {
 }
 
 extension MainViewController: SettingsVCDelegate {
-    func settingsVC(_ settingsVC: SettingsViewController, didSelectProfile profile: AgoraVideoProfile) {
-        videoProfile = profile
+    func settingsVC(_ settingsVC: SettingsViewController, didSelectDimension dimension: CGSize) {
+        self.dimension = dimension
         dismiss(animated: true, completion: nil)
     }
 }
