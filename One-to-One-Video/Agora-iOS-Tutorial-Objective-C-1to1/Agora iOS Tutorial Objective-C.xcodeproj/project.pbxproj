@@ -16,12 +16,8 @@
 		1A8E8D481D396CAA002FA67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A8E8D471D396CAA002FA67C /* Assets.xcassets */; };
 		1A8E8D4B1D396CAA002FA67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A8E8D491D396CAA002FA67C /* LaunchScreen.storyboard */; };
 		1A8E8D711D396DB0002FA67C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D701D396DB0002FA67C /* AgoraRtcEngineKit.framework */; };
-		1A8E8D731D396DB6002FA67C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D721D396DB6002FA67C /* AudioToolbox.framework */; };
 		1A8E8D751D396DBB002FA67C /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D741D396DBB002FA67C /* VideoToolbox.framework */; };
-		1A8E8D771D396DC1002FA67C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D761D396DC1002FA67C /* CoreMedia.framework */; };
-		1A8E8D791D396DC6002FA67C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D781D396DC6002FA67C /* AVFoundation.framework */; };
 		1A8E8D7B1D396DCA002FA67C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D7A1D396DCA002FA67C /* CoreTelephony.framework */; };
-		1A8E8D7D1D396DCF002FA67C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D7C1D396DCF002FA67C /* CoreMotion.framework */; };
 		1A8E8D7F1D396DD3002FA67C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D7E1D396DD3002FA67C /* SystemConfiguration.framework */; };
 		1A8E8D811D396DDE002FA67C /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D801D396DDE002FA67C /* libc++.1.dylib */; };
 		381ADD34211849280001B2C0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381ADD33211849270001B2C0 /* Accelerate.framework */; };
@@ -41,13 +37,9 @@
 		1A8E8D471D396CAA002FA67C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A8E8D4A1D396CAA002FA67C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A8E8D4C1D396CAA002FA67C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A8E8D701D396DB0002FA67C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = ../libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		1A8E8D721D396DB6002FA67C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1A8E8D701D396DB0002FA67C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		1A8E8D741D396DBB002FA67C /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		1A8E8D761D396DC1002FA67C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		1A8E8D781D396DC6002FA67C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1A8E8D7A1D396DCA002FA67C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		1A8E8D7C1D396DCF002FA67C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		1A8E8D7E1D396DD3002FA67C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1A8E8D801D396DDE002FA67C /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
 		381ADD33211849270001B2C0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -58,17 +50,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8E8D711D396DB0002FA67C /* AgoraRtcEngineKit.framework in Frameworks */,
 				381ADD34211849280001B2C0 /* Accelerate.framework in Frameworks */,
+				1A8E8D7B1D396DCA002FA67C /* CoreTelephony.framework in Frameworks */,
 				077537C21ED5442900EF0878 /* libresolv.tbd in Frameworks */,
 				1A8E8D811D396DDE002FA67C /* libc++.1.dylib in Frameworks */,
 				1A8E8D7F1D396DD3002FA67C /* SystemConfiguration.framework in Frameworks */,
-				1A8E8D7D1D396DCF002FA67C /* CoreMotion.framework in Frameworks */,
-				1A8E8D7B1D396DCA002FA67C /* CoreTelephony.framework in Frameworks */,
-				1A8E8D791D396DC6002FA67C /* AVFoundation.framework in Frameworks */,
-				1A8E8D771D396DC1002FA67C /* CoreMedia.framework in Frameworks */,
 				1A8E8D751D396DBB002FA67C /* VideoToolbox.framework in Frameworks */,
-				1A8E8D731D396DB6002FA67C /* AudioToolbox.framework in Frameworks */,
-				1A8E8D711D396DB0002FA67C /* AgoraRtcEngineKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				1A8E8D3A1D396CAA002FA67C /* Agora iOS Tutorial Objective-C */,
+				1A8E8D701D396DB0002FA67C /* AgoraRtcEngineKit.framework */,
 				1A8E8D6F1D396D3B002FA67C /* Frameworks */,
 				1A8E8D391D396CAA002FA67C /* Products */,
 			);
@@ -133,13 +122,8 @@
 				077537C11ED5442900EF0878 /* libresolv.tbd */,
 				1A8E8D801D396DDE002FA67C /* libc++.1.dylib */,
 				1A8E8D7E1D396DD3002FA67C /* SystemConfiguration.framework */,
-				1A8E8D7C1D396DCF002FA67C /* CoreMotion.framework */,
 				1A8E8D7A1D396DCA002FA67C /* CoreTelephony.framework */,
-				1A8E8D781D396DC6002FA67C /* AVFoundation.framework */,
-				1A8E8D761D396DC1002FA67C /* CoreMedia.framework */,
 				1A8E8D741D396DBB002FA67C /* VideoToolbox.framework */,
-				1A8E8D721D396DB6002FA67C /* AudioToolbox.framework */,
-				1A8E8D701D396DB0002FA67C /* AgoraRtcEngineKit.framework */,
 			);
 			name = Frameworks;
 			path = "Agora iOS Tutorial Objective-C";
@@ -171,7 +155,7 @@
 		1A8E8D301D396CAA002FA67C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
 					1A8E8D371D396CAA002FA67C = {
@@ -258,14 +242,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -305,14 +297,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -348,6 +348,7 @@
 					"$(PROJECT_DIR)/libs",
 				);
 				INFOPLIST_FILE = "Agora iOS Tutorial Objective-C/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial-Objective-C";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -365,6 +366,7 @@
 					"$(PROJECT_DIR)/libs",
 				);
 				INFOPLIST_FILE = "Agora iOS Tutorial Objective-C/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial-Objective-C";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -43,7 +43,7 @@ class RoomViewController: UIViewController {
     var roomName: String!
     var encryptionSecret: String?
     var encryptionType: EncryptionType!
-    var videoProfile: AgoraVideoProfile!
+    var dimension: CGSize!
     weak var delegate: RoomVCDelegate?
     
     //MARK: hide & show
@@ -80,13 +80,13 @@ class RoomViewController: UIViewController {
     //MARK: mute
     fileprivate var audioMuted = false {
         didSet {
-            muteAudioButton?.setImage(UIImage(named: audioMuted ? "btn_mute_blue" : "btn_mute"), for: UIControlState())
+            muteAudioButton?.setImage(UIImage(named: audioMuted ? "btn_mute_blue" : "btn_mute"), for: .normal)
             agoraKit.muteLocalAudioStream(audioMuted)
         }
     }
     fileprivate var videoMuted = false {
         didSet {
-            muteVideoButton?.setImage(UIImage(named: videoMuted ? "btn_video" : "btn_voice"), for: UIControlState())
+            muteVideoButton?.setImage(UIImage(named: videoMuted ? "btn_video" : "btn_voice"), for: .normal)
             cameraButton?.isHidden = videoMuted
             speakerButton?.isHidden = !videoMuted
             
@@ -100,7 +100,7 @@ class RoomViewController: UIViewController {
     //MARK: speaker
     fileprivate var speakerEnabled = true {
         didSet {
-            speakerButton?.setImage(UIImage(named: speakerEnabled ? "btn_speaker_blue" : "btn_speaker"), for: UIControlState())
+            speakerButton?.setImage(UIImage(named: speakerEnabled ? "btn_speaker_blue" : "btn_speaker"), for: .normal)
             speakerButton?.setImage(UIImage(named: speakerEnabled ? "btn_speaker" : "btn_speaker_blue"), for: .highlighted)
             
             agoraKit.setEnableSpeakerphone(speakerEnabled)
@@ -116,10 +116,10 @@ class RoomViewController: UIViewController {
             
             if isFiltering {
                 AGVideoPreProcessing.registerVideoPreprocessing(agoraKit)
-                filterButton?.setImage(UIImage(named: "btn_filter_blue"), for: UIControlState())
+                filterButton?.setImage(UIImage(named: "btn_filter_blue"), for: .normal)
             } else {
                 AGVideoPreProcessing.deregisterVideoPreprocessing(agoraKit)
-                filterButton?.setImage(UIImage(named: "btn_filter"), for: UIControlState())
+                filterButton?.setImage(UIImage(named: "btn_filter"), for: .normal)
             }
         }
     }
@@ -134,7 +134,7 @@ class RoomViewController: UIViewController {
                 messageTextField?.resignFirstResponder()
             }
             messageInputerView?.isHidden = !isInputing
-            messageButton?.setImage(UIImage(named: isInputing ? "btn_message_blue" : "btn_message"), for: UIControlState())
+            messageButton?.setImage(UIImage(named: isInputing ? "btn_message_blue" : "btn_message"), for: .normal)
         }
     }
     
@@ -234,10 +234,10 @@ extension RoomViewController: UITextFieldDelegate {
 //MARK: - private
 private extension RoomViewController {
     func addKeyboardObserver() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: nil) { [weak self] notify in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [weak self] notify in
             guard let strongSelf = self, let userInfo = (notify as NSNotification).userInfo,
-                let keyBoardBoundsValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
-                let durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber else {
+                let keyBoardBoundsValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+                let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else {
                     return
             }
             
@@ -247,10 +247,10 @@ private extension RoomViewController {
             
             if duration > 0 {
                 var optionsInt: UInt = 0
-                if let optionsValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
+                if let optionsValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
                     optionsInt = optionsValue.uintValue
                 }
-                let options = UIViewAnimationOptions(rawValue: optionsInt)
+                let options = UIView.AnimationOptions(rawValue: optionsInt)
                 
                 UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
                     strongSelf.messageInputerBottom.constant = deltaY
@@ -262,13 +262,13 @@ private extension RoomViewController {
             }
         }
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { [weak self] notify in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [weak self] notify in
             guard let strongSelf = self else {
                 return
             }
             
             let duration: Double
-            if let userInfo = (notify as NSNotification).userInfo, let durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber {
+            if let userInfo = (notify as NSNotification).userInfo, let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber {
                 duration = durationValue.doubleValue
             } else {
                 duration = 0
@@ -276,10 +276,10 @@ private extension RoomViewController {
             
             if duration > 0 {
                 var optionsInt: UInt = 0
-                if let userInfo = (notify as NSNotification).userInfo, let optionsValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
+                if let userInfo = (notify as NSNotification).userInfo, let optionsValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
                     optionsInt = optionsValue.uintValue
                 }
-                let options = UIViewAnimationOptions(rawValue: optionsInt)
+                let options = UIView.AnimationOptions(rawValue: optionsInt)
                 
                 UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
                     strongSelf.messageInputerBottom.constant = 0
@@ -387,7 +387,13 @@ private extension RoomViewController {
         agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
         agoraKit.setChannelProfile(.communication)
         agoraKit.enableVideo()
-        agoraKit.setVideoProfile(videoProfile, swapWidthAndHeight: false)
+        
+        let configuration =
+            AgoraVideoEncoderConfiguration(size: dimension,
+                                           frameRate: .fps15,
+                                           bitrate: AgoraVideoBitrateStandard,
+                                           orientationMode: .adaptative)
+        agoraKit.setVideoEncoderConfiguration(configuration)
         
         addLocalSession()
         agoraKit.startPreview()
@@ -414,9 +420,8 @@ private extension RoomViewController {
         videoSessions.append(localSession)
         agoraKit.setupLocalVideo(localSession.canvas)
         
-        if let mediaInfo = MediaInfo(videoProfile: videoProfile) {
-            localSession.mediaInfo = mediaInfo
-        }
+        let mediaInfo = MediaInfo(dimension: dimension, fps: 15)
+        localSession.mediaInfo = mediaInfo
     }
     
     func leaveChannel() {

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AgoraRtcEngineKit
 
 protocol VideoChatDelegate: NSObjectProtocol {
     func VideoChatNeedClose(_ VideoChat: VideoChatViewController)
@@ -56,20 +57,24 @@ class VideoChatViewController: NSViewController {
     
     func setupVideo() {
         AgoraKit.enableVideo()  // Default mode is disableVideo
-        AgoraKit.setVideoProfile(.landscape720P, swapWidthAndHeight: false)
+        let configuration = AgoraVideoEncoderConfiguration(size: AgoraVideoDimension960x720,
+                                                           frameRate: .fps15,
+                                                           bitrate: AgoraVideoBitrateStandard,
+                                                           orientationMode: .adaptative)
+        AgoraKit.setVideoEncoderConfiguration(configuration)
     }
     
     func setupLocalVideo() {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = 0
         videoCanvas.view = localVideo
-        videoCanvas.renderMode = .adaptive
+        videoCanvas.renderMode = .hidden
         AgoraKit.setupLocalVideo(videoCanvas)
     }
     
     func joinChannel() {
         AgoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
-            // Join channel "demoChannel1"
+            // did join channel "demoChannel1"
         }
     }
     
@@ -91,19 +96,19 @@ class VideoChatViewController: NSViewController {
         perform(#selector(hideControlButtons), with:nil, afterDelay:3)
         
         let remoteVideoTrackingArea = NSTrackingArea(rect: remoteVideo.bounds,
-                                                  options: [NSTrackingAreaOptions.mouseMoved, NSTrackingAreaOptions.activeInActiveApp, NSTrackingAreaOptions.inVisibleRect],
+                                                  options: [NSTrackingArea.Options.mouseMoved, NSTrackingArea.Options.activeInActiveApp, NSTrackingArea.Options.inVisibleRect],
                                                     owner: self,
                                                  userInfo: nil)
         remoteVideo.addTrackingArea(remoteVideoTrackingArea)
     
         let controlButtonsTrackingArea = NSTrackingArea(rect: controlButtons.bounds,
-                                                     options: [NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeInActiveApp, NSTrackingAreaOptions.inVisibleRect],
+                                                     options: [NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeInActiveApp, NSTrackingArea.Options.inVisibleRect],
                                                      owner: self,
                                                      userInfo: nil)
         controlButtons.addTrackingArea(controlButtonsTrackingArea)
     }
     
-    func hideControlButtons() {
+    @objc func hideControlButtons() {
         controlButtons.isHidden = true
     }
     
@@ -158,7 +163,7 @@ class VideoChatViewController: NSViewController {
             return self.storyboard!.instantiateController(withIdentifier: "DeviceSelectionViewController")
                 as! NSViewController
         }()
-        self.presentViewControllerAsSheet(deviceSelectionViewController)
+        self.presentAsSheet(deviceSelectionViewController)
         // Segue to sheet view controller DeviceSelectionViewController
     }
     
@@ -182,7 +187,7 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = uid
         videoCanvas.view = remoteVideo
-        videoCanvas.renderMode = .adaptive
+        videoCanvas.renderMode = .hidden
         AgoraKit.setupRemoteVideo(videoCanvas)
     }
     

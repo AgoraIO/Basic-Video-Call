@@ -14,7 +14,7 @@
 @interface MainViewController () <SettingsVCDelegate, RoomVCDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *encrypTextField;
-@property (assign, nonatomic) AgoraVideoProfile videoProfile;
+@property (assign, nonatomic) CGSize dimension;
 @property (assign, nonatomic) EncrypType encrypType;
 @end
 
@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.videoProfile = AgoraVideoProfileLandscape360P;
+    self.dimension = AgoraVideoDimension640x360;
     self.encrypType = [[EncryptionType encrypTypeArray][0] intValue];
 }
 
@@ -31,12 +31,12 @@
     
     if ([segueId isEqualToString:@"mainToSettings"]) {
         SettingsViewController *settingsVC = segue.destinationViewController;
-        settingsVC.videoProfile = self.videoProfile;
+        settingsVC.dimension = self.dimension;
         settingsVC.delegate = self;
     } else if ([segueId isEqualToString:@"mainToRoom"]) {
         RoomViewController *roomVC = segue.destinationViewController;
         roomVC.roomName = sender;
-        roomVC.videoProfile = self.videoProfile;
+        roomVC.dimension = self.dimension;
         roomVC.encrypType = self.encrypType;
         roomVC.encrypSecret = self.encrypTextField.text;
         roomVC.delegate = self;
@@ -48,7 +48,7 @@
 }
 
 - (void)enterRoom {
-    if (!self.roomNameTextField.text.length || !self.encrypTextField.text.length) {
+    if (!self.roomNameTextField.text.length) {
         return;
     }
     
@@ -75,8 +75,8 @@
 }
 
 //MARK: - delegates
-- (void)settingsVC:(SettingsViewController *)settingsVC didSelectProfile:(AgoraVideoProfile)profile {
-    self.videoProfile = profile;
+- (void)settingsVC:(SettingsViewController *)settingsVC didSelectDimension:(CGSize)dimension {
+    self.dimension = dimension;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

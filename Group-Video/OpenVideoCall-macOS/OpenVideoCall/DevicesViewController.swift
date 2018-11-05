@@ -211,7 +211,7 @@ private extension DevicesViewController {
             return
         }
         
-        let deviceId = agoraKit.getDeviceId(type)
+        let deviceId = agoraKit.getDeviceInfo(type)?.deviceId
         switch type {
         case .audioRecording:
             recordingDevices = devices

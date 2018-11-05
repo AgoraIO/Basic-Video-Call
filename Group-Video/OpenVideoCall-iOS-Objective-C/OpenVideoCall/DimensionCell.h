@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
-@interface ProfileCell : UITableViewCell
-- (void)updateWithProfile:(AgoraVideoProfile)profile isSelected:(BOOL)isSelected;
+@interface DimensionCell : UITableViewCell
+- (void)updateWithDimension:(CGSize)dimension isSelected:(BOOL)isSelected;
 @end

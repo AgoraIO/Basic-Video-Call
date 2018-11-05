@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="GZu-Xw-ufP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="GZu-Xw-ufP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
-        <plugIn identifier="com.apple.imagekit.ibplugin" version="11542"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.imagekit.ibplugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -665,7 +664,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Welcome to Open Video Call" id="eZ6-0j-q5c">
                                     <font key="font" metaFont="system" size="18"/>
-                                    <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -677,7 +676,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="left" placeholderString="Channel Name" drawsBackground="YES" id="ACn-ue-gei">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <allowedInputSourceLocales>
                                         <string>NSAllRomanInputSourcesLocaleIdentifier</string>
@@ -694,7 +693,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="left" placeholderString="Encryption Key" drawsBackground="YES" id="QLe-M5-fby">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <allowedInputSourceLocales>
                                         <string>NSAllRomanInputSourcesLocaleIdentifier</string>
@@ -1085,7 +1084,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wpL-vE-Nxw">
-                                <rect key="frame" x="178" y="456" width="365" height="26"/>
+                                <rect key="frame" x="178" y="456" width="365" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="360" id="NWu-EA-5es"/>
                                 </constraints>
@@ -1128,10 +1127,10 @@
             </objects>
             <point key="canvasLocation" x="957" y="454"/>
         </scene>
-        <!--Devices View Controller-->
+        <!--Devices-->
         <scene sceneID="iWm-GR-do6">
             <objects>
-                <viewController id="u03-x7-yhT" customClass="DevicesViewController" customModule="OpenVideoCall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Devices" id="u03-x7-yhT" customClass="DevicesViewController" customModule="OpenVideoCall" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8v8-uN-A6d">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1140,7 +1139,7 @@
                                 <rect key="frame" x="118" y="514" width="75" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Input Device" id="aFd-H5-CwR">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" red="0.56862745100000001" green="0.58823529409999997" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1176,7 +1175,7 @@
                                 <rect key="frame" x="118" y="471" width="46" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Volume" id="fBy-8w-F9l">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" red="0.56862745100000001" green="0.58823529409999997" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1194,7 +1193,7 @@
                                 <rect key="frame" x="118" y="409" width="86" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Output Device" id="R8o-rV-Bc0">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" red="0.56862745100000001" green="0.58823529409999997" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1230,7 +1229,7 @@
                                 <rect key="frame" x="118" y="366" width="46" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Volume" id="ewM-Bf-hlL">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" red="0.56862745100000001" green="0.58823529409999997" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1248,7 +1247,7 @@
                                 <rect key="frame" x="118" y="304" width="48" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Camera" id="gpB-MP-qMr">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" red="0.56862745100000001" green="0.58823529409999997" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -1288,7 +1287,7 @@
                                 </constraints>
                             </customView>
                             <levelIndicator hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fbp-Tn-Nlu">
-                                <rect key="frame" x="180" y="68" width="240" height="16"/>
+                                <rect key="frame" x="180" y="66" width="240" height="18"/>
                                 <levelIndicatorCell key="cell" alignment="left" maxValue="255" warningValue="2" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="Q2h-Gr-Zr2"/>
                             </levelIndicator>
                         </subviews>
@@ -1382,10 +1381,10 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="0IB-zJ-Dgo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="111" height="16"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="16"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="R7E-dp-flT">
-                                                                    <rect key="frame" x="10" y="0.0" width="91" height="16"/>
+                                                                    <rect key="frame" x="10" y="0.0" width="90" height="16"/>
                                                                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="gio-Ai-IU0">
                                                                         <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1422,11 +1421,11 @@
                                 </tableView>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="bvP-N6-YN9">
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="bvP-N6-YN9">
                             <rect key="frame" x="-100" y="-100" width="360" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="vcf-uq-q5C">
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="vcf-uq-q5C">
                             <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -1443,12 +1442,15 @@
         <scene sceneID="HRF-0S-tPA">
             <objects>
                 <windowController id="GZu-Xw-ufP" customClass="MainWindowController" customModule="OpenVideoCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Fmq-dp-adK">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="Fmq-dp-adK">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="668" y="192" width="720" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <value key="minSize" type="size" width="720" height="600"/>
                         <value key="maxSize" type="size" width="720" height="600"/>
+                        <connections>
+                            <outlet property="delegate" destination="GZu-Xw-ufP" id="emH-6b-OWp"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="ZvJ-JT-Sop" kind="relationship" relationship="window.shadowedContentViewController" id="rsD-rD-UrL"/>

@@ -43,11 +43,11 @@ private extension ChatMessageViewController {
         }
         
         if deleted != nil {
-            tableView.removeRows(at: IndexSet(integer: 0), withAnimation: NSTableViewAnimationOptions())
+            tableView.removeRows(at: IndexSet(integer: 0), withAnimation: .effectFade)
         }
         
         let lastRow = messageList.count - 1
-        tableView.insertRows(at: IndexSet(integer: lastRow), withAnimation: NSTableViewAnimationOptions())
+        tableView.insertRows(at: IndexSet(integer: lastRow), withAnimation: .effectFade)
         tableView.scrollRowToVisible(lastRow)
     }
 }
@@ -60,7 +60,7 @@ extension ChatMessageViewController: NSTableViewDataSource {
 
 extension ChatMessageViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cell = tableView.make(withIdentifier: "messageCell", owner: self) as! ChatMessageCellView
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "messageCell"), owner: self) as! ChatMessageCellView
         let message = messageList[row]
         cell.set(with: message)
         return cell
@@ -72,7 +72,9 @@ extension ChatMessageViewController: NSTableViewDelegate {
         
         let column = tableView.tableColumns.first!
         let width = column.width - 24
-        let textRect = string.boundingRect(with: NSMakeSize(width, 0), options: [.usesLineFragmentOrigin], attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: 12)])
+        let textRect = string.boundingRect(with: NSMakeSize(width, 0),
+                                           options: [.usesLineFragmentOrigin],
+                                           attributes: [NSAttributedString.Key.font: NSFont.systemFont(ofSize: 12)])
         
         var textHeight = textRect.height + 6
         

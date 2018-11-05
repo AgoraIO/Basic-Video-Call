@@ -15,7 +15,7 @@ With this sample app, you can:
 
 
 ## Prerequisites
-- Xcode 8.0+
+- Xcode 10.0+
 - Physical iOS device (iPhone or iPad)
 	
 	**Note:** Use a physical device to run the sample. Some simulators lack the functionality or the performance needed to run the sample.
@@ -1640,15 +1640,7 @@ private extension AgoraVideoProfile {
 
 ## Resources
 - Find full API documentation in the [Document Center](https://docs.agora.io/en/)
-- [File bugs about this sample](https://github.com/AgoraIO/OpenVideoCall-iOS/issues)
-
-## Learn More
-- [1 to 1 Video Tutorial for iOS/Swift](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
-- Agora Video SDK samples are also available for the following platforms:
-	- OpenVideoCall for [iOS (Objective-C)](https://github.com/AgoraIO/OpenVideoCall-iOS-Objective-C)
-	- OpenVideoCall for [Android](https://github.com/AgoraIO/OpenVideoCall-Android)
-	- OpenVideoCall for [Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
-	- OpenVideoCall for [MacOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
+- [File bugs about this sample](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 This software is licensed under the MIT License (MIT). [View the license](LICENSE.md).

@@ -17,7 +17,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var joinButton: NSButton!
     @IBOutlet weak var settingsButton: NSButton!
     
-    var videoProfile = AgoraVideoProfile.defaultProfile()
+    var dimension = CGSize.defaultDimension()
     fileprivate var agoraKit: AgoraRtcEngineKit!
     fileprivate var encryptionType = EncryptionType.xts128
     
@@ -40,7 +40,7 @@ class MainViewController: NSViewController {
         
         if segueId == "roomVCToSettingsVC" {
             let settingsVC = segue.destinationController as! SettingsViewController
-            settingsVC.videoProfile = videoProfile
+            settingsVC.dimension = dimension
             settingsVC.delegate = self
         } else if segueId == "roomNameVCToVideoVC" {
             let videoVC = segue.destinationController as! RoomViewController
@@ -49,7 +49,7 @@ class MainViewController: NSViewController {
             }
             videoVC.encryptionSecret = encryptionTextField.stringValue
             videoVC.encryptionType = encryptionType
-            videoVC.videoProfile = videoProfile
+            videoVC.dimension = dimension
             videoVC.delegate = self
         } else if segueId == "roomVCToDevicesVC" {
             let devicesVC = segue.destinationController as! DevicesViewController
@@ -99,8 +99,8 @@ private extension MainViewController {
 }
 
 extension MainViewController: SettingsVCDelegate {
-    func settingsVC(_ settingsVC: SettingsViewController, closeWithProfile profile: AgoraVideoProfile) {
-        videoProfile = profile
+    func settingsVC(_ settingsVC: SettingsViewController, closeWithDimension dimension: CGSize) {
+        self.dimension = dimension
         settingsVC.view.window?.contentViewController = self
     }
 }
@@ -117,7 +117,7 @@ extension MainViewController: RoomVCDelegate {
         
         window.styleMask.insert([.fullSizeContentView, .miniaturizable])
         window.delegate = nil
-        window.collectionBehavior = NSWindowCollectionBehavior()
+        window.collectionBehavior = NSWindow.CollectionBehavior()
 
         window.contentViewController = self
         
@@ -132,10 +132,7 @@ extension MainViewController: AgoraRtcEngineDelegate {
     func rtcEngine(_ engine: AgoraRtcEngineKit, reportAudioVolumeIndicationOfSpeakers speakers: [AgoraRtcAudioVolumeInfo], totalVolume: Int) {
         NotificationCenter.default.post(name: Notification.Name(rawValue: VolumeChangeNotificationKey), object: NSNumber(value: totalVolume as Int))
     }
-//    func rtcEngine(_ engine: AgoraRtcEngineKit, reportAudioVolumeIndicationOfSpeakers speakers: [Any]!, totalVolume: Int) {
-//        NotificationCenter.default.post(name: Notification.Name(rawValue: VolumeChangeNotificationKey), object: NSNumber(value: totalVolume as Int))
-//    }
-
+    
     func rtcEngine(_ engine: AgoraRtcEngineKit, device deviceId: String, type deviceType: AgoraMediaDeviceType, stateChanged state: Int) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: DeviceListChangeNotificationKey), object: NSNumber(value: deviceType.rawValue))
     }
@@ -143,7 +140,7 @@ extension MainViewController: AgoraRtcEngineDelegate {
 
 //MARK: - text field
 extension MainViewController: NSControlTextEditingDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         guard let field = obj.object as? NSTextField else {
             return
         }

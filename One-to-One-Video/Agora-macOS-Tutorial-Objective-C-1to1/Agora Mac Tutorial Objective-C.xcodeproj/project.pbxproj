@@ -12,20 +12,14 @@
 		1A2BC6741D5A9C2100C9AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6731D5A9C2100C9AD11 /* main.m */; };
 		1A2BC6771D5A9C2100C9AD11 /* VideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */; };
 		1A2BC6791D5A9C2100C9AD11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2BC6781D5A9C2100C9AD11 /* Assets.xcassets */; };
-		1A2BC6841D5A9C5700C9AD11 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6831D5A9C5700C9AD11 /* AgoraRtcEngineKit.framework */; };
-		1A2BC6861D5A9C6F00C9AD11 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6851D5A9C6F00C9AD11 /* AudioToolbox.framework */; };
 		1A2BC6881D5A9C7400C9AD11 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6871D5A9C7400C9AD11 /* VideoToolbox.framework */; };
-		1A2BC68A1D5A9C7800C9AD11 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6891D5A9C7800C9AD11 /* AVFoundation.framework */; };
-		1A2BC68C1D5A9C7F00C9AD11 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC68B1D5A9C7F00C9AD11 /* CoreMedia.framework */; };
-		1A2BC68E1D5A9C8400C9AD11 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC68D1D5A9C8400C9AD11 /* CoreAudio.framework */; };
-		1A2BC6901D5A9C8800C9AD11 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC68F1D5A9C8800C9AD11 /* QTKit.framework */; };
-		1A2BC6921D5A9C8F00C9AD11 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6911D5A9C8F00C9AD11 /* Foundation.framework */; };
 		1A2BC6941D5A9C9400C9AD11 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6931D5A9C9400C9AD11 /* CoreWLAN.framework */; };
 		1A2BC6961D5A9C9A00C9AD11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6951D5A9C9A00C9AD11 /* SystemConfiguration.framework */; };
 		1A2BC6981D5A9CA600C9AD11 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2BC6971D5A9CA600C9AD11 /* libc++.1.dylib */; };
 		1A2BC69D1D5A9E6700C9AD11 /* AppID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69C1D5A9E6700C9AD11 /* AppID.m */; };
 		1A2BC6A01D5B05A800C9AD11 /* DeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */; };
 		1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A309D611D5CE05500021BB8 /* Main.storyboard */; };
+		389D999621881C9400BFD852 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999521881C9400BFD852 /* AgoraRtcEngineKit.framework */; };
 		A7C50EEF21215CC700774322 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C50EEE21215CC700774322 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,14 +33,7 @@
 		1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VideoChatViewController.m; path = VideoChat/VideoChatViewController.m; sourceTree = "<group>"; };
 		1A2BC6781D5A9C2100C9AD11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A2BC67D1D5A9C2100C9AD11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A2BC6831D5A9C5700C9AD11 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		1A2BC6851D5A9C6F00C9AD11 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1A2BC6871D5A9C7400C9AD11 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		1A2BC6891D5A9C7800C9AD11 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		1A2BC68B1D5A9C7F00C9AD11 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		1A2BC68D1D5A9C8400C9AD11 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		1A2BC68F1D5A9C8800C9AD11 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
-		1A2BC6911D5A9C8F00C9AD11 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1A2BC6931D5A9C9400C9AD11 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		1A2BC6951D5A9C9A00C9AD11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1A2BC6971D5A9CA600C9AD11 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
@@ -55,6 +42,7 @@
 		1A2BC69E1D5B058C00C9AD11 /* DeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceSelectionViewController.h; path = VideoChat/DeviceSelectionViewController.h; sourceTree = "<group>"; };
 		1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceSelectionViewController.m; path = VideoChat/DeviceSelectionViewController.m; sourceTree = "<group>"; };
 		1A309D621D5CE05500021BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		389D999521881C9400BFD852 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		A7C50EEE21215CC700774322 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -63,19 +51,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				389D999621881C9400BFD852 /* AgoraRtcEngineKit.framework in Frameworks */,
 				A7C50EEF21215CC700774322 /* Accelerate.framework in Frameworks */,
-				077537C01ED542F900EF0878 /* libresolv.tbd in Frameworks */,
-				1A2BC6981D5A9CA600C9AD11 /* libc++.1.dylib in Frameworks */,
-				1A2BC6961D5A9C9A00C9AD11 /* SystemConfiguration.framework in Frameworks */,
 				1A2BC6941D5A9C9400C9AD11 /* CoreWLAN.framework in Frameworks */,
-				1A2BC6921D5A9C8F00C9AD11 /* Foundation.framework in Frameworks */,
-				1A2BC6901D5A9C8800C9AD11 /* QTKit.framework in Frameworks */,
-				1A2BC68E1D5A9C8400C9AD11 /* CoreAudio.framework in Frameworks */,
-				1A2BC68C1D5A9C7F00C9AD11 /* CoreMedia.framework in Frameworks */,
-				1A2BC68A1D5A9C7800C9AD11 /* AVFoundation.framework in Frameworks */,
+				1A2BC6981D5A9CA600C9AD11 /* libc++.1.dylib in Frameworks */,
+				077537C01ED542F900EF0878 /* libresolv.tbd in Frameworks */,
+				1A2BC6961D5A9C9A00C9AD11 /* SystemConfiguration.framework in Frameworks */,
 				1A2BC6881D5A9C7400C9AD11 /* VideoToolbox.framework in Frameworks */,
-				1A2BC6861D5A9C6F00C9AD11 /* AudioToolbox.framework in Frameworks */,
-				1A2BC6841D5A9C5700C9AD11 /* AgoraRtcEngineKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +67,9 @@
 		1A2BC6631D5A9C2100C9AD11 = {
 			isa = PBXGroup;
 			children = (
-				1A2BC6991D5A9CAD00C9AD11 /* Frameworks */,
 				1A2BC66E1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */,
+				389D999521881C9400BFD852 /* AgoraRtcEngineKit.framework */,
+				1A2BC6991D5A9CAD00C9AD11 /* Frameworks */,
 				1A2BC66D1D5A9C2100C9AD11 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,14 +112,7 @@
 				1A2BC6971D5A9CA600C9AD11 /* libc++.1.dylib */,
 				1A2BC6951D5A9C9A00C9AD11 /* SystemConfiguration.framework */,
 				1A2BC6931D5A9C9400C9AD11 /* CoreWLAN.framework */,
-				1A2BC6911D5A9C8F00C9AD11 /* Foundation.framework */,
-				1A2BC68F1D5A9C8800C9AD11 /* QTKit.framework */,
-				1A2BC68D1D5A9C8400C9AD11 /* CoreAudio.framework */,
-				1A2BC68B1D5A9C7F00C9AD11 /* CoreMedia.framework */,
-				1A2BC6891D5A9C7800C9AD11 /* AVFoundation.framework */,
 				1A2BC6871D5A9C7400C9AD11 /* VideoToolbox.framework */,
-				1A2BC6851D5A9C6F00C9AD11 /* AudioToolbox.framework */,
-				1A2BC6831D5A9C5700C9AD11 /* AgoraRtcEngineKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,7 +156,7 @@
 		1A2BC6641D5A9C2100C9AD11 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
 					1A2BC66B1D5A9C2100C9AD11 = {
@@ -256,14 +232,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -302,14 +286,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -336,9 +328,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",
@@ -356,9 +348,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 48TB6ZZL5S;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",

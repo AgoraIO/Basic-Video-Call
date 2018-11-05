@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		077322E71E8A68A100ABE911 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 077322E61E8A68A100ABE911 /* libresolv.tbd */; };
-		0F2747CD1FB45A6F005D3DBA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE7D1D383C7C007DE451 /* SystemConfiguration.framework */; };
 		1A2655D51D3F35E700BDBA68 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2655D41D3F35E700BDBA68 /* AppID.swift */; };
 		1ABDEE421D383BE4007DE451 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDEE411D383BE4007DE451 /* AppDelegate.swift */; };
 		1ABDEE441D383BE4007DE451 /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDEE431D383BE4007DE451 /* VideoChatViewController.swift */; };
@@ -16,19 +14,15 @@
 		1ABDEE491D383BE4007DE451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE481D383BE4007DE451 /* Assets.xcassets */; };
 		1ABDEE4C1D383BE4007DE451 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */; };
 		1ABDEE701D383C26007DE451 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */; };
-		1ABDEE721D383C2C007DE451 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE711D383C2C007DE451 /* AVFoundation.framework */; };
-		1ABDEE741D383C34007DE451 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE731D383C34007DE451 /* CoreMotion.framework */; };
-		1ABDEE761D383C39007DE451 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE751D383C39007DE451 /* CoreTelephony.framework */; };
-		1ABDEE781D383C62007DE451 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE771D383C62007DE451 /* AudioToolbox.framework */; };
-		1ABDEE7A1D383C66007DE451 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE791D383C66007DE451 /* VideoToolbox.framework */; };
-		1ABDEE7C1D383C71007DE451 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABDEE7B1D383C71007DE451 /* CoreMedia.framework */; };
-		20BB0F231E8A828C003225FC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BB0F221E8A828C003225FC /* libc++.tbd */; };
-		319EBD1F6F4C0B321F845479 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02150D9018B109EC69CE3FC7 /* Accelerate.framework */; };
+		389D999B218825B200BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999A218825B200BFD852 /* Accelerate.framework */; };
+		389D999D218825BE00BFD852 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999C218825BE00BFD852 /* VideoToolbox.framework */; };
+		389D999F218825C300BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999E218825C300BFD852 /* libresolv.9.tbd */; };
+		389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A0218825C700BFD852 /* libc++.tbd */; };
+		389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A2218825DB00BFD852 /* SystemConfiguration.framework */; };
+		389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A4218825EC00BFD852 /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02150D9018B109EC69CE3FC7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../../../../Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
-		077322E61E8A68A100ABE911 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1A2655D41D3F35E700BDBA68 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppID.swift; path = VideoChat/AppID.swift; sourceTree = "<group>"; };
 		1ABDEE3E1D383BE4007DE451 /* Agora iOS Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora iOS Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABDEE411D383BE4007DE451 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,14 +32,12 @@
 		1ABDEE4B1D383BE4007DE451 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ABDEE4D1D383BE4007DE451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = libs/AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		1ABDEE711D383C2C007DE451 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		1ABDEE731D383C34007DE451 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		1ABDEE751D383C39007DE451 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		1ABDEE771D383C62007DE451 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		1ABDEE791D383C66007DE451 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		1ABDEE7B1D383C71007DE451 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		1ABDEE7D1D383C7C007DE451 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		20BB0F221E8A828C003225FC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		389D999A218825B200BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		389D999C218825BE00BFD852 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		389D999E218825C300BFD852 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
+		389D99A0218825C700BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		389D99A2218825DB00BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		389D99A4218825EC00BFD852 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +45,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F2747CD1FB45A6F005D3DBA /* SystemConfiguration.framework in Frameworks */,
-				20BB0F231E8A828C003225FC /* libc++.tbd in Frameworks */,
-				077322E71E8A68A100ABE911 /* libresolv.tbd in Frameworks */,
-				1ABDEE7C1D383C71007DE451 /* CoreMedia.framework in Frameworks */,
-				1ABDEE7A1D383C66007DE451 /* VideoToolbox.framework in Frameworks */,
-				1ABDEE781D383C62007DE451 /* AudioToolbox.framework in Frameworks */,
-				1ABDEE761D383C39007DE451 /* CoreTelephony.framework in Frameworks */,
-				1ABDEE741D383C34007DE451 /* CoreMotion.framework in Frameworks */,
-				1ABDEE721D383C2C007DE451 /* AVFoundation.framework in Frameworks */,
 				1ABDEE701D383C26007DE451 /* AgoraRtcEngineKit.framework in Frameworks */,
-				319EBD1F6F4C0B321F845479 /* Accelerate.framework in Frameworks */,
+				389D999B218825B200BFD852 /* Accelerate.framework in Frameworks */,
+				389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */,
+				389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */,
+				389D999F218825C300BFD852 /* libresolv.9.tbd in Frameworks */,
+				389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */,
+				389D999D218825BE00BFD852 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,8 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				1ABDEE401D383BE4007DE451 /* Agora iOS Tutorial */,
-				1ABDEE811D383C96007DE451 /* Frameworks */,
+				1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */,
 				1ABDEE3F1D383BE4007DE451 /* Products */,
+				389D9999218825B200BFD852 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,24 +89,6 @@
 			path = "Agora iOS Tutorial";
 			sourceTree = "<group>";
 		};
-		1ABDEE811D383C96007DE451 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				20BB0F221E8A828C003225FC /* libc++.tbd */,
-				077322E61E8A68A100ABE911 /* libresolv.tbd */,
-				1ABDEE7D1D383C7C007DE451 /* SystemConfiguration.framework */,
-				1ABDEE7B1D383C71007DE451 /* CoreMedia.framework */,
-				1ABDEE791D383C66007DE451 /* VideoToolbox.framework */,
-				1ABDEE771D383C62007DE451 /* AudioToolbox.framework */,
-				1ABDEE751D383C39007DE451 /* CoreTelephony.framework */,
-				1ABDEE731D383C34007DE451 /* CoreMotion.framework */,
-				1ABDEE711D383C2C007DE451 /* AVFoundation.framework */,
-				1ABDEE6F1D383C26007DE451 /* AgoraRtcEngineKit.framework */,
-				02150D9018B109EC69CE3FC7 /* Accelerate.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		1ABDEE841D383EB3007DE451 /* Video Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +96,19 @@
 				1A2655D41D3F35E700BDBA68 /* AppID.swift */,
 			);
 			name = "Video Chat";
+			sourceTree = "<group>";
+		};
+		389D9999218825B200BFD852 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				389D99A4218825EC00BFD852 /* CoreTelephony.framework */,
+				389D99A2218825DB00BFD852 /* SystemConfiguration.framework */,
+				389D99A0218825C700BFD852 /* libc++.tbd */,
+				389D999E218825C300BFD852 /* libresolv.9.tbd */,
+				389D999C218825BE00BFD852 /* VideoToolbox.framework */,
+				389D999A218825B200BFD852 /* Accelerate.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,13 +337,14 @@
 					"$(PROJECT_DIR)/libs",
 				);
 				INFOPLIST_FILE = "Agora iOS Tutorial/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -377,13 +362,14 @@
 					"$(PROJECT_DIR)/libs",
 				);
 				INFOPLIST_FILE = "Agora iOS Tutorial/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
