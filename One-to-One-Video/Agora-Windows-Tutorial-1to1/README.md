@@ -1421,13 +1421,13 @@ void CAGEngineEventHandler::onRefreshRecordingServiceStatus(int status)
 ## Resources
 
 * You can find full API documentation at the [Document Center](https://docs.agora.io/en/).
-* You can file bugs about this sample [here](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1/issues).
+* You can file bugs about this sample [here](https://github.com/AgoraIO/Basic-Video-Call/issues).
 
 ## Learn More
 
-- 1 to 1 Video Tutorial for [Android](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1)
-- 1 to 1 Video Tutorial for [iOS/Swift](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
-- 1 to 1 Video Tutorial for [MacOS](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1)
+- 1 to 1 Video Tutorial for [Android](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)
+- 1 to 1 Video Tutorial for [iOS/Swift](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1)
+- 1 to 1 Video Tutorial for [MacOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1)
 
 ## License
 
