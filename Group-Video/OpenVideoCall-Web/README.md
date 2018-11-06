@@ -3312,7 +3312,7 @@ If successful, check that `options.attendeeMode` does not equal `audience`.
 
 ## Resources
 * Complete API documentation is available at the [Document Center](https://docs.agora.io/en/).
-* You can file bugs about this sample [here](https://github.com/AgoraIO/OpenVideoCall-Web/issues).
+* You can file bugs about this sample [here](https://github.com/AgoraIO/Basic-Video-Call/issues).
 
 ## License
 This software is under the MIT License (MIT). [View the license](LICENSE.md).
