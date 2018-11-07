@@ -69,7 +69,9 @@ bool AGEngineModel::onOpenMsg(void* msg) {
 
     m_engine->enableWebSdkInteroperability(m_cfg.enableWebSdkInteroperability);
 
-    int ret = m_engine->joinChannel(m_cfg.channelId.c_str(), m_cfg.uid); 
+    int ret = m_engine->joinChannel(m_cfg.dynamicKey.c_str(),
+                                    m_cfg.channelId.c_str(), 
+                                    m_cfg.uid); 
 
     return ret;
 }

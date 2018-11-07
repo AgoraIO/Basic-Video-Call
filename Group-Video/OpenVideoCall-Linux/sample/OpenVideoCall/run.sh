@@ -1,9 +1,10 @@
 #!/bin/bash
 
 ./openVideoCall  --appId  \
-                 --uid 1024  \
+                 --uid  \
                  --channel demoChannel \
-                 --channelProfile 0 \
+                 --dynamicKey 0 \
+                 --channelProfile 1 \
                  --audioProfile 0 \
                  --audioScenario 0 \
                  --videoProfile 0 \
