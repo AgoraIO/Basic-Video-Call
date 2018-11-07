@@ -17,6 +17,7 @@ typedef struct AppConfig {
 
     std::string appId;
     std::string channelId;
+    std::string dynamicKey;
 }AppConfig;
 
 typedef struct muteRemoteMsg {

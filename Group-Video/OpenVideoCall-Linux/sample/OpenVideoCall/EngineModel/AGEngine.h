@@ -23,7 +23,7 @@ class AGEngine
 
         bool setLogFilePath(const char* logPath = NULL);
 
-        bool joinChannel(const char* channelId, int uid);
+        bool joinChannel(const char *dynamicKey, const char* channelId, int uid);
 
         bool leaveChannel();
 
