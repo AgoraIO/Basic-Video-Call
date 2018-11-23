@@ -524,7 +524,7 @@ function disableVideo() {
 
 ## Resources
 * Complete API documentation is available at the [Document Center](https://docs.agora.io/en/).
-* You can file bugs about this sample [here](https://github.com/AgoraIO/Agora-Web-Tutorial-1to1/issues).
+* You can file bugs about this sample [here](https://github.com/AgoraIO/Basic-Video-Call/issues).
 
 
 ## License

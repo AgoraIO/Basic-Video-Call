@@ -16,6 +16,10 @@ With this sample app you can:
 
 * Android Studio 3.1+ or IntelliJ IDEA 2018.2+.
 * Android device (e.g. Nexus 5X). A real device is recommended because some simulators have missing functionality or lack the performance necessary to run the sample.
+=======
+- [Agora-iOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1)
+- [Agora-Windows-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Windows-Tutorial-1to1)
+- [Agora-macOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1)
 
 
 ## Quick Start
@@ -643,11 +647,17 @@ The `btn_voice` button configured in *activity_video_chat_view.xml* invokes `onL
 * You can file bugs about this sample [here](https://github.com/AgoraIO/Agora-Android-Tutorial-Kotlin-1to1/issues).
 
 
+
 ## Learn More
 - 1 to 1 Video Tutorial for [Android/Java](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1)
 - 1 to 1 Video Tutorial for [iOS/Swift](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
 - 1 to 1 Video Tutorial for [MacOS](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1)
 - 1 to 1 Video Tutorial for [Windows](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1)
+=======
+## Connect Us
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+
 
 ## License
 This software is under the MIT License (MIT). [View the license](LICENSE.md).

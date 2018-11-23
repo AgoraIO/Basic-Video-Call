@@ -23,6 +23,9 @@ int main(int argc, char * const argv[]) {
     string channelId;
     parser.add_long_opt("channel", &channelId, "Channel Id/required", opt_parser::require_argu);
 
+    string dynamicKey;
+    parser.add_long_opt("dynamicKey", &dynamicKey, "Dynamic key/option");
+
     uint32_t channelProfile = 0;
     parser.add_long_opt("channelProfile", &channelProfile, "channel profile:(0:COMMUNICATION),(1:broadcast) default is 0/option");
 
@@ -77,6 +80,7 @@ int main(int argc, char * const argv[]) {
     cfg.channelId = channelId;
     cfg.channelProfile = channelProfile; 
     cfg.enableWebSdkInteroperability = enableWebSdkInteroperability;
+    cfg.dynamicKey = dynamicKey;
 
     OpenVideoCallApp app;
     app.loadConfig(cfg);

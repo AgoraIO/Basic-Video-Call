@@ -16,10 +16,10 @@ This demo is written in **C++**
 
 Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos of these platform here:
 
-- [OpenVideoCall-Android](https://github.com/AgoraIO/OpenVideoCall-Android)
-- [OpenVideoCall-iOS](https://github.com/AgoraIO/OpenVideoCall-iOS)
-- [OpenVideoCall-macOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
-- [OpenVideoCall-Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
+- [OpenVideoCall-Android](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android)
+- [OpenVideoCall-iOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-iOS)
+- [OpenVideoCall-macOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-macOS)
+- [OpenVideoCall-Windows](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Windows)
 
 ## Running the App
 First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. set appID in run.sh
@@ -65,7 +65,7 @@ openVideoCall is a commandline demo. Commands as follows:
 ## Connect Us
 
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can fire bugs about this demo at [issue](https://github.com/AgoraIO/OpenVideoCall-Windows/issues)
+- You can fire bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 

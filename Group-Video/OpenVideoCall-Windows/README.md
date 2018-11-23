@@ -17,13 +17,13 @@ With this sample app, you can:
 
 This demo is written in **C++**
 
-A tutorial demo can be found here: [Agora-Windows-Tutorial-1to1](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1)
+A tutorial demo can be found here: [Agora-Windows-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Windows-Tutorial-1to1)
 
 Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos of these platform here:
 
-- [OpenVideoCall-Android](https://github.com/AgoraIO/OpenVideoCall-Android)
-- [OpenVideoCall-iOS](https://github.com/AgoraIO/OpenVideoCall-iOS)
-- [OpenVideoCall-macOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
+- [OpenVideoCall-Android](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android)
+- [OpenVideoCall-iOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-iOS)
+- [OpenVideoCall-macOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-macOS)
 
 ## Running the App
 First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. define the APP_ID with your App ID.
@@ -43,7 +43,7 @@ Finally, Open OpenVideoCall.sln, build the solution and run.
 ## Connect Us
 
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can fire bugs about this demo at [issue](https://github.com/AgoraIO/OpenVideoCall-Windows/issues)
+- You can fire bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 
