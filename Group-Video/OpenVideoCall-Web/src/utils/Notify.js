@@ -9,6 +9,7 @@ const notificationInit = () => {
                     style="z-index: 12;position: absolute;
                     width: 38.2%;max-width: 450px; 
                     min-width: 300px;left: 0;
+                    word-break:break-all;
                     bottom: 0;"></div>`;
   $('body').append(container);
 };
