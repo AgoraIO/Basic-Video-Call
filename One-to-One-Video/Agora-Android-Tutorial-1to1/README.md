@@ -7,11 +7,11 @@ This tutorial enables you to quickly get started in your development efforts to 
 * Enable or disable video.
 * Choose between the front or rear camera.
 
-A more complete demonstration can be found [here](https://github.com/AgoraIO/OpenVideoCall-Android).
+A more complete demonstration can be found [here](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android).
 
 ## Prerequisites
 
-* Android Studio 2.0 or above.
+* Android Studio 3.3 or above.
 * Android device (e.g. Nexus 5X). A real device is recommended because some simulators have missing functionality or lack the performance necessary to run the sample.
 
 ## Quick Start
