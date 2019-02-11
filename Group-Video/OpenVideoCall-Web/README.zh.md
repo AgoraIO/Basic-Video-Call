@@ -39,8 +39,8 @@ npm run dev
 
 ## 联系我们
 
-完整的 API 文档见 [文档中心]https://docs.agora.io/en/
-如果发现了示例代码的 bug, 欢迎提交 [issue]https://github.com/AgoraIO/Basic-Video-Call/issues
+- 完整的 API 文档见 [文档中心]https://docs.agora.io/en/
+- 如果发现了示例代码的 bug, 欢迎提交 [issue]https://github.com/AgoraIO/Basic-Video-Call/issues
 
 ## 代码许可
 
