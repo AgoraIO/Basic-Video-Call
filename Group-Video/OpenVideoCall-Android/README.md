@@ -30,7 +30,7 @@ A tutorial demo can be found here: [Agora-Android-Tutorial-1to1](https://github.
 
 First, add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the "app/build.gradle":
 ```
-compile 'io.agora.rtc:full-sdk:2.2.0'
+compile 'io.agora.rtc:full-sdk:2.3.3'
 ```
 (Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
 
@@ -51,7 +51,7 @@ compile fileTree(dir: 'libs', include: ['*.jar'])
 Or use `Gradle` to build and run.
 
 ## Developer Environment Requirements
-- Android Studio 2.0 or above
+- Android Studio 3.3 or above
 - Real devices (Nexus 5X or other devices)
 - Some simulators are function missing or have performance issue, so real device is the best choice
 
