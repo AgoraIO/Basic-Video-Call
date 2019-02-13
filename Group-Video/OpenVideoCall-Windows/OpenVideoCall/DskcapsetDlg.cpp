@@ -55,6 +55,14 @@ void CDskcapsetDlg::SetCaptureRect(LPCRECT lpRect)
 		return;
 
 	m_rcRegion.CopyRect(lpRect);
+
+	CString str;
+	str.Format(_T("\nleft:%d,top:%d, right:%d, bottom:%d\n"), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+	OutputDebugString(str);
+	SetDlgItemInt(IDC_EDX_TB, m_rcRegion.left);
+	SetDlgItemInt(IDC_EDY_TB, m_rcRegion.top);
+	SetDlgItemInt(IDC_EDW_TB, m_rcRegion.Width());
+	SetDlgItemInt(IDC_EDH_TB, m_rcRegion.Height());
 }
 
 void CDskcapsetDlg::GetCaptureRect(LPRECT lpRect)
@@ -63,6 +71,14 @@ void CDskcapsetDlg::GetCaptureRect(LPRECT lpRect)
 	lpRect->right = m_rcRegion.right;
 	lpRect->top = m_rcRegion.top;
 	lpRect->bottom = m_rcRegion.bottom;
+
+	int bitrate = GetDlgItemInt(IDC_EDBITRATE_TB, NULL, TRUE);
+	if (bitrate > 0)
+		m_nBitrate = bitrate;
+	m_rcRegion.left = GetDlgItemInt(IDC_EDX_TB, NULL, TRUE);
+	m_rcRegion.top = GetDlgItemInt(IDC_EDY_TB, NULL, TRUE);
+	m_rcRegion.right = m_rcRegion.left + GetDlgItemInt(IDC_EDW_TB, NULL, TRUE);
+	m_rcRegion.bottom = m_rcRegion.top + GetDlgItemInt(IDC_EDH_TB, NULL, TRUE);
 }
 
 BOOL CDskcapsetDlg::OnInitDialog()

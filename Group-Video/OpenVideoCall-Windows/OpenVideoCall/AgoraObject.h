@@ -19,7 +19,7 @@ using namespace agora::rtc;
 #define AG_CODEC_EVP	0x00000001
 #define AG_CODEC_VP8	0x00000002
 
-#define APP_ID _T("")
+#define APP_ID _T("aab8b8f5a8cd4469a63042fcfafe7063")
 
 class CAgoraObject
 {

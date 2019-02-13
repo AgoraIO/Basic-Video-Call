@@ -171,8 +171,13 @@ void CAGDesktopCaptureDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	m_bMouseLDown = FALSE;
 	m_ptEnd = point;
 
-	m_dlgCapSet.MoveWindow(m_rcRegion.left + 10, m_rcRegion.top + 40, 440, 80);
+	//m_dlgCapSet.MoveWindow(m_rcRegion.left + 10, m_rcRegion.top + 40, 440, 80);
 	m_dlgCapSet.ShowWindow(SW_SHOW);
+
+	if (m_rcRegion.right == m_rcRegion.left
+		|| m_rcRegion.bottom == m_rcRegion.top){
+		return;
+	}
 	m_dlgCapSet.SetCaptureRect(&m_rcRegion);
 
 	CDialogEx::OnLButtonUp(nFlags, point);
