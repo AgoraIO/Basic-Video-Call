@@ -53,7 +53,7 @@ class VideoChatViewActivity : AppCompatActivity() {
         joinChannel()
     }
 
-    fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
+    private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
         Log.i(LOG_TAG, "checkSelfPermission $permission $requestCode")
         if (ContextCompat.checkSelfPermission(this,
                 permission) != PackageManager.PERMISSION_GRANTED) {
@@ -90,7 +90,7 @@ class VideoChatViewActivity : AppCompatActivity() {
         }
     }
 
-    fun showLongToast(msg: String) {
+    private fun showLongToast(msg: String) {
         this.runOnUiThread { Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show() }
     }
 
@@ -215,7 +215,7 @@ class VideoChatViewActivity : AppCompatActivity() {
 
         private val LOG_TAG = VideoChatViewActivity::class.java.simpleName
 
-        private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
-        private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
+        private const val PERMISSION_REQ_ID_RECORD_AUDIO = 22
+        private const val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
     }
 }
