@@ -10,7 +10,7 @@ export const isMobileSize = () => {
 };
 
 export const isChrome = () => {
-  return Boolean(window.chrome) && Boolean(window.chrome.webstore);
+  return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 };
 
 export const isFirefox = () => {

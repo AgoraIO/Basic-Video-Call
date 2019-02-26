@@ -1,84 +1,72 @@
 # Open Video Call Linux
 
-*Read this in other languages: [English](README.en.md)*
+*其他语言版本： [简体中文](README.md)*
 
-这个开源示例项目演示了如何快速集成Agora视频SDK，实现多人视频通话。
+The Open Video Call Linux Sample App is an open-source demo that will help you get video chat integrated directly into your Linux applications using the Agora Video SDK.
 
-在这个示例项目中包含了以下功能：
+With this sample app, you can:
 
-- 加入通话和离开通话；
-- 静音和解除静音；
-- 关闭摄像头和打开摄像头；
-- 切换摄像头；
-- 选择分辨率、码率和帧率；
+- Join / leave channel
+- Mute / unmute audio
+- Enable / disable video
+- Change camera
+- Setup resolution, frame rate and bit rate
 
-Agora视频SDK支持 iOS / Android / Windows / macOS/ Linux 等多个平台，你可以查看对应各平台的示例项目：
+This demo is written in **C++**
 
-- [OpenVideoCall-Android](https://github.com/AgoraIO/OpenVideoCall-Android)
-- [OpenVideoCall-Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
-- [OpenVideoCall-macOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
-- [OpenVideoCall-iOS](https://github.com/AgoraIO/OpenVideoCall-iOS)
+Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos of these platform here:
 
-## 运行示例程序
-首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。将 AppID 填写进 run.sh
+- [OpenVideoCall-Android](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android)
+- [OpenVideoCall-iOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-iOS)
+- [OpenVideoCall-macOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-macOS)
+- [OpenVideoCall-Windows](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Windows)
+
+## Running the App
+First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. set appID in run.sh
 
 ```
---appId "your app ID"
+--appId "Your app ID"
 ```
 
-然后在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹下的 
-
+Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/).
+Unzip the downloaded SDK package and copy
 - libagora_rtc_sdk.so
 
-两个文件复制到本项目的 “OpenVideoCall/libs” 文件夹下。
-在sample/OpenVideoCall下 输入命令 make， 便可编译生成openVideoCall demo。在run.sh中配置执行demo所需要的参数。
-openVideoCall 为命令行程序。使用方法如下：
-command:
+to the "OpenVideoCall/libs" folder in project（the old one may be over written）.
+
+configue parameters in run.sh.
+Using 'make' command to build the demo. Using ./run.sh to run demo
+openVideoCall is a commandline demo. Commands as follows:
 - open
-  开启通话。
+  open video call
 - close
-  关闭通话。
-- enable_video 
-  打开/关闭 全局视频功能，enable_video 0 为关闭视频功能，enable_video 1为打开视频功能
+  close video call
+- enable_video
+  enable/disable video, 'enable_video 0' means disable video, 'enable_video 1' means enable video
 - enable_audio
-  打开/关闭 全局音频功能
+  enable/disable audio, 'enable_audio 0' means disable audio, 'enable_audio 1' means enable audio
 - enable_local_video
-  打开/关闭 本地视频功能，enable_local_video 0 为关闭视频功能，enable_local_video 1为打开视频功能
+  enable/disable local video, 'enable_local_video 0' means disable local video(local camera), 'enable_local_video 1' means enable local video
 - mute_local_video
-  打开/关闭 本地视频流发送，mute_local_video 0 为打开本地视频流发送，mute_local_video 1为关闭本地视频流发送
+  mute/unmute local video, 'mute_local_video 0' means unmute local video(local camera), 'mute_local_video 1' means mute local video
 - mute_local_audio
-  打开/关闭 本地音频流发送，mute_local_video 0 为打开本地音频流发送，mute_local_video 1为关闭本地音频流发送
+  mute/unmute local audio, 'mute_local_audio 0' means unmute local audio(local audio device), 'mute_local_audio 1' means mute local audio
 - print_device_info
-  打印设备信息
+  print video and audio device info
 - set_cur_camera
-  设置当前工作的摄像头，set_cur_camera ‘device id ’ ，device id可以通过print_device_info 得到
+  set current carmera,'set_cur_camera deviceId' you can get deviceID by print_device_info
 - exit
-  退出程序
-  
-## 系统运行环境
-* OS:
-  - Ubuntu 12.04 x64 或更高版本
-  - CentOS 7 以上版本
+  exit app
 
-* CPU:
-  - x86_64
-* Compiler:
-  - gcc 4.8 and above
+## Developer Environment Requirements
+* VC2013 or higher
+* WIN7 or higher
 
-## 音视频依赖的预安装库
-*
+## Connect Us
 
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- You can fire bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
-
-
-## 联系我们
-
-- 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
-- 如果在集成中遇到问题，你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
-- 如果有售前咨询问题，可以拨打 400 632 6626，或加入官方Q群 12742516 提问
-- 如果需要售后技术支持，你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的bug，欢迎提交 [issue](https://github.com/AgoraIO/OpenVideoCall-iOS/issues)
-
-## 代码许可
+## License
 
 The MIT License (MIT).

@@ -4,8 +4,8 @@
     <!-- PLEASE KEEP THIS App ID IN SAFE PLACE -->
     <!-- Get your own App ID at https://dashboard.agora.io/ -->
     <!-- After you entered the App ID, remove <##> outside of Your App ID -->
-    <!-- For formal released project, please use Dynamic Key
-        https://docs.agora.io/en/2.3.1/product/Video/Agora%20Platform/key_native?platform=Android -->
+    <!-- For formal released project, please use Security Keys/Token
+        https://docs.agora.io/en/Video/token?platform=All%20Platforms -->
     <string name="private_app_id"><#YOUR APP ID#></string>
 
     <string-array name="encryption_mode_values">

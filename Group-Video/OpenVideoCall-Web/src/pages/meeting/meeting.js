@@ -196,9 +196,10 @@ const shareStart = () => {
         shareEnd();
         if (isChrome()) {
           // If (!chrome.app.isInstalled) {
-          let msg = `Please install chrome extension before using sharing screen. 
-            <hr />
-            <a id="addExtensionBtn" class="button is-link" onclick="chrome.webstore.install('https://chrome.google.com/webstore/detail/minllpmhdgpndnkomcoccfekfegnlikg', installSuccess, installError)">Add chrome extension</a>
+          let msg = `
+            Please install chrome extension from 
+            <a href="https://chrome.google.com/webstore/detail/minllpmhdgpndnkomcoccfekfegnlikg">Google Webstore</a> 
+            before using sharing screen.   
           `;
           Notify.danger(msg, 5000);
           // }

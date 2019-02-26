@@ -3,6 +3,7 @@
 
 #include "IAgoraRtcEngine.h"
 #include "AGEngine.h"
+#include <iostream>
 
 AGEngine::AGEngine(IRtcEngineEventHandler* handler, const char* appId)
 {
@@ -23,7 +24,7 @@ AGEngine::~AGEngine()
 const char* AGEngine::getSDKVersion()
 {
     if(m_agoraEngine == NULL)
-        return false;
+        return NULL;
 
     int buildNumber = 0;
     const char *engineVer = m_agoraEngine->getVersion(&buildNumber);
@@ -41,11 +42,18 @@ bool AGEngine::setLogFilePath(const char* logPath)
     return ret == 0 ? true : false;
 }
 
-bool AGEngine::joinChannel(const char* channelId, int uid)
+bool AGEngine::joinChannel(const char* dynamicKey,
+                           const char* channelId,
+                           int uid)
 {
     int ret = -1;
+    const char tmp[] = "0";
     if(m_agoraEngine) {
-        ret = m_agoraEngine->joinChannel(NULL, channelId, NULL, uid);
+        if (!strcmp(tmp, dynamicKey)) {
+            ret = m_agoraEngine->joinChannel(NULL, channelId, NULL, uid);
+        } else {
+            ret = m_agoraEngine->joinChannel(dynamicKey, channelId, NULL, uid);
+        }
         if(ret == 0) {
             AParameter msp(*m_agoraEngine);
             msp->setInt("che.video.local.camera_index", 0);

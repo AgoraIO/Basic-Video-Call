@@ -15,13 +15,7 @@
 - 设置加密模式；
 - 开启和关闭黑白滤镜；
 
-你也可以在这里查看入门版的示例项目：[Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1)
-
-Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可以查看对应各平台的示例项目：
-
-- [OpenVideoCall-iOS](https://github.com/AgoraIO/OpenVideoCall-iOS)
-- [OpenVideoCall-Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
-- [OpenVideoCall-macOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
+你也可以在这里查看入门版的示例项目：[Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)
 
 ## 运行示例程序
 **首先**在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
@@ -36,7 +30,7 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 第一步: 在项目对应的模块的 "app/build.gradle" 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
 
 ```
-compile 'io.agora.rtc:full-sdk:2.2.0'
+compile 'io.agora.rtc:full-sdk:2.3.3'
 ```
 
 (如果要在自己的应用中集成 Agora 视频 SDK，添加链接地址是最重要的一步。）
@@ -58,7 +52,7 @@ compile fileTree(dir: 'libs', include: ['*.jar'])
 也可以使用 `Gradle` 直接编译运行。
 
 ## 运行环境
-- Android Studio 2.0 +
+- Android Studio 3.3 +
 - 真实 Android 设备 (Nexus 5X 或者其它设备)
 - 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机
 
@@ -67,7 +61,7 @@ compile fileTree(dir: 'libs', include: ['*.jar'])
 - 如果在集成中遇到问题, 你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
 - 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方Q群 12742516 提问
 - 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/OpenVideoCall-Android/issues)
+- 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## 代码许可
 The MIT License (MIT).

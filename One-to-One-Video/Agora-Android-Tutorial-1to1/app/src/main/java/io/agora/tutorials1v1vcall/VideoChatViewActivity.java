@@ -82,7 +82,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         joinChannel();
     }
 
-    public boolean checkSelfPermission(String permission, int requestCode) {
+    private boolean checkSelfPermission(String permission, int requestCode) {
         Log.i(LOG_TAG, "checkSelfPermission " + permission + " " + requestCode);
         if (ContextCompat.checkSelfPermission(this,
                 permission)
@@ -115,7 +115,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         }
     }
 
-    public final void showLongToast(final String msg) {
+    private final void showLongToast(final String msg) {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {

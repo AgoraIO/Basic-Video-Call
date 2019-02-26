@@ -7,11 +7,11 @@ This tutorial enables you to quickly get started in your development efforts to 
 * Enable or disable video.
 * Choose between the front or rear camera.
 
-A more complete demonstration can be found [here](https://github.com/AgoraIO/OpenVideoCall-Android).
+A more complete demonstration can be found [here](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android).
 
 ## Prerequisites
 
-* Android Studio 2.0 or above.
+* Android Studio 3.3 or above.
 * Android device (e.g. Nexus 5X). A real device is recommended because some simulators have missing functionality or lack the performance necessary to run the sample.
 
 ## Quick Start
@@ -40,7 +40,7 @@ The SDK must be integrated into the sample project before it can opened and buil
 ...
 dependencies {
     ...
-    compile 'io.agora.rtc:full-sdk:2.2.3' 
+    compile 'io.agora.rtc:full-sdk:2.3.3'
 }
 ```
 
@@ -508,15 +508,15 @@ The `btn_voice` button that mutes video has been configured in *activity_video_c
 
 ## Resources
 * You can find full API documentation at the [Document Center](https://docs.agora.io/en/).
-* You can file bugs about this sample [here](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1/issues).
+* You can file bugs about this sample [here](https://github.com/AgoraIO/Basic-Video-Call/issues).
 
 
 ## Learn More
-- 1 to 1 Video Tutorial for [iOS/Swift](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
-- 1 to 1 Video Tutorial for [iOS/Objective-C](https://github.com/AgoraIO/Agora-macOS-Tutorial-Objective-C-1to1)
-- 1 to 1 Video Tutorial for [macOS](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1)
-- 1 to 1 Video Tutorial for [Windows](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1)
-- 1 to 1 Video Tutorial for [Web](https://github.com/AgoraIO/Agora-Web-Tutorial-1to1)
+- 1 to 1 Video Tutorial for [iOS/Swift](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1)
+- 1 to 1 Video Tutorial for [iOS/Objective-C](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1)
+- 1 to 1 Video Tutorial for [macOS](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1)
+- 1 to 1 Video Tutorial for [Windows](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Windows-Tutorial-1to1)
+- 1 to 1 Video Tutorial for [Web](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1)
 
 ## License
 This software is under the MIT License (MIT). [View the license](LICENSE.md).

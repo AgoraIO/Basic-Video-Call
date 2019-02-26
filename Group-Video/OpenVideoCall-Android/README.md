@@ -15,13 +15,7 @@ With this sample app, you can:
 - Enable encryption
 - Enable / disable black and white filter
 
-A tutorial demo can be found here: [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1)
-
-Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos of these platform here:
-
-- [OpenVideoCall-iOS](https://github.com/AgoraIO/OpenVideoCall-iOS)
-- [OpenVideoCall-Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
-- [OpenVideoCall-macOS](https://github.com/AgoraIO/OpenVideoCall-macOS)
+A tutorial demo can be found here: [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)
 
 ## Running the App
 **First**, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. Update "app/src/main/res/values/strings_config.xml" with your App ID.
@@ -36,7 +30,7 @@ Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos
 
 First, add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the "app/build.gradle":
 ```
-compile 'io.agora.rtc:full-sdk:2.2.0'
+compile 'io.agora.rtc:full-sdk:2.3.3'
 ```
 (Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
 
@@ -57,13 +51,13 @@ compile fileTree(dir: 'libs', include: ['*.jar'])
 Or use `Gradle` to build and run.
 
 ## Developer Environment Requirements
-- Android Studio 2.0 or above
+- Android Studio 3.3 or above
 - Real devices (Nexus 5X or other devices)
 - Some simulators are function missing or have performance issue, so real device is the best choice
 
 ## Connect Us
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/OpenVideoCall-Android/issues)
+- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 The MIT License (MIT).
