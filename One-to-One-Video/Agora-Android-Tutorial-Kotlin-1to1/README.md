@@ -1,6 +1,8 @@
 
 # Agora Android 1-to-1 Tutorial for Kotlin
 
+*Read this in other languages: [Chinese](README.zh.md)*
+
 This tutorial enables you to quickly get started in your development efforts to create an Android app with real-time video chat using the Agora Video SDK. 
 
 With this sample app you can:

@@ -1,5 +1,7 @@
 # Agora Android 1-to-1 Tutorial
 
+*Read this in other languages: [Chinese](README.zh.md)*
+
 This tutorial enables you to quickly get started in your development efforts to create an Android app with real-time video calls, voice calls, and interactive broadcasting. With this sample app you can:
 
 * Join and leave a channel.

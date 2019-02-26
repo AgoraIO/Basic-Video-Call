@@ -1,6 +1,8 @@
 
 # Agora 1-to-1 Tutorial for Web
 
+*Read this in other languages: [Chinese](README.zh.md)*
+
 This tutorial enables you to quickly get started with creating an Agora account, downloading the SDK, and using the Agora sample app to give you an overview on how to develop requests to the [Agora API](https://docs.agora.io/en/2.2/product/Voice/API%20Reference/communication_web_audio#voice-call-api):
 
 - Join / Leave calls

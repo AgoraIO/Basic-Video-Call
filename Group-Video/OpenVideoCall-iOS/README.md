@@ -1,5 +1,7 @@
 # Open Video Call iOS for Swift
 
+*Read this in other languages: [Chinese](README.zh.md)*
+
 This tutorial describes how to add video chat to your iOS applications using Swift and the Agora Video SDK.
 
 With this sample app, you can:

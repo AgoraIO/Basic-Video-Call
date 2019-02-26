@@ -1,6 +1,6 @@
 # Open Video Call for Android
 
-*其他语言版本： [简体中文](README.zh.md)*
+*Read this in other languages: [Chinese](README.zh.md)*
 
 The Open Video Call for Android Sample App is an open-source demo that will help you get video chat integrated directly into your Android applications using the Agora Video SDK.
 
