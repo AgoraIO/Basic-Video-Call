@@ -1,6 +1,6 @@
 # Open Video Call for MacOS (Swift)
 
-*Read this in other languages: [Chinese](README.zh.md)*
+*Read this in other languages: [中文](README.zh.md)*
 
 This tutorial describes how to add video chat to your MacOS applications using Swift and the Agora Video SDK.
 

@@ -1,6 +1,6 @@
 # Agora 1-to-1 Tutorial for Windows
 
-*Read this in other languages: [Chinese](README.zh.md)*
+*Read this in other languages: [中文](README.zh.md)*
 
 This tutorial enables you to quickly get started developing a Windows app with video chat. With this sample app you can:
 
