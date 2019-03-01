@@ -1,6 +1,6 @@
 # Open Video Call Linux
 
-*其他语言版本： [简体中文](README.md)*
+*Read this in other languages: [中文](README.zh.md)*
 
 The Open Video Call Linux Sample App is an open-source demo that will help you get video chat integrated directly into your Linux applications using the Agora Video SDK.
 

@@ -1,6 +1,6 @@
 # Open Video Call Windows
 
-*其他语言版本： [简体中文](README.zh.md)*
+*Read this in other languages: [中文](README.zh.md)*
 
 The Open Video Call Windows Sample App is an open-source demo that will help you get video chat integrated directly into your Windows applications using the Agora Video SDK.
 
