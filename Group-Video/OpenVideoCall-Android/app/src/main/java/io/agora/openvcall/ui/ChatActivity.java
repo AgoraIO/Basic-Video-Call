@@ -61,6 +61,7 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
     private RelativeLayout mSmallVideoViewDock;
     private volatile boolean mVideoMuted = false;
     private volatile boolean mAudioMuted = false;
+    private volatile boolean mIsPlay = false;
     private volatile int mAudioRouting = -1; // Default
     private boolean mIsLandscape = false;
     private InChannelMessageListAdapter mMsgAdapter;
@@ -425,6 +426,26 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
             iv.setColorFilter(getResources().getColor(R.color.agora_blue), PorterDuff.Mode.MULTIPLY);
         } else {
             iv.clearColorFilter();
+        }
+    }
+
+    public void onPlayClicked(View view) {
+        if (mUidsList.size() == 0) {
+            return;
+        }
+
+        RtcEngine rtcEngine = rtcEngine();
+
+        ImageView iv = (ImageView) view;
+
+        if (!mIsPlay) {
+            rtcEngine.startAudioMixing("/assets/qt.mp3", false, false, -1);
+            iv.setImageResource(R.drawable.stop);
+            mIsPlay = true;
+        } else {
+            rtcEngine.stopAudioMixing();
+            iv.setImageResource(R.drawable.play);
+            mIsPlay = false;
         }
     }
 

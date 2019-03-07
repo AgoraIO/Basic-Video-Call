@@ -207,7 +207,7 @@ public class MyEngineEventHandler {
         @Override
         public void onAudioMixingStateChanged(int state, int errorCode) {
             super.onAudioMixingStateChanged(state, errorCode);
-            Log.d("AudioMixing", ("onAudioMixingStateChanged " + "state : " + state +  "errorCode : " + errorCode));
+            Log.d("AudioMixing", ("onAudioMixingStateChanged " + "state : " + state +  " errorCode : " + errorCode));
         }
 
         @Override

@@ -97,6 +97,15 @@
                         android:src="@drawable/btn_mute"
                         android:onClick="onVoiceMuteClicked" />
 
+                    <ImageView
+                        android:id="@+id/img_audio_control"
+                        android:layout_width="54dp"
+                        android:layout_height="match_parent"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:src="@drawable/play"
+                        android:onClick="onPlayClicked" />
+
                 </LinearLayout>
 
                 <ImageView
