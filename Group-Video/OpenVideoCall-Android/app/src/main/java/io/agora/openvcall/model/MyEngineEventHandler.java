@@ -1,6 +1,8 @@
 package io.agora.openvcall.model;
 
 import android.content.Context;
+import android.util.Log;
+
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import org.slf4j.Logger;
@@ -200,6 +202,18 @@ public class MyEngineEventHandler {
 
         public void onWarning(int warn) {
             log.debug("onWarning " + warn);
+        }
+
+        @Override
+        public void onAudioMixingStateChanged(int state, int errorCode) {
+            super.onAudioMixingStateChanged(state, errorCode);
+            Log.d("AudioMixing", ("onAudioMixingStateChanged " + "state : " + state +  "errorCode : " + errorCode));
+        }
+
+        @Override
+        public void onAudioMixingFinished() {
+            super.onAudioMixingFinished();
+            Log.d("AudioMixing", "onAudioMixingFinished ");
         }
     };
 
