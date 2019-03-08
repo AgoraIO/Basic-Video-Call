@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MyEngineEventHandler {
+    private static final String TAG = MyEngineEventHandler.class.getSimpleName();
+
     public MyEngineEventHandler(Context ctx, EngineConfig config) {
         this.mContext = ctx;
         this.mConfig = config;
@@ -207,13 +209,13 @@ public class MyEngineEventHandler {
         @Override
         public void onAudioMixingStateChanged(int state, int errorCode) {
             super.onAudioMixingStateChanged(state, errorCode);
-            Log.d("AudioMixing", ("onAudioMixingStateChanged " + "state : " + state +  " errorCode : " + errorCode));
+            Log.d(TAG, "onAudioMixingStateChanged() called with: state = [" + state + "], errorCode = [" + errorCode + "]");
         }
 
         @Override
         public void onAudioMixingFinished() {
             super.onAudioMixingFinished();
-            Log.d("AudioMixing", "onAudioMixingFinished ");
+            Log.d(TAG, "onAudioMixingFinished() called");
         }
     };
 

@@ -11,20 +11,27 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
-import io.agora.propeller.Constant;
-import io.agora.openvcall.R;
-import io.agora.rtc.Constants;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-import io.agora.rtc.video.VideoEncoderConfiguration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+
+import io.agora.openvcall.R;
+import io.agora.propeller.Constant;
+import io.agora.rtc.Constants;
+import io.agora.rtc.IRtcEngineEventHandler;
+import io.agora.rtc.RtcEngine;
+import io.agora.rtc.video.VideoCanvas;
+import io.agora.rtc.video.VideoEncoderConfiguration;
+
+import static io.agora.rtc.Constants.LOG_FILTER_DEBUG;
 
 public class WorkerThread extends Thread {
     private final static Logger log = LoggerFactory.getLogger(WorkerThread.class);
+
+    private final static String TAG = WorkerThread.class.getSimpleName();
 
     private final Context mContext;
 
@@ -136,6 +143,21 @@ public class WorkerThread extends Thread {
         }
 
         ensureRtcEngineReadyLock();
+        mRtcEngine.enableLastmileTest();
+        mRtcEngine.addHandler(new IRtcEngineEventHandler() {
+            @Override
+            public void onLastmileQuality(int quality) {
+                super.onLastmileQuality(quality);
+                Log.d(TAG, "onLastmileQuality() called with: quality = [" + quality + "]");
+                mRtcEngine.disableLastmileTest();
+            }
+
+            @Override
+            public void onLastmileProbeResult(LastmileProbeResult result) {
+                super.onLastmileProbeResult(result);
+                Log.d(TAG, "onLastmileProbeResult() called with: result = [" + result + "]");
+            }
+        });
         mRtcEngine.joinChannel(null, channel, "OpenVCall", uid);
 
         mEngineConfig.mChannel = channel;
@@ -241,8 +263,17 @@ public class WorkerThread extends Thread {
             mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
             mRtcEngine.enableVideo();
             mRtcEngine.enableAudioVolumeIndication(200, 3); // 200 ms
-            mRtcEngine.setLogFile(Environment.getExternalStorageDirectory()
-                    + File.separator + mContext.getPackageName() + "/log/agora-rtc.log");
+            mRtcEngine.setParameters("{\"rtc.log_filter\":65535}");
+            mRtcEngine.setLogFilter(LOG_FILTER_DEBUG);
+            String dir = Environment.getExternalStorageDirectory()
+                    + File.separator + mContext.getPackageName() + "/log";
+            new File(dir).mkdirs();
+            try {
+                new File(dir + "/agora-rtc.log").createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mRtcEngine.setLogFile(dir + "/agora-rtc.log");
         }
         return mRtcEngine;
     }
