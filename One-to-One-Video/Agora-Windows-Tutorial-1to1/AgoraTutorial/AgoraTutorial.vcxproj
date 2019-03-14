@@ -72,6 +72,10 @@
     <PostBuildEvent>
       <Command>copy ..\sdk\dll\*.dll ..\Debug\</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
