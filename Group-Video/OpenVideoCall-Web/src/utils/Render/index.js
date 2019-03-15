@@ -1,5 +1,5 @@
-import calcSize from './calcSize';
-import './render.css';
+import calcSize from "./calcSize";
+import "./render.css";
 
 export default {
   init(elementId, minRatio, maxRatio) {
@@ -18,25 +18,23 @@ export default {
 
   customRender(streamList, mode, mainId) {
     // Reinit canvas style first
-    this.canvas.classList.remove('container__flex');
-    this.canvas.classList.add('container__grid');
+    this.canvas.classList.remove("container__flex");
+    this.canvas.classList.add("container__grid");
 
     // Get no
     let no = streamList.length;
     mainId =
       mainId ||
-      (streamList[streamList.length - 1] && streamList[streamList.length - 1].getId());
+      (streamList[streamList.length - 1] &&
+        streamList[streamList.length - 1].getId());
 
     // We should consider no, isMobileSize, currentMode
     if ((no > 4 && mode === 1) || no > 8) {
       mode = 0;
-      console.log('Automatically switch to tile mode...');
+      console.log("Automatically switch to tile mode...");
       this.rendererFactory(streamList, mode, mainId);
     } else {
       this.rendererFactory(streamList, mode, mainId);
-    }
-    for (let stream of streamList) {
-      stream.player && stream.player.resize();
     }
   },
 
@@ -48,37 +46,37 @@ export default {
     } else if (mode === 2) {
       this.sharingRenderer(streamList, mainId);
     } else {
-      throw Error('Wrong mode for renderer');
+      throw Error("Wrong mode for renderer");
     }
   },
 
   updateVideoItem(stream, style, fit = false) {
     let id = stream.getId();
-    let dom = document.querySelector('#video-item-' + id);
+    let dom = document.querySelector("#video-item-" + id);
     if (!dom) {
-      dom = document.createElement('section');
-      let box = document.createElement('div');
-      dom.setAttribute('id', 'video-item-' + id);
-      dom.setAttribute('class', 'video-item');
-      box.setAttribute('class', 'video-item-box');
+      dom = document.createElement("section");
+      let box = document.createElement("div");
+      dom.setAttribute("id", "video-item-" + id);
+      dom.setAttribute("class", "video-item");
+      box.setAttribute("class", "video-item-box");
       dom.appendChild(box);
       this.canvas.appendChild(dom);
-      stream.play('video-item-' + id);
+      stream.play("video-item-" + id);
     }
     if (fit) {
-      dom.classList.add('window__fit');
+      dom.classList.add("window__fit");
     } else {
-      dom.classList.remove('window__fit');
+      dom.classList.remove("window__fit");
     }
-    dom.setAttribute('style', style);
+    dom.setAttribute("style", style);
   },
 
   enterFullScreen() {
-    this.canvas.classList.add('fullscreen');
+    this.canvas.classList.add("fullscreen");
   },
 
   exitFullScreen() {
-    this.canvas.classList.remove('fullscreen');
+    this.canvas.classList.remove("fullscreen");
   },
 
   /**
@@ -93,8 +91,8 @@ export default {
       count: streamList.length
     });
     // Use flex box container
-    this.canvas.classList.remove('container__grid');
-    this.canvas.classList.add('container__flex');
+    this.canvas.classList.remove("container__grid");
+    this.canvas.classList.add("container__flex");
     for (let stream of streamList) {
       this.updateVideoItem(stream, `width: ${width}px; height: ${height}px;`);
     }
@@ -106,18 +104,18 @@ export default {
   pipRenderer(streamList, mainId) {
     let no = streamList.length;
     if (no > 4) {
-      throw Error('PIP mode only suitable for less than 4 stream');
+      throw Error("PIP mode only suitable for less than 4 stream");
     }
 
     // Check ratio before using pip ratio
     if (
       !this._checkRatio(
-        this.canvas.clientWidth * 4 / 24,
-        this.canvas.clientHeight * 3 / 12
+        (this.canvas.clientWidth * 4) / 24,
+        (this.canvas.clientHeight * 3) / 12
       ) ||
       !this._checkRatio(
-        this.canvas.clientWidth * 12 / 24,
-        this.canvas.clientHeight * 12 / 12
+        (this.canvas.clientWidth * 12) / 24,
+        (this.canvas.clientHeight * 12) / 12
       )
     ) {
       return this.tileRenderer(streamList);
@@ -147,14 +145,14 @@ export default {
   sharingRenderer(streamList, mainId) {
     let no = streamList.length;
     if (no > 8) {
-      throw Error('Screen Sharing Mode only suitable for less than 8 stream');
+      throw Error("Screen Sharing Mode only suitable for less than 8 stream");
     }
 
     // Check ratio before using screen sharing ratio unless there is only one stream
     if (
       !this._checkRatio(
-        this.canvas.clientWidth * 4 / 24,
-        this.canvas.clientHeight * 4 / 12
+        (this.canvas.clientWidth * 4) / 24,
+        (this.canvas.clientHeight * 4) / 12
       ) &&
       streamList.length !== 1
     ) {
@@ -163,12 +161,12 @@ export default {
         return element.getId() === mainId;
       });
       if (mainStreamIndex === -1) {
-        throw Error('Cannot find stream by given mainId!');
+        throw Error("Cannot find stream by given mainId!");
       }
       // Only render main stream(sharing stream)
       for (let i = 0; i < no; i++) {
         if (i !== mainStreamIndex) {
-          this.updateVideoItem(streamList[i], 'display: none');
+          this.updateVideoItem(streamList[i], "display: none");
         }
       }
       return this.sharingRenderer([streamList[mainStreamIndex]], mainId);
@@ -187,7 +185,7 @@ export default {
         shouldRemoveStreamIndex = 7;
       }
       let shouldRemoveStream = tempStreamList[shouldRemoveStreamIndex];
-      this.updateVideoItem(shouldRemoveStream, 'display: none');
+      this.updateVideoItem(shouldRemoveStream, "display: none");
       tempStreamList.splice(shouldRemoveStreamIndex, 1);
     }
 
@@ -196,11 +194,23 @@ export default {
         // When there were less than 5 people
         // sharing stream will take more place
         if (no === 1) {
-          this.updateVideoItem(stream, `grid-area: span 12/span 24/13/25;`, true);
+          this.updateVideoItem(
+            stream,
+            `grid-area: span 12/span 24/13/25;`,
+            true
+          );
         } else if (no < 5) {
-          this.updateVideoItem(stream, `grid-area: span 12/span 20/13/25;`, true);
+          this.updateVideoItem(
+            stream,
+            `grid-area: span 12/span 20/13/25;`,
+            true
+          );
         } else {
-          this.updateVideoItem(stream, `grid-area: span 12/span 16/13/21;`, true);
+          this.updateVideoItem(
+            stream,
+            `grid-area: span 12/span 16/13/21;`,
+            true
+          );
         }
       } else {
         // Normal stream
