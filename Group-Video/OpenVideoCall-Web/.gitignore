@@ -3,6 +3,8 @@ node_modules/
 dist/
 npm-debug.log
 yarn-error.log
+package-lock.json
+yarn-lock.json
 
 # Editor directories and files
 .idea
@@ -10,3 +12,5 @@ yarn-error.log
 *.ntvs*
 *.njsproj
 *.sln
+
+.npmrc
