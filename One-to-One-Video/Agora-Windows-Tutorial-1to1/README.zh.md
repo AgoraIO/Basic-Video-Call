@@ -32,9 +32,8 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 最后使用 Visual Studio 2013 打开 AgoraTutorial.sln，编译整个解决方案即可运行。
 
 ## 注意
-1. 程序编译后，在运行程序时如若出现：无法启动程序 "xxx\xxx\xxx\Debug\Language\English.dll" 的错误提示， 请在解决方案资源管理器中选中 OpenLive 项目，并右击，在弹出的菜单栏中选择 "设为启动项目"，即可解决。之后重新运行程序即可。
 
-2. sdk/dll 文件下的 dll 库也需要放在相应的执行路径下。
+1. sdk/dll 文件下的 dll 库需要放在相应的执行路径下。
 
 温馨提示：此案例教程中已经为您配置好相关的 dll 库，若用户想自己使用 agora 提供的接口进行相关开发，则需按上述提示将 dll 库放入相应的执行路径下。
 
