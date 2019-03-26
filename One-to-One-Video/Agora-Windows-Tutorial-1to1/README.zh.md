@@ -14,7 +14,7 @@
 
 你也可以在这里查看进阶版的示例项目：[OpenVideoCall-Windows](https://github.com/AgoraIO/OpenVideoCall-Windows)
 
-Agora视频SDK支持 iOS / Android / Windows / macOS 等多个平台，你可以查看对应各平台的示例项目：
+Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可以查看对应各平台的示例项目：
 
 - [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Agora-Android-Tutorial-1to1)
 - [Agora-iOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
@@ -31,6 +31,12 @@ Agora视频SDK支持 iOS / Android / Windows / macOS 等多个平台，你可以
 
 最后使用 Visual Studio 2013 打开 AgoraTutorial.sln，编译整个解决方案即可运行。
 
+## 注意
+1. 程序编译后，在运行程序时如若出现：无法启动程序 "xxx\xxx\xxx\Debug\Language\English.dll" 的错误提示， 请在解决方案资源管理器中选中 OpenLive 项目，并右击，在弹出的菜单栏中选择 "设为启动项目"，即可解决。之后重新运行程序即可。
+
+2. sdk/dll 文件下的 dll 库也需要放在相应的执行路径下。
+温馨提示：此案例教程中已经为您配置好相关的 dll 库，若用户想自己使用 agora 提供的接口进行相关开发，则需按上述提示将 dll 库放入相应的执行路径下。
+
 ## 运行环境
 * Visual Studio 2013 或更高版本
 * 两台 Windows PC
@@ -39,9 +45,9 @@ Agora视频SDK支持 iOS / Android / Windows / macOS 等多个平台，你可以
 
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
 - 如果在集成中遇到问题, 你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
-- 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方Q群 12742516 提问
+- 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方 Q 群 12742516 提问
 - 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的bug, 欢迎提交 [issue](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1/issues)
+- 如果发现了示例代码的 bug , 欢迎提交 [issue](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1/issues)
 
 ## 代码许可
 
