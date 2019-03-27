@@ -36,6 +36,14 @@ Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/
 
 Finally, Open OpenVideoCall.sln, build the solution and run.
 
+Note：
+  1. After the program is compiled, if the program "xxx\xxx\xxx\Debug\Language\English.dll" cannot be started when running the program, 
+      please select the OpenVideoCall project in the Solution Explorer and right click. In the pop-up menu bar, select "Set as active project" to solve. Then run the program again.
+  
+  2. The dll library under the sdk/dll file needs to be placed in the corresponding execution path.
+  
+  Tips: The relevant dll library has been configured for you in this case tutorial. If you want to use the interface provided by agora for related development, you need to put the dll library into the corresponding execution path as prompted above.
+
 ## Developer Environment Requirements
 * VC2013 or higher
 * WIN7 or higher
