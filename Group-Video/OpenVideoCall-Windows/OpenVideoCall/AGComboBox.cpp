@@ -259,8 +259,12 @@ void CAGComboBoxList::OnLButtonDown(UINT nFlags, CPoint point)
 			m_lpComboBox->GetParent()->SendMessage(WM_COMMAND, MAKEWPARAM(m_lpComboBox->GetDlgCtrlID(), CBN_SELCHANGE), (LPARAM)m_lpComboBox->GetSafeHwnd());
 		}
 		
-		if (m_nCurSel != -1)
+		if (m_nCurSel != -1) {
+			if (m_nCurSel > (m_nItemCount - 1)) {
+				m_nCurSel = m_nItemCount - 1;
+			}
 			m_lpComboBox->SetWindowText(m_arrItemString.GetAt(m_nCurSel));
+		}
 	}
 	m_lpComboBox->ShowDropDown(FALSE);
 
