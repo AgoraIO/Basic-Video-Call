@@ -118,8 +118,22 @@ public class MyEngineEventHandler {
         @Override
         public void onLastmileQuality(int quality) {
             log.debug("onLastmileQuality " + quality);
+            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
+            while (it.hasNext()) {
+                AGEventHandler handler = it.next();
+                handler.onLastmileQuality(quality);
+            }
         }
 
+        @Override
+        public void onLastmileProbeResult(IRtcEngineEventHandler.LastmileProbeResult result){
+            log.debug("onLastmileProbeResult " + result);
+            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
+            while (it.hasNext()) {
+                AGEventHandler handler = it.next();
+                handler.onLastmileProbeResult(result);
+            }
+        }
         @Override
         public void onError(int error) {
             log.debug("onError " + error + " " + RtcEngine.getErrorDescription(error));

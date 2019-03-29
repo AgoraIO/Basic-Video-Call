@@ -11,20 +11,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import io.agora.openvcall.R;
-import io.agora.openvcall.model.ConstantApp;
+import android.widget.TextView;
 
-public class MainActivity extends BaseActivity {
+import io.agora.openvcall.R;
+import io.agora.openvcall.model.AGEventHandler;
+import io.agora.openvcall.model.ConstantApp;
+import io.agora.rtc.IRtcEngineEventHandler;
+import io.agora.rtc.internal.LastmileProbeConfig;
+
+public class MainActivity extends BaseActivity{
+    private TextView tvLastmileQualityResult;
+    private TextView tvLastmileProbeResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tvLastmileQualityResult=(TextView)findViewById(R.id.tv_lastmile_quality_result);
+        tvLastmileProbeResult=(TextView)findViewById(R.id.tv_lastmile_Probe_result);
     }
 
     @Override
     protected void initUIandEvent() {
+        resetLastMileInfo();
         EditText v_channel = (EditText) findViewById(R.id.channel_name);
         v_channel.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,6 +90,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void deInitUIandEvent() {
+        event().removeEventHandler(this);
     }
 
     @Override
@@ -125,4 +137,70 @@ public class MainActivity extends BaseActivity {
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
+
+
+    public void onLastMileClick(View view) {
+        boolean enableLastMileProbleTest = ((CheckBox)view).isChecked();
+        if(enableLastMileProbleTest){
+            if(worker().getRtcEngine()!=null){
+                LastmileProbeConfig lastmileProbeConfig = new LastmileProbeConfig();
+                lastmileProbeConfig.probeUplink = true;
+                lastmileProbeConfig.probeDownlink = true;
+                lastmileProbeConfig.expectedUplinkBitrate = 5000;
+                lastmileProbeConfig.expectedDownlinkBitrate = 5000;
+                int result = worker().getRtcEngine().startLastmileProbeTest(lastmileProbeConfig);
+            }
+        }
+        else{
+            if(worker().getRtcEngine()!=null){
+                worker().getRtcEngine().stopLastmileProbeTest();
+                resetLastMileInfo();
+            }
+        }
+    }
+
+
+
+    @Override
+    public void workThreadInited(){
+        event().addEventHandler(this);
+    }
+
+    @Override
+    public void onLastmileQuality(final int quality) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvLastmileQualityResult.setText(
+                        "onLastmileQuality "+quality);
+            }
+        });
+
+    }
+
+    @Override
+    public void onLastmileProbeResult(final IRtcEngineEventHandler.LastmileProbeResult result) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvLastmileProbeResult.setText(
+                        "onLastmileProbeResult state:"+result.state+ " "+"rtt:"+result.rtt+"\n"+
+                                "uplinkReport { packetLossRate:"+result.uplinkReport.packetLossRate+" "+
+                                "jitter:"+result.uplinkReport.jitter+" "+
+                                "availableBandwidth:"+result.uplinkReport.availableBandwidth+"}"+"\n"+
+                                "downlinkReport { packetLossRate:"+result.downlinkReport.packetLossRate+" "+
+                                "jitter:"+result.downlinkReport.jitter+" "+
+                                "availableBandwidth:"+result.downlinkReport.availableBandwidth+"}");
+            }
+        });
+    }
+
+
+    private void resetLastMileInfo(){
+        tvLastmileQualityResult.setText("");
+        tvLastmileProbeResult.setText("");
+    }
+
+
+
 }
