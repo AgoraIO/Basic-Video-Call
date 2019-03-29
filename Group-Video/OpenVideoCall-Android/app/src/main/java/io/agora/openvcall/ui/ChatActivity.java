@@ -44,6 +44,7 @@ import io.agora.propeller.UserStatusData;
 import io.agora.propeller.VideoInfoData;
 import io.agora.propeller.preprocessing.VideoPreProcessing;
 import io.agora.propeller.ui.RtlLinearLayoutManager;
+import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
@@ -679,6 +680,24 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape);
 
         mLayoutType = LAYOUT_TYPE_DEFAULT;
+        boolean setRemoteUserPriorityFlag = false;
+        int sizeLimit = mUidsList.size();
+        if (sizeLimit > ConstantApp.MAX_PEER_COUNT + 1) {
+            sizeLimit = ConstantApp.MAX_PEER_COUNT + 1;
+        }
+        for (int i = 0; i < sizeLimit; i++) {
+            int uid = mGridVideoViewContainer.getItem(i).mUid;
+            if (config().mUid != uid) {
+                if (!setRemoteUserPriorityFlag) {
+                    setRemoteUserPriorityFlag = true;
+                    rtcEngine().setRemoteUserPriority(uid, Constants.USER_PRIORITY_HIGH);
+                    log.debug("setRemoteUserPriority USER_PRIORITY_HIGH " + mUidsList.size() + " " + (uid & 0xFFFFFFFFL));
+                } else {
+                    rtcEngine().setRemoteUserPriority(uid, Constants.USER_PRIORITY_NORANL);
+                    log.debug("setRemoteUserPriority USER_PRIORITY_NORANL " + mUidsList.size() + " " + (uid & 0xFFFFFFFFL));
+                }
+            }
+        }
     }
 
     private void switchToSmallVideoView(int bigBgUid) {
@@ -743,6 +762,17 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         if (!create) {
             mSmallVideoViewAdapter.setLocalUid(config().mUid);
             mSmallVideoViewAdapter.notifyUiChanged(mUidsList, exceptUid, null, null);
+        }
+        for (Integer tempUid : mUidsList.keySet()) {
+            if (config().mUid != tempUid) {
+                if (tempUid == exceptUid) {
+                    rtcEngine().setRemoteUserPriority(tempUid, Constants.USER_PRIORITY_HIGH);
+                    log.debug("setRemoteUserPriority USER_PRIORITY_HIGH " + mUidsList.size() + " " + (tempUid & 0xFFFFFFFFL));
+                } else {
+                    rtcEngine().setRemoteUserPriority(tempUid, Constants.USER_PRIORITY_NORANL);
+                    log.debug("setRemoteUserPriority USER_PRIORITY_NORANL " + mUidsList.size() + " " + (tempUid & 0xFFFFFFFFL));
+                }
+            }
         }
         recycler.setVisibility(View.VISIBLE);
         mSmallVideoViewDock.setVisibility(View.VISIBLE);
