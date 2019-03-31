@@ -26,7 +26,7 @@ struct MediaInfo {
 
 extension CGSize {
     static func defaultDimension() -> CGSize {
-        return AgoraVideoDimension640x360
+        return AgoraVideoDimension640x480
     }
     
     static func validDimensionList() -> [CGSize] {

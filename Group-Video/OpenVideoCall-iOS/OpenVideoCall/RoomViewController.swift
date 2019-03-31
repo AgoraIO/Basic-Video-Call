@@ -384,16 +384,18 @@ private extension RoomViewController {
 //MARK: - engine
 private extension RoomViewController {
     func loadAgoraKit() {
-        agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
+        agoraKit.delegate = self
         agoraKit.setChannelProfile(.communication)
         agoraKit.enableVideo()
         
-        let configuration =
-            AgoraVideoEncoderConfiguration(size: dimension,
-                                           frameRate: .fps15,
-                                           bitrate: AgoraVideoBitrateStandard,
-                                           orientationMode: .adaptative)
-        agoraKit.setVideoEncoderConfiguration(configuration)
+        agoraKit.setVideoEncoderConfiguration(
+            AgoraVideoEncoderConfiguration(
+                size: dimension,
+                frameRate: .fps15,
+                bitrate: AgoraVideoBitrateStandard,
+                orientationMode: .adaptative
+            )
+        )
         
         addLocalSession()
         agoraKit.startPreview()

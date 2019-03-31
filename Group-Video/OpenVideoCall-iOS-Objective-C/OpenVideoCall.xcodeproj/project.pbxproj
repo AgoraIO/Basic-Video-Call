@@ -32,6 +32,7 @@
 		385F305B2122CB13005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F305A2122CB13005D5301 /* Accelerate.framework */; };
 		389D99A7218831C900BFD852 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */; };
 		389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A8218831D000BFD852 /* libcrypto.a */; };
+		38D619362250BF34004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619352250BF34004A6C87 /* CoreML.framework */; };
 		A7327ECE1FC7B5E300882882 /* EncryptionType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ECD1FC7B5E300882882 /* EncryptionType.m */; };
 		A7327ED11FC7C7C900882882 /* MsgTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED01FC7C7C900882882 /* MsgTableView.m */; };
 		A7327ED41FC7C7DB00882882 /* MsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED31FC7C7DB00882882 /* MsgCell.m */; };
@@ -77,6 +78,7 @@
 		385F305A2122CB13005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		389D99A8218831D000BFD852 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		38D619352250BF34004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 		A7327ECC1FC7B5E300882882 /* EncryptionType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EncryptionType.h; sourceTree = "<group>"; };
 		A7327ECD1FC7B5E300882882 /* EncryptionType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EncryptionType.m; sourceTree = "<group>"; };
 		A7327ECF1FC7C7C900882882 /* MsgTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgTableView.h; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				385F305B2122CB13005D5301 /* Accelerate.framework in Frameworks */,
+				38D619362250BF34004A6C87 /* CoreML.framework in Frameworks */,
 				0FB4FB651FF1F979006C7AE3 /* SystemConfiguration.framework in Frameworks */,
 				389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */,
 				07D29C5D1E9E1EFE00C3583C /* libresolv.tbd in Frameworks */,
@@ -211,6 +214,7 @@
 		076C59AA1DDDDE5C00F813E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38D619352250BF34004A6C87 /* CoreML.framework */,
 				385F305A2122CB13005D5301 /* Accelerate.framework */,
 				0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */,
 				07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */,
@@ -250,7 +254,7 @@
 		076C596A1DDDBC3500F813E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Agora;
 				TargetAttributes = {
 					076C59711DDDBC3500F813E2 = {
@@ -261,7 +265,7 @@
 			};
 			buildConfigurationList = 076C596D1DDDBC3500F813E2 /* Build configuration list for PBXProject "OpenVideoCall" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -340,6 +344,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -397,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

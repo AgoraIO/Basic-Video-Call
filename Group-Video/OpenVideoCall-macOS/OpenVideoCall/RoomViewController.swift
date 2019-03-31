@@ -358,7 +358,7 @@ private extension RoomViewController {
 //MARK: - agora media kit
 private extension RoomViewController {
     func loadAgoraKit() {
-        agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
+        agoraKit.delegate = self
         agoraKit.setChannelProfile(.communication)
         agoraKit.enableVideo()
         
@@ -411,7 +411,15 @@ private extension RoomViewController {
     //MARK: - screen sharing
     func startShareWindow(_ window: Window) {
         let windowId = window.id
-        agoraKit?.startScreenCapture(UInt(windowId), withCaptureFreq: 15, bitRate: 0, andRect: CGRect.zero )
+        if windowId == 0 {
+            agoraKit?.startScreenCapture(byDisplayId: UInt(CGMainDisplayID()),
+                                         rectangle: CGRect.zero,
+                                         parameters: AgoraScreenCaptureParameters())
+        } else {
+            agoraKit?.startScreenCapture(byWindowId: UInt(windowId),
+                                         rectangle: CGRect.zero,
+                                         parameters: AgoraScreenCaptureParameters())
+        }
         videoSessions.first?.hostingView.switchToScreenShare(windowId == 0 || window.name == "Agora Video Call" || window.name == "Full Screen")
     }
     

@@ -18,6 +18,7 @@
 @interface RoomViewController : UIViewController
 @property (copy, nonatomic) NSString *roomName;
 @property (assign, nonatomic) CGSize dimension;
+@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
 @property (assign, nonatomic) EncrypType encrypType;
 @property (copy, nonatomic) NSString *encrypSecret;
 @property (weak, nonatomic) id<RoomVCDelegate> delegate;

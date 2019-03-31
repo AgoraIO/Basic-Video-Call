@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="GZu-Xw-ufP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="GZu-Xw-ufP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
-        <plugIn identifier="com.apple.imagekit.ibplugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.imagekit.ibplugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -657,8 +657,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="720" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BAe-yb-TGF">
+                                <rect key="frame" x="14" y="548" width="151" height="32"/>
+                                <buttonCell key="cell" type="push" title="LastmileProbeTest" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HB5-jr-aju">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="doLastmileProbeTestPressed:" target="ZvJ-JT-Sop" id="fxV-cy-KFD"/>
+                                </connections>
+                            </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="e3w-xM-IZN">
+                                <rect key="frame" x="20" y="558" width="16" height="16"/>
+                            </progressIndicator>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HU4-IA-8xX">
+                                <rect key="frame" x="18" y="535" width="49" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="quality:" id="2Gp-Rd-VG0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nQj-ec-LB9">
+                                <rect key="frame" x="75" y="535" width="23" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="rtt:" id="wvh-Qr-e8A">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Utb-IG-06z">
+                                <rect key="frame" x="18" y="515" width="44" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="uplink:" id="Mw0-y1-Xfp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DKR-gE-2CB">
+                                <rect key="frame" x="18" y="495" width="62" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="downlink:" id="ULe-Xp-vEK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2F-YQ-Baz">
-                                <rect key="frame" x="118" y="490" width="484" height="22"/>
+                                <rect key="frame" x="118" y="458" width="484" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="480" id="46i-em-CDn"/>
                                 </constraints>
@@ -669,7 +714,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Uy-ve-xLf">
-                                <rect key="frame" x="180" y="368" width="360" height="36"/>
+                                <rect key="frame" x="180" y="378" width="360" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="360" id="B20-rW-AKg"/>
                                     <constraint firstAttribute="height" constant="36" id="rTD-Ze-0b5"/>
@@ -687,7 +732,7 @@
                                 </connections>
                             </textField>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xf4-3r-ftI">
-                                <rect key="frame" x="180" y="320" width="267" height="36"/>
+                                <rect key="frame" x="180" y="330" width="267" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="T5W-af-LoI"/>
                                 </constraints>
@@ -704,7 +749,7 @@
                                 </connections>
                             </textField>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="VCT-Zl-iGD">
-                                <rect key="frame" x="450" y="317" width="92" height="41"/>
+                                <rect key="frame" x="450" y="327" width="92" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="lcS-5m-xt0"/>
                                 </constraints>
@@ -718,7 +763,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BGU-Jg-gFR">
-                                <rect key="frame" x="178" y="267" width="364" height="43"/>
+                                <rect key="frame" x="178" y="277" width="364" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="F2l-Nl-ibO"/>
                                     <constraint firstAttribute="width" constant="360" id="b4X-q4-mVR"/>
@@ -732,7 +777,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GNr-DT-GWD">
-                                <rect key="frame" x="178" y="159" width="112" height="43"/>
+                                <rect key="frame" x="178" y="169" width="112" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="rxV-4T-hTp"/>
                                     <constraint firstAttribute="width" constant="108" id="yfb-7z-9Wg"/>
@@ -746,7 +791,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lGA-mt-hnw">
-                                <rect key="frame" x="298" y="159" width="244" height="43"/>
+                                <rect key="frame" x="298" y="169" width="244" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="ZGW-IH-OR0"/>
                                     <constraint firstAttribute="height" constant="38" id="ec0-TJ-k4P"/>
@@ -761,31 +806,49 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="BAe-yb-TGF" firstAttribute="leading" secondItem="IFk-u6-Dr9" secondAttribute="leading" constant="20" id="1dM-ou-5VT"/>
                             <constraint firstItem="xf4-3r-ftI" firstAttribute="top" secondItem="3Uy-ve-xLf" secondAttribute="bottom" constant="12" id="4MT-5N-38a"/>
+                            <constraint firstItem="Utb-IG-06z" firstAttribute="top" secondItem="HU4-IA-8xX" secondAttribute="bottom" constant="3" id="4fO-zc-JlG"/>
                             <constraint firstItem="xf4-3r-ftI" firstAttribute="leading" secondItem="3Uy-ve-xLf" secondAttribute="leading" id="5fv-fV-AaJ"/>
                             <constraint firstItem="lGA-mt-hnw" firstAttribute="trailing" secondItem="BGU-Jg-gFR" secondAttribute="trailing" id="7uD-LY-TRx"/>
                             <constraint firstItem="BGU-Jg-gFR" firstAttribute="top" secondItem="xf4-3r-ftI" secondAttribute="bottom" constant="12" id="Cxi-10-91M"/>
+                            <constraint firstItem="e3w-xM-IZN" firstAttribute="top" secondItem="IFk-u6-Dr9" secondAttribute="top" constant="26" id="EwY-v8-8Jz"/>
                             <constraint firstItem="W2F-YQ-Baz" firstAttribute="centerX" secondItem="IFk-u6-Dr9" secondAttribute="centerX" id="GkZ-PI-8ab"/>
+                            <constraint firstItem="Utb-IG-06z" firstAttribute="leading" secondItem="BAe-yb-TGF" secondAttribute="leading" id="Hyi-MW-iIk"/>
                             <constraint firstItem="GNr-DT-GWD" firstAttribute="leading" secondItem="BGU-Jg-gFR" secondAttribute="leading" id="MZu-2l-6j1"/>
+                            <constraint firstItem="nQj-ec-LB9" firstAttribute="leading" secondItem="HU4-IA-8xX" secondAttribute="trailing" constant="12" id="Qhj-Xi-zIK"/>
                             <constraint firstItem="VCT-Zl-iGD" firstAttribute="top" secondItem="xf4-3r-ftI" secondAttribute="top" id="UqQ-MV-Qhr"/>
                             <constraint firstItem="3Uy-ve-xLf" firstAttribute="centerX" secondItem="IFk-u6-Dr9" secondAttribute="centerX" id="VP2-ns-xne"/>
-                            <constraint firstItem="3Uy-ve-xLf" firstAttribute="top" secondItem="W2F-YQ-Baz" secondAttribute="bottom" constant="86" id="X4v-b7-ffz"/>
+                            <constraint firstItem="3Uy-ve-xLf" firstAttribute="top" secondItem="W2F-YQ-Baz" secondAttribute="bottom" constant="44" id="X4v-b7-ffz"/>
                             <constraint firstItem="BGU-Jg-gFR" firstAttribute="centerX" secondItem="IFk-u6-Dr9" secondAttribute="centerX" id="YLc-cH-T5O"/>
-                            <constraint firstItem="W2F-YQ-Baz" firstAttribute="top" secondItem="IFk-u6-Dr9" secondAttribute="top" constant="88" id="gPw-Zf-Wgf"/>
+                            <constraint firstItem="HU4-IA-8xX" firstAttribute="top" secondItem="BAe-yb-TGF" secondAttribute="bottom" constant="3" id="b3d-wr-I0q"/>
+                            <constraint firstItem="HU4-IA-8xX" firstAttribute="leading" secondItem="BAe-yb-TGF" secondAttribute="leading" id="ePT-kE-PVL"/>
+                            <constraint firstItem="W2F-YQ-Baz" firstAttribute="top" secondItem="IFk-u6-Dr9" secondAttribute="top" constant="120" id="gPw-Zf-Wgf"/>
+                            <constraint firstItem="DKR-gE-2CB" firstAttribute="top" secondItem="Utb-IG-06z" secondAttribute="bottom" constant="3" id="gpr-lg-wi0"/>
                             <constraint firstItem="lGA-mt-hnw" firstAttribute="top" secondItem="GNr-DT-GWD" secondAttribute="top" id="h2J-Vh-nYz"/>
+                            <constraint firstItem="BAe-yb-TGF" firstAttribute="top" secondItem="IFk-u6-Dr9" secondAttribute="top" constant="24" id="hGa-lM-i9e"/>
                             <constraint firstItem="GNr-DT-GWD" firstAttribute="top" secondItem="BGU-Jg-gFR" secondAttribute="bottom" constant="70" id="ivH-77-qtB"/>
+                            <constraint firstItem="e3w-xM-IZN" firstAttribute="leading" secondItem="IFk-u6-Dr9" secondAttribute="leading" constant="20" id="oC2-OZ-j09"/>
                             <constraint firstItem="VCT-Zl-iGD" firstAttribute="leading" secondItem="xf4-3r-ftI" secondAttribute="trailing" constant="5" id="qOK-qy-qEm"/>
                             <constraint firstItem="VCT-Zl-iGD" firstAttribute="bottom" secondItem="xf4-3r-ftI" secondAttribute="bottom" id="v0K-75-fVo"/>
+                            <constraint firstItem="DKR-gE-2CB" firstAttribute="leading" secondItem="BAe-yb-TGF" secondAttribute="leading" id="wJU-it-snh"/>
+                            <constraint firstItem="nQj-ec-LB9" firstAttribute="top" secondItem="HU4-IA-8xX" secondAttribute="top" id="yvz-Wv-kr7"/>
                             <constraint firstItem="VCT-Zl-iGD" firstAttribute="trailing" secondItem="3Uy-ve-xLf" secondAttribute="trailing" id="zGS-BO-VML"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="downlinkLabel" destination="DKR-gE-2CB" id="Vho-x5-ohB"/>
                         <outlet property="encryptionPopUpButton" destination="VCT-Zl-iGD" id="YQr-bo-ybg"/>
                         <outlet property="encryptionTextField" destination="xf4-3r-ftI" id="Y9i-Jd-2Nj"/>
                         <outlet property="joinButton" destination="BGU-Jg-gFR" id="OZP-QC-kUq"/>
+                        <outlet property="lastmileTestButton" destination="BAe-yb-TGF" id="Joy-TB-lsG"/>
+                        <outlet property="lastmileTestIndicator" destination="e3w-xM-IZN" id="vfz-iS-od0"/>
+                        <outlet property="qualityLabel" destination="HU4-IA-8xX" id="XgM-Gg-n4f"/>
                         <outlet property="roomInputTextField" destination="3Uy-ve-xLf" id="Tlk-Zx-9fb"/>
+                        <outlet property="rttLabel" destination="nQj-ec-LB9" id="AZD-di-gEj"/>
                         <outlet property="settingsButton" destination="lGA-mt-hnw" id="iwt-F8-3lK"/>
                         <outlet property="testButton" destination="GNr-DT-GWD" id="m3t-DA-3xC"/>
+                        <outlet property="uplinkLabel" destination="Utb-IG-06z" id="JAw-eJ-qTf"/>
                         <segue destination="IvW-Ya-IZM" kind="custom" identifier="roomVCToSettingsVC" customClass="ReplacementSegue" customModule="OpenVideoCall" id="M9K-Uh-A50"/>
                         <segue destination="6ep-eP-j8g" kind="custom" identifier="roomNameVCToVideoVC" customClass="ReplacementSegue" customModule="OpenVideoCall" id="hcz-hx-SNS"/>
                         <segue destination="u03-x7-yhT" kind="modal" identifier="roomVCToDevicesVC" id="kEB-xu-MsK"/>

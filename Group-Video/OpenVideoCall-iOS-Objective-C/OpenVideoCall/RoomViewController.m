@@ -9,7 +9,6 @@
 #import "RoomViewController.h"
 #import "VideoSession.h"
 #import "VideoViewLayouter.h"
-#import "KeyCenter.h"
 #import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
 #import "MsgTableView.h"
 #import "AGVideoPreProcessing.h"
@@ -34,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet MsgTableView *msgTableView;
 @property (weak, nonatomic) IBOutlet UIView *msgInputView;
 
-@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
 @property (strong, nonatomic) NSMutableArray<VideoSession *> *videoSessions;
 @property (strong, nonatomic) VideoSession *doubleClickFullSession;
 @property (strong, nonatomic) VideoViewLayouter *videoViewLayouter;
@@ -327,7 +325,7 @@ static NSInteger streamID = 0;
 
 #pragma mark - Agora Media SDK
 - (void)loadAgoraKit {
-    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:[KeyCenter AppId] delegate:self];
+    self.agoraKit.delegate = self;
     [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
     [self.agoraKit enableVideo];
     

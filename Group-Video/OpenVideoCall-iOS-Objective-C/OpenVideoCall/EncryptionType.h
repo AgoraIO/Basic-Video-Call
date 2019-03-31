@@ -16,9 +16,6 @@ typedef NS_ENUM(int, EncrypType) {
 @interface EncryptionType : NSObject
 
 + (NSString *)modeStringWithEncrypType:(EncrypType)type;
-
 + (NSString *)descriptionWithEncrypType:(EncrypType)type;
-
 + (NSArray *)encrypTypeArray;
-
 @end

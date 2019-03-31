@@ -17,14 +17,34 @@ class MainViewController: NSViewController {
     @IBOutlet weak var joinButton: NSButton!
     @IBOutlet weak var settingsButton: NSButton!
     
+    @IBOutlet weak var lastmileTestButton: NSButton!
+    @IBOutlet weak var lastmileTestIndicator: NSProgressIndicator!
+    @IBOutlet weak var qualityLabel: NSTextField!
+    @IBOutlet weak var rttLabel: NSTextField!
+    @IBOutlet weak var uplinkLabel: NSTextField!
+    @IBOutlet weak var downlinkLabel: NSTextField!
+    
+    lazy fileprivate var agoraKit: AgoraRtcEngineKit = {
+        let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
+        engine.enableVideo()
+        return engine
+    }()
     var dimension = CGSize.defaultDimension()
-    fileprivate var agoraKit: AgoraRtcEngineKit!
     fileprivate var encryptionType = EncryptionType.xts128
+    
+    private var isLastmileProbeTesting = false {
+        didSet {
+            lastmileTestButton?.isHidden = isLastmileProbeTesting
+            if isLastmileProbeTesting {
+                lastmileTestIndicator?.startAnimation(nil)
+            } else {
+                lastmileTestIndicator?.stopAnimation(nil)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadAgoraKit()
         loadEncryptionItems()
     }
     
@@ -47,6 +67,7 @@ class MainViewController: NSViewController {
             if let sender = sender as? String {
                 videoVC.roomName = sender
             }
+            videoVC.agoraKit = agoraKit
             videoVC.encryptionSecret = encryptionTextField.stringValue
             videoVC.encryptionType = encryptionType
             videoVC.dimension = dimension
@@ -59,6 +80,23 @@ class MainViewController: NSViewController {
     }
     
     //MARK: - user actions
+    @IBAction func doLastmileProbeTestPressed(_ sender: NSButton) {
+        let config = AgoraLastmileProbeConfig()
+        config.probeUplink = true
+        config.probeDownlink = true
+        config.expectedUplinkBitrate = 5000
+        config.expectedDownlinkBitrate = 5000
+        
+        agoraKit.startLastmileProbeTest(config)
+        
+        isLastmileProbeTesting = true
+        
+        qualityLabel.isHidden = true
+        rttLabel.isHidden = true
+        uplinkLabel.isHidden = true
+        downlinkLabel.isHidden = true
+    }
+    
     @IBAction func doEncryptionChanged(_ sender: NSPopUpButton) {
         encryptionType = EncryptionType.allValue[sender.indexOfSelectedItem]
     }
@@ -77,11 +115,6 @@ class MainViewController: NSViewController {
 }
 
 private extension MainViewController {
-    func loadAgoraKit() {
-        agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
-        agoraKit.enableVideo()
-    }
-    
     func loadEncryptionItems() {
         encryptionPopUpButton.addItems(withTitles: EncryptionType.allValue.map { type -> String in
             return type.description()
@@ -125,6 +158,8 @@ extension MainViewController: RoomVCDelegate {
         window.minSize = size
         window.setContentSize(size)
         window.maxSize = size
+        
+        agoraKit.delegate = self
     }
 }
 
@@ -135,6 +170,23 @@ extension MainViewController: AgoraRtcEngineDelegate {
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, device deviceId: String, type deviceType: AgoraMediaDeviceType, stateChanged state: Int) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: DeviceListChangeNotificationKey), object: NSNumber(value: deviceType.rawValue))
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
+        qualityLabel.stringValue = "quality: " + quality.description()
+        qualityLabel.isHidden = false
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileProbeTest result: AgoraLastmileProbeResult) {
+        rttLabel.stringValue = "rtt: \(result.rtt)"
+        rttLabel.isHidden = false
+        uplinkLabel.stringValue = "up: \(result.uplinkReport.description())"
+        uplinkLabel.isHidden = false
+        downlinkLabel.stringValue = "down: \(result.downlinkReport.description())"
+        downlinkLabel.isHidden = false
+        
+        agoraKit.stopLastmileProbeTest()
+        isLastmileProbeTesting = false
     }
 }
 
@@ -147,5 +199,25 @@ extension MainViewController: NSControlTextEditingDelegate {
         
         let legalString = MediaCharacter.updateToLegalMediaString(from: field.stringValue)
         field.stringValue = legalString
+    }
+}
+
+extension AgoraNetworkQuality {
+    func description() -> String {
+        switch self {
+        case .excellent: return "excellent"
+        case .good:      return "good"
+        case .poor:      return "poor"
+        case .bad:       return "bad"
+        case .vBad:      return "very bad"
+        case .down:      return "down"
+        case .unknown:   return "unknown"
+        }
+    }
+}
+
+extension AgoraLastmileProbeOneWayResult {
+    func description() -> String {
+        return "packetLoss: \(packetLossRate), jitter: \(jitter), availableBandwidth: \(availableBandwidth)"
     }
 }
