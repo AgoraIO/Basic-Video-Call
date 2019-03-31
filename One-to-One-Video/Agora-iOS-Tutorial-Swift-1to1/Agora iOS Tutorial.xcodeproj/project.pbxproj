@@ -20,6 +20,7 @@
 		389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A0218825C700BFD852 /* libc++.tbd */; };
 		389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A2218825DB00BFD852 /* SystemConfiguration.framework */; };
 		389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A4218825EC00BFD852 /* CoreTelephony.framework */; };
+		38D619302250B7AB004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D6192F2250B7AB004A6C87 /* CoreML.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		389D99A0218825C700BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		389D99A2218825DB00BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		389D99A4218825EC00BFD852 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		38D6192F2250B7AB004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 				1ABDEE701D383C26007DE451 /* AgoraRtcEngineKit.framework in Frameworks */,
 				389D999B218825B200BFD852 /* Accelerate.framework in Frameworks */,
 				389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */,
+				38D619302250B7AB004A6C87 /* CoreML.framework in Frameworks */,
 				389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */,
 				389D999F218825C300BFD852 /* libresolv.9.tbd in Frameworks */,
 				389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */,
@@ -101,6 +104,7 @@
 		389D9999218825B200BFD852 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38D6192F2250B7AB004A6C87 /* CoreML.framework */,
 				389D99A4218825EC00BFD852 /* CoreTelephony.framework */,
 				389D99A2218825DB00BFD852 /* SystemConfiguration.framework */,
 				389D99A0218825C700BFD852 /* libc++.tbd */,
@@ -138,7 +142,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
 					1ABDEE3D1D383BE4007DE451 = {
@@ -156,7 +160,7 @@
 			};
 			buildConfigurationList = 1ABDEE391D383BE4007DE451 /* Build configuration list for PBXProject "Agora iOS Tutorial" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -222,6 +226,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -278,6 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

@@ -194,7 +194,9 @@
     self.screenShare = !self.screenShare;
     if (self.screenShare) {
         [sender setImage:[NSImage imageNamed:@"screenShareButtonSelected"]];
-        [self.agoraKit startScreenCapture:0 withCaptureFreq:15 bitRate:0 andRect:CGRectZero];
+        [self.agoraKit startScreenCaptureByDisplayId:CGMainDisplayID()
+                                           rectangle:CGRectZero
+                                          parameters:[[AgoraScreenCaptureParameters alloc] init]];
     } else {
         [sender setImage:[NSImage imageNamed:@"screenShareButton"]];
         [self.agoraKit stopScreenCapture];

@@ -21,6 +21,7 @@
 		1A8E8D7F1D396DD3002FA67C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D7E1D396DD3002FA67C /* SystemConfiguration.framework */; };
 		1A8E8D811D396DDE002FA67C /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D801D396DDE002FA67C /* libc++.1.dylib */; };
 		381ADD34211849280001B2C0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381ADD33211849270001B2C0 /* Accelerate.framework */; };
+		38D619322250B7E3004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619312250B7E3004A6C87 /* CoreML.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		1A8E8D7E1D396DD3002FA67C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1A8E8D801D396DDE002FA67C /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
 		381ADD33211849270001B2C0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		38D619312250B7E3004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 				1A8E8D711D396DB0002FA67C /* AgoraRtcEngineKit.framework in Frameworks */,
 				381ADD34211849280001B2C0 /* Accelerate.framework in Frameworks */,
 				1A8E8D7B1D396DCA002FA67C /* CoreTelephony.framework in Frameworks */,
+				38D619322250B7E3004A6C87 /* CoreML.framework in Frameworks */,
 				077537C21ED5442900EF0878 /* libresolv.tbd in Frameworks */,
 				1A8E8D811D396DDE002FA67C /* libc++.1.dylib in Frameworks */,
 				1A8E8D7F1D396DD3002FA67C /* SystemConfiguration.framework in Frameworks */,
@@ -118,6 +121,7 @@
 		1A8E8D6F1D396D3B002FA67C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38D619312250B7E3004A6C87 /* CoreML.framework */,
 				381ADD33211849270001B2C0 /* Accelerate.framework */,
 				077537C11ED5442900EF0878 /* libresolv.tbd */,
 				1A8E8D801D396DDE002FA67C /* libc++.1.dylib */,
@@ -155,7 +159,7 @@
 		1A8E8D301D396CAA002FA67C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
 					1A8E8D371D396CAA002FA67C = {
@@ -170,7 +174,7 @@
 			};
 			buildConfigurationList = 1A8E8D331D396CAA002FA67C /* Build configuration list for PBXProject "Agora iOS Tutorial Objective-C" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -237,6 +241,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -292,6 +297,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
