@@ -12,7 +12,12 @@ With this sample app, you can:
 - Switch camera
 - Setup resolution, frame rate and bit rate
 
-## Running the App
+## Prerequisite
+* XCode 10.0 +
+* Real devices (iPhone or iPad)
+* iOS simulator is NOT supported
+
+## Quick Start
 First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. Update "KeyCenter.m" with your App ID.
 
 ```
@@ -25,12 +30,8 @@ Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/
 
 Finally, Open OpenVideoCall.xcodeproj, connect your iPhone／iPad device, setup your development signing and run.
 
-## Developer Environment Requirements
-* XCode 10.0 +
-* Real devices (iPhone or iPad)
-* iOS simulator is NOT supported
 
-## Connect Us
+## Resources
 
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
 - You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
