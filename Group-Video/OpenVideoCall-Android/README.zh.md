@@ -30,7 +30,7 @@
 第一步: 在项目对应的模块的 "app/build.gradle" 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
 
 ```
-compile 'io.agora.rtc:full-sdk:2.3.3'
+implementation 'io.agora.rtc:full-sdk:2.4.0'
 ```
 
 (如果要在自己的应用中集成 Agora 视频 SDK，添加链接地址是最重要的一步。）
