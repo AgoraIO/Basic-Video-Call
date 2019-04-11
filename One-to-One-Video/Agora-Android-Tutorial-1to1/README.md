@@ -42,7 +42,7 @@ The SDK must be integrated into the sample project before it can opened and buil
 ...
 dependencies {
     ...
-    compile 'io.agora.rtc:full-sdk:2.3.3'
+    implementation 'io.agora.rtc:full-sdk:2.4.0'
 }
 ```
 
