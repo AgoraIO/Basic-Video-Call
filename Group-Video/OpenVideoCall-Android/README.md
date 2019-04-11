@@ -29,9 +29,11 @@ A tutorial demo can be found here: [Agora-Android-Tutorial-1to1](https://github.
 - The recommended way to integrate:
 
 First, add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the "app/build.gradle":
+
 ```
 implementation 'io.agora.rtc:full-sdk:2.4.0'
 ```
+
 (Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
 
 Then, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.h** under **libs/include** to **app/src/main/cpp/agora**.
