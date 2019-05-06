@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const pkg = require('./package.json');
 
@@ -116,10 +117,16 @@ if (process.env.NODE_ENV === 'production') {
       }
     },
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
+      // new UglifyJsPlugin({
+      //   cache: true,
+      //   parallel: true,
+      //   sourceMap: true // Set to true if you want JS source maps
+      // }),
+      new TerserPlugin({
         parallel: true,
-        sourceMap: true // Set to true if you want JS source maps
+        terserOptions: {
+          ecma: 6
+        }
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
