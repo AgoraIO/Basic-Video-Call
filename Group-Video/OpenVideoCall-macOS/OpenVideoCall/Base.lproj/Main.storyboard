@@ -996,12 +996,28 @@
                                             <action selector="doFilterClicked:" target="6ep-eP-j8g" id="Nv7-Hm-p6O"/>
                                         </connections>
                                     </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="QEX-WG-Zv9">
+                                        <rect key="frame" x="828" y="33" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="bEs-7T-nlN"/>
+                                            <constraint firstAttribute="height" constant="30" id="jyX-SN-58u"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="btn_play" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="jW8-al-ziT">
+                                            <behavior key="behavior" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="doAudioMixingPressed:" target="6ep-eP-j8g" id="Guu-Od-nad"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Bzt-mu-bGH" secondAttribute="bottom" constant="18" id="H4U-nI-tRv"/>
+                                    <constraint firstItem="QEX-WG-Zv9" firstAttribute="centerY" secondItem="fra-i9-nsM" secondAttribute="centerY" id="M36-aO-DY5"/>
                                     <constraint firstItem="RDm-bA-MNH" firstAttribute="top" secondItem="3Bn-QR-XbO" secondAttribute="top" id="Nxx-r5-cz5"/>
                                     <constraint firstAttribute="bottom" secondItem="fra-i9-nsM" secondAttribute="bottom" constant="18" id="OcZ-bf-W58"/>
                                     <constraint firstAttribute="height" constant="96" id="PPe-Xq-X3Y"/>
+                                    <constraint firstItem="fra-i9-nsM" firstAttribute="leading" secondItem="QEX-WG-Zv9" secondAttribute="trailing" constant="24" id="Pt6-gS-GVr"/>
                                     <constraint firstItem="Bzt-mu-bGH" firstAttribute="leading" secondItem="3Bn-QR-XbO" secondAttribute="leading" constant="18" id="SO6-Uu-GZh"/>
                                     <constraint firstItem="RDm-bA-MNH" firstAttribute="centerX" secondItem="3Bn-QR-XbO" secondAttribute="centerX" id="YYb-ic-fV1"/>
                                     <constraint firstAttribute="bottom" secondItem="RDm-bA-MNH" secondAttribute="bottom" id="fnc-aK-i9c"/>
@@ -1077,6 +1093,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioMixingButton" destination="QEX-WG-Zv9" id="nsN-4S-RL4"/>
                         <outlet property="buttonContainerView" destination="3Bn-QR-XbO" id="mmw-sp-1jb"/>
                         <outlet property="containerView" destination="3Ax-YZ-aSD" id="cu5-kn-p5d"/>
                         <outlet property="filterButton" destination="fra-i9-nsM" id="MvT-1b-X3G"/>
@@ -1529,11 +1546,12 @@
         <image name="btn_filter" width="30" height="30"/>
         <image name="btn_message" width="60" height="60"/>
         <image name="btn_mute" width="60" height="60"/>
+        <image name="btn_play" width="16" height="18"/>
         <image name="btn_screen_sharing" width="60" height="60"/>
         <image name="btn_setting" width="60" height="60"/>
         <image name="btn_voice" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kEB-xu-MsK"/>
+        <segue reference="acq-Fe-Yhs"/>
     </inferredMetricsTieBreakers>
 </document>

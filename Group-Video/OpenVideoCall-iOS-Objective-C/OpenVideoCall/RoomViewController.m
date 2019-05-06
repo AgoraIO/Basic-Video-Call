@@ -12,6 +12,7 @@
 #import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
 #import "MsgTableView.h"
 #import "AGVideoPreProcessing.h"
+#import "FileCenter.h"
 
 @interface RoomViewController () <AgoraRtcEngineDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -25,6 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (weak, nonatomic) IBOutlet UIButton *speakerButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *audioMixingButton;
 
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *backgroundTap;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *backgroundDoubleTap;
@@ -41,6 +44,7 @@
 @property (assign, nonatomic) BOOL audioMuted;
 @property (assign, nonatomic) BOOL videoMuted;
 @property (assign, nonatomic) BOOL speakerEnabled;
+@property (assign, nonatomic) BOOL isAudioMixing;
 
 @property (strong, nonatomic) AgoraRtcCryptoLoader *agoraLoader;
 
@@ -97,6 +101,11 @@ static NSInteger streamID = 0;
     [self.speakerButton setImage:[UIImage imageNamed:(speakerEnabled ? @"btn_speaker" : @"btn_speaker_blue")] forState:UIControlStateHighlighted];
     
     [self.agoraKit setEnableSpeakerphone:speakerEnabled];
+}
+
+- (void)setIsAudioMixing:(BOOL)isAudioMixing {
+    _isAudioMixing = isAudioMixing;
+    [self.audioMixingButton setImage:[UIImage imageNamed:isAudioMixing ? @"btn_stop" : @"btn_play"] forState:UIControlStateNormal];
 }
 
 #pragma mark - View did load
@@ -162,6 +171,18 @@ static NSInteger streamID = 0;
     }
     else {
         [AGVideoPreProcessing deregisterVideoPreprocessing:self.agoraKit];
+    }
+}
+
+- (IBAction)doAudioMixingPressed:(UIButton *)sender {
+    self.isAudioMixing = !self.isAudioMixing;
+    if (self.isAudioMixing) {
+        [self.agoraKit startAudioMixing:[FileCenter audioFilePath]
+                               loopback:NO
+                                replace:NO
+                                  cycle:1];
+    } else {
+        [self.agoraKit stopAudioMixing];
     }
 }
 
@@ -406,4 +427,7 @@ static NSInteger streamID = 0;
     [self.msgTableView appendMsgToTableViewWithMsg:@"Connection Did Lost" msgType:MsgTypeError];
 }
 
+- (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit *)engine {
+    self.isAudioMixing = NO;
+}
 @end

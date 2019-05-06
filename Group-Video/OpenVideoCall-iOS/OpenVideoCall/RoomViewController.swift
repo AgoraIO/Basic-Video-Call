@@ -30,6 +30,7 @@ class RoomViewController: UIViewController {
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var speakerButton: UIButton!
     
+    @IBOutlet weak var audioMixingButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
     
     @IBOutlet weak var messageInputerView: UIView!
@@ -81,7 +82,6 @@ class RoomViewController: UIViewController {
     fileprivate var audioMuted = false {
         didSet {
             muteAudioButton?.setImage(UIImage(named: audioMuted ? "btn_mute_blue" : "btn_mute"), for: .normal)
-            agoraKit.muteLocalAudioStream(audioMuted)
         }
     }
     fileprivate var videoMuted = false {
@@ -89,11 +89,6 @@ class RoomViewController: UIViewController {
             muteVideoButton?.setImage(UIImage(named: videoMuted ? "btn_video" : "btn_voice"), for: .normal)
             cameraButton?.isHidden = videoMuted
             speakerButton?.isHidden = !videoMuted
-            
-            agoraKit.muteLocalVideoStream(videoMuted)
-            setVideoMuted(videoMuted, forUid: 0)
-            
-            updateSelfViewVisiable()
         }
     }
     
@@ -102,25 +97,20 @@ class RoomViewController: UIViewController {
         didSet {
             speakerButton?.setImage(UIImage(named: speakerEnabled ? "btn_speaker_blue" : "btn_speaker"), for: .normal)
             speakerButton?.setImage(UIImage(named: speakerEnabled ? "btn_speaker" : "btn_speaker_blue"), for: .highlighted)
-            
-            agoraKit.setEnableSpeakerphone(speakerEnabled)
+        }
+    }
+    
+    //MARK: audio mixing
+    fileprivate var isAudioMixing = false {
+        didSet {
+            audioMixingButton?.setImage(UIImage(named: isAudioMixing ? "btn_stop" : "btn_play"), for: .normal)
         }
     }
     
     //MARK: filter
     fileprivate var isFiltering = false {
         didSet {
-            guard let agoraKit = agoraKit else {
-                return
-            }
-            
-            if isFiltering {
-                AGVideoPreProcessing.registerVideoPreprocessing(agoraKit)
-                filterButton?.setImage(UIImage(named: "btn_filter_blue"), for: .normal)
-            } else {
-                AGVideoPreProcessing.deregisterVideoPreprocessing(agoraKit)
-                filterButton?.setImage(UIImage(named: "btn_filter"), for: .normal)
-            }
+            filterButton?.setImage(UIImage(named: isFiltering ? "btn_filter_blue" : "btn_filter"), for: .normal)
         }
     }
     
@@ -176,10 +166,16 @@ class RoomViewController: UIViewController {
     
     @IBAction func doMuteVideoPressed(_ sender: UIButton) {
         videoMuted = !videoMuted
+        
+        agoraKit.muteLocalVideoStream(videoMuted)
+        setVideoMuted(videoMuted, forUid: 0)
+        
+        updateSelfViewVisiable()
     }
     
     @IBAction func doMuteAudioPressed(_ sender: UIButton) {
         audioMuted = !audioMuted
+        agoraKit.muteLocalAudioStream(audioMuted)
     }
     
     @IBAction func doCameraPressed(_ sender: UIButton) {
@@ -188,10 +184,36 @@ class RoomViewController: UIViewController {
     
     @IBAction func doSpeakerPressed(_ sender: UIButton) {
         speakerEnabled = !speakerEnabled
+        agoraKit.setEnableSpeakerphone(speakerEnabled)
     }
     
     @IBAction func doFilterPressed(_ sender: UIButton) {
+        guard let agoraKit = agoraKit else {
+            return
+        }
+        
         isFiltering = !isFiltering
+        
+        if isFiltering {
+            AGVideoPreProcessing.registerVideoPreprocessing(agoraKit)
+        } else {
+            AGVideoPreProcessing.deregisterVideoPreprocessing(agoraKit)
+        }
+    }
+    
+    @IBAction func doAudioMixingPressed(_ sender: UIButton) {
+        isAudioMixing = !isAudioMixing
+        
+        if isAudioMixing {
+            agoraKit.startAudioMixing(
+                FileCenter.audioFilePath(),
+                loopback: false,
+                replace: false,
+                cycle: 1
+            )
+        } else {
+            agoraKit.stopAudioMixing()
+        }
     }
     
     @IBAction func doClosePressed(_ sender: UIButton) {
@@ -519,6 +541,11 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurStreamMessageErrorFromUid uid: UInt, streamId: Int, error: Int, missed: Int, cached: Int) {
         print("Data channel error: \(error), missed: \(missed), cached: \(cached)\n")
+    }
+    
+    // audio mixing
+    func rtcEngineLocalAudioMixingDidFinish(_ engine: AgoraRtcEngineKit) {
+        isAudioMixing = false
     }
 }
 

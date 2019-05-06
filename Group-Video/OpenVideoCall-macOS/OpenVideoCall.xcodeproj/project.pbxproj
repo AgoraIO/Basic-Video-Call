@@ -34,6 +34,7 @@
 		07C2D0001D6C2DD900C84349 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFFF1D6C2DD900C84349 /* Message.swift */; };
 		07D29C5F1E9E1F9900C3583C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5E1E9E1F9900C3583C /* AgoraRtcEngineKit.framework */; };
 		3832FA63227FCDCA00E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA62227FCDCA00E50E69 /* FileCenter.swift */; };
+		3832FA69227FFE5400E50E69 /* Them.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3832FA68227FFE5300E50E69 /* Them.mp3 */; };
 		389D99B221885C1D00BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B121885C1D00BFD852 /* libresolv.9.tbd */; };
 		389D99B421885C2500BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B321885C2500BFD852 /* libc++.tbd */; };
 		389D99B621885C4000BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B521885C4000BFD852 /* Accelerate.framework */; };
@@ -74,6 +75,7 @@
 		07C2CFFF1D6C2DD900C84349 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Message.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07D29C5E1E9E1F9900C3583C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		3832FA62227FCDCA00E50E69 /* FileCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCenter.swift; sourceTree = "<group>"; };
+		3832FA68227FFE5300E50E69 /* Them.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Them.mp3; path = ../../SharedFiles/Them.mp3; sourceTree = "<group>"; };
 		389D99B121885C1D00BFD852 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		389D99B321885C2500BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		389D99B521885C4000BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 				07C2CFB71D6C26F300C84349 /* AppDelegate.swift */,
 				07C2CFC01D6C26F300C84349 /* Info.plist */,
 				0744735F1D6C428900CA030C /* test.wav */,
+				3832FA68227FFE5300E50E69 /* Them.mp3 */,
 				07C2CFDA1D6C286300C84349 /* OpenVideoCall-Bridging-Header.h */,
 			);
 			path = OpenVideoCall;
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3832FA69227FFE5400E50E69 /* Them.mp3 in Resources */,
 				074473601D6C428900CA030C /* test.wav in Resources */,
 				07C2CFBC1D6C26F300C84349 /* Assets.xcassets in Resources */,
 				07C2CFBF1D6C26F300C84349 /* Main.storyboard in Resources */,

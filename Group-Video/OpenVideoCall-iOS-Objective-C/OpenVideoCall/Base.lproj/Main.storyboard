@@ -456,6 +456,18 @@
                                             <action selector="doFilterPressed:" destination="mtF-KZ-Zhb" eventType="touchUpInside" id="bby-hr-aQf"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCW-zr-dJ0">
+                                        <rect key="frame" x="320" y="10" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="1zT-gY-9ZX"/>
+                                            <constraint firstAttribute="height" constant="50" id="7E9-on-6z9"/>
+                                        </constraints>
+                                        <state key="normal" image="btn_play"/>
+                                        <state key="selected" image="btn_filter_blue"/>
+                                        <connections>
+                                            <action selector="doAudioMixingPressed:" destination="mtF-KZ-Zhb" eventType="touchUpInside" id="zVI-Tz-aab"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -469,6 +481,7 @@
                                     <constraint firstItem="HZI-lk-Mur" firstAttribute="centerY" secondItem="axb-Zs-jvi" secondAttribute="centerY" id="Wvc-K5-wJe"/>
                                     <constraint firstItem="hBZ-wi-uWL" firstAttribute="centerX" secondItem="2az-sa-ac4" secondAttribute="centerX" id="aB2-YZ-IZJ"/>
                                     <constraint firstItem="9gU-qL-KZv" firstAttribute="trailing" secondItem="rUO-F1-FPa" secondAttribute="trailing" id="aiE-q4-X8I"/>
+                                    <constraint firstItem="WCW-zr-dJ0" firstAttribute="centerX" secondItem="meE-c9-ano" secondAttribute="centerX" id="fsn-ue-Y8k"/>
                                     <constraint firstItem="zaj-9X-5Jh" firstAttribute="leading" secondItem="rUO-F1-FPa" secondAttribute="trailing" constant="5" id="hXF-jP-HN0"/>
                                     <constraint firstAttribute="height" constant="120" id="hoq-AV-p8d"/>
                                     <constraint firstItem="9gU-qL-KZv" firstAttribute="leading" secondItem="rUO-F1-FPa" secondAttribute="leading" id="iXT-6D-gzf"/>
@@ -476,6 +489,7 @@
                                     <constraint firstItem="rUO-F1-FPa" firstAttribute="top" secondItem="hBZ-wi-uWL" secondAttribute="bottom" constant="5" id="npV-b7-O70"/>
                                     <constraint firstItem="9gU-qL-KZv" firstAttribute="bottom" secondItem="rUO-F1-FPa" secondAttribute="bottom" id="oqm-Tv-yoM"/>
                                     <constraint firstItem="HZI-lk-Mur" firstAttribute="leading" secondItem="2az-sa-ac4" secondAttribute="leading" constant="5" id="r8F-6p-tdz"/>
+                                    <constraint firstItem="WCW-zr-dJ0" firstAttribute="centerY" secondItem="hBZ-wi-uWL" secondAttribute="centerY" id="tm5-58-gBo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -505,6 +519,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="audioMixingButton" destination="WCW-zr-dJ0" id="40Z-Je-GJz"/>
                         <outlet property="backgroundDoubleTap" destination="8qH-Md-hwE" id="DMa-ag-7oG"/>
                         <outlet property="backgroundTap" destination="hNd-ib-ide" id="IBf-Fm-kJm"/>
                         <outlet property="cameraButton" destination="rUO-F1-FPa" id="Br6-5s-LIw"/>
@@ -546,6 +561,7 @@
         <image name="btn_message" width="40" height="40"/>
         <image name="btn_message_blue" width="40" height="40"/>
         <image name="btn_mute" width="40" height="40"/>
+        <image name="btn_play" width="16" height="18"/>
         <image name="btn_setting" width="23" height="23"/>
         <image name="btn_speaker" width="40" height="40"/>
         <image name="btn_speaker_blue" width="40" height="40"/>

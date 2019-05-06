@@ -18,6 +18,10 @@ class FileCenter {
     static func logFilePath() -> String {
         return logDirectory() + "/agora-rtc.log"
     }
+    
+    static func audioFilePath() -> String {
+        return Bundle.main.path(forResource: "Them", ofType: "mp3")!
+    }
 }
 
 private extension FileCenter {

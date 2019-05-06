@@ -27,6 +27,7 @@ class RoomViewController: NSViewController {
     @IBOutlet weak var screenSharingButton: NSButton!
     @IBOutlet weak var windowListView: IKImageBrowserView!
     
+    @IBOutlet weak var audioMixingButton: NSButton!
     @IBOutlet weak var filterButton: NSButton!
     
     @IBOutlet weak var messageButton: NSButton!
@@ -130,6 +131,13 @@ class RoomViewController: NSViewController {
     }
     fileprivate var windows = WindowList()
     
+    //MARK: audio mixing
+    fileprivate var isAudioMixing = false {
+        didSet {
+            audioMixingButton?.image = NSImage(named: isAudioMixing ? "btn_stop" : "btn_play")
+        }
+    }
+    
     //MARK: filter
     fileprivate var isFiltering = false {
         didSet {
@@ -219,6 +227,21 @@ class RoomViewController: NSViewController {
     
     @IBAction func doFilterClicked(_ sender: NSButton) {
         isFiltering = !isFiltering
+    }
+    
+    @IBAction func doAudioMixingPressed(_ sender: NSButton) {
+        isAudioMixing = !isAudioMixing
+        
+        if isAudioMixing {
+            agoraKit.startAudioMixing(
+                FileCenter.audioFilePath(),
+                loopback: false,
+                replace: false,
+                cycle: 1
+            )
+        } else {
+            agoraKit.stopAudioMixing()
+        }
     }
     
     @IBAction func doMessageInput(_ sender: NSTextField) {
@@ -511,6 +534,11 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurStreamMessageErrorFromUid uid: UInt, streamId: Int, error: Int, missed: Int, cached: Int) {
         chatMessageVC?.append(alert: "Data channel error: \(error)")
+    }
+    
+    // audio mixing
+    func rtcEngineLocalAudioMixingDidFinish(_ engine: AgoraRtcEngineKit) {
+        isAudioMixing = false
     }
 }
 

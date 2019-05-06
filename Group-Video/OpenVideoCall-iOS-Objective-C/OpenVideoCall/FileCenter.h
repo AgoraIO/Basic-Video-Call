@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FileCenter : NSObject
 + (NSString *)logDirectory;
 + (NSString *)logFilePath;
++ (NSString *)audioFilePath;
 @end
 
 NS_ASSUME_NONNULL_END

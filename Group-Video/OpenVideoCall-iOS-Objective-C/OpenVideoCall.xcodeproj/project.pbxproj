@@ -30,6 +30,7 @@
 		07D29C5D1E9E1EFE00C3583C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */; };
 		0FB4FB651FF1F979006C7AE3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */; };
 		3832FA5F227FC9DA00E50E69 /* FileCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA5E227FC9DA00E50E69 /* FileCenter.m */; };
+		3832FA67227FF94300E50E69 /* Them.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3832FA66227FF94200E50E69 /* Them.mp3 */; };
 		385F305B2122CB13005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F305A2122CB13005D5301 /* Accelerate.framework */; };
 		389D99A7218831C900BFD852 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */; };
 		389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A8218831D000BFD852 /* libcrypto.a */; };
@@ -78,6 +79,7 @@
 		0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3832FA5D227FC9DA00E50E69 /* FileCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileCenter.h; sourceTree = "<group>"; };
 		3832FA5E227FC9DA00E50E69 /* FileCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileCenter.m; sourceTree = "<group>"; };
+		3832FA66227FF94200E50E69 /* Them.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Them.mp3; path = ../../SharedFiles/Them.mp3; sourceTree = "<group>"; };
 		385F305A2122CB13005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		389D99A8218831D000BFD852 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				076C59791DDDBC3500F813E2 /* AppDelegate.m */,
 				076C59811DDDBC3500F813E2 /* Assets.xcassets */,
 				076C59831DDDBC3500F813E2 /* LaunchScreen.storyboard */,
+				3832FA66227FF94200E50E69 /* Them.mp3 */,
 				076C59861DDDBC3500F813E2 /* Info.plist */,
 				076C59751DDDBC3500F813E2 /* Supporting Files */,
 			);
@@ -291,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3832FA67227FF94300E50E69 /* Them.mp3 in Resources */,
 				076C59851DDDBC3500F813E2 /* LaunchScreen.storyboard in Resources */,
 				076C59821DDDBC3500F813E2 /* Assets.xcassets in Resources */,
 				076C59801DDDBC3500F813E2 /* Main.storyboard in Resources */,

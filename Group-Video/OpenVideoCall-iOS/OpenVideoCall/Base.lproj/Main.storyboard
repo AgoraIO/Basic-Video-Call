@@ -375,6 +375,17 @@
                                             <action selector="doFilterPressed:" destination="ANi-PG-kFt" eventType="touchUpInside" id="dqZ-xJ-i6m"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTq-cu-bKT">
+                                        <rect key="frame" x="320" y="10" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="N1Q-mX-tN5"/>
+                                            <constraint firstAttribute="width" constant="50" id="uvc-FQ-PO4"/>
+                                        </constraints>
+                                        <state key="normal" image="btn_play"/>
+                                        <connections>
+                                            <action selector="doAudioMixingPressed:" destination="ANi-PG-kFt" eventType="touchUpInside" id="8ez-Jy-Tkt"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H58-yT-axu">
                                         <rect key="frame" x="107.5" y="65" width="50" height="50"/>
                                         <constraints>
@@ -435,6 +446,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Ov0-i3-HW0" secondAttribute="bottom" constant="5" id="4G7-4B-zkt"/>
                                     <constraint firstItem="anI-x7-rEk" firstAttribute="top" secondItem="S5p-Me-BE3" secondAttribute="bottom" constant="5" id="4H6-2c-9bf"/>
                                     <constraint firstItem="dab-Bc-Lua" firstAttribute="top" secondItem="anI-x7-rEk" secondAttribute="top" id="7bi-wX-ZJj"/>
+                                    <constraint firstItem="mTq-cu-bKT" firstAttribute="centerY" secondItem="S5p-Me-BE3" secondAttribute="centerY" id="BOL-WU-lyM"/>
                                     <constraint firstAttribute="bottom" secondItem="H58-yT-axu" secondAttribute="bottom" constant="5" id="Epc-4B-wyb"/>
                                     <constraint firstItem="S5p-Me-BE3" firstAttribute="centerX" secondItem="Ctt-vu-hG6" secondAttribute="centerX" id="FVl-Di-jvK"/>
                                     <constraint firstItem="tNw-RY-th5" firstAttribute="leading" secondItem="Ctt-vu-hG6" secondAttribute="leading" constant="5" id="K8S-Kg-HHo"/>
@@ -446,6 +458,7 @@
                                     <constraint firstItem="Ov0-i3-HW0" firstAttribute="leading" secondItem="anI-x7-rEk" secondAttribute="trailing" constant="5" id="hOD-7O-Abv"/>
                                     <constraint firstAttribute="bottom" secondItem="tNw-RY-th5" secondAttribute="bottom" constant="5" id="nQa-aO-hFc"/>
                                     <constraint firstItem="dab-Bc-Lua" firstAttribute="bottom" secondItem="anI-x7-rEk" secondAttribute="bottom" id="nsZ-eB-lki"/>
+                                    <constraint firstItem="mTq-cu-bKT" firstAttribute="centerX" secondItem="5Jv-QW-r9i" secondAttribute="centerX" id="o8s-zM-iCs"/>
                                     <constraint firstAttribute="height" constant="120" id="sXO-0u-NLB"/>
                                     <constraint firstAttribute="trailing" secondItem="5Jv-QW-r9i" secondAttribute="trailing" constant="5" id="udl-pe-9UR"/>
                                     <constraint firstItem="dab-Bc-Lua" firstAttribute="leading" secondItem="anI-x7-rEk" secondAttribute="leading" id="vNa-b2-vep"/>
@@ -478,6 +491,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="audioMixingButton" destination="mTq-cu-bKT" id="u2E-E3-elD"/>
                         <outlet property="backgroundDoubleTap" destination="wI3-OZ-98n" id="AsE-0h-WVe"/>
                         <outlet property="backgroundTap" destination="mSP-Pa-ufX" id="ksq-lm-WSx"/>
                         <outlet property="cameraButton" destination="anI-x7-rEk" id="ZKw-Qo-q5h"/>
@@ -603,6 +617,7 @@
         <image name="btn_keyboard_hide" width="16" height="10"/>
         <image name="btn_message" width="40" height="40"/>
         <image name="btn_mute" width="40" height="40"/>
+        <image name="btn_play" width="16" height="18"/>
         <image name="btn_setting" width="23" height="23"/>
         <image name="btn_speaker" width="40" height="40"/>
         <image name="btn_speaker_blue" width="40" height="40"/>

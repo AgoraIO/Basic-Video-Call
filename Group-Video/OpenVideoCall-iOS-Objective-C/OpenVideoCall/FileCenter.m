@@ -19,6 +19,10 @@
     return [[self logDirectory] stringByAppendingPathComponent:@"agora-rtc.log"];
 }
 
++ (NSString *)audioFilePath {
+    return [[NSBundle mainBundle] pathForResource:@"Them" ofType:@"mp3"];
+}
+
 + (NSString *)documentDirectory {
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
 }
