@@ -29,6 +29,7 @@
 		07D29C5B1E9E1ED900C3583C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5A1E9E1ED900C3583C /* AgoraRtcEngineKit.framework */; };
 		07D29C5D1E9E1EFE00C3583C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */; };
 		0FB4FB651FF1F979006C7AE3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */; };
+		3832FA5F227FC9DA00E50E69 /* FileCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA5E227FC9DA00E50E69 /* FileCenter.m */; };
 		385F305B2122CB13005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F305A2122CB13005D5301 /* Accelerate.framework */; };
 		389D99A7218831C900BFD852 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */; };
 		389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A8218831D000BFD852 /* libcrypto.a */; };
@@ -75,6 +76,8 @@
 		07D29C5A1E9E1ED900C3583C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		07D29C5C1E9E1EFE00C3583C /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		0FB4FB641FF1F979006C7AE3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3832FA5D227FC9DA00E50E69 /* FileCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileCenter.h; sourceTree = "<group>"; };
+		3832FA5E227FC9DA00E50E69 /* FileCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileCenter.m; sourceTree = "<group>"; };
 		385F305A2122CB13005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		389D99A8218831D000BFD852 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -184,6 +187,12 @@
 				A7327ED01FC7C7C900882882 /* MsgTableView.m */,
 				A7327ED21FC7C7DB00882882 /* MsgCell.h */,
 				A7327ED31FC7C7DB00882882 /* MsgCell.m */,
+				076C59A11DDDBF3100F813E2 /* VideoSession.h */,
+				076C59A21DDDBF3100F813E2 /* VideoSession.m */,
+				076C59A71DDDC9FD00F813E2 /* VideoView.h */,
+				076C59A81DDDC9FD00F813E2 /* VideoView.m */,
+				076C59A31DDDBF3100F813E2 /* VideoViewLayouter.h */,
+				076C59A41DDDBF3100F813E2 /* VideoViewLayouter.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -193,12 +202,8 @@
 			children = (
 				076C599D1DDDBF2200F813E2 /* KeyCenter.h */,
 				076C599E1DDDBF2200F813E2 /* KeyCenter.m */,
-				076C59A11DDDBF3100F813E2 /* VideoSession.h */,
-				076C59A21DDDBF3100F813E2 /* VideoSession.m */,
-				076C59A71DDDC9FD00F813E2 /* VideoView.h */,
-				076C59A81DDDC9FD00F813E2 /* VideoView.m */,
-				076C59A31DDDBF3100F813E2 /* VideoViewLayouter.h */,
-				076C59A41DDDBF3100F813E2 /* VideoViewLayouter.m */,
+				3832FA5D227FC9DA00E50E69 /* FileCenter.h */,
+				3832FA5E227FC9DA00E50E69 /* FileCenter.m */,
 				A7327ECC1FC7B5E300882882 /* EncryptionType.h */,
 				A7327ECD1FC7B5E300882882 /* EncryptionType.m */,
 				A7327ED51FC7C7EE00882882 /* MsgModel.h */,
@@ -305,6 +310,7 @@
 				076C59961DDDBDE300F813E2 /* SettingsViewController.m in Sources */,
 				076C59A61DDDBF3100F813E2 /* VideoViewLayouter.m in Sources */,
 				076C599F1DDDBF2200F813E2 /* RoomViewController.m in Sources */,
+				3832FA5F227FC9DA00E50E69 /* FileCenter.m in Sources */,
 				076C59971DDDBDE300F813E2 /* DimensionCell.m in Sources */,
 				076C59A51DDDBF3100F813E2 /* VideoSession.m in Sources */,
 				076C59A91DDDC9FD00F813E2 /* VideoView.m in Sources */,

@@ -39,6 +39,7 @@
 		07F52EBC1D62F39D006DDCD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F52EBB1D62F39D006DDCD4 /* Assets.xcassets */; };
 		07F52EBF1D62F39D006DDCD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F52EBD1D62F39D006DDCD4 /* LaunchScreen.storyboard */; };
 		0F2747D11FB45D05005D3DBA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2747D01FB45D00005D3DBA /* SystemConfiguration.framework */; };
+		3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA5A227FC56200E50E69 /* FileCenter.swift */; };
 		385F30962123D0D1005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F30952123D0D1005D5301 /* Accelerate.framework */; };
 		38D619342250BC4A004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619332250BC4A004A6C87 /* CoreML.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		07F52EBE1D62F39D006DDCD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07F52EC01D62F39D006DDCD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F2747D01FB45D00005D3DBA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3832FA5A227FC56200E50E69 /* FileCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCenter.swift; sourceTree = "<group>"; };
 		385F30952123D0D1005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		38D619332250BC4A004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				07C2CF761D6AF3F400C84349 /* KeyCenter.swift */,
+				3832FA5A227FC56200E50E69 /* FileCenter.swift */,
 				070275CD1D66A9DC00ABBC23 /* MediaCharacter.swift */,
 				07C2CF741D6AF36B00C84349 /* MediaInfo.swift */,
 				07B725391D76C99A00B459E5 /* Message.swift */,
@@ -302,6 +305,7 @@
 				0786497F1D65A4C6004AD88E /* DimensionCell.swift in Sources */,
 				070275CE1D66A9DC00ABBC23 /* MediaCharacter.swift in Sources */,
 				07C2CF721D6AF34800C84349 /* CommonExtensions.swift in Sources */,
+				3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */,
 				073BDB5A1D64742A00B62E14 /* MainViewController.swift in Sources */,
 				07C2CF621D6AE63000C84349 /* ChatMessageCell.swift in Sources */,
 				07C2CF751D6AF36B00C84349 /* MediaInfo.swift in Sources */,

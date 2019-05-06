@@ -386,7 +386,6 @@ private extension RoomViewController {
     func loadAgoraKit() {
         agoraKit.delegate = self
         agoraKit.setChannelProfile(.communication)
-        agoraKit.enableVideo()
         
         agoraKit.setVideoEncoderConfiguration(
             AgoraVideoEncoderConfiguration(

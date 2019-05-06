@@ -11,6 +11,7 @@
 #import "RoomViewController.h"
 #import "EncryptionType.h"
 #import "KeyCenter.h"
+#import "FileCenter.h"
 
 @interface MainViewController () <SettingsVCDelegate, RoomVCDelegate, AgoraRtcEngineDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
@@ -46,6 +47,9 @@
     self.dimension = AgoraVideoDimension640x360;
     self.encrypType = [[EncryptionType encrypTypeArray][0] intValue];
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:[KeyCenter AppId] delegate:self];
+    [self.agoraKit setLogFilter:AgoraLogFilterInfo];
+    [self.agoraKit setLogFile:[FileCenter logFilePath]];
+    [self.agoraKit enableVideo];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -327,7 +327,6 @@ static NSInteger streamID = 0;
 - (void)loadAgoraKit {
     self.agoraKit.delegate = self;
     [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
-    [self.agoraKit enableVideo];
     
     AgoraVideoEncoderConfiguration *configuration =
         [[AgoraVideoEncoderConfiguration alloc] initWithSize:self.dimension

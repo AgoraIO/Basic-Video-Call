@@ -25,6 +25,9 @@ class MainViewController: UIViewController {
     
     lazy fileprivate var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
+        engine.setLogFilter(AgoraLogFilter.info.rawValue)
+        engine.setLogFile(FileCenter.logFilePath())
+        engine.enableVideo()
         return engine
     }()
     fileprivate var dimension = CGSize.defaultDimension()

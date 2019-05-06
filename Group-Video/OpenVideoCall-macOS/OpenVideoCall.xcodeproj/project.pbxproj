@@ -33,6 +33,7 @@
 		07C2CFF51D6C299400C84349 /* VideoViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFF11D6C299400C84349 /* VideoViewLayout.swift */; };
 		07C2D0001D6C2DD900C84349 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFFF1D6C2DD900C84349 /* Message.swift */; };
 		07D29C5F1E9E1F9900C3583C /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C5E1E9E1F9900C3583C /* AgoraRtcEngineKit.framework */; };
+		3832FA63227FCDCA00E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA62227FCDCA00E50E69 /* FileCenter.swift */; };
 		389D99B221885C1D00BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B121885C1D00BFD852 /* libresolv.9.tbd */; };
 		389D99B421885C2500BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B321885C2500BFD852 /* libc++.tbd */; };
 		389D99B621885C4000BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B521885C4000BFD852 /* Accelerate.framework */; };
@@ -72,6 +73,7 @@
 		07C2CFF11D6C299400C84349 /* VideoViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoViewLayout.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07C2CFFF1D6C2DD900C84349 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Message.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07D29C5E1E9E1F9900C3583C /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		3832FA62227FCDCA00E50E69 /* FileCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCenter.swift; sourceTree = "<group>"; };
 		389D99B121885C1D00BFD852 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		389D99B321885C2500BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		389D99B521885C4000BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				07C2CFE11D6C291C00C84349 /* KeyCenter.swift */,
+				3832FA62227FCDCA00E50E69 /* FileCenter.swift */,
 				07C2CFE21D6C291C00C84349 /* MediaCharacter.swift */,
 				07C2CFE31D6C291C00C84349 /* MediaInfo.swift */,
 				07C2CFFF1D6C2DD900C84349 /* Message.swift */,
@@ -268,6 +271,7 @@
 				07C2CFE81D6C291C00C84349 /* KeyCenter.swift in Sources */,
 				07C2CFD21D6C281900C84349 /* ImageBrowserItem.swift in Sources */,
 				07C2CFE91D6C291C00C84349 /* MediaCharacter.swift in Sources */,
+				3832FA63227FCDCA00E50E69 /* FileCenter.swift in Sources */,
 				07C2D0001D6C2DD900C84349 /* Message.swift in Sources */,
 				07C2CFD31D6C281900C84349 /* MainWindowController.swift in Sources */,
 				07C2CFCF1D6C281900C84349 /* ChatMessageCellView.swift in Sources */,
