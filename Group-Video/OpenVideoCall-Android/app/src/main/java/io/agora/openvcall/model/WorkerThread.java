@@ -143,21 +143,6 @@ public class WorkerThread extends Thread {
         }
 
         ensureRtcEngineReadyLock();
-        mRtcEngine.enableLastmileTest();
-        mRtcEngine.addHandler(new IRtcEngineEventHandler() {
-            @Override
-            public void onLastmileQuality(int quality) {
-                super.onLastmileQuality(quality);
-                Log.d(TAG, "onLastmileQuality() called with: quality = [" + quality + "]");
-                mRtcEngine.disableLastmileTest();
-            }
-
-            @Override
-            public void onLastmileProbeResult(LastmileProbeResult result) {
-                super.onLastmileProbeResult(result);
-                Log.d(TAG, "onLastmileProbeResult() called with: result = [" + result + "]");
-            }
-        });
         mRtcEngine.joinChannel(null, channel, "OpenVCall", uid);
 
         mEngineConfig.mChannel = channel;
@@ -214,7 +199,7 @@ public class WorkerThread extends Thread {
             mRtcEngine.setEncryptionSecret(encryptionKey);
         }
 
-        // mRtcEngine.setVideoProfile(mEngineConfig.mVideoProfile, false);  //for sdk earlier than 2.3.0
+        // mRtcEngine.setVideoProfile(mEngineConfig.mVideoProfile, false); // for sdk earlier than 2.3.0
         mRtcEngine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(videoDimension,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
@@ -263,17 +248,6 @@ public class WorkerThread extends Thread {
             mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
             mRtcEngine.enableVideo();
             mRtcEngine.enableAudioVolumeIndication(200, 3); // 200 ms
-            mRtcEngine.setParameters("{\"rtc.log_filter\":65535}");
-            mRtcEngine.setLogFilter(LOG_FILTER_DEBUG);
-            String dir = Environment.getExternalStorageDirectory()
-                    + File.separator + mContext.getPackageName() + "/log";
-            new File(dir).mkdirs();
-            try {
-                new File(dir + "/agora-rtc.log").createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            mRtcEngine.setLogFile(dir + "/agora-rtc.log");
         }
         return mRtcEngine;
     }
