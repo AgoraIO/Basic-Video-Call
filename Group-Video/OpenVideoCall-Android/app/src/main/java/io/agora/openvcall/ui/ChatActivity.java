@@ -89,8 +89,6 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
     @Override
     protected void initUIandEvent() {
-        event().addEventHandler(this);
-
         Intent i = getIntent();
 
         String channelName = i.getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME);
@@ -299,6 +297,11 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         event().removeEventHandler(this);
 
         mUidsList.clear();
+    }
+
+    @Override
+    protected void workThreadInited() {
+        event().addEventHandler(this);
     }
 
     private void doLeaveChannel() {

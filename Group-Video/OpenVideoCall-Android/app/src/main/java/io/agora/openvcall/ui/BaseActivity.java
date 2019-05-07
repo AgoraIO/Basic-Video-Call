@@ -20,14 +20,13 @@ import io.agora.openvcall.AGApplication;
 import io.agora.openvcall.BuildConfig;
 import io.agora.openvcall.model.*;
 import io.agora.propeller.Constant;
-import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-public abstract class BaseActivity extends AppCompatActivity implements AGEventHandler{
+public abstract class BaseActivity extends AppCompatActivity {
     private final static Logger log = LoggerFactory.getLogger(BaseActivity.class);
 
     @Override
@@ -52,6 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity implements AGEventH
     protected abstract void initUIandEvent();
 
     protected abstract void deInitUIandEvent();
+
+    protected abstract void workThreadInited();
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -219,40 +220,5 @@ public abstract class BaseActivity extends AppCompatActivity implements AGEventH
                 + ", " + ConstantApp.APP_BUILD_DATE + ", SDK: " + Constant.MEDIA_SDK_VERSION + ")";
 //        TextView textVersion = (TextView) findViewById(R.id.app_version);
 //        textVersion.setText(version);
-    }
-
-    protected void workThreadInited(){
-
-    }
-
-    @Override
-    public void onLastmileQuality(int quality) {
-
-    }
-
-    @Override
-    public void onLastmileProbeResult(IRtcEngineEventHandler.LastmileProbeResult result) {
-
-    }
-
-
-    @Override
-    public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
-
-    }
-
-    @Override
-    public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
-
-    }
-
-    @Override
-    public void onUserOffline(int uid, int reason) {
-
-    }
-
-    @Override
-    public void onExtraCallback(int type, Object... data) {
-
     }
 }

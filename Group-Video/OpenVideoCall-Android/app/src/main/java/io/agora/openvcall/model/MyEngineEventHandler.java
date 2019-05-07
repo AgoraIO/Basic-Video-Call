@@ -5,6 +5,7 @@ import android.util.Log;
 
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,12 +27,22 @@ public class MyEngineEventHandler {
 
     private final ConcurrentHashMap<AGEventHandler, Integer> mEventHandlerList = new ConcurrentHashMap<>();
 
+    private final ConcurrentHashMap<LastMileEventHandler, Integer> mLastMileEventHandlerList = new ConcurrentHashMap<>();
+
     public void addEventHandler(AGEventHandler handler) {
         this.mEventHandlerList.put(handler, 0);
     }
 
     public void removeEventHandler(AGEventHandler handler) {
         this.mEventHandlerList.remove(handler);
+    }
+
+    public void addLastMileEventHandler(LastMileEventHandler handler) {
+        this.mLastMileEventHandlerList.put(handler, 0);
+    }
+
+    public void removeLastMileEventHandler(LastMileEventHandler handler) {
+        this.mLastMileEventHandlerList.remove(handler);
     }
 
     final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
@@ -118,22 +129,23 @@ public class MyEngineEventHandler {
         @Override
         public void onLastmileQuality(int quality) {
             log.debug("onLastmileQuality " + quality);
-            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
+            Iterator<LastMileEventHandler> it = mLastMileEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
-                AGEventHandler handler = it.next();
+                LastMileEventHandler handler = it.next();
                 handler.onLastmileQuality(quality);
             }
         }
 
         @Override
-        public void onLastmileProbeResult(IRtcEngineEventHandler.LastmileProbeResult result){
+        public void onLastmileProbeResult(IRtcEngineEventHandler.LastmileProbeResult result) {
             log.debug("onLastmileProbeResult " + result);
-            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
+            Iterator<LastMileEventHandler> it = mLastMileEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
-                AGEventHandler handler = it.next();
+                LastMileEventHandler handler = it.next();
                 handler.onLastmileProbeResult(result);
             }
         }
+
         @Override
         public void onError(int error) {
             log.debug("onError " + error + " " + RtcEngine.getErrorDescription(error));
