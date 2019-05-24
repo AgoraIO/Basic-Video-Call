@@ -9,13 +9,14 @@
 import UIKit
 
 class VideoSession: NSObject {
-    var uid: UInt = 0
-    var hostingView: VideoView!
-    var canvas: AgoraRtcVideoCanvas!
+    var uid: UInt
+    var hostingView: VideoView
+    var canvas: AgoraRtcVideoCanvas
     var size: CGSize?
+    
     var mediaInfo = MediaInfo() {
         didSet {
-            hostingView?.update(with: mediaInfo)
+            hostingView.update(with: mediaInfo)
         }
     }
     
@@ -32,7 +33,7 @@ class VideoSession: NSObject {
         canvas = AgoraRtcVideoCanvas()
         canvas.uid = uid
         canvas.view = hostingView.videoView
-        canvas.renderMode = .fit
+        canvas.renderMode = .hidden
     }
 }
 

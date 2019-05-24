@@ -49,7 +49,6 @@
     self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:[KeyCenter AppId] delegate:self];
     [self.agoraKit setLogFilter:AgoraLogFilterInfo];
     [self.agoraKit setLogFile:[FileCenter logFilePath]];
-    [self.agoraKit enableVideo];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

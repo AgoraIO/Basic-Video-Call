@@ -14,38 +14,27 @@ class MainViewController: UIViewController {
     @IBOutlet weak var roomNameTextField: UITextField!
     @IBOutlet weak var encryptionTextField: UITextField!
     @IBOutlet weak var encryptionButton: UIButton!
+    @IBOutlet weak var testNetworkButton: UIButton!
     
-    @IBOutlet weak var lastmileTestButton: UIButton!
-    @IBOutlet weak var lastmileTestIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var qualityLabel: UILabel!
-    @IBOutlet weak var rttLabel: UILabel!
-    @IBOutlet weak var uplinkLabel: UILabel!
-    @IBOutlet weak var downlinkLabel: UILabel!
-    @IBOutlet var infoLabels: [UILabel]!
+    weak var titleView: UIImageView?
     
     lazy fileprivate var agoraKit: AgoraRtcEngineKit = {
-        let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
+        let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
         engine.setLogFilter(AgoraLogFilter.info.rawValue)
         engine.setLogFile(FileCenter.logFilePath())
-        engine.enableVideo()
         return engine
     }()
-    fileprivate var dimension = CGSize.defaultDimension()
-    fileprivate var encryptionType = EncryptionType.xts128 {
+    
+    fileprivate var settings = PreSettings() {
         didSet {
-            encryptionButton?.setTitle(encryptionType.description(), for: .normal)
+            if let encryptionType = settings.encryptionType {
+                encryptionButton.setTitle(encryptionType.description(), for: .normal)
+            }
         }
     }
     
-    private var isLastmileProbeTesting = false {
-        didSet {
-            lastmileTestButton?.isHidden = isLastmileProbeTesting
-            if isLastmileProbeTesting {
-                lastmileTestIndicator?.startAnimating()
-            } else {
-                lastmileTestIndicator?.stopAnimating()
-            }
-        }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,35 +45,35 @@ class MainViewController: UIViewController {
         switch segueId {
         case "mainToSettings":
             let settingsVC = segue.destination as! SettingsViewController
-            settingsVC.dimension = dimension
+            settingsVC.settings = settings
             settingsVC.delegate = self
         case "mainToRoom":
             let roomVC = segue.destination as! RoomViewController
-            roomVC.roomName = (sender as! String)
+            roomVC.settings = settings
             roomVC.agoraKit = agoraKit
-            roomVC.encryptionSecret = encryptionTextField.text
-            roomVC.encryptionType = encryptionType
-            roomVC.dimension = dimension
-            roomVC.delegate = self
+            roomVC.roomName = sender as? String // roomName use as room vc title and rtc channel id
+        case "mainToNetTest":
+            let testVC = segue.destination as! NetTestViewController
+            testVC.agoraKit = agoraKit
         default:
             break
         }
     }
     
-    @IBAction func doLastmileProbeTestPressed(_ sender: UIButton) {
-        let config = AgoraLastmileProbeConfig()
-        config.probeUplink = true
-        config.probeDownlink = true
-        config.expectedUplinkBitrate = 5000
-        config.expectedDownlinkBitrate = 5000
-        
-        agoraKit.startLastmileProbeTest(config)
-        
-        isLastmileProbeTesting = true
-        
-        for label in infoLabels {
-            label.isHidden = true
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        self.titleView?.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.titleView?.isHidden = true
+    }
+    
+    override func viewDidLoad() {
+        updateViews()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func doRoomNameTextFieldEditing(_ sender: UITextField) {
@@ -106,24 +95,40 @@ class MainViewController: UIViewController {
         
         for encryptionType in EncryptionType.allValue {
             let action = UIAlertAction(title: encryptionType.description(), style: .default) { [weak self] _ in
-                self?.encryptionType = encryptionType
+                self?.settings.encryptionType = encryptionType
             }
             sheet.addAction(action)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         sheet.addAction(cancel)
-        sheet.popoverPresentationController?.sourceView = encryptionButton
-        sheet.popoverPresentationController?.permittedArrowDirections = .up
         present(sheet, animated: true, completion: nil)
     }
     
     @IBAction func doJoinPressed(_ sender: UIButton) {
+        // start join room when join button pressed
         enter(roomName: roomNameTextField.text)
     }
 }
 
 private extension MainViewController {
+    func updateViews() {
+        // view elements initialization
+        self.encryptionButton.layer.borderColor = UIColor.AGGray.cgColor    
+        self.testNetworkButton.layer.borderColor = UIColor.AGGray.cgColor
+        
+        let imageView = UIImageView(image: UIImage(named: "logo"))
+        let width: CGFloat = 108
+        let height: CGFloat = 30
+        let screenWidth = UIScreen.main.bounds.width
+        let x = (screenWidth - width) * 0.5
+        let y: CGFloat = 8
+        imageView.frame = CGRect(x: x, y: y, width: width, height: height)
+        imageView.contentMode = .scaleAspectFit
+        self.titleView = imageView
+        self.navigationController?.navigationBar.addSubview(imageView)
+    }
+    
     func enter(roomName: String?) {
         guard let roomName = roomName , !roomName.isEmpty else {
             return
@@ -133,35 +138,8 @@ private extension MainViewController {
 }
 
 extension MainViewController: SettingsVCDelegate {
-    func settingsVC(_ settingsVC: SettingsViewController, didSelectDimension dimension: CGSize) {
-        self.dimension = dimension
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension MainViewController: RoomVCDelegate {
-    func roomVCNeedClose(_ roomVC: RoomViewController) {
-        agoraKit.delegate = self
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension MainViewController: AgoraRtcEngineDelegate {
-    func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
-        qualityLabel.text = "quality: " + quality.description()
-        qualityLabel.isHidden = false
-    }
-    
-    func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileProbeTest result: AgoraLastmileProbeResult) {
-        rttLabel.text = "rtt: \(result.rtt)"
-        rttLabel.isHidden = false
-        uplinkLabel.text = "up: \(result.uplinkReport.description())"
-        uplinkLabel.isHidden = false
-        downlinkLabel.text = "down: \(result.downlinkReport.description())"
-        downlinkLabel.isHidden = false
-        
-        agoraKit.stopLastmileProbeTest()
-        isLastmileProbeTesting = false
+    func settingsVC(_ settingsVC: SettingsViewController, didSelect settings: PreSettings) {
+        self.settings = settings
     }
 }
 
@@ -169,30 +147,10 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case roomNameTextField:     enter(roomName: textField.text)
-        case encryptionTextField:   textField.resignFirstResponder()
+        case encryptionTextField:   settings.encryptionType?.updateText(roomNameTextField.text); textField.resignFirstResponder()
         default: break
         }
-        
         return true
     }
 }
 
-extension AgoraNetworkQuality {
-    func description() -> String {
-        switch self {
-        case .excellent: return "excellent"
-        case .good:      return "good"
-        case .poor:      return "poor"
-        case .bad:       return "bad"
-        case .vBad:      return "very bad"
-        case .down:      return "down"
-        case .unknown:   return "unknown"
-        }
-    }
-}
-
-extension AgoraLastmileProbeOneWayResult {
-    func description() -> String {
-        return "packetLoss: \(packetLossRate), jitter: \(jitter), availableBandwidth: \(availableBandwidth)"
-    }
-}

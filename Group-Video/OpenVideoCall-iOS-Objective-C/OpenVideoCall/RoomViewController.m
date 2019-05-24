@@ -275,11 +275,13 @@ static NSInteger streamID = 0;
     [UIApplication sharedApplication].idleTimerDisabled = !active;
 }
 
+// mark
 - (void)addLocalSession {
     VideoSession *localSession = [VideoSession localSession];
     [self.videoSessions addObject:localSession];
     [self.agoraKit setupLocalVideo:localSession.canvas];
     [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
+    [self.agoraKit startPreview];
 }
 
 - (VideoSession *)fetchSessionOfUid:(NSUInteger)uid {
@@ -349,6 +351,7 @@ static NSInteger streamID = 0;
     self.agoraKit.delegate = self;
     [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
     
+    // set video
     AgoraVideoEncoderConfiguration *configuration =
         [[AgoraVideoEncoderConfiguration alloc] initWithSize:self.dimension
                                                    frameRate:AgoraVideoFrameRateFps15
@@ -361,10 +364,12 @@ static NSInteger streamID = 0;
         [self.agoraKit setEncryptionSecret:self.encrypSecret];
     }
     
-    [self.agoraKit createDataStream:&streamID reliable:YES ordered:YES];
     
+    [self.agoraKit enableVideo];
+    
+    //
     [self addLocalSession];
-    [self.agoraKit startPreview];
+    
     
     int code = [self.agoraKit joinChannelByToken:nil channelId:self.roomName info:nil uid:0 joinSuccess:nil];
     if (code == 0) {
@@ -430,4 +435,14 @@ static NSInteger streamID = 0;
 - (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit *)engine {
     self.isAudioMixing = NO;
 }
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraErrorCode)errorCode {
+    [self.msgTableView appendMsgToTableViewWithMsg:@"Occur Error" msgType:MsgTypeError];
+}
+
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurWarning:(AgoraWarningCode)warningCode {
+    [self.msgTableView appendMsgToTableViewWithMsg:@"Occur Warning" msgType:MsgTypeError];
+}
+
 @end

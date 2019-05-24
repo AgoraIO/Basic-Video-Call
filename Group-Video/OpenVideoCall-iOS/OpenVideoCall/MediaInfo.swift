@@ -38,3 +38,40 @@ extension CGSize {
                 AgoraVideoDimension960x720]
     }
 }
+
+extension AgoraVideoFrameRate {
+    var description: String {
+        switch self {
+        case .fps1:    return "1 fps"
+        case .fps7:    return "7 fps"
+        case .fps10:   return "10 fps"
+        case .fps15:   return "15 fps"
+        case .fps24:   return "24 fps"
+        case .fps30:   return "30 fps"
+        default:       return "unsported"
+        }
+    }
+    
+    var value: Int {
+        switch self {
+        case .fps1:    return 1
+        case .fps7:    return 7
+        case .fps10:   return 10
+        case .fps15:   return 15
+        case .fps24:   return 24
+        case .fps30:   return 30
+        default:       return -1
+        }
+    }
+    
+    static var defaultValue = AgoraVideoFrameRate.fps15
+    
+    static func validList() -> [AgoraVideoFrameRate] {
+        return [.fps1,
+                .fps7,
+                .fps10,
+                .fps15,
+                .fps24,
+                .fps30]
+    }
+}

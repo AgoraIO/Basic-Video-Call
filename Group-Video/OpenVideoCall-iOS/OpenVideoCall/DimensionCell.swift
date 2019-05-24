@@ -8,13 +8,15 @@
 
 import UIKit
 
-class DimensionCell: UITableViewCell {
+class DimensionCell: UICollectionViewCell {
     
     @IBOutlet weak var resLabel: UILabel!
     
     func update(with dimension: CGSize, isSelected: Bool) {
         resLabel.text = "\(Int(dimension.width))x\(Int(dimension.height))"
         
-        backgroundColor = isSelected ? UIColor(red: 0, green: 0, blue: 0.5, alpha: 0.3) : UIColor.white
+        resLabel.textColor = isSelected ? UIColor.white : UIColor.AGTextGray
+        resLabel.backgroundColor = isSelected ? UIColor.AGBlue : UIColor.white
+        resLabel.layer.borderColor = isSelected ? UIColor.AGBlue.cgColor : UIColor.AGGray.cgColor
     }
 }

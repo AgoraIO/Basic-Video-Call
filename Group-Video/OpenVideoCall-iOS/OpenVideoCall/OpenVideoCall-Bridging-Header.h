@@ -4,4 +4,4 @@
 
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 #import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
-#import "AGVideoPreProcessing.h"
+#import "CSActivityView.h"
