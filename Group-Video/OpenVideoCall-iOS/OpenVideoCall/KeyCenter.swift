@@ -9,4 +9,5 @@
 
 struct KeyCenter {
     static let AppId: String = <#Your App Id#>
+    static var token: String?
 }

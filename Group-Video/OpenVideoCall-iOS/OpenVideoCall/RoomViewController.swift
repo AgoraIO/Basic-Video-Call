@@ -81,7 +81,7 @@ class RoomViewController: UIViewController {
     
     private var videoSessions = [VideoSession]() {
         didSet {
-            // videoSessions and videoViewLayouter manage all render view
+            // videoSessions and videoViewLayouter manage all render views
             updateInterface(with: self.videoSessions, targetSize: containerView.frame.size, animation: true)
         }
     }
@@ -170,10 +170,15 @@ private extension RoomViewController {
             let roomName = roomName else {
             return
         }
-        agoraKit.enableVideo()
+        // Step 1, set delegate
         agoraKit.delegate = self
+        
+        // Step 2, set communication mode
         agoraKit.setChannelProfile(.communication)
-       
+        
+        // Step 3, enable the video module
+        agoraKit.enableVideo()
+        // set video configuration
         agoraKit.setVideoEncoderConfiguration(
             AgoraVideoEncoderConfiguration(
                 size: settings.dimension,
@@ -182,16 +187,19 @@ private extension RoomViewController {
                 orientationMode: .adaptative
             )
         )
-        
+        // add local render view and start preview
         addLocalSession()
         agoraKit.startPreview()
         
+        // Step 4, enable encryption mode
         if let type = settings.encryptionType {
             agoraKit.setEncryptionMode(type.modeString())
             agoraKit.setEncryptionSecret(type.text)
         }
         
-        let code = agoraKit.joinChannel(byToken: nil, channelId: roomName, info: nil, uid: 0, joinSuccess: nil)
+        // Step 5, join channel and start group chat
+        // If join  channel success, agoraKit triggers it's delegate function 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
+        let code = agoraKit.joinChannel(byToken: KeyCenter.token, channelId: roomName, info: nil, uid: 0, joinSuccess: nil)
     
         if code == 0 {
             setIdleTimerActive(false)
@@ -212,10 +220,14 @@ private extension RoomViewController {
     }
     
     func leaveChannel() {
+        // Step 1, release local AgoraRtcVideoCanvas instance
         agoraKit.setupLocalVideo(nil)
+        // Step 2, leave channel and end group chat
         agoraKit.leaveChannel(nil)
+        // Step 3, please attention, stop preview after leave channel
         agoraKit.stopPreview()
         
+        // Step 4, remove all render views
         for session in videoSessions {
             session.hostingView.removeFromSuperview()
         }
