@@ -7,30 +7,6 @@
   AgoraRTC = AgoraRTC && AgoraRTC.hasOwnProperty('default') ? AgoraRTC['default'] : AgoraRTC;
   EventEmitter3 = EventEmitter3 && EventEmitter3.hasOwnProperty('default') ? EventEmitter3['default'] : EventEmitter3;
 
-  /*! *****************************************************************************
-  Copyright (c) Microsoft Corporation. All rights reserved.
-  Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-  this file except in compliance with the License. You may obtain a copy of the
-  License at http://www.apache.org/licenses/LICENSE-2.0
-
-  THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-  WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-  MERCHANTABLITY OR NON-INFRINGEMENT.
-
-  See the Apache Version 2.0 License for specific language governing permissions
-  and limitations under the License.
-  ***************************************************************************** */
-
-  function __awaiter(thisArg, _arguments, P, generator) {
-      return new (P || (P = Promise))(function (resolve, reject) {
-          function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-          function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-          function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-          step((generator = generator.apply(thisArg, _arguments || [])).next());
-      });
-  }
-
   class RTCClient {
       constructor(options) {
           this._dispatch = new EventEmitter3();
@@ -51,103 +27,89 @@
           }
           return this._rtcInfo;
       }
-      static getDevices() {
-          return __awaiter(this, void 0, void 0, function* () {
-              return new Promise((resolve, reject) => {
-                  navigator.mediaDevices.getUserMedia({
-                      video: true,
-                      audio: true
-                  }).then((stream) => {
-                      return AgoraRTC.getDevices((items) => {
-                          const _items = items
-                              .filter((item) => ['audioinput', 'videoinput'].indexOf(item.kind) !== -1)
-                              .map((item) => ({
-                              name: item.label,
-                              value: item.deviceId,
-                              kind: item.kind,
-                          }));
-                          stream.getTracks().forEach((track) => track.stop());
-                          const videos = [];
-                          const audios = [];
-                          for (let item of _items) {
-                              if ('videoinput' == item.kind) {
-                                  if (!item.name) {
-                                      item.name = `camera-${videos.length}`;
-                                  }
-                                  videos.push(item);
+      static async getDevices() {
+          return new Promise((resolve, reject) => {
+              navigator.mediaDevices.getUserMedia({
+                  video: true,
+                  audio: true
+              }).then((stream) => {
+                  return AgoraRTC.getDevices((items) => {
+                      const _items = items
+                          .filter((item) => ['audioinput', 'videoinput'].indexOf(item.kind) !== -1)
+                          .map((item) => ({
+                          name: item.label,
+                          value: item.deviceId,
+                          kind: item.kind,
+                      }));
+                      stream.getTracks().forEach((track) => track.stop());
+                      const videos = [];
+                      const audios = [];
+                      for (let item of _items) {
+                          if ('videoinput' == item.kind) {
+                              if (!item.name) {
+                                  item.name = `camera-${videos.length}`;
                               }
-                              if ('audioinput' == item.kind) {
-                                  if (!item.name) {
-                                      item.name = `microphone-${audios.length}`;
-                                  }
-                                  audios.push(item);
-                              }
+                              videos.push(item);
                           }
-                          return resolve({
-                              videos,
-                              audios
-                          });
+                          if ('audioinput' == item.kind) {
+                              if (!item.name) {
+                                  item.name = `microphone-${audios.length}`;
+                              }
+                              audios.push(item);
+                          }
+                      }
+                      return resolve({
+                          videos,
+                          audios
                       });
                   });
               });
           });
       }
-      static create(options) {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc) {
-                  const rtc = new RTCClient(options);
-                  yield rtc.init();
-                  this._rtc = rtc;
-                  console.log("[rtc-client create]");
-              }
-          });
+      static async create(options) {
+          if (!this._rtc) {
+              const rtc = new RTCClient(options);
+              await rtc.init();
+              this._rtc = rtc;
+              console.log("[rtc-client create]");
+          }
       }
-      static join() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              if (!this._rtc._state.joined) {
-                  yield this._rtc.join();
-                  yield this._rtc.createStream(this._rtc._options);
-                  yield this._rtc.play("local_stream");
-              }
-          });
+      static async join() {
+          if (!this._rtc)
+              return;
+          if (!this._rtc._state.joined) {
+              await this._rtc.join();
+              await this._rtc.createStream(this._rtc._options);
+              await this._rtc.play("local_stream");
+          }
       }
-      static publish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              if (this._rtc._state.published === false) {
-                  yield this._rtc.setRole('host');
-                  return this._rtc.publish();
-              }
-          });
+      static async publish() {
+          if (!this._rtc)
+              return;
+          if (this._rtc._state.published === false) {
+              await this._rtc.setRole('host');
+              return this._rtc.publish();
+          }
       }
-      static unpublish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              if (this._rtc._state.published === true) {
-                  return this._rtc.unpublish();
-              }
-          });
+      static async unpublish() {
+          if (!this._rtc)
+              return;
+          if (this._rtc._state.published === true) {
+              return this._rtc.unpublish();
+          }
       }
-      static leave() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              yield this.unpublish();
-              yield this._rtc.stopLocalStream();
-              yield this._rtc.leave();
-              delete this._rtc;
-          });
+      static async leave() {
+          if (!this._rtc)
+              return;
+          await this.unpublish();
+          await this._rtc.stopLocalStream();
+          await this._rtc.leave();
+          delete this._rtc;
       }
-      static subscribe(stream) {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              return this._rtc.subscribe(stream);
-          });
+      static async subscribe(stream) {
+          if (!this._rtc)
+              return;
+          return this._rtc.subscribe(stream);
       }
       static addView(id) {
           if (!document.querySelector(`#remote_video_${id}`)) {
@@ -214,38 +176,28 @@
               this._client.setClientRole(role, resolve, reject);
           });
       }
-      subscribe(stream) {
-          return __awaiter(this, void 0, void 0, function* () {
-              return this._client.subscribe(stream, (err) => {
-                  this._dispatch.emit("subscribeFailed", err);
-              });
+      async subscribe(stream) {
+          return this._client.subscribe(stream, (err) => {
+              this._dispatch.emit("subscribeFailed", err);
           });
       }
-      play(id) {
-          return __awaiter(this, void 0, void 0, function* () {
-              return this._localStream.play(id, { fit: "cover" });
+      async play(id) {
+          return this._localStream.play(id, { fit: "cover" });
+      }
+      async stopLocalStream() {
+          this._localStream.close();
+          return this._localStream.stop();
+      }
+      async publish() {
+          this._state.published = true;
+          return this._client.publish(this._localStream, (err) => {
+              this._dispatch.emit("publishFailed", err);
           });
       }
-      stopLocalStream() {
-          return __awaiter(this, void 0, void 0, function* () {
-              this._localStream.close();
-              return this._localStream.stop();
-          });
-      }
-      publish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              this._state.published = true;
-              return this._client.publish(this._localStream, (err) => {
-                  this._dispatch.emit("publishFailed", err);
-              });
-          });
-      }
-      unpublish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              this._state.published = false;
-              return this._client.unpublish(this._localStream, (err) => {
-                  this._dispatch.emit("unpublishFailed", err);
-              });
+      async unpublish() {
+          this._state.published = false;
+          return this._client.unpublish(this._localStream, (err) => {
+              this._dispatch.emit("unpublishFailed", err);
           });
       }
       startLiveStreaming(url, transcodingConfig) {

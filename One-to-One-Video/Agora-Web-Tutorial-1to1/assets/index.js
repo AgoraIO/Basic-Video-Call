@@ -7,30 +7,6 @@
   AgoraRTC = AgoraRTC && AgoraRTC.hasOwnProperty('default') ? AgoraRTC['default'] : AgoraRTC;
   EventEmitter3 = EventEmitter3 && EventEmitter3.hasOwnProperty('default') ? EventEmitter3['default'] : EventEmitter3;
 
-  /*! *****************************************************************************
-  Copyright (c) Microsoft Corporation. All rights reserved.
-  Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-  this file except in compliance with the License. You may obtain a copy of the
-  License at http://www.apache.org/licenses/LICENSE-2.0
-
-  THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-  WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-  MERCHANTABLITY OR NON-INFRINGEMENT.
-
-  See the Apache Version 2.0 License for specific language governing permissions
-  and limitations under the License.
-  ***************************************************************************** */
-
-  function __awaiter(thisArg, _arguments, P, generator) {
-      return new (P || (P = Promise))(function (resolve, reject) {
-          function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-          function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-          function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-          step((generator = generator.apply(thisArg, _arguments || [])).next());
-      });
-  }
-
   class RTCClient {
       constructor(options) {
           this._dispatch = new EventEmitter3();
@@ -51,103 +27,89 @@
           }
           return this._rtcInfo;
       }
-      static getDevices() {
-          return __awaiter(this, void 0, void 0, function* () {
-              return new Promise((resolve, reject) => {
-                  navigator.mediaDevices.getUserMedia({
-                      video: true,
-                      audio: true
-                  }).then((stream) => {
-                      return AgoraRTC.getDevices((items) => {
-                          const _items = items
-                              .filter((item) => ['audioinput', 'videoinput'].indexOf(item.kind) !== -1)
-                              .map((item) => ({
-                              name: item.label,
-                              value: item.deviceId,
-                              kind: item.kind,
-                          }));
-                          stream.getTracks().forEach((track) => track.stop());
-                          const videos = [];
-                          const audios = [];
-                          for (let item of _items) {
-                              if ('videoinput' == item.kind) {
-                                  if (!item.name) {
-                                      item.name = `camera-${videos.length}`;
-                                  }
-                                  videos.push(item);
+      static async getDevices() {
+          return new Promise((resolve, reject) => {
+              navigator.mediaDevices.getUserMedia({
+                  video: true,
+                  audio: true
+              }).then((stream) => {
+                  return AgoraRTC.getDevices((items) => {
+                      const _items = items
+                          .filter((item) => ['audioinput', 'videoinput'].indexOf(item.kind) !== -1)
+                          .map((item) => ({
+                          name: item.label,
+                          value: item.deviceId,
+                          kind: item.kind,
+                      }));
+                      stream.getTracks().forEach((track) => track.stop());
+                      const videos = [];
+                      const audios = [];
+                      for (let item of _items) {
+                          if ('videoinput' == item.kind) {
+                              if (!item.name) {
+                                  item.name = `camera-${videos.length}`;
                               }
-                              if ('audioinput' == item.kind) {
-                                  if (!item.name) {
-                                      item.name = `microphone-${audios.length}`;
-                                  }
-                                  audios.push(item);
-                              }
+                              videos.push(item);
                           }
-                          return resolve({
-                              videos,
-                              audios
-                          });
+                          if ('audioinput' == item.kind) {
+                              if (!item.name) {
+                                  item.name = `microphone-${audios.length}`;
+                              }
+                              audios.push(item);
+                          }
+                      }
+                      return resolve({
+                          videos,
+                          audios
                       });
                   });
               });
           });
       }
-      static create(options) {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc) {
-                  const rtc = new RTCClient(options);
-                  yield rtc.init();
-                  this._rtc = rtc;
-                  console.log("[rtc-client create]");
-              }
-          });
+      static async create(options) {
+          if (!this._rtc) {
+              const rtc = new RTCClient(options);
+              await rtc.init();
+              this._rtc = rtc;
+              console.log("[rtc-client create]");
+          }
       }
-      static join() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              if (!this._rtc._state.joined) {
-                  yield this._rtc.join();
-                  yield this._rtc.createStream(this._rtc._options);
-                  yield this._rtc.play("local_stream");
-              }
-          });
+      static async join() {
+          if (!this._rtc)
+              return;
+          if (!this._rtc._state.joined) {
+              await this._rtc.join();
+              await this._rtc.createStream(this._rtc._options);
+              await this._rtc.play("local_stream");
+          }
       }
-      static publish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              if (this._rtc._state.published === false) {
-                  yield this._rtc.setRole('host');
-                  return this._rtc.publish();
-              }
-          });
+      static async publish() {
+          if (!this._rtc)
+              return;
+          if (this._rtc._state.published === false) {
+              await this._rtc.setRole('host');
+              return this._rtc.publish();
+          }
       }
-      static unpublish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              if (this._rtc._state.published === true) {
-                  return this._rtc.unpublish();
-              }
-          });
+      static async unpublish() {
+          if (!this._rtc)
+              return;
+          if (this._rtc._state.published === true) {
+              return this._rtc.unpublish();
+          }
       }
-      static leave() {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              yield this.unpublish();
-              yield this._rtc.stopLocalStream();
-              yield this._rtc.leave();
-              delete this._rtc;
-          });
+      static async leave() {
+          if (!this._rtc)
+              return;
+          await this.unpublish();
+          await this._rtc.stopLocalStream();
+          await this._rtc.leave();
+          delete this._rtc;
       }
-      static subscribe(stream) {
-          return __awaiter(this, void 0, void 0, function* () {
-              if (!this._rtc)
-                  return;
-              return this._rtc.subscribe(stream);
-          });
+      static async subscribe(stream) {
+          if (!this._rtc)
+              return;
+          return this._rtc.subscribe(stream);
       }
       static addView(id) {
           if (!document.querySelector(`#remote_video_${id}`)) {
@@ -214,38 +176,28 @@
               this._client.setClientRole(role, resolve, reject);
           });
       }
-      subscribe(stream) {
-          return __awaiter(this, void 0, void 0, function* () {
-              return this._client.subscribe(stream, (err) => {
-                  this._dispatch.emit("subscribeFailed", err);
-              });
+      async subscribe(stream) {
+          return this._client.subscribe(stream, (err) => {
+              this._dispatch.emit("subscribeFailed", err);
           });
       }
-      play(id) {
-          return __awaiter(this, void 0, void 0, function* () {
-              return this._localStream.play(id, { fit: "cover" });
+      async play(id) {
+          return this._localStream.play(id, { fit: "cover" });
+      }
+      async stopLocalStream() {
+          this._localStream.close();
+          return this._localStream.stop();
+      }
+      async publish() {
+          this._state.published = true;
+          return this._client.publish(this._localStream, (err) => {
+              this._dispatch.emit("publishFailed", err);
           });
       }
-      stopLocalStream() {
-          return __awaiter(this, void 0, void 0, function* () {
-              this._localStream.close();
-              return this._localStream.stop();
-          });
-      }
-      publish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              this._state.published = true;
-              return this._client.publish(this._localStream, (err) => {
-                  this._dispatch.emit("publishFailed", err);
-              });
-          });
-      }
-      unpublish() {
-          return __awaiter(this, void 0, void 0, function* () {
-              this._state.published = false;
-              return this._client.unpublish(this._localStream, (err) => {
-                  this._dispatch.emit("unpublishFailed", err);
-              });
+      async unpublish() {
+          this._state.published = false;
+          return this._client.unpublish(this._localStream, (err) => {
+              this._dispatch.emit("unpublishFailed", err);
           });
       }
       startLiveStreaming(url, transcodingConfig) {
@@ -329,6 +281,7 @@
   }
 
   const FormData = !window.FormData ? formData : window.FormData;
+
   const i18n = (key, val) => {
     const zh = {
       channelName_required: "房间名不能为空",
@@ -337,73 +290,75 @@
       uid_required: "UID不能为空"
     };
     const match = zh[key];
-
     if (match) {
       // return match.replace("$name", val);
       return match;
     }
   };
-  const Notice = msg => {
-    document.querySelector(".notice").innerHTML = `<span class="flex notice-alert">${msg}</span>`;
+
+  const Notice = (msg) => {
+    document.querySelector(".notice").innerHTML =  
+    `<span class="flex notice-alert">${msg}</span>`;
+    
     setTimeout(() => {
       document.querySelector(".notice").innerHTML = '';
     }, 1000);
   };
-  const ErrorNotice = msg => {
-    document.querySelector(".notice").innerHTML = `<span class="flex danger-alert">${msg}</span>`;
+
+  const ErrorNotice = (msg) => {
+    document.querySelector(".notice").innerHTML = 
+    `<span class="flex danger-alert">${msg}</span>`;
     setTimeout(() => {
       document.querySelector(".notice").innerHTML = '';
     }, 1000);
   };
+
+
   const checkForm = (id, fields) => {
     const _result = serializeFormDOM(id);
-
-    const emptyKeys = Object.keys(_result).filter(key => null === _result[key] || undefined === _result[key] || typeof _result[key] === 'string' && !_result[key]);
+    const emptyKeys = Object.keys(_result).filter(key => 
+      null === _result[key] || undefined === _result[key]
+      || (typeof _result[key] === 'string' && !_result[key]));
     const result = {};
-
     for (let key of emptyKeys) {
       if (fields.indexOf(key) != -1) {
         result[key] = i18n(`${key}_required`, _result[key]);
       }
     }
-
     result[Object.keys(result)[0]] && ErrorNotice(result[Object.keys(result)[0]]);
     return _result;
+
   };
-  const serializeFormDOM = id => {
+
+  const serializeFormDOM = (id) => {
     const form = document.querySelector(id);
-
-    const _data = Array.from(new FormData(form), e => e.map(encodeURIComponent).join("="));
-
+    const _data = Array.from(
+      new FormData(form),
+      e => e.map(encodeURIComponent).join("=")
+    );
     const result = {};
-
     for (let key of _data) {
       const vals = key.split("=");
       result[vals[0]] = vals[1];
     }
-
     return result;
   };
 
   class Select {
-    constructor(opts) {
+    constructor (opts) {
       this._opts = opts;
       this._dom = document.querySelector(`#${opts.id}`);
       this._direction = 'fa-chevron-down';
       const customSelect = document.createElement("div");
       customSelect.setAttribute("class", `${opts.class}`);
-      this._currentSelect = {
-        value: '',
-        name: ''
-      };
+      this._currentSelect = {value: '', name: ''};
       let itemTemplate = '';
-
       for (let item of opts.items) {
-        itemTemplate += `<span class="select-item" value="${item.value}">
+        itemTemplate += 
+          `<span class="select-item" value="${item.value}">
           ${item.name}
         </span>`;
       }
-
       customSelect.innerHTML = `
       <i id="icon-${this._opts.id}" class="fas ${this._direction} select-chevron"></i>
       <div id="current-${this._opts.id}" class="current-select">
@@ -412,7 +367,6 @@
       </div>
       <div id="select-${this._opts.id}" class="select-items hide">${itemTemplate}</div>
     `;
-
       this._dom.appendChild(customSelect);
 
       if (opts.items.length) {
@@ -420,14 +374,16 @@
       }
     }
 
-    onChange(callback) {
-      this._dom.addEventListener("click", evt => {
+    onChange (callback) {
+      this._dom.addEventListener("click", (evt) => {
         const target = evt.target;
         this._direction = this._direction === 'fa-chevron-down' ? 'fa-chevron-up' : 'fa-chevron-down';
-        document.querySelector(`#icon-${this._opts.id}`).setAttribute("class", `fas ${this._direction}  select-chevron`);
-        document.querySelector(`#select-${this._opts.id}`).classList.toggle('hide');
+        document.querySelector(`#icon-${this._opts.id}`)
+          .setAttribute("class", `fas ${this._direction}  select-chevron`);
+        document.querySelector(`#select-${this._opts.id}`)
+          .classList
+          .toggle('hide');
         this._currentSelect = this.items.find(item => item.value === target.getAttribute("value"));
-
         if (this._currentSelect) {
           document.querySelector(`#current-${this._opts.id}`).innerHTML = `
           <input type="hidden" name="${this._opts.name}" value="${this._currentSelect.value}"/>
@@ -444,16 +400,17 @@
       }, true);
     }
 
-    set items(newItems) {
+    set items (newItems) {
       this._items = newItems;
       this._currentSelect = this._items[0];
-
       if (this._currentSelect) {
         document.querySelector(`#current-${this._opts.id}`).innerHTML = `
       <input type="hidden" name="${this._opts.name}" value="${this._currentSelect.value}"/>
         <span class="item" value="${this._currentSelect.value}">${this._currentSelect.name}</span>
       `;
-        document.querySelector(`#select-${this._opts.id}`).innerHTML = this._items.map(item => `<span class="select-item" value="${item.value}">${item.name}</span>`).join("");
+        document.querySelector(`#select-${this._opts.id}`).innerHTML = this._items.map((item) => 
+        `<span class="select-item" value="${item.value}">${item.name}</span>`
+        ).join("");
       }
     }
 
@@ -468,7 +425,7 @@
       id: "microphoneId",
       name: 'microphoneId',
       items: [],
-      class: "custom-select"
+      class: "custom-select",
     });
     const camera = new Select({
       id: "cameraId",
@@ -476,67 +433,54 @@
       items: [],
       class: "custom-select"
     });
-    RTCClient.getDevices().then(({
-      videos,
-      audios
-    }) => {
+    RTCClient.getDevices().then(({videos, audios}) => {
       microphone.items = audios;
       camera.items = videos;
       microphone.onChange(() => {});
       camera.onChange(() => {});
     });
-    document.querySelector("#create").addEventListener("click", evt => {
+    document.querySelector("#create").addEventListener("click", (evt) => {
       evt.preventDefault();
       const data = checkForm("#form", ["channelName"]);
       if (!data.channelName) return;
       RTCClient.create({
-        appID: data.appID,
-        channelName: data.channelName,
+        appID: data.appID, channelName: data.channelName,
         streamID: data.uid,
-        uid: data.uid,
-        resolution: "480p",
-        codec: 'h264',
-        mode: 'live',
+        uid: data.uid, resolution: "480p",
+        codec: 'h264', mode: 'live',
         microphoneId: data.microphoneId,
         cameraId: data.cameraId,
         video: true,
-        audio: true
+        audio: true,
       }).then(_ => {
         Notice("创建房间成功");
         console.log("invoke create");
-        RTCClient.rtc.on("error", err => {
+        RTCClient.rtc.on("error", (err) => {
           console.log(err);
         });
-        RTCClient.rtc.on("peer-leave", evt => {
+        RTCClient.rtc.on("peer-leave", (evt) => {
           const id = evt.uid;
-
           if (id !== data.uid) {
             RTCClient.removeView(id);
           }
-
           console.log('peer-leave', id);
         });
-        RTCClient.rtc.on("stream-published", evt => {
+        RTCClient.rtc.on("stream-published", (evt) => {
           console.log("stream-published");
         });
-        RTCClient.rtc.on("stream-added", evt => {
+        RTCClient.rtc.on("stream-added", (evt) => {
           window.remoteStream = evt.stream;
           const remoteStream = evt.stream;
           const id = remoteStream.getId();
-
           if (id !== data.uid) {
             RTCClient.subscribe(remoteStream).then(_ => {
               RTCClient.addView(id);
-              remoteStream.play(`remote_video_${id}`, {
-                fit: "cover",
-                muted: true
-              });
+              remoteStream.play(`remote_video_${id}`, {fit: "cover", muted: true});
             });
           }
-
           console.log('stream-added', id);
         });
-        RTCClient.rtc.on("stream-removed", evt => {
+        RTCClient.rtc.on("stream-removed", (evt) => {
           const remoteStream = evt.stream;
           const id = remoteStream.getId();
           remoteStream.stop(`remote_video_${id}`);
@@ -545,7 +489,8 @@
         });
       });
     });
-    document.querySelector("#join").addEventListener("click", evt => {
+
+    document.querySelector("#join").addEventListener("click", (evt) => {
       evt.preventDefault();
       const data = checkForm("#form", ["channelName"]);
       if (!data.channelName) return;
@@ -557,7 +502,8 @@
         console.log("invoke join");
       }).catch(err => console.trace(err));
     });
-    document.querySelector("#publish").addEventListener("click", evt => {
+
+    document.querySelector("#publish").addEventListener("click", (evt) => {
       const data = checkForm("#form", ["channelName"]);
       if (!data.channelName) return;
       RTCClient.publish().then(_ => {
@@ -565,7 +511,8 @@
         console.log("invoke publish");
       }).catch(err => console.trace(err));
     });
-    document.querySelector("#unpublish").addEventListener("click", evt => {
+
+    document.querySelector("#unpublish").addEventListener("click", (evt) => {
       const data = checkForm("#form", ["channelName"]);
       if (!data.channelName) return;
       RTCClient.unpublish().then(_ => {
@@ -573,7 +520,8 @@
         console.log("invoke unpublish");
       }).catch(err => console.trace(err));
     });
-    document.querySelector("#leave").addEventListener("click", evt => {
+
+    document.querySelector("#leave").addEventListener("click", (evt) => {
       const data = checkForm("#form", ["channelName"]);
       if (!data.channelName) return;
       RTCClient.leave().then(_ => {
