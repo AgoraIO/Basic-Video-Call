@@ -16,7 +16,6 @@ class MessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         messageTableView.rowHeight = UITableView.automaticDimension
         messageTableView.estimatedRowHeight = 24
     }

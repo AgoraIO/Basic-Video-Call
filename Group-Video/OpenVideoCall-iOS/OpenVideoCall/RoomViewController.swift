@@ -7,24 +7,38 @@
 //
 
 import UIKit
+import AgoraRtcEngineKit
+
+protocol RoomVCDataSource: NSObjectProtocol {
+    func roomVCNeedAgoraKit() -> AgoraRtcEngineKit
+    func roomVCNeedSettings() -> Settings
+}
 
 class RoomViewController: UIViewController {
     
-    @IBOutlet weak var roomNameLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var controlView: UIView!
     @IBOutlet weak var messageTableContainerView: UIView!
     
+    @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var audioMixingButton: UIButton!
+    @IBOutlet weak var speakerPhoneButton: UIButton!
     @IBOutlet weak var beautyButton: UIButton!
     @IBOutlet weak var muteVideoButton: UIButton!
     @IBOutlet weak var muteAudioButton: UIButton!
-    @IBOutlet weak var cameraButton: UIButton!
     
     @IBOutlet var backgroundDoubleTap: UITapGestureRecognizer!
     
+    private var isSwitchCamera = true {
+        didSet {
+            agoraKit.switchCamera()
+        }
+    }
+    
     private var isAudioMixing = false {
         didSet {
+            guard oldValue != isAudioMixing else {
+                return
+            }
             audioMixingButton?.isSelected = isAudioMixing
             if isAudioMixing {
                 // play music file
@@ -43,46 +57,73 @@ class RoomViewController: UIViewController {
     
     private var isBeauty = false {
         didSet {
+            guard oldValue != isBeauty else {
+                return
+            }
             beautyButton?.isSelected = isBeauty
             var options: AgoraBeautyOptions? = nil
             if isBeauty {
                 options = AgoraBeautyOptions()
-                options?.lighteningContrastLevel = .high
-                options?.lighteningLevel = 1.0
-                options?.smoothnessLevel = 1.0
-                options?.rednessLevel = 1.0
+                options?.lighteningContrastLevel = .normal
+                options?.lighteningLevel = 0.2
+                options?.smoothnessLevel = 0.2
+                options?.rednessLevel = 0.1
             }
-            // imprve local render view
+            // improve local render view
             agoraKit.setBeautyEffectOptions(isBeauty, options: options)
         }
     }
     
-    private var videoMuted = false {
+    private var isSpeakerPhone = true {
         didSet {
-            muteVideoButton?.isSelected = videoMuted
-            agoraKit.muteLocalVideoStream(videoMuted)
-            setVideoMuted(videoMuted, forUid: 0)
+            guard oldValue != isSpeakerPhone else {
+                return
+            }
+            speakerPhoneButton.isSelected = !isSpeakerPhone
+            //switch playout audio route
+            agoraKit.setEnableSpeakerphone(isSpeakerPhone)
         }
     }
     
-    private var audioMuted = false {
+    private var isVideoMuted = false {
         didSet {
-            muteAudioButton?.isSelected = audioMuted
-            agoraKit.muteLocalAudioStream(audioMuted)
+            guard oldValue != isVideoMuted else {
+                return
+            }
+            muteVideoButton?.isSelected = isVideoMuted
+            setVideoMuted(isVideoMuted, forUid: 0)
+            updateSelfViewVisiable()
+            // mute local video
+            agoraKit.muteLocalVideoStream(isVideoMuted)
         }
     }
     
-    private var speakerEnabled = true {
+    private var isAudioMuted = false {
         didSet {
-            // switch audio playout route
-            agoraKit.setEnableSpeakerphone(speakerEnabled)
+            guard oldValue != isAudioMuted else {
+                return
+            }
+            muteAudioButton?.isSelected = isAudioMuted
+            // mute local audio
+            agoraKit.muteLocalAudioStream(isAudioMuted)
+        }
+    }
+    
+    private var isDebugMode = false {
+        didSet {
+            guard oldValue != isDebugMode else {
+                return
+            }
+            options.isDebugMode = isDebugMode
+            messageTableContainerView.isHidden = !isDebugMode
         }
     }
     
     private var videoSessions = [VideoSession]() {
         didSet {
             // videoSessions and videoViewLayouter manage all render views
-            updateInterface(with: self.videoSessions, targetSize: containerView.frame.size, animation: true)
+            let animation = videoSessions.count > 0 ? true : false
+            updateInterface(with: self.videoSessions, targetSize: containerView.frame.size, animation: animation)
         }
     }
     
@@ -98,15 +139,22 @@ class RoomViewController: UIViewController {
     private let cryptoLoader = AgoraRtcCryptoLoader()
     
     private var chatMessageVC: MessageViewController?
+    private weak var optionsVC: RoomOptionsViewController?
+    private lazy var options = RoomOptions(isDebugMode: false)
     
-    var settings: PreSettings?
-    var agoraKit: AgoraRtcEngineKit!
-    var roomName: String?
+    weak var dataSource: RoomVCDataSource?
     
-    lazy private var options = Options(debugMode: false, enableSpeakerPhone: true)
+    var settings: Settings {
+        return dataSource!.roomVCNeedSettings()
+    }
+    
+    var agoraKit: AgoraRtcEngineKit {
+        return dataSource!.roomVCNeedAgoraKit()
+    }
     
     override func viewDidLoad() {
-        roomNameLabel.text = roomName
+        super.viewDidLoad()
+        title = settings.roomName
         loadAgoraKit()
     }
     
@@ -119,13 +167,19 @@ class RoomViewController: UIViewController {
         case "roomEmbedMessage":
             chatMessageVC = segue.destination as? MessageViewController
         case "roomToOptions":
-            let optionsVC = segue.destination as! OptionsViewController
-            optionsVC.options = options
-            optionsVC.delegate = self
+            let optionsVC = segue.destination as? RoomOptionsViewController
+            optionsVC?.delegate = self
+            optionsVC?.dataSource = self
+            self.optionsVC = optionsVC
         default:
             break
         }
     }
+    
+    deinit {
+        leaveChannel()
+    }
+    
     @IBAction func doAudioMixingPressed(_ sender: UIButton) {
         isAudioMixing.toggle()
     }
@@ -134,21 +188,20 @@ class RoomViewController: UIViewController {
         isBeauty.toggle()
     }
     
+    @IBAction func doSpeakerPhonePressed(_ sender: UIButton) {
+        isSpeakerPhone.toggle()
+    }
+    
     @IBAction func doMuteVideoPressed(_ sender: UIButton) {
-        videoMuted.toggle()
-        updateSelfViewVisiable()
+        isVideoMuted.toggle()
     }
     
     @IBAction func doMuteAudioPressed(_ sender: UIButton) {
-        audioMuted.toggle()
+        isAudioMuted.toggle()
     }
     
     @IBAction func doCameraPressed(_ sender: UIButton) {
-        agoraKit.switchCamera()
-    }
-    
-    @IBAction func doClosePressed(_ sender: UIButton) {
-        leaveChannel()
+        isSwitchCamera.toggle()
     }
     
     @IBAction func doBackDoubleTapped(_ sender: UITapGestureRecognizer) {
@@ -166,10 +219,6 @@ class RoomViewController: UIViewController {
 // MARK: - AgoraRtcEngineKit
 private extension RoomViewController {
     func loadAgoraKit() {
-        guard let settings = settings,
-            let roomName = roomName else {
-            return
-        }
         // Step 1, set delegate
         agoraKit.delegate = self
         
@@ -192,22 +241,16 @@ private extension RoomViewController {
         agoraKit.startPreview()
         
         // Step 4, enable encryption mode
-        if let type = settings.encryptionType {
+        if let type = settings.encryptionType, let text = type.text, !text.isEmpty {
             agoraKit.setEncryptionMode(type.modeString())
-            agoraKit.setEncryptionSecret(type.text)
+            agoraKit.setEncryptionSecret(text)
         }
         
         // Step 5, join channel and start group chat
-        // If join  channel success, agoraKit triggers it's delegate function 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
-        let code = agoraKit.joinChannel(byToken: KeyCenter.token, channelId: roomName, info: nil, uid: 0, joinSuccess: nil)
-    
-        if code == 0 {
-            setIdleTimerActive(false)
-        } else {
-            DispatchQueue.main.async(execute: {
-                self.alert(string: "Join channel failed: \(code)")
-            })
-        }
+        // If join  channel success, agoraKit triggers it's delegate function
+        // 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
+        agoraKit.joinChannel(byToken: KeyCenter.token, channelId: settings.roomName!, info: nil, uid: 0, joinSuccess: nil)
+        setIdleTimerActive(false)
     }
     
     func addLocalSession() {
@@ -215,7 +258,7 @@ private extension RoomViewController {
         videoSessions.append(localSession)
         agoraKit.setupLocalVideo(localSession.canvas)
         
-        let mediaInfo = MediaInfo(dimension: settings!.dimension, fps: settings!.frameRate.rawValue)
+        let mediaInfo = MediaInfo(dimension: settings.dimension, fps: settings.frameRate.rawValue)
         localSession.mediaInfo = mediaInfo
     }
     
@@ -234,7 +277,6 @@ private extension RoomViewController {
         videoSessions.removeAll()
         
         setIdleTimerActive(true)
-        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -271,17 +313,16 @@ extension RoomViewController: AgoraRtcEngineDelegate {
             let fixedSize = size.fixedSize(with: containerView.bounds.size)
             selfSession.size = fixedSize
             updateInterface(with: videoSessions, targetSize: containerView.frame.size, animation: false)
-            info(string: "local video resolution: \(size.width) x \(size.height)")
+            info(string: "local video dimension: \(size.width) x \(size.height)")
         }
     }
     
     // user offline
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
         var indexToDelete: Int?
-        for (index, session) in videoSessions.enumerated() {
-            if session.uid == uid {
-                indexToDelete = index
-            }
+        for (index, session) in videoSessions.enumerated() where session.uid == uid {
+            indexToDelete = index
+            break
         }
         
         if let indexToDelete = indexToDelete {
@@ -290,6 +331,9 @@ extension RoomViewController: AgoraRtcEngineDelegate {
             if let doubleClickFullSession = doubleClickFullSession , doubleClickFullSession == deletedSession {
                 self.doubleClickFullSession = nil
             }
+            
+            // release canvas's view
+            deletedSession.canvas.view = nil
         }
     }
     
@@ -308,6 +352,19 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     // audio mixing
     func rtcEngineLocalAudioMixingDidFinish(_ engine: AgoraRtcEngineKit) {
         isAudioMixing = false
+    }
+}
+
+// MARK: RoomOptionsVCDelegate
+extension RoomViewController: RoomOptionsVCDelegate {
+    func roomOptionsVC(_ vc: RoomOptionsViewController, debugModeDid enable: Bool) {
+        isDebugMode = enable
+    }
+}
+// MARK: RoomOptionsVCDataSource
+extension RoomViewController: RoomOptionsVCDataSource {
+    func roomOptionsVCNeedOptions() -> RoomOptions {
+        return options
     }
 }
 
@@ -361,7 +418,6 @@ private extension RoomViewController {
                 return session
             }
         }
-        
         return nil
     }
     
@@ -381,7 +437,7 @@ private extension RoomViewController {
         }
         
         if videoSessions.count == 2 {
-            selfView.isHidden = videoMuted
+            selfView.isHidden = isVideoMuted
         } else {
             selfView.isHidden = false
         }
@@ -412,22 +468,18 @@ private extension RoomViewController {
 }
 
 extension RoomViewController {
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
-    }
-    
-    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
-        return .all
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.orientation = .all
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.barStyle = .blackOpaque
-        navigationController?.navigationBar.isHidden = false
+        super.viewWillDisappear(animated)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.orientation = .portrait
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -440,10 +492,3 @@ extension RoomViewController {
     }
 }
 
-extension RoomViewController: OptionsVCDelegate {
-    func optionsVC(_ vc: OptionsViewController, didUpdate options: Options) {
-        self.options = options
-        messageTableContainerView.isHidden = !options.debugMode
-        speakerEnabled = options.enableSpeakerPhone
-    }
-}

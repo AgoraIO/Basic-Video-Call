@@ -16,25 +16,19 @@ class MainViewController: UIViewController {
     @IBOutlet weak var encryptionButton: UIButton!
     @IBOutlet weak var testNetworkButton: UIButton!
     
-    weak var titleView: UIImageView?
-    
-    lazy fileprivate var agoraKit: AgoraRtcEngineKit = {
+    lazy private var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
         engine.setLogFilter(AgoraLogFilter.info.rawValue)
         engine.setLogFile(FileCenter.logFilePath())
         return engine
     }()
     
-    fileprivate var settings = PreSettings() {
-        didSet {
-            if let encryptionType = settings.encryptionType {
-                encryptionButton.setTitle(encryptionType.description(), for: .normal)
-            }
-        }
-    }
+    private var settings = Settings()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    private var encryptionType = EncryptionType.xts128(nil) {
+        didSet {
+            encryptionButton.setTitle(encryptionType.description(), for: .normal)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,36 +38,22 @@ class MainViewController: UIViewController {
         
         switch segueId {
         case "mainToSettings":
-            let settingsVC = segue.destination as! SettingsViewController
-            settingsVC.settings = settings
-            settingsVC.delegate = self
+            let settingsVC = segue.destination as? SettingsViewController
+            settingsVC?.delegate = self
+            settingsVC?.dataSource = self
         case "mainToRoom":
-            let roomVC = segue.destination as! RoomViewController
-            roomVC.settings = settings
-            roomVC.agoraKit = agoraKit
-            roomVC.roomName = sender as? String // roomName use as room vc title and rtc channel id
-        case "mainToNetTest":
-            let testVC = segue.destination as! NetTestViewController
-            testVC.agoraKit = agoraKit
+            let roomVC = segue.destination as? RoomViewController
+            roomVC?.dataSource = self
+        case "mainToLastmile":
+            let testVC = segue.destination as? LastmileViewController
+            testVC?.dataSource = self
         default:
             break
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.titleView?.isHidden = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.titleView?.isHidden = true
-    }
-    
     override func viewDidLoad() {
         updateViews()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
     
     @IBAction func doRoomNameTextFieldEditing(_ sender: UITextField) {
@@ -92,10 +72,9 @@ class MainViewController: UIViewController {
     
     @IBAction func doEncryptionTypePressed(_ sender: UIButton) {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        for encryptionType in EncryptionType.allValue {
-            let action = UIAlertAction(title: encryptionType.description(), style: .default) { [weak self] _ in
-                self?.settings.encryptionType = encryptionType
+        for encryptionType in EncryptionType.allValues {
+            let action = UIAlertAction(title: encryptionType.description(), style: .default) { [unowned self] _ in
+                self.encryptionType = encryptionType
             }
             sheet.addAction(action)
         }
@@ -116,30 +95,58 @@ private extension MainViewController {
         // view elements initialization
         self.encryptionButton.layer.borderColor = UIColor.AGGray.cgColor    
         self.testNetworkButton.layer.borderColor = UIColor.AGGray.cgColor
-        
-        let imageView = UIImageView(image: UIImage(named: "logo"))
-        let width: CGFloat = 108
-        let height: CGFloat = 30
-        let screenWidth = UIScreen.main.bounds.width
-        let x = (screenWidth - width) * 0.5
-        let y: CGFloat = 8
-        imageView.frame = CGRect(x: x, y: y, width: width, height: height)
-        imageView.contentMode = .scaleAspectFit
-        self.titleView = imageView
-        self.navigationController?.navigationBar.addSubview(imageView)
     }
     
     func enter(roomName: String?) {
         guard let roomName = roomName , !roomName.isEmpty else {
             return
         }
-        performSegue(withIdentifier: "mainToRoom", sender: roomName)
+        
+        if let encryptionText = encryptionTextField.text {
+            settings.encryptionType = encryptionType
+            settings.encryptionType?.updateText(encryptionText)
+        } else {
+            settings.encryptionType = nil
+        }
+        
+        settings.roomName = roomName
+        performSegue(withIdentifier: "mainToRoom", sender: nil)
     }
 }
 
 extension MainViewController: SettingsVCDelegate {
-    func settingsVC(_ settingsVC: SettingsViewController, didSelect settings: PreSettings) {
-        self.settings = settings
+    func settingsVC(_ vc: SettingsViewController, didSelect dimension: CGSize) {
+        settings.dimension = dimension
+    }
+    
+    func settingsVC(_ vc: SettingsViewController, didSelect frameRate: AgoraVideoFrameRate) {
+        settings.frameRate = frameRate
+    }
+}
+
+extension MainViewController: SettingsVCDataSource {
+    func settingsVCNeedSettings() -> Settings {
+        return settings
+    }
+    
+    func settingsVCNeedAgoraKit() -> AgoraRtcEngineKit {
+        return agoraKit
+    }
+}
+
+extension MainViewController: LastmileVCDataSource {
+    func lastmileVCNeedAgoraKit() -> AgoraRtcEngineKit {
+        return agoraKit
+    }
+}
+
+extension MainViewController: RoomVCDataSource {
+    func roomVCNeedSettings() -> Settings {
+        return settings
+    }
+    
+    func roomVCNeedAgoraKit() -> AgoraRtcEngineKit {
+        return agoraKit
     }
 }
 
@@ -147,10 +154,23 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case roomNameTextField:     enter(roomName: textField.text)
-        case encryptionTextField:   settings.encryptionType?.updateText(roomNameTextField.text); textField.resignFirstResponder()
+        case encryptionTextField:   textField.resignFirstResponder()
         default: break
         }
         return true
     }
 }
 
+extension MainViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.titleView?.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.titleView?.isHidden = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+}

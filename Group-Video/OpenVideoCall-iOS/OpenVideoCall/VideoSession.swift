@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AgoraRtcEngineKit
 
 class VideoSession: NSObject {
+    
     var uid: UInt
     var hostingView: VideoView
     var canvas: AgoraRtcVideoCanvas

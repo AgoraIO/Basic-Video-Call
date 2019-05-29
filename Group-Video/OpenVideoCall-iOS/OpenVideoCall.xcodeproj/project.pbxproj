@@ -42,11 +42,9 @@
 		3832FA65227FE42F00E50E69 /* Them.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3832FA64227FE42F00E50E69 /* Them.mp3 */; };
 		385F30962123D0D1005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F30952123D0D1005D5301 /* Accelerate.framework */; };
 		38D619342250BC4A004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619332250BC4A004A6C87 /* CoreML.framework */; };
-		A704E14122968B2900E876D0 /* CSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A704E13F22968B2900E876D0 /* CSActivityView.m */; };
-		A704E1432296920100E876D0 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704E1422296920100E876D0 /* ActivityViewController.swift */; };
-		A7A3C65A228ACFB4005BB816 /* PreSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3C659228ACFB4005BB816 /* PreSettings.swift */; };
-		A7FC1EF12295701500F850F2 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF02295701500F850F2 /* OptionsViewController.swift */; };
-		A7FC1EF522963CA200F850F2 /* NetTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF422963CA200F850F2 /* NetTestViewController.swift */; };
+		A7A3C65A228ACFB4005BB816 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3C659228ACFB4005BB816 /* Settings.swift */; };
+		A7FC1EF12295701500F850F2 /* RoomOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF02295701500F850F2 /* RoomOptionsViewController.swift */; };
+		A7FC1EF522963CA200F850F2 /* LastmileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF422963CA200F850F2 /* LastmileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,12 +87,9 @@
 		3832FA64227FE42F00E50E69 /* Them.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Them.mp3; path = ../../SharedFiles/Them.mp3; sourceTree = "<group>"; };
 		385F30952123D0D1005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		38D619332250BC4A004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
-		A704E13F22968B2900E876D0 /* CSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSActivityView.m; sourceTree = "<group>"; };
-		A704E14022968B2900E876D0 /* CSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSActivityView.h; sourceTree = "<group>"; };
-		A704E1422296920100E876D0 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		A7A3C659228ACFB4005BB816 /* PreSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSettings.swift; sourceTree = "<group>"; };
-		A7FC1EF02295701500F850F2 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
-		A7FC1EF422963CA200F850F2 /* NetTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTestViewController.swift; sourceTree = "<group>"; };
+		A7A3C659228ACFB4005BB816 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		A7FC1EF02295701500F850F2 /* RoomOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomOptionsViewController.swift; sourceTree = "<group>"; };
+		A7FC1EF422963CA200F850F2 /* LastmileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastmileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,11 +135,10 @@
 			children = (
 				073BDB591D64742A00B62E14 /* MainViewController.swift */,
 				073BDB5B1D64743C00B62E14 /* SettingsViewController.swift */,
-				A7FC1EF422963CA200F850F2 /* NetTestViewController.swift */,
+				A7FC1EF422963CA200F850F2 /* LastmileViewController.swift */,
 				07C2CF591D6ADDCA00C84349 /* RoomViewController.swift */,
 				07C2CF5F1D6AE5E700C84349 /* MessageViewController.swift */,
-				A7FC1EF02295701500F850F2 /* OptionsViewController.swift */,
-				A704E1422296920100E876D0 /* ActivityViewController.swift */,
+				A7FC1EF02295701500F850F2 /* RoomOptionsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -157,7 +151,7 @@
 				070275CD1D66A9DC00ABBC23 /* MediaCharacter.swift */,
 				07C2CF741D6AF36B00C84349 /* MediaInfo.swift */,
 				07B725391D76C99A00B459E5 /* Message.swift */,
-				A7A3C659228ACFB4005BB816 /* PreSettings.swift */,
+				A7A3C659228ACFB4005BB816 /* Settings.swift */,
 				07C2CF571D6ADB3300C84349 /* EncryptionType.swift */,
 				07C2CF631D6AF13300C84349 /* CollectionIndexModel.swift */,
 				07C2CF701D6AF34800C84349 /* CommonExtensions.swift */,
@@ -174,8 +168,6 @@
 				07C2CF651D6AF13300C84349 /* VideoSession.swift */,
 				07C2CF661D6AF13300C84349 /* VideoView.swift */,
 				07C2CF671D6AF13300C84349 /* VideoViewLayouter.swift */,
-				A704E14022968B2900E876D0 /* CSActivityView.h */,
-				A704E13F22968B2900E876D0 /* CSActivityView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -309,13 +301,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7FC1EF522963CA200F850F2 /* NetTestViewController.swift in Sources */,
+				A7FC1EF522963CA200F850F2 /* LastmileViewController.swift in Sources */,
 				07C2CF681D6AF13300C84349 /* CollectionIndexModel.swift in Sources */,
-				A7FC1EF12295701500F850F2 /* OptionsViewController.swift in Sources */,
-				A704E1432296920100E876D0 /* ActivityViewController.swift in Sources */,
+				A7FC1EF12295701500F850F2 /* RoomOptionsViewController.swift in Sources */,
 				07C2CF581D6ADB3300C84349 /* EncryptionType.swift in Sources */,
 				07B7253A1D76C99A00B459E5 /* Message.swift in Sources */,
-				A7A3C65A228ACFB4005BB816 /* PreSettings.swift in Sources */,
+				A7A3C65A228ACFB4005BB816 /* Settings.swift in Sources */,
 				07F52EB51D62F39D006DDCD4 /* AppDelegate.swift in Sources */,
 				07C2CF5A1D6ADDCA00C84349 /* RoomViewController.swift in Sources */,
 				07C2CF6C1D6AF13300C84349 /* VideoViewLayouter.swift in Sources */,
@@ -327,7 +318,6 @@
 				3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */,
 				073BDB5A1D64742A00B62E14 /* MainViewController.swift in Sources */,
 				07C2CF621D6AE63000C84349 /* ChatMessageCell.swift in Sources */,
-				A704E14122968B2900E876D0 /* CSActivityView.m in Sources */,
 				07C2CF751D6AF36B00C84349 /* MediaInfo.swift in Sources */,
 				07C2CF601D6AE5E700C84349 /* MessageViewController.swift in Sources */,
 				073BDB5C1D64743C00B62E14 /* SettingsViewController.swift in Sources */,

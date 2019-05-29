@@ -10,7 +10,7 @@
 enum EncryptionType {
     case xts128(String?), xts256(String?)
     
-    static let allValue: [EncryptionType] = [.xts128(nil), .xts256(nil)]
+    static let allValues: [EncryptionType] = [.xts128(nil), .xts256(nil)]
     
     var text: String? {
         switch self {

@@ -1,5 +1,5 @@
 //
-//  PreSettings.swift
+//  Settings.swift
 //  OpenVideoCall
 //
 //  Created by CavanSu on 2019/5/14.
@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import AgoraRtcEngineKit
 
-struct PreSettings {
+struct Settings {
+    var roomName: String?
     var encryptionType: EncryptionType?
     var dimension = CGSize.defaultDimension()
     var frameRate = AgoraVideoFrameRate.defaultValue

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AgoraRtcEngineKit
 
 struct MediaInfo {
     var dimension = CGSize.zero

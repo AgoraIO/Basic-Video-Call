@@ -1,5 +1,5 @@
 //
-//  NetTestViewController.swift
+//  LastmileViewController.swift
 //  OpenVideoCall
 //
 //  Created by CavanSu on 2019/5/23.
@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import AgoraRtcEngineKit
 
-class NetTestViewController: UITableViewController {
+protocol LastmileVCDataSource: NSObjectProtocol {
+    func lastmileVCNeedAgoraKit() -> AgoraRtcEngineKit
+}
+
+class LastmileViewController: UITableViewController {
     
     @IBOutlet weak var qualityLabel: UILabel!
     @IBOutlet weak var rttLabel: UILabel!
     @IBOutlet weak var uplinkLabel: UILabel!
     @IBOutlet weak var downlinkLabel: UILabel!
-    
-    @IBOutlet var infoLabels: [UILabel]!
     
     private var isLastmileProbeTesting = false {
         didSet {
@@ -25,39 +28,40 @@ class NetTestViewController: UITableViewController {
                 config.probeDownlink = true
                 config.expectedUplinkBitrate = 5000
                 config.expectedDownlinkBitrate = 5000
-                agoraKit?.startLastmileProbeTest(config)
+                agoraKit.startLastmileProbeTest(config)
+                activityView?.startAnimating()
                 self.title = "Testing..."
             } else {
-                agoraKit?.stopLastmileProbeTest()
                 self.title = "Test result"
+                activityView?.stopAnimating()
+                agoraKit.stopLastmileProbeTest()
             }
-            activityVC.isAnimating = isLastmileProbeTesting
         }
     }
     
-    lazy var activityVC: ActivityViewController = {
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let vc = story.instantiateViewController(withIdentifier: "ActivityViewController") as! ActivityViewController
-        return vc
-    }()
-    
-    var agoraKit: AgoraRtcEngineKit? {
-        didSet {
-            agoraKit?.delegate = self
-        }
+    private var agoraKit: AgoraRtcEngineKit {
+        return dataSource!.lastmileVCNeedAgoraKit()
     }
+    
+    private var activityView: UIActivityIndicatorView?
+    
+    weak var dataSource: LastmileVCDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(activityVC.view)
+        addActivityView()
+        agoraKit.delegate = self
         isLastmileProbeTesting = true
+    }
+    
+    deinit {
+        isLastmileProbeTesting = false
     }
 }
 
-extension NetTestViewController: AgoraRtcEngineDelegate {
+extension LastmileViewController: AgoraRtcEngineDelegate {
     func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
         qualityLabel.text = quality.description()
-        qualityLabel.isHidden = false
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileProbeTest result: AgoraLastmileProbeResult) {
@@ -65,6 +69,15 @@ extension NetTestViewController: AgoraRtcEngineDelegate {
         uplinkLabel.text = result.uplinkReport.description()
         downlinkLabel.text = result.downlinkReport.description()
         isLastmileProbeTesting = false
+    }
+}
+
+extension LastmileViewController {
+    func addActivityView() {
+        let activityView = UIActivityIndicatorView(style: .white)
+        let rightItem = UIBarButtonItem(customView: activityView)
+        navigationItem.rightBarButtonItem = rightItem
+        self.activityView = activityView
     }
 }
 

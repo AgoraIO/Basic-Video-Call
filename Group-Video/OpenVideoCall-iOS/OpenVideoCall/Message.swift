@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Agora. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum MessageType {
     case info, alert

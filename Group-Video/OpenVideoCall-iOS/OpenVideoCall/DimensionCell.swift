@@ -10,13 +10,12 @@ import UIKit
 
 class DimensionCell: UICollectionViewCell {
     
-    @IBOutlet weak var resLabel: UILabel!
+    @IBOutlet weak var dimensionLabel: UILabel!
     
     func update(with dimension: CGSize, isSelected: Bool) {
-        resLabel.text = "\(Int(dimension.width))x\(Int(dimension.height))"
-        
-        resLabel.textColor = isSelected ? UIColor.white : UIColor.AGTextGray
-        resLabel.backgroundColor = isSelected ? UIColor.AGBlue : UIColor.white
-        resLabel.layer.borderColor = isSelected ? UIColor.AGBlue.cgColor : UIColor.AGGray.cgColor
+        dimensionLabel.text = "\(Int(dimension.width))x\(Int(dimension.height))"
+        dimensionLabel.textColor = isSelected ? UIColor.white : UIColor.AGTextGray
+        dimensionLabel.backgroundColor = isSelected ? UIColor.AGBlue : UIColor.white
+        dimensionLabel.layer.borderColor = isSelected ? UIColor.AGBlue.cgColor : UIColor.AGGray.cgColor
     }
 }
