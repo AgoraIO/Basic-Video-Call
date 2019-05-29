@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CDN旁路推流</title>
+  <title>CDN StartLiveStreaming</title>
   <link rel="stylesheet" href="./assets/common.css">
 </head>
 
@@ -15,7 +15,7 @@
       <div class="section-body">
         <div class="notice"></div>
         <div class="section-title">
-          <div class="title" id="basic">CDN旁路推流</div>
+          <div class="title" id="basic">CDN StartLiveStreaming</div>
           <hr/>
         </div>
         <!-- form -->
@@ -24,45 +24,45 @@
             <div class="form-row">
               <div class="form-item">
                 <label for="appID">APPID: </label>
-                <input placeholder="请输入APPID" type="text" id="appID" name="appID"/>
+                <input placeholder="Enter APPID" type="text" id="appID" name="appID"/>
               </div>
               <div class="form-item">
-                <label for="channelName">房间号: </label>
-                <input placeholder="请输入房间号" type="text" id="channelName" name="channelName"/>
+                <label for="channelName">Channel: </label>
+                <input placeholder="Enter Channel" type="text" id="channelName" name="channelName"/>
               </div>
               <div class="form-item">
                 <label for="uid">UID: </label>
-                <input placeholder="请输入UID" type="text" id="uid" name="uid" value="1"/>
+                <input placeholder="Enter UID" type="text" id="uid" name="uid" value="1"/>
               </div>
               <div class="form-item">
-                <label for="microphoneId">音频设备: </label>
-                <div id="microphoneId" name="microphoneId">
-                </div>
+                <label for="microphoneId">Audio Device: </label>
+                <select id="microphoneId" name="microphoneId" class="custom-select">
+                </select>
               </div>
               <div class="form-item">
-                <label for="cameraId">视频设备: </label>
-                <div id="cameraId" name="cameraId">
-                </div>
+                <label for="cameraId">Video Device: </label>
+                <select id="cameraId" name="cameraId" class="custom-select">
+                </select>
               </div>
               <div class="form-item">
-                <label for="resolution">推流质量: </label>
-                <div id="resolution" name="resolution">
-                </div>
+                <label for="resolution">CDN Resolution: </label>
+                <select id="resolution" name="resolution" class="custom-select">
+                </select>
               </div>
             </div>
             <div class="form-row-one">
               <div class="form-item">
-                <label for="transcodingUrl">CDN推流地址: </label>
-                <input class="one-row" placeholder="请输入CDN推流地址" type="text" id="transcodingUrl" name="transcodingUrl"/>
+                <label for="url">CDN Url: </label>
+                <input class="one-row" placeholder="Enter URL" type="text" id="url" name="url"/>
               </div>
             </div>
             <hr/>
             <div class="form-row button-list">
-              <a class="btn" id="create">创建房间</a>
-              <a class="btn" id="join">进入房间</a>
-              <a class="btn" id="startLiveStreaming">旁路推流</a>
-              <a class="btn" id="stopLiveStreaming">停止旁路推流</a>
-              <a class="btn leave" id="leave">退出</a>
+              <a class="btn" id="create">create channel</a>
+              <a class="btn" id="join">join channel</a>
+              <a class="btn" id="startLiveStreaming">startLiveStreaming</a>
+              <a class="btn" id="stopLiveStreaming">stopLiveStreaming</a>
+              <a class="btn leave" id="leave">leave</a>
             </div>
             <hr/>
             <div class="video-grid" id="video">
@@ -77,10 +77,407 @@
     </div>
   </div>
   <script src="assets/AgoraRTCSDK.min.js"></script>
-  <script src="vendor/eventemitter3.min.js"></script>
-  <script src="assets/cdn.js"></script>
+  <script src="vendor/jquery.js"></script>
   <script>
+    $(function () {
+      var rtc = {
+        client: null,
+        joined: false,
+        published: false,
+        localStream: null,
+        remoteStreams: [],
+        data: {}
+      }
 
+      function validator() {
+        var fields = ['appID', 'channelName', 'uid', 'url'];
+        var keys = Object.keys(rtc.data);
+        for (let key in keys) {
+          var keyName = keys[key];
+          if (fields.indexOf(keyName) != -1) {
+            if (!rtc.data[keyName]) {
+              alert("Please Enter " + keyName);
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+
+      function serializeFormData() {
+        var formData = $("#form").serializeArray();
+        let obj = {}
+        for (var item in formData) {
+          var key = formData[item].name;
+          var val = formData[item].value;
+          obj[key] = val;
+        }
+        return obj;
+      }
+
+      function getDevices (next) {
+        navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true
+        }).then(function (stream) {
+          AgoraRTC.getDevices(function (items) {
+            items.filter(function (item) {
+              return ['audioinput', 'videoinput'].indexOf(item.kind) !== -1
+            })
+            .map(function (item) {
+              return {
+              name: item.label,
+              value: item.deviceId,
+              kind: item.kind,
+              }
+            });
+            stream.getTracks().forEach(function (track) { track.stop() });
+            var videos = [];
+            var audios = [];
+            for (var i = 0; i < items.length; i++) {
+              var item = items[i];
+              if ('videoinput' == item.kind) {
+                var name = item.label;
+                var value = item.deviceId;
+                if (!name) {
+                  name = "camera-" + videos.length;
+                }
+                videos.push({
+                  name: name,
+                  value: value,
+                  kidn: item.kind
+                });
+              }
+              if ('audioinput' == item.kind) {
+                var name = item.label;
+                var value = item.deviceId;
+                if (!name) {
+                  name = "microphone-" + audios.length;
+                }
+                audios.push({
+                  name: name,
+                  value: value,
+                  kidn: item.kind
+                });
+              }
+            }
+            next({videos: videos, audios: audios});
+          });
+        })
+      }
+
+      var selects = null;
+
+      getDevices(function (devices) {
+        selects = devices;
+        devices.audios.forEach(function (audio) {
+          $('<option/>', {
+            value: audio.value,
+            text: audio.name,
+          }).appendTo("#microphoneId");
+        })
+        devices.videos.forEach(function (video) {
+          $('<option/>', {
+            value: video.value,
+            text: video.name,
+          }).appendTo("#cameraId");
+        })
+        selects.resolutions = [
+          {
+            value: "180p", name: "resolution: 320x180 15fps 140kbps"
+          },
+          {
+            value: "360p", name: "resolution: 640x360 30fps 400kbps"
+          },
+          {
+            value: "720p", name: "resolution: 1280x720 24fps 1130kbps"
+          }
+        ]
+        selects.resolutions.forEach(function (resolution) {
+          $('<option/>', {
+            value: resolution.value,
+            text: resolution.name,
+          }).appendTo("#resolution");
+        })
+      })
+
+      function addView (id) {
+        if (!$("#" + id)[0]) {
+          $("<div/>", {
+            id: "remote_video_" + id,
+            class: "video-view",
+          }).appendTo("#video");
+        }
+      }
+
+      function removeView (id) {
+        if ($("#remote_video_" + id)[0]) {
+          $("#remote_video_"+id).remove();
+        }
+      }
+
+      function createClient (data) {
+        if (rtc.client) {
+          alert("Your already create client");
+          return;
+        }
+        rtc.client = AgoraRTC.createClient({mode: 'rtc', codec: 'h264'});
+        rtc.client.on("liveStreamingStarted", function (evt) {
+          console.log(" liveStreamingStarted", evt)
+        })
+        rtc.client.on("liveStreamingFailed", function (evt) {
+          console.log(" liveStreamingFailed", evt)
+        })
+        rtc.client.on("liveStreamingStopped", function (evt) {
+          console.log(" liveStreamingStopped", evt)
+        })
+        rtc.client.on("liveTranscodingUpdated", function (evt) {
+          console.log(" liveTranscodingUpdated", evt)
+        })
+        rtc.client.on("error", (err) => {
+          console.log(err)
+        })
+        rtc.client.on("peer-leave", function (evt) {
+          var id = evt.uid;
+          console.log("id", evt);
+          if (id != rtc.data.uid) {
+            removeView(id);
+          }
+          console.log('peer-leave', id);
+        })
+        rtc.client.on("stream-published", function (evt) {
+          console.log("stream-published");
+        })
+        rtc.client.on("stream-added", function (evt) {
+          var remoteStream = evt.stream;
+          var id = remoteStream.getId();
+          rtc.remoteStreams.push(remoteStream);
+          if (id !== rtc.data.uid) {
+            rtc.client.subscribe(remoteStream, function (err) {
+              console.log("stream subscribe failed", err);
+            })
+            addView(id);
+            remoteStream.play("remote_video_" + id, {fit: "cover", muted: true});
+          }
+          console.log('stream-added remote-uid: ', id);
+        });
+        rtc.client.on("stream-removed", function (evt) {
+          var remoteStream = evt.stream;
+          var id = remoteStream.getId();
+          remoteStream.stop("remote_video_" + id);
+          rtc.remoteStreams = rtc.remoteStreams.filter(function (stream) {
+            return stream.getId() !== id
+          })
+          removeView(id);
+          console.log('stream-removed remote-uid: ', id);
+        })
+        rtc.client.init(data.appID, function () {
+          console.log("init success");
+        }, (err) => {
+          console.error(err);
+        });
+        return rtc.client;
+      }
+
+      function join(data) {
+        if (!rtc.client) {
+          alert("Please Create Channel First");
+          return;
+        }
+        if (rtc.joined) {
+          alert("Your already joined");
+          return;
+        }
+        rtc.client.join(null, data.channelName, data.uid, function (uid) {
+          console.log("join channel: " + data.channelName + " success, uid: ", uid);
+          rtc.joined = true;
+          rtc.localStream = AgoraRTC.createStream({
+            streamID: data.uid,
+            audio: true,
+            video: true,
+            screen: false,
+            microphoneId: data.microphoneId,
+            cameraId: data.cameraId
+          })
+          rtc.localStream.init(function () {
+            console.log("init local stream success");
+            rtc.localStream.play("local_stream")
+          }, function (err)  {
+            console.error("init local stream failed ", err);
+          })
+        }, function(err) {
+          console.error("client join failed", err)
+        })
+      }
+
+      function publish () {
+        if (!rtc.client) {
+          alert("Please Create Channel First");
+          return;
+        }
+        if (rtc.published) {
+          alert("Your already published");
+          return;
+        }
+        var oldState = rtc.published;
+        rtc.client.publish(rtc.localStream, function (err) {
+          rtc.published = oldState;
+          console.log("publish failed");
+          console.error(err);
+        })
+        rtc.published = true
+      }
+
+      function leave () {
+        if (!rtc.client) {
+          alert("Please Create Channel First");
+        }
+        if (!rtc.joined) {
+          alert("You are not in channel");
+          return;
+        }
+        rtc.client.leave(function () {
+          rtc.localStream.close();
+          rtc.localStream.stop();
+          while (rtc.remoteStreams.length > 0) {
+            var stream = rtc.remoteStreams.shift();
+            var id = stream.getId()
+            stream.stop();
+            remoteView(id);
+          }
+          rtc.localStream = null;
+          rtc.remoteStreams = [];
+          rtc.client = null;
+          console.log("client leaves channel success");
+          rtc.published = false;
+          rtc.joined = false;
+        }, function (err) {
+          console.log("channel leave failed");
+          console.error(err);
+        })
+      }
+
+      function startLiveStreaming () {
+        const liveTranscoding = {
+          "180p": {
+            width: 320,
+            height: 180,
+            videoBitrate: 140,
+            videoFramerate: 15,
+            lowLatency: false,
+            audioSampleRate: AgoraRTC.AUDIO_SAMPLE_RATE_48000,
+            audioBitrate: 48,
+            audioChannels: 1,
+            videoGop: 30,
+            videoCodecProfile: AgoraRTC.VIDEO_CODEC_PROFILE_HIGH,
+            userCount: 1,
+            backgroundColor: 0x000000,
+            transcodingUsers: [{
+              uid: 1,
+              alpha: 1,
+              width: 10,
+              height: 10,
+              zOrder: 1,
+              x: 10,
+              y: 10
+            }],
+          },
+          "360p": {
+            width: 640,
+            height: 360,
+            videoBitrate: 400,
+            videoFramerate: 30,
+            lowLatency: false,
+            audioSampleRate: AgoraRTC.AUDIO_SAMPLE_RATE_48000,
+            audioBitrate: 48,
+            audioChannels: 1,
+            videoGop: 30,
+            videoCodecProfile: AgoraRTC.VIDEO_CODEC_PROFILE_HIGH,
+            userCount: 1,
+            backgroundColor: 0x000000,
+            transcodingUsers: [{
+              uid: 1,
+              alpha: 1,
+              width: 10,
+              height: 10,
+              zOrder: 1,
+              x: 10,
+              y: 10
+            }],
+          },
+          "720p": {
+            width: 1280,
+            height: 720,
+            videoBitrate: 1130,
+            videoFramerate: 24,
+            lowLatency: false,
+            audioSampleRate: AgoraRTC.AUDIO_SAMPLE_RATE_48000,
+            audioBitrate: 48,
+            audioChannels: 1,
+            videoGop: 30,
+            videoCodecProfile: AgoraRTC.VIDEO_CODEC_PROFILE_HIGH,
+            userCount: 1,
+            backgroundColor: 0x000000,
+            transcodingUsers: [{
+              uid: 1,
+              alpha: 1,
+              width: 10,
+              height: 10,
+              zOrder: 1,
+              x: 10,
+              y: 10
+            }],
+          }
+        }
+        var transcodingConfig = liveTranscoding[rtc.data.resolution];
+        rtc.client.setLiveTranscoding(transcodingConfig);
+        rtc.client.startLiveStreaming(rtc.data.url);
+      }
+
+      function stopLiveStreaming () {
+        rtc.client.stopLiveStreaming(rtc.data.url);
+      }
+
+      $("#create").on("click", function () {
+        console.log("create")
+        rtc.data = serializeFormData();
+        if (validator()) {
+          createClient(rtc.data)
+        }
+      })
+
+      $("#join").on("click", function () {
+        console.log("join")
+        rtc.data = serializeFormData();
+        if (validator()) {
+          join(rtc.data);
+        }
+      });
+
+      $("#startLiveStreaming").on("click", function () {
+        console.log("startLiveStreaming")
+        rtc.data = serializeFormData();
+        if (validator()) {
+          startLiveStreaming();
+        }
+      });
+
+      $("#stopLiveStreaming").on("click", function () {
+        console.log("stopLiveStreaming")
+        rtc.data = serializeFormData();
+        if (validator()) {
+          stopLiveStreaming();
+        }
+      });
+
+      $("#leave").on("click", function () {
+        console.log("leave")
+        rtc.data = serializeFormData();
+        if (validator()) {
+          leave();
+        }
+      })
+    })
   </script>
 </body>
 
