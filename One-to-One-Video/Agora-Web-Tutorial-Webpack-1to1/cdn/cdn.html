@@ -5,9 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Basic Communication</title>
-  <link rel="stylesheet" href="./assets/common.css">
-  <link rel="stylesheet" href="./vendor/toastify.min.css">
+  <title>CDN StartLiveStreaming</title>
 </head>
 
 <body>
@@ -16,7 +14,7 @@
       <div class="section-body">
         <div class="notice"></div>
         <div class="section-title">
-          <div class="title" id="basic">Basic Communication</div>
+          <div class="title" id="basic">CDN StartLiveStreaming</div>
           <hr/>
         </div>
         <!-- form -->
@@ -45,16 +43,27 @@
                 </select>
               </div>
               <div class="form-item">
-                <label for="cameraId">Video Ddevice: </label>
+                <label for="cameraId">Video Device: </label>
                 <select id="cameraId" name="cameraId" class="custom-select">
                 </select>
+              </div>
+              <div class="form-item">
+                <label for="resolution">CDN Resolution: </label>
+                <select id="resolution" name="resolution" class="custom-select">
+                </select>
+              </div>
+            </div>
+            <div class="form-row-one">
+              <div class="form-item">
+                <label for="url">CDN Url: </label>
+                <input class="one-row" placeholder="Enter URL" type="text" id="url" name="url"/>
               </div>
             </div>
             <hr/>
             <div class="form-row button-list">
-              <a class="btn" id="create">create room</a>
-              <a class="btn" id="publish">publish</a>
-              <a class="btn" id="unpublish">unpublish</a>
+              <a class="btn" id="create">create channel</a>
+              <a class="btn" id="startLiveStreaming">startLiveStreaming</a>
+              <a class="btn" id="stopLiveStreaming">stopLiveStreaming</a>
               <a class="btn leave" id="leave">leave</a>
             </div>
             <hr/>
@@ -69,62 +78,6 @@
       </div>
     </div>
   </div>
-  <script src="vendor/jquery.js"></script>
-  <script src="vendor/toastify.js"></script>
-  <script src="assets/AgoraRTCSDK.min.js"></script>
-  <script src="assets/common.js"></script>
-  <script>
-    $(function () {
-      getDevices(function (devices) {
-        devices.audios.forEach(function (audio) {
-          $('<option/>', {
-            value: audio.value,
-            text: audio.name,
-          }).appendTo("#microphoneId");
-        })
-        devices.videos.forEach(function (video) {
-          $('<option/>', {
-            value: video.value,
-            text: video.name,
-          }).appendTo("#cameraId");
-        })
-      })
-
-      var fields = ['appID', 'channel', 'uid'];
-
-      $("#create").on("click", function () {
-        console.log("create")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          join(rtc, params);
-        }
-      })
-
-      $("#publish").on("click", function () {
-        console.log("publish")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          publish(rtc);
-        }
-      });
-
-      $("#unpublish").on("click", function () {
-        console.log("unpublish")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          unpublish(rtc);
-        }
-      });
-
-      $("#leave").on("click", function () {
-        console.log("leave")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          leave(rtc);
-        }
-      })
-    })
-  </script>
 </body>
 
 </html>

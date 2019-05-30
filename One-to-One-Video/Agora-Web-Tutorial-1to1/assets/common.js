@@ -62,54 +62,48 @@ function removeView (id) {
 }
 
 function getDevices (next) {
-  navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-  }).then(function (stream) {
-    AgoraRTC.getDevices(function (items) {
-      items.filter(function (item) {
-        return ['audioinput', 'videoinput'].indexOf(item.kind) !== -1
-      })
-      .map(function (item) {
-        return {
-        name: item.label,
-        value: item.deviceId,
-        kind: item.kind,
-        }
-      });
-      stream.getTracks().forEach(function (track) { track.stop() });
-      var videos = [];
-      var audios = [];
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        if ('videoinput' == item.kind) {
-          var name = item.label;
-          var value = item.deviceId;
-          if (!name) {
-            name = "camera-" + videos.length;
-          }
-          videos.push({
-            name: name,
-            value: value,
-            kidn: item.kind
-          });
-        }
-        if ('audioinput' == item.kind) {
-          var name = item.label;
-          var value = item.deviceId;
-          if (!name) {
-            name = "microphone-" + audios.length;
-          }
-          audios.push({
-            name: name,
-            value: value,
-            kidn: item.kind
-          });
-        }
+  AgoraRTC.getDevices(function (items) {
+    items.filter(function (item) {
+      return ['audioinput', 'videoinput'].indexOf(item.kind) !== -1
+    })
+    .map(function (item) {
+      return {
+      name: item.label,
+      value: item.deviceId,
+      kind: item.kind,
       }
-      next({videos: videos, audios: audios});
     });
-  })
+    var videos = [];
+    var audios = [];
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      if ('videoinput' == item.kind) {
+        var name = item.label;
+        var value = item.deviceId;
+        if (!name) {
+          name = "camera-" + videos.length;
+        }
+        videos.push({
+          name: name,
+          value: value,
+          kidn: item.kind
+        });
+      }
+      if ('audioinput' == item.kind) {
+        var name = item.label;
+        var value = item.deviceId;
+        if (!name) {
+          name = "microphone-" + audios.length;
+        }
+        audios.push({
+          name: name,
+          value: value,
+          kidn: item.kind
+        });
+      }
+    }
+    next({videos: videos, audios: audios});
+  });
 }
 
 var rtc = {
