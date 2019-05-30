@@ -17,20 +17,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import io.agora.openvcall.R;
-import io.agora.openvcall.model.AGEventHandler;
 import io.agora.openvcall.model.ConstantApp;
+import io.agora.openvcall.model.BeforeCallEventHandler;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.internal.LastmileProbeConfig;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity implements BeforeCallEventHandler {
+
     private TextView tvLastmileQualityResult;
     private TextView tvLastmileProbeResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvLastmileQualityResult=(TextView)findViewById(R.id.tv_lastmile_quality_result);
-        tvLastmileProbeResult=(TextView)findViewById(R.id.tv_lastmile_Probe_result);
+        tvLastmileQualityResult = (TextView) findViewById(R.id.tv_lastmile_quality_result);
+        tvLastmileProbeResult = (TextView) findViewById(R.id.tv_lastmile_Probe_result);
     }
 
     @Override
@@ -138,11 +140,10 @@ public class MainActivity extends BaseActivity{
         startActivity(i);
     }
 
-
     public void onLastMileClick(View view) {
-        boolean enableLastMileProbleTest = ((CheckBox)view).isChecked();
-        if(enableLastMileProbleTest){
-            if(worker().getRtcEngine()!=null){
+        boolean enableLastMileProbeTest = ((CheckBox) view).isChecked();
+        if (enableLastMileProbeTest) {
+            if (worker().getRtcEngine() != null) {
                 LastmileProbeConfig lastmileProbeConfig = new LastmileProbeConfig();
                 lastmileProbeConfig.probeUplink = true;
                 lastmileProbeConfig.probeDownlink = true;
@@ -150,19 +151,16 @@ public class MainActivity extends BaseActivity{
                 lastmileProbeConfig.expectedDownlinkBitrate = 5000;
                 int result = worker().getRtcEngine().startLastmileProbeTest(lastmileProbeConfig);
             }
-        }
-        else{
-            if(worker().getRtcEngine()!=null){
+        } else {
+            if (worker().getRtcEngine() != null) {
                 worker().getRtcEngine().stopLastmileProbeTest();
                 resetLastMileInfo();
             }
         }
     }
 
-
-
     @Override
-    public void workThreadInited(){
+    public void workerThreadReady() {
         event().addEventHandler(this);
     }
 
@@ -172,7 +170,7 @@ public class MainActivity extends BaseActivity{
             @Override
             public void run() {
                 tvLastmileQualityResult.setText(
-                        "onLastmileQuality "+quality);
+                        "onLastmileQuality " + quality);
             }
         });
 
@@ -184,23 +182,21 @@ public class MainActivity extends BaseActivity{
             @Override
             public void run() {
                 tvLastmileProbeResult.setText(
-                        "onLastmileProbeResult state:"+result.state+ " "+"rtt:"+result.rtt+"\n"+
-                                "uplinkReport { packetLossRate:"+result.uplinkReport.packetLossRate+" "+
-                                "jitter:"+result.uplinkReport.jitter+" "+
-                                "availableBandwidth:"+result.uplinkReport.availableBandwidth+"}"+"\n"+
-                                "downlinkReport { packetLossRate:"+result.downlinkReport.packetLossRate+" "+
-                                "jitter:"+result.downlinkReport.jitter+" "+
-                                "availableBandwidth:"+result.downlinkReport.availableBandwidth+"}");
+                        "onLastmileProbeResult state:" + result.state + " " + "rtt:" + result.rtt + "\n" +
+                                "uplinkReport { packetLossRate:" + result.uplinkReport.packetLossRate + " " +
+                                "jitter:" + result.uplinkReport.jitter + " " +
+                                "availableBandwidth:" + result.uplinkReport.availableBandwidth + "}" + "\n" +
+                                "downlinkReport { packetLossRate:" + result.downlinkReport.packetLossRate + " " +
+                                "jitter:" + result.downlinkReport.jitter + " " +
+                                "availableBandwidth:" + result.downlinkReport.availableBandwidth + "}");
             }
         });
     }
 
-
-    private void resetLastMileInfo(){
+    private void resetLastMileInfo() {
         tvLastmileQualityResult.setText("");
         tvLastmileProbeResult.setText("");
     }
-
 
 
 }

@@ -37,6 +37,7 @@ import java.util.Iterator;
 import io.agora.openvcall.R;
 import io.agora.openvcall.model.AGEventHandler;
 import io.agora.openvcall.model.ConstantApp;
+import io.agora.openvcall.model.DuringCallEventHandler;
 import io.agora.openvcall.model.Message;
 import io.agora.openvcall.model.User;
 import io.agora.propeller.Constant;
@@ -50,7 +51,7 @@ import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 
-public class ChatActivity extends BaseActivity implements AGEventHandler {
+public class ChatActivity extends BaseActivity implements DuringCallEventHandler {
 
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
@@ -89,8 +90,6 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
 
     @Override
     protected void initUIandEvent() {
-        event().addEventHandler(this);
-
         Intent i = getIntent();
 
         String channelName = i.getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME);
@@ -299,6 +298,11 @@ public class ChatActivity extends BaseActivity implements AGEventHandler {
         event().removeEventHandler(this);
 
         mUidsList.clear();
+    }
+
+    @Override
+    protected void workerThreadReady() {
+        event().addEventHandler(this);
     }
 
     private void doLeaveChannel() {

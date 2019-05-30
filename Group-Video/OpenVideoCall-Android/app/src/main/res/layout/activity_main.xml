@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".ui.MainActivity">
 
     <ScrollView
@@ -33,8 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
                 android:digits="@string/legal_channel_name_characters"
                 android:gravity="center"
                 android:hint="@string/label_channel_name_hint"
@@ -50,10 +50,10 @@
                     android:id="@+id/encryption_key"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="4dp"
                     android:layout_marginStart="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:layout_weight="20"
                     android:digits="@string/legal_channel_name_characters"
                     android:gravity="center"
@@ -64,10 +64,10 @@
                     android:id="@+id/encryption_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="28dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginRight="28dp"
-                    android:layout_marginStart="2dp" />
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp" />
             </LinearLayout>
 
             <Button
@@ -93,22 +93,22 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="40dp"
                     android:onClick="onLastMileClick"
-                    android:text="start lastmie probe Test" />
+                    android:text="start lastmile probe test" />
 
                 <TextView
                     android:id="@+id/tv_lastmile_quality_result"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="tv_lastmile_result"
                     android:textColor="@android:color/black"
                     android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tv_lastmile_Probe_result"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="tv_lastmile_result"
                     android:textColor="@android:color/black"
                     android:textSize="12sp" />

@@ -1,10 +1,10 @@
 package io.agora.openvcall.model;
 
 import android.content.Context;
-import android.util.Log;
 
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onFirstRemoteVideoDecoded(uid, width, height, elapsed);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onFirstRemoteVideoDecoded(uid, width, height, elapsed);
+                }
             }
         }
 
@@ -65,7 +67,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onUserOffline(uid, reason);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onUserOffline(uid, reason);
+                }
             }
         }
 
@@ -76,7 +80,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_USER_VIDEO_MUTED, uid, muted);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_USER_VIDEO_MUTED, uid, muted);
+                }
             }
         }
 
@@ -91,7 +97,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_USER_VIDEO_STATS, stats);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_USER_VIDEO_STATS, stats);
+                }
             }
         }
 
@@ -106,7 +114,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_SPEAKER_STATS, (Object) speakerInfos);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_SPEAKER_STATS, (Object) speakerInfos);
+                }
             }
         }
 
@@ -121,19 +131,24 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onLastmileQuality(quality);
+                if (handler instanceof BeforeCallEventHandler) {
+                    ((BeforeCallEventHandler) handler).onLastmileQuality(quality);
+                }
             }
         }
 
         @Override
-        public void onLastmileProbeResult(IRtcEngineEventHandler.LastmileProbeResult result){
+        public void onLastmileProbeResult(IRtcEngineEventHandler.LastmileProbeResult result) {
             log.debug("onLastmileProbeResult " + result);
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onLastmileProbeResult(result);
+                if (handler instanceof BeforeCallEventHandler) {
+                    ((BeforeCallEventHandler) handler).onLastmileProbeResult(result);
+                }
             }
         }
+
         @Override
         public void onError(int error) {
             log.debug("onError " + error + " " + RtcEngine.getErrorDescription(error));
@@ -141,7 +156,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AGORA_MEDIA_ERROR, error, RtcEngine.getErrorDescription(error));
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AGORA_MEDIA_ERROR, error, RtcEngine.getErrorDescription(error));
+                }
             }
         }
 
@@ -152,7 +169,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_DATA_CHANNEL_MSG, uid, data);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_DATA_CHANNEL_MSG, uid, data);
+                }
             }
         }
 
@@ -162,7 +181,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AGORA_MEDIA_ERROR, error, "on stream msg error " + (uid & 0xFFFFFFFFL) + " " + missed + " " + cached);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AGORA_MEDIA_ERROR, error, "on stream msg error " + (uid & 0xFFFFFFFFL) + " " + missed + " " + cached);
+                }
             }
         }
 
@@ -173,18 +194,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_APP_ERROR, ConstantApp.AppError.NO_NETWORK_CONNECTION);
-            }
-        }
-
-        @Override
-        public void onConnectionInterrupted() {
-            log.debug("onConnectionInterrupted");
-
-            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
-            while (it.hasNext()) {
-                AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_APP_ERROR, ConstantApp.AppError.NO_NETWORK_CONNECTION);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_APP_ERROR, ConstantApp.AppError.NO_NETWORK_CONNECTION);
+                }
             }
         }
 
@@ -197,7 +209,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onJoinChannelSuccess(channel, uid, elapsed);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onJoinChannelSuccess(channel, uid, elapsed);
+                }
             }
         }
 
@@ -212,7 +226,9 @@ public class MyEngineEventHandler {
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
-                handler.onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AUDIO_ROUTE_CHANGED, routing);
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AUDIO_ROUTE_CHANGED, routing);
+                }
             }
         }
 
@@ -222,14 +238,12 @@ public class MyEngineEventHandler {
 
         @Override
         public void onAudioMixingStateChanged(int state, int errorCode) {
-            super.onAudioMixingStateChanged(state, errorCode);
-            Log.d(TAG, "onAudioMixingStateChanged() called with: state = [" + state + "], errorCode = [" + errorCode + "]");
+            log.debug("onAudioMixingStateChanged() state = [" + state + "], errorCode = [" + errorCode + "]");
         }
 
         @Override
         public void onAudioMixingFinished() {
-            super.onAudioMixingFinished();
-            Log.d(TAG, "onAudioMixingFinished() called");
+            log.debug("onAudioMixingFinished");
         }
     };
 
