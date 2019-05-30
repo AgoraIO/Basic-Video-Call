@@ -348,7 +348,8 @@ function leave (rtc) {
 }
 
 function startLiveStreaming (rtc) {
-  const liveTranscoding = {
+  var uid = rtc.params.uid;
+  var liveTranscoding = {
     "180p": {
       width: 320,
       height: 180,
@@ -363,7 +364,7 @@ function startLiveStreaming (rtc) {
       userCount: 1,
       backgroundColor: 0x000000,
       transcodingUsers: [{
-        uid: 1,
+        uid: uid,
         alpha: 1,
         width: 10,
         height: 10,
@@ -386,7 +387,7 @@ function startLiveStreaming (rtc) {
       userCount: 1,
       backgroundColor: 0x000000,
       transcodingUsers: [{
-        uid: 1,
+        uid: uid,
         alpha: 1,
         width: 10,
         height: 10,
@@ -409,7 +410,7 @@ function startLiveStreaming (rtc) {
       userCount: 1,
       backgroundColor: 0x000000,
       transcodingUsers: [{
-        uid: 1,
+        uid: uid,
         alpha: 1,
         width: 10,
         height: 10,

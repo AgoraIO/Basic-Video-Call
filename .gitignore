@@ -13,3 +13,4 @@ cscope.po.out
 tags
 
 node_modules
+**/*.js~
