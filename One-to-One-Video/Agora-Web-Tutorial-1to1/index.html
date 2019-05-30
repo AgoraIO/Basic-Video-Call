@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Basic</title>
   <link rel="stylesheet" href="./assets/common.css">
+  <link rel="stylesheet" href="./vendor/toastify.min.css">
 </head>
 
 <body>
@@ -27,12 +28,16 @@
                 <input placeholder="Enter APPID" type="text" id="appID" name="appID"/>
               </div>
               <div class="form-item">
-                <label for="channelName">Channel: </label>
-                <input placeholder="Enter Channel" type="text" id="channelName" name="channelName"/>
+                <label for="channel">Channel: </label>
+                <input placeholder="Enter Channel" type="text" id="channel" name="channel"/>
               </div>
               <div class="form-item">
                 <label for="uid">UID: </label>
-                <input placeholder="Enter UID" type="text" id="uid" name="uid" value="1"/>
+                <input placeholder="Enter UID" type="text" id="uid" name="uid"/>
+              </div>
+              <div class="form-item">
+                <label for="token">Token: </label>
+                <input placeholder="Enter Token" type="text" id="token" name="token"/>
               </div>
               <div class="form-item">
                 <label for="microphoneId">Audio Device: </label>
@@ -48,7 +53,6 @@
             <hr/>
             <div class="form-row button-list">
               <a class="btn" id="create">create room</a>
-              <a class="btn" id="join">join room</a>
               <a class="btn" id="publish">publish</a>
               <a class="btn" id="unpublish">unpublish</a>
               <a class="btn leave" id="leave">leave</a>
@@ -65,100 +69,13 @@
       </div>
     </div>
   </div>
-  <script src="assets/AgoraRTCSDK.min.js"></script>
   <script src="vendor/jquery.js"></script>
+  <script src="vendor/toastify.js"></script>
+  <script src="assets/AgoraRTCSDK.min.js"></script>
+  <script src="assets/common.js"></script>
   <script>
     $(function () {
-      var rtc = {
-        client: null,
-        joined: false,
-        published: false,
-        localStream: null,
-        remoteStreams: [],
-        data: {}
-      }
-
-      function validator() {
-        var fields = ['appID', 'channelName', 'uid'];
-        var keys = Object.keys(rtc.data);
-        for (let key in keys) {
-          var keyName = keys[key];
-          if (fields.indexOf(keyName) != -1) {
-            if (!rtc.data[keyName]) {
-              alert("Please Enter " + keyName);
-              return false;
-            }
-          }
-        }
-        return true;
-      }
-
-      function serializeFormData() {
-        var formData = $("#form").serializeArray();
-        let obj = {}
-        for (var item in formData) {
-          var key = formData[item].name;
-          var val = formData[item].value;
-          obj[key] = val;
-        }
-        return obj;
-      }
-
-      function getDevices (next) {
-        navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: true
-        }).then(function (stream) {
-          AgoraRTC.getDevices(function (items) {
-            items.filter(function (item) {
-              return ['audioinput', 'videoinput'].indexOf(item.kind) !== -1
-            })
-            .map(function (item) {
-              return {
-              name: item.label,
-              value: item.deviceId,
-              kind: item.kind,
-              }
-            });
-            stream.getTracks().forEach(function (track) { track.stop() });
-            var videos = [];
-            var audios = [];
-            for (var i = 0; i < items.length; i++) {
-              var item = items[i];
-              if ('videoinput' == item.kind) {
-                var name = item.label;
-                var value = item.deviceId;
-                if (!name) {
-                  name = "camera-" + videos.length;
-                }
-                videos.push({
-                  name: name,
-                  value: value,
-                  kidn: item.kind
-                });
-              }
-              if ('audioinput' == item.kind) {
-                var name = item.label;
-                var value = item.deviceId;
-                if (!name) {
-                  name = "microphone-" + audios.length;
-                }
-                audios.push({
-                  name: name,
-                  value: value,
-                  kidn: item.kind
-                });
-              }
-            }
-            next({videos: videos, audios: audios});
-          });
-        })
-      }
-
-      var selects = null;
-
       getDevices(function (devices) {
-        selects = devices;
         devices.audios.forEach(function (audio) {
           $('<option/>', {
             value: audio.value,
@@ -173,204 +90,37 @@
         })
       })
 
-      function addView (id) {
-        if (!$("#" + id)[0]) {
-          $("<div/>", {
-            id: "remote_video_" + id,
-            class: "video-view",
-          }).appendTo("#video");
-        }
-      }
-
-      function removeView (id) {
-        if ($("#remote_video_" + id)[0]) {
-          $("#remote_video_"+id).remove();
-        }
-      }
-
-      function createClient (data) {
-        if (rtc.client) {
-          alert("Your already create client");
-          return;
-        }
-        rtc.client = AgoraRTC.createClient({mode: 'rtc', codec: 'h264'});
-        rtc.client.on("error", (err) => {
-          console.log(err)
-        })
-        rtc.client.on("peer-leave", function (evt) {
-          var id = evt.uid;
-          console.log("id", evt);
-          if (id != rtc.data.uid) {
-            removeView(id);
-          }
-          console.log('peer-leave', id);
-        })
-        rtc.client.on("stream-published", function (evt) {
-          console.log("stream-published");
-        })
-        rtc.client.on("stream-added", function (evt) {
-          var remoteStream = evt.stream;
-          var id = remoteStream.getId();
-          rtc.remoteStreams.push(remoteStream);
-          if (id !== rtc.data.uid) {
-            rtc.client.subscribe(remoteStream, function (err) {
-              console.log("stream subscribe failed", err);
-            })
-            addView(id);
-            remoteStream.play("remote_video_" + id, {fit: "cover", muted: true});
-          }
-          console.log('stream-added remote-uid: ', id);
-        });
-        rtc.client.on("stream-removed", function (evt) {
-          var remoteStream = evt.stream;
-          var id = remoteStream.getId();
-          remoteStream.stop("remote_video_" + id);
-          rtc.remoteStreams = rtc.remoteStreams.filter(function (stream) {
-            return stream.getId() !== id
-          })
-          removeView(id);
-          console.log('stream-removed remote-uid: ', id);
-        })
-        rtc.client.init(data.appID, function () {
-          console.log("init success");
-        }, (err) => {
-          console.error(err);
-        });
-        return rtc.client;
-      }
-
-      function join(data) {
-        if (!rtc.client) {
-          alert("Please Create Channel First");
-          return;
-        }
-        if (rtc.joined) {
-          alert("Your already joined");
-          return;
-        }
-        rtc.client.join(null, data.channelName, data.uid, function (uid) {
-          console.log("join channel: " + data.channelName + " success, uid: ", uid);
-          rtc.joined = true;
-          rtc.localStream = AgoraRTC.createStream({
-            streamID: data.uid,
-            audio: true,
-            video: true,
-            screen: false,
-            microphoneId: data.microphoneId,
-            cameraId: data.cameraId
-          })
-          rtc.localStream.init(function () {
-            console.log("init local stream success");
-            rtc.localStream.play("local_stream")
-          }, function (err)  {
-            console.error("init local stream failed ", err);
-          })
-        }, function(err) {
-          console.error("client join failed", err)
-        })
-      }
-
-      function publish () {
-        if (!rtc.client) {
-          alert("Please Create Channel First");
-          return;
-        }
-        if (rtc.published) {
-          alert("Your already published");
-          return;
-        }
-        var oldState = rtc.published;
-        rtc.client.publish(rtc.localStream, function (err) {
-          rtc.published = oldState;
-          console.log("publish failed");
-          console.error(err);
-        })
-        rtc.published = true
-      }
-
-      function unpublish () {
-        if (!rtc.client) {
-          alert("Please Create Channel First");
-        }
-        if (!rtc.published) {
-          alert("Your already published");
-          return;
-        }
-        var oldState = rtc.published;
-        rtc.client.unpublish(rtc.localStream, function (err) {
-          rtc.published = oldState;
-          console.log("unpublish failed");
-          console.error(err);
-        })
-        rtc.published = false;
-      }
-
-      function leave () {
-        if (!rtc.client) {
-          alert("Please Create Channel First");
-        }
-        if (!rtc.joined) {
-          alert("You are not in channel");
-          return;
-        }
-        rtc.client.leave(function () {
-          rtc.localStream.close();
-          rtc.localStream.stop();
-          while (rtc.remoteStreams.length > 0) {
-            var stream = rtc.remoteStreams.shift();
-            var id = stream.getId()
-            stream.stop();
-            remoteView(id);
-          }
-          rtc.localStream = null;
-          rtc.remoteStreams = [];
-          rtc.client = null;
-          console.log("client leaves channel success");
-          rtc.published = false;
-          rtc.joined = false;
-        }, function (err) {
-          console.log("channel leave failed");
-          console.error(err);
-        })
-      }
+      var fields = ['appID', 'channel', 'uid'];
 
       $("#create").on("click", function () {
         console.log("create")
-        rtc.data = serializeFormData();
-        if (validator()) {
-          createClient(rtc.data)
+        var params = serializeFormData();
+        if (validator(params, fields)) {
+          join(rtc, params);
         }
       })
 
-      $("#join").on("click", function () {
-        console.log("join")
-        rtc.data = serializeFormData();
-        if (validator()) {
-          join(rtc.data);
-        }
-      });
-
       $("#publish").on("click", function () {
         console.log("publish")
-        rtc.data = serializeFormData();
-        if (validator()) {
-          publish();
+        var params = serializeFormData();
+        if (validator(params, fields)) {
+          publish(rtc);
         }
       });
 
       $("#unpublish").on("click", function () {
         console.log("unpublish")
-        rtc.data = serializeFormData();
-        if (validator()) {
-          unpublish();
+        var params = serializeFormData();
+        if (validator(params, fields)) {
+          unpublish(rtc);
         }
       });
 
       $("#leave").on("click", function () {
         console.log("leave")
-        rtc.data = serializeFormData();
-        if (validator()) {
-          leave();
+        var params = serializeFormData();
+        if (validator(params, fields)) {
+          leave(rtc);
         }
       })
     })
