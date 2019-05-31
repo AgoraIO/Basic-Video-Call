@@ -1,0 +1,75 @@
+Meta:
+  name: Open Video Call for Android
+  # en or cn
+  lang: cn
+  # | 代表这里是字符串
+  description: |
+    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。
+    
+    在这个示例项目中包含了以下功能：
+
+    - 加入通话和离开通话；
+    - 静音和解除静音；
+    - 关闭摄像头和打开摄像头；
+    - 切换前置摄像头和后置摄像头；
+    - 发送频道内消息；
+    - 选择分辨率、码率和帧率；
+    - 设置加密模式；
+    - 开启和关闭黑白滤镜；
+
+    你也可以在这里查看入门版的示例项目：[Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)
+
+Prerequisites:
+  - Android Studio 3.3 +
+  - 真实 Android 设备 (Nexus 5X 或者其它设备)
+  - 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机
+
+QuickStart:
+  description:
+    这个段落主要讲解了如何编译和运行实例程序。
+  sections:
+    - title: 创建Agora账号并获取AppId
+      content: |
+        在编译和启动实例程序前，您需要首先获取一个可用的App ID:
+        1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
+        2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
+        3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+        4. 将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
+        ```
+        <string name="private_app_id"><#YOUR APP ID#></string>
+        ```
+    - title: 集成 Agora 视频 SDK
+      content: |
+        集成方式有以下两种：
+        - 首选集成方式：
+          - 在项目对应的模块的 "app/build.gradle" 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
+
+            ```
+            implementation 'io.agora.rtc:full-sdk:2.4.0'
+            ```
+
+            (如果要在自己的应用中集成 Agora 视频 SDK，添加链接地址是最重要的一步。）
+
+          - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
+
+        - 次选集成方式：
+
+          - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs** 文件夹下的 ***.jar** 复制到本项目的 **app/libs** 下，其中的 **libs** 文件夹下的 **arm64-v8a**/**x86**/**armeabi-v7a** 复制到本项目的 **app/src/main/jniLibs** 下，其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
+
+          - 在本项目的 "app/build.gradle" 文件依赖属性中添加如下依赖关系：
+
+            ```
+            compile fileTree(dir: 'libs', include: ['*.jar'])
+            ```
+    - title: 启动应用程序
+      content: |
+        用 Android Studio 打开该项目，连上设备，编译并运行。
+        
+        也可以使用 `Gradle` 直接编译运行。
+
+Resources:
+  document: https://docs.agora.io/cn/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT
