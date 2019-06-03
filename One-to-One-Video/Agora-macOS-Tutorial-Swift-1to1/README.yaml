@@ -1,23 +1,23 @@
 Meta:
-  name: Open Video Call iOS for Objective-C
+  name: macOS Tutorial for Swift - 1to1
   # en or cn
   lang: en
-  project: OpenVideoCall
+  project: Agora Mac Tutorial Swift
   # | 代表这里是字符串
   description: |
-    The Open Video Call iOS for Objective-C Sample App is an open-source demo that will help you get video chat integrated directly into your iOS applications using the Agora Video SDK.
-    
+    The Agora macOS Tutorial for Swift 1to1 Sample App is an open-source demo that will help you get video chat integrated directly into your macOS applications using the Agora Video SDK.
+
     With this sample app, you can:
+
     - Join / leave channel
     - Mute / unmute audio
-    - Enable / disable video
-    - Switch camera
-    - Setup resolution, frame rate and bit rate
+    - Mute / unmute video
+    - Device selection
+    - Screen share
 
 Prerequisites:
   - Xcode 10.0+
   - Physical iOS device (iPhone or iPad)
-  - iOS simulator is NOT supported
 
 QuickStart:
   description:
@@ -26,16 +26,15 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-        4. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID.
+        4. Open `Agora Mac Tutorial Swift.xcodeproj` and edit the `KeyCenter.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID.
 
-            ```
-            + (NSString *)AppId {
-                return @"Your App ID";
-            }
+            ``` Swift
+            static let AppId: String = <#Your App Id#>
             ```
     - title: Integrate the Agora Video SDK
       content: |
-        $_{IOS_RUN}
+
+        $_{MAC_RUN}
 
 Resources:
   document: https://docs.agora.io/en/

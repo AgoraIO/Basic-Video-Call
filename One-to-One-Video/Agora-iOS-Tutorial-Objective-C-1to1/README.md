@@ -1,6 +1,6 @@
-# Agora iOS Tutorial for Objective-C - 1to1
+# iOS Tutorial for Objective-C - 1to1
 
-*Read this in other languages: [中文](README.zh.md)*
+*English | [中文](README.zh.md)*
 
 The Agora iOS Tutorial for Objective-C 1to1 Sample App is an open-source demo that will help you get video chat integrated directly into your iOS applications using the Agora Video SDK.
 
@@ -11,28 +11,46 @@ With this sample app, you can:
 - Enable / disable video
 - Switch camera
 
+## Prerequisites
 
-## Running the App
-First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. Update "AppID.m" with your App ID.
+- Xcode 10.0+
+- Physical iOS device (iPhone or iPad)
+- iOS simulator is NOT supported
 
-```
-NSString *const appID = @"Your App ID"; 
-```
+## Quick Start
 
-Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/). Unzip the downloaded SDK package and copy the "libs" folder to the project folder.
+This section shows you how to prepare, build, and run the sample application.
 
-Finally, Open Agora iOS Tutorial Objective-C.xcodeproj, connect your iPhone／iPad device, setup your development signing and run.
+### Obtain an App ID
 
-## Developer Environment Requirements
-* XCode 10.0 +
-* Real devices (iPhone or iPad)
-* iOS simulator is NOT supported
+To build and run the sample application, get an App ID:
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
+3. Copy the **App ID** from the Dashboard.
 
-## Connect Us
+4. Open `Agora iOS Tutorial Objective-C.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID.
+
+    ```
+    + (NSString *)AppId {
+        return @"Your App ID";
+    }
+    ```
+
+### Integrate the Agora Video SDK
+
+1. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `Agora iOS Tutorial Objective-C` folder.
+    - `AograRtcEngineKit.framework`
+    - `AgoraRtcCryptoLoader.framework`
+    - `libcrypto.a`
+  
+2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
+
+
+## Resources
 
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
 - You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 
-The MIT License (MIT).
+The MIT License (MIT)

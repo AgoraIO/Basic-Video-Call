@@ -2,6 +2,7 @@ Meta:
   name: Open Video Call macOS for Swift
   # en or cn
   lang: cn
+  project: OpenVideoCall
   # | 代表这里是字符串
   description: |
     这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。

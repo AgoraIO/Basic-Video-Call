@@ -1,7 +1,8 @@
 Meta:
-  name: Open Video Call iOS for Swift
+  name: Open Video Call iOS for Objective-C
   # en or cn
   lang: cn
+  project: OpenVideoCall
   # | 代表这里是字符串
   description: |
     这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。
@@ -29,7 +30,7 @@ QuickStart:
     - title: 创建Agora账号并获取AppId
       content: |
         $_{APPID}
-        4. 将 AppID 填写进 KeyCenter.swift
+        4. 将 AppID 填写进 KeyCenter.m
 
         ```
         static let AppId: String = "Your App ID"

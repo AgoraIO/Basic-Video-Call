@@ -1,4 +1,4 @@
-# Open Video Call iOS for Swift
+# Open Video Call iOS for Objective-C
 
 *[English](README.md) | 中文*
 
@@ -32,7 +32,7 @@
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
 
-4. 将 AppID 填写进 KeyCenter.swift
+4. 将 AppID 填写进 KeyCenter.m
 
 ```
 static let AppId: String = "Your App ID"
@@ -44,8 +44,8 @@ static let AppId: String = "Your App ID"
   - AgoraRtcEngineKit.framework
   - AgoraRtcCryptoLoader.framework
   - libcrypto.a
-三个文件复制到本项目的  文件夹下。
-最后使用 XCode 打开 .xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
+三个文件复制到本项目的 OpenVideoCall 文件夹下。
+最后使用 XCode 打开 OpenVideoCall.xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
 
 
 ## 联系我们

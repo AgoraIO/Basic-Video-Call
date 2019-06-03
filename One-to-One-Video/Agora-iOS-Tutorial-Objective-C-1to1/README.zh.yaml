@@ -1,22 +1,18 @@
 Meta:
-  name: Open Video Call iOS for Swift
+  name: iOS Tutorial for Objective-C - 1to1
   # en or cn
   lang: cn
-  project: OpenVideoCall
+  project: Agora iOS Tutorial Objective-C
   # | 代表这里是字符串
   description: |
-    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。
-    
+    这个开源示例项目演示了如何快速集成Agora视频SDK，实现1对1视频通话。
+
     在这个示例项目中包含了以下功能：
 
     - 加入通话和离开通话；
     - 静音和解除静音；
-    - 关闭摄像头和打开摄像头；
+    - 关闭摄像头和开启摄像头；
     - 切换前置摄像头和后置摄像头；
-    - 发送频道内消息；
-    - 选择分辨率、码率和帧率；
-    - 设置加密模式；
-    - 开启和关闭黑白滤镜；
 
 Prerequisites:
   - XCode 10.0 +
