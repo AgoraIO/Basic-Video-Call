@@ -399,7 +399,7 @@ private extension RoomViewController {
             agoraKit.setEncryptionMode(encryptionType.modeString())
             agoraKit.setEncryptionSecret(encryptionSecret)
         }
-        let code = agoraKit.joinChannel(byToken: nil, channelId: roomName, info: nil, uid: 0, joinSuccess: nil)
+        let code = agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: roomName, info: nil, uid: 0, joinSuccess: nil)
         if code != 0 {
             DispatchQueue.main.async(execute: {
                 self.alert(string: "Join channel failed: \(code)")
