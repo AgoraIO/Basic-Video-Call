@@ -1,4 +1,4 @@
-// VideoDlg.cpp : ÊµÏÖÎÄ¼þ
+// VideoDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "AGEventDef.h"
 #include "video_preprocessing_plugin.h"
 
-// CVideoDlg ¶Ô»°¿ò
+// CVideoDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CVideoDlg, CDialogEx)
 
@@ -98,14 +98,14 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CVideoDlg ÏûÏ¢´¦Àí³ÌÐò
+// CVideoDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 void CVideoDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
-	// TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
+	// TODO:  ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (m_btnMin.GetSafeHwnd() != NULL)
 		m_btnMin.MoveWindow(cx - 72, 0, 24, 24, TRUE);
 	if (m_btnRst.GetSafeHwnd() != NULL)
@@ -117,7 +117,7 @@ void CVideoDlg::OnSize(UINT nType, int cx, int cy)
 	m_rcVideoArea.top += 24;
 	m_rcVideoArea.bottom -= 72;
 
-	// 2ÈË£¬ ÓÒÉÏ½Ç×Ó»­ÃæÇøÓò
+	// 2ï¿½Ë£ï¿½ ï¿½ï¿½ï¿½Ï½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_rcChildVideoArea.top = m_rcVideoArea.top + 10;
 	m_rcChildVideoArea.bottom = m_rcChildVideoArea.top + 144;
 	m_rcChildVideoArea.right = m_rcVideoArea.right - 14;
@@ -252,7 +252,7 @@ void CVideoDlg::AdjustSizeVideoMulti(int cx, int cy)
 
 void CVideoDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO:  ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµ
 
 	CDialogEx::OnMouseMove(nFlags, point);
 }
@@ -326,15 +326,13 @@ void CVideoDlg::EnableSize(BOOL bEnable)
 void CVideoDlg::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
-	// ²»Îª»æÍ¼ÏûÏ¢µ÷ÓÃ CDialogEx::OnPaint()
+	//CDialogEx::OnPaint()
 	DrawHead(&dc);
 }
 
 
 LRESULT CVideoDlg::OnNcHitTest(CPoint point)
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
 	LRESULT lResult = CDialogEx::OnNcHitTest(point);
 	if (lResult == HTCLIENT && ::GetAsyncKeyState(MK_LBUTTON) < 0)
 		lResult = HTCAPTION;
@@ -807,7 +805,7 @@ LRESULT CVideoDlg::OnRemoteVideoStat(WPARAM wParam, LPARAM lParam)
 		AGVIDEO_WNDINFO &rWndInfo = m_listWndInfo.GetNext(posNext);
 
 		if (rWndInfo.nUID == lpData->uid) {
-			rWndInfo.nFramerate = lpData->receivedFrameRate;
+			rWndInfo.nFramerate = lpData->rendererOutputFrameRate;
 			rWndInfo.nBitrate = lpData->receivedBitrate;
 			rWndInfo.nWidth = lpData->width;
 			rWndInfo.nHeight = lpData->height;
@@ -1064,7 +1062,7 @@ BOOL CVideoDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯
+	// TODO:  ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½Ä³ï¿½Ê¼ï¿½ï¿½
 	m_dlgDevice.Create(CDeviceDlg::IDD, this);
 	m_dlgDevice.EnableDeviceTest(FALSE);
 
@@ -1078,7 +1076,7 @@ BOOL CVideoDlg::OnInitDialog()
     m_bitMenuFilter.LoadBitmap(IDB_MENU_FILTER);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// Òì³£:  OCX ÊôÐÔÒ³Ó¦·µ»Ø FALSE
+	// ï¿½ì³£:  OCX ï¿½ï¿½ï¿½ï¿½Ò³Ó¦ï¿½ï¿½ï¿½ï¿½ FALSE
 }
 
 
@@ -1132,7 +1130,6 @@ void CVideoDlg::RebindVideoWnd()
 
 BOOL CVideoDlg::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO:  ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
 	if (pMsg->message == WM_KEYDOWN){
 		switch (pMsg->wParam){
 		case VK_RETURN:
@@ -1221,8 +1218,6 @@ void CVideoDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CDialogEx::OnShowWindow(bShow, nStatus);
 
-	// TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
-
 	if (bShow && GetSafeHwnd() != NULL)
 		RebindVideoWnd();
 }
@@ -1232,7 +1227,6 @@ void CVideoDlg::OnMove(int x, int y)
 {
     CDialogEx::OnMove(x, y);
 
-    // TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
     CRect rcChatBox;
 
     rcChatBox.SetRect(x, y + m_rcVideoArea.Height() - 126, x + m_rcVideoArea.Width(), y + m_rcVideoArea.Height() + 24);

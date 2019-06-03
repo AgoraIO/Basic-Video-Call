@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CDN StartLiveStreaming</title>
-  <link rel="stylesheet" href="./assets/common.css">
-  <link rel="stylesheet" href="./vendor/toastify.min.css">
 </head>
 
 <body>
@@ -80,91 +78,6 @@
       </div>
     </div>
   </div>
-  <script src="vendor/jquery.js"></script>
-  <script src="vendor/toastify.js"></script>
-  <script src="assets/AgoraRTCSDK.min.js"></script>
-  <script src="assets/common.js"></script>
-  <script>
-    $(function () {
-      var rtc = {
-        client: null,
-        joined: false,
-        published: false,
-        localStream: null,
-        remoteStreams: [],
-        data: {}
-      }
-
-      var selects = null;
-
-      getDevices(function (devices) {
-        selects = devices;
-        devices.audios.forEach(function (audio) {
-          $('<option/>', {
-            value: audio.value,
-            text: audio.name,
-          }).appendTo("#microphoneId");
-        })
-        devices.videos.forEach(function (video) {
-          $('<option/>', {
-            value: video.value,
-            text: video.name,
-          }).appendTo("#cameraId");
-        })
-        selects.resolutions = [
-          {
-            value: "180p", name: "resolution: 320x180 15fps 140kbps"
-          },
-          {
-            value: "360p", name: "resolution: 640x360 30fps 400kbps"
-          },
-          {
-            value: "720p", name: "resolution: 1280x720 24fps 1130kbps"
-          }
-        ]
-        selects.resolutions.forEach(function (resolution) {
-          $('<option/>', {
-            value: resolution.value,
-            text: resolution.name,
-          }).appendTo("#resolution");
-        })
-      })
-
-      var fields = ['appID', 'channel', 'uid', 'url'];
-
-      $("#create").on("click", function () {
-        console.log("create")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          join(rtc, params);
-        }
-      })
-
-      $("#startLiveStreaming").on("click", function () {
-        console.log("startLiveStreaming")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          startLiveStreaming(rtc);
-        }
-      });
-
-      $("#stopLiveStreaming").on("click", function () {
-        console.log("stopLiveStreaming")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          stopLiveStreaming(rtc);
-        }
-      });
-
-      $("#leave").on("click", function () {
-        console.log("leave")
-        var params = serializeFormData();
-        if (validator(params, fields)) {
-          leave(rtc);
-        }
-      })
-    })
-  </script>
 </body>
 
 </html>
