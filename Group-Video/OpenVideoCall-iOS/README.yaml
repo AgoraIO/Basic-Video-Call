@@ -2,6 +2,7 @@ Meta:
   name: Open Video Call iOS for Swift
   # en or cn
   lang: en
+  project: OpenVideoCall
   # | 代表这里是字符串
   description: |
     This tutorial describes how to add video chat to your iOS applications using Swift and the Agora Video SDK.
@@ -26,25 +27,16 @@ QuickStart:
   sections:
     - title: Obtain an App ID
       content: |
-        To build and run the sample application, get an App ID:
-        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-        3. Copy the **App ID** from the Dashboard for later use.
-    - title: Integrate the Agora Video SDK
-      content: |
-        1. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID.
+        $_{APPID}
+        4. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID.
 
             ``` Swift
             static let AppId: String = <#Your App Id#>
             ```
+    - title: Integrate the Agora Video SDK
+      content: |
 
-        2. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `OpenVideoCall` folder.
-
-            - `AograRtcEngineKit.framework`
-            - `AgoraRtcCryptoLoader.framework`
-            - `libcrypto.a`
-          
-        3. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
+        $_{IOS_RUN}
 
 Resources:
   document: https://docs.agora.io/en/
