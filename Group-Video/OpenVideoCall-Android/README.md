@@ -27,8 +27,8 @@ This section shows you how to prepare, build, and run the sample application.
 ### Obtain an App ID
 
 To build and run the sample application, get an App ID:
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
 3. Copy the **App ID** from the Dashboard.
 
 4. Update "app/src/main/res/values/strings_config.xml" with your App ID.
@@ -38,25 +38,30 @@ To build and run the sample application, get an App ID:
 
 ### Integrate the Agora Video SDK
 
-There are two ways to integrate:
-- The recommended way to integrate:
-  - Add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the `app/build.gradle`:
-    
-    ```
-    implementation 'io.agora.rtc:full-sdk:2.4.0'
-    ```
-    (Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
-  
-  - Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.h** under **libs/include** to **app/src/main/cpp/agora**.
-- Alternative way to integrate:
-  
-  - Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.jar** under **libs** to **app/libs**, **arm64-v8a**/**x86**/**armeabi-v7a** under **libs** to **app/src/main/jniLibs**, ***.h** under **libs/include** to **app/src/main/cpp/agora**.
-  
-  - Add the following code in the property of the dependence of the `app/build.gradle`:
-  
-    ```
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    ```
+The SDK must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
+
+#### Method 1 - Integrate the SDK Automatically Using JCenter (Recommended)
+
+1. Clone this repository.
+2. Open **app/build.gradle** and add the following line to the `dependencies` list:
+
+  ```
+  ...
+  dependencies {
+      ...
+      implementation 'io.agora.rtc:full-sdk:2.4.0'
+  }
+  ```
+
+#### Method 2 - Manually copy the SDK files
+
+1. Clone this repository.
+2. Download the Agora Video SDK from [Agora.io SDK](https://www.agora.io/en/download/).
+3. Unzip the downloaded SDK package.
+4. Copy the .jar file from the **libs** folder of the downloaded SDK package to the **/apps/libs** folder of the sample application.
+5. Copy the .so files from the **armeabi-v7a** folder of the downloaded SDK package to the **/app/src/main/jniLibs/armeabi-v7a** folder of the sample application.
+6. *(Optional)* Copy the .so files from the **arm64-v8a** folder of the downloaded SDK package to the **/app/src/main/jniLibs/arm64-v8a** folder of the sample application.
+7. *(Optional)* Copy the .so files from the **x86** folder of the downloaded SDK package to the **/app/src/main/jniLibs/x86** folder of the sample application.
 
     
 

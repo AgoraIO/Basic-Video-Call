@@ -16,8 +16,8 @@ This section shows you how to prepare, build, and run the sample application.
 ### Obtain an App ID
 
 To build and run the sample application, get an App ID:
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
 3. Copy the **App ID** from the Dashboard.
 
 4. Open the **src/utils/Settings.js** file. At the bottom of the file, replace `<#YOUR APP ID#>` with the App ID from the dashboard.
