@@ -13,6 +13,7 @@
 #import "MsgTableView.h"
 #import "AGVideoPreProcessing.h"
 #import "FileCenter.h"
+#import "KeyCenter.h"
 
 @interface RoomViewController () <AgoraRtcEngineDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -371,7 +372,7 @@ static NSInteger streamID = 0;
     [self addLocalSession];
     
     
-    int code = [self.agoraKit joinChannelByToken:nil channelId:self.roomName info:nil uid:0 joinSuccess:nil];
+    int code = [self.agoraKit joinChannelByToken:[KeyCenter Token] channelId:self.roomName info:nil uid:0 joinSuccess:nil];
     if (code == 0) {
         [self setIdleTimerActive:NO];
     } else {

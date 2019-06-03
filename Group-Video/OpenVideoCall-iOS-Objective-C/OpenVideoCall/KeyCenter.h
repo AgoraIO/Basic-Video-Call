@@ -10,4 +10,5 @@
 
 @interface KeyCenter : NSObject
 + (NSString *)AppId;
++ (NSString *)Token;
 @end
