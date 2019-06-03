@@ -2,6 +2,7 @@ Meta:
   name: Open Video Call Windows
   # en or cn
   lang: en
+  project: OpenVideoCall
   # | 代表这里是字符串
   description: |
     The Open Video Call Windows Sample App is an open-source demo that will help you get video chat integrated directly into your Windows applications using the Agora Video SDK.
@@ -37,20 +38,15 @@ QuickStart:
   sections:
     - title: Obtain an App ID
       content: |
-        To build and run the sample application, get an App ID:
-        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-        3. Copy the **App ID** from the Dashboard.
-    - title: Integrate the Agora Video SDK
-      content: |
-        1. Define the APP_ID with your App ID.
+        $_{APPID}
+        4. Define the APP_ID with your App ID.
 
             ```
             #define APP_ID _T("Your App ID")
             ```
-        2. Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/). Unzip the downloaded SDK package and copy the **sdk** to the "OpenVideoCall" folder in project（the old one may be over written.
-
-        3. Open OpenVideoCall.sln, build the solution and run.
+    - title: Integrate the Agora Video SDK
+      content: |
+        $_{WIN_INTEGRATE}
     - title: Note
       content: |
             1. After the program is compiled, if the program "xxx\xxx\xxx\Debug\Language\English.dll" cannot be started when running the program, 

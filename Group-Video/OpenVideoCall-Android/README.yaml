@@ -27,42 +27,18 @@ QuickStart:
   sections:
     - title: Obtain an App ID
       content: |
-        To build and run the sample application, get an App ID:
-        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-        3. Copy the **App ID** from the Dashboard.
+        $_{APPID}
         4. Update "app/src/main/res/values/strings_config.xml" with your App ID.
         ```
         <string name="private_app_id"><#YOUR APP ID#></string>
         ```
     - title: Integrate the Agora Video SDK
       content: |
-        There are two ways to integrate:
-        - The recommended way to integrate:
-          - Add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the "app/build.gradle":
-            
-            ```
-            implementation 'io.agora.rtc:full-sdk:2.4.0'
-            ```
-
-            (Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
-          
-          - Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.h** under **libs/include** to **app/src/main/cpp/agora**.
-        - Alternative way to integrate:
-          
-          - Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.jar** under **libs** to **app/libs**, **arm64-v8a**/**x86**/**armeabi-v7a** under **libs** to **app/src/main/jniLibs**, ***.h** under **libs/include** to **app/src/main/cpp/agora**.
-          
-          - Add the following code in the property of the dependence of the "app/build.gradle":
-          
-            ```
-            compile fileTree(dir: 'libs', include: ['*.jar'])
-            ```
+        $_{ANDROID_INTEGRATE}
             
     - title: Run the Application
       content: |
-        Open project with Android Studio, connect your Android device, build and run.
-        
-        Or use `Gradle` to build and run.
+        $_{ANDROID_RUN}
 
 Resources:
   document: https://docs.agora.io/en/

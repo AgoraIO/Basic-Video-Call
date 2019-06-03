@@ -5,14 +5,14 @@
 This tutorial describes how to add video chat to your iOS applications using Swift and the Agora Video SDK.
 
 With this sample app, you can:
-- [Join/leave a channel](#create-the-dojoinpressed-ibaction-method)
-- [Mute/unmute audio](#video-and-audio-methods)
-- [Enable/disable video](#video-and-audio-methods)
-- [Switch camera views](#camera-speaker-filter-and-close-methods)
-- [Send a message to a channel](#create-the-send-method)
-- [Set up the resolution, the frame rate, and the bit rate display](#create-the-remotevideostats-event-listener)
-- [Enable encryption](#create-the-loadagorakit-method)
-- [Enable/disable the black-and-white filter](#video-and-audio-methods)
+- Join/leave a channel
+- Mute/unmute audio
+- Enable/disable video
+- Switch camera views
+- Send a message to a channel
+- Set up the resolution, the frame rate, and the bit rate display
+- Enable encryption
+- Enable/disable the black-and-white filter
 
 ## Prerequisites
 

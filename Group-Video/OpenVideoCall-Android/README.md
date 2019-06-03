@@ -1,11 +1,10 @@
 # Open Video Call for Android
 
-*Read this in other languages: [中文](README.zh.md)*
+*English | [中文](README.zh.md)*
 
 The Open Video Call for Android Sample App is an open-source demo that will help you get video chat integrated directly into your Android applications using the Agora Video SDK.
 
 With this sample app, you can:
-
 - Join / leave channel
 - Mute / unmute audio
 - Enable / disable video
@@ -15,51 +14,64 @@ With this sample app, you can:
 - Enable encryption
 - Enable / disable black and white filter
 
-A tutorial demo can be found here: [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)
+## Prerequisites
 
-## Running the App
-**First**, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. Update "app/src/main/res/values/strings_config.xml" with your App ID.
-
-```
-<string name="private_app_id"><#YOUR APP ID#></string>
-```
-
-**Next**, integrate the Agora Video SDK and there are two ways to integrate:
-
-- The recommended way to integrate:
-
-First, add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the "app/build.gradle":
-
-```
-implementation 'io.agora.rtc:full-sdk:2.4.0'
-```
-
-(Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
-
-Then, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.h** under **libs/include** to **app/src/main/cpp/agora**.
-
-- Alternative way to integrate:
-
-First, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.jar** under **libs** to **app/libs**, **arm64-v8a**/**x86**/**armeabi-v7a** under **libs** to **app/src/main/jniLibs**, ***.h** under **libs/include** to **app/src/main/cpp/agora**.
-
-Then, add the following code in the property of the dependence of the "app/build.gradle":
-
-```
-compile fileTree(dir: 'libs', include: ['*.jar'])
-```
-
-**Finally**, open project with Android Studio, connect your Android device, build and run.
-
-Or use `Gradle` to build and run.
-
-## Developer Environment Requirements
 - Android Studio 3.3 or above
 - Real devices (Nexus 5X or other devices)
 - Some simulators are function missing or have performance issue, so real device is the best choice
 
-## Connect Us
+## Quick Start
+
+This section shows you how to prepare, build, and run the sample application.
+
+### Obtain an App ID
+
+To build and run the sample application, get an App ID:
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
+2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
+3. Copy the **App ID** from the Dashboard.
+
+4. Update "app/src/main/res/values/strings_config.xml" with your App ID.
+```
+<string name="private_app_id"><#YOUR APP ID#></string>
+```
+
+### Integrate the Agora Video SDK
+
+There are two ways to integrate:
+- The recommended way to integrate:
+  - Add the address which can integrate the Agora Video SDK automatically through JCenter in the property of the dependence of the `app/build.gradle`:
+    
+    ```
+    implementation 'io.agora.rtc:full-sdk:2.4.0'
+    ```
+    (Adding the link address is the most important step if you want to integrate the Agora Video SDK in your own application.)
+  
+  - Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.h** under **libs/include** to **app/src/main/cpp/agora**.
+- Alternative way to integrate:
+  
+  - Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy ***.jar** under **libs** to **app/libs**, **arm64-v8a**/**x86**/**armeabi-v7a** under **libs** to **app/src/main/jniLibs**, ***.h** under **libs/include** to **app/src/main/cpp/agora**.
+  
+  - Add the following code in the property of the dependence of the `app/build.gradle`:
+  
+    ```
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    ```
+
+    
+
+### Run the Application
+
+Open project with Android Studio, connect your Android device, build and run.
+      
+Or use `Gradle` to build and run.
+
+
+## Resources
+
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
 - You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
-The MIT License (MIT).
+
+The MIT License (MIT)

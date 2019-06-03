@@ -2,6 +2,7 @@ Meta:
   name: Open Video Call Windows
   # en or cn
   lang: cn
+  project: OpenVideoCall
   # | 代表这里是字符串
   description: |
     这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。
@@ -41,18 +42,15 @@ QuickStart:
         1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
         2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
         3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
-
-    - title: 集成 Agora 视频 SDK
-      content: |
-        1. 将 AppID 内容替换至 APP_ID 宏定义中
+        4. 将 AppID 内容替换至 APP_ID 宏定义中
 
             ```
             #define APP_ID _T("Your App ID")
             ```
-        
-        2. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 复制到本项目的 “OpenVideoCall” 文件夹下（并覆盖同名旧目录）。
-        
-        3. 使用 VC++2013 打开 OpenVideoCall.sln，编译整个解决方案
+
+    - title: 集成 Agora 视频 SDK
+      content: |
+        $_{WIN_INTEGRATE}
     
     - title: 常见问题
       content: |

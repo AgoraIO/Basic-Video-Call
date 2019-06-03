@@ -7,15 +7,15 @@ Meta:
     This tutorial describes how to add video chat to your MacOS applications using Swift and the Agora Video SDK.
     
     With this sample app, you can:
-    - [Join a channel](#create-the-loadagorakit-method)
-    - [Leave a channel](#create-the-leavechannel-method)
-    - [Mute/unmute video and audio](#muteunmute-video-and-audio-methods)
-    - [Enable/disable video](#enabledisable-video)
-    - [Create input/output devices](#create-inputoutput-device-change-methods)
-    - [Send a message to a channel](#create-the-send-method)
-    - [Screen share](#screen-share-and-filter-methods)
-    - [Set the resolution, the height, and the frame rate](#create-the-remotevideostats-event-listener)
-    - [Enable encryption](#create-the-loadagorakit-method)
+    - Join a channel
+    - Leave a channel
+    - Mute/unmute video and audio
+    - Enable/disable video
+    - Create input/output devices
+    - Send a message to a channel
+    - Screen share
+    - Set the resolution, the height, and the frame rate
+    - Enable encryption
 
 Prerequisites:
   - Xcode 10.0+
@@ -28,13 +28,8 @@ QuickStart:
   sections:
     - title: Obtain an App ID
       content: |
-        To build and run the sample application, get an App ID:
-        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-        3. Copy the **App ID** from the Dashboard.
-    - title: Integrate the Agora Video SDK
-      content: |
-        1. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID.
+        $_{APPID}
+        4. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID.
 
             ```
             + (NSString *)AppId {
@@ -42,13 +37,9 @@ QuickStart:
             }
             ```
 
-        2. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `OpenVideoCall` folder.
-
-            - `AograRtcEngineKit.framework`
-            - `AgoraRtcCryptoLoader.framework`
-            - `libcrypto.a`
-          
-        3. Open OpenVideoCall.xcodeproj, connect your iPhone／iPad device, setup your development signing and run.
+    - title: Integrate the Agora Video SDK
+      content: |
+        $_{MAC_RUN}
 
 Resources:
   document: https://docs.agora.io/en/
