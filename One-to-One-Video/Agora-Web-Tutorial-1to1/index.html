@@ -195,26 +195,6 @@
         Toast.info("onTokenPrivilegeDidExpire")
         console.log("onTokenPrivilegeDidExpire")
       })
-      // Occurs when the live streaming starts.
-      rtc.client.on("liveStreamingStarted", function (evt) {
-        Toast.info("liveStreamingStarted")
-        console.log("liveStreamingStarted", evt)
-      })
-      // Occurs when the live streaming fails.
-      rtc.client.on("liveStreamingFailed", function (evt) {
-        Toast.error("liveStreamingFailed")
-        console.log("liveStreamingFailed", evt)
-      })
-      // Occurs when the live streaming stops.
-      rtc.client.on("liveStreamingStopped", function (evt) {
-        Toast.info("liveStreamingStopped")
-        console.log("liveStreamingStopped", evt)
-      })
-      // Occurs when the live transcoding setting is updated.
-      rtc.client.on("liveTranscodingUpdated", function (evt) {
-        Toast.info("liveTranscodingUpdated")
-        console.log("liveTranscodingUpdated", evt)
-      })
     }
 
     function join (rtc, data, next) {
