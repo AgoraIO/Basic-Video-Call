@@ -151,12 +151,15 @@ export default class RTCClient {
             // run callback
             resolve();
           }, (err) =>  {
+            Toast.error("stream init failed, please open console see more detail")
             console.error("init local stream failed ", err);
           })
         }, function(err) {
+          Toast.error("client join failed, please open console see more detail")
           console.error("client join failed", err)
         })
       }, (err) => {
+        Toast.error("client init failed, please open console see more detail")
         console.error(err);
       });
     })
