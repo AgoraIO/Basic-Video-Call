@@ -1,0 +1,50 @@
+Meta:
+  name: Web Tutorial For Webpack - 1to1
+  lang: cn
+  description: |
+    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。
+
+    在这个示例项目中包含了以下功能：
+
+    - 加入通话和离开通话:
+    - 选择摄像头和麦克风设备:
+
+Prerequisites:
+  - nodejs LTS
+  - 浏览器
+
+QuickStart:
+  description:
+    This section shows you how to prepare, and run the sample application.
+  sections:
+    - title: 创建Agora账号并获取AppId
+      content: |
+        在编译和启动实例程序前，您需要首先获取一个可用的App ID:
+        1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
+        2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
+        3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+    - title: 集成 Agora 视频 SDK
+      content: |
+        1. 在Terminal中，在您的项目根目录输入`install`命令以安装项目依赖
+            ```shell
+            # install dependencies
+            npm install
+            ```
+        2. 输入`run dev`命令以启动Web程序
+            ```shell
+            # serve with hot reload at localhost:8080
+            npm run dev
+            ```
+            输入`npm run build`会压缩静态资源文件，可作为生产环境打包发布。
+            ``` bash
+            # build for production with minification
+            npm run build
+            ```
+        3. 你的浏览器默认会打开示例应用程序。
+            **注意** 如果没有自动打开，请在浏览器里手动输入URL `http://localhost:8080`。
+Resources:
+  document: https://docs.agora.io/cn/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

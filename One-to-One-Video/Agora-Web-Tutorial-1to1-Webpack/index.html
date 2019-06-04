@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CDN StartLiveStreaming</title>
+  <title>Basic Communication</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
       <div class="section-body">
         <div class="notice"></div>
         <div class="section-title">
-          <div class="title" id="basic">CDN StartLiveStreaming</div>
+          <div class="title" id="basic">Basic Communication</div>
           <hr/>
         </div>
         <!-- form -->
@@ -30,7 +30,7 @@
                 <input placeholder="Enter Channel" type="text" id="channel" name="channel"/>
               </div>
               <div class="form-item">
-                <label for="uid">UID: </label>
+                <label for="uid">UID(Optional): </label>
                 <input placeholder="Enter UID" type="text" id="uid" name="uid"/>
               </div>
               <div class="form-item">
@@ -43,27 +43,16 @@
                 </select>
               </div>
               <div class="form-item">
-                <label for="cameraId">Video Device: </label>
+                <label for="cameraId">Video Ddevice: </label>
                 <select id="cameraId" name="cameraId" class="custom-select">
                 </select>
-              </div>
-              <div class="form-item">
-                <label for="resolution">CDN Resolution: </label>
-                <select id="resolution" name="resolution" class="custom-select">
-                </select>
-              </div>
-            </div>
-            <div class="form-row-one">
-              <div class="form-item">
-                <label for="url">CDN Url: </label>
-                <input class="one-row" placeholder="Enter URL" type="text" id="url" name="url"/>
               </div>
             </div>
             <hr/>
             <div class="form-row button-list">
-              <a class="btn" id="create">create channel</a>
-              <a class="btn" id="startLiveStreaming">startLiveStreaming</a>
-              <a class="btn" id="stopLiveStreaming">stopLiveStreaming</a>
+              <a class="btn" id="create">Join Room</a>
+              <a class="btn" id="publish">publish</a>
+              <a class="btn" id="unpublish">unpublish</a>
               <a class="btn leave" id="leave">leave</a>
             </div>
             <hr/>

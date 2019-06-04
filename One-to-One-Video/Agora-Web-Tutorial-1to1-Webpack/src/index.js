@@ -39,7 +39,7 @@ $(() => {
     })
   })
 
-  const fields = ['appID', 'channel', 'uid', 'url'];
+  const fields = ['appID', 'channel'];
 
   let rtc = new RTCClient();
 
@@ -47,23 +47,25 @@ $(() => {
     console.log("create")
     const params = serializeFormData();
     if (validator(params, fields)) {
-      rtc.join(params);
+      rtc.join(params).then(() => {
+        rtc.publish();
+      })
     }
   })
 
-  $("#startLiveStreaming").on("click", function () {
+  $("#publish").on("click", function () {
     console.log("startLiveStreaming")
     const params = serializeFormData();
     if (validator(params, fields)) {
-      rtc.startLiveStreaming();
+      rtc.publish();
     }
   });
 
-  $("#stopLiveStreaming").on("click", function () {
+  $("#unpublish").on("click", function () {
     console.log("stopLiveStreaming")
     const params = serializeFormData();
     if (validator(params, fields)) {
-      rtc.stopLiveStreaming();
+      rtc.unpublish();
     }
   });
 

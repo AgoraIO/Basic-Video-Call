@@ -162,7 +162,7 @@ function handleEvents (rtc) {
     var remoteStream = evt.stream;
     var id = remoteStream.getId();
     Toast.info("stream-removed uid: " + id)
-    remoteStream.stop("remote_video_" + id);
+    remoteStream.stop();
     rtc.remoteStreams = rtc.remoteStreams.filter(function (stream) {
       return stream.getId() !== id
     })
@@ -204,11 +204,6 @@ function handleEvents (rtc) {
 }
 
 function join (rtc, data, next) {
-  if (rtc.client) {
-    Toast.error("Your already create client");
-    return;
-  }
-
   if (rtc.joined) {
     Toast.error("Your already joined");
     return;
@@ -255,10 +250,8 @@ function join (rtc, data, next) {
         // play stream with html element id "local_stream"
         rtc.localStream.play("local_stream")
 
-        // run callback
-        if (next) {
-          next(rtc)
-        }
+        // publish local stream
+        publish(rtc);
       }, function (err)  {
         console.error("init local stream failed ", err);
       })
@@ -272,7 +265,7 @@ function join (rtc, data, next) {
 
 function publish (rtc) {
   if (!rtc.client) {
-    Toast.error("Please Create Channel First");
+    Toast.error("Please Join First");
     return;
   }
   if (rtc.published) {
@@ -294,18 +287,18 @@ function publish (rtc) {
 
 function unpublish (rtc) {
   if (!rtc.client) {
-    Toast.error("Please Create Channel First");
+    Toast.error("Please Join First");
     return;
   }
   if (!rtc.published) {
-    Toast.error("Your didn't unpublished");
+    Toast.error("Your didn't publish");
     return;
   }
   var oldState = rtc.published;
   rtc.client.unpublish(rtc.localStream, function (err) {
     rtc.published = oldState;
     console.log("unpublish failed");
-    Toast.error("unpublish failed")
+    Toast.error("unpublish failed");
     console.error(err);
   })
   Toast.info("unpublish")
@@ -323,15 +316,15 @@ function leave (rtc) {
   }
   // leave channel
   rtc.client.leave(function () {
-    // close stream
-    rtc.localStream.close();
     // stop stream
     rtc.localStream.stop();
+    // close stream
+    rtc.localStream.close();
     while (rtc.remoteStreams.length > 0) {
       var stream = rtc.remoteStreams.shift();
-      var id = stream.getId()
+      var id = stream.getId();
       stream.stop();
-      remoteView(id);
+      removeView(id);
     }
     rtc.localStream = null;
     rtc.remoteStreams = [];
@@ -339,10 +332,10 @@ function leave (rtc) {
     console.log("client leaves channel success");
     rtc.published = false;
     rtc.joined = false;
-    Toast.notice("leave success")
+    Toast.notice("leave success");
   }, function (err) {
     console.log("channel leave failed");
-    Toast.error("leave success")
+    Toast.error("leave success");
     console.error(err);
   })
 }

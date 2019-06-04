@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts --mode development",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts --mode development",
     "build": "cross-env NODE_ENV=production webpack --config ./scripts --mode production"
   },
   "dependencies": {

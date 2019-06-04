@@ -1,0 +1,28 @@
+Meta:
+  name: Web Tutorial - 1to1
+  lang: en
+  description: |
+    This tutorial shows you how to quickly create an basic video communication using the Agora sample app.
+Prerequisites:
+  - A web browser
+
+QuickStart:
+  description:
+    This section shows you how to prepare, and run the sample application.
+  sections:
+    - title: Obtain an App ID
+      content: |
+        To build and run the sample application, get an App ID:
+        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
+        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
+        3. Copy the **App ID** from the Dashboard.
+        4. Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+    - title: Intergrate Agora Video SDK
+      content: |
+        1. Open **index.html** file by web browser. Then Enter Valid APPID, Channel, UID and click **Join Room**
+Resources:
+  document: https://docs.agora.io/en/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT
