@@ -2,7 +2,6 @@ package io.agora.openvcall.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -15,23 +14,15 @@ import android.view.SurfaceView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
-
 import io.agora.openvcall.R;
 import io.agora.propeller.Constant;
 import io.agora.rtc.Constants;
-import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 
-import static io.agora.rtc.Constants.LOG_FILTER_DEBUG;
-
 public class WorkerThread extends Thread {
     private final static Logger log = LoggerFactory.getLogger(WorkerThread.class);
-
-    private final static String TAG = WorkerThread.class.getSimpleName();
 
     private final Context mContext;
 
@@ -78,7 +69,7 @@ public class WorkerThread extends Thread {
                     break;
                 case ACTION_WORKER_CONFIG_ENGINE:
                     Object[] configData = (Object[]) msg.obj;
-                    mWorkerThread.configEngine((VideoEncoderConfiguration.VideoDimensions) configData[0], (String) configData[1], (String) configData[2]);
+                    mWorkerThread.configEngine((VideoEncoderConfiguration.VideoDimensions) configData[0], (VideoEncoderConfiguration.FRAME_RATE) configData[1], (String) configData[2], (String) configData[3]);
                     break;
                 case ACTION_WORKER_PREVIEW:
                     Object[] previewData = (Object[]) msg.obj;
@@ -121,14 +112,20 @@ public class WorkerThread extends Thread {
     private RtcEngine mRtcEngine;
 
     public final void enablePreProcessor() {
+        if (Constant.BEAUTY_EFFECT_ENABLED) {
+            mRtcEngine.setBeautyEffectOptions(true, Constant.BEAUTY_OPTIONS);
+        }
     }
 
-    public final void setPreParameters(float lightness, int smoothness) {
-        Constant.PRP_DEFAULT_LIGHTNESS = lightness;
-        Constant.PRP_DEFAULT_SMOOTHNESS = smoothness;
+    public final void setBeautyEffectParameters(float lightness, float smoothness, float redness) {
+        Constant.BEAUTY_OPTIONS.lighteningLevel = lightness;
+        Constant.BEAUTY_OPTIONS.smoothnessLevel = smoothness;
+        Constant.BEAUTY_OPTIONS.rednessLevel = redness;
     }
 
     public final void disablePreProcessor() {
+        // do not support null when setBeautyEffectOptions to false
+        mRtcEngine.setBeautyEffectOptions(false, Constant.BEAUTY_OPTIONS);
     }
 
     public final void joinChannel(final String channel, int uid) {
@@ -180,18 +177,17 @@ public class WorkerThread extends Thread {
 
     private final MyEngineEventHandler mEngineEventHandler;
 
-    public final void configEngine(VideoEncoderConfiguration.VideoDimensions videoDimension, String encryptionKey, String encryptionMode) {
+    public final void configEngine(VideoEncoderConfiguration.VideoDimensions videoDimension, VideoEncoderConfiguration.FRAME_RATE fps, String encryptionKey, String encryptionMode) {
         if (Thread.currentThread() != this) {
-            log.warn("configEngine() - worker thread asynchronously " + videoDimension + " " + encryptionMode);
+            log.warn("configEngine() - worker thread asynchronously " + videoDimension + " " + fps + " " + encryptionMode);
             Message envelop = new Message();
             envelop.what = ACTION_WORKER_CONFIG_ENGINE;
-            envelop.obj = new Object[]{videoDimension, encryptionKey, encryptionMode};
+            envelop.obj = new Object[]{videoDimension, fps, encryptionKey, encryptionMode};
             mWorkerHandler.sendMessage(envelop);
             return;
         }
 
         ensureRtcEngineReadyLock();
-        mEngineConfig.mVideoDimension = videoDimension;
 
         if (!TextUtils.isEmpty(encryptionKey)) {
             mRtcEngine.setEncryptionMode(encryptionMode);
@@ -201,11 +197,11 @@ public class WorkerThread extends Thread {
 
         // mRtcEngine.setVideoProfile(mEngineConfig.mVideoProfile, false); // for sdk earlier than 2.3.0
         mRtcEngine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(videoDimension,
-                VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
+                fps,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT));
 
-        log.debug("configEngine " + mEngineConfig.mVideoDimension + " " + encryptionMode);
+        log.debug("configEngine " + videoDimension + " " + fps + " " + encryptionMode);
     }
 
     public final void preview(boolean start, SurfaceView view, int uid) {

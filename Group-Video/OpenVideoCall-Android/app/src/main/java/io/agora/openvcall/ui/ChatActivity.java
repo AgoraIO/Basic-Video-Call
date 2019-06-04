@@ -3,23 +3,20 @@ package io.agora.openvcall.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.PorterDuff;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.ViewStub;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,7 +26,6 @@ import android.widget.TextView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -43,7 +39,7 @@ import io.agora.openvcall.model.User;
 import io.agora.propeller.Constant;
 import io.agora.propeller.UserStatusData;
 import io.agora.propeller.VideoInfoData;
-import io.agora.propeller.preprocessing.VideoPreProcessing;
+import io.agora.propeller.ui.RecyclerItemClickListener;
 import io.agora.propeller.ui.RtlLinearLayoutManager;
 import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
@@ -55,44 +51,82 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
+
     private final static Logger log = LoggerFactory.getLogger(ChatActivity.class);
+
     // should only be modified under UI thread
     private final HashMap<Integer, SurfaceView> mUidsList = new HashMap<>(); // uid = 0 || uid == EngineConfig.mUid
     public int mLayoutType = LAYOUT_TYPE_DEFAULT;
     private GridVideoViewContainer mGridVideoViewContainer;
     private RelativeLayout mSmallVideoViewDock;
+
     private volatile boolean mVideoMuted = false;
     private volatile boolean mAudioMuted = false;
-    private volatile boolean mIsPlay = false;
-    private volatile int mAudioRouting = -1; // Default
+    private volatile boolean mMixingAudio = false;
+
+    private volatile int mAudioRouting = Constants.AUDIO_ROUTE_DEFAULT;
+
+    private volatile boolean mFullScreen = false;
+
     private boolean mIsLandscape = false;
+
     private InChannelMessageListAdapter mMsgAdapter;
     private ArrayList<Message> mMsgList;
-    private int mDataStreamId;
-    private VideoPreProcessing mVideoPreProcessing;
+
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeActivityContentShownUnderStatusBar();
         setContentView(R.layout.activity_chat);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            ab.setCustomView(R.layout.ard_agora_actionbar_with_title);
+        }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return false;
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_call, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return false;
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_options:
+                showCallOptions();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
     protected void initUIandEvent() {
+        event().addEventHandler(this);
+
         Intent i = getIntent();
 
         String channelName = i.getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME);
+
+        // programmatically show channel name
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            TextView channelNameView = ((TextView) findViewById(R.id.ovc_page_title));
+            channelNameView.setText(channelName);
+            channelNameView.setTextColor(getResources().getColor(R.color.dark_black));
+        }
+
+        // programmatically layout ui below of status bar/action bar
+        LinearLayout eopsContainer = findViewById(R.id.extra_ops_container);
+        RelativeLayout.MarginLayoutParams eofmp = (RelativeLayout.MarginLayoutParams) eopsContainer.getLayoutParams();
+        eofmp.topMargin = getStatusBarHeight() + getActionBarHeight() + getResources().getDimensionPixelOffset(R.dimen.activity_vertical_margin) / 2; // status bar + action bar + divider
 
         final String encryptionKey = getIntent().getStringExtra(ConstantApp.ACTION_KEY_ENCRYPTION_KEY);
         final String encryptionMode = getIntent().getStringExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE);
@@ -100,23 +134,20 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         doConfigEngine(encryptionKey, encryptionMode);
 
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container);
-        mGridVideoViewContainer.setItemEventHandler(new VideoViewEventListener() {
+        mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
+
             @Override
-            public void onItemDoubleClick(View v, Object item) {
-                log.debug("onItemDoubleClick " + v + " " + item + " " + mLayoutType);
+            public void onItemClick(View view, int position) {
+                onBigVideoViewClicked(view, position);
+            }
 
-                if (mUidsList.size() < 2) {
-                    return;
-                }
+            @Override
+            public void onItemLongClick(View view, int position) {
+            }
 
-                UserStatusData user = (UserStatusData) item;
-                int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-
-                if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
-                    switchToSmallVideoView(uid);
-                } else {
-                    switchToDefaultVideoView();
-                }
+            @Override
+            public void onItemDoubleClick(View view, int position) {
+                onBigVideoViewDoubleClicked(view, position);
             }
         });
 
@@ -130,18 +161,151 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
         worker().preview(true, surfaceV, 0);
 
+        initMessageList();
+
+        notifyMessageChanged(new Message(new User(0, null), "start join " + channelName + " as " + (config().mUid & 0xFFFFFFFFL)));
+
         worker().joinChannel(channelName, config().mUid);
 
-        TextView textChannelName = (TextView) findViewById(R.id.channel_name);
-        textChannelName.setText(channelName);
-
         optional();
+    }
 
-        LinearLayout bottomContainer = (LinearLayout) findViewById(R.id.bottom_container);
+    private void onBigVideoViewClicked(View view, int position) {
+        log.debug("onItemClick " + view + " " + position + " " + mLayoutType);
+
+        toggleFullscreen();
+    }
+
+    private void onBigVideoViewDoubleClicked(View view, int position) {
+        log.debug("onItemDoubleClick " + view + " " + position + " " + mLayoutType);
+
+        if (mUidsList.size() < 2) {
+            return;
+        }
+
+        UserStatusData user = mGridVideoViewContainer.getItem(position);
+        int uid = (user.mUid == 0) ? config().mUid : user.mUid;
+
+        if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
+            switchToSmallVideoView(uid);
+        } else {
+            switchToDefaultVideoView();
+        }
+    }
+
+    private void onSmallVideoViewDoubleClicked(View view, int position) {
+        log.debug("onItemDoubleClick small " + view + " " + position + " " + mLayoutType);
+
+        switchToDefaultVideoView();
+    }
+
+    private void makeActivityContentShownUnderStatusBar() {
+        // https://developer.android.com/training/system-ui/status
+        // May fail on some kinds of devices
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                uiOptions |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+
+            decorView.setSystemUiVisibility(uiOptions);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setStatusBarColor(getResources().getColor(android.R.color.white));
+            }
+        }
+    }
+
+    private void showOrHideStatusBar(boolean hide) {
+        // May fail on some kinds of devices
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            View decorView = getWindow().getDecorView();
+            int uiOptions = decorView.getSystemUiVisibility();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                uiOptions |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+
+            if (hide) {
+                uiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+            } else {
+                uiOptions ^= View.SYSTEM_UI_FLAG_FULLSCREEN;
+            }
+
+            decorView.setSystemUiVisibility(uiOptions);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setStatusBarColor(getResources().getColor(hide ? android.R.color.transparent : android.R.color.white));
+            }
+        }
+    }
+
+    private void toggleFullscreen() {
+        mFullScreen = !mFullScreen;
+
+        showOrHideCtrlViews(mFullScreen);
+        showOrHideStatusBar(mFullScreen);
+    }
+
+    private void showOrHideCtrlViews(boolean hide) {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            if (hide) {
+                ab.hide();
+            } else {
+                ab.show();
+            }
+        }
+
+        findViewById(R.id.extra_ops_container).setVisibility(hide ? View.INVISIBLE : View.VISIBLE);
+        findViewById(R.id.bottom_action_container).setVisibility(hide ? View.INVISIBLE : View.VISIBLE);
+        findViewById(R.id.msg_list).setVisibility(hide ? View.INVISIBLE : (Constant.DEBUG_INFO_ENABLED ? View.VISIBLE : View.INVISIBLE));
+    }
+
+    private void relayoutForVirtualKeyPad(int orientation) {
+        int virtualKeyHeight = virtualKeyHeight();
+
+        LinearLayout eopsContainer = findViewById(R.id.extra_ops_container);
+        FrameLayout.MarginLayoutParams eofmp = (FrameLayout.MarginLayoutParams) eopsContainer.getLayoutParams();
+
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            eofmp.rightMargin = virtualKeyHeight;
+            eofmp.leftMargin = 0;
+        } else {
+            eofmp.leftMargin = 0;
+            eofmp.rightMargin = 0;
+        }
+
+        LinearLayout bottomContainer = findViewById(R.id.bottom_container);
         FrameLayout.MarginLayoutParams fmp = (FrameLayout.MarginLayoutParams) bottomContainer.getLayoutParams();
-        fmp.bottomMargin = virtualKeyHeight() + 16;
 
-        initMessageList();
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fmp.bottomMargin = 0;
+            fmp.rightMargin = virtualKeyHeight;
+            fmp.leftMargin = 0;
+        } else {
+            fmp.bottomMargin = virtualKeyHeight;
+            fmp.leftMargin = 0;
+            fmp.rightMargin = 0;
+        }
+    }
+
+    private static final int CALL_OPTIONS_REQUEST = 3222;
+
+    public synchronized void showCallOptions() {
+        Intent i = new Intent(this, CallOptionsActivity.class);
+        startActivityForResult(i, CALL_OPTIONS_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CALL_OPTIONS_REQUEST) {
+            RecyclerView msgListView = (RecyclerView) findViewById(R.id.msg_list);
+            msgListView.setVisibility(Constant.DEBUG_INFO_ENABLED ? View.VISIBLE : View.INVISIBLE);
+        }
     }
 
     public void onClickHideIME(View view) {
@@ -150,7 +314,6 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         closeIME(findViewById(R.id.msg_content));
 
         findViewById(R.id.msg_input_container).setVisibility(View.GONE);
-        findViewById(R.id.bottom_action_end_call).setVisibility(View.VISIBLE);
         findViewById(R.id.bottom_action_container).setVisibility(View.VISIBLE);
     }
 
@@ -180,114 +343,67 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         mMsgAdapter.notifyDataSetChanged();
     }
 
-    private void sendChannelMsg(String msgStr) {
-        RtcEngine rtcEngine = rtcEngine();
-        if (mDataStreamId <= 0) {
-            mDataStreamId = rtcEngine.createDataStream(true, true); // boolean reliable, boolean ordered
-        }
-
-        if (mDataStreamId < 0) {
-            String errorMsg = "Create data stream error happened " + mDataStreamId;
-            log.warn(errorMsg);
-            showLongToast(errorMsg);
-            return;
-        }
-
-        byte[] encodedMsg;
-        try {
-            encodedMsg = msgStr.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            encodedMsg = msgStr.getBytes();
-        }
-
-        rtcEngine.sendStreamMessage(mDataStreamId, encodedMsg);
-    }
-
     private void optional() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
     }
 
     private void optionalDestroy() {
     }
 
-    private int getVideoProfileIndex() {
+    private int getVideoEncResolutionIndex() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        int profileIndex = pref.getInt(ConstantApp.PrefManager.PREF_PROPERTY_PROFILE_IDX, ConstantApp.DEFAULT_PROFILE_IDX);
-        if (profileIndex > ConstantApp.VIDEO_DIMENSIONS.length - 1) {
-            profileIndex = ConstantApp.DEFAULT_PROFILE_IDX;
+        int videoEncResolutionIndex = pref.getInt(ConstantApp.PrefManager.PREF_PROPERTY_VIDEO_ENC_RESOLUTION, ConstantApp.DEFAULT_VIDEO_ENC_RESOLUTION_IDX);
+        if (videoEncResolutionIndex > ConstantApp.VIDEO_DIMENSIONS.length - 1) {
+            videoEncResolutionIndex = ConstantApp.DEFAULT_VIDEO_ENC_RESOLUTION_IDX;
 
             // save the new value
             SharedPreferences.Editor editor = pref.edit();
-            editor.putInt(ConstantApp.PrefManager.PREF_PROPERTY_PROFILE_IDX, profileIndex);
+            editor.putInt(ConstantApp.PrefManager.PREF_PROPERTY_VIDEO_ENC_RESOLUTION, videoEncResolutionIndex);
             editor.apply();
         }
-        return profileIndex;
+        return videoEncResolutionIndex;
+    }
+
+    private int getVideoEncFpsIndex() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int videoEncFpsIndex = pref.getInt(ConstantApp.PrefManager.PREF_PROPERTY_VIDEO_ENC_FPS, ConstantApp.DEFAULT_VIDEO_ENC_FPS_IDX);
+        if (videoEncFpsIndex > ConstantApp.VIDEO_FPS.length - 1) {
+            videoEncFpsIndex = ConstantApp.DEFAULT_VIDEO_ENC_FPS_IDX;
+
+            // save the new value
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putInt(ConstantApp.PrefManager.PREF_PROPERTY_VIDEO_ENC_FPS, videoEncFpsIndex);
+            editor.apply();
+        }
+        return videoEncFpsIndex;
     }
 
     private void doConfigEngine(String encryptionKey, String encryptionMode) {
-        VideoEncoderConfiguration.VideoDimensions videoDimension = ConstantApp.VIDEO_DIMENSIONS[getVideoProfileIndex()];
+        VideoEncoderConfiguration.VideoDimensions videoDimension = ConstantApp.VIDEO_DIMENSIONS[getVideoEncResolutionIndex()];
+        VideoEncoderConfiguration.FRAME_RATE videoFps = ConstantApp.VIDEO_FPS[getVideoEncFpsIndex()];
 
-        worker().configEngine(videoDimension, encryptionKey, encryptionMode);
+        worker().configEngine(videoDimension, videoFps, encryptionKey, encryptionMode);
     }
 
-    public void onBtn0Clicked(View view) {
-        log.info("onBtn0Clicked " + view + " " + mVideoMuted + " " + mAudioMuted);
-        showMessageEditContainer();
-    }
-
-    private void showMessageEditContainer() {
-        findViewById(R.id.bottom_action_container).setVisibility(View.GONE);
-        findViewById(R.id.bottom_action_end_call).setVisibility(View.GONE);
-        findViewById(R.id.msg_input_container).setVisibility(View.VISIBLE);
-
-        EditText edit = (EditText) findViewById(R.id.msg_content);
-
-        edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND
-                        || (event != null && event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-                    String msgStr = v.getText().toString();
-                    if (TextUtils.isEmpty(msgStr)) {
-                        return false;
-                    }
-                    sendChannelMsg(msgStr);
-
-                    v.setText("");
-
-                    Message msg = new Message(Message.MSG_TYPE_TEXT,
-                            new User(config().mUid, String.valueOf(config().mUid)), msgStr);
-                    notifyMessageChanged(msg);
-
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        openIME(edit);
-    }
-
-    public void onCustomizedFunctionClicked(View view) {
-        log.info("onCustomizedFunctionClicked " + view + " " + mVideoMuted + " " + mAudioMuted + " " + mAudioRouting);
-        if (mVideoMuted) {
-            onSwitchSpeakerClicked();
-        } else {
-            onSwitchCameraClicked();
-        }
-    }
-
-    private void onSwitchCameraClicked() {
+    public void onSwitchCameraClicked(View view) {
         RtcEngine rtcEngine = rtcEngine();
         rtcEngine.switchCamera();
     }
 
-    private void onSwitchSpeakerClicked() {
+    public void onSwitchSpeakerClicked(View view) {
         RtcEngine rtcEngine = rtcEngine();
-        rtcEngine.setEnableSpeakerphone(mAudioRouting != 3);
+        rtcEngine.setEnableSpeakerphone(mAudioRouting != Constants.AUDIO_ROUTE_SPEAKERPHONE);
+    }
+
+    public void onFilterClicked(View view) {
+        Constant.BEAUTY_EFFECT_ENABLED = ! Constant.BEAUTY_EFFECT_ENABLED;
+
+        if (Constant.BEAUTY_EFFECT_ENABLED) {
+            worker().setBeautyEffectParameters(Constant.BEAUTY_EFFECT_DEFAULT_LIGHTNESS, Constant.BEAUTY_EFFECT_DEFAULT_SMOOTHNESS, Constant.BEAUTY_EFFECT_DEFAULT_REDNESS);
+            worker().enablePreProcessor();
+        } else {
+            worker().disablePreProcessor();
+        }
     }
 
     @Override
@@ -300,41 +416,18 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         mUidsList.clear();
     }
 
-    @Override
-    protected void workerThreadReady() {
-        event().addEventHandler(this);
-    }
-
     private void doLeaveChannel() {
         worker().leaveChannel(config().mChannel);
         worker().preview(false, null, 0);
     }
 
-    public void onEndCallClicked(View view) {
-        log.info("onEndCallClicked " + view);
+    public void onHangupClicked(View view) {
+        log.info("onHangupClicked " + view);
 
         finish();
     }
 
-    public void onBtnNClicked(View view) {
-        if (mVideoPreProcessing == null) {
-            mVideoPreProcessing = new VideoPreProcessing();
-        }
-
-        ImageView iv = (ImageView) view;
-        Object showing = view.getTag();
-        if (showing != null && (Boolean) showing) {
-            mVideoPreProcessing.enablePreProcessing(false);
-            iv.setTag(null);
-            iv.clearColorFilter();
-        } else {
-            mVideoPreProcessing.enablePreProcessing(true);
-            iv.setTag(true);
-            iv.setColorFilter(getResources().getColor(R.color.agora_blue), PorterDuff.Mode.MULTIPLY);
-        }
-    }
-
-    public void onVoiceChatClicked(View view) {
+    public void onVideoMuteClicked(View view) {
         log.info("onVoiceChatClicked " + view + " " + mUidsList.size() + " video_status: " + mVideoMuted + " audio_status: " + mAudioMuted);
         if (mUidsList.size() == 0) {
             return;
@@ -358,15 +451,9 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
         ImageView iv = (ImageView) view;
 
-        iv.setImageResource(mVideoMuted ? R.drawable.btn_video : R.drawable.btn_voice);
+        iv.setImageResource(mVideoMuted ? R.drawable.btn_camera_off : R.drawable.btn_camera);
 
         hideLocalView(mVideoMuted);
-
-        if (mVideoMuted) {
-            resetToVideoDisabledUI();
-        } else {
-            resetToVideoEnabledUI();
-        }
     }
 
     private SurfaceView getLocalView() {
@@ -400,22 +487,6 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         }
     }
 
-    private void resetToVideoEnabledUI() {
-        ImageView iv = (ImageView) findViewById(R.id.customized_function_id);
-        iv.setImageResource(R.drawable.btn_switch_camera);
-        iv.clearColorFilter();
-
-        notifyHeadsetPlugged(mAudioRouting);
-    }
-
-    private void resetToVideoDisabledUI() {
-        ImageView iv = (ImageView) findViewById(R.id.customized_function_id);
-        iv.setImageResource(R.drawable.btn_speaker);
-        iv.clearColorFilter();
-
-        notifyHeadsetPlugged(mAudioRouting);
-    }
-
     public void onVoiceMuteClicked(View view) {
         log.info("onVoiceMuteClicked " + view + " " + mUidsList.size() + " video_status: " + mVideoMuted + " audio_status: " + mAudioMuted);
         if (mUidsList.size() == 0) {
@@ -427,35 +498,45 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
         ImageView iv = (ImageView) view;
 
-        if (mAudioMuted) {
-            iv.setColorFilter(getResources().getColor(R.color.agora_blue), PorterDuff.Mode.MULTIPLY);
-        } else {
-            iv.clearColorFilter();
-        }
+        iv.setImageResource(mAudioMuted ? R.drawable.btn_microphone_off : R.drawable.btn_microphone);
     }
 
-    public void onPlayClicked(View view) {
+    public void onMixingAudioClicked(View view) {
+        log.info("onMixingAudioClicked " + view + " " + mUidsList.size() + " video_status: " + mVideoMuted + " audio_status: " + mAudioMuted + " mixing_audio: " + mMixingAudio);
+
         if (mUidsList.size() == 0) {
             return;
         }
 
+        mMixingAudio = !mMixingAudio;
+
         RtcEngine rtcEngine = rtcEngine();
-
-        ImageView iv = (ImageView) view;
-
-        if (!mIsPlay) {
-            rtcEngine.startAudioMixing("/assets/qt.mp3", false, false, -1);
-            iv.setImageResource(R.drawable.stop);
-            mIsPlay = true;
+        if (mMixingAudio) {
+            rtcEngine.startAudioMixing(Constant.MIX_FILE_PATH, false, false, -1);
         } else {
             rtcEngine.stopAudioMixing();
-            iv.setImageResource(R.drawable.play);
-            mIsPlay = false;
         }
+
+        ImageView iv = (ImageView) view;
+        iv.setImageResource(mMixingAudio ? R.drawable.btn_audio_mixing : R.drawable.btn_audio_mixing_off);
+    }
+
+    @Override
+    public void onUserJoined(int uid) {
+        log.debug("onUserJoined " + (uid & 0xFFFFFFFFL));
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                notifyMessageChanged(new Message(new User(0, null), "user " + (uid & 0xFFFFFFFFL) + " joined"));
+            }
+        });
     }
 
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
+        log.debug("onFirstRemoteVideoDecoded " + (uid & 0xFFFFFFFFL) + " " + width + " " + height + " " + elapsed);
+
         doRenderRemoteUi(uid);
     }
 
@@ -489,6 +570,8 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
                     log.debug("doRenderRemoteUi LAYOUT_TYPE_SMALL " + (uid & 0xFFFFFFFFL) + " " + (bigBgUid & 0xFFFFFFFFL));
                     switchToSmallVideoView(bigBgUid);
                 }
+
+                notifyMessageChanged(new Message(new User(0, null), "video from user " + (uid & 0xFFFFFFFFL) + " decoded"));
             }
         });
     }
@@ -504,6 +587,8 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
                     return;
                 }
 
+                notifyMessageChanged(new Message(new User(0, null), "join " + channel + " success as " + (uid & 0xFFFFFFFFL) + " in " + elapsed + "ms"));
+
                 SurfaceView local = mUidsList.remove(0);
 
                 if (local == null) {
@@ -517,6 +602,8 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
     @Override
     public void onUserOffline(int uid, int reason) {
+        log.debug("onUserOffline " + (uid & 0xFFFFFFFFL) + " " + reason);
+
         doRemoveRemoteUi(uid);
     }
 
@@ -567,10 +654,9 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
                     if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
                         mGridVideoViewContainer.addVideoInfo(stats.uid, new VideoInfoData(stats.width, stats.height, stats.delay, stats.receivedFrameRate, stats.receivedBitrate));
                         int uid = config().mUid;
-                        int profileIndex = getVideoProfileIndex();
+                        int profileIndex = getVideoEncResolutionIndex();
                         String resolution = getResources().getStringArray(R.array.string_array_resolutions)[profileIndex];
                         String fps = getResources().getStringArray(R.array.string_array_frame_rate)[profileIndex];
-                        String bitrate = getResources().getStringArray(R.array.string_array_bit_rate)[profileIndex];
 
                         String[] rwh = resolution.split("x");
                         int width = Integer.valueOf(rwh[0]);
@@ -578,7 +664,7 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
                         mGridVideoViewContainer.addVideoInfo(uid, new VideoInfoData(width > height ? width : height,
                                 width > height ? height : width,
-                                0, Integer.valueOf(fps), Integer.valueOf(bitrate)));
+                                0, Integer.valueOf(fps), Integer.valueOf(0)));
                     }
                 } else {
                     mGridVideoViewContainer.cleanVideoInfo();
@@ -673,6 +759,8 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
                 } else {
                     switchToSmallVideoView(bigBgUid);
                 }
+
+                notifyMessageChanged(new Message(new User(0, null), "user " + (uid & 0xFFFFFFFFL) + " left"));
             }
         });
     }
@@ -740,12 +828,7 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
         if (mSmallVideoViewAdapter == null) {
             create = true;
-            mSmallVideoViewAdapter = new SmallVideoViewAdapter(this, config().mUid, exceptUid, mUidsList, new VideoViewEventListener() {
-                @Override
-                public void onItemDoubleClick(View v, Object item) {
-                    switchToDefaultVideoView();
-                }
-            });
+            mSmallVideoViewAdapter = new SmallVideoViewAdapter(this, config().mUid, exceptUid, mUidsList);
             mSmallVideoViewAdapter.setHasStableIds(true);
         }
         recycler.setHasFixedSize(true);
@@ -759,6 +842,22 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         }
         recycler.addItemDecoration(new SmallVideoViewDecoration());
         recycler.setAdapter(mSmallVideoViewAdapter);
+        recycler.addOnItemTouchListener(new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemDoubleClick(View view, int position) {
+                onSmallVideoViewDoubleClicked(view, position);
+            }
+        }));
 
         recycler.setDrawingCacheEnabled(true);
         recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
@@ -787,15 +886,11 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
         mAudioRouting = routing;
 
-        if (!mVideoMuted) {
-            return;
-        }
-
-        ImageView iv = (ImageView) findViewById(R.id.customized_function_id);
-        if (mAudioRouting == 3) { // Speakerphone
-            iv.setColorFilter(getResources().getColor(R.color.agora_blue), PorterDuff.Mode.MULTIPLY);
+        ImageView iv = (ImageView) findViewById(R.id.switch_speaker_id);
+        if (mAudioRouting == Constants.AUDIO_ROUTE_SPEAKERPHONE) {
+            iv.setImageResource(R.drawable.btn_speaker);
         } else {
-            iv.clearColorFilter();
+            iv.setImageResource(R.drawable.btn_speaker_off);
         }
     }
 
@@ -803,6 +898,7 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mIsLandscape = newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE;
+
         if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
             switchToDefaultVideoView();
         } else if (mSmallVideoViewAdapter != null) {

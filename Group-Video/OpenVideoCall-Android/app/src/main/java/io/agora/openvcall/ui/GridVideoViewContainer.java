@@ -9,14 +9,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 
 import io.agora.propeller.UserStatusData;
 import io.agora.propeller.VideoInfoData;
+import io.agora.propeller.ui.RecyclerItemClickListener;
 
 public class GridVideoViewContainer extends RecyclerView {
+
+    private final static Logger log = LoggerFactory.getLogger(GridVideoViewContainer.class);
+
     private GridVideoViewContainerAdapter mGridVideoViewContainerAdapter;
-    private VideoViewEventListener mEventListener;
 
     public GridVideoViewContainer(Context context) {
         super(context);
@@ -30,13 +36,13 @@ public class GridVideoViewContainer extends RecyclerView {
         super(context, attrs, defStyle);
     }
 
-    public void setItemEventHandler(VideoViewEventListener listener) {
-        this.mEventListener = listener;
+    public void setItemEventHandler(RecyclerItemClickListener.OnItemClickListener listener) {
+        this.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), listener));
     }
 
     private boolean initAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {
         if (mGridVideoViewContainerAdapter == null) {
-            mGridVideoViewContainerAdapter = new GridVideoViewContainerAdapter(activity, localUid, uids, mEventListener);
+            mGridVideoViewContainerAdapter = new GridVideoViewContainerAdapter(activity, localUid, uids);
             mGridVideoViewContainerAdapter.setHasStableIds(true);
             return true;
         }

@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MyEngineEventHandler {
-    private static final String TAG = MyEngineEventHandler.class.getSimpleName();
 
     public MyEngineEventHandler(Context ctx, EngineConfig config) {
         this.mContext = ctx;
@@ -57,6 +56,15 @@ public class MyEngineEventHandler {
 
         @Override
         public void onUserJoined(int uid, int elapsed) {
+            log.debug("onUserJoined " + (uid & 0xFFFFFFFFL) + elapsed);
+
+            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
+            while (it.hasNext()) {
+                AGEventHandler handler = it.next();
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onUserJoined(uid);
+                }
+            }
         }
 
         @Override
@@ -202,7 +210,7 @@ public class MyEngineEventHandler {
 
         @Override
         public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
-            log.debug("onJoinChannelSuccess " + channel + " " + uid + " " + (uid & 0xFFFFFFFFL) + " " + elapsed);
+            log.debug("onJoinChannelSuccess " + channel + " " + (uid & 0xFFFFFFFFL) + "(" + uid + ") " + elapsed);
 
             mConfig.mUid = uid;
 

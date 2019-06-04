@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.ChatActivity"
-             android:keepScreenOn="true">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    tools:context=".ui.ChatActivity">
 
     <io.agora.openvcall.ui.GridVideoViewContainer
         android:id="@+id/grid_video_view_container"
@@ -13,141 +13,147 @@
 
     <ViewStub
         android:id="@id/small_video_view_dock"
-        android:inflatedId="@id/small_video_view_dock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:inflatedId="@id/small_video_view_dock"
         android:layout="@layout/small_video_view_dock" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/channel_name"
-            android:layout_width="wrap_content"
+        <io.agora.propeller.ui.AGLinearLayout
+            android:id="@+id/extra_ops_container"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="6dp"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/white" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:onClick="onSwitchCameraClicked"
+                android:scaleType="center"
+                android:src="@drawable/btn_switch_camera_white" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:onClick="onMixingAudioClicked"
+                android:scaleType="center"
+                android:src="@drawable/btn_audio_mixing_off" />
+
+        </io.agora.propeller.ui.AGLinearLayout>
 
         <io.agora.propeller.ui.AGLinearLayout
             android:id="@+id/bottom_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/bottom_action_end_call"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="center"
-                android:src="@drawable/btn_endcall"
-                android:onClick="onEndCallClicked" />
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/bottom_action_container"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:paddingRight="8dp">
 
                 <ImageView
-                    android:layout_width="54dp"
+                    android:id="@id/switch_speaker_id"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
+                    android:onClick="onSwitchSpeakerClicked"
                     android:scaleType="center"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/btn_message"
-                    android:onClick="onBtn0Clicked" />
+                    android:src="@drawable/btn_speaker" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_centerInParent="true">
-
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/btn_voice"
-                        android:onClick="onVoiceChatClicked" />
-
-                    <ImageView
-                        android:id="@id/customized_function_id"
-                        android:layout_width="54dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/btn_switch_camera"
-                        android:onClick="onCustomizedFunctionClicked" />
-
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@drawable/btn_mute"
-                        android:onClick="onVoiceMuteClicked" />
-
-                    <ImageView
-                        android:id="@+id/img_audio_control"
-                        android:layout_width="54dp"
-                        android:layout_height="match_parent"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:src="@drawable/play"
-                        android:onClick="onPlayClicked" />
-
-                </LinearLayout>
+                    android:layout_weight="20" />
 
                 <ImageView
-                    android:layout_width="54dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
+                    android:onClick="onFilterClicked"
                     android:scaleType="center"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/btn_filter"
-                    android:onClick="onBtnNClicked" />
+                    android:src="@drawable/btn_filter" />
 
-            </RelativeLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:onClick="onHangupClicked"
+                    android:scaleType="center"
+                    android:src="@drawable/btn_hangup" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:onClick="onVideoMuteClicked"
+                    android:scaleType="center"
+                    android:src="@drawable/btn_camera" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:onClick="onVoiceMuteClicked"
+                    android:scaleType="center"
+                    android:src="@drawable/btn_microphone" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/msg_input_container"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
+                android:background="@color/dark_black"
                 android:orientation="horizontal"
-                android:background="@color/dark_black">
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="54dp"
                     android:layout_height="match_parent"
-                    android:scaleType="center"
                     android:onClick="onClickHideIME"
+                    android:scaleType="center"
                     android:src="@drawable/btn_keyboard_hide" />
 
                 <EditText
                     android:id="@+id/msg_content"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:background="@android:color/transparent"
+                    android:hint="@string/msg_say_something"
+                    android:imeActionLabel="@string/label_send"
+                    android:imeOptions="actionSend"
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@android:color/white"
-                    android:layout_height="match_parent"
-                    android:hint="@string/msg_say_something"
-                    android:textColorHint="@android:color/white"
-                    android:imeOptions="actionSend"
-                    android:imeActionLabel="@string/label_send" />
+                    android:textColorHint="@android:color/white" />
 
             </LinearLayout>
 

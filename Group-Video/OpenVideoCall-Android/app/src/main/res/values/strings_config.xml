@@ -25,12 +25,12 @@
 
     <string-array
         name="string_array_frame_rate">
-        <item>15</item> // 120P
-        <item>15</item> // 180P
-        <item>15</item> // 240P
-        <item>15</item> // 360P
-        <item>15</item> // 480P
-        <item>15</item> // 720P
+        <item>1</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item> // the default one
+        <item>24</item>
+        <item>30</item>
     </string-array>
 
     <string-array

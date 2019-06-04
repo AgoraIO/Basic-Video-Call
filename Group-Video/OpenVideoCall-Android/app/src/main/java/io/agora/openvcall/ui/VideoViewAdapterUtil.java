@@ -159,7 +159,7 @@ public class VideoViewAdapterUtil {
         if (user.mStatus != null) {
             if ((user.mStatus & UserStatusData.VIDEO_MUTED) != 0) {
                 myHolder.mAvatar.setVisibility(View.VISIBLE);
-                myHolder.mMaskView.setBackgroundColor(context.getResources().getColor(R.color.dark_gray));
+                myHolder.mMaskView.setBackgroundColor(context.getResources().getColor(android.R.color.darker_gray));
             } else {
                 myHolder.mAvatar.setVisibility(View.GONE);
                 myHolder.mMaskView.setBackgroundColor(Color.TRANSPARENT);

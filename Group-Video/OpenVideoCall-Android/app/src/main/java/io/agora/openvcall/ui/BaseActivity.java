@@ -2,6 +2,7 @@ package io.agora.openvcall.ui;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +10,6 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewConfigurationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.*;
@@ -52,7 +52,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void deInitUIandEvent();
 
-    protected abstract void workerThreadReady();
+    protected void workerThreadReady() {
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -197,8 +198,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected int virtualKeyHeight() {
-        boolean hasPermanentMenuKey = ViewConfigurationCompat.hasPermanentMenuKey(ViewConfiguration.get(getApplication()));
+        boolean hasPermanentMenuKey = ViewConfiguration.get(getApplication()).hasPermanentMenuKey();
+        if (hasPermanentMenuKey) {
+            return 0;
+        }
 
+        // Also can use getResources().getIdentifier("navigation_bar_height", "dimen", "android");
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = getWindowManager().getDefaultDisplay();
 
@@ -209,10 +214,65 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         int fullHeight = metrics.heightPixels;
+        int fullWidth = metrics.widthPixels;
+
+        if (fullHeight < fullWidth) {
+            fullHeight ^= fullWidth;
+            fullWidth ^= fullHeight;
+            fullHeight ^= fullWidth;
+        }
 
         display.getMetrics(metrics);
 
-        return fullHeight - metrics.heightPixels;
+        int newFullHeight = metrics.heightPixels;
+        int newFullWidth = metrics.widthPixels;
+
+        if (newFullHeight < newFullWidth) {
+            newFullHeight ^= newFullWidth;
+            newFullWidth ^= newFullHeight;
+            newFullHeight ^= newFullWidth;
+        }
+
+        int virtualKeyHeight = fullHeight - newFullHeight;
+
+        if (virtualKeyHeight > 0) {
+            return virtualKeyHeight;
+        }
+
+        virtualKeyHeight = fullWidth - newFullWidth;
+
+        return virtualKeyHeight;
+    }
+
+    protected final int getStatusBarHeight() {
+        // status bar height
+        int statusBarHeight = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+        }
+
+        if (statusBarHeight == 0) {
+            log.error("Can not get height of status bar");
+        }
+
+        return statusBarHeight;
+    }
+
+    protected final int getActionBarHeight() {
+        // action bar height
+        int actionBarHeight = 0;
+        final TypedArray styledAttributes = this.getTheme().obtainStyledAttributes(
+                new int[]{android.R.attr.actionBarSize}
+        );
+        actionBarHeight = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+
+        if (actionBarHeight == 0) {
+            log.error("Can not get height of action bar");
+        }
+
+        return actionBarHeight;
     }
 
     protected void initVersionInfo() {

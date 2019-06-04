@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,113 +8,105 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:scrollbars="none"
     tools:context=".ui.MainActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/L1Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/msg_welcome_message" />
+
+        <EditText
+            android:id="@+id/channel_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:digits="@string/legal_channel_name_characters"
+            android:gravity="start|center_vertical"
+            android:hint="@string/label_channel_name_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="@string/msg_welcome_message"
-                android:textSize="20sp" />
+            android:layout_height="48dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/channel_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="30dp"
+                android:id="@+id/encryption_key"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="20"
                 android:digits="@string/legal_channel_name_characters"
-                android:gravity="center"
-                android:hint="@string/label_channel_name_hint"
-                android:inputType="text" />
+                android:gravity="start|center_vertical"
+                android:hint="@string/label_encryption_key_hint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="16sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="14dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/encryption_key"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="20"
-                    android:digits="@string/legal_channel_name_characters"
-                    android:gravity="center"
-                    android:hint="@string/label_encryption_key_hint"
-                    android:inputType="text" />
-
-                <Spinner
-                    android:id="@+id/encryption_mode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginRight="28dp" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/button_join"
+            <Spinner
+                android:id="@+id/encryption_mode"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:enabled="false"
-                android:onClick="onClickJoin"
-                android:text="@string/label_join" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <CheckBox
-                    android:id="@+id/cb_lastmine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
-                    android:onClick="onLastMileClick"
-                    android:text="start lastmile probe test" />
-
-                <TextView
-                    android:id="@+id/tv_lastmile_quality_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="tv_lastmile_result"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_lastmile_Probe_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="tv_lastmile_result"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp" />
         </LinearLayout>
 
-    </ScrollView>
-</RelativeLayout>
+        <Button
+            android:id="@+id/button_do_network_test"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@android:color/white"
+            android:onClick="onClickDoNetworkTest"
+            android:text="@string/label_do_network_test"
+            android:textAllCaps="false"
+            android:textColor="@color/agora_blue" />
+
+        <Button
+            android:id="@+id/button_join"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/agora_blue"
+            android:enabled="false"
+            android:onClick="onClickJoin"
+            android:text="@string/label_join"
+            android:textColor="@android:color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+    </LinearLayout>
+
+</ScrollView>

@@ -16,8 +16,8 @@ public class SmallVideoViewAdapter extends VideoViewAdapter {
 
     private int mExceptedUid;
 
-    public SmallVideoViewAdapter(Activity activity, int localUid, int exceptedUid, HashMap<Integer, SurfaceView> uids, VideoViewEventListener listener) {
-        super(activity, localUid, uids, listener);
+    public SmallVideoViewAdapter(Activity activity, int localUid, int exceptedUid, HashMap<Integer, SurfaceView> uids) {
+        super(activity, localUid, uids);
         mExceptedUid = exceptedUid;
         log.debug("SmallVideoViewAdapter " + (mLocalUid & 0xFFFFFFFFL) + " " + (mExceptedUid & 0xFFFFFFFFL));
     }

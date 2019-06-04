@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -24,22 +22,20 @@ public abstract class VideoViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     private final static Logger log = LoggerFactory.getLogger(VideoViewAdapter.class);
 
+    public static final boolean DEBUG = false;
+
     protected final LayoutInflater mInflater;
     protected final Context mContext;
 
     protected final ArrayList<UserStatusData> mUsers;
 
-    protected final VideoViewEventListener mListener;
-
     protected int mLocalUid;
 
-    public VideoViewAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, VideoViewEventListener listener) {
+    public VideoViewAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {
         mInflater = ((Activity) activity).getLayoutInflater();
         mContext = ((Activity) activity).getApplicationContext();
 
         mLocalUid = localUid;
-
-        mListener = listener;
 
         mUsers = new ArrayList<>();
 
@@ -93,22 +89,11 @@ public abstract class VideoViewAdapter extends RecyclerView.Adapter<RecyclerView
 
         final UserStatusData user = mUsers.get(position);
 
-        log.debug("onBindViewHolder " + position + " " + user + " " + myHolder + " " + myHolder.itemView + " " + mDefaultChildItem);
+        if (DEBUG) {
+            log.debug("onBindViewHolder " + position + " " + user + " " + myHolder + " " + myHolder.itemView + " " + mDefaultChildItem);
+        }
 
         FrameLayout holderView = (FrameLayout) myHolder.itemView;
-
-        holderView.setOnTouchListener(new OnDoubleTapListener(mContext) {
-            @Override
-            public void onDoubleTap(View view, MotionEvent e) {
-                if (mListener != null) {
-                    mListener.onItemDoubleClick(view, user);
-                }
-            }
-
-            @Override
-            public void onSingleTapUp() {
-            }
-        });
 
         if (holderView.getChildCount() == mDefaultChildItem) {
             SurfaceView target = user.mView;
@@ -121,7 +106,9 @@ public abstract class VideoViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemCount() {
-        log.debug("getItemCount " + mUsers.size());
+        if (DEBUG) {
+            log.debug("getItemCount " + mUsers.size());
+        }
         return mUsers.size();
     }
 

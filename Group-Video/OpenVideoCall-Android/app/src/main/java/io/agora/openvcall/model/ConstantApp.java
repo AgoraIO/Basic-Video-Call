@@ -1,5 +1,6 @@
 package io.agora.openvcall.model;
 
+import io.agora.rtc.Constants;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class ConstantApp {
@@ -21,11 +22,21 @@ public class ConstantApp {
             VideoEncoderConfiguration.VD_640x480,
             VideoEncoderConfiguration.VD_1280x720
     };
+    public static VideoEncoderConfiguration.FRAME_RATE[] VIDEO_FPS = new VideoEncoderConfiguration.FRAME_RATE[] {
+            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_1,
+            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_7,
+            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_10,
+            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
+            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_24,
+            VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_30,
+    };
 
-    public static final int DEFAULT_PROFILE_IDX = 2; // default use 240P
+    public static final int DEFAULT_VIDEO_ENC_RESOLUTION_IDX = 2; // default use 240P
+    public static final int DEFAULT_VIDEO_ENC_FPS_IDX = 3; // default use 15fps
 
     public static class PrefManager {
-        public static final String PREF_PROPERTY_PROFILE_IDX = "pref_profile_index";
+        public static final String PREF_PROPERTY_VIDEO_ENC_RESOLUTION = "pref_profile_index";
+        public static final String PREF_PROPERTY_VIDEO_ENC_FPS = "pref_ENC_fps";
         public static final String PREF_PROPERTY_UID = "pOCXx_uid";
     }
 
@@ -35,5 +46,35 @@ public class ConstantApp {
 
     public static class AppError {
         public static final int NO_NETWORK_CONNECTION = 3;
+    }
+
+    public static String getNetworkQualityDescription(int quality) {
+        String inString;
+        switch (quality) {
+            case Constants.QUALITY_EXCELLENT:
+                inString = "Excellent(" + quality + ")";
+                break;
+
+            case Constants.QUALITY_GOOD:
+                inString = "Good(" + quality + ")";
+                break;
+
+            case Constants.QUALITY_POOR:
+                inString = "Poor(" + quality + ")";
+                break;
+
+            case Constants.QUALITY_BAD:
+                inString = "Bad(" + quality + ")";
+                break;
+
+            case Constants.QUALITY_VBAD:
+                inString = "Very Bad(" + quality + ")";
+                break;
+
+            default:
+                inString = "Unknown(" + quality + ")";
+                break;
+        }
+        return inString;
     }
 }

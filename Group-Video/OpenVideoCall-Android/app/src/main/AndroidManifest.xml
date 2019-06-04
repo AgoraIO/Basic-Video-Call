@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="io.agora.openvcall">
+    package="io.agora.openvcall">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -15,26 +15,37 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/app_name"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.NetworkTestActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/label_network_testing"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
             android:name=".ui.ChatActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/VideoCallTheme" />
+        <activity
+            android:name=".ui.CallOptionsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/label_options"
+            android:parentActivityName=".ui.ChatActivity" />
         <activity
             android:name=".ui.SettingsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/label_settings" />
+            android:label="@string/label_settings"
+            android:parentActivityName=".ui.MainActivity" />
     </application>
 
 </manifest>
-
