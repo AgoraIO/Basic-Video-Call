@@ -55,13 +55,16 @@ The SDK must be integrated into the sample project before it can opened and buil
 
 #### Method 2 - Manually copy the SDK files
 
-1. Clone this repository.
-2. Download the Agora Video SDK from [Agora.io SDK](https://www.agora.io/en/download/).
-3. Unzip the downloaded SDK package.
-4. Copy the .jar file from the **libs** folder of the downloaded SDK package to the **/apps/libs** folder of the sample application.
-5. Copy the .so files from the **armeabi-v7a** folder of the downloaded SDK package to the **/app/src/main/jniLibs/armeabi-v7a** folder of the sample application.
-6. *(Optional)* Copy the .so files from the **arm64-v8a** folder of the downloaded SDK package to the **/app/src/main/jniLibs/arm64-v8a** folder of the sample application.
-7. *(Optional)* Copy the .so files from the **x86** folder of the downloaded SDK package to the **/app/src/main/jniLibs/x86** folder of the sample application.
+1. Download the Agora Video SDK from [Agora.io SDK](https://www.agora.io/en/download/).
+2. Unzip the downloaded SDK package.
+3. Copy the following files from from the **libs** folder of the downloaded SDK package:
+
+Copy from SDK|Copy to Project Folder
+---|---
+.jar file|**/apps/libs** folder
+**arm64-v8a** folder|**/app/src/main/jniLibs** folder
+**x86** folder|**/app/src/main/jniLibs** folder
+**armeabi-v7a** folder|**/app/src/main/jniLibs** folder
 
     
 

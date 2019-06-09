@@ -50,11 +50,14 @@
       (如果要在自己的应用中集成 Agora 视频 SDK，添加链接地址是最重要的一步。）
     - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
   - 次选集成方式：
-    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs** 文件夹下的 ***.jar** 复制到本项目的 **app/libs** 下，其中的 **libs** 文件夹下的 **arm64-v8a**/**x86**/**armeabi-v7a** 复制到本项目的 **app/src/main/jniLibs** 下，其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
-    - 在本项目的 `app/build.gradle` 文件依赖属性中添加如下依赖关系：
-      ```
-      compile fileTree(dir: 'libs', include: ['*.jar'])
-      ```
+    - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
+      
+      SDK目录|项目目录
+      ---|---
+      .jar file|**/apps/libs** folder
+      **arm64-v8a** folder|**/app/src/main/jniLibs** folder
+      **x86** folder|**/app/src/main/jniLibs** folder
+      **armeabi-v7a** folder|**/app/src/main/jniLibs** folder
 
 
 ### 启动应用程序
