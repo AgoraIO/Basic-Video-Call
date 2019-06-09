@@ -15,14 +15,27 @@ This section shows you how to prepare, and run the sample application.
 ### Obtain an App ID
 
 To build and run the sample application, get an App ID:
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-3. Copy the **App ID** from the Dashboard.
-4. Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
+3. Save the **App ID** from the Dashboard for later use.
+4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
+
 
 ### Intergrate Agora Video SDK
 
-1. Open **index.html** file by web browser. Then Enter Valid APPID, Channel, UID and click **Join Room**
+Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+
+### Run Web-Server
+
+1. Install live-server globally via npm
+    ```
+    npm i live-server -g
+    ```
+2. Launch server via following commands in working folder,
+    ```
+    live-server .
+    ```
+3. Enter Valid APPID, Token, Channel, UID and click **Join Room**
 
 ## Resources
 

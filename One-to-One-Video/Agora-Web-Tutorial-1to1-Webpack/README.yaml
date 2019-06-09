@@ -13,10 +13,7 @@ QuickStart:
   sections:
     - title: Obtain an App ID
       content: |
-        To build and run the sample application, get an App ID:
-        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-        3. Copy the **App ID** from the Dashboard.
+        $_{APPID}
     - title: Install dependencies and integrate the Agora Video SDK
       content: |
         1. Using the Terminal app, enter the `install` command in your project directory. This command installs libraries that are required to run the sample application.

@@ -23,11 +23,24 @@
 1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
-4. 下载SDK到 **assets**目录，并改名为**AgoraRTCSDK-2.6.1.js**
+4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
+
 
 ### 集成 Agora 视频 SDK
 
-1. 用浏览器打开 index.html 文件，在对应的输入框里正确输入 APPID, Channel, UID。点击Join Room即可。
+下载SDK到 **assets**目录，并改名为**AgoraRTCSDK-2.6.1.js**
+
+### 启动Web-Server
+
+1. 安装live-server
+    ```
+    npm i live-server -g
+    ```
+2. 在工作目录通过以下命令启动live-server服务器,
+    ```
+    live-server .
+    ```
+3. 在对应的输入框里正确输入 APPID, Token, Channel, UID。点击Join Room即可。
 
 ## 联系我们
 
