@@ -31,7 +31,7 @@ QuickStart:
     - title: 创建Agora账号并获取AppId
       content: |
         $_{APPID}
-        4. 将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
+        5. 将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
         ```
         <string name="private_app_id"><#YOUR APP ID#></string>
         ```

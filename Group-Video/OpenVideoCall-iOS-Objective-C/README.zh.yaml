@@ -30,11 +30,17 @@ QuickStart:
     - title: 创建Agora账号并获取AppId
       content: |
         $_{APPID}
-        4. 将 AppID 填写进 KeyCenter.m
+        4. 将 AppID 和 Token 填写进 KeyCenter.m
 
-        ```
-        static let AppId: String = "Your App ID"
-        ```
+            ```
+            + (NSString *)AppId {
+                return @"Your App ID";
+            }
+            // 如果你是比较旧的项目，且没有打开Token功能，token可以直接给nil
+            + (NSString *)Token {
+                return <#Temp Access Token#>;
+            }
+            ```
 
     - title: 集成 Agora 视频 SDK
       content: |

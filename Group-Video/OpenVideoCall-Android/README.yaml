@@ -28,7 +28,7 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-        4. Update "app/src/main/res/values/strings_config.xml" with your App ID.
+        5. Update "app/src/main/res/values/strings_config.xml" with your App ID.
         ```
         <string name="private_app_id"><#YOUR APP ID#></string>
         ```
