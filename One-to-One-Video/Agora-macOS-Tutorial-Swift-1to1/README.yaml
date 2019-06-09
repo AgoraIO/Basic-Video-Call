@@ -26,10 +26,12 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-        4. Open `Agora Mac Tutorial Swift.xcodeproj` and edit the `KeyCenter.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID.
+        5. Open `Agora Mac Tutorial Swift.xcodeproj` and edit the `AppID.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID, and assign the token variable with the temp Access Token generated from dashboard.
 
             ``` Swift
-            static let AppId: String = <#Your App Id#>
+            let AppID: String = <#Your App ID#>
+            // assign Token to nil if you have not enabled app certificate, this usually happens to old projects
+            let Token: String? = <#Temp Token#>
             ```
     - title: Integrate the Agora Video SDK
       content: |

@@ -73,7 +73,7 @@ class VideoChatViewController: NSViewController {
     }
     
     func joinChannel() {
-        AgoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
+        AgoraKit.joinChannel(byToken: Token, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
             // did join channel "demoChannel1"
         }
     }

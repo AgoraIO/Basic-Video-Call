@@ -7,3 +7,4 @@
 //
 
 FOUNDATION_EXPORT NSString *const AppID;
+FOUNDATION_EXPORT NSString *const Token;
