@@ -29,12 +29,12 @@ To build and run the sample application, get an App ID:
 3. Save the **App ID** from the Dashboard for later use.
 4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
 
-4. Open `Agora iOS Tutorial Objective-C.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID.
+5. Open `Agora iOS Tutorial Objective-C.xcodeproj` and edit the `AppID.m` file. Update `<#Your App Id#>` with your app ID, and assign the token variable with the temp Access Token generated from dashboard.
 
     ```
-    + (NSString *)AppId {
-        return @"Your App ID";
-    }
+    NSString *const appID = @"<#Your App ID#>";
+    // assign token to nil if you have not enabled app certificate, this usually happens to old projects
+    NSString *const token = @"<#Temp Token#>";
     ```
 
 ### Integrate the Agora Video SDK

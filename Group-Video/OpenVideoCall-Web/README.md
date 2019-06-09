@@ -32,7 +32,6 @@ To build and run the sample application, get an App ID:
 ### Install dependencies and integrate the Agora Video SDK
 
 
-
 1. Using the Terminal app, enter the `install` command in your project directory. This command installs libraries that are required to run the sample application.
     ``` bash
     # install dependencies

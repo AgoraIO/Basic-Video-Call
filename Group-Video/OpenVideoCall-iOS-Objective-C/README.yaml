@@ -26,7 +26,7 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-        4. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID, and assign the token variable with the temp Access Token generated from dashboard.
+        5. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.m` file. Update `<#Your App Id#>` with your app ID, and assign the token variable with the temp Access Token generated from dashboard.
 
             ```
             + (NSString *)AppId {

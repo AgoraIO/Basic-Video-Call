@@ -30,7 +30,7 @@ QuickStart:
     - title: 创建Agora账号并获取AppId
       content: |
         $_{APPID}
-        4. 将 AppID 和 Token 填写进 KeyCenter.m
+        5. 将 AppID 和 Token 填写进 KeyCenter.m
 
             ```
             + (NSString *)AppId {
