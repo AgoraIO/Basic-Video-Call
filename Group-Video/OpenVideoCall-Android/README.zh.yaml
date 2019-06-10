@@ -34,6 +34,9 @@ QuickStart:
         5. 将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
         ```
         <string name="private_app_id"><#YOUR APP ID#></string>
+        <!-- 如果你没有打开证书，请将Token字段留空 -->
+        <!-- 你可以在 https://dashboard.agora.io/projects 生成一个临时的Token -->
+        <string name="agora_access_token"><#YOUR TOKEN#></string>
         ```
     - title: 集成 Agora 视频 SDK
       content: |

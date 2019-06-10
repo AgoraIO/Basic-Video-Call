@@ -51,7 +51,7 @@
         <io.agora.propeller.ui.AGLinearLayout
             android:id="@+id/bottom_container"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
@@ -60,7 +60,7 @@
             <LinearLayout
                 android:id="@+id/bottom_action_container"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:background="@android:color/white"
                 android:orientation="horizontal"
                 android:paddingStart="8dp"
