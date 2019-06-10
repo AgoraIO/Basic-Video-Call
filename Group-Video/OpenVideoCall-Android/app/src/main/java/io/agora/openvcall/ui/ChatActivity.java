@@ -699,8 +699,10 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
             case AGEventHandler.EVENT_TYPE_ON_APP_ERROR:
                 int subType = (int) data[0];
 
-                if (subType == ConstantApp.AppError.NO_NETWORK_CONNECTION) {
-                    showLongToast(getString(R.string.msg_no_network_connection));
+                if (subType == ConstantApp.AppError.NO_CONNECTION_ERROR) {
+                    String msg = getString(R.string.msg_connection_error);
+                    notifyMessageChanged(new Message(new User(0, null), msg));
+                    showLongToast(msg);
                 }
 
                 break;

@@ -140,7 +140,13 @@ public class WorkerThread extends Thread {
         }
 
         ensureRtcEngineReadyLock();
-        mRtcEngine.joinChannel(null, channel, "OpenVCall", uid);
+
+        String accessToken = mContext.getString(R.string.agora_access_token);
+        if (TextUtils.equals(accessToken, "") || TextUtils.equals(accessToken, "#YOUR ACCESS TOKEN#")) {
+            accessToken = null; // default, no token
+        }
+
+        mRtcEngine.joinChannel(accessToken, channel, "OpenVCall", uid);
 
         mEngineConfig.mChannel = channel;
 
@@ -231,7 +237,7 @@ public class WorkerThread extends Thread {
 
     private RtcEngine ensureRtcEngineReadyLock() {
         if (mRtcEngine == null) {
-            String appId = mContext.getString(R.string.private_app_id);
+            String appId = mContext.getString(R.string.agora_app_id);
             if (TextUtils.isEmpty(appId)) {
                 throw new RuntimeException("NEED TO use your App ID, get your own ID at https://dashboard.agora.io/");
             }

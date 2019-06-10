@@ -45,7 +45,7 @@ public class ConstantApp {
     public static final String ACTION_KEY_ENCRYPTION_MODE = "tOK_edsx_Mode";
 
     public static class AppError {
-        public static final int NO_NETWORK_CONNECTION = 3;
+        public static final int NO_CONNECTION_ERROR = 3;
     }
 
     public static String getNetworkQualityDescription(int quality) {

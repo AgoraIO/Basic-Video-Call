@@ -2,6 +2,7 @@ package io.agora.openvcall.model;
 
 import android.content.Context;
 
+import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 
@@ -203,7 +204,7 @@ public class MyEngineEventHandler {
             while (it.hasNext()) {
                 AGEventHandler handler = it.next();
                 if (handler instanceof DuringCallEventHandler) {
-                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_APP_ERROR, ConstantApp.AppError.NO_NETWORK_CONNECTION);
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_APP_ERROR, ConstantApp.AppError.NO_CONNECTION_ERROR);
                 }
             }
         }
@@ -242,6 +243,16 @@ public class MyEngineEventHandler {
 
         public void onWarning(int warn) {
             log.debug("onWarning " + warn);
+
+            String msg = "Check io.agora.rtc.Constants for details";
+
+            Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
+            while (it.hasNext()) {
+                AGEventHandler handler = it.next();
+                if (handler instanceof DuringCallEventHandler) {
+                    ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_AGORA_MEDIA_ERROR, warn, msg);
+                }
+            }
         }
 
         @Override

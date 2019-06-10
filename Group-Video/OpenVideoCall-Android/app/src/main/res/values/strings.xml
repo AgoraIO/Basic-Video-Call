@@ -32,7 +32,7 @@
 
     <string name="msg_say_something">Say something…</string>
 
-    <string name="msg_no_network_connection">No network connection, please check the network settings</string>
+    <string name="msg_connection_error">Connection error, please check the network settings or make sure channel name/access token are valid</string>
 
     <string name="label_title_resolution">Resolution</string>
     <string name="label_title_frame_rate">Frame Rate(fps)</string>
