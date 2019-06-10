@@ -34,6 +34,10 @@ To build and run the sample application, get an App ID:
 
 ```xml
 <string name="agora_app_id"><#YOUR APP ID#></string>
+<!-- Obtain a temp Access Token at https://dashboard.agora.io -->
+<!-- You will need to deploy your own token server for production release -->
+<!-- Leave this value empty if Security keys/Token is not enabled for your project -->
+<string name="agora_access_token"><#YOUR TOKEN#></string>
 ```
 
 ### Integrate the Agora Video SDK

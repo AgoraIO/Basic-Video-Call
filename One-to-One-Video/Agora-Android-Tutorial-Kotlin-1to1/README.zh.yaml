@@ -33,10 +33,14 @@ QuickStart:
     - title: 创建Agora账号并获取AppId
       content: |
         $_{APPID}
-        4. 将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
-        ```
-        <string name="private_app_id"><#YOUR APP ID#></string>
-        ```
+        5. 将 AppID 填写进 "app/src/main/res/values/strings.xml"
+          ```
+          <string name="private_app_id"><#YOUR APP ID#></string>
+          <!-- 临时Token 可以在 https://dashboard.agora.io 获取 -->
+          <!-- 在正式上线生产环境前，你必须部署你自己的Token服务器 -->
+          <!-- 如果你的项目没有打开安全证书，下面的值可以直接留空 -->
+          <string name="agora_access_token"><#YOUR TOKEN#></string>
+          ```
     - title: 集成 Agora 视频 SDK
       content: |
         $_{KOTLIN_INTEGRATE}

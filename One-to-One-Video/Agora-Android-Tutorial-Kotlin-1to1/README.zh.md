@@ -37,10 +37,14 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
 4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
-4. 将 AppID 填写进 "app/src/main/res/values/strings_config.xml"
-```
-<string name="private_app_id"><#YOUR APP ID#></string>
-```
+5. 将 AppID 填写进 "app/src/main/res/values/strings.xml"
+  ```
+  <string name="private_app_id"><#YOUR APP ID#></string>
+  <!-- 临时Token 可以在 https://dashboard.agora.io 获取 -->
+  <!-- 在正式上线生产环境前，你必须部署你自己的Token服务器 -->
+  <!-- 如果你的项目没有打开安全证书，下面的值可以直接留空 -->
+  <string name="agora_access_token"><#YOUR TOKEN#></string>
+  ```
 
 ### 集成 Agora 视频 SDK
 
