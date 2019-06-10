@@ -25,11 +25,15 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-        4. Locate the file **app/src/main/res/values/strings.xml** and replace <#YOUR APP ID#> with the App ID in the dashboard.
+        5. Locate the file **app/src/main/res/values/strings.xml** and replace <#YOUR APP ID#> with the App ID in the dashboard.
 
-        ```xml
-        <string name="agora_app_id"><#YOUR APP ID#></string>
-        ```
+          ```xml
+          <string name="agora_app_id"><#YOUR APP ID#></string>
+          <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
+          <!-- You will need to deploy your own token server for production release -->
+          <!-- Leave this value empty if Security keys/Token is not enabled for your project -->
+          <string name="agora_access_token"><#YOUR TOKEN#></string>
+          ```
     - title: Integrate the Agora Video SDK
       content: |
         $_{ANDROID_INTEGRATE}
