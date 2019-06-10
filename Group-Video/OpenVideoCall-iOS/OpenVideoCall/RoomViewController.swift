@@ -249,7 +249,7 @@ private extension RoomViewController {
         // Step 5, join channel and start group chat
         // If join  channel success, agoraKit triggers it's delegate function
         // 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
-        agoraKit.joinChannel(byToken: KeyCenter.token, channelId: settings.roomName!, info: nil, uid: 0, joinSuccess: nil)
+        agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: settings.roomName!, info: nil, uid: 0, joinSuccess: nil)
         setIdleTimerActive(false)
     }
     
