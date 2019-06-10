@@ -15,7 +15,6 @@ With this sample app, you can:
 ## Prerequisites
 
 - Xcode 10.0+
-- Physical iOS device (iPhone or iPad)
 
 ## Quick Start
 
@@ -33,7 +32,7 @@ To build and run the sample application, get an App ID:
 
     ``` Swift
     let AppID: String = <#Your App ID#>
-    // assign Token to nil if you have not enabled app certificate, this usually happens to old projects
+    // assign Token to nil if you have not enabled app certificate
     let Token: String? = <#Temp Token#>
     ```
 

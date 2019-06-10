@@ -17,12 +17,15 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-        4. Open the **src/utils/Settings.js** file. At the bottom of the file, replace `<#YOUR APP ID#>` with the App ID from the dashboard.
+        5. Open the **src/utils/Settings.js** file. At the bottom of the file, replace `<#YOUR APP ID#>` with the App ID, and assign the token variable with the temp Access Token generated from dashboard.
 
-            **Note:** Place the App ID within single or double quotes.
+            **Note:** Place the App ID/Token within single or double quotes.
 
             ```xml
             export const APP_ID = <#YOUR APP ID#>;
+
+            // Assign Token to null if you have not enabled app certificate
+            export const Token = "<#YOUR TEMP TOKEN HERE#>";
             ```
     - title: Install dependencies and integrate the Agora Video SDK
       content: |

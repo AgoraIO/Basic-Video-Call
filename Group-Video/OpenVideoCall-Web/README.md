@@ -21,12 +21,15 @@ To build and run the sample application, get an App ID:
 3. Save the **App ID** from the Dashboard for later use.
 4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
 
-4. Open the **src/utils/Settings.js** file. At the bottom of the file, replace `<#YOUR APP ID#>` with the App ID from the dashboard.
+5. Open the **src/utils/Settings.js** file. At the bottom of the file, replace `<#YOUR APP ID#>` with the App ID, and assign the token variable with the temp Access Token generated from dashboard.
 
-    **Note:** Place the App ID within single or double quotes.
+    **Note:** Place the App ID/Token within single or double quotes.
 
     ```xml
     export const APP_ID = <#YOUR APP ID#>;
+
+    // Assign Token to null if you have not enabled app certificate
+    export const Token = "<#YOUR TEMP TOKEN HERE#>";
     ```
 
 ### Install dependencies and integrate the Agora Video SDK

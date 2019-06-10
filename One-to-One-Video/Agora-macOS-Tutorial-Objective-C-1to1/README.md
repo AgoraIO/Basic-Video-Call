@@ -15,8 +15,6 @@ With this sample app, you can:
 ## Prerequisites
 
 - Xcode 10.0+
-- Physical iOS device (iPhone or iPad)
-- iOS simulator is NOT supported
 
 ## Quick Start
 
@@ -34,7 +32,7 @@ To build and run the sample application, get an App ID:
 
     ```
     NSString *const appID = @"<#Your App ID#>";
-    // assign token to nil if you have not enabled app certificate, this usually happens to old projects
+    // assign token to nil if you have not enabled app certificate
     NSString *const token = @"<#Temp Token#>";
     ```
 

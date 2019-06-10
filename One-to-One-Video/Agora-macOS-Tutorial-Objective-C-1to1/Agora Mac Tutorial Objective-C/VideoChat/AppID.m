@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 NSString *const AppID = <#Your App ID#>;
-//assign token to nil if you have not enabled app certificate, this usually happens to old projects
+//assign token to nil if you have not enabled app certificate
 NSString *const Token = <#Temp Token#>;

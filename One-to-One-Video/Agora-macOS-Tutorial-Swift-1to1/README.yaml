@@ -17,7 +17,6 @@ Meta:
 
 Prerequisites:
   - Xcode 10.0+
-  - Physical iOS device (iPhone or iPad)
 
 QuickStart:
   description:
@@ -30,7 +29,7 @@ QuickStart:
 
             ``` Swift
             let AppID: String = <#Your App ID#>
-            // assign Token to nil if you have not enabled app certificate, this usually happens to old projects
+            // assign Token to nil if you have not enabled app certificate
             let Token: String? = <#Temp Token#>
             ```
     - title: Integrate the Agora Video SDK

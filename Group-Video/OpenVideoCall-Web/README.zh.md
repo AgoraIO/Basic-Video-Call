@@ -21,11 +21,14 @@
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
 4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
-4. 打开 **src/utils/Settings.js** 文件。在文件的底部，将`<#YOUR APP ID#>`替换为您自己的App ID
+5. 打开 **src/utils/Settings.js** 文件。在文件的底部，将`<#YOUR APP ID#>`替换为您自己的App ID，然后将`<#YOUR TEMP TOKEN#>`替换为dashboard计算的Token。
 
     **注意：** App ID是字符串类型，需要双引号或者单引号
     ```javascript
     export const APP_ID = <#YOUR APP ID#>;
+
+    // 如果你没有打开Token功能，token可以直接给null
+    export const Token = "<#YOUR TEMP TOKEN HERE#>";
     ```
 
 ### 集成 Agora 视频 SDK

@@ -33,7 +33,7 @@
 
     ```
     let AppID: String = <#Your App ID#>
-    // 如果你是比较旧的项目，且没有打开Token功能，token可以直接给nil
+    // 如果你没有打开Token功能，token可以直接给nil
     let Token: String? = <#Temp Token#>
     ```
 
