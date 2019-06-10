@@ -93,17 +93,26 @@ HWND CAgoraObject::GetMsgHandlerWnd()
 	return m_EngineEventHandler.GetMsgReceiver();
 }
 
-BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID)
+BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 {
 	int nRet = 0;
 
 #ifdef UNICODE
 	CHAR szChannelName[128];
-
 	::WideCharToMultiByte(CP_UTF8, 0, lpChannelName, -1, szChannelName, 128, NULL, NULL);
-	nRet = m_lpAgoraEngine->joinChannel(NULL, szChannelName, NULL, nUID);
+
+	char szToken[128];
+	::WideCharToMultiByte(CP_UTF8, 0, lpToken, -1, szToken, 128, NULL, NULL);
+
+	if(0 == _tcslen(lpToken))
+		nRet = m_lpAgoraEngine->joinChannel(NULL, szChannelName, NULL, nUID); 
+	else
+		nRet = m_lpAgoraEngine->joinChannel(szToken, szChannelName, NULL, nUID);
 #else
-	nRet = m_lpAgoraEngine->joinChannel(NULL, lpChannelName, NULL, nUID);
+	if(0 == _tcslen(lpToken))
+		nRet = m_lpAgoraEngine->joinChannel(NULL, lpChannelName, NULL, nUID);
+	else
+		nRet = m_lpAgoraEngine->joinChannel(lpToken, lpChannelName, NULL, nUID);
 #endif
 
 	if (nRet == 0)
