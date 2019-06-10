@@ -27,7 +27,8 @@ This section shows you how to prepare, build, and run the sample application.
 To build and run the sample application, get an App ID:
 1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
 2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
-3. Copy the **App ID** from the Dashboard.
+3. Save the **App ID** from the Dashboard for later use.
+4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
 
 4. Locate the file **app/src/main/res/values/strings.xml** and replace <#YOUR APP ID#> with the App ID in the dashboard.
 
@@ -37,9 +38,22 @@ To build and run the sample application, get an App ID:
 
 ### Integrate the Agora Video SDK
 
-The SDK must be integrated into the sample project before it can opened and built.
+The SDK must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
 
-#### Manually copy the SDK files
+#### Method 1 - Integrate the SDK Automatically Using JCenter (Recommended)
+
+1. Clone this repository.
+2. Open **app/build.gradle** and add the following line to the `dependencies` list:
+
+  ```
+  ...
+  dependencies {
+      ...
+      implementation 'io.agora.rtc:full-sdk:2.4.0'
+  }
+  ```
+
+#### Method 2 - Manually copy the SDK files
 
 1. Download the Agora Video SDK from [Agora.io SDK](https://www.agora.io/en/download/).
 2. Unzip the downloaded SDK package.

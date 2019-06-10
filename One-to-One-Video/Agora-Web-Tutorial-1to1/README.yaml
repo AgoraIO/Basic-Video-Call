@@ -12,14 +12,21 @@ QuickStart:
   sections:
     - title: Obtain an App ID
       content: |
-        To build and run the sample application, get an App ID:
-        1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
-        2. In the Dashboard that opens, click **Projects** > **Project List** in the left navigation.
-        3. Copy the **App ID** from the Dashboard.
-        4. Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+        $_{APPID}
     - title: Intergrate Agora Video SDK
       content: |
-        1. Open **index.html** file by web browser. Then Enter Valid APPID, Channel, UID and click **Join Room**
+        Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+    - title: Run Web-Server
+      content: |
+        1. Install live-server globally via npm
+            ```
+            npm i live-server -g
+            ```
+        2. Launch server via following commands in working folder,
+            ```
+            live-server .
+            ```
+        3. Enter Valid APPID, Token, Channel, UID and click **Join Room**
 Resources:
   document: https://docs.agora.io/en/
   issue: https://github.com/AgoraIO/Basic-Video-Call/issues

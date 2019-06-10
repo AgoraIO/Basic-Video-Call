@@ -10,13 +10,11 @@
 
 @implementation KeyCenter
 + (NSString *)AppId {
-    return @"3d76392019ca47599548a67ad27c9699";
+    return <#Your App Id#>;
 }
 
-// you can specify a token here to test when you have enabled your app certificate
-// a temp token can be generated from your project dashboard for testing purpose. Long-term wise
-// it's suggested to deploy your own token server
+// assign token to nil if you have not enabled app certificate, this usually happens to old projects
 + (NSString *)Token {
-    return @"0063d76392019ca47599548a67ad27c9699IABp7HTvR7acbVvihFYEMCKyD/3MavmTM73WUXbc2ZEILwx+f9gAAAAAEAD4QVCVyUr2XAEAAQDISvZc";
+    return <#Temp Access Token#>;
 }
 @end

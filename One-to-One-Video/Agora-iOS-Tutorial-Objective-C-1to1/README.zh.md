@@ -27,12 +27,15 @@
 1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
-4. 将 AppID 填写进 KeyCenter.swift
+5. 将 AppID 和 Token 填写进 AppID.m
 
-```
-static let AppId: String = "Your App ID"
-```
+    ```
+    NSString *const appID = @"<#Your App ID#>";
+    // 如果你是比较旧的项目，且没有打开Token功能，token可以直接给nil
+    NSString *const token = @"<#Temp Token#>";
+    ```
 
 ### 集成 Agora 视频 SDK
 

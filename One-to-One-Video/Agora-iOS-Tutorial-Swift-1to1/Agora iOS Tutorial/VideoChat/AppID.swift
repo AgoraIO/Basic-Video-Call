@@ -7,3 +7,5 @@
 //
 
 let AppID: String = <#Your App ID#>
+// assign Token to nil if you have not enabled app certificate, this usually happens to old projects
+let Token: String? = <#Temp Token#>
