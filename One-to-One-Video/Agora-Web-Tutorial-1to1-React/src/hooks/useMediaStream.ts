@@ -12,7 +12,6 @@ const useMediaStream = (client: any, filter?: (streamId: number) => boolean): an
         return;
       }
       const { stream } = evt;
-      const id = stream.getId();
       setRemoteStreamList(streamList => {
         streamList.push(stream);
         return streamList;
@@ -82,7 +81,7 @@ const useMediaStream = (client: any, filter?: (streamId: number) => boolean): an
         client.gatewayClient.removeEventListener("stream-removed", removeRemote);
       }
     };
-  }, [0]);
+  }, [client, filter]);
 
   return [localStream, remoteStreamList, [localStream].concat(remoteStreamList)];
 };

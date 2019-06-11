@@ -35,7 +35,7 @@ const useCamera = (client: any): MediaDeviceInfo[] => {
       mounted = false;
       client && client.gatewayClient.removeEventListener('cameraChanged', onChange);
     };
-  }, []);
+  }, [client]);
 
   return cameraList;
 };

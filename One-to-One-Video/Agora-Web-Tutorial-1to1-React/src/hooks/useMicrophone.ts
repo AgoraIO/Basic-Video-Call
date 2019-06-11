@@ -37,7 +37,7 @@ const useMicrophone = (client: any): MediaDeviceInfo[] => {
         onChange
       );
     };
-  }, []);
+  }, [client]);
 
   return microphoneList;
 };
