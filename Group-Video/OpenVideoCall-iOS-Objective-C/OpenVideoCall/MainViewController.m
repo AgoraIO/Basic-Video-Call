@@ -9,46 +9,54 @@
 #import "MainViewController.h"
 #import "SettingsViewController.h"
 #import "RoomViewController.h"
-#import "EncryptionType.h"
+#import "Encryption.h"
 #import "KeyCenter.h"
 #import "FileCenter.h"
+#import "Settings.h"
+#import "MediaCharater.h"
+#import "CommonExtension.h"
+#import "LastmileViewController.h"
 
-@interface MainViewController () <SettingsVCDelegate, RoomVCDelegate, AgoraRtcEngineDelegate, UITextFieldDelegate>
+@interface MainViewController () <SettingsVCDelegate, SettingsVCDataSource, LastmileVCDataSource, RoomVCDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *roomNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *encrypTextField;
-
-@property (weak, nonatomic) IBOutlet UIButton *lastmileTestButton;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *lastmileTestIndicator;
-@property (weak, nonatomic) IBOutlet UILabel *qualityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rttLabel;
-@property (weak, nonatomic) IBOutlet UILabel *uplinkLabel;
-@property (weak, nonatomic) IBOutlet UILabel *downlinkLabel;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *infoLabels;
+@property (weak, nonatomic) IBOutlet UITextField *encryptionTextField;
+@property (weak, nonatomic) IBOutlet UIButton *encryptionButton;
+@property (weak, nonatomic) IBOutlet UIButton *testNetworkButton;
 
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
-@property (assign, nonatomic) CGSize dimension;
-@property (assign, nonatomic) EncrypType encrypType;
-@property (assign, nonatomic) BOOL isLastmileProbeTesting;
+@property (assign, nonatomic) EncryptionType encryptionType;
+@property (strong, nonatomic) Settings *settings;
 @end
 
 @implementation MainViewController
-- (void)setIsLastmileProbeTesting:(BOOL)isLastmileProbeTesting {
-    _isLastmileProbeTesting = isLastmileProbeTesting;
-    self.lastmileTestButton.hidden = isLastmileProbeTesting;
-    if (isLastmileProbeTesting) {
-        [self.lastmileTestIndicator startAnimating];
-    } else {
-        [self.lastmileTestIndicator stopAnimating];
+#pragma mark - Getter, Setter
+- (AgoraRtcEngineKit *)agoraKit {
+    if (!_agoraKit) {
+        _agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:[KeyCenter AppId] delegate:nil];
+        [_agoraKit setLogFilter:AgoraLogFilterInfo];
+        [_agoraKit setLogFile:[FileCenter logFilePath]];
     }
+    return _agoraKit;
+}
+
+- (Settings *)settings {
+    if (!_settings) {
+        _settings = [[Settings alloc] init];
+        _settings.dimension = AgoraVideoDimension640x360;
+        _settings.frameRate = AgoraVideoFrameRateFps15;
+    }
+    return _settings;
+}
+
+- (void)setEncryptionType:(EncryptionType)encryptionType {
+    _encryptionType = encryptionType;
+    NSString *name = [Encryption descriptionWithType:encryptionType];
+    [self.encryptionButton setTitle:name forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dimension = AgoraVideoDimension640x360;
-    self.encrypType = [[EncryptionType encrypTypeArray][0] intValue];
-    self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:[KeyCenter AppId] delegate:self];
-    [self.agoraKit setLogFilter:AgoraLogFilterInfo];
-    [self.agoraKit setLogFile:[FileCenter logFilePath]];
+    [self agoraKit];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -56,110 +64,121 @@
     
     if ([segueId isEqualToString:@"mainToSettings"]) {
         SettingsViewController *settingsVC = segue.destinationViewController;
-        settingsVC.dimension = self.dimension;
         settingsVC.delegate = self;
+        settingsVC.dataSource = self;
+    } else if ([segueId isEqualToString:@"mainToLastmile"]) {
+        LastmileViewController *testVC = segue.destinationViewController;
+        testVC.dataSource = self;
     } else if ([segueId isEqualToString:@"mainToRoom"]) {
         RoomViewController *roomVC = segue.destinationViewController;
-        roomVC.roomName = sender;
-        roomVC.agoraKit = self.agoraKit;
-        roomVC.dimension = self.dimension;
-        roomVC.encrypType = self.encrypType;
-        roomVC.encrypSecret = self.encrypTextField.text;
-        roomVC.delegate = self;
+        roomVC.dataSource = self;
     }
 }
 
-- (IBAction)doLastmileProbeTestPressed:(UIButton *)sender {
-    AgoraLastmileProbeConfig *config = [[AgoraLastmileProbeConfig alloc] init];
-    config.probeUplink = YES;
-    config.probeDownlink = YES;
-    config.expectedUplinkBitrate = 5000;
-    config.expectedDownlinkBitrate = 5000;
-    
-    [self.agoraKit startLastmileProbeTest:config];
-    
-    self.isLastmileProbeTesting = YES;
-    
-    for (UILabel *label in self.infoLabels) {
-        label.hidden = YES;
+- (IBAction)doRoomNameTextFieldEditing:(UITextField *)sender {
+    NSString *text = sender.text;
+    if (text && text.length > 0) {
+        NSString *legalString = [MediaCharater updateToLegalMediaStringFromString:text];
+        sender.text = legalString;
     }
 }
 
-- (IBAction)doJoinPressed:(UIButton *)sender {
-    [self enterRoom];
-}
-
-- (void)enterRoom {
-    if (!self.roomNameTextField.text.length) {
-        return;
-    }
-    
-    [self performSegueWithIdentifier:@"mainToRoom" sender:self.roomNameTextField.text];
-}
-
-- (IBAction)doEncrypPressed:(UIButton *)sender {
+- (IBAction)doEncryptionPressed:(UIButton *)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    NSArray *encrypTypeArray = [EncryptionType encrypTypeArray];
+    NSArray *typeArray = [Encryption allTypesArray];
     __weak typeof(self) weakself = self;
     
-    for (int i = 0; i < encrypTypeArray.count; i++) {
-        EncrypType type = [encrypTypeArray[i] intValue];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:[EncryptionType descriptionWithEncrypType:type] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            weakself.encrypType = type;
-            [sender setTitle:[EncryptionType descriptionWithEncrypType:type] forState:UIControlStateNormal];
-        }];
+    for (int i = 0; i < typeArray.count; i++) {
+        EncryptionType type = [typeArray[i] intValue];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:[Encryption descriptionWithType:type]
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           weakself.encryptionType = type;
+                                                       }];
         [alertController addAction:action];
     }
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-    alertController.popoverPresentationController.sourceView = sender;
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction: cancel];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-//MARK: - delegates
-- (void)settingsVC:(SettingsViewController *)settingsVC didSelectDimension:(CGSize)dimension {
-    self.dimension = dimension;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)roomVCNeedClose:(RoomViewController *)roomVC {
-    self.agoraKit.delegate = self;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileQuality:(AgoraNetworkQuality)quality {
-    NSString *string;
-    switch (quality) {
-        case AgoraNetworkQualityExcellent:  string = @"excellent"; break;
-        case AgoraNetworkQualityGood:       string = @"good"; break;
-        case AgoraNetworkQualityPoor:       string = @"poor"; break;
-        case AgoraNetworkQualityBad:        string = @"bad"; break;
-        case AgoraNetworkQualityVBad:       string = @"very bad"; break;
-        case AgoraNetworkQualityDown:       string = @"down"; break;
-        case AgoraNetworkQualityUnknown:    string = @"unknown"; break;
-    }
-    self.qualityLabel.text = [NSString stringWithFormat:@"quality: %@", string];
-    self.qualityLabel.hidden = NO;
-}
-
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileProbeTestResult:(AgoraLastmileProbeResult *)result {
-    self.rttLabel.text = [NSString stringWithFormat:@"rtt: %lu", (unsigned long)result.rtt];
-    self.rttLabel.hidden = NO;
-    self.uplinkLabel.text = [self descriptionOfProbeOneWayResult:result.uplinkReport];
-    self.uplinkLabel.hidden = NO;
-    self.downlinkLabel.text = [self descriptionOfProbeOneWayResult:result.downlinkReport];
-    self.downlinkLabel.hidden = NO;
-    
-    [self.agoraKit stopLastmileProbeTest];
-    self.isLastmileProbeTesting = NO;
-}
-
-- (NSString *)descriptionOfProbeOneWayResult:(AgoraLastmileProbeOneWayResult *)result {
-    return [NSString stringWithFormat:@"packetLoss: %lu, jitter: %lu, availableBandwidth: %lu", (unsigned long)result.packetLossRate, result.jitter, result.availableBandwidth];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (IBAction)doJoinPressed:(UIButton *)sender {
+    // start join room when join button pressed
     [self enterRoom];
+}
+
+#pragma mark - Private
+- (void)updateViews {
+    self.encryptionButton.layer.borderColor = UIColor.AGGray.CGColor;
+    self.testNetworkButton.layer.borderColor = UIColor.AGGray.CGColor;
+}
+
+- (void)enterRoom {
+    NSString *roomName = self.roomNameTextField.text;
+    if (!roomName.length) {
+        return;
+    }
+    
+    NSString *secret = self.encryptionTextField.text;
+    if (secret.length) {
+        self.settings.encryption.secret = secret;
+        self.settings.encryption.type = self.encryptionType;
+    } else {
+        self.settings.encryption.type = EncryptionTypeNone;
+    }
+    self.settings.roomName = roomName;
+    [self performSegueWithIdentifier:@"mainToRoom" sender:nil];
+}
+
+#pragma mark - SettingsVCDelegate, SettingsVCDataSource
+- (void)settingsVC:(SettingsViewController *)settingsVC didSelectDimension:(CGSize)dimension {
+    self.settings.dimension = dimension;
+}
+
+- (void)settingsVC:(SettingsViewController *)settingsVC didSelectFrameRate:(AgoraVideoFrameRate)frameRate {
+    self.settings.frameRate = frameRate;
+}
+
+- (Settings *)settingsVCNeedSettings {
+    return self.settings;
+}
+
+#pragma mark - LastmileVCDataSource
+- (AgoraRtcEngineKit *)lastmileVCNeedAgoraKit {
+    return self.agoraKit;
+}
+
+#pragma mark - RoomVCDataSource
+- (AgoraRtcEngineKit *)roomVCNeedAgoraKit {
+    return self.agoraKit;
+}
+
+- (Settings *)roomVCNeedSettings {
+    return self.settings;
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.roomNameTextField) {
+        [self enterRoom];
+    } else {
+        [textField resignFirstResponder];
+    }
     return YES;
+}
+
+#pragma mark - Others
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.titleView.hidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationItem.titleView.hidden = YES;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 @end

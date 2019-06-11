@@ -9,7 +9,6 @@
 #import "VideoView.h"
 
 @interface VideoView ()
-@property (strong, nonatomic) UIView *videoView;
 @end
 
 @implementation VideoView

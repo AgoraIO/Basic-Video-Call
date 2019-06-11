@@ -10,4 +10,5 @@
 
 @interface VideoView : UIView
 @property (assign, nonatomic) BOOL isVideoMuted;
+@property (strong, nonatomic) UIView *videoView;
 @end

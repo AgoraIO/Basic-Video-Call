@@ -6,62 +6,139 @@
 //  Copyright © 2016年 Agora. All rights reserved.
 //
 
-#import "RoomViewController.h"
-#import "VideoSession.h"
-#import "VideoViewLayouter.h"
 #import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
-#import "MsgTableView.h"
-#import "AGVideoPreProcessing.h"
+#import "RoomOptionsViewController.h"
+#import "MessageViewController.h"
+#import "RoomViewController.h"
+#import "VideoViewLayouter.h"
+#import "VideoSession.h"
+#import "AppDelegate.h"
 #import "FileCenter.h"
 #import "KeyCenter.h"
 
-@interface RoomViewController () <AgoraRtcEngineDelegate>
+@interface RoomViewController () <AgoraRtcEngineDelegate, RoomOptionsVCDelegate, RoomOptionsVCDataSource>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *flowViews;
-@property (weak, nonatomic) IBOutlet UILabel *roomNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *messageTableContainerView;
 
-@property (weak, nonatomic) IBOutlet UIView *controlView;
-
+@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+@property (weak, nonatomic) IBOutlet UIButton *audioMixingButton;
+@property (weak, nonatomic) IBOutlet UIButton *speakerPhoneButton;
+@property (weak, nonatomic) IBOutlet UIButton *beautyButton;
 @property (weak, nonatomic) IBOutlet UIButton *muteVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *muteAudioButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
-@property (weak, nonatomic) IBOutlet UIButton *speakerButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *audioMixingButton;
-
-@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *backgroundTap;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *backgroundDoubleTap;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgInputViewBottom;
-@property (weak, nonatomic) IBOutlet UITextField *msgTextField;
-@property (weak, nonatomic) IBOutlet MsgTableView *msgTableView;
-@property (weak, nonatomic) IBOutlet UIView *msgInputView;
+
+@property (weak, nonatomic) AgoraRtcEngineKit *agoraKit;
+@property (strong, nonatomic) AgoraRtcCryptoLoader *agoraLoader;
+
+@property (assign, nonatomic) BOOL isSwitchCamera;
+@property (assign, nonatomic) BOOL isAudioMixing;
+@property (assign, nonatomic) BOOL isBeauty;
+@property (assign, nonatomic) BOOL isEarPhone;
+@property (assign, nonatomic) BOOL isVideoMuted;
+@property (assign, nonatomic) BOOL isAudioMuted;
+@property (assign, nonatomic) BOOL isDebugMode;
 
 @property (strong, nonatomic) NSMutableArray<VideoSession *> *videoSessions;
 @property (strong, nonatomic) VideoSession *doubleClickFullSession;
 @property (strong, nonatomic) VideoViewLayouter *videoViewLayouter;
 
-@property (assign, nonatomic) BOOL shouldHideFlowViews;
-@property (assign, nonatomic) BOOL audioMuted;
-@property (assign, nonatomic) BOOL videoMuted;
-@property (assign, nonatomic) BOOL speakerEnabled;
-@property (assign, nonatomic) BOOL isAudioMixing;
+@property (strong, nonatomic) RoomOptions *options;
 
-@property (strong, nonatomic) AgoraRtcCryptoLoader *agoraLoader;
-
+@property (weak, nonatomic) MessageViewController *messageVC;
+@property (weak, nonatomic) RoomOptionsViewController *optionsVC;
+@property (weak, nonatomic) Settings *settings;
 @end
 
 @implementation RoomViewController
+#pragma mark - Setter, Getter
+- (void)setIsSwitchCamera:(BOOL)isSwitchCamera {
+    [self.agoraKit switchCamera];
+}
 
-static NSInteger streamID = 0;
-
-- (void)setShouldHideFlowViews:(BOOL)shouldHideFlowViews {
-    _shouldHideFlowViews = shouldHideFlowViews;
-    if (self.flowViews.count) {
-        for (UIView *view in self.flowViews) {
-            view.hidden = shouldHideFlowViews;
-        }
+- (void)setIsAudioMixing:(BOOL)isAudioMixing {
+    if (_isAudioMixing == isAudioMixing) {
+        return;
     }
+    
+    _isAudioMixing = isAudioMixing;
+    self.audioMixingButton.selected = _isAudioMixing;
+    if (_isAudioMixing) {
+        // play music file
+        [self.agoraKit startAudioMixing:[FileCenter audioFilePath]
+                               loopback:false
+                                replace:false
+                                  cycle:1];
+    } else {
+        // stop play
+        [self.agoraKit stopAudioMixing];
+    }
+}
+
+- (void)setIsBeauty:(BOOL)isBeauty {
+    if (_isBeauty == isBeauty) {
+        return;
+    }
+    
+    _isBeauty = isBeauty;
+    self.beautyButton.selected = _isBeauty;
+    AgoraBeautyOptions *options = nil;
+    if (_isBeauty) {
+        options = [[AgoraBeautyOptions alloc] init];
+        options.lighteningContrastLevel = AgoraLighteningContrastNormal;
+        options.lighteningLevel = 0.7;
+        options.smoothnessLevel = 0.5;
+        options.rednessLevel = 0.1;
+    }
+    
+    // improve local render view
+    [self.agoraKit setBeautyEffectOptions:_isBeauty options:options];
+}
+
+- (void)setIsEarPhone:(BOOL)isEarPhone {
+    if (_isEarPhone == isEarPhone) {
+        return;
+    }
+    
+    _isEarPhone = isEarPhone;
+    self.speakerPhoneButton.selected = _isEarPhone;
+    // switch playout audio route
+    [self.agoraKit setEnableSpeakerphone:!_isEarPhone];
+}
+
+- (void)setIsVideoMuted:(BOOL)isVideoMuted {
+    if (_isVideoMuted == isVideoMuted) {
+        return;
+    }
+    
+    _isVideoMuted = isVideoMuted;
+    self.muteVideoButton.selected = _isVideoMuted;
+    [self setVideoMuted:_isVideoMuted forUid:0];
+    [self updateSelfViewVisiable];
+    // mute local video
+    [self.agoraKit muteLocalVideoStream:_isVideoMuted];
+}
+
+- (void)setIsAudioMuted:(BOOL)isAudioMuted {
+    if (_isAudioMuted == isAudioMuted) {
+        return;
+    }
+    
+    _isAudioMuted = isAudioMuted;
+    self.muteAudioButton.selected = _isAudioMuted;
+    // mute local audio
+    [self.agoraKit muteLocalAudioStream:_isAudioMuted];
+}
+
+- (void)setIsDebugMode:(BOOL)isDebugMode {
+    if (_isDebugMode == isDebugMode) {
+        return;
+    }
+    
+    _isDebugMode = isDebugMode;
+    _options.isDebugMode = _isDebugMode;
+    self.messageTableContainerView.hidden = !_isDebugMode;
 }
 
 - (void)setDoubleClickFullSession:(VideoSession *)doubleClickFullSession {
@@ -71,6 +148,17 @@ static NSInteger streamID = 0;
     }
 }
 
+- (AgoraRtcEngineKit *)agoraKit {
+    return [self.dataSource roomVCNeedAgoraKit];
+}
+
+- (AgoraRtcCryptoLoader *)agoraLoader {
+    if (!_agoraLoader) {
+        _agoraLoader = [[AgoraRtcCryptoLoader alloc] init];
+    }
+    return _agoraLoader;
+}
+
 - (VideoViewLayouter *)videoViewLayouter {
     if (!_videoViewLayouter) {
         _videoViewLayouter = [[VideoViewLayouter alloc] init];
@@ -78,145 +166,75 @@ static NSInteger streamID = 0;
     return _videoViewLayouter;
 }
 
-- (void)setAudioMuted:(BOOL)audioMuted {
-    _audioMuted = audioMuted;
-    [self.muteAudioButton setImage:[UIImage imageNamed:(audioMuted ? @"btn_mute_blue" : @"btn_mute")] forState:UIControlStateNormal];
-    [self.agoraKit muteLocalAudioStream:audioMuted];
+- (NSMutableArray<VideoSession *> *)videoSessions {
+    if (!_videoSessions) {
+        _videoSessions = [[NSMutableArray alloc] init];
+    }
+    return _videoSessions;
 }
 
-- (void)setVideoMuted:(BOOL)videoMuted {
-    _videoMuted = videoMuted;
-    [self.muteVideoButton setImage:[UIImage imageNamed:(videoMuted ? @"btn_video" : @"btn_voice")] forState:UIControlStateNormal];
-    self.cameraButton.hidden = videoMuted;
-    self.speakerButton.hidden = !videoMuted;
-    
-    [self.agoraKit muteLocalVideoStream:videoMuted];
-    
-    [self setVideoMuted:videoMuted forUid:0];
-    [self updateSelfViewVisiable];
+- (Settings *)settings {
+    return [self.dataSource roomVCNeedSettings];
 }
 
-- (void)setSpeakerEnabled:(BOOL)speakerEnabled {
-    _speakerEnabled = speakerEnabled;
-    [self.speakerButton setImage:[UIImage imageNamed:(speakerEnabled ? @"btn_speaker_blue" : @"btn_speaker")] forState:UIControlStateNormal];
-    [self.speakerButton setImage:[UIImage imageNamed:(speakerEnabled ? @"btn_speaker" : @"btn_speaker_blue")] forState:UIControlStateHighlighted];
-    
-    [self.agoraKit setEnableSpeakerphone:speakerEnabled];
+- (RoomOptions *)options {
+    if (!_options) {
+        _options = [[RoomOptions alloc] init];
+        _options.isDebugMode = false;
+    }
+    return _options;
 }
 
-- (void)setIsAudioMixing:(BOOL)isAudioMixing {
-    _isAudioMixing = isAudioMixing;
-    [self.audioMixingButton setImage:[UIImage imageNamed:isAudioMixing ? @"btn_stop" : @"btn_play"] forState:UIControlStateNormal];
-}
-
-#pragma mark - View did load
+#pragma mark - VC Life
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.videoSessions = [[NSMutableArray alloc] init];
-    self.agoraLoader = [[AgoraRtcCryptoLoader alloc] init];
-    self.roomNameLabel.text = self.roomName;
-    self.msgInputView.alpha = 0;
-    [self.backgroundTap requireGestureRecognizerToFail:self.backgroundDoubleTap];
-    
+    self.title = self.settings.roomName;
     [self loadAgoraKit];
-    [self addKeyboardObserver];
 }
 
-#pragma mark - Send Data Stream
-- (void)addKeyboardObserver {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-}
-
-- (void)keyboardFrameChange:(NSNotification *)info {
-    
-    CGRect keyboardEndFrame = [info.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = [UIScreen mainScreen].bounds.size.height - keyboardEndFrame.origin.y;
-    double duration = [info.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    CGFloat constant;
-    
-    if (ty > 0) {
-        constant = ty;
-        self.msgInputView.alpha = 1;
-    }
-    else {
-        constant = 0;
-        self.msgInputView.alpha = 0;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueId = segue.identifier;
+    if (!segueId.length) {
+        return;
     }
     
-    [UIView animateWithDuration:duration animations:^{
-        self.msgInputViewBottom.constant = constant;
-        [self.view layoutIfNeeded];
-    }];
-    
-}
-
-- (void)sendDataWithString:(NSString *)message {
-    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-    [self.msgTableView appendMsgToTableViewWithMsg:message msgType:MsgTypeChat];
-    [self.agoraKit sendStreamMessage:streamID data:data];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self sendDataWithString:textField.text];
-    textField.text = @"";
-    return YES;
-}
-
-#pragma mark - Click Action
-- (IBAction)doFilterPressed:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    
-    if (sender.selected) {
-        [AGVideoPreProcessing registerVideoPreprocessing:self.agoraKit];
+    if ([segueId isEqualToString:@"roomEmbedMessage"]) {
+        self.messageVC = segue.destinationViewController;
+    } else if ([segueId isEqualToString:@"roomToOptions"]) {
+        RoomOptionsViewController *optionsVC = segue.destinationViewController;
+        optionsVC.delegate = self;
+        optionsVC.dataSource = self;
+        self.optionsVC = optionsVC;
     }
-    else {
-        [AGVideoPreProcessing deregisterVideoPreprocessing:self.agoraKit];
-    }
+}
+
+- (void)dealloc {
+    [self leaveChannel];
+}
+
+#pragma mark - UI Actions
+- (IBAction)doCameraPressed:(UIButton *)sender {
+    self.isSwitchCamera = !self.isSwitchCamera;
+}
+
+- (IBAction)doBeautyPressed:(UIButton *)sender {
+    self.isBeauty = !self.isBeauty;
 }
 
 - (IBAction)doAudioMixingPressed:(UIButton *)sender {
     self.isAudioMixing = !self.isAudioMixing;
-    if (self.isAudioMixing) {
-        [self.agoraKit startAudioMixing:[FileCenter audioFilePath]
-                               loopback:NO
-                                replace:NO
-                                  cycle:1];
-    } else {
-        [self.agoraKit stopAudioMixing];
-    }
 }
 
-- (IBAction)doMesPressed:(UIButton *)sender {
-    [self.msgTextField becomeFirstResponder];
-}
-
-- (IBAction)doHideKeyboardPressed:(UIButton *)sender {
-    [self.msgTextField resignFirstResponder];
+- (IBAction)doSpeakerPhonePressed:(UIButton *)sender {
+    self.isEarPhone = !self.isEarPhone;
 }
 
 - (IBAction)doMuteVideoPressed:(UIButton *)sender {
-    self.videoMuted = !self.videoMuted;
+    self.isVideoMuted = !self.isVideoMuted;
 }
 
 - (IBAction)doMuteAudioPressed:(UIButton *)sender {
-    self.audioMuted = !self.audioMuted;
-}
-
-- (IBAction)doCameraPressed:(UIButton *)sender {
-    [self.agoraKit switchCamera];
-}
-
-- (IBAction)doSpeakerPressed:(UIButton *)sender {
-    self.speakerEnabled = !self.speakerEnabled;
-}
-
-- (IBAction)doClosePressed:(UIButton *)sender {
-    [self leaveChannel];
-}
-
-- (IBAction)doBackTapped:(UITapGestureRecognizer *)sender {
-    self.shouldHideFlowViews = !self.shouldHideFlowViews;
+    self.isAudioMuted = !self.isAudioMuted;
 }
 
 - (IBAction)doBackDoubleTapped:(UITapGestureRecognizer *)sender {
@@ -230,7 +248,138 @@ static NSInteger streamID = 0;
     }
 }
 
-#pragma mark - Video View Layout
+#pragma mark - AgoraRtcEngineKit
+- (void)loadAgoraKit {
+    // Step 1, set delegate
+    self.agoraKit.delegate = self;
+    
+    // Step 2, set communication mode
+    [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
+    
+    // Step 3, enable the video module
+    [self.agoraKit enableVideo];
+    // set video configuration
+    AgoraVideoEncoderConfiguration *configuration = [[AgoraVideoEncoderConfiguration alloc] initWithSize:self.settings.dimension
+                                                                                               frameRate:self.settings.frameRate
+                                                                                                 bitrate:AgoraVideoBitrateStandard
+                                                                                         orientationMode:AgoraVideoOutputOrientationModeAdaptative];
+    [self.agoraKit setVideoEncoderConfiguration:configuration];
+    // add local render view and start preview
+    [self addLocalSession];
+    [self.agoraKit startPreview];
+    
+    // Step 4, enable encryption mode
+    if (self.settings.encryption.type != EncryptionTypeNone && self.settings.encryption.secret.length) {
+        [self.agoraKit setEncryptionMode:self.settings.encryption.modeString];
+        [self.agoraKit setEncryptionSecret:self.settings.encryption.secret];
+    }
+    
+    // Step 5, join channel and start group chat
+    // If join  channel success, agoraKit triggers it's delegate function
+    // 'rtcEngine:(AgoraRtcEngineKit *)engine didJoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed'
+    [self.agoraKit joinChannelByToken:nil channelId:self.settings.roomName info:nil uid:0 joinSuccess:nil];
+    [self setIdleTimerActive:NO];
+}
+
+- (void)addLocalSession {
+    VideoSession *localSession = [VideoSession localSession];
+    [self.videoSessions addObject:localSession];
+    [self.agoraKit setupLocalVideo:localSession.canvas];
+    [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
+    [self.agoraKit startPreview];
+}
+
+- (void)leaveChannel {
+    // Step 1, release local AgoraRtcVideoCanvas instance
+    [self.agoraKit setupLocalVideo:nil];
+    // Step 2, leave channel and end group chat
+    [self.agoraKit leaveChannel:nil];
+    // Step 3, please attention, stop preview after leave channel
+    [self.agoraKit stopPreview];
+    
+    // Step 4, remove all render views
+    for (VideoSession *session in self.videoSessions) {
+        [session.hostingView removeFromSuperview];
+    }
+    [self.videoSessions removeAllObjects];
+    
+    [self setIdleTimerActive:YES];
+}
+
+#pragma mark - <AgoraRtcEngineDelegate>
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
+    [self info:[NSString stringWithFormat:@"Join channel: %@", channel]];
+}
+
+- (void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit *)engine {
+    [self alert:@"Connection Did Interrupted"];
+}
+
+- (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit *)engine {
+    [self alert:@"Connection Did Lost"];
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraErrorCode)errorCode {
+    [self alert:[NSString stringWithFormat:@"Occur error: %ld", errorCode]];
+}
+
+// first remote video frame
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed {
+    VideoSession *userSession = [self videoSessionOfUid:uid];
+    userSession.size = size;
+    [self.agoraKit setupRemoteVideo:userSession.canvas];
+}
+
+// first local video frame
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed {
+    if (self.videoSessions.count) {
+        VideoSession *selfSession = self.videoSessions.firstObject;
+        selfSession.size = size;
+        [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:NO];
+        [self info:[NSString stringWithFormat:@"local video dimension: %f x %f", size.width, size.height]];
+    }
+}
+
+// user offline
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
+    VideoSession *deleteSession;
+    for (VideoSession *session in self.videoSessions) {
+        if (session.uid == uid) {
+            deleteSession = session;
+        }
+    }
+    
+    if (deleteSession) {
+        [self.videoSessions removeObject:deleteSession];
+        [deleteSession.hostingView removeFromSuperview];
+        [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
+        
+        if (deleteSession == self.doubleClickFullSession) {
+            self.doubleClickFullSession = nil;
+        }
+    }
+}
+
+// video muted
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
+    [self setVideoMuted:muted forUid:uid];
+}
+
+// audio mixing
+- (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit *)engine {
+    self.isAudioMixing = NO;
+}
+
+#pragma mark - RoomOptionsVCDelegate, RoomOptionsVCDataSource
+- (void)roomOptions:(RoomOptionsViewController *)vc debugModeDidEnable:(BOOL)enable {
+    self.isDebugMode = enable;
+}
+
+- (RoomOptions *)roomOptionsVCNeedOptions {
+    return self.options;
+}
+
+#pragma mark - Private
 - (void)updateInterfaceWithSessions:(NSArray *)sessions targetSize:(CGSize)targetSize animation:(BOOL)animation {
     if (animation) {
         [UIView animateWithDuration:0.3 animations:^{
@@ -276,15 +425,6 @@ static NSInteger streamID = 0;
     [UIApplication sharedApplication].idleTimerDisabled = !active;
 }
 
-// mark
-- (void)addLocalSession {
-    VideoSession *localSession = [VideoSession localSession];
-    [self.videoSessions addObject:localSession];
-    [self.agoraKit setupLocalVideo:localSession.canvas];
-    [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
-    [self.agoraKit startPreview];
-}
-
 - (VideoSession *)fetchSessionOfUid:(NSUInteger)uid {
     for (VideoSession *session in self.videoSessions) {
         if (session.uid == uid) {
@@ -314,136 +454,39 @@ static NSInteger streamID = 0;
 - (void)updateSelfViewVisiable {
     UIView *selfView = self.videoSessions.firstObject.hostingView;
     if (self.videoSessions.count == 2) {
-        selfView.hidden = self.videoMuted;
+        selfView.hidden = self.isVideoMuted;
     } else {
         selfView.hidden = false;
     }
 }
 
-- (void)alertString:(NSString *)string {
-    if (!string.length) {
+// Log
+- (void)info:(NSString *)text {
+    if (!text.length) {
         return;
     }
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:string preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
+    [self.messageVC appendInfo:text];
 }
 
-- (void)leaveChannel {
-    [self.agoraKit setupLocalVideo:nil];
-    [self.agoraKit leaveChannel:nil];
-    [self.agoraKit stopPreview];
-    
-    for (VideoSession *session in self.videoSessions) {
-        [session.hostingView removeFromSuperview];
-    }
-    [self.videoSessions removeAllObjects];
-    
-    [self setIdleTimerActive:YES];
-    
-    if ([self.delegate respondsToSelector:@selector(roomVCNeedClose:)]) {
-        [self.delegate roomVCNeedClose:self];
-    }
-}
-
-#pragma mark - Agora Media SDK
-- (void)loadAgoraKit {
-    self.agoraKit.delegate = self;
-    [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
-    
-    // set video
-    AgoraVideoEncoderConfiguration *configuration =
-        [[AgoraVideoEncoderConfiguration alloc] initWithSize:self.dimension
-                                                   frameRate:AgoraVideoFrameRateFps15
-                                                     bitrate:AgoraVideoBitrateStandard
-                                             orientationMode:AgoraVideoOutputOrientationModeAdaptative];
-    [self.agoraKit setVideoEncoderConfiguration:configuration];
-    
-    if (self.encrypSecret.length) {
-        [self.agoraKit setEncryptionMode:[EncryptionType modeStringWithEncrypType:self.encrypType]];
-        [self.agoraKit setEncryptionSecret:self.encrypSecret];
+- (void)alert:(NSString *)text {
+    if (!text.length) {
+        return;
     }
     
-    
-    [self.agoraKit enableVideo];
-    
-    //
-    [self addLocalSession];
-    
-    
-    int code = [self.agoraKit joinChannelByToken:[KeyCenter Token] channelId:self.roomName info:nil uid:0 joinSuccess:nil];
-    if (code == 0) {
-        [self setIdleTimerActive:NO];
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self alertString:[NSString stringWithFormat:@"Join channel failed: %d", code]];
-        });
-    }
+    [self.messageVC appendError:text];
 }
 
-#pragma mark - <AgoraRtcEngineDelegate>
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed {
-    VideoSession *userSession = [self videoSessionOfUid:uid];
-    userSession.size = size;
-    [self.agoraKit setupRemoteVideo:userSession.canvas];
+#pragma mark - Others
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.orientation = UIInterfaceOrientationMaskAll;
 }
 
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed {
-    if (self.videoSessions.count) {
-        VideoSession *selfSession = self.videoSessions.firstObject;
-        selfSession.size = size;
-        [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:NO];
-    }
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.orientation = UIInterfaceOrientationMaskPortrait;
 }
-
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
-    VideoSession *deleteSession;
-    for (VideoSession *session in self.videoSessions) {
-        if (session.uid == uid) {
-            deleteSession = session;
-        }
-    }
-    
-    if (deleteSession) {
-        [self.videoSessions removeObject:deleteSession];
-        [deleteSession.hostingView removeFromSuperview];
-        [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
-        
-        if (deleteSession == self.doubleClickFullSession) {
-            self.doubleClickFullSession = nil;
-        }
-    }
-}
-
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
-    [self setVideoMuted:muted forUid:uid];
-}
-
--(void)rtcEngine:(AgoraRtcEngineKit *)engine receiveStreamMessageFromUid:(NSUInteger)uid streamId:(NSInteger)streamId data:(NSData *)data {
-    NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [self.msgTableView appendMsgToTableViewWithMsg:message msgType:MsgTypeChat];
-}
-
-- (void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit *)engine {
-    [self.msgTableView appendMsgToTableViewWithMsg:@"Connection Did Interrupted" msgType:MsgTypeError];
-}
-
-- (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit *)engine {
-    [self.msgTableView appendMsgToTableViewWithMsg:@"Connection Did Lost" msgType:MsgTypeError];
-}
-
-- (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit *)engine {
-    self.isAudioMixing = NO;
-}
-
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraErrorCode)errorCode {
-    [self.msgTableView appendMsgToTableViewWithMsg:@"Occur Error" msgType:MsgTypeError];
-}
-
-
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurWarning:(AgoraWarningCode)warningCode {
-    [self.msgTableView appendMsgToTableViewWithMsg:@"Occur Warning" msgType:MsgTypeError];
-}
-
 @end

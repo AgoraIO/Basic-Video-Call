@@ -7,16 +7,17 @@
 //
 
 #import "DimensionCell.h"
+#import "CommonExtension.h"
 
 @interface DimensionCell()
-@property (weak, nonatomic) IBOutlet UILabel *resLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dimensionLabel;
 @end
 
 @implementation DimensionCell
-
 - (void)updateWithDimension:(CGSize)dimension isSelected:(BOOL)isSelected {
-    self.resLabel.text = [NSString stringWithFormat:@"%.0f x %.0f", dimension.width, dimension.height];
-    self.backgroundColor = isSelected ? [UIColor colorWithRed:0 green:0 blue:0.5 alpha:0.3] : [UIColor whiteColor];
+    self.dimensionLabel.text = [NSString stringWithFormat:@"%.0fx%.0f", dimension.width, dimension.height];
+    self.dimensionLabel.textColor = isSelected ? UIColor.whiteColor : UIColor.AGTextGray;
+    self.dimensionLabel.backgroundColor = isSelected ? UIColor.AGBlue : UIColor.whiteColor;
+    self.dimensionLabel.layer.borderColor = isSelected ? UIColor.AGBlue.CGColor : UIColor.AGGray.CGColor;
 }
-
 @end
