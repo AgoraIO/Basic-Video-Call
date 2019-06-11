@@ -54,15 +54,6 @@ public class CallOptionsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        setResult(Activity.RESULT_OK);
-
-        finish();
-    }
-
     public void onBackPressed(View view) {
         onBackPressed();
     }

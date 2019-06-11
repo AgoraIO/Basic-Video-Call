@@ -20,7 +20,6 @@ import io.agora.openvcall.R;
 import io.agora.openvcall.model.ConstantApp;
 
 public class SettingsActivity extends AppCompatActivity {
-    private VideoEncResolutionAdapter mVideoEncResolutionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +78,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         videoFpsSpinner.setSelection(fpsIdx);
+    }
+
+    public void onBackPressed(View view) {
+        onBackPressed();
     }
 
     @Override

@@ -62,13 +62,6 @@ public class NetworkTestActivity extends BaseActivity implements BeforeCallEvent
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        finish();
-    }
-
     public void onBackPressed(View view) {
         onBackPressed();
     }
