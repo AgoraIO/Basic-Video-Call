@@ -1,4 +1,10 @@
 import { useState, useEffect } from 'react';
+import AgoraRTC from '../utils/AgoraEnhancer';
+
+const fakeClient = AgoraRTC.createClient({
+  mode: 'live',
+  codec: 'vp8'
+})
 
 const noop = () => {};
 
@@ -7,7 +13,7 @@ interface MediaDeviceInfo {
   deviceId: string;
 }
 
-const useMicrophone = (client: any): MediaDeviceInfo[] => {
+const useMicrophone = (client = fakeClient): MediaDeviceInfo[] => {
   const [microphoneList, setMicrophoneList] = useState<MediaDeviceInfo[]>([]);
 
   useEffect(() => {

@@ -120,8 +120,8 @@ function App() {
   const [state, dispatch] = useReducer(reducer, defaultState);
   const [agoraClient, setClient] = useState<any>(undefined)
   // const agoraClient = AgoraRTC.createClient({ mode: state.mode, codec: state.codec });
-  const cameraList = useCamera(agoraClient);
-  const microphoneList = useMicrophone(agoraClient);
+  const cameraList = useCamera();
+  const microphoneList = useMicrophone();
   let [localStream, remoteStreamList, streamList] = useMediaStream(agoraClient);
   const { enqueueSnackbar } = useSnackbar();
 
