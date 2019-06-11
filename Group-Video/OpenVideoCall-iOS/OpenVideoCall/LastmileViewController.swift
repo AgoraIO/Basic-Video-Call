@@ -20,6 +20,10 @@ class LastmileViewController: UITableViewController {
     @IBOutlet weak var uplinkLabel: UILabel!
     @IBOutlet weak var downlinkLabel: UILabel!
     
+    private var agoraKit: AgoraRtcEngineKit {
+        return dataSource!.lastmileVCNeedAgoraKit()
+    }
+    
     private var isLastmileProbeTesting = false {
         didSet {
             if isLastmileProbeTesting {
@@ -37,10 +41,6 @@ class LastmileViewController: UITableViewController {
                 agoraKit.stopLastmileProbeTest()
             }
         }
-    }
-    
-    private var agoraKit: AgoraRtcEngineKit {
-        return dataSource!.lastmileVCNeedAgoraKit()
     }
     
     private var activityView: UIActivityIndicatorView?

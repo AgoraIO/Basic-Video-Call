@@ -791,18 +791,18 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="24" id="AAf-45-RPh" customClass="ChatMessageCell" customModule="OpenVideoCall" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="24" id="AAf-45-RPh" customClass="MessageCell" customModule="OpenVideoCall" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="200" height="24"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="AAf-45-RPh" id="aBP-jm-KCk">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AAf-45-RPh" id="aBP-jm-KCk">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuc-FR-rve">
-                                                    <rect key="frame" x="0.0" y="4.5" width="24" height="22"/>
+                                                    <rect key="frame" x="0.0" y="4" width="24" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yI5-jK-tEX">
-                                                            <rect key="frame" x="10" y="3" width="4" height="16"/>
+                                                            <rect key="frame" x="10" y="3" width="4" height="14"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -899,6 +899,6 @@
         <image name="btn-speaker-off" width="40" height="40"/>
         <image name="btn-video" width="40" height="40"/>
         <image name="btn-video-off" width="40" height="40"/>
-        <image name="logo" width="216" height="60"/>
+        <image name="logo" width="108" height="30"/>
     </resources>
 </document>

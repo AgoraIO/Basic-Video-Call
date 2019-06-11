@@ -16,20 +16,20 @@ class MainViewController: UIViewController {
     @IBOutlet weak var encryptionButton: UIButton!
     @IBOutlet weak var testNetworkButton: UIButton!
     
-    lazy private var agoraKit: AgoraRtcEngineKit = {
+    private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
         engine.setLogFilter(AgoraLogFilter.info.rawValue)
         engine.setLogFile(FileCenter.logFilePath())
         return engine
     }()
     
-    private var settings = Settings()
-    
     private var encryptionType = EncryptionType.xts128(nil) {
         didSet {
             encryptionButton.setTitle(encryptionType.description(), for: .normal)
         }
     }
+    
+    private var settings = Settings()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueId = segue.identifier else {
@@ -41,18 +41,19 @@ class MainViewController: UIViewController {
             let settingsVC = segue.destination as? SettingsViewController
             settingsVC?.delegate = self
             settingsVC?.dataSource = self
-        case "mainToRoom":
-            let roomVC = segue.destination as? RoomViewController
-            roomVC?.dataSource = self
         case "mainToLastmile":
             let testVC = segue.destination as? LastmileViewController
             testVC?.dataSource = self
+        case "mainToRoom":
+            let roomVC = segue.destination as? RoomViewController
+            roomVC?.dataSource = self
         default:
             break
         }
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         updateViews()
     }
     
@@ -127,10 +128,6 @@ extension MainViewController: SettingsVCDelegate {
 extension MainViewController: SettingsVCDataSource {
     func settingsVCNeedSettings() -> Settings {
         return settings
-    }
-    
-    func settingsVCNeedAgoraKit() -> AgoraRtcEngineKit {
-        return agoraKit
     }
 }
 

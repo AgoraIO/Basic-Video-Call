@@ -28,6 +28,14 @@ class RoomViewController: UIViewController {
     
     @IBOutlet var backgroundDoubleTap: UITapGestureRecognizer!
     
+    private var agoraKit: AgoraRtcEngineKit {
+        return dataSource!.roomVCNeedAgoraKit()
+    }
+    
+    private var settings: Settings {
+        return dataSource!.roomVCNeedSettings()
+    }
+    
     private var isSwitchCamera = true {
         didSet {
             agoraKit.switchCamera()
@@ -65,8 +73,8 @@ class RoomViewController: UIViewController {
             if isBeauty {
                 options = AgoraBeautyOptions()
                 options?.lighteningContrastLevel = .normal
-                options?.lighteningLevel = 0.2
-                options?.smoothnessLevel = 0.2
+                options?.lighteningLevel = 0.7
+                options?.smoothnessLevel = 0.5
                 options?.rednessLevel = 0.1
             }
             // improve local render view
@@ -80,7 +88,7 @@ class RoomViewController: UIViewController {
                 return
             }
             speakerPhoneButton.isSelected = !isSpeakerPhone
-            //switch playout audio route
+            // switch playout audio route
             agoraKit.setEnableSpeakerphone(isSpeakerPhone)
         }
     }
@@ -138,19 +146,11 @@ class RoomViewController: UIViewController {
     private let videoViewLayouter = VideoViewLayouter()
     private let cryptoLoader = AgoraRtcCryptoLoader()
     
-    private var chatMessageVC: MessageViewController?
     private weak var optionsVC: RoomOptionsViewController?
     private lazy var options = RoomOptions(isDebugMode: false)
-    
+    private var messageVC: MessageViewController?
+   
     weak var dataSource: RoomVCDataSource?
-    
-    var settings: Settings {
-        return dataSource!.roomVCNeedSettings()
-    }
-    
-    var agoraKit: AgoraRtcEngineKit {
-        return dataSource!.roomVCNeedAgoraKit()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,7 +165,7 @@ class RoomViewController: UIViewController {
         
         switch segueId {
         case "roomEmbedMessage":
-            chatMessageVC = segue.destination as? MessageViewController
+            messageVC = segue.destination as? MessageViewController
         case "roomToOptions":
             let optionsVC = segue.destination as? RoomOptionsViewController
             optionsVC?.delegate = self
@@ -231,7 +231,7 @@ private extension RoomViewController {
         agoraKit.setVideoEncoderConfiguration(
             AgoraVideoEncoderConfiguration(
                 size: settings.dimension,
-                frameRate: .fps15,
+                frameRate: settings.frameRate,
                 bitrate: AgoraVideoBitrateStandard,
                 orientationMode: .adaptative
             )
@@ -452,18 +452,18 @@ private extension RoomViewController {
     }
     
     // Log
-    func alert(string: String) {
-        guard !string.isEmpty else {
-            return
-        }
-        chatMessageVC?.append(alert: string)
-    }
-    
     func info(string: String) {
         guard !string.isEmpty else {
             return
         }
-        chatMessageVC?.append(info: string)
+        messageVC?.append(info: string)
+    }
+    
+    func alert(string: String) {
+        guard !string.isEmpty else {
+            return
+        }
+        messageVC?.append(alert: string)
     }
 }
 

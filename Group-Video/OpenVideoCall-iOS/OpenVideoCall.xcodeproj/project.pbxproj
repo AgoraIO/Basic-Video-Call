@@ -15,7 +15,7 @@
 		07C2CF581D6ADB3300C84349 /* EncryptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF571D6ADB3300C84349 /* EncryptionType.swift */; };
 		07C2CF5A1D6ADDCA00C84349 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF591D6ADDCA00C84349 /* RoomViewController.swift */; };
 		07C2CF601D6AE5E700C84349 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF5F1D6AE5E700C84349 /* MessageViewController.swift */; };
-		07C2CF621D6AE63000C84349 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF611D6AE63000C84349 /* ChatMessageCell.swift */; };
+		07C2CF621D6AE63000C84349 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF611D6AE63000C84349 /* MessageCell.swift */; };
 		07C2CF681D6AF13300C84349 /* CollectionIndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF631D6AF13300C84349 /* CollectionIndexModel.swift */; };
 		07C2CF6A1D6AF13300C84349 /* VideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF651D6AF13300C84349 /* VideoSession.swift */; };
 		07C2CF6B1D6AF13300C84349 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF661D6AF13300C84349 /* VideoView.swift */; };
@@ -57,7 +57,7 @@
 		07C2CF571D6ADB3300C84349 /* EncryptionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionType.swift; sourceTree = "<group>"; };
 		07C2CF591D6ADDCA00C84349 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		07C2CF5F1D6AE5E700C84349 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		07C2CF611D6AE63000C84349 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		07C2CF611D6AE63000C84349 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		07C2CF631D6AF13300C84349 /* CollectionIndexModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionIndexModel.swift; sourceTree = "<group>"; };
 		07C2CF651D6AF13300C84349 /* VideoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSession.swift; sourceTree = "<group>"; };
 		07C2CF661D6AF13300C84349 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -164,7 +164,7 @@
 			children = (
 				07F52EB81D62F39D006DDCD4 /* Main.storyboard */,
 				0786497E1D65A4C6004AD88E /* DimensionCell.swift */,
-				07C2CF611D6AE63000C84349 /* ChatMessageCell.swift */,
+				07C2CF611D6AE63000C84349 /* MessageCell.swift */,
 				07C2CF651D6AF13300C84349 /* VideoSession.swift */,
 				07C2CF661D6AF13300C84349 /* VideoView.swift */,
 				07C2CF671D6AF13300C84349 /* VideoViewLayouter.swift */,
@@ -317,7 +317,7 @@
 				07C2CF721D6AF34800C84349 /* CommonExtensions.swift in Sources */,
 				3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */,
 				073BDB5A1D64742A00B62E14 /* MainViewController.swift in Sources */,
-				07C2CF621D6AE63000C84349 /* ChatMessageCell.swift in Sources */,
+				07C2CF621D6AE63000C84349 /* MessageCell.swift in Sources */,
 				07C2CF751D6AF36B00C84349 /* MediaInfo.swift in Sources */,
 				07C2CF601D6AE5E700C84349 /* MessageViewController.swift in Sources */,
 				073BDB5C1D64743C00B62E14 /* SettingsViewController.swift in Sources */,

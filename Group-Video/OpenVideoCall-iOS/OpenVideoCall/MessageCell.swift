@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatMessageCell: UITableViewCell {
+class MessageCell: UITableViewCell {
     
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
