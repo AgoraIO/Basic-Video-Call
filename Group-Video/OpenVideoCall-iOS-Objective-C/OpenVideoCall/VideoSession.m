@@ -10,6 +10,15 @@
 #import "VideoView.h"
 
 @implementation VideoSession
+- (void)setIsVideoMuted:(BOOL)isVideoMuted {
+    _isVideoMuted = isVideoMuted;
+    ((VideoView *)self.hostingView).isVideoMuted = isVideoMuted;
+}
+
++ (instancetype)localSession {
+    return [[VideoSession alloc] initWithUid:0];
+}
+
 - (instancetype)initWithUid:(NSUInteger)uid {
     if (self = [super init]) {
         self.uid = uid;
@@ -25,12 +34,10 @@
     return self;
 }
 
-- (void)setIsVideoMuted:(BOOL)isVideoMuted {
-    _isVideoMuted = isVideoMuted;
-    ((VideoView *)self.hostingView).isVideoMuted = isVideoMuted;
+
+- (void)updateMediaInfo:(CGSize)resolution fps:(NSInteger)fps {
+    MediaInfo *info = [[MediaInfo alloc] initWithDimension:resolution fps:fps];
+    [((VideoView *)self.hostingView) updateInfo:info];
 }
 
-+ (instancetype)localSession {
-    return [[VideoSession alloc] initWithUid:0];
-}
 @end

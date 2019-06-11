@@ -13,6 +13,6 @@
 @interface Settings : NSObject
 @property (nonatomic, strong) Encryption *encryption;
 @property (nonatomic, assign) AgoraVideoFrameRate frameRate;
-@property (nonatomic, assign) CGSize  dimension;
+@property (nonatomic, assign) CGSize dimension;
 @property (nonatomic, copy) NSString *roomName;
 @end

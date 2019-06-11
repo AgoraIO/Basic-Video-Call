@@ -283,6 +283,7 @@
 
 - (void)addLocalSession {
     VideoSession *localSession = [VideoSession localSession];
+    [localSession updateMediaInfo:self.settings.dimension fps:self.settings.frameRate];
     [self.videoSessions addObject:localSession];
     [self.agoraKit setupLocalVideo:localSession.canvas];
     [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
@@ -363,6 +364,11 @@
 // video muted
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
     [self setVideoMuted:muted forUid:uid];
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStats:(AgoraRtcRemoteVideoStats *)stats {
+    VideoSession *session = [self fetchSessionOfUid:stats.uid];
+    [session updateMediaInfo:CGSizeMake(stats.width, stats.height) fps:stats.rendererOutputFrameRate];
 }
 
 // audio mixing

@@ -44,6 +44,7 @@
 		A7FB1B8622A8C96B0027986E /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FB1B8522A8C96B0027986E /* MessageViewController.m */; };
 		A7FB1B8922A8C9850027986E /* RoomOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FB1B8822A8C9850027986E /* RoomOptionsViewController.m */; };
 		A7FB1BD422AE448D0027986E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FB1BD222AE448D0027986E /* Main.storyboard */; };
+		A7FB1BE422AFABF30027986E /* MediaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FB1BE322AFABF30027986E /* MediaInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,8 @@
 		A7FB1B8722A8C9850027986E /* RoomOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomOptionsViewController.h; sourceTree = "<group>"; };
 		A7FB1B8822A8C9850027986E /* RoomOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomOptionsViewController.m; sourceTree = "<group>"; };
 		A7FB1BD322AE448D0027986E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A7FB1BE222AFABF30027986E /* MediaInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaInfo.h; sourceTree = "<group>"; };
+		A7FB1BE322AFABF30027986E /* MediaInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 				3832FA5E227FC9DA00E50E69 /* FileCenter.m */,
 				A7FB1B6922A6437B0027986E /* MediaCharater.h */,
 				A7FB1B6A22A6437B0027986E /* MediaCharater.m */,
+				A7FB1BE222AFABF30027986E /* MediaInfo.h */,
+				A7FB1BE322AFABF30027986E /* MediaInfo.m */,
 				A7327ECC1FC7B5E300882882 /* Encryption.h */,
 				A7327ECD1FC7B5E300882882 /* Encryption.m */,
 				A7327ED51FC7C7EE00882882 /* Message.h */,
@@ -326,6 +331,7 @@
 			files = (
 				A7327ED41FC7C7DB00882882 /* MessageCell.m in Sources */,
 				A7FB1B7522A670B80027986E /* LastmileViewController.m in Sources */,
+				A7FB1BE422AFABF30027986E /* MediaInfo.m in Sources */,
 				076C59A01DDDBF2200F813E2 /* KeyCenter.m in Sources */,
 				A7FB1B6222A638500027986E /* Settings.m in Sources */,
 				076C59961DDDBDE300F813E2 /* SettingsViewController.m in Sources */,

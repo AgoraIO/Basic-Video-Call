@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MediaInfo.h"
 
 @interface VideoView : UIView
 @property (assign, nonatomic) BOOL isVideoMuted;
 @property (strong, nonatomic) UIView *videoView;
+- (void)updateInfo:(MediaInfo *)info;
 @end
