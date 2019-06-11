@@ -30,7 +30,11 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
-  "keywords": ["agora", "agora-rtc-sdk", "webrtc"],
+  "keywords": [
+    "agora",
+    "agora-rtc-sdk",
+    "webrtc"
+  ],
   "author": "agora",
   "license": "ISC"
 }
