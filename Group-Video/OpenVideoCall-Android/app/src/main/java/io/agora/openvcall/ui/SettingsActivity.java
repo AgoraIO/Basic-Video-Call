@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import io.agora.openvcall.R;
 import io.agora.openvcall.model.ConstantApp;
+import io.agora.openvcall.ui.layout.SettingsButtonDecoration;
+import io.agora.openvcall.ui.layout.VideoEncResolutionAdapter;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         RecyclerView videoResolutionList = (RecyclerView) findViewById(R.id.settings_video_resolution);
         videoResolutionList.setHasFixedSize(true);
-        videoResolutionList.addItemDecoration(new GroupButtonDecoration());
+        videoResolutionList.addItemDecoration(new SettingsButtonDecoration());
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         int resolutionIdx = pref.getInt(ConstantApp.PrefManager.PREF_PROPERTY_VIDEO_ENC_RESOLUTION, ConstantApp.DEFAULT_VIDEO_ENC_RESOLUTION_IDX);

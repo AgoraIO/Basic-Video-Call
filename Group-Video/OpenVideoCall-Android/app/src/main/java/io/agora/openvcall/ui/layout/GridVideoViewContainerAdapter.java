@@ -1,4 +1,4 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import java.util.HashMap;
 import io.agora.propeller.UserStatusData;
 
 public class GridVideoViewContainerAdapter extends VideoViewAdapter {
+
     private final static Logger log = LoggerFactory.getLogger(GridVideoViewContainerAdapter.class);
 
     public GridVideoViewContainerAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {

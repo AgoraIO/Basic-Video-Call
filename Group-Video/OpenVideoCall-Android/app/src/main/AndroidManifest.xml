@@ -12,7 +12,6 @@
 
     <application
         android:name=".AGApplication"
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -32,7 +31,7 @@
             android:label="@string/label_network_testing"
             android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".ui.ChatActivity"
+            android:name=".ui.CallActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/VideoCallTheme" />
@@ -40,7 +39,7 @@
             android:name=".ui.CallOptionsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/label_options"
-            android:parentActivityName=".ui.ChatActivity" />
+            android:parentActivityName=".ui.CallActivity" />
         <activity
             android:name=".ui.SettingsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

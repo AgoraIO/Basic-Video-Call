@@ -40,6 +40,10 @@ android {
             path 'src/main/cpp/Android.mk'
         }
     }
+
+    lintOptions {
+        warning 'InvalidPackage'
+    }
 }
 
 dependencies {

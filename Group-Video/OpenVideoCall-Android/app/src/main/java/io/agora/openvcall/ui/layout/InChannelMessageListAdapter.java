@@ -1,4 +1,4 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -14,13 +14,13 @@ import io.agora.openvcall.R;
 import io.agora.openvcall.model.Message;
 
 public class InChannelMessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<Message> mMsglist;
+    private ArrayList<Message> mMsgList;
 
-    protected final LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
 
     public InChannelMessageListAdapter(Activity activity, ArrayList<Message> list) {
         mInflater = activity.getLayoutInflater();
-        mMsglist = list;
+        mMsgList = list;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class InChannelMessageListAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Message msg = mMsglist.get(position);
+        Message msg = mMsgList.get(position);
 
         MessageHolder myHolder = (MessageHolder) holder;
         String sender = msg.getSender().name;
@@ -40,25 +40,25 @@ public class InChannelMessageListAdapter extends RecyclerView.Adapter<RecyclerVi
         } else {
             myHolder.itemView.setBackgroundResource(R.drawable.rounded_bg);
         }
-        myHolder.msgContent.setText(msg.getContent());
+        myHolder.mMsgContent.setText(msg.getContent());
     }
 
     @Override
     public int getItemCount() {
-        return mMsglist.size();
+        return mMsgList.size();
     }
 
     @Override
     public long getItemId(int position) {
-        return mMsglist.get(position).hashCode();
+        return mMsgList.get(position).hashCode();
     }
 
     public class MessageHolder extends RecyclerView.ViewHolder {
-        public TextView msgContent;
+        TextView mMsgContent;
 
-        public MessageHolder(View v) {
+        MessageHolder(View v) {
             super(v);
-            msgContent = (TextView) v.findViewById(R.id.msg_content);
+            mMsgContent = (TextView) v.findViewById(R.id.msg_content);
         }
     }
 }
