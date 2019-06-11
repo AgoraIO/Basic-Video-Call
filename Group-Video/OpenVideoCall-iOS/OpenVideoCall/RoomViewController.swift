@@ -221,7 +221,6 @@ private extension RoomViewController {
     func loadAgoraKit() {
         // Step 1, set delegate
         agoraKit.delegate = self
-        
         // Step 2, set communication mode
         agoraKit.setChannelProfile(.communication)
         
