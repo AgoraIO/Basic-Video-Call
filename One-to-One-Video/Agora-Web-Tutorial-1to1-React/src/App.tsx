@@ -137,7 +137,7 @@ function App() {
     setClient(client)
     setIsLoading(true);
     try {
-      const uid = isNaN(Number(state.uid)) ? undefined : Number(state.uid);
+      const uid = isNaN(Number(state.uid)) ? null : Number(state.uid);
       await client.init(state.appId);
       await client.join(state.token, state.channel, uid);
       const stream = AgoraRTC.createStream({
