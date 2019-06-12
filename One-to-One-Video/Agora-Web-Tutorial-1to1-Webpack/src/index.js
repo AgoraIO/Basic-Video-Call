@@ -1,10 +1,18 @@
 import RTCClient from './rtc-client';
-import $ from 'jquery';
 import {getDevices, serializeFormData, validator} from './common';
 import "./assets/style.scss";
+import * as bs from 'bootstrap-material-design';
+
 
 $(() => {
   let selects = null;
+
+  $('body').bootstrapMaterialDesign();
+  $("#settings").on("click", function (e) {
+    e.preventDefault();
+    $("#settings").toggleClass("btn-raised");
+    $('#setting-collapse').collapse();
+  });
 
   getDevices(function (devices) {
     selects = devices;
@@ -20,31 +28,15 @@ $(() => {
         text: video.name,
       }).appendTo("#cameraId");
     })
-    selects.resolutions = [
-      {
-        value: "180p", name: "resolution: 320x180 15fps 140kbps"
-      },
-      {
-        value: "360p", name: "resolution: 640x360 30fps 400kbps"
-      },
-      {
-        value: "720p", name: "resolution: 1280x720 24fps 1130kbps"
-      }
-    ]
-    selects.resolutions.forEach(function (resolution) {
-      $('<option/>', {
-        value: resolution.value,
-        text: resolution.name,
-      }).appendTo("#resolution");
-    })
   })
 
   const fields = ['appID', 'channel'];
 
   let rtc = new RTCClient();
 
-  $("#create").on("click", function () {
-    console.log("create")
+  $("#join").on("click", function (e) {
+    e.preventDefault();
+    console.log("join")
     const params = serializeFormData();
     if (validator(params, fields)) {
       rtc.join(params).then(() => {
@@ -53,7 +45,8 @@ $(() => {
     }
   })
 
-  $("#publish").on("click", function () {
+  $("#publish").on("click", function (e) {
+    e.preventDefault();
     console.log("startLiveStreaming")
     const params = serializeFormData();
     if (validator(params, fields)) {
@@ -61,7 +54,8 @@ $(() => {
     }
   });
 
-  $("#unpublish").on("click", function () {
+  $("#unpublish").on("click", function (e) {
+    e.preventDefault();
     console.log("stopLiveStreaming")
     const params = serializeFormData();
     if (validator(params, fields)) {
@@ -69,7 +63,8 @@ $(() => {
     }
   });
 
-  $("#leave").on("click", function () {
+  $("#leave").on("click", function (e) {
+    e.preventDefault();
     console.log("leave")
     const params = serializeFormData();
     if (validator(params, fields)) {

@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const webpack = require('webpack');
 
 const plugins = [
   new HtmlWebpackPlugin({
@@ -23,6 +24,11 @@ const plugins = [
   new MiniCssExtractPlugin({
     filename: "[name].[hash].css",
     chunkFilename: "[id].css"
+  }),
+  new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery",
+    Popper: 'popper.js/dist/umd/popper',
   })
 ];
 

@@ -1,7 +1,5 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import Toastify from 'toastify-js';
-import $ from 'jquery';
-import "./assets/common.css";
 
 export const Toast = {
   info: (msg) => {
@@ -45,6 +43,7 @@ export function serializeFormData() {
     var val = item.value;
     obj[key] = val;
   }
+  console.log("form data", obj);
   return obj;
 }
 

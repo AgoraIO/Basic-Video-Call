@@ -3,70 +3,113 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Basic Communication</title>
 </head>
 
 <body>
-  <div class="sections-container">
-    <div class="section-container">
-      <div class="section-body">
-        <div class="notice"></div>
-        <div class="section-title">
-          <div class="title" id="basic">Basic Communication</div>
-          <hr/>
-        </div>
-        <!-- form -->
-        <form id="form">
-          <div class="section-form">
-            <div class="form-row">
-              <div class="form-item">
-                <label for="appID">APPID: </label>
-                <input placeholder="Enter APPID" type="text" id="appID" name="appID"/>
+  <nav class="navbar navbar-light fixed-top agora-primary-bg">
+    <h5>Basic Communication</h5>
+  </nav>
+  <form id="form">
+    <div class="custom-container container">
+      <div class="row">
+        <div class="custom-row-container">
+          <div class="row">
+            <div class="col-ms">
+              <div class="card custom-card">
+                <div class="form-group">
+                  <label for="appID" class="bmd-label-floating">App ID*</label>
+                  <input type="text" class="form-control" name="appID" id="appID">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label for="channel" class="bmd-label-floating">Channel*</label>
+                  <input type="text" class="form-control" name="channel" id="channel">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <label for="token" class="bmd-label-floating">Token</label>
+                  <input type="text" class="form-control" name="Token" id="token">
+                </div>
+                <div class="form-group bmd-form-group">
+                  <button id="join" type="button" class="btn btn-raised btn-primary agora-primary-bg">JOIN</button>
+                  <button id="leave" type="button" class="btn btn-raised btn-primary agora-primary-bg">LEAVE</button>
+                  <button id="publish" type="button"
+                    class="btn btn-raised btn-primary agora-primary-bg">PUBLISH</button>
+                  <button id="unpublish" type="button"
+                    class="btn btn-raised btn-primary agora-primary-bg">UNPUBLISH</button>
+                </div>
               </div>
-              <div class="form-item">
-                <label for="channel">Channel: </label>
-                <input placeholder="Enter Channel" type="text" id="channel" name="channel"/>
-              </div>
-              <div class="form-item">
-                <label for="uid">UID(Optional): </label>
-                <input placeholder="Enter UID" type="text" id="uid" name="uid"/>
-              </div>
-              <div class="form-item">
-                <label for="token">Token: </label>
-                <input placeholder="Enter Token" type="text" id="token" name="token"/>
-              </div>
-              <div class="form-item">
-                <label for="microphoneId">Audio Device: </label>
-                <select id="microphoneId" name="microphoneId" class="custom-select">
-                </select>
-              </div>
-              <div class="form-item">
-                <label for="cameraId">Video Ddevice: </label>
-                <select id="cameraId" name="cameraId" class="custom-select">
-                </select>
-              </div>
-            </div>
-            <hr/>
-            <div class="form-row button-list">
-              <a class="btn" id="create">Join Room</a>
-              <a class="btn" id="publish">publish</a>
-              <a class="btn" id="unpublish">unpublish</a>
-              <a class="btn leave" id="leave">leave</a>
-            </div>
-            <hr/>
-            <div class="video-grid" id="video">
-              <div id="local_stream" class="video-placeholder">
-                <div id="local_video_info" class="video-info"></div>
+              <div class="card">
+                <button class="btn btn-raised agora-expand-btn" id="settings" data-toggle="collapse"
+                  data-target="#setting-collapse" aria-expanded="false" aria-controls="collapse">
+                  Advanced Settings
+                </button>
+                <div id="setting-collapse" class="collapse" aria-labelledby="setting-collapse">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="uid" class="bmd-label-floating">UID</label>
+                      <input type="text" class="form-control" name="uid" id="uid">
+                    </div>
+                    <div class="form-group">
+                      <label for="cameraId" class="bmd-label-floating">CAMERA</label>
+                      <select class="form-control" id="cameraId" name="cameraId">
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="microphoneId" class="bmd-label-floating">MICROPHONE</label>
+                      <select class="form-control" id="microphoneId" name="microphoneId">
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="mode">Mode</label>
+                      <div class="row radio-list">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="mode" value="rtc" >
+                            <span class="radio-label">rtc</span>
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="mode" value="live" checked>
+                            <span class="radio-label">live</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="mode">Codec</label>
+                      <div class="row radio-list">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="codec" value="vp8">
+                            <span class="radio-label">vp8</span>
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+
+                            <input type="radio" name="codec" value="h264" checked>
+                            <span class="radio-label">h264</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
-        </form>
-        <!-- from -->
+          <div class="video-grid" id="video">
+            <div id="local_stream" class="video-placeholder">
+              <div id="local_video_info" class="video-info"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+  </form>
 </body>
 
 </html>

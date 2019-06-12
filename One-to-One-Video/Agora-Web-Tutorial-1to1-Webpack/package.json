@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "agora-rtc-sdk": "^2.6.1",
+    "bootstrap-material-design": "^4.1.1",
     "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
     "toastify-js": "^1.5.0"
   },
   "devDependencies": {

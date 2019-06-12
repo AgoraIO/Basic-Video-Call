@@ -93,7 +93,7 @@ export default class RTCClient {
        *    Ensure that you set these properties before calling Client.join.
        *  You could find more detail here. https://docs.agora.io/en/Video/API%20Reference/web/interfaces/agorartc.clientconfig.html
       **/
-      this._client = AgoraRTC.createClient({mode: 'rtc', codec: 'h264'});
+      this._client = AgoraRTC.createClient({mode: data.mode, codec: data.codec});
     
       this._params = data;
     
