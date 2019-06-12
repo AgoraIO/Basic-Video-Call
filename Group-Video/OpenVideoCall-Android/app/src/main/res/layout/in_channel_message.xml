@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_bg"
+    android:gravity="center"
     android:orientation="horizontal">
 
     <TextView
@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="2dp"
-        android:gravity="center"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="4dp"
+        android:gravity="center_vertical"
         android:minWidth="18dp"
         android:textColor="@android:color/white"
         android:textSize="12sp"

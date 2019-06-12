@@ -1,4 +1,4 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.app.Activity;
 import android.content.Context;

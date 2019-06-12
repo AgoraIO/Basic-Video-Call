@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".ui.ChatActivity">
+    tools:context=".ui.CallActivity">
 
-    <io.agora.openvcall.ui.GridVideoViewContainer
+    <io.agora.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

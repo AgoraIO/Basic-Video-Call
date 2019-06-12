@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,11 @@ import io.agora.openvcall.model.ConstantApp;
 import io.agora.openvcall.model.DuringCallEventHandler;
 import io.agora.openvcall.model.Message;
 import io.agora.openvcall.model.User;
+import io.agora.openvcall.ui.layout.GridVideoViewContainer;
+import io.agora.openvcall.ui.layout.InChannelMessageListAdapter;
+import io.agora.openvcall.ui.layout.MessageListDecoration;
+import io.agora.openvcall.ui.layout.SmallVideoViewAdapter;
+import io.agora.openvcall.ui.layout.SmallVideoViewDecoration;
 import io.agora.propeller.Constant;
 import io.agora.propeller.UserStatusData;
 import io.agora.propeller.VideoInfoData;
@@ -47,12 +53,12 @@ import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 
-public class ChatActivity extends BaseActivity implements DuringCallEventHandler {
+public class CallActivity extends BaseActivity implements DuringCallEventHandler {
 
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
-    private final static Logger log = LoggerFactory.getLogger(ChatActivity.class);
+    private final static Logger log = LoggerFactory.getLogger(CallActivity.class);
 
     // should only be modified under UI thread
     private final HashMap<Integer, SurfaceView> mUidsList = new HashMap<>(); // uid = 0 || uid == EngineConfig.mUid
@@ -75,11 +81,13 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
+    private final Handler mUIHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeActivityContentShownUnderStatusBar();
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_call);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -120,7 +128,6 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         if (ab != null) {
             TextView channelNameView = ((TextView) findViewById(R.id.ovc_page_title));
             channelNameView.setText(channelName);
-            channelNameView.setTextColor(getResources().getColor(R.color.dark_black));
         }
 
         // programmatically layout ui below of status bar/action bar
@@ -207,14 +214,10 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
             int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                uiOptions |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-            }
-
             decorView.setSystemUiVisibility(uiOptions);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(getResources().getColor(android.R.color.white));
+                getWindow().setStatusBarColor(getResources().getColor(R.color.agora_blue));
             }
         }
     }
@@ -224,9 +227,6 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             View decorView = getWindow().getDecorView();
             int uiOptions = decorView.getSystemUiVisibility();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                uiOptions |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-            }
 
             if (hide) {
                 uiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -235,10 +235,6 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
             }
 
             decorView.setSystemUiVisibility(uiOptions);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(getResources().getColor(hide ? android.R.color.transparent : android.R.color.white));
-            }
         }
     }
 
@@ -246,7 +242,13 @@ public class ChatActivity extends BaseActivity implements DuringCallEventHandler
         mFullScreen = !mFullScreen;
 
         showOrHideCtrlViews(mFullScreen);
-        showOrHideStatusBar(mFullScreen);
+
+        mUIHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showOrHideStatusBar(mFullScreen);
+            }
+        }, 200); // action bar fade duration
     }
 
     private void showOrHideCtrlViews(boolean hide) {

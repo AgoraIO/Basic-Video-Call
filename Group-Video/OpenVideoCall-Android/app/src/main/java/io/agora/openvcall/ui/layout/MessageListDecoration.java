@@ -1,29 +1,32 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class SmallVideoViewDecoration extends RecyclerView.ItemDecoration {
+public class MessageListDecoration extends RecyclerView.ItemDecoration {
 
     private static final int divider = 12;
-    private static final int header = 10;
-    private static final int footer = 10;
+    private static final int header = 4;
+    private static final int footer = 4;
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int itemCount = parent.getAdapter().getItemCount();
         int viewPosition = parent.getChildAdapterPosition(view);
 
+        outRect.left = divider;
+        outRect.right = divider;
+
         if (viewPosition == 0) {
-            outRect.left = header;
-            outRect.right = divider / 2;
+            outRect.top = header;
+            outRect.bottom = divider / 2;
         } else if (viewPosition == itemCount - 1) {
-            outRect.left = divider / 2;
-            outRect.right = footer;
+            outRect.top = divider / 2;
+            outRect.bottom = footer;
         } else {
-            outRect.left = divider / 2;
-            outRect.right = divider / 2;
+            outRect.top = divider / 2;
+            outRect.bottom = divider / 2;
         }
     }
 }

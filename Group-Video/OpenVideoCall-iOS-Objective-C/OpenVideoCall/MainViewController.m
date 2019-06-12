@@ -109,6 +109,7 @@
 
 #pragma mark - Private
 - (void)updateViews {
+    // view elements initialization
     self.encryptionButton.layer.borderColor = UIColor.AGGray.CGColor;
     self.testNetworkButton.layer.borderColor = UIColor.AGGray.CGColor;
 }

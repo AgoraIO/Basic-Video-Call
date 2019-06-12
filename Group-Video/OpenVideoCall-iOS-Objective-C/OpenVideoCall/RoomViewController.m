@@ -91,7 +91,6 @@
         options.smoothnessLevel = 0.5;
         options.rednessLevel = 0.1;
     }
-    
     // improve local render view
     [self.agoraKit setBeautyEffectOptions:_isBeauty options:options];
 }
@@ -159,6 +158,7 @@
     return _agoraLoader;
 }
 
+// videoViewLayouter and videoSessions manage all render views
 - (VideoViewLayouter *)videoViewLayouter {
     if (!_videoViewLayouter) {
         _videoViewLayouter = [[VideoViewLayouter alloc] init];
@@ -239,6 +239,7 @@
 
 - (IBAction)doBackDoubleTapped:(UITapGestureRecognizer *)sender {
     if (!self.doubleClickFullSession) {
+        // full screen display after be double clicked
         NSInteger tappedIndex = [self.videoViewLayouter responseIndexOfLocation:[sender locationInView:self.containerView]];
         if (tappedIndex >= 0 && tappedIndex < self.videoSessions.count) {
             self.doubleClickFullSession = self.videoSessions[tappedIndex];
@@ -252,7 +253,6 @@
 - (void)loadAgoraKit {
     // Step 1, set delegate
     self.agoraKit.delegate = self;
-    
     // Step 2, set communication mode
     [self.agoraKit setChannelProfile:AgoraChannelProfileCommunication];
     
@@ -283,6 +283,7 @@
 
 - (void)addLocalSession {
     VideoSession *localSession = [VideoSession localSession];
+    [localSession updateMediaInfo:self.settings.dimension fps:self.settings.frameRate];
     [self.videoSessions addObject:localSession];
     [self.agoraKit setupLocalVideo:localSession.canvas];
     [self updateInterfaceWithSessions:self.videoSessions targetSize:self.containerView.frame.size animation:YES];
@@ -312,11 +313,11 @@
 }
 
 - (void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit *)engine {
-    [self alert:@"Connection Did Interrupted"];
+    [self alert:@"Connection Interrupted"];
 }
 
 - (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit *)engine {
-    [self alert:@"Connection Did Lost"];
+    [self alert:@"Connection Lost"];
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraErrorCode)errorCode {
@@ -346,6 +347,7 @@
     for (VideoSession *session in self.videoSessions) {
         if (session.uid == uid) {
             deleteSession = session;
+            break;
         }
     }
     
@@ -357,12 +359,21 @@
         if (deleteSession == self.doubleClickFullSession) {
             self.doubleClickFullSession = nil;
         }
+        
+        // release canvas's view
+        deleteSession.canvas.view = nil;
     }
 }
 
 // video muted
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
     [self setVideoMuted:muted forUid:uid];
+}
+
+// remote stat
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStats:(AgoraRtcRemoteVideoStats *)stats {
+    VideoSession *session = [self fetchSessionOfUid:stats.uid];
+    [session updateMediaInfo:CGSizeMake(stats.width, stats.height) fps:stats.rendererOutputFrameRate];
 }
 
 // audio mixing
@@ -413,6 +424,7 @@
     [self.videoViewLayouter layoutVideoViews];
     [self updateSelfViewVisiable];
     
+    // Only three people or more can switch the layout
     if (sessions.count >= 3) {
         self.backgroundDoubleTap.enabled = YES;
     } else {

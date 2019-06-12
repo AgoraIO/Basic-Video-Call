@@ -1,13 +1,14 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class GroupButtonDecoration extends RecyclerView.ItemDecoration {
-    int divider = 12;
-    int header = 4;
-    int footer = 4;
+public class SettingsButtonDecoration extends RecyclerView.ItemDecoration {
+
+    private static final int divider = 12;
+    private static final int header = 4;
+    private static final int footer = 4;
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {

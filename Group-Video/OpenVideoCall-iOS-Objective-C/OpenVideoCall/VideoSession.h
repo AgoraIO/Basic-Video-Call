@@ -16,6 +16,7 @@
 @property (assign, nonatomic) CGSize size;
 @property (assign, nonatomic) BOOL isVideoMuted;
 
-- (instancetype)initWithUid:(NSUInteger)uid;
 + (instancetype)localSession;
+- (instancetype)initWithUid:(NSUInteger)uid;
+- (void)updateMediaInfo:(CGSize)resolution fps:(NSInteger)fps;
 @end

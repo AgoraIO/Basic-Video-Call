@@ -52,7 +52,7 @@ public class BasicTests {
 
         solo.clickOnView(solo.getView(R.id.button_join));
 
-        String targetActivity = ChatActivity.class.getSimpleName();
+        String targetActivity = CallActivity.class.getSimpleName();
 
         solo.waitForLogMessage("onJoinChannelSuccess " + AUTO_TEST_CHANNEL_NAME, JOIN_CHANNEL_SUCCESS_THRESHOLD + 1000);
 

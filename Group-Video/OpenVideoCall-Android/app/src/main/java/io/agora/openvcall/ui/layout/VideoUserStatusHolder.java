@@ -1,4 +1,4 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -1,4 +1,4 @@
-package io.agora.openvcall.ui;
+package io.agora.openvcall.ui.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 
 public class SmallVideoViewAdapter extends VideoViewAdapter {
+
     private final static Logger log = LoggerFactory.getLogger(SmallVideoViewAdapter.class);
 
     private int mExceptedUid;

@@ -36,9 +36,9 @@ class LastmileViewController: UITableViewController {
                 activityView?.startAnimating()
                 self.title = "Testing..."
             } else {
-                self.title = "Test result"
-                activityView?.stopAnimating()
                 agoraKit.stopLastmileProbeTest()
+                activityView?.stopAnimating()
+                self.title = "Test result"
             }
         }
     }
