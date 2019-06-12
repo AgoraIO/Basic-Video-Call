@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import AgoraRTC from '../utils/AgoraEnhancer';
+import { IClientWithPromise } from 'agoran-awe/types/promisify';
 
 const fakeClient = AgoraRTC.createClient({
   mode: 'live',
@@ -33,12 +34,12 @@ const useMicrophone = (client = fakeClient): MediaDeviceInfo[] => {
         .catch(noop);
     };
 
-    client && client.on('recordingDeviceChanged', onChange);
+    client && client.on('recording-device-changed', onChange);
     onChange();
 
     return () => {
       mounted = false;
-      client && client.gatewayClient.removeEventListener(
+      client && (client as IClientWithPromise & {gatewayClient: any}).gatewayClient.removeEventListener(
         'recordingDeviceChanged',
         onChange
       );

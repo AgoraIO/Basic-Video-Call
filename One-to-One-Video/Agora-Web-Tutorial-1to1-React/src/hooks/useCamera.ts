@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import AgoraRTC from '../utils/AgoraEnhancer';
+import { IClientWithPromise } from 'agoran-awe/types/promisify';
 
 const fakeClient = AgoraRTC.createClient({
   mode: 'live',
@@ -33,13 +34,13 @@ const useCamera = (client = fakeClient): MediaDeviceInfo[] => {
         .catch(noop);
     };
     
-    client && client.on('cameraChanged', onChange);
+    client && client.on('camera-changed', onChange);
     
     onChange();
 
     return () => {
       mounted = false;
-      client && client.gatewayClient.removeEventListener('cameraChanged', onChange);
+      client && (client as IClientWithPromise & {gatewayClient: any}).gatewayClient.removeEventListener('cameraChanged', onChange);
     };
   }, [client]);
 
