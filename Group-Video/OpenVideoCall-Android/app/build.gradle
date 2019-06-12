@@ -1,9 +1,5 @@
 apply plugin: 'com.android.application'
 
-repositories {
-    jcenter()
-}
-
 android {
     compileSdkVersion 28
 
@@ -28,8 +24,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -44,6 +40,10 @@ android {
             path 'src/main/cpp/Android.mk'
         }
     }
+
+    lintOptions {
+        warning 'InvalidPackage'
+    }
 }
 
 dependencies {
@@ -57,7 +57,6 @@ dependencies {
         // workaround issue #73
         exclude group: 'com.google.android', module: 'android'
     }
-
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.6.3'
 }

@@ -14,7 +14,11 @@
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.orientation = UIInterfaceOrientationMaskPortrait;
     return YES;
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return self.orientation;
+}
 @end

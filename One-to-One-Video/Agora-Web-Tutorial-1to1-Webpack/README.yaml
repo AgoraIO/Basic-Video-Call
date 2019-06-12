@@ -1,0 +1,42 @@
+Meta:
+  name: Web Tutorial For Webpack - 1to1 
+  lang: en
+  description: |
+    This tutorial shows you how to quickly create an basic video communication using the Agora sample app.
+Prerequisites:
+  - nodejs LTS
+  - A web browser
+
+QuickStart:
+  description:
+    This section shows you how to prepare, and run the sample application.
+  sections:
+    - title: Obtain an App ID
+      content: |
+        $_{APPID}
+    - title: Install dependencies and integrate the Agora Video SDK
+      content: |
+        1. Using the Terminal app, enter the `install` command in your project directory. This command installs libraries that are required to run the sample application.
+            ``` bash
+            # install dependencies
+            npm install
+            ```
+        2. Start the application by entering the `run dev` or `run build` command.
+            The `run dev` command is for development purposes.
+            ``` bash
+            # serve with hot reload at localhost:8080
+            npm run dev
+            ```
+            The `run build` command is for production purposes and minifies code.
+            ``` bash
+            # build for production with minification
+            npm run build
+            ```
+        3. Your default browser should open and display the sample application, as shown here.
+            **Note:** In some cases, you may need to open a browser and enter `http://localhost:8080` as the URL.
+Resources:
+  document: https://docs.agora.io/en/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

@@ -1,35 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".ui.SettingsActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SettingsActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <LinearLayout
-        android:id="@+id/video_settings_title"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/L2Text"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:gravity="start|center_vertical"
             android:text="@string/label_title_resolution"
-            android:gravity="center" />
+            android:textColor="#FF333333" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/label_title_frame_rate"
-            android:gravity="center" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/settings_video_resolution"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="12dp" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/profiles"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/video_settings_title" />
-</RelativeLayout>
+        android:layout_height="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/L2Text"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:gravity="start|center_vertical"
+            android:text="@string/label_title_frame_rate"
+            android:textColor="#FF333333" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="20" />
+
+        <Spinner
+            android:id="@+id/settings_video_frame_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

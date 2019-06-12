@@ -1,0 +1,44 @@
+Meta:
+  name: iOS 1-to-1 Tutorial for Swift
+  # en or cn
+  lang: en
+  project: Agora iOS Tutorial
+  # | 代表这里是字符串
+  description: |
+    This tutorial enables you to quickly get started in your development efforts to create an iOS app with real-time video calls, voice calls, and interactive broadcasting. With this sample app you can:
+
+    - Start and end audio/visual communication between two users.
+    - Join a communication channel.
+    - Mute and unmute audio.
+    - Enable and disable video.
+    - Switch between the front and rear cameras.
+
+Prerequisites:
+  - Xcode 10.0+
+  - Physical iOS device (iPhone or iPad)
+
+QuickStart:
+  description:
+    This section shows you how to prepare, build, and run the sample application.
+  sections:
+    - title: Obtain an App ID
+      content: |
+        $_{APPID}
+        5. Open `Agora iOS Tutorial.xcodeproj` and edit the `AppID.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID, and assign the token variable with the temp Access Token generated from dashboard.
+
+            ``` Swift
+            let AppID: String = <#Your App ID#>
+            // assign Token to nil if you have not enabled app certificate
+            let Token: String? = <#Temp Token#>
+            ```
+    - title: Integrate the Agora Video SDK
+      content: |
+
+        $_{IOS_RUN}
+
+Resources:
+  document: https://docs.agora.io/en/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

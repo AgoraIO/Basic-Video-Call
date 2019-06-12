@@ -8,18 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
-#import "EncryptionType.h"
+#import "Encryption.h"
+#import "Settings.h"
 
 @class RoomViewController;
-@protocol RoomVCDelegate <NSObject>
-- (void)roomVCNeedClose:(RoomViewController *)roomVC;
+@protocol RoomVCDataSource <NSObject>
+- (AgoraRtcEngineKit *)roomVCNeedAgoraKit;
+- (Settings *)roomVCNeedSettings;
 @end
 
 @interface RoomViewController : UIViewController
-@property (copy, nonatomic) NSString *roomName;
-@property (assign, nonatomic) CGSize dimension;
-@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
-@property (assign, nonatomic) EncrypType encrypType;
-@property (copy, nonatomic) NSString *encrypSecret;
-@property (weak, nonatomic) id<RoomVCDelegate> delegate;
+@property (weak, nonatomic) id<RoomVCDataSource> dataSource;
 @end

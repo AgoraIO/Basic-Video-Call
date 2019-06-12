@@ -2,6 +2,7 @@ package io.agora.openvcall.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -11,31 +12,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.agora.openvcall.R;
-import io.agora.openvcall.model.AGEventHandler;
 import io.agora.openvcall.model.ConstantApp;
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.internal.LastmileProbeConfig;
 
-public class MainActivity extends BaseActivity{
-    private TextView tvLastmileQualityResult;
-    private TextView tvLastmileProbeResult;
+public class MainActivity extends BaseActivity {
+
+    private final static Logger log = LoggerFactory.getLogger(MainActivity.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvLastmileQualityResult=(TextView)findViewById(R.id.tv_lastmile_quality_result);
-        tvLastmileProbeResult=(TextView)findViewById(R.id.tv_lastmile_Probe_result);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            ab.setCustomView(R.layout.ard_agora_actionbar);
+        }
     }
 
     @Override
     protected void initUIandEvent() {
-        resetLastMileInfo();
         EditText v_channel = (EditText) findViewById(R.id.channel_name);
         v_channel.addTextChangedListener(new TextWatcher() {
             @Override
@@ -57,7 +60,7 @@ public class MainActivity extends BaseActivity{
 
         Spinner encryptionSpinner = (Spinner) findViewById(R.id.encryption_mode);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.encryption_mode_values, android.R.layout.simple_spinner_item);
+                R.array.encryption_mode_values, R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         encryptionSpinner.setAdapter(adapter);
 
@@ -90,7 +93,6 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected void deInitUIandEvent() {
-        event().removeEventHandler(this);
     }
 
     @Override
@@ -125,7 +127,7 @@ public class MainActivity extends BaseActivity{
         String encryption = v_encryption_key.getText().toString();
         vSettings().mEncryptionKey = encryption;
 
-        Intent i = new Intent(MainActivity.this, ChatActivity.class);
+        Intent i = new Intent(MainActivity.this, CallActivity.class);
         i.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME, channel);
         i.putExtra(ConstantApp.ACTION_KEY_ENCRYPTION_KEY, encryption);
         i.putExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE, getResources().getStringArray(R.array.encryption_mode_values)[vSettings().mEncryptionModeIndex]);
@@ -138,69 +140,15 @@ public class MainActivity extends BaseActivity{
         startActivity(i);
     }
 
-
-    public void onLastMileClick(View view) {
-        boolean enableLastMileProbleTest = ((CheckBox)view).isChecked();
-        if(enableLastMileProbleTest){
-            if(worker().getRtcEngine()!=null){
-                LastmileProbeConfig lastmileProbeConfig = new LastmileProbeConfig();
-                lastmileProbeConfig.probeUplink = true;
-                lastmileProbeConfig.probeDownlink = true;
-                lastmileProbeConfig.expectedUplinkBitrate = 5000;
-                lastmileProbeConfig.expectedDownlinkBitrate = 5000;
-                int result = worker().getRtcEngine().startLastmileProbeTest(lastmileProbeConfig);
-            }
-        }
-        else{
-            if(worker().getRtcEngine()!=null){
-                worker().getRtcEngine().stopLastmileProbeTest();
-                resetLastMileInfo();
-            }
-        }
-    }
-
-
-
-    @Override
-    public void workThreadInited(){
-        event().addEventHandler(this);
+    public void onClickDoNetworkTest(View view) {
+        Intent i = new Intent(MainActivity.this, NetworkTestActivity.class);
+        startActivity(i);
     }
 
     @Override
-    public void onLastmileQuality(final int quality) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tvLastmileQualityResult.setText(
-                        "onLastmileQuality "+quality);
-            }
-        });
+    public void workerThreadReady() {
 
     }
-
-    @Override
-    public void onLastmileProbeResult(final IRtcEngineEventHandler.LastmileProbeResult result) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tvLastmileProbeResult.setText(
-                        "onLastmileProbeResult state:"+result.state+ " "+"rtt:"+result.rtt+"\n"+
-                                "uplinkReport { packetLossRate:"+result.uplinkReport.packetLossRate+" "+
-                                "jitter:"+result.uplinkReport.jitter+" "+
-                                "availableBandwidth:"+result.uplinkReport.availableBandwidth+"}"+"\n"+
-                                "downlinkReport { packetLossRate:"+result.downlinkReport.packetLossRate+" "+
-                                "jitter:"+result.downlinkReport.jitter+" "+
-                                "availableBandwidth:"+result.downlinkReport.availableBandwidth+"}");
-            }
-        });
-    }
-
-
-    private void resetLastMileInfo(){
-        tvLastmileQualityResult.setText("");
-        tvLastmileProbeResult.setText("");
-    }
-
 
 
 }

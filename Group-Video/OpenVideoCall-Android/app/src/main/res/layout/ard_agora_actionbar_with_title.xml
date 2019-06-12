@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@id/ovc_page_title"
+        style="@style/L2TextWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -200,7 +200,11 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void joinChannel() {
-        mRtcEngine.joinChannel(null, "demoChannel1", "Extra Optional Data", 0); // if you do not specify the uid, we will generate the uid for you
+        String token = getString(R.string.agora_access_token);
+        if(token.isEmpty()) {
+            token = null;
+        }
+        mRtcEngine.joinChannel(token, "demoChannel1", "Extra Optional Data", 0); // if you do not specify the uid, we will generate the uid for you
     }
 
     private void setupRemoteVideo(int uid) {

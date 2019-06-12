@@ -1,0 +1,50 @@
+Meta:
+  name: Android 1-to-1 Tutorial
+  # en or cn
+  lang: en
+  # | 代表这里是字符串
+  description: |
+    This tutorial enables you to quickly get started in your development efforts to create an Android app with real-time video calls, voice calls, and interactive broadcasting.
+    
+    With this sample app, you can:
+    - Join and leave a channel.
+    - Mute and unmute audio.
+    - Enable or disable video.
+    - Choose between the front or rear camera.
+
+    A more complete demo can be found [here](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android).
+
+Prerequisites:
+  - Android Studio 3.3 or above
+  - Android device (e.g. Nexus 5X). A real device is recommended because some simulators have missing functionality or lack the performance necessary to run the sample.
+
+QuickStart:
+  description:
+    This section shows you how to prepare, build, and run the sample application.
+  sections:
+    - title: Obtain an App ID
+      content: |
+        $_{APPID}
+        5. Locate the file **app/src/main/res/values/strings.xml** and replace <#YOUR APP ID#> with the App ID in the dashboard.
+
+          ```xml
+          <string name="agora_app_id"><#YOUR APP ID#></string>
+          <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
+          <!-- You will need to deploy your own token server for production release -->
+          <!-- Leave this value empty if Security keys/Token is not enabled for your project -->
+          <string name="agora_access_token"><#YOUR TOKEN#></string>
+          ```
+    - title: Integrate the Agora Video SDK
+      content: |
+        $_{ANDROID_INTEGRATE}
+            
+    - title: Run the Application
+      content: |
+        $_{ANDROID_RUN}
+
+Resources:
+  document: https://docs.agora.io/en/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

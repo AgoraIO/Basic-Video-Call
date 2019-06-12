@@ -6,7 +6,10 @@
     <!-- After you entered the App ID, remove <##> outside of Your App ID -->
     <!-- For formal released project, please use Security Keys/Token
         https://docs.agora.io/en/Video/token?platform=All%20Platforms -->
-    <string name="private_app_id"><#YOUR APP ID#></string>
+    <string name="agora_app_id"><#YOUR APP ID#></string>
+    <!-- Please leave it if not enable App Certificate -->
+    <!-- You can generate a temporary token at https://dashboard.agora.io/projects -->
+    <string name="agora_access_token">#YOUR ACCESS TOKEN#</string>
 
     <string-array name="encryption_mode_values">
         <item>AES-128-XTS</item>
@@ -25,12 +28,12 @@
 
     <string-array
         name="string_array_frame_rate">
-        <item>15</item> // 120P
-        <item>15</item> // 180P
-        <item>15</item> // 240P
-        <item>15</item> // 360P
-        <item>15</item> // 480P
-        <item>15</item> // 720P
+        <item>1</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item> // the default one
+        <item>24</item>
+        <item>30</item>
     </string-array>
 
     <string-array

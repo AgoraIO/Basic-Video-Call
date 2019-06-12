@@ -1,0 +1,40 @@
+Meta:
+  name: Open Video Call for Web
+  # en or cn
+  lang: en
+  # | 代表这里是字符串
+  description: |
+    This tutorial shows you how to quickly create an open video call using the Agora sample app.
+
+Prerequisites:
+  - Node.js 6.9.1+
+  - A web server that supports SSL (https)
+
+QuickStart:
+  description:
+    This section shows you how to prepare, build, and run the sample application.
+  sections:
+    - title: Obtain an App ID
+      content: |
+        $_{APPID}
+        5. Open the **src/utils/Settings.js** file. At the bottom of the file, replace `<#YOUR APP ID#>` with the App ID, and assign the token variable with the temp Access Token generated from dashboard.
+
+            **Note:** Place the App ID/Token within single or double quotes.
+
+            ```xml
+            export const APP_ID = <#YOUR APP ID#>;
+
+            // Assign Token to null if you have not enabled app certificate
+            export const Token = "<#YOUR TEMP TOKEN HERE#>";
+            ```
+    - title: Install dependencies and integrate the Agora Video SDK
+      content: |
+        
+        $_{WEB_RUN}
+
+Resources:
+  document: https://docs.agora.io/en/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

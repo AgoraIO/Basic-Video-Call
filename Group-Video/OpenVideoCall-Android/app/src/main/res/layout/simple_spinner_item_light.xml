@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/* /agora/apps/common/assets/res/layout/simple_spinner_item.xml
+**
+*/
+-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:paddingStart="16dp"
+    android:paddingLeft="16dp"
+    android:paddingEnd="8dp"
+    android:paddingRight="8dp"
+    android:singleLine="true"
+    android:textAlignment="inherit"
+    android:textColor="@color/dark_black"
+    android:textSize="14sp" />

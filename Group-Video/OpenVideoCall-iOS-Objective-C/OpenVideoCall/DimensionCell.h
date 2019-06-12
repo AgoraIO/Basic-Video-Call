@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
 
-@interface DimensionCell : UITableViewCell
+@interface DimensionCell : UICollectionViewCell
 - (void)updateWithDimension:(CGSize)dimension isSelected:(BOOL)isSelected;
 @end
