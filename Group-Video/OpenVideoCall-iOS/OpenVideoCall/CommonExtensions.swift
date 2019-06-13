@@ -9,6 +9,18 @@
 import UIKit
 
 extension UIColor {
+    static var AGTextGray: UIColor {
+        return UIColor(red: 102.0 / 255.0, green: 102.0 / 255.0, blue: 102.0 / 255.0, alpha: 1)
+    }
+    
+    static var AGGray: UIColor {
+        return UIColor(red: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1)
+    }
+    
+    static var AGBlue: UIColor {
+        return UIColor(red: 0, green: 106.0 / 255.0, blue: 216.0 / 255.0, alpha: 1)
+    }
+    
     convenience init(hex: Int, alpha: CGFloat = 1) {
         func transform(_ input: Int, offset: Int = 0) -> CGFloat {
             let value = (input >> offset) & 0xff

@@ -1,0 +1,46 @@
+Meta:
+  name: iOS Tutorial for Swift - 1to1
+  # en or cn
+  lang: cn
+  project: Agora iOS Tutorial
+  # | 代表这里是字符串
+  description: |
+    这个开源示例项目演示了如何快速集成Agora视频SDK，实现1对1视频通话。
+
+    在这个示例项目中包含了以下功能：
+
+    - 加入通话和离开通话；
+    - 静音和解除静音；
+    - 关闭摄像头和开启摄像头；
+    - 切换前置摄像头和后置摄像头；
+
+Prerequisites:
+  - XCode 10.0 +
+  - iOS 真机设备
+  - 不支持模拟器
+
+QuickStart:
+  description:
+    这个段落主要讲解了如何编译和运行实例程序。
+  sections:
+    - title: 创建Agora账号并获取AppId
+      content: |
+        $_{APPID}
+        5. 将 AppID 和 Token 填写进 AppID.swift
+
+            ```
+            let AppID: String = <#Your App ID#>
+            // 如果你没有打开Token功能，token可以直接给nil
+            let Token: String? = <#Temp Token#>
+            ```
+
+    - title: 集成 Agora 视频 SDK
+      content: |
+        $_{IOS_RUN}
+
+Resources:
+  document: https://docs.agora.io/cn/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

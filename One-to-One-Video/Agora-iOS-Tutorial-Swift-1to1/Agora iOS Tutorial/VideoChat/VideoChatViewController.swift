@@ -58,7 +58,7 @@ class VideoChatViewController: UIViewController {
     
     func joinChannel() {
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
-        agoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) {(sid, uid, elapsed) -> Void in
+        agoraKit.joinChannel(byToken: Token, channelId: "demoChannel1", info:nil, uid:0) {(sid, uid, elapsed) -> Void in
             // Did join channel "demoChannel1"
         }
         

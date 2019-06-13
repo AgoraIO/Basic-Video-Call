@@ -10,6 +10,11 @@
 
 @implementation KeyCenter
 + (NSString *)AppId {
-    return <#YOUR APPID#>;
+    return <#Your App Id#>;
+}
+
+// assign token to nil if you have not enabled app certificate
++ (NSString *)Token {
+    return <#Temp Access Token#>;
 }
 @end

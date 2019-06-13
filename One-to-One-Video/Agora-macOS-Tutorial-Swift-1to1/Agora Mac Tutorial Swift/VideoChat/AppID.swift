@@ -7,3 +7,5 @@
 //
 
 let AppID: String = <#Your App ID#>
+// assign token to nil if you have not enabled app certificate
+let Token: String? = <#Temp Token#>

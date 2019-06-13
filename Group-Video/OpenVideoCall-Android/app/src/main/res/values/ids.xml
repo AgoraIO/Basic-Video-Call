@@ -2,5 +2,6 @@
 <resources>
     <item name="small_video_view_dock" type="id" />
     <item name="full_screen_container" type="id" />
-    <item name="customized_function_id" type="id" />
+    <item name="switch_speaker_id" type="id" />
+    <item name="ovc_page_title" type="id" />
 </resources>

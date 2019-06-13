@@ -1,0 +1,50 @@
+Meta:
+  name: Open Video Call for MacOS (Swift)
+  # en or cn
+  lang: en
+  project: OpenVideoCall
+  # | 代表这里是字符串
+  description: |
+    This tutorial describes how to add video chat to your MacOS applications using Swift and the Agora Video SDK.
+    
+    With this sample app, you can:
+    - Join a channel
+    - Leave a channel
+    - Mute/unmute video and audio
+    - Enable/disable video
+    - Create input/output devices
+    - Send a message to a channel
+    - Screen share
+    - Set the resolution, the height, and the frame rate
+    - Enable encryption
+
+Prerequisites:
+  - Xcode 10.0+
+  - Physical iOS device (iPhone or iPad)
+  - iOS simulator is NOT supported
+
+QuickStart:
+  description:
+    This section shows you how to prepare, build, and run the sample application.
+  sections:
+    - title: Obtain an App ID
+      content: |
+        $_{APPID}
+        5. Open `OpenVideoCall.xcodeproj` and edit the `KeyCenter.swift` file. In the `agoraKit` declaration, update `<#Your App Id#>` with your app ID, and assign the token variable with the temp Access Token generated from dashboard.
+
+            ``` Swift
+            static let AppId: String = <#Your App Id#>
+            // assign token to nil if you have not enabled app certificate
+            static var Token: String? = <#Temp Access Token#>
+            ```
+
+    - title: Integrate the Agora Video SDK
+      content: |
+        $_{MAC_RUN}
+
+Resources:
+  document: https://docs.agora.io/en/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

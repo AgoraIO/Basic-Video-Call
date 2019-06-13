@@ -1,0 +1,38 @@
+Meta:
+  name: Open Video Call for Web
+  # en or cn
+  lang: cn
+  # | 代表这里是字符串
+  description: |
+    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现多人视频通话。
+
+Prerequisites:
+  - Node.js 6.9.1+
+  - 支持SSL(https)的服务器
+
+QuickStart:
+  description:
+    这个段落主要讲解了如何编译和运行示例程序。
+  sections:
+    - title: 创建Agora账号并获取AppId
+      content: |
+        $_{APPID}
+        5. 打开 **src/utils/Settings.js** 文件。在文件的底部，将`<#YOUR APP ID#>`替换为您自己的App ID，然后将`<#YOUR TEMP TOKEN#>`替换为dashboard计算的Token。
+        
+            **注意：** App ID是字符串类型，需要双引号或者单引号
+            ```javascript
+            export const APP_ID = <#YOUR APP ID#>;
+
+            // 如果你没有打开Token功能，token可以直接给null
+            export const Token = "<#YOUR TEMP TOKEN HERE#>";
+            ```
+    - title: 集成 Agora 视频 SDK
+      content: |
+        $_{WEB_RUN}
+
+Resources:
+  document: https://docs.agora.io/cn/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

@@ -1,6 +1,6 @@
-# Agora Windows Tutorial - 1to1
+# Windows Tutorial - 1to1
 
-*Read this in other languages: [English](README.md)*
+*[English](README.md) | 中文*
 
 这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现 1 对 1 视频通话。
 
@@ -20,35 +20,45 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 - [Agora-iOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Agora-iOS-Tutorial-Swift-1to1)
 - [Agora-macOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Agora-macOS-Tutorial-Swift-1to1)
 
+## 环境准备
+
+- Visual Studio 2013 或更高版本
+- Windows 7 或更高版本
+
 ## 运行示例程序
-首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。将代码中 APP_ID 宏内容定义为 AppID
 
-```
-#define APP_ID _T("")
-```
+这个段落主要讲解了如何编译和运行实例程序。
 
-然后在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 文件夹复制到本项目目录下（并覆盖原有旧目录）。
+### 创建Agora账号并获取AppId
 
-最后使用 Visual Studio 2013 打开 AgoraTutorial.sln，编译整个解决方案即可运行。
+在编译和启动实例程序前，您需要首先获取一个可用的App ID:
+在编译和启动实例程序前，您需要首先获取一个可用的App ID:
+1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
+2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
+3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
-## 注意
+4. 将 AppID 内容替换至 APP_ID 宏定义中
 
-1. sdk/dll 文件下的 dll 库需要放在相应的执行路径下。
+    ```
+    #define APP_ID _T("Your App ID")
+    ```
 
-温馨提示：此案例教程中已经为您配置好相关的 dll 库，若用户想自己使用 agora 提供的接口进行相关开发，则需按上述提示将 dll 库放入相应的执行路径下。
+### 集成 Agora 视频 SDK
 
-## 运行环境
-* Visual Studio 2013 或更高版本
-* 两台 Windows PC
+1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 复制到本项目的 `AgoraTutorial` 文件夹下（并覆盖同名旧目录）。
+
+2. 使用 VC++2013 打开 AgoraTutorial.sln，编译整个解决方案
+
 
 ## 联系我们
 
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
 - 如果在集成中遇到问题, 你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
-- 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方 Q 群 12742516 提问
+- 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方Q群 12742516 提问
 - 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的 bug , 欢迎提交 [issue](https://github.com/AgoraIO/Agora-Windows-Tutorial-1to1/issues)
+- 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## 代码许可
 
-The MIT License (MIT).
+The MIT License (MIT)

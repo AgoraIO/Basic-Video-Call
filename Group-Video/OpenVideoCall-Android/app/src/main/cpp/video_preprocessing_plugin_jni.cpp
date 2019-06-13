@@ -1,7 +1,6 @@
 #include <jni.h>
 #include <android/log.h>
 #include <cstring>
-#include <agora/AgoraBase.h>
 
 #include "agora/IAgoraRtcEngine.h"
 #include "agora/IAgoraMediaEngine.h"

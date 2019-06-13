@@ -9,6 +9,7 @@ using namespace agora::rtc;
 
 
 #define APP_ID _T("") // put your app id here
+#define MEDIA_TOKEN _T("")  //put your media token
 
 class CAgoraObject
 {
@@ -18,7 +19,7 @@ public:
 	void SetMsgHandlerWnd(HWND hWnd);
 	HWND GetMsgHandlerWnd();
 
-	BOOL JoinChannel(LPCTSTR lpChannelName, UINT nUID = 0);
+	BOOL JoinChannel(LPCTSTR lpChannelName, UINT nUID = 0,LPCTSTR lpToken = NULL);
 	BOOL LeaveChannel();
 	CString GetChanelName();
 

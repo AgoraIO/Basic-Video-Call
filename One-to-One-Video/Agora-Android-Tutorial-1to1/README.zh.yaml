@@ -1,0 +1,56 @@
+Meta:
+  name: Android Tutorial - 1to1
+  # en or cn
+  lang: cn
+  # | 代表这里是字符串
+  description: |
+    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现1对1视频通话。
+
+    在这个示例项目中包含了以下功能：
+
+    - 加入通话和离开通话；
+    - 静音和解除静音；
+    - 关闭摄像头和开启摄像头；
+    - 切换前置摄像头和后置摄像头；
+
+    你也可以在这里查看进阶版的示例项目：[OpenVideoCall-Android](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android)
+
+    Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可以查看对应各平台的示例项目：
+
+    - [Agora-iOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1)
+    - [Agora-Windows-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Windows-Tutorial-1to1)
+    - [Agora-macOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1)
+
+Prerequisites:
+  - Android Studio 3.3+
+  - 真实 Android 设备 (Nexus 5X 或者其它设备)
+  - 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机
+
+QuickStart:
+  description:
+    这个段落主要讲解了如何编译和运行实例程序。
+  sections:
+    - title: 创建Agora账号并获取AppId
+      content: |
+        $_{APPID}
+        5. 将 AppID 填写进 "app/src/main/res/values/strings.xml"
+          ```
+          <string name="private_app_id"><#YOUR APP ID#></string>
+          <!-- 临时Token 可以在 https://dashboard.agora.io 获取 -->
+          <!-- 在正式上线生产环境前，你必须部署你自己的Token服务器 -->
+          <!-- 如果你的项目没有打开安全证书，下面的值可以直接留空 -->
+          <string name="agora_access_token"><#YOUR TOKEN#></string>
+          ```
+    - title: 集成 Agora 视频 SDK
+      content: |
+        $_{ANDROID_INTEGRATE}
+    - title: 启动应用程序
+      content: |
+        $_{ANDROID_RUN}
+
+Resources:
+  document: https://docs.agora.io/cn/
+  issue: https://github.com/AgoraIO/Basic-Video-Call/issues
+
+License:
+  type: MIT

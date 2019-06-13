@@ -156,7 +156,7 @@ void CAgoraTutorialDlg::OnBnClickedBtnjoin()
 	if (m_strChannelName.IsEmpty())
 		MessageBox(_T("Channel name must not be empty"), _T("Notice"), MB_OK | MB_ICONERROR);
 	else
-		m_lpAgoraObject->JoinChannel(m_strChannelName);
+		m_lpAgoraObject->JoinChannel(m_strChannelName,0,MEDIA_TOKEN);
 }
 
 

@@ -16,7 +16,7 @@ import {
 } from "@/utils/BrowserCheck";
 import Notify from "@/utils/Notify";
 import Renderer from "@/utils/Render";
-import { SHARE_ID, RESOLUTION_ARR, APP_ID } from "@/utils/Settings";
+import { SHARE_ID, RESOLUTION_ARR, APP_ID, Token } from "@/utils/Settings";
 import { logger, log } from "../../utils/Logger";
 // eslint-disable-next-line
 import Polyfill from "@/utils/Polyfill";
@@ -54,9 +54,8 @@ const optionsInit = () => {
   let tempProfile = RESOLUTION_ARR[Cookies.get("videoProfile")];
   options.resolution = tempProfile[0] / tempProfile[1] || 4 / 3;
 
-  if (options.baseMode === "avc") {
-    options.key = APP_ID;
-  }
+  options.key = APP_ID;
+  options.token = Token;
 
   return options;
 };
@@ -99,7 +98,7 @@ const clientInit = (client, options) => {
       globalLog("AgoraRTC client initialized");
       let lowStreamParam = RESOLUTION_ARR[options.videoProfileLow];
       client.join(
-        options.key,
+        options.token,
         options.channel,
         options.uid,
         uid => {
