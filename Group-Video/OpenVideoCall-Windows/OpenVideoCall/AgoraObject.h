@@ -20,6 +20,7 @@ using namespace agora::rtc;
 #define AG_CODEC_VP8	0x00000002
 
 #define APP_ID _T("aab8b8f5a8cd4469a63042fcfafe7063")
+#define APP_TOKEN ""
 
 class CAgoraObject
 {
@@ -48,7 +49,7 @@ public:
 
 	BOOL SetLogFilePath(LPCTSTR lpLogPath = NULL);
 
-	BOOL JoinChannel(LPCTSTR lpChannelName, UINT nUID = 0);
+	BOOL JoinChannel(LPCTSTR lpChannelName, UINT nUID = 0,LPCSTR lpChannelToken = NULL);
 	BOOL LeaveCahnnel();
 	CString GetChanelName();
 	CString GetCallID();

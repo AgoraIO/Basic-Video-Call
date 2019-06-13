@@ -331,8 +331,8 @@ LRESULT COpenVideoCallDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 	m_dlgVideo.SetWindowText(strChannelName);
 	lpRtcEngine->setupLocalVideo(vc);
 	lpRtcEngine->startPreview();
-
-	lpAgoraObject->JoinChannel(strChannelName);
+	
+	lpAgoraObject->JoinChannel(strChannelName,0, strlen(APP_TOKEN) > 0 ? APP_TOKEN:NULL);
 	lpAgoraObject->SetMsgHandlerWnd(m_dlgVideo.GetSafeHwnd());
 
 	return 0;
