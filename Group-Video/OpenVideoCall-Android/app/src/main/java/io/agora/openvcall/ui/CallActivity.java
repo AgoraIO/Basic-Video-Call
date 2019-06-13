@@ -398,7 +398,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
     }
 
     public void onFilterClicked(View view) {
-        Constant.BEAUTY_EFFECT_ENABLED = ! Constant.BEAUTY_EFFECT_ENABLED;
+        Constant.BEAUTY_EFFECT_ENABLED = !Constant.BEAUTY_EFFECT_ENABLED;
 
         if (Constant.BEAUTY_EFFECT_ENABLED) {
             worker().setBeautyEffectParameters(Constant.BEAUTY_EFFECT_DEFAULT_LIGHTNESS, Constant.BEAUTY_EFFECT_DEFAULT_SMOOTHNESS, Constant.BEAUTY_EFFECT_DEFAULT_REDNESS);
@@ -406,6 +406,10 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
         } else {
             worker().disablePreProcessor();
         }
+
+        ImageView iv = (ImageView) view;
+
+        iv.setImageResource(Constant.BEAUTY_EFFECT_ENABLED ? R.drawable.btn_filter : R.drawable.btn_filter_off);
     }
 
     @Override
