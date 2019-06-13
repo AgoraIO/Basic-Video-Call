@@ -19,6 +19,16 @@ using namespace agora::rtc;
 #define AG_CODEC_EVP	0x00000001
 #define AG_CODEC_VP8	0x00000002
 
+/* NOTE:
+	PLEASE KEEP THIS App ID IN SAFE PLACE
+    Get your own App ID at https://dashboard.agora.io/
+    After you entered the App ID, remove <##> outside of Your App ID
+    <string name="private_app_id"><#YOUR APP ID#></string>
+    Obtain a temp Access Token at https://dashboard.agora.io
+    You will need to deploy your own token server for production release
+    Leave this value empty if Security keys/Token is not enabled for your project
+    <string name="agora_access_token"><#YOUR TOKEN#></string>
+*/
 #define APP_ID _T("aab8b8f5a8cd4469a63042fcfafe7063")
 #define APP_TOKEN ""
 
