@@ -2,6 +2,7 @@ Meta:
   name: Open Video Call for Android
   # en or cn
   lang: en
+  version: 2.4.1
   # | 代表这里是字符串
   description: |
     The Open Video Call for Android Sample App is an open-source demo that will help you get video chat integrated directly into your Android applications using the Agora Video SDK.

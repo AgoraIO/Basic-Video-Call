@@ -52,7 +52,7 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
   - 首选集成方式：
     - 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
       ```
-      implementation 'io.agora.rtc:full-sdk:2.4.0'
+      implementation 'io.agora.rtc:full-sdk:2.4.1'
       ```
       (如果要在自己的应用中集成 Agora 视频 SDK，添加链接地址是最重要的一步。）
     - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **libs**/**include** 文件夹下的 ***.h** 复制到本项目的 **app**/**src**/**main**/**cpp**/**agora** 下。
