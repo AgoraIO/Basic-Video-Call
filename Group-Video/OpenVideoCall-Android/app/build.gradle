@@ -44,6 +44,12 @@ android {
     lintOptions {
         warning 'InvalidPackage'
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
 }
 
 dependencies {
