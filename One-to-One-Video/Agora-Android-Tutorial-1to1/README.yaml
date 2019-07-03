@@ -2,6 +2,7 @@ Meta:
   name: Android 1-to-1 Tutorial
   # en or cn
   lang: en
+  version: 2.4.1
   # | 代表这里是字符串
   description: |
     This tutorial enables you to quickly get started in your development efforts to create an Android app with real-time video calls, voice calls, and interactive broadcasting.

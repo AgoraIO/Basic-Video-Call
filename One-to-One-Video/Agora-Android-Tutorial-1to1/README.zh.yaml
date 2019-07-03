@@ -2,6 +2,7 @@ Meta:
   name: Android Tutorial - 1to1
   # en or cn
   lang: cn
+  version: 2.4.1
   # | 代表这里是字符串
   description: |
     这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现1对1视频通话。

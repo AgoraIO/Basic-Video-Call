@@ -249,7 +249,7 @@ BOOL CAgoraObject::SetLogFilePath(LPCTSTR lpLogPath)
 	return ret == 0 ? TRUE : FALSE;
 }
 
-BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID)
+BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID, LPCSTR lpChannelToken)
 {
 	int nRet = 0;
 
@@ -258,9 +258,9 @@ BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID)
 	CHAR szChannelName[128];
 
 	::WideCharToMultiByte(CP_ACP, 0, lpChannelName, -1, szChannelName, 128, NULL, NULL);
-	nRet = m_lpAgoraEngine->joinChannel(NULL, szChannelName, NULL, nUID);
+	nRet = m_lpAgoraEngine->joinChannel(lpChannelToken, szChannelName, NULL, nUID);
 #else
-	nRet = m_lpAgoraEngine->joinChannel(NULL, lpChannelName, NULL, nUID);
+	nRet = m_lpAgoraEngine->joinChannel(lpChannelToken, lpChannelName, NULL, nUID);
 #endif
 
 	if (nRet == 0)

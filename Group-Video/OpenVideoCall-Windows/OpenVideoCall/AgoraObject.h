@@ -7,7 +7,7 @@
 
 using namespace agora::rtc;
 
-// ÒýÇæ±ê¼ÇÎ»
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»
 #define AG_ENGFLAG_ENNETTEST	0x00000001
 #define AG_ENGFLAG_ECHOTEST		0x00000002
 #define AG_ENGFLAG_SPKPHTEST	0x00000004
@@ -19,7 +19,18 @@ using namespace agora::rtc;
 #define AG_CODEC_EVP	0x00000001
 #define AG_CODEC_VP8	0x00000002
 
-#define APP_ID _T("aab8b8f5a8cd4469a63042fcfafe7063")
+/* NOTE:
+	PLEASE KEEP THIS App ID IN SAFE PLACE
+    Get your own App ID at https://dashboard.agora.io/
+    After you entered the App ID, remove <##> outside of Your App ID
+    APP_ID _T("<YOUR_APP_ID>")
+    Obtain a temp Access Token at https://dashboard.agora.io
+    You will need to deploy your own token server for production release
+    Leave this value empty if Security keys/Token is not enabled for your project
+    APP_TOKEN "<YOUR TOKEN>"
+*/
+#define APP_ID _T("")
+#define APP_TOKEN ""
 
 class CAgoraObject
 {
@@ -48,7 +59,7 @@ public:
 
 	BOOL SetLogFilePath(LPCTSTR lpLogPath = NULL);
 
-	BOOL JoinChannel(LPCTSTR lpChannelName, UINT nUID = 0);
+	BOOL JoinChannel(LPCTSTR lpChannelName, UINT nUID = 0,LPCSTR lpChannelToken = NULL);
 	BOOL LeaveCahnnel();
 	CString GetChanelName();
 	CString GetCallID();
