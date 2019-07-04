@@ -658,7 +658,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
                 if (Constant.SHOW_VIDEO_INFO) {
                     if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
-                        mGridVideoViewContainer.addVideoInfo(stats.uid, new VideoInfoData(stats.width, stats.height, stats.delay, stats.receivedFrameRate, stats.receivedBitrate));
+                        mGridVideoViewContainer.addVideoInfo(stats.uid, new VideoInfoData(stats.width, stats.height, stats.delay, stats.rendererOutputFrameRate, stats.receivedBitrate));
                         int uid = config().mUid;
                         int profileIndex = getVideoEncResolutionIndex();
                         String resolution = getResources().getStringArray(R.array.string_array_resolutions)[profileIndex];

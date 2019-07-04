@@ -101,7 +101,7 @@ public class MyEngineEventHandler {
 
         @Override
         public void onRemoteVideoStats(RemoteVideoStats stats) {
-            log.debug("onRemoteVideoStats " + stats.uid + " " + stats.delay + " " + stats.receivedBitrate + " " + stats.receivedFrameRate + " " + stats.width + " " + stats.height);
+            log.debug("onRemoteVideoStats " + stats.uid + " " + stats.delay + " " + stats.receivedBitrate + " " + stats.rendererOutputFrameRate + " " + stats.width + " " + stats.height);
 
             Iterator<AGEventHandler> it = mEventHandlerList.keySet().iterator();
             while (it.hasNext()) {
