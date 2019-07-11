@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033FF37122C993830080AE6A /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF36E22C993830080AE6A /* AgoraRtcCryptoLoader.framework */; };
 		033FF37222C993830080AE6A /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF36F22C993830080AE6A /* AgoraRtcEngineKit.framework */; };
-		033FF37322C993830080AE6A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF37022C993830080AE6A /* libcrypto.a */; };
 		077537C01ED542F900EF0878 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 077537BF1ED542F900EF0878 /* libresolv.tbd */; };
 		1A2BC6711D5A9C2100C9AD11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */; };
 		1A2BC6741D5A9C2100C9AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6731D5A9C2100C9AD11 /* main.m */; };
@@ -26,9 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		033FF36E22C993830080AE6A /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		033FF36F22C993830080AE6A /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		033FF37022C993830080AE6A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		077537BF1ED542F900EF0878 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1A2BC66C1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora Mac Tutorial Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2BC66F1D5A9C2100C9AD11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,9 +57,7 @@
 				1A2BC6981D5A9CA600C9AD11 /* libc++.1.dylib in Frameworks */,
 				077537C01ED542F900EF0878 /* libresolv.tbd in Frameworks */,
 				1A2BC6961D5A9C9A00C9AD11 /* SystemConfiguration.framework in Frameworks */,
-				033FF37122C993830080AE6A /* AgoraRtcCryptoLoader.framework in Frameworks */,
 				1A2BC6881D5A9C7400C9AD11 /* VideoToolbox.framework in Frameworks */,
-				033FF37322C993830080AE6A /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,9 +84,7 @@
 		1A2BC66E1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */ = {
 			isa = PBXGroup;
 			children = (
-				033FF36E22C993830080AE6A /* AgoraRtcCryptoLoader.framework */,
 				033FF36F22C993830080AE6A /* AgoraRtcEngineKit.framework */,
-				033FF37022C993830080AE6A /* libcrypto.a */,
 				1A2BC69A1D5A9D4E00C9AD11 /* Video Chat */,
 				1A2BC66F1D5A9C2100C9AD11 /* AppDelegate.h */,
 				1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */,
