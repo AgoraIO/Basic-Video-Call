@@ -11,6 +11,7 @@
 <body>
   <nav class="navbar navbar-light fixed-top agora-primary-bg">
     <h5>Basic Communication</h5>
+    <a href="https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1-Webpack" class="agora-github-pin"></a>
   </nav>
   <form id="form">
     <div class="custom-container container">
@@ -39,6 +40,14 @@
                   <button id="unpublish" type="button"
                     class="btn btn-raised btn-primary agora-primary-bg">UNPUBLISH</button>
                 </div>
+                <div class="form-group bmd-form-group">
+                  <div class="switch">
+                    <label>
+                      <input type="checkbox" id="check_quality">
+                      Show Network Quality
+                    </label>
+                  </div>
+                </div>
               </div>
               <div class="card">
                 <button class="btn btn-raised agora-expand-btn" id="settings" data-toggle="collapse"
@@ -59,6 +68,11 @@
                     <div class="form-group">
                       <label for="microphoneId" class="bmd-label-floating">MICROPHONE</label>
                       <select class="form-control" id="microphoneId" name="microphoneId">
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="cameraResolution" class="bmd-label-floating">CAMERA RESOLUTION</label>
+                      <select class="form-control" id="cameraResolution" name="cameraResolution">
                       </select>
                     </div>
                     <div class="form-group">
@@ -103,8 +117,9 @@
             </div>
           </div>
           <div class="video-grid" id="video">
-            <div id="local_stream" class="video-placeholder">
-              <div id="local_video_info" class="video-info"></div>
+            <div class="video-view">
+              <div id="local_stream" class="video-placeholder"></div>
+              <div id="local_video_info" class="video-profile hide"></div>
             </div>
           </div>
         </div>
