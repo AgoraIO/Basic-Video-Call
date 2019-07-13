@@ -1,6 +1,6 @@
 {
   "name": "Agora-Web-Tutorial-Webpack-1to1-Basic-Communication",
-  "version": "2.6.1",
+  "version": "2.8.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack --config ./scripts --mode production"
   },
   "dependencies": {
-    "agora-rtc-sdk": "^2.6.1",
+    "agora-rtc-sdk": "^2.8.0",
     "bootstrap-material-design": "^4.1.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",

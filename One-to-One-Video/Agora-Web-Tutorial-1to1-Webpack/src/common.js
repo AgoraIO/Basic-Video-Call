@@ -1,6 +1,25 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import Toastify from 'toastify-js';
 
+export const resolutions = [
+  {
+    name: 'default',
+    value: 'default',
+  },
+  {
+    name: '480p',
+    value: '480p',
+  },
+  {
+    name: '720p',
+    value: '720p',
+  },
+  {
+    name: '1080p',
+    value: '1080p'
+  }
+]
+
 export const Toast = {
   info: (msg) => {
     Toastify({
@@ -47,18 +66,28 @@ export function serializeFormData() {
   return obj;
 }
 
-export function addView (id) {
+export function addView (id, show) {
   if (!$("#" + id)[0]) {
     $("<div/>", {
-      id: "remote_video_" + id,
+      id: "remote_video_panel_" + id,
       class: "video-view",
     }).appendTo("#video");
+
+    $("<div/>", {
+      id: "remote_video_" + id,
+      class: "video-placeholder",
+    }).appendTo("#remote_video_panel_" + id);
+
+    $("<div/>", {
+      id: "remote_video_info_" + id,
+      class: "video-profile " + (show ? "" :  "hide"),
+    }).appendTo("#remote_video_panel_" + id);
   }
 }
 
 export function removeView (id) {
-  if ($("#remote_video_" + id)[0]) {
-    $("#remote_video_"+id).remove();
+  if ($("#remote_video_panel_" + id)[0]) {
+    $("#remote_video_panel_"+id).remove();
   }
 }
 
