@@ -1,17 +1,14 @@
 import RTCClient from './rtc-client';
-import {getDevices, serializeFormData, validator, resolutions} from './common';
+import {getDevices, serializeFormData, validator, Toast, resolutions} from './common';
 import "./assets/style.scss";
-import * as bs from 'bootstrap-material-design';
-
+import * as M from 'materialize-css';
 
 $(() => {
   let selects = null;
-
-  $('body').bootstrapMaterialDesign();
+    
   $("#settings").on("click", function (e) {
     e.preventDefault();
-    $("#settings").toggleClass("btn-raised");
-    $('#setting-collapse').collapse();
+    $(this).open(1);
   });
 
   getDevices(function (devices) {
@@ -29,11 +26,12 @@ $(() => {
       }).appendTo("#cameraId");
     })
     resolutions.forEach(function (resolution) {
-      $("<option/>", {
+      $('<option/>', {
         value: resolution.value,
         text: resolution.name
       }).appendTo("#cameraResolution");
-    });
+    })
+    M.AutoInit();
   })
 
   const fields = ['appID', 'channel'];
@@ -80,5 +78,5 @@ $(() => {
     if (validator(params, fields)) {
       rtc.leave();
     }
-  })
+  });
 })

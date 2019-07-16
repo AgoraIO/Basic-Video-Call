@@ -59,25 +59,25 @@ export default class RTCClient {
     this._client.on("stream-removed", (evt) => {
       const remoteStream = evt.stream;
       const id = remoteStream.getId();
-      Toast.info("stream-removed uid: " + id)
+      Toast.info("stream-removed uid: " + id);
       remoteStream.stop();
       this._remoteStreams = this._remoteStreams.filter((stream) => {
         return stream.getId() !== id
-      })
+      });
       removeView(id);
       console.log('stream-removed remote-uid: ', id);
     })
     this._client.on("onTokenPrivilegeWillExpire", () => {
       // After requesting a new token
       // this._client.renewToken(token);
-      Toast.info("onTokenPrivilegeWillExpire")
-      console.log("onTokenPrivilegeWillExpire")
+      Toast.info("onTokenPrivilegeWillExpire");
+      console.log("onTokenPrivilegeWillExpire");
     });
     this._client.on("onTokenPrivilegeDidExpire", () => {
       // After requesting a new token
       // client.renewToken(token);
-      Toast.info("onTokenPrivilegeDidExpire")
-      console.log("onTokenPrivilegeDidExpire")
+      Toast.info("onTokenPrivilegeDidExpire");
+      console.log("onTokenPrivilegeDidExpire");
     })
   }
 
@@ -142,32 +142,35 @@ export default class RTCClient {
             screen: false,
             microphoneId: data.microphoneId,
             cameraId: data.cameraId
+          });
+
+          this._localStream.on("player-status-change", (evt) => {
+            console.log("player status change", evt);
           })
 
           if (data.cameraResolution && data.cameraResolution != 'default') {
-            // set video resolution
+            // set local video resolution
             this._localStream.setVideoProfile(data.cameraResolution);
-            console.log("set current video resolution", data.cameraResolution);
           }
     
           // init local stream
           this._localStream.init(() => {
             console.log("init local stream success");
             // play stream with html element id "local_stream"
-            this._localStream.play("local_stream")
+            this._localStream.play("local_stream");
     
             // run callback
             resolve();
           }, (err) =>  {
-            Toast.error("stream init failed, please open console see more detail")
+            Toast.error("stream init failed, please open console see more detail");
             console.error("init local stream failed ", err);
           })
         }, function(err) {
-          Toast.error("client join failed, please open console see more detail")
-          console.error("client join failed", err)
+          Toast.error("client join failed, please open console see more detail");
+          console.error("client join failed", err);
         })
       }, (err) => {
-        Toast.error("client init failed, please open console see more detail")
+        Toast.error("client init failed, please open console see more detail");
         console.error(err);
       });
     })
@@ -188,11 +191,11 @@ export default class RTCClient {
     this._client.publish(this._localStream, (err) => {
       this._published = oldState;
       console.log("publish failed");
-      Toast.error("publish failed")
+      Toast.error("publish failed");
       console.error(err);
     })
-    Toast.info("publish")
-    this._published = true
+    Toast.info("publish");
+    this._published = true;
   }
 
   unpublish () {
@@ -210,11 +213,11 @@ export default class RTCClient {
       console.log("unpublish failed");
       Toast.error("unpublish failed")
       console.error(err);
-    })
-    Toast.info("unpublish")
+    });
+    Toast.info("unpublish");
     this._published = false;
   }
-  
+
   leave () {
     if (!this._client) {
       Toast.error("Please Join First!");
@@ -228,6 +231,8 @@ export default class RTCClient {
     this._client.leave(() => {
       // close stream
       this._localStream.close();
+
+      $("#local_video_info").addClass("hide");
       // stop stream
       this._localStream.stop();
       while (this._remoteStreams.length > 0) {
@@ -245,7 +250,7 @@ export default class RTCClient {
       Toast.notice("leave success")
     }, (err) => {
       console.log("channel leave failed");
-      Toast.error("leave success")
+      Toast.error("leave success");
       console.error(err);
     })
   }

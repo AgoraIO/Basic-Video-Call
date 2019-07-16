@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,125 +9,122 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Basic Communication</title>
-</head>
 
-<body>
-  <nav class="navbar navbar-light fixed-top agora-primary-bg">
-    <h5>Basic Communication</h5>
-    <a href="https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1-Webpack" class="agora-github-pin"></a>
-  </nav>
-  <form id="form">
-    <div class="custom-container container">
-      <div class="row">
-        <div class="custom-row-container">
-          <div class="row">
-            <div class="col-ms">
-              <div class="card custom-card">
-                <div class="form-group">
-                  <label for="appID" class="bmd-label-floating">App ID*</label>
-                  <input type="text" class="form-control" name="appID" id="appID">
-                </div>
-                <div class="form-group bmd-form-group">
-                  <label for="channel" class="bmd-label-floating">Channel*</label>
-                  <input type="text" class="form-control" name="channel" id="channel">
-                </div>
-                <div class="form-group bmd-form-group">
-                  <label for="token" class="bmd-label-floating">Token</label>
-                  <input type="text" class="form-control" name="token" id="token">
-                </div>
-                <div class="form-group bmd-form-group">
-                  <button id="join" type="button" class="btn btn-raised btn-primary agora-primary-bg">JOIN</button>
-                  <button id="leave" type="button" class="btn btn-raised btn-primary agora-primary-bg">LEAVE</button>
-                  <button id="publish" type="button"
-                    class="btn btn-raised btn-primary agora-primary-bg">PUBLISH</button>
-                  <button id="unpublish" type="button"
-                    class="btn btn-raised btn-primary agora-primary-bg">UNPUBLISH</button>
-                </div>
-                <div class="form-group bmd-form-group">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" id="check_quality">
-                      Show Network Quality
-                    </label>
-                  </div>
+<body class="agora-theme">
+  <div class="navbar-fixed">
+    <nav class="agora-navbar">
+      <div class="nav-wrapper agora-primary-bg valign-wrapper">
+        <h5 class="left-align">Basic Communication</h5>
+        <a href="https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1-Webpack" class="agora-github-pin"></a>
+      </div>
+    </nav>
+  </div>
+  <form id="form" class="row col l12 s12">
+    <div class="row container col l12 s12">
+      <div class="col s5">
+        <div class="card" style="margin-top: 0px; margin-bottom: 0px;">
+          <div class="row card-content" style="margin-bottom: 0px;">
+              <div class="input-field">
+                <label for="appID" class="active">App ID</label>
+                <input type="text" placeholder="App ID" name="appID">
+              </div>
+              <div class="input-field">
+                <label for="channel" class="active">Channel</label>
+                <input type="text" placeholder="channel" name="channel">
+              </div>
+              <div class="input-field">
+                <label for="token" class="active">Token</label>
+                <input type="text" placeholder="token" name="token">
+              </div>
+              <div class="row" style="margin: 0">
+                <div class="col s12">
+                <button class="btn btn-raised btn-primary waves-effect waves-light" id="join">JOIN</button>
+                <button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">LEAVE</button>
+                <button class="btn btn-raised btn-primary waves-effect waves-light" id="publish">PUBLISH</button>
+                <button class="btn btn-raised btn-primary waves-effect waves-light" id="unpublish">UNPUBLISH</button>
                 </div>
               </div>
-              <div class="card">
-                <button class="btn btn-raised agora-expand-btn" id="settings" data-toggle="collapse"
-                  data-target="#setting-collapse" aria-expanded="false" aria-controls="collapse">
-                  Advanced Settings
-                </button>
-                <div id="setting-collapse" class="collapse" aria-labelledby="setting-collapse">
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="uid" class="bmd-label-floating">UID</label>
-                      <input type="text" class="form-control" name="uid" id="uid">
-                    </div>
-                    <div class="form-group">
-                      <label for="cameraId" class="bmd-label-floating">CAMERA</label>
-                      <select class="form-control" id="cameraId" name="cameraId">
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="microphoneId" class="bmd-label-floating">MICROPHONE</label>
-                      <select class="form-control" id="microphoneId" name="microphoneId">
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="cameraResolution" class="bmd-label-floating">CAMERA RESOLUTION</label>
-                      <select class="form-control" id="cameraResolution" name="cameraResolution">
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="mode">Mode</label>
-                      <div class="row radio-list">
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="mode" value="rtc" >
-                            <span class="radio-label">rtc</span>
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="mode" value="live" checked>
-                            <span class="radio-label">live</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="mode">Codec</label>
-                      <div class="row radio-list">
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="codec" value="vp8">
-                            <span class="radio-label">vp8</span>
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-
-                            <input type="radio" name="codec" value="h264" checked>
-                            <span class="radio-label">h264</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div class="row col" style="margin: 0">
+                <div class="switch">
+                  <h6 style="color: rgba(0,0,0,.26);">Show Profile</h6>
+                  <label>
+                    <input id="check_quality" type="checkbox">
+                    <span class="lever"></span>
+                  </label>
                 </div>
-
               </div>
-            </div>
           </div>
-          <div class="video-grid" id="video">
-            <div class="video-view">
-              <div id="local_stream" class="video-placeholder"></div>
-              <div id="local_video_info" class="video-profile hide"></div>
+        </div>
+        <ul class="collapsible card agora-secondary-border" style="margin-top: .4rem; border: 1px ">
+          <li>
+            <div class="collapsible-header agora-secondary-bg">
+              <h8 class="center-align">ADVANACED SETTINGS</h8>
             </div>
+            <div class="collapsible-body card-content">
+              <div class="row">
+                <div class="col s12">
+                  <div class="input-field">
+                    <label for="UID" class="active">UID</label>
+                    <input type="text" placeholder="UID" name="uid">
+                  </div>
+                  <div class="input-field">
+                    <label for="cameraId" class="active">CAMERA</label>
+                    <select name="cameraId" id="cameraId"></select>
+                  </div>
+                  <div class="input-field">
+                    <label for="microphoneId" class="active">MICROPHONE</label>
+                    <select name="microphoneId" id="microphoneId"></select>
+                  </div>
+                  <div class="input-field">
+                    <label for="cameraResolution" class="active">CAMERA RESOLUTION</label>
+                    <select name="cameraResolution" id="cameraResolution"></select>
+                  </div>
+                  <div class="row col s12">
+                    <div class="row">
+                      <label for="mode" class="active">MODE</label>
+                    </div>
+                    <div class="row">
+                      <label>
+                        <input type="radio" class="with-gap" name="mode" value="live" checked />
+                        <span>live</span>
+                      </label>
+
+                      <label>
+                        <input type="radio" class="with-gap" name="mode" value="rtc" />
+                        <span>rtc</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row col s12">
+                    <div class="row">
+                      <label for="codec" class="active">CODEC</label>
+                    </div>
+                    <div class="row">
+                      <label>
+                        <input type="radio" class="with-gap" name="codec" value="h264" checked />
+                        <span>h264</span>
+                      </label>
+
+                      <label>
+                        <input type="radio" class="with-gap" name="codec" value="vp8" />
+                        <span>vp8</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col s7">
+        <div class="video-grid" id="video">
+          <div class="video-view">
+            <div id="local_stream" class="video-placeholder"></div>
+            <div id="local_video_info" class="video-profile hide"></div>
           </div>
         </div>
       </div>
+    </div>
   </form>
-</body>
 
 </html>
