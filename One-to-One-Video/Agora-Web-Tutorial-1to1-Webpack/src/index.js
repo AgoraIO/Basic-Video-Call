@@ -1,18 +1,15 @@
 import RTCClient from './rtc-client';
-import {getDevices, serializeFormData, validator, Toast, resolutions} from './common';
+import {getDevices, serializeFormData, validator, resolutions} from './common';
 import "./assets/style.scss";
 import * as M from 'materialize-css';
 
-$(() => {
-  let selects = null;
-    
+$(() => {    
   $("#settings").on("click", function (e) {
     e.preventDefault();
     $(this).open(1);
   });
 
   getDevices(function (devices) {
-    selects = devices;
     devices.audios.forEach(function (audio) {
       $('<option/>', {
         value: audio.value,
@@ -38,7 +35,8 @@ $(() => {
 
   let rtc = new RTCClient();
 
-  $("#check_quality").on("change", function () {
+  $("#show_quality").on("change", function (e) {
+    e.preventDefault();
     rtc.setNetworkQualityAndStreamStats(this.checked);
   })
 
