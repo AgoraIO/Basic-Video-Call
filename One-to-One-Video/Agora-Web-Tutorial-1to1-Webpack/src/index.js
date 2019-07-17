@@ -1,21 +1,15 @@
 import RTCClient from './rtc-client';
 import {getDevices, serializeFormData, validator, resolutions} from './common';
 import "./assets/style.scss";
-import * as bs from 'bootstrap-material-design';
+import * as M from 'materialize-css';
 
-
-$(() => {
-  let selects = null;
-
-  $('body').bootstrapMaterialDesign();
+$(() => {    
   $("#settings").on("click", function (e) {
     e.preventDefault();
-    $("#settings").toggleClass("btn-raised");
-    $('#setting-collapse').collapse();
+    $(this).open(1);
   });
 
   getDevices(function (devices) {
-    selects = devices;
     devices.audios.forEach(function (audio) {
       $('<option/>', {
         value: audio.value,
@@ -29,18 +23,20 @@ $(() => {
       }).appendTo("#cameraId");
     })
     resolutions.forEach(function (resolution) {
-      $("<option/>", {
+      $('<option/>', {
         value: resolution.value,
         text: resolution.name
       }).appendTo("#cameraResolution");
-    });
+    })
+    M.AutoInit();
   })
 
   const fields = ['appID', 'channel'];
 
   let rtc = new RTCClient();
 
-  $("#check_quality").on("change", function () {
+  $("#show_quality").on("change", function (e) {
+    e.preventDefault();
     rtc.setNetworkQualityAndStreamStats(this.checked);
   })
 
@@ -80,5 +76,5 @@ $(() => {
     if (validator(params, fields)) {
       rtc.leave();
     }
-  })
+  });
 })
