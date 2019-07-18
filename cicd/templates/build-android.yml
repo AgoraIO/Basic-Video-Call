@@ -3,7 +3,7 @@ parameters:
   workingDirectory: ''
 
 jobs:
-  - job: ${{ parameters.displayName }}Build
+  - job: ${{ parameters.displayName }}/Build
     displayName: ${{ parameters.displayName }}
     pool:
       vmImage: 'macOS-10.13'
