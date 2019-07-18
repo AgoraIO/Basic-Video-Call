@@ -1,0 +1,24 @@
+parameters:
+  displayName: ''
+  workingDirectory: ''
+
+jobs:
+  - job: ${{ parameters.displayName }}
+    displayName: ${{ parameters.displayName }}
+    pool:
+      vmImage: 'macOS-10.13'
+    steps:
+      - script: cd ${{ parameters.workingDirectory }}
+
+      - script: python ci.env.py
+        env:
+          AGORA_APP_ID: $(agora.appId)
+
+      - task: Gradle@2
+        inputs:
+          workingDirectory: ${{ parameters.workingDirectory }}
+          gradleWrapperFile: 'gradlew'
+          gradleOptions: '-Xmx3072m'
+          publishJUnitResults: false
+          testResultsFiles: '**/TEST-*.xml'
+          tasks: 'assembleDebug'

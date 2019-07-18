@@ -1,0 +1,6 @@
+jobs:
+  # android open video call  
+  - template: cicd/templates/build-android.yml
+    parameters:
+      displayName: 'OpenVideoCallBuilder'
+      workingDirectory: 'Group-Video/OpenVideoCall-Android'
