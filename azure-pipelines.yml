@@ -1,6 +1,12 @@
 jobs:
   # android open video call  
+  # - template: cicd/templates/build-android.yml
+  #   parameters:
+  #     displayName: 'AndroidOpenVideoCall'
+  #     workingDirectory: 'Group-Video/OpenVideoCall-Android'
+
+  # android 1 to 1 tutorial
   - template: cicd/templates/build-android.yml
     parameters:
-      displayName: 'OpenVideoCallBuilder'
-      workingDirectory: 'Group-Video/OpenVideoCall-Android'
+      displayName: 'AndroidTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-Android-Tutorial-1to1'
