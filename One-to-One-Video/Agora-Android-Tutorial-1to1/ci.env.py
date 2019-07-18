@@ -18,10 +18,10 @@ def main():
         appId = os.environ["AGORA_APP_ID"]
     token = ""
 
-    f = open("./app/src/main/res/values/strings_config.xml", 'r+')
+    f = open("./app/src/main/res/values/strings.xml", 'r+')
     content = f.read()
     contentNew = re.sub(r'<#YOUR APP ID#>', appId, content)
-    contentNew = re.sub(r'#YOUR ACCESS TOKEN#', token, contentNew)
+    contentNew = re.sub(r'<#YOUR TOKEN#>', token, contentNew)
     f.seek(0)
     f.write(contentNew)
     f.truncate()

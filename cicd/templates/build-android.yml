@@ -3,22 +3,34 @@ parameters:
   workingDirectory: ''
 
 jobs:
-  - job: ${{ parameters.displayName }}
+  - job: ${{ parameters.displayName }}_Build
     displayName: ${{ parameters.displayName }}
     pool:
       vmImage: 'macOS-10.13'
     steps:
-      - script: cd ${{ parameters.workingDirectory }}
-
-      - script: python ci.env.py
+      - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
           AGORA_APP_ID: $(agora.appId)
 
       - task: Gradle@2
         inputs:
           workingDirectory: ${{ parameters.workingDirectory }}
-          gradleWrapperFile: 'gradlew'
+          gradleWrapperFile: ${{ parameters.workingDirectory }}/gradlew
           gradleOptions: '-Xmx3072m'
           publishJUnitResults: false
           testResultsFiles: '**/TEST-*.xml'
           tasks: 'assembleDebug'
+
+      - task: CopyFiles@2
+        inputs:
+          Contents: '**/*.apk'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: ${{ parameters.displayName }}
+
+      - template: github-release.yml
+        parameters:
+          displayName: ${{ parameters.displayName }}
