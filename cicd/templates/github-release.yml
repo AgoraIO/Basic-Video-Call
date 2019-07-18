@@ -3,7 +3,7 @@ parameters:
 
 steps:
 - task: GitHubRelease@0
-  displayName: ${{ parameters.displayName }}/Release
+  displayName: ${{ parameters.displayName }}_Release
   inputs:
     gitHubConnection: 'azure-pipelines'
     repositoryName: 'AgoraIO/Basic-Video-Call'
