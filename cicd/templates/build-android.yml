@@ -15,8 +15,19 @@ jobs:
       - task: Gradle@2
         inputs:
           workingDirectory: ${{ parameters.workingDirectory }}
-          gradleWrapperFile: ${{ parameters.workingDirectory  }}/gradlew
+          gradleWrapperFile: ${{ parameters.workingDirectory }}/gradlew
           gradleOptions: '-Xmx3072m'
           publishJUnitResults: false
           testResultsFiles: '**/TEST-*.xml'
           tasks: 'assembleDebug'
+
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)/${{ parameters.workingDirectory }}'
+          Contents: '**/*.apk'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: $(displayName)
