@@ -14,8 +14,8 @@ jobs:
 
       - task: Gradle@2
         inputs:
-          workingDirectory: ${{ parameters.workingDirectory }}/gradlew
-          gradleWrapperFile: 'gradlew'
+          workingDirectory: ${{ parameters.workingDirectory }}
+          gradleWrapperFile: ${{ parameters.workingDirectory + '/gradlew' }}
           gradleOptions: '-Xmx3072m'
           publishJUnitResults: false
           testResultsFiles: '**/TEST-*.xml'
