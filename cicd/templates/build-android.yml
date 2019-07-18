@@ -3,7 +3,7 @@ parameters:
   workingDirectory: ''
 
 jobs:
-  - job: ${{ parameters.displayName }}
+  - job: ${{ parameters.displayName }}-Build
     displayName: ${{ parameters.displayName }}
     pool:
       vmImage: 'macOS-10.13'
@@ -30,3 +30,7 @@ jobs:
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: ${{ parameters.displayName }}
+
+      - template: github-release.yml
+        parameters:
+          displayName: ${{ parameters.displayName }}

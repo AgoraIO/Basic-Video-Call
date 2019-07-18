@@ -1,0 +1,12 @@
+parameters:
+  displayName: ''
+
+steps:
+- task: GitHubRelease@0
+  displayName: ${{ parameter.displayName }}-Release
+  inputs:
+    gitHubConnection: 'azure-pipelines'
+    repositoryName: 'AgoraIO/Basic-Video-Call'
+    assets: '$(Build.ArtifactStagingDirectory)/*.zip'
+    addChangeLog: false
+
