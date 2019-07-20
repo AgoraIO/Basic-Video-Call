@@ -12,12 +12,6 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        externalNativeBuild {
-            ndkBuild {
-                arguments "NDK_APPLICATION_MK:=src/main/cpp/Application.mk"
-            }
-        }
-
         ndk {
             abiFilters "armeabi-v7a", "x86" // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
         }
@@ -32,12 +26,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/cpp/Android.mk'
         }
     }
 
