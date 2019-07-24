@@ -6,12 +6,7 @@ import {setFormData, parseFromSearch} from './searchParam';
 
 $(() => {    
   setFormData(parseFromSearch())
-
-  $("#settings").on("click", function (e) {
-    e.preventDefault();
-    $(this).open(1);
-  });
-
+  
   getDevices(function (devices) {
     devices.audios.forEach(function (audio) {
       $('<option/>', {
@@ -38,7 +33,33 @@ $(() => {
 
   let rtc = new RTCClient();
 
-  $("#show_quality").on("change", function (e) {
+  $(".autoplay-fallback").on("click", function (e) {
+    e.preventDefault()
+    const id = e.target.getAttribute("id").split("video_autoplay_")[1]
+    console.log("autoplay fallback")
+    if (id === 'local') {
+      rtc._localStream.resume().then(() => {
+        Toast.notice("local resume")
+        $(e.target).addClass("hide")
+      }).catch((err) => {
+        Toast.error("resume failed, please open console see more details")
+        console.error(err)
+      })
+      return;
+    }
+    const remoteStream = rtc._remoteStreams.find((item) => `${item.getId()}` == id)
+    if (remoteStream) {
+      remoteStream.resume().then(() => {
+        Toast.notice("remote resume")
+        $(e.target).addClass("hide")
+      }).catch((err) => {
+        Toast.error("resume failed, please open console see more details")
+        console.error(err)
+      })
+    }
+  })
+
+  $("#show_profile").on("change", function (e) {
     e.preventDefault();
     rtc.setNetworkQualityAndStreamStats(this.checked);
   })
