@@ -87,6 +87,11 @@ export function addView (id, show) {
       id: "remote_video_info_" + id,
       class: "video-profile " + (show ? "" :  "hide"),
     }).appendTo("#remote_video_panel_" + id);
+
+    $("<div/>", {
+      id: "video_autoplay_"+ id,
+      class: "autoplay-fallback hide",
+    }).appendTo("#remote_video_panel_" + id);
   }
 }
 
