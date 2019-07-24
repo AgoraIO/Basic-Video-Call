@@ -2,8 +2,11 @@ import RTCClient from './rtc-client';
 import {getDevices, serializeFormData, validator, resolutions} from './common';
 import "./assets/style.scss";
 import * as M from 'materialize-css';
+import {setFormData, parseFromSearch} from './searchParam';
 
 $(() => {    
+  setFormData(parseFromSearch())
+
   $("#settings").on("click", function (e) {
     e.preventDefault();
     $(this).open(1);

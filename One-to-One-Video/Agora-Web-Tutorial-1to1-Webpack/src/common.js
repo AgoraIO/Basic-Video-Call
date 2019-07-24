@@ -1,5 +1,6 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import * as M from 'materialize-css';
+import { replaceSearchString, stringify } from './searchParam'
 
 export const resolutions = [
   {
@@ -66,7 +67,7 @@ export function serializeFormData() {
     var val = item.value;
     obj[key] = val;
   }
-  console.log("form data", obj);
+  replaceSearchString(stringify(obj))
   return obj;
 }
 
