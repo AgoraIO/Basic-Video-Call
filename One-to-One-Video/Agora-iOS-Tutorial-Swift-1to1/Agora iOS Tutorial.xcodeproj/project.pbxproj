@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033FF35F22C992AF0080AE6A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF35C22C992AF0080AE6A /* libcrypto.a */; };
-		033FF36022C992AF0080AE6A /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF35D22C992AF0080AE6A /* AgoraRtcCryptoLoader.framework */; };
 		033FF36122C992AF0080AE6A /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF35E22C992AF0080AE6A /* AgoraRtcEngineKit.framework */; };
 		1A2655D51D3F35E700BDBA68 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2655D41D3F35E700BDBA68 /* AppID.swift */; };
 		1ABDEE421D383BE4007DE451 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDEE411D383BE4007DE451 /* AppDelegate.swift */; };
@@ -26,8 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		033FF35C22C992AF0080AE6A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		033FF35D22C992AF0080AE6A /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		033FF35E22C992AF0080AE6A /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		1A2655D41D3F35E700BDBA68 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppID.swift; path = VideoChat/AppID.swift; sourceTree = "<group>"; };
 		1ABDEE3E1D383BE4007DE451 /* Agora iOS Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora iOS Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,8 +50,6 @@
 				389D999B218825B200BFD852 /* Accelerate.framework in Frameworks */,
 				389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */,
 				033FF36122C992AF0080AE6A /* AgoraRtcEngineKit.framework in Frameworks */,
-				033FF35F22C992AF0080AE6A /* libcrypto.a in Frameworks */,
-				033FF36022C992AF0080AE6A /* AgoraRtcCryptoLoader.framework in Frameworks */,
 				38D619302250B7AB004A6C87 /* CoreML.framework in Frameworks */,
 				389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */,
 				389D999F218825C300BFD852 /* libresolv.9.tbd in Frameworks */,
@@ -93,9 +87,7 @@
 				1ABDEE481D383BE4007DE451 /* Assets.xcassets */,
 				1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */,
 				1ABDEE4D1D383BE4007DE451 /* Info.plist */,
-				033FF35D22C992AF0080AE6A /* AgoraRtcCryptoLoader.framework */,
 				033FF35E22C992AF0080AE6A /* AgoraRtcEngineKit.framework */,
-				033FF35C22C992AF0080AE6A /* libcrypto.a */,
 			);
 			path = "Agora iOS Tutorial";
 			sourceTree = "<group>";

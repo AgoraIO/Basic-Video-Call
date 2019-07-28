@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033FF36B22C993410080AE6A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF36822C993410080AE6A /* libcrypto.a */; };
 		033FF36C22C993410080AE6A /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF36922C993410080AE6A /* AgoraRtcEngineKit.framework */; };
-		033FF36D22C993410080AE6A /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF36A22C993410080AE6A /* AgoraRtcCryptoLoader.framework */; };
 		077537C21ED5442900EF0878 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 077537C11ED5442900EF0878 /* libresolv.tbd */; };
 		1A2655D81D3F3B2200BDBA68 /* AppID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2655D71D3F3B2200BDBA68 /* AppID.m */; };
 		1A8E8D3D1D396CAA002FA67C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8E8D3C1D396CAA002FA67C /* main.m */; };
@@ -27,9 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		033FF36822C993410080AE6A /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		033FF36922C993410080AE6A /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
-		033FF36A22C993410080AE6A /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		077537C11ED5442900EF0878 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		1A2655D61D3F3AF700BDBA68 /* AppID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppID.h; path = VideoChat/AppID.h; sourceTree = "<group>"; };
 		1A2655D71D3F3B2200BDBA68 /* AppID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppID.m; path = VideoChat/AppID.m; sourceTree = "<group>"; };
@@ -57,10 +53,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				033FF36C22C993410080AE6A /* AgoraRtcEngineKit.framework in Frameworks */,
-				033FF36D22C993410080AE6A /* AgoraRtcCryptoLoader.framework in Frameworks */,
 				381ADD34211849280001B2C0 /* Accelerate.framework in Frameworks */,
 				1A8E8D7B1D396DCA002FA67C /* CoreTelephony.framework in Frameworks */,
-				033FF36B22C993410080AE6A /* libcrypto.a in Frameworks */,
 				38D619322250B7E3004A6C87 /* CoreML.framework in Frameworks */,
 				077537C21ED5442900EF0878 /* libresolv.tbd in Frameworks */,
 				1A8E8D811D396DDE002FA67C /* libc++.1.dylib in Frameworks */,
@@ -92,9 +86,7 @@
 		1A8E8D3A1D396CAA002FA67C /* Agora iOS Tutorial Objective-C */ = {
 			isa = PBXGroup;
 			children = (
-				033FF36A22C993410080AE6A /* AgoraRtcCryptoLoader.framework */,
 				033FF36922C993410080AE6A /* AgoraRtcEngineKit.framework */,
-				033FF36822C993410080AE6A /* libcrypto.a */,
 				1A8E8D6E1D396CEC002FA67C /* VideoChat */,
 				1A8E8D441D396CAA002FA67C /* Main.storyboard */,
 				1A8E8D471D396CAA002FA67C /* Assets.xcassets */,
