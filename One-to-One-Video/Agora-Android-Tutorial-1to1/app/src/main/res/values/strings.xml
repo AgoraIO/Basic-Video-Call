@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Agora RTC Tutorial - 1to1</string>
+    <string name="app_name">Agora Tutorial</string>
 
     <!-- PLEASE KEEP THIS App ID IN SAFE PLACE -->
     <!-- Get your own App ID at https://dashboard.agora.io/ -->
