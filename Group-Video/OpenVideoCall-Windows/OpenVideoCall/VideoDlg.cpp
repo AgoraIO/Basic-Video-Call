@@ -1,4 +1,4 @@
-// VideoDlg.cpp : ʵ���ļ�
+// VideoDlg.cpp 
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "AGEventDef.h"
 #include "video_preprocessing_plugin.h"
 
-// CVideoDlg �Ի���
+// CVideoDlg
 
 IMPLEMENT_DYNAMIC(CVideoDlg, CDialogEx)
 
@@ -98,14 +98,14 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CVideoDlg ��Ϣ��������
+// CVideoDlg
 
 
 void CVideoDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
-	// TODO:  �ڴ˴�������Ϣ�����������
+	// TODO:
 	if (m_btnMin.GetSafeHwnd() != NULL)
 		m_btnMin.MoveWindow(cx - 72, 0, 24, 24, TRUE);
 	if (m_btnRst.GetSafeHwnd() != NULL)
@@ -117,7 +117,7 @@ void CVideoDlg::OnSize(UINT nType, int cx, int cy)
 	m_rcVideoArea.top += 24;
 	m_rcVideoArea.bottom -= 72;
 
-	// 2�ˣ� ���Ͻ��ӻ�������
+	//
 	m_rcChildVideoArea.top = m_rcVideoArea.top + 10;
 	m_rcChildVideoArea.bottom = m_rcChildVideoArea.top + 144;
 	m_rcChildVideoArea.right = m_rcVideoArea.right - 14;
@@ -252,7 +252,7 @@ void CVideoDlg::AdjustSizeVideoMulti(int cx, int cy)
 
 void CVideoDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO:  �ڴ�������Ϣ������������/�����Ĭ��ֵ
+	// TODO:
 
 	CDialogEx::OnMouseMove(nFlags, point);
 }
@@ -1062,7 +1062,7 @@ BOOL CVideoDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  �ڴ����Ӷ���ĳ�ʼ��
+	// TODO:
 	m_dlgDevice.Create(CDeviceDlg::IDD, this);
 	m_dlgDevice.EnableDeviceTest(FALSE);
 
@@ -1076,7 +1076,6 @@ BOOL CVideoDlg::OnInitDialog()
     m_bitMenuFilter.LoadBitmap(IDB_MENU_FILTER);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// �쳣:  OCX ����ҳӦ���� FALSE
 }
 
 
