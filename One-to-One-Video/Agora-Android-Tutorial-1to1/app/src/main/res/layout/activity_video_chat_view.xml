@@ -6,18 +6,27 @@
     android:layout_height="match_parent"
     tools:context="io.agora.tutorials1v1vcall.VideoChatViewActivity">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/remote_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/remoteBackground">
-
-        <ImageView
-            android:layout_width="@dimen/remote_back_icon_size"
-            android:layout_height="@dimen/remote_back_icon_size"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_agora_largest" />
-    </FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/icon_padding">
+            <ImageView
+                android:layout_width="@dimen/remote_back_icon_size"
+                android:layout_height="@dimen/remote_back_icon_size"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_agora_largest"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icon_padding"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/remote_back_icon_margin_bottom"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/local_video_view_container"

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private boolean mMuted;
 
     private FrameLayout mLocalContainer;
-    private FrameLayout mRemoteContainer;
+    private RelativeLayout mRemoteContainer;
     private SurfaceView mLocalView;
     private SurfaceView mRemoteView;
 
