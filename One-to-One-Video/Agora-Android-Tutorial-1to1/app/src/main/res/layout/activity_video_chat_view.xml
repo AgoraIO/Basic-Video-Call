@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_video_chat_view"
     android:layout_width="match_parent"
@@ -12,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/remoteBackground">
+
         <ImageView
             android:layout_width="@dimen/remote_back_icon_size"
             android:layout_height="@dimen/remote_back_icon_size"
             android:layout_gravity="center"
-            android:src="@drawable/icon_agora_largest"/>
+            android:src="@drawable/icon_agora_largest" />
     </FrameLayout>
 
     <FrameLayout
@@ -30,11 +30,12 @@
         android:layout_marginRight="@dimen/local_preview_margin_right"
         android:layout_marginTop="@dimen/local_preview_margin_top"
         android:background="@color/localBackground">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/icon_agora_large"/>
+            android:src="@drawable/icon_agora_large" />
     </FrameLayout>
 
     <RelativeLayout
@@ -43,13 +44,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/control_bottom_margin">
+
         <TextView
             android:id="@+id/btn_call"
             android:layout_width="@dimen/call_button_size"
             android:layout_height="@dimen/call_button_size"
             android:layout_centerInParent="true"
             android:onClick="onCallClicked"
-            android:background="@drawable/btn_endcall"/>
+            android:background="@drawable/btn_endcall" />
+
         <TextView
             android:id="@+id/btn_switch_camera"
             android:layout_width="@dimen/other_button_size"
@@ -59,7 +62,8 @@
             android:layout_marginLeft="@dimen/control_bottom_horizontal_margin"
             android:layout_centerVertical="true"
             android:onClick="onSwitchCameraClicked"
-            android:background="@drawable/btn_switch_camera"/>
+            android:background="@drawable/btn_switch_camera" />
+
         <TextView
             android:id="@+id/btn_mute"
             android:layout_width="@dimen/other_button_size"
@@ -69,14 +73,15 @@
             android:layout_marginRight="@dimen/control_bottom_horizontal_margin"
             android:layout_centerVertical="true"
             android:onClick="onLocalAudioMuteClicked"
-            android:background="@drawable/btn_unmute"/>
+            android:background="@drawable/btn_unmute" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/log_container"
+    <io.agora.logger.LogRecyclerView
+        android:id="@+id/log_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/log_container_height"
         android:layout_above="@+id/control_panel"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
-    </RelativeLayout>
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
 </RelativeLayout>

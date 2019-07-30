@@ -14,11 +14,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import io.agora.logger.LogRecyclerView;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
-
-import io.agora.rtc.video.VideoEncoderConfiguration; // 2.3.0 and later
+import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class VideoChatViewActivity extends AppCompatActivity {
     private static final String TAG = VideoChatViewActivity.class.getSimpleName();
@@ -47,6 +47,9 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private TextView mMuteBtn;
     private TextView mSwitchCameraBtn;
 
+    private LogRecyclerView mLogView;
+    private LogRecyclerView.LogRecyclerViewAdapter mLogger;
+
     /**
      * Event handler registered into RTC engine for RTC callbacks.
      * Note that UI operations needs to be in UI thread because RTC
@@ -54,20 +57,32 @@ public class VideoChatViewActivity extends AppCompatActivity {
      */
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
         @Override
+        public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mLogger.logI("Join channel success");
+                }
+            });
+        }
+
+        @Override
         public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    mLogger.logI("First remote video decoded");
                     setupRemoteVideo(uid);
                 }
             });
         }
 
         @Override
-        public void onUserOffline(int uid, int reason) {
+        public void onUserOffline(final int uid, int reason) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    mLogger.logI("User offline, uid:" + uid);
                     onRemoteUserLeft();
                 }
             });
@@ -126,6 +141,16 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mCallBtn = findViewById(R.id.btn_call);
         mMuteBtn = findViewById(R.id.btn_mute);
         mSwitchCameraBtn = findViewById(R.id.btn_switch_camera);
+
+        mLogView = findViewById(R.id.log_recycler_view);
+        mLogger = mLogView.getAdapter();
+        showSampleLogs();
+    }
+
+    private void showSampleLogs() {
+        mLogger.logI("Welcome to Agora 1v1 video call");
+        mLogger.logW("You will see custom logs here");
+        mLogger.logE("Error occurred if you see this line");
     }
 
     private boolean checkSelfPermission(String permission, int requestCode) {
@@ -140,7 +165,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-           @NonNull String permissions[], @NonNull int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         if (requestCode == PERMISSION_REQ_ID) {
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED ||
@@ -200,7 +225,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     private void joinChannel() {
         String token = getString(R.string.agora_access_token);
-        if(token.isEmpty()) {
+        if (token.isEmpty()) {
             token = null;
         }
         mRtcEngine.joinChannel(token, "demoChannel1", "Extra Optional Data", 0);
