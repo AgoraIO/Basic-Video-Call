@@ -11,8 +11,8 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import io.agora.logger.LogRecyclerView;
@@ -44,9 +44,9 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private SurfaceView mLocalView;
     private SurfaceView mRemoteView;
 
-    private TextView mCallBtn;
-    private TextView mMuteBtn;
-    private TextView mSwitchCameraBtn;
+    private ImageView mCallBtn;
+    private ImageView mMuteBtn;
+    private ImageView mSwitchCameraBtn;
 
     private LogRecyclerView mLogView;
     private LogRecyclerView.LogRecyclerViewAdapter mLogger;
@@ -249,7 +249,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mMuted = !mMuted;
         mRtcEngine.muteLocalAudioStream(mMuted);
         int res = mMuted ? R.drawable.btn_mute : R.drawable.btn_unmute;
-        mMuteBtn.setBackgroundResource(res);
+        mMuteBtn.setImageResource(res);
     }
 
     public void onSwitchCameraClicked(View view) {
@@ -260,11 +260,11 @@ public class VideoChatViewActivity extends AppCompatActivity {
         if (mCallEnd) {
             startCall();
             mCallEnd = false;
-            mCallBtn.setBackgroundResource(R.drawable.btn_endcall);
+            mCallBtn.setImageResource(R.drawable.btn_endcall);
         } else {
             endCall();
             mCallEnd = true;
-            mCallBtn.setBackgroundResource(R.drawable.btn_startcall);
+            mCallBtn.setImageResource(R.drawable.btn_startcall);
         }
 
         showButtons(!mCallEnd);
