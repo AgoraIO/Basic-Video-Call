@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Logs -->
+    <dimen name="log_back_corner_radius">16dp</dimen>
+    <dimen name="log_item_height">32dp</dimen>
+    <dimen name="log_item_horizontal_padding">20dp</dimen>
+    <dimen name="log_text_size">16dp</dimen>
+    <dimen name="log_container_height">160dp</dimen>
+    <dimen name="log_item_offset">5dp</dimen>
+</resources>
