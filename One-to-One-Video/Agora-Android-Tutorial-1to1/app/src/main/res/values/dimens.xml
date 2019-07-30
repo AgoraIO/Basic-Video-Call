@@ -2,11 +2,12 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="local_preview_width">120dp</dimen>
-    <dimen name="local_preview_height">160dp</dimen>
+    <dimen name="local_preview_width">132dp</dimen>
+    <dimen name="local_preview_height">176dp</dimen>
     <dimen name="local_preview_margin_top">36dp</dimen>
     <dimen name="local_preview_margin_right">32dp</dimen>
     <dimen name="remote_back_icon_size">100dp</dimen>
+    <dimen name="remote_back_icon_margin_bottom">120dp</dimen>
 
     <!-- buttons -->
     <dimen name="control_bottom_margin">50dp</dimen>
