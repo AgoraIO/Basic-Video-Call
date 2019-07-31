@@ -115,6 +115,10 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void onRemoteUserLeft() {
+        removeRemoteVideo();
+    }
+
+    private void removeRemoteVideo() {
         if (mRemoteView != null) {
             mRemoteContainer.removeView(mRemoteView);
         }
@@ -198,9 +202,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void initEngineAndJoinChannel() {
-        // This is our usual steps for joining a channel and starting a call.
-        // In order to get an app id and a token, please visit our online
-        // document https://docs.agora.io/en/Video/initialize_android_video?platform=Android
+        // This is our usual steps for joining
+        // a channel and starting a call.
         initializeEngine();
         setupVideoConfig();
         setupLocalVideo();
@@ -222,8 +225,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
         // Note: audio recording and playing is enabled by default.
         mRtcEngine.enableVideo();
 
-        // Please go to our website for API explanations
-        // https://docs.agora.io/en/Video/API%20Reference/java/index.html
+        // Please go to this page for detailed explanation
+        // https://docs.agora.io/cn/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f
         mRtcEngine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
                 VideoEncoderConfiguration.VD_640x360,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
@@ -246,6 +249,10 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void joinChannel() {
+        // 1. Users can only see each other after they join the
+        // same channel successfully using the same app id.
+        // 2. One token is only valid for the channel name that
+        // you use to generate this token.
         String token = getString(R.string.agora_access_token);
         if (token.isEmpty()) {
             token = null;
@@ -303,7 +310,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     private void endCall() {
         removeLocalVideo();
-        remoteRemoteVideo();
+        removeRemoteVideo();
         leaveChannel();
     }
 
@@ -312,10 +319,6 @@ public class VideoChatViewActivity extends AppCompatActivity {
             mLocalContainer.removeView(mLocalView);
         }
         mLocalView = null;
-    }
-
-    private void remoteRemoteVideo() {
-        onRemoteUserLeft();
     }
 
     private void showButtons(boolean show) {
