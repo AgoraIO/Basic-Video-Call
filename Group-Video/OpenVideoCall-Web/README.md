@@ -3,7 +3,8 @@
 *English | [中文](README.zh.md)*
 
 This tutorial shows you how to quickly create an open video call using the Agora sample app.
-https://github.com/MHDYousuf/Basic-Video-Call/blob/master/Group-Video/OpenVideoCall-Web/images/7%2Busers.png
+![alt text](https://github.com/MHDYousuf/Basic-Video-Call/blob/master/Group-Video/OpenVideoCall-Web/images/7%2Busers.png)
+
 ## Prerequisites
 
 - Node.js 6.9.1+
