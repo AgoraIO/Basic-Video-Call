@@ -48,6 +48,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private ImageView mMuteBtn;
     private ImageView mSwitchCameraBtn;
 
+    // Customized logger view
     private LogRecyclerView mLogView;
     private LogRecyclerView.LogRecyclerViewAdapter mLogger;
 
@@ -91,25 +92,26 @@ public class VideoChatViewActivity extends AppCompatActivity {
     };
 
     private void setupRemoteVideo(int uid) {
+        // Only one remote video view is available for this
+        // tutorial. Here we check if there exists a surface
+        // view tagged as this uid.
         int count = mRemoteContainer.getChildCount();
-        View toRemove = null;
+        View view = null;
         for (int i = 0; i < count; i++) {
-            View view = mRemoteContainer.getChildAt(i);
-            if (view instanceof SurfaceView &&
-                    view.getTag() instanceof Integer &&
-                    ((int) view.getTag()) == uid) {
-                toRemove = view;
+            View v = mRemoteContainer.getChildAt(i);
+            if (v.getTag() instanceof Integer && ((int) v.getTag()) == uid) {
+                view = v;
             }
         }
 
-        if (toRemove != null) {
+        if (view != null) {
             return;
         }
 
         mRemoteView = RtcEngine.CreateRendererView(getBaseContext());
         mRemoteContainer.addView(mRemoteView);
         mRtcEngine.setupRemoteVideo(new VideoCanvas(mRemoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
-        mRemoteView.setTag(uid); // for mark purpose
+        mRemoteView.setTag(uid);
     }
 
     private void onRemoteUserLeft() {
@@ -145,13 +147,15 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
         mLogView = findViewById(R.id.log_recycler_view);
         mLogger = mLogView.getAdapter();
+
+        // Sample logs are optional.
         showSampleLogs();
     }
 
     private void showSampleLogs() {
         mLogger.logI("Welcome to Agora 1v1 video call");
         mLogger.logW("You will see custom logs here");
-        mLogger.logE("Error occurred if you see this line");
+        mLogger.logE("You can also use this to show errors");
     }
 
     private boolean checkSelfPermission(String permission, int requestCode) {
@@ -178,6 +182,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
                 return;
             }
 
+            // Here we continue only if all permissions are granted.
+            // The permissions can also be granted in the system settings manually.
             initEngineAndJoinChannel();
         }
     }
@@ -192,6 +198,9 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void initEngineAndJoinChannel() {
+        // This is our usual steps for joining a channel and starting a call.
+        // In order to get an app id and a token, please visit our online
+        // document https://docs.agora.io/en/Video/initialize_android_video?platform=Android
         initializeEngine();
         setupVideoConfig();
         setupLocalVideo();
@@ -208,8 +217,13 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void setupVideoConfig() {
+        // In simple use cases, we only need to enable video capturing
+        // and rendering once at the initialization step.
+        // Note: audio recording and playing is enabled by default.
         mRtcEngine.enableVideo();
 
+        // Please go to our website for API explanations
+        // https://docs.agora.io/en/Video/API%20Reference/java/index.html
         mRtcEngine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
                 VideoEncoderConfiguration.VD_640x360,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
@@ -218,6 +232,13 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void setupLocalVideo() {
+        // This is used to set a local preview.
+        // The steps setting local and remote view are very similar.
+        // But note that if the local user do not have a uid or do
+        // not care what the uid is, he can set his uid as ZERO.
+        // Our server will assign one and return the uid via the event
+        // handler callback function (onJoinChannelSuccess) after
+        // joining the channel successfully.
         mLocalView = RtcEngine.CreateRendererView(getBaseContext());
         mLocalView.setZOrderMediaOverlay(true);
         mLocalContainer.addView(mLocalView);
@@ -235,6 +256,11 @@ public class VideoChatViewActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        // For latest Agora sdk versions (2.4.1+),
+        // it is required no more to call leave
+        // channel before destroying the engine.
+        // But it is recommended in most cases.
         if (!mCallEnd) {
             leaveChannel();
         }
