@@ -127,7 +127,7 @@ export default class RTCClient {
          *      If you use a number as the user ID, it should be a 32-bit unsigned integer with a value ranging from 0 to (232-1).
          *      If you use a string as the user ID, the maximum length is 255 characters.
         **/
-        this._client.join(data.token ? data.token : null, data.channel, data.uid ? data.uid : null, (uid) => {
+        this._client.join(data.token ? data.token : null, data.channel, data.uid ? +data.uid : null, (uid) => {
           this._params.uid = uid;
           Toast.notice("join channel: " + data.channel + " success, uid: " + uid);
           console.log("join channel: " + data.channel + " success, uid: " + uid);

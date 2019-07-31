@@ -21,9 +21,9 @@ To build and run the sample application, get an App ID:
 4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
 
 
-### Intergrate Agora Video SDK
+### Integrate Agora Video SDK
 
-Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.8.0.js**
 
 ### Run Web-Server
 
