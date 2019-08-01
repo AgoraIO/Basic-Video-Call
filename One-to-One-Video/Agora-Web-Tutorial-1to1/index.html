@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Basic Communication</title>
   <link rel="stylesheet" href="./assets/common.css" />
+</head>
 <body class="agora-theme">
   <div class="navbar-fixed">
     <nav class="agora-navbar">
@@ -164,7 +165,7 @@
       }
     };
     function validator(formData, fields) {
-      const keys = Object.keys(formData);
+      var keys = Object.keys(formData);
       for (let key of keys) {
         if (fields.indexOf(key) != -1) {
           if (!formData[key]) {
@@ -177,8 +178,8 @@
     }
 
     function serializeformData() {
-      const formData = $("#form").serializeArray();
-      const obj = {}
+      var formData = $("#form").serializeArray();
+      var obj = {}
       for (var item of formData) {
         var key = item.name;
         var val = item.value;
