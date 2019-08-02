@@ -5,7 +5,7 @@ Meta:
   version: 2.4.1
   # | 代表这里是字符串
   description: |
-    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现1对1视频通话。
+    这个开源示例项目演示了如何快速集成 Agora 视频 SDK，实现一对一视频通话。
 
     在这个示例项目中包含了以下功能：
 
@@ -31,16 +31,16 @@ QuickStart:
   description:
     这个段落主要讲解了如何编译和运行实例程序。
   sections:
-    - title: 创建Agora账号并获取AppId
+    - title: 创建 Agora 账号并获取 AppId
       content: |
         $_{APPID}
         5. 将 AppID 填写进 "app/src/main/res/values/strings.xml"
           ```
           <string name="private_app_id"><#YOUR APP ID#></string>
-          <!-- 临时Token 可以在 https://dashboard.agora.io 获取 -->
-          <!-- 在正式上线生产环境前，你必须部署你自己的Token服务器 -->
+          <!-- 临时 Token 可以在 https://dashboard.agora.io 获取 -->
+          <!-- 在正式上线生产环境前，你必须部署你自己的 Token 服务器 -->
           <!-- 如果你的项目没有打开安全证书，下面的值可以直接留空 -->
-          <string name="agora_access_token"><#YOUR TOKEN#></string>
+          <string name="agora_access_token"><#YOUR ACCESS TOKEN#></string>
           ```
     - title: 集成 Agora 视频 SDK
       content: |

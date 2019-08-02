@@ -88,7 +88,7 @@
             android:scaleType="center"/>
     </RelativeLayout>
 
-    <io.agora.logger.LogRecyclerView
+    <io.agora.uikit.logger.LoggerRecyclerView
         android:id="@+id/log_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/log_container_height"

@@ -8,5 +8,5 @@
     <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
     <!-- You will need to deploy your own token server for production release -->
     <!-- Leave this value empty if Security keys/Token is not enabled for your project -->
-    <string name="agora_access_token"><#YOUR TOKEN#></string>
+    <string name="agora_access_token"><#YOUR ACCESS TOKEN#></string>
 </resources>
