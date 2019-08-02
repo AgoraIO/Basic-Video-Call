@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -15,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import io.agora.logger.LogRecyclerView;
+import io.agora.uikit.logger.LoggerRecyclerView;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
@@ -49,8 +50,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private ImageView mSwitchCameraBtn;
 
     // Customized logger view
-    private LogRecyclerView mLogView;
-    private LogRecyclerView.LogRecyclerViewAdapter mLogger;
+    private LoggerRecyclerView mLogView;
 
     /**
      * Event handler registered into RTC engine for RTC callbacks.
@@ -59,11 +59,11 @@ public class VideoChatViewActivity extends AppCompatActivity {
      */
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
         @Override
-        public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+        public void onJoinChannelSuccess(String channel, final int uid, int elapsed) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mLogger.logI("Join channel success");
+                    mLogView.logI("Join channel success, uid: " + (uid & 0xFFFFFFFFL));
                 }
             });
         }
@@ -73,7 +73,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mLogger.logI("First remote video decoded");
+                    mLogView.logI("First remote video decoded, uid: " + (uid & 0xFFFFFFFFL));
                     setupRemoteVideo(uid);
                 }
             });
@@ -84,7 +84,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mLogger.logI("User offline, uid:" + uid);
+                    mLogView.logI("User offline, uid: " + (uid & 0xFFFFFFFFL));
                     onRemoteUserLeft();
                 }
             });
@@ -150,16 +150,15 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mSwitchCameraBtn = findViewById(R.id.btn_switch_camera);
 
         mLogView = findViewById(R.id.log_recycler_view);
-        mLogger = mLogView.getAdapter();
 
         // Sample logs are optional.
         showSampleLogs();
     }
 
     private void showSampleLogs() {
-        mLogger.logI("Welcome to Agora 1v1 video call");
-        mLogger.logW("You will see custom logs here");
-        mLogger.logE("You can also use this to show errors");
+        mLogView.logI("Welcome to Agora 1v1 video call");
+        mLogView.logW("You will see custom logs here");
+        mLogView.logE("You can also use this to show errors");
     }
 
     private boolean checkSelfPermission(String permission, int requestCode) {
@@ -226,7 +225,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mRtcEngine.enableVideo();
 
         // Please go to this page for detailed explanation
-        // https://docs.agora.io/cn/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f
+        // https://docs.agora.io/en/Video/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f
         mRtcEngine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
                 VideoEncoderConfiguration.VD_640x360,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
@@ -254,8 +253,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
         // 2. One token is only valid for the channel name that
         // you use to generate this token.
         String token = getString(R.string.agora_access_token);
-        if (token.isEmpty()) {
-            token = null;
+        if (TextUtils.isEmpty(token) || TextUtils.equals(token, "#YOUR ACCESS TOKEN#")) {
+            token = null; // default, no token
         }
         mRtcEngine.joinChannel(token, "demoChannel1", "Extra Optional Data", 0);
     }

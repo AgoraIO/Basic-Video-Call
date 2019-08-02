@@ -1,4 +1,4 @@
-package io.agora.logger;
+package io.agora.uikit.logger;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogRecyclerView extends RecyclerView {
+public class LoggerRecyclerView extends RecyclerView {
     private static final int MAX_ITEMS = 10;
 
     private LogRecyclerViewAdapter mAdapter = new LogRecyclerViewAdapter();
@@ -25,17 +25,17 @@ public class LogRecyclerView extends RecyclerView {
     private List<LogItem> mLogList = new ArrayList<>();
     private int mVerticalSpacing = 0;
 
-    public LogRecyclerView(@NonNull Context context) {
+    public LoggerRecyclerView(@NonNull Context context) {
         super(context);
         init(context);
     }
 
-    public LogRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public LoggerRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public LogRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public LoggerRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context);
     }
@@ -62,6 +62,18 @@ public class LogRecyclerView extends RecyclerView {
     @Override
     public LogRecyclerViewAdapter getAdapter() {
         return mAdapter;
+    }
+
+    public void logI(String text) {
+        mAdapter.logI(text);
+    }
+
+    public void logW(String text) {
+        mAdapter.logW(text);
+    }
+
+    public void logE(String text) {
+        mAdapter.logE(text);
     }
 
     private enum LogLevel {
