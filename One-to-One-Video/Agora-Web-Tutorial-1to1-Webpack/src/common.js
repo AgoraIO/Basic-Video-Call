@@ -1,5 +1,6 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import * as M from 'materialize-css';
+import { replaceSearchString, stringify } from './searchParam'
 
 export const resolutions = [
   {
@@ -66,7 +67,7 @@ export function serializeFormData() {
     var val = item.value;
     obj[key] = val;
   }
-  console.log("form data", obj);
+  replaceSearchString(stringify(obj))
   return obj;
 }
 
@@ -85,6 +86,11 @@ export function addView (id, show) {
     $("<div/>", {
       id: "remote_video_info_" + id,
       class: "video-profile " + (show ? "" :  "hide"),
+    }).appendTo("#remote_video_panel_" + id);
+
+    $("<div/>", {
+      id: "video_autoplay_"+ id,
+      class: "autoplay-fallback hide",
     }).appendTo("#remote_video_panel_" + id);
   }
 }

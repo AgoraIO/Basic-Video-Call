@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Log View Controller-->
+        <scene sceneID="azr-WG-3qO">
+            <objects>
+                <tableViewController storyboardIdentifier="LogViewController" id="Xyq-BG-qmZ" customClass="LogViewController" customModule="Agora_iOS_Tutorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lbh-am-tEs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LogCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogCell" rowHeight="56" id="PRz-MC-02g" customClass="LogCell" customModule="Agora_iOS_Tutorial" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="56"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PRz-MC-02g" id="Dco-TQ-g87">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gA-At-zvg">
+                                            <rect key="frame" x="0.0" y="0.0" width="402" height="45.5"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOs-xc-pFh">
+                                            <rect key="frame" x="12" y="2" width="390" height="41.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="wOs-xc-pFh" firstAttribute="top" secondItem="Dco-TQ-g87" secondAttribute="top" constant="2" id="3VP-cU-4zH"/>
+                                        <constraint firstItem="5gA-At-zvg" firstAttribute="bottom" secondItem="wOs-xc-pFh" secondAttribute="bottom" constant="2" id="9iL-Ja-IEV"/>
+                                        <constraint firstItem="5gA-At-zvg" firstAttribute="trailing" secondItem="wOs-xc-pFh" secondAttribute="trailing" id="Fr9-4u-Fjl"/>
+                                        <constraint firstAttribute="trailing" secondItem="wOs-xc-pFh" secondAttribute="trailing" constant="12" id="GEd-Fw-9YD"/>
+                                        <constraint firstItem="5gA-At-zvg" firstAttribute="top" secondItem="Dco-TQ-g87" secondAttribute="top" id="OJT-fg-cNB"/>
+                                        <constraint firstItem="wOs-xc-pFh" firstAttribute="leading" secondItem="Dco-TQ-g87" secondAttribute="leading" constant="12" id="SF3-23-Zej"/>
+                                        <constraint firstItem="5gA-At-zvg" firstAttribute="leading" secondItem="Dco-TQ-g87" secondAttribute="leading" id="h8T-8J-Jsm"/>
+                                        <constraint firstAttribute="bottom" secondItem="wOs-xc-pFh" secondAttribute="bottom" constant="12" id="xcO-zl-6pc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="colorView" destination="5gA-At-zvg" id="b38-ug-dWM"/>
+                                    <outlet property="content" destination="wOs-xc-pFh" id="I11-Fm-9o7"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Xyq-BG-qmZ" id="JDm-sR-lVf"/>
+                            <outlet property="delegate" destination="Xyq-BG-qmZ" id="KUf-m0-Vob"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ygj-rG-gxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="71.014492753623188" y="121.875"/>
+        </scene>
+    </scenes>
+</document>

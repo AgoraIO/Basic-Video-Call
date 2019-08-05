@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="log_back_corner_radius">16dp</dimen>
+    <dimen name="log_item_vertical_padding">6dp</dimen>
+    <dimen name="log_item_horizontal_padding">10dp</dimen>
+    <dimen name="log_text_size">10dp</dimen>
+    <dimen name="log_item_offset">3dp</dimen>
+</resources>

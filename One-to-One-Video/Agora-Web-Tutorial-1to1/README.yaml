@@ -13,9 +13,9 @@ QuickStart:
     - title: Obtain an App ID
       content: |
         $_{APPID}
-    - title: Intergrate Agora Video SDK
+    - title: Integrate Agora Video SDK
       content: |
-        Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.6.1.js**
+        Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.8.0.js**
     - title: Run Web-Server
       content: |
         1. Install live-server globally via npm

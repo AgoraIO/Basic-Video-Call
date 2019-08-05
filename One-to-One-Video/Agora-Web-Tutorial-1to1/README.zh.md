@@ -28,7 +28,7 @@
 
 ### 集成 Agora 视频 SDK
 
-下载SDK到 **assets**目录，并改名为**AgoraRTCSDK-2.6.1.js**
+下载SDK到 **assets**目录，并改名为**AgoraRTCSDK-2.8.0.js**
 
 ### 启动Web-Server
 
