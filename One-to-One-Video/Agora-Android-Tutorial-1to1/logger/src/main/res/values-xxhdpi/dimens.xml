@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="log_container_width">260dp</dimen>
+    <dimen name="log_container_height">160dp</dimen>
+</resources>

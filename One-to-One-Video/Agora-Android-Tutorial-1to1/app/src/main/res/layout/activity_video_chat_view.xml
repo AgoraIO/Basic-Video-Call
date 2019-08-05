@@ -41,9 +41,10 @@
         android:background="@color/localBackground">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/local_back_icon_size"
+            android:layout_height="@dimen/local_back_icon_size"
             android:layout_gravity="center"
+            android:scaleType="centerCrop"
             android:src="@drawable/icon_agora_large" />
     </FrameLayout>
 
@@ -61,7 +62,7 @@
             android:layout_centerInParent="true"
             android:onClick="onCallClicked"
             android:src="@drawable/btn_endcall"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:id="@+id/btn_switch_camera"
@@ -73,7 +74,7 @@
             android:layout_centerVertical="true"
             android:onClick="onSwitchCameraClicked"
             android:src="@drawable/btn_switch_camera"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:id="@+id/btn_mute"
@@ -85,12 +86,12 @@
             android:layout_centerVertical="true"
             android:onClick="onLocalAudioMuteClicked"
             android:src="@drawable/btn_unmute"
-            android:scaleType="center"/>
+            android:scaleType="centerCrop"/>
     </RelativeLayout>
 
     <io.agora.uikit.logger.LoggerRecyclerView
         android:id="@+id/log_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/log_container_width"
         android:layout_height="@dimen/log_container_height"
         android:layout_above="@+id/control_panel"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
