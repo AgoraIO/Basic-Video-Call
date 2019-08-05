@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="local_preview_width">88dp</dimen>
+    <dimen name="local_preview_height">117dp</dimen>
+    <dimen name="local_back_icon_size">50dp</dimen>
+    <dimen name="remote_back_icon_size">100dp</dimen>
+    <dimen name="remote_back_icon_margin_bottom">90dp</dimen>
+
+    <!-- buttons -->
+    <dimen name="control_bottom_margin">24dp</dimen>
+    <dimen name="control_bottom_horizontal_margin">30dp</dimen>
+</resources>
