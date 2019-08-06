@@ -34,6 +34,7 @@ Project Folder Name|Platform|Description
 
 Sample applications for group video calls are provided for Web, Android, iOS, MacOS, Windows and Linux.
 
+![alt text](https://github.com/MHDYousuf/Basic-Video-Call/blob/master/Group-Video/OpenVideoCall-Web/images/7%2Busers.png)
 
 The group video call sample applications, demonstrate how to:
 
