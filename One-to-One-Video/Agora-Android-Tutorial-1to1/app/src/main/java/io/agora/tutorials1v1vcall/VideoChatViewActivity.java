@@ -262,11 +262,6 @@ public class VideoChatViewActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        // For latest Agora sdk versions (2.4.1+),
-        // it is required no more to call leave
-        // channel before destroying the engine.
-        // But it is recommended in most cases.
         if (!mCallEnd) {
             leaveChannel();
         }
