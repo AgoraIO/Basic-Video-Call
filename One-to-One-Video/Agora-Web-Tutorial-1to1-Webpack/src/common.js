@@ -68,6 +68,10 @@ export function serializeFormData() {
     obj[key] = val;
   }
   replaceSearchString(stringify(obj))
+  if (obj.uid != undefined
+    && !Number.isNaN(+obj.uid)) {
+    obj.uid = +obj.uid
+  }
   return obj;
 }
 
