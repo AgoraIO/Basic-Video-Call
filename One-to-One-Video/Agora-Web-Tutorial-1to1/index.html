@@ -346,7 +346,7 @@
       *  codec: string, 'h264' | 'vp8'
       *  appID: string
       *  channel: string, channel name
-      *  uid: number or string
+      *  uid: number
       *  token; string,
       * }
      **/
@@ -388,12 +388,11 @@
          *    10 numbers 0-9
          *    Space
          *    "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","
-         *  uid: number | string | null
-         *    The user ID, an integer or a string, ASCII characters only. Ensure this ID is unique. If you set the uid to null, the server assigns one and returns it in the onSuccess callback.
+         *  uid: number | null
+         *    The user ID, an integer. Ensure this ID is unique. If you set the uid to null, the server assigns one and returns it in the onSuccess callback.
          *   Note:
          *      All users in the same channel should have the same type (number or string) of uid.
          *      If you use a number as the user ID, it should be a 32-bit unsigned integer with a value ranging from 0 to (232-1).
-         *      If you use a string as the user ID, the maximum length is 255 characters.
         **/
         rtc.client.join(option.token ? option.token : null, option.channel, option.uid ? +option.uid : null, function (uid) {
           Toast.notice("join channel: " + option.channel + " success, uid: " + uid);

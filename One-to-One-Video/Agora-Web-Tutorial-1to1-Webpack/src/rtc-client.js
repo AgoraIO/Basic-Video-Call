@@ -120,12 +120,11 @@ export default class RTCClient {
          *    10 numbers 0-9
          *    Space
          *    "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","
-         *  uid: number | string | null
-         *    The user ID, an integer or a string, ASCII characters only. Ensure this ID is unique. If you set the uid to null, the server assigns one and returns it in the onSuccess callback.
+         *  uid: number | null
+         *    The user ID, an integer. Ensure this ID is unique. If you set the uid to null, the server assigns one and returns it in the onSuccess callback.
          *   Note:
-         *      All users in the same channel should have the same type (number or string) of uid.
+         *      All users in the same channel should have the same type (number) of uid.
          *      If you use a number as the user ID, it should be a 32-bit unsigned integer with a value ranging from 0 to (232-1).
-         *      If you use a string as the user ID, the maximum length is 255 characters.
         **/
         this._client.join(data.token ? data.token : null, data.channel, data.uid ? +data.uid : null, (uid) => {
           this._params.uid = uid;
