@@ -4,9 +4,7 @@ import "./assets/style.scss";
 import * as M from 'materialize-css';
 import {setFormData, parseFromSearch} from './searchParam';
 
-$(() => {    
-  setFormData(parseFromSearch())
-  
+$(() => {  
   getDevices(function (devices) {
     devices.audios.forEach(function (audio) {
       $('<option/>', {
