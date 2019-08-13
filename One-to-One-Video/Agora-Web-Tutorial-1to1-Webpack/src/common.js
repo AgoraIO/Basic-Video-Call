@@ -67,7 +67,6 @@ export function serializeFormData() {
     var val = item.value;
     obj[key] = val;
   }
-  replaceSearchString(stringify(obj))
   if (obj.uid != undefined
     && !Number.isNaN(+obj.uid)) {
     obj.uid = +obj.uid
@@ -130,7 +129,7 @@ export function getDevices (next) {
         videos.push({
           name: name,
           value: value,
-          kidn: item.kind
+          kind: item.kind
         });
       }
       if ('audioinput' == item.kind) {
@@ -142,7 +141,7 @@ export function getDevices (next) {
         audios.push({
           name: name,
           value: value,
-          kidn: item.kind
+          kind: item.kind
         });
       }
     }
