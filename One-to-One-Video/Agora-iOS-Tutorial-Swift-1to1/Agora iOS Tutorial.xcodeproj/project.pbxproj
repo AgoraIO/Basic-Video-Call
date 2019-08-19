@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033FF35E22C992AF0080AE6A /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		1A2655D41D3F35E700BDBA68 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppID.swift; sourceTree = "<group>"; };
 		1ABDEE3E1D383BE4007DE451 /* Agora iOS Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora iOS Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABDEE411D383BE4007DE451 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,8 +93,11 @@
 				1ABDEE411D383BE4007DE451 /* AppDelegate.swift */,
 				1A2655D41D3F35E700BDBA68 /* AppID.swift */,
 				1ABDEE451D383BE4007DE451 /* Main.storyboard */,
+				1ABDEE481D383BE4007DE451 /* Assets.xcassets */,
+				1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */,
+				1ABDEE4D1D383BE4007DE451 /* Info.plist */,
+				033FF35E22C992AF0080AE6A /* AgoraRtcEngineKit.framework */,
 				A72BB7DC22F2B67E008F563D /* Log.storyboard */,
-				A72BB7DA22F2B62A008F563D /* AgoraRtcEngineKit.framework */,
 				A72BB7D922F2B5F4008F563D /* Supporting Files */,
 			);
 			path = "Agora iOS Tutorial";

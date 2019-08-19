@@ -1,4 +1,4 @@
-// VideoDlg.cpp
+// VideoDlg.cpp 
 //
 
 #include "stdafx.h"
@@ -96,6 +96,9 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 	ON_WM_SHOWWINDOW()
     ON_WM_MOVE()
 END_MESSAGE_MAP()
+
+
+// CVideoDlg
 
 
 void CVideoDlg::OnSize(UINT nType, int cx, int cy)
