@@ -41,6 +41,7 @@
 		389D99B821885C4600BFD852 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B721885C4600BFD852 /* CoreWLAN.framework */; };
 		389D99BA21885C4D00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B921885C4D00BFD852 /* SystemConfiguration.framework */; };
 		389D99BC21885C5200BFD852 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99BB21885C5200BFD852 /* VideoToolbox.framework */; };
+		38EF7E92236826A600A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E91236826A600A6A483 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		389D99B721885C4600BFD852 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		389D99B921885C4D00BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		389D99BB21885C5200BFD852 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		38EF7E91236826A600A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		07C2CFAB1D6C26F300C84349 = {
 			isa = PBXGroup;
 			children = (
+				38EF7E91236826A600A6A483 /* README.md */,
 				07C2CFB61D6C26F300C84349 /* OpenVideoCall */,
 				07C2CFB51D6C26F300C84349 /* Products */,
 				389D99B021885C1C00BFD852 /* Frameworks */,
@@ -256,6 +259,7 @@
 			files = (
 				3832FA69227FFE5400E50E69 /* Them.mp3 in Resources */,
 				074473601D6C428900CA030C /* test.wav in Resources */,
+				38EF7E92236826A600A6A483 /* README.md in Resources */,
 				07C2CFBC1D6C26F300C84349 /* Assets.xcassets in Resources */,
 				07C2CFBF1D6C26F300C84349 /* Main.storyboard in Resources */,
 			);

@@ -22,6 +22,7 @@
 		1A8E8D811D396DDE002FA67C /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8E8D801D396DDE002FA67C /* libc++.1.dylib */; };
 		381ADD34211849280001B2C0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381ADD33211849270001B2C0 /* Accelerate.framework */; };
 		38D619322250B7E3004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619312250B7E3004A6C87 /* CoreML.framework */; };
+		38EF7E942368276A00A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E932368276A00A6A483 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		1A8E8D801D396DDE002FA67C /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
 		381ADD33211849270001B2C0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		38D619312250B7E3004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		38EF7E932368276A00A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		1A8E8D2F1D396CAA002FA67C = {
 			isa = PBXGroup;
 			children = (
+				38EF7E932368276A00A6A483 /* README.md */,
 				1A8E8D3A1D396CAA002FA67C /* Agora iOS Tutorial Objective-C */,
 				1A8E8D6F1D396D3B002FA67C /* Frameworks */,
 				1A8E8D391D396CAA002FA67C /* Products */,
@@ -199,6 +202,7 @@
 			files = (
 				1A8E8D4B1D396CAA002FA67C /* LaunchScreen.storyboard in Resources */,
 				1A8E8D481D396CAA002FA67C /* Assets.xcassets in Resources */,
+				38EF7E942368276A00A6A483 /* README.md in Resources */,
 				1A8E8D461D396CAA002FA67C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

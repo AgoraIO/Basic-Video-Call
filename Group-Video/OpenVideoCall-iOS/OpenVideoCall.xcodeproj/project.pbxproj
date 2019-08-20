@@ -41,6 +41,7 @@
 		3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA5A227FC56200E50E69 /* FileCenter.swift */; };
 		3832FA65227FE42F00E50E69 /* Them.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3832FA64227FE42F00E50E69 /* Them.mp3 */; };
 		385F30962123D0D1005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F30952123D0D1005D5301 /* Accelerate.framework */; };
+		389D3890230BD19D00704A8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 389D388F230BD19D00704A8F /* README.md */; };
 		38D619342250BC4A004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619332250BC4A004A6C87 /* CoreML.framework */; };
 		A7A3C65A228ACFB4005BB816 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3C659228ACFB4005BB816 /* Settings.swift */; };
 		A7FC1EF12295701500F850F2 /* RoomOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF02295701500F850F2 /* RoomOptionsViewController.swift */; };
@@ -86,6 +87,7 @@
 		3832FA5A227FC56200E50E69 /* FileCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCenter.swift; sourceTree = "<group>"; };
 		3832FA64227FE42F00E50E69 /* Them.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Them.mp3; path = ../../SharedFiles/Them.mp3; sourceTree = "<group>"; };
 		385F30952123D0D1005D5301 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		389D388F230BD19D00704A8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		38D619332250BC4A004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
 		A7A3C659228ACFB4005BB816 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A7FC1EF02295701500F850F2 /* RoomOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomOptionsViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		07F52EA81D62F39D006DDCD4 = {
 			isa = PBXGroup;
 			children = (
+				389D388F230BD19D00704A8F /* README.md */,
 				07F52EB31D62F39D006DDCD4 /* OpenVideoCall */,
 				07F52EB21D62F39D006DDCD4 /* Products */,
 				07D29C571E9E1E0A00C3583C /* Frameworks */,
@@ -289,6 +292,7 @@
 			files = (
 				3832FA65227FE42F00E50E69 /* Them.mp3 in Resources */,
 				07F52EBF1D62F39D006DDCD4 /* LaunchScreen.storyboard in Resources */,
+				389D3890230BD19D00704A8F /* README.md in Resources */,
 				07F52EBC1D62F39D006DDCD4 /* Assets.xcassets in Resources */,
 				07F52EBA1D62F39D006DDCD4 /* Main.storyboard in Resources */,
 			);

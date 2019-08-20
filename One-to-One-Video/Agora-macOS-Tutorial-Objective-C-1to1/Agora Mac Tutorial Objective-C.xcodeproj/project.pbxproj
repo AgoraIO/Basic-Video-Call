@@ -20,6 +20,7 @@
 		1A2BC69D1D5A9E6700C9AD11 /* AppID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69C1D5A9E6700C9AD11 /* AppID.m */; };
 		1A2BC6A01D5B05A800C9AD11 /* DeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */; };
 		1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A309D611D5CE05500021BB8 /* Main.storyboard */; };
+		38EF7E982368278500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E972368278500A6A483 /* README.md */; };
 		A7C50EEF21215CC700774322 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7C50EEE21215CC700774322 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		1A2BC69E1D5B058C00C9AD11 /* DeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceSelectionViewController.h; path = VideoChat/DeviceSelectionViewController.h; sourceTree = "<group>"; };
 		1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceSelectionViewController.m; path = VideoChat/DeviceSelectionViewController.m; sourceTree = "<group>"; };
 		1A309D621D5CE05500021BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		38EF7E972368278500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A7C50EEE21215CC700774322 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 		1A2BC6631D5A9C2100C9AD11 = {
 			isa = PBXGroup;
 			children = (
+				38EF7E972368278500A6A483 /* README.md */,
 				1A2BC66E1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */,
 				1A2BC6991D5A9CAD00C9AD11 /* Frameworks */,
 				1A2BC66D1D5A9C2100C9AD11 /* Products */,
@@ -189,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EF7E982368278500A6A483 /* README.md in Resources */,
 				1A2BC6791D5A9C2100C9AD11 /* Assets.xcassets in Resources */,
 				1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */,
 			);

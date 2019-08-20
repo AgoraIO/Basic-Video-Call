@@ -34,6 +34,7 @@
 		389D99A7218831C900BFD852 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */; };
 		389D99A9218831D000BFD852 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A8218831D000BFD852 /* libcrypto.a */; };
 		38D619362250BF34004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619352250BF34004A6C87 /* CoreML.framework */; };
+		38EF7E902368269600A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E8F2368269600A6A483 /* README.md */; };
 		A7327ECE1FC7B5E300882882 /* Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ECD1FC7B5E300882882 /* Encryption.m */; };
 		A7327ED41FC7C7DB00882882 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED31FC7C7DB00882882 /* MessageCell.m */; };
 		A7327ED71FC7C7EE00882882 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A7327ED61FC7C7EE00882882 /* Message.m */; };
@@ -87,6 +88,7 @@
 		389D99A6218831C900BFD852 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		389D99A8218831D000BFD852 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		38D619352250BF34004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		38EF7E8F2368269600A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A7327ECC1FC7B5E300882882 /* Encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Encryption.h; sourceTree = "<group>"; };
 		A7327ECD1FC7B5E300882882 /* Encryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Encryption.m; sourceTree = "<group>"; };
 		A7327ED21FC7C7DB00882882 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		076C59691DDDBC3500F813E2 = {
 			isa = PBXGroup;
 			children = (
+				38EF7E8F2368269600A6A483 /* README.md */,
 				076C59741DDDBC3500F813E2 /* OpenVideoCall */,
 				076C59731DDDBC3500F813E2 /* Products */,
 				076C59AA1DDDDE5C00F813E2 /* Frameworks */,
@@ -317,6 +320,7 @@
 			files = (
 				3832FA67227FF94300E50E69 /* Them.mp3 in Resources */,
 				076C59851DDDBC3500F813E2 /* LaunchScreen.storyboard in Resources */,
+				38EF7E902368269600A6A483 /* README.md in Resources */,
 				076C59821DDDBC3500F813E2 /* Assets.xcassets in Resources */,
 				A7FB1BD422AE448D0027986E /* Main.storyboard in Resources */,
 			);

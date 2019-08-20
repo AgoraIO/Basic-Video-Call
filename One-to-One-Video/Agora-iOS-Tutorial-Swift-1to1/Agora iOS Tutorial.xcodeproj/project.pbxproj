@@ -21,6 +21,7 @@
 		389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A2218825DB00BFD852 /* SystemConfiguration.framework */; };
 		389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A4218825EC00BFD852 /* CoreTelephony.framework */; };
 		38D619302250B7AB004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D6192F2250B7AB004A6C87 /* CoreML.framework */; };
+		38EF7E962368277700A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E952368277700A6A483 /* README.md */; };
 		A72BB7DB22F2B62A008F563D /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72BB7DA22F2B62A008F563D /* AgoraRtcEngineKit.framework */; };
 		A72BB7DE22F2B67E008F563D /* Log.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72BB7DC22F2B67E008F563D /* Log.storyboard */; };
 		A72BB7DF22F2B67E008F563D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BB7DD22F2B67E008F563D /* LogViewController.swift */; };
@@ -43,6 +44,7 @@
 		389D99A2218825DB00BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		389D99A4218825EC00BFD852 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		38D6192F2250B7AB004A6C87 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		38EF7E952368277700A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A72BB7DA22F2B62A008F563D /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		A72BB7DC22F2B67E008F563D /* Log.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Log.storyboard; sourceTree = "<group>"; };
 		A72BB7DD22F2B67E008F563D /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		1ABDEE351D383BE4007DE451 = {
 			isa = PBXGroup;
 			children = (
+				38EF7E952368277700A6A483 /* README.md */,
 				1ABDEE401D383BE4007DE451 /* Agora iOS Tutorial */,
 				1ABDEE3F1D383BE4007DE451 /* Products */,
 				389D9999218825B200BFD852 /* Frameworks */,
@@ -201,6 +204,7 @@
 			files = (
 				1ABDEE4C1D383BE4007DE451 /* LaunchScreen.storyboard in Resources */,
 				1ABDEE491D383BE4007DE451 /* Assets.xcassets in Resources */,
+				38EF7E962368277700A6A483 /* README.md in Resources */,
 				1ABDEE471D383BE4007DE451 /* Main.storyboard in Resources */,
 				A72BB7DE22F2B67E008F563D /* Log.storyboard in Resources */,
 			);

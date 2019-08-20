@@ -20,6 +20,7 @@
 		389D9980218816F900BFD852 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997F218816F900BFD852 /* CoreWLAN.framework */; };
 		389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99812188170C00BFD852 /* Accelerate.framework */; };
 		389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99832188174900BFD852 /* SystemConfiguration.framework */; };
+		38EF7E9A236827E500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E99236827E500A6A483 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		389D997F218816F900BFD852 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		389D99812188170C00BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		389D99832188174900BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		38EF7E99236827E500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		1A0466171D5E75A2004987C6 = {
 			isa = PBXGroup;
 			children = (
+				38EF7E99236827E500A6A483 /* README.md */,
 				1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */,
 				1A0466491D5E7718004987C6 /* Frameworks */,
 				1A0466211D5E75A2004987C6 /* Products */,
@@ -171,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EF7E9A236827E500A6A483 /* README.md in Resources */,
 				1A0466281D5E75A2004987C6 /* Assets.xcassets in Resources */,
 				1A04662B1D5E75A2004987C6 /* Main.storyboard in Resources */,
 			);
