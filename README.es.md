@@ -24,9 +24,7 @@ Las aplicaciones de muestra de videollamadas 1 a 1 muestran cómo:
 | [Agora-Android-Tutorial-Kotlin-1 a 1](./One-to-One-Video/Agora-Android-Tutorial-Kotlin-1to1)       | Android ([Kotlin](https://developer.android.com/kotlin/)) | Tutorial de Android para videollamadas 1 a 1 usando [Kotlin](https://developer.android.com/kotlin/) |
 | [Agora-iOS-Tutorial-Objective-C-1 a 1](./One-to-One-Video/Agora-iOS-Tutorial-Objective-C-1to1)     | iOS (Objective-C)                                         | Tutorial de iOS para videollamadas 1 a 1 con Objective-C                                            |
 | [Agora-iOS-Tutorial-Swift-1 a 1](./One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1)                 | iOS (Swift)                                               | Tutorial de iOS para videollamadas 1 a 1 con Swift                                                  |
-| [Agora-macOS-Tutorial-Objective-C-1 a 1](./One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1) | MacOS (Objective-C) <img width=30/>                       |
-
-Tutorial de MacOS para videollamadas 1 a 1 con Objective-C
+| [Agora-macOS-Tutorial-Objective-C-1 a 1](./One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1) | MacOS (Objective-C) <img width=30/>|Tutorial de MacOS para videollamadas 1 a 1 con Objective-C
 [Agora-macOS-Tutorial-Swift-1 a 1](./One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1)|MacOS (Swift)|Tutorial de MacOS para videollamadas 1 a 1 con Swift
 [Agora-Windows-Tutorial-1 a 1](./One-to-One-Video/Agora-Windows-Tutorial-1to1)|Windows|Tutorial de Windows para videollamadas 1 a 1
 [Agora-Web-Tutorial-1 a 1](./One-to-One-Video/Agora-Web-Tutorial-1to1)|Web|Tutorial web para videollamadas 1 a 1
