@@ -148,8 +148,8 @@ export default class RTCClient {
       **/
      this._client = AgoraRTC.createClient({mode: data.mode, codec: data.codec});
       AgoraRTS.init(AgoraRTC, {
-        wasmDecoderPath: "avcodec.wasm",
-        asmDecoderPath: "avcodec.asm",
+        wasmDecoderPath: "AgoraRTS.wasm",
+        asmDecoderPath: "AgoraRTS.asm",
       }).catch(e => {
         if (e === "LOAD_DECODER_FAILED") {
           console.log("Codec load failed！");
