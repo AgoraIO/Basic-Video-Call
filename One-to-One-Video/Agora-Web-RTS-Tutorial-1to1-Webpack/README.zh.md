@@ -1,4 +1,4 @@
-# Web Tutorial For Webpack - 1to1
+# Web RTS Tutorial For Webpack - 1to1
 
 *[English](README.md) | 中文*
 
@@ -34,7 +34,7 @@ This section shows you how to prepare, and run the sample application.
     # install dependencies
     npm install
     ```
-2. 请到官网[agora.io](https://docs.agora.io/cn/)，下载这些文件 **AgoraRTC.js**, **AgoraRTS.js**, **avcodec.asm**, **avcodec.wasm** 到`static`目录。
+2. 请到官网[agora.io](https://docs.agora.io/cn/)，下载这些文件 **AgoraRTC.js**, **AgoraRTS.js**, **AgoraRTS.asm**, **AgoraRTS.wasm** 到`static`目录。
 3. 输入`run dev`命令以启动Web程序
     ```shell
     # serve with hot reload at localhost:8080

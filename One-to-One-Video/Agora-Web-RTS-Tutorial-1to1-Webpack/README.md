@@ -29,7 +29,7 @@ To build and run the sample application, get an App ID:
     # install dependencies
     npm install
     ```
-2. Please download from [agora.io](https://docs.agora.io/en/) **AgoraRTC.js**, **AgoraRTS.js**, **avcodec.asm**, **avcodec.wasm** to `static` folder.
+2. Please download from [agora.io](https://docs.agora.io/en/) **AgoraRTC.js**, **AgoraRTS.js**, **AgoraRTS.asm**, **AgoraRTS.wasm** to `static` folder.
 3. Start the application by entering the `run dev` or `run build` command.
     The `run dev` command is for development purposes.
     ``` bash
