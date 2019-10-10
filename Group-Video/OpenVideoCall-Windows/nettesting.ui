@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetTesting</class>
+ <widget class="QMainWindow" name="NetTesting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">image: url(:/uiresource/OVC-win-nettest.png);</string>
+   </property>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>25</y>
+      <width>36</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}
+QPushButton:hover:!pressed {
+border-image: url(:/uiresource/icon-back hover.png);
+image: url(:/uiresource/icon-back hover.png);
+}
+QPushButton:hover:pressed {
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_min">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+border-image: url(:/uiresource/icon-min default.png);
+image: url(:/uiresource/icon-min default.png);
+}
+
+QPushButton:hover:!pressed {
+border-image: url(:/uiresource/icon-min hover.png);
+image: url(:/uiresource/icon-min hover.png);
+}
+
+QPushButton:hover:pressed{
+border-image: url(:/uiresource/icon-min default.png);
+image: url(:/uiresource/icon-min default.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>726</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+border-image: url(:/uiresource/icon-close default.png);
+image: url(:/uiresource/icon-close default.png);
+}
+
+QPushButton:hover:!pressed {
+border-image: url(:/uiresource/icon-close hover.png);
+image: url(:/uiresource/icon-close hover.png);
+}
+
+QPushButton:hover:pressed{
+border-image: url(:/uiresource/icon-close default.png);
+image: url(:/uiresource/icon-close default.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_status">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>190</y>
+      <width>83</width>
+      <height>83</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/uiresource/edit5.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

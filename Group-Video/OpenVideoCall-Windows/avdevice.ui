@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AVDevice</class>
+ <widget class="QMainWindow" name="AVDevice">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">image: url(:/uiresource/OVC-win-config.png);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/uiresource/OVC-win-config.png);</string>
+   </property>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>25</y>
+      <width>36</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+width:36px;
+height:36px;
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}
+QPushButton:hover{
+width:36px;
+height:36px;
+border-image: url(:/uiresource/icon-back hover.png);
+image: url(:/uiresource/icon-back hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_min">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+image: url(:/uiresource/icon-min default.png);
+border-image: url(:/uiresource/icon-min default.png);
+}
+
+QPushButton:hover {
+image: url(:/uiresource/icon-min hover.png);
+border-image: url(:/uiresource/icon-min hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>726</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+image: url(:/uiresource/icon-close default.png);
+border-image: url(:/uiresource/icon-close default.png);
+}
+
+QPushButton:hover {
+image: url(:/uiresource/icon-close hover.png);
+border-image: url(:/uiresource/icon-close hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cb_solution">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>161</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="text_name">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>103</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/uiresource/edit1.png);
+font-size:16px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cb_audio">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>217</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cb_video">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>273</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cb_speaker">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>329</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_audio">
+    <property name="geometry">
+     <rect>
+      <x>474</x>
+      <y>372</y>
+      <width>50</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!pressed {
+width:50px;
+height:30px;
+border-radius:19px;
+image: url(:/uiresource/switch-open.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_video">
+    <property name="geometry">
+     <rect>
+      <x>684</x>
+      <y>372</y>
+      <width>50</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!pressed {
+width:50px;
+height:30px;
+border-radius:19px;
+image: url(:/uiresource/switch-open.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_channel">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>103</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>HelveticaNeue</family>
+      <pointsize>-1</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/uiresource/edit1.png);
+image: url(:/uiresource/edit1.png);
+font-size:16px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
