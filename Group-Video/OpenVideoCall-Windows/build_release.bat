@@ -1,7 +1,10 @@
 @echo off
+
 title qmake and nmake build prompt
-set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC
-set QTDIR=C:\Qt\Qt5.6.2\5.6\msvc2013
+set VCINSTALLDIR=%1
+set QTDIR=%2
+echo vsdir: %VCINSTALLDIR%
+echo qtdir:%QTDIR%
 set PATH=%VCINSTALLDIR%\bin;%QTDIR%\bin;C:\Program Files\7-Zip;%PATH%
 ::shadow build
 call "%VCINSTALLDIR%\vcvarsall.bat"
