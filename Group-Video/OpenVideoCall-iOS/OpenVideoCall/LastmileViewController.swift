@@ -84,13 +84,15 @@ extension LastmileViewController {
 extension AgoraNetworkQuality {
     func description() -> String {
         switch self {
-        case .excellent: return "excellent"
-        case .good:      return "good"
-        case .poor:      return "poor"
-        case .bad:       return "bad"
-        case .vBad:      return "very bad"
-        case .down:      return "down"
-        case .unknown:   return "unknown"
+        case .excellent:   return "excellent"
+        case .good:        return "good"
+        case .poor:        return "poor"
+        case .bad:         return "bad"
+        case .vBad:        return "very bad"
+        case .down:        return "down"
+        case .unsupported: return "unsupported"
+        case .detecting:   return "detecting"
+        case .unknown:     return "unknown"
         }
     }
 }
