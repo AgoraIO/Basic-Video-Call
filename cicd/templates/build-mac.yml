@@ -1,0 +1,38 @@
+parameters:
+  displayName: ''
+  workingDirectory: ''
+  scheme: ''
+
+jobs:
+  - job: ${{ parameters.displayName }}Build
+    displayName: ${{ parameters.displayName }}
+
+    pool:
+      vmImage: 'macOS-10.13'
+
+    steps:
+      - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
+        env:
+          AGORA_APP_ID: $(agora.appId)
+
+      - task: InstallAppleCertificate@2
+        inputs:
+          certSecureFile: 'certificate.p12'
+          certPwd: $(agora.password)
+
+      - task: InstallAppleProvisioningProfile@1
+        inputs:
+          provProfileSecureFile: 'AgoraAppsDevProfile.mobileprovision'
+      
+      - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
+
+      - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.app app && mv *.xcarchive app 
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: ${{ parameters.workingDirectory }}/app
+          ArtifactName: ${{ parameters.displayName }}
+
+      - template: github-release.yml
+        parameters:
+          displayName: ${{ parameters.displayName }}
