@@ -106,7 +106,6 @@ CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpVendorKey)
 	if(m_lpAgoraEngine == NULL)
 		m_lpAgoraEngine = (IRtcEngine *)createAgoraRtcEngine();
 
-	// 如果VendorKey为空则直接返回对象
 	if (lpVendorKey == NULL)
 		return m_lpAgoraObject;
 
@@ -343,8 +342,18 @@ BOOL CAgoraObject::EnableScreenCapture(HWND hWnd, int nCapFPS, LPCRECT lpCapRect
 			else{
 				GetWindowRect(GetDesktopWindow(), &rc);
 				agora::rtc::Rectangle screenRegion = { rc.left, rc.right, rc.right - rc.left, rc.bottom - rc.top };
-				capParam.dimensions.width = rc.right - rc.left;
-				capParam.dimensions.height = rc.bottom - rc.top;
+				if(lpCapRect) {
+					rcCap.x = lpCapRect->left;
+					rcCap.y = lpCapRect->top;
+					rcCap.width = lpCapRect->right - lpCapRect->left;
+					rcCap.height = lpCapRect->bottom - lpCapRect->top;
+					capParam.dimensions.width = rcCap.width;
+					capParam.dimensions.height = rcCap.height;
+				} else {
+					capParam.dimensions.width = rc.right - rc.left;
+					capParam.dimensions.height = rc.bottom - rc.top;
+				}
+
 				ret = m_lpAgoraEngine->startScreenCaptureByScreenRect(screenRegion, rcCap, capParam);
 			}
 			//startScreenCapture(hWnd, nCapFPS, NULL, nBitrate);
