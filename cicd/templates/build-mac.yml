@@ -10,19 +10,13 @@ jobs:
     pool:
       vmImage: 'macOS-10.13'
 
+    variables:
+      - group: AgoraKeys
+
     steps:
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
           AGORA_APP_ID: $(agora.appId)
-
-      - task: InstallAppleCertificate@2
-        inputs:
-          certSecureFile: 'certificate.p12'
-          certPwd: $(agora.password)
-
-      - task: InstallAppleProvisioningProfile@1
-        inputs:
-          provProfileSecureFile: 'AgoraAppsDevProfile.mobileprovision'
       
       - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
 
