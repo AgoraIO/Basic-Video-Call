@@ -10,6 +10,9 @@ jobs:
     pool:
       vmImage: 'macOS-10.13'
 
+    variables:
+      - group: AgoraKeys
+
     steps:
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
@@ -23,7 +26,7 @@ jobs:
       - task: InstallAppleProvisioningProfile@1
         inputs:
           provProfileSecureFile: 'AgoraAppsDevProfile.mobileprovision'
-      
+
       - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
 
       - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.ipa app && mv *.xcarchive app 
