@@ -13,6 +13,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
+    agoraconfig.cpp \
     openvideocall.cpp \
     avdevice.cpp \
     agoraobject.cpp \
@@ -24,6 +25,7 @@ SOURCES += main.cpp \
     inroom.cpp
 
 HEADERS  += \
+    agoraconfig.h \
     openvideocall.h \
     avdevice.h \
     agoraobject.h \

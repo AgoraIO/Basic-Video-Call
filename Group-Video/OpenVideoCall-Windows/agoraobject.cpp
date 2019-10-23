@@ -1,6 +1,8 @@
-#include "agoraobject.h"
+﻿#include "agoraobject.h"
 #include <qmessagebox.h>
 #include <cassert>
+
+CAgoraConfig gAgoraConfig;
 
 class AgoraRtcEngineEvent : public agora::rtc::IRtcEngineEventHandler
 {
@@ -80,7 +82,14 @@ CAgoraObject::CAgoraObject(QObject *parent):
 {
     agora::rtc::RtcEngineContext context;
     context.eventHandler = m_eventHandler.get();
-    context.appId = APPID;
+    QByteArray temp;
+    if(strlen(APPID))
+        context.appId = APPID;
+    else {
+        QString strAppId = gAgoraConfig.getAppId();
+        temp = strAppId.toUtf8();
+        context.appId = const_cast<const char*>(temp.data());
+    }
     if (*context.appId == '\0')
     {
         QMessageBox::critical(nullptr, ("AgoraOpenLive"),

@@ -1,11 +1,14 @@
-#ifndef CAGORAOBJECT_H
+﻿#ifndef CAGORAOBJECT_H
 #define CAGORAOBJECT_H
 
 #include <Memory>
 #include <mutex>
 
+#include "agoraconfig.h"
+extern CAgoraConfig gAgoraConfig;
+
 //Specify your APP ID here
-#define APPID "aab8b8f5a8cd4469a63042fcfafe7063"
+#define APPID ""
 #define APP_TOKEN   ""
 
 #include <QString>
