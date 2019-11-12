@@ -55,7 +55,7 @@ extension VideoView {
 }
 
 extension VideoView {
-    func update(with info: MediaInfo) {
+    func update(with info: StatisticsInfo) {
         infoLabel?.stringValue = info.description()
     }
 }
@@ -67,7 +67,7 @@ private extension VideoView {
         
         addSubview(videoView)
         
-        let inset = VideoViewLayout.ViewEdgeInset
+        let inset: CGFloat = 1
         let videoViewH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(\(inset))-[video]-(\(inset))-|", options: [], metrics: nil, views: ["video": videoView])
         let videoViewV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(\(inset))-[video]-(\(inset))-|", options: [], metrics: nil, views: ["video": videoView])
         NSLayoutConstraint.activate(videoViewH + videoViewV)

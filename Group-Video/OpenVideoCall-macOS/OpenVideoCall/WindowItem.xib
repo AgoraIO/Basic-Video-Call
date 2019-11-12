@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WindowItem" customModule="OpenVideoCall" customModuleProvider="target">
+            <connections>
+                <outlet property="cImageView" destination="1I4-3s-sOd" id="rut-Wt-3O4"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-3s-sOd">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ub2-23-gpa"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="1I4-3s-sOd" secondAttribute="trailing" id="5wx-cd-Rn1"/>
+                <constraint firstItem="1I4-3s-sOd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="9R7-Rz-Xuv"/>
+                <constraint firstAttribute="bottom" secondItem="1I4-3s-sOd" secondAttribute="bottom" id="eTV-Gf-hjR"/>
+                <constraint firstItem="1I4-3s-sOd" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="spP-zS-02w"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>

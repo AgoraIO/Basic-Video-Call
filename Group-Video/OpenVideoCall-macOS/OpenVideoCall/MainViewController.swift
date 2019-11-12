@@ -7,47 +7,38 @@
 //
 
 import Cocoa
+import AgoraRtcEngineKit
 
 class MainViewController: NSViewController {
     
     @IBOutlet weak var roomInputTextField: NSTextField!
-    @IBOutlet weak var encryptionTextField: NSTextField!
-    @IBOutlet weak var encryptionPopUpButton: NSPopUpButton!
-    @IBOutlet weak var testButton: NSButton!
-    @IBOutlet weak var joinButton: NSButton!
+    @IBOutlet weak var roomInputLineView: NSView!
+    @IBOutlet weak var joinButton: AGEButton!
     @IBOutlet weak var settingsButton: NSButton!
+    @IBOutlet weak var encryptionButton: AGEButton!
+    @IBOutlet weak var encryptionTextField: NSTextField!
+    @IBOutlet weak var encryptionLineView: NSView!
+    @IBOutlet weak var testNetworkButton: AGEButton!
     
-    @IBOutlet weak var lastmileTestButton: NSButton!
-    @IBOutlet weak var lastmileTestIndicator: NSProgressIndicator!
-    @IBOutlet weak var qualityLabel: NSTextField!
-    @IBOutlet weak var rttLabel: NSTextField!
-    @IBOutlet weak var uplinkLabel: NSTextField!
-    @IBOutlet weak var downlinkLabel: NSTextField!
-    
-    lazy fileprivate var agoraKit: AgoraRtcEngineKit = {
-        let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
+    private lazy var agoraKit: AgoraRtcEngineKit = {
+        let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
         engine.setLogFilter(AgoraLogFilter.info.rawValue)
         engine.setLogFile(FileCenter.logFilePath())
-        engine.enableVideo()
         return engine
     }()
-    var dimension = CGSize.defaultDimension()
-    fileprivate var encryptionType = EncryptionType.xts128
     
-    private var isLastmileProbeTesting = false {
+    private var encryptionType = EncryptionType.xts128(nil) {
         didSet {
-            lastmileTestButton?.isHidden = isLastmileProbeTesting
-            if isLastmileProbeTesting {
-                lastmileTestIndicator?.startAnimation(nil)
-            } else {
-                lastmileTestIndicator?.stopAnimation(nil)
-            }
+            encryptionButton.setTitle(encryptionType.description(), with: NSColor.AGBlue)
         }
     }
     
+    private var settings = Settings()
+    private var alert: AGEAlert?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadEncryptionItems()
+        updateViews()
     }
     
     override func viewDidAppear() {
@@ -60,53 +51,37 @@ class MainViewController: NSViewController {
             return
         }
         
-        if segueId == "roomVCToSettingsVC" {
+        switch segueId {
+        case "mainVCToSettingsVC":
             let settingsVC = segue.destinationController as! SettingsViewController
-            settingsVC.dimension = dimension
+            settingsVC.dataSource = self
             settingsVC.delegate = self
-        } else if segueId == "roomNameVCToVideoVC" {
-            let videoVC = segue.destinationController as! RoomViewController
-            if let sender = sender as? String {
-                videoVC.roomName = sender
-            }
-            videoVC.agoraKit = agoraKit
-            videoVC.encryptionSecret = encryptionTextField.stringValue
-            videoVC.encryptionType = encryptionType
-            videoVC.dimension = dimension
-            videoVC.delegate = self
-        } else if segueId == "roomVCToDevicesVC" {
-            let devicesVC = segue.destinationController as! DevicesViewController
-            devicesVC.agoraKit = agoraKit
-            devicesVC.couldTest = true
+        case "mainVCToLastmileVC":
+            let lastmileVC = segue.destinationController as! LastmileViewController
+            lastmileVC.dataSource = self
+            lastmileVC.delegate = self
+        case "mainVCToRoomVC":
+            let roomVC = segue.destinationController as! RoomViewController
+            roomVC.dataSource = self
+            roomVC.delegate = self
+        default:
+            break
         }
     }
     
-    //MARK: - user actions
-    @IBAction func doLastmileProbeTestPressed(_ sender: NSButton) {
-        let config = AgoraLastmileProbeConfig()
-        config.probeUplink = true
-        config.probeDownlink = true
-        config.expectedUplinkBitrate = 5000
-        config.expectedDownlinkBitrate = 5000
-        
-        agoraKit.startLastmileProbeTest(config)
-        
-        isLastmileProbeTesting = true
-        
-        qualityLabel.isHidden = true
-        rttLabel.isHidden = true
-        uplinkLabel.isHidden = true
-        downlinkLabel.isHidden = true
+    override func mouseEntered(with event: NSEvent) {
+        if event.trackingArea?.owner as? NSButton == joinButton, joinButton.isEnabled {
+            joinButton.image = NSImage(named: "icon-join-hover")
+        }
     }
     
-    @IBAction func doEncryptionChanged(_ sender: NSPopUpButton) {
-        encryptionType = EncryptionType.allValue[sender.indexOfSelectedItem]
+    override func mouseExited(with event: NSEvent) {
+        if event.trackingArea?.owner as? NSButton == joinButton, joinButton.isEnabled {
+            joinButton.image = NSImage(named: "icon-join")
+        }
     }
     
-    @IBAction func doTestClicked(_ sender: NSButton) {
-        performSegue(withIdentifier: "roomVCToDevicesVC", sender: nil)
-    }
-    
+    // MARK: - user actions
     @IBAction func doJoinClicked(_ sender: NSButton) {
         enter(roomName: roomInputTextField.stringValue)
     }
@@ -114,29 +89,104 @@ class MainViewController: NSViewController {
     @IBAction func doSettingsClicked(_ sender: NSButton) {
         performSegue(withIdentifier: "roomVCToSettingsVC", sender: nil)
     }
+    
+    @IBAction func doEcryptionPressed(_ sender: NSButton) {
+        alert = AGEAlert(title: "Choose Encryption Type", style: .warning)
+        
+        for encryptionType in EncryptionType.allValues {
+            alert?.addAction(title: encryptionType.description()) { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.encryptionType = encryptionType
+            }
+        }
+        
+        alert?.addAction(title: "Cancel")
+        alert?.present()
+    }
 }
 
 private extension MainViewController {
-    func loadEncryptionItems() {
-        encryptionPopUpButton.addItems(withTitles: EncryptionType.allValue.map { type -> String in
-            return type.description()
-        })
-        encryptionPopUpButton.selectItem(withTitle: encryptionType.description())
+    func updateViews() {
+        view.layer?.backgroundColor = NSColor.white.cgColor
+        
+        settingsButton.layer?.backgroundColor = NSColor.clear.cgColor
+        
+        roomInputTextField.layer?.backgroundColor = NSColor.white.cgColor
+        roomInputTextField.textColor = NSColor.AGDarkGray
+        roomInputTextField.placeholderAttributedString = NSAttributedString(string: "Input Channel Name",
+                                                                            attributes: [NSAttributedString.Key.foregroundColor: NSColor.AGTextGray])
+        
+        roomInputLineView.layer?.backgroundColor = NSColor.AGGray.cgColor
+        
+        testNetworkButton.setTitle("Test Your Network", with: NSColor.AGBlue)
+        testNetworkButton.layer?.borderWidth = 1
+        testNetworkButton.layer?.borderColor = NSColor.AGGray.cgColor
+        
+        joinButton.addTrackingArea(.default)
+        joinButton.image = NSImage(named: "icon-join")
+        joinButton.setTitle("JoinChannel", with: NSColor.white)
+        
+        encryptionButton.layer?.borderColor = NSColor.AGGray.cgColor
+        encryptionButton.setTitle(EncryptionType.allValues.first!.description(), with: NSColor.AGBlue)
+        
+        encryptionTextField.layer?.backgroundColor = NSColor.white.cgColor
+        encryptionTextField.textColor = NSColor.AGDarkGray
+        encryptionTextField.placeholderAttributedString = NSAttributedString(string: "Encryption",
+                                                                             attributes: [NSAttributedString.Key.foregroundColor: NSColor.AGTextGray])
+        
+        encryptionLineView.layer?.backgroundColor = NSColor.AGGray.cgColor
     }
     
     func enter(roomName: String?) {
-        guard let roomName = roomName , !roomName.isEmpty else {
+        guard let roomName = roomName, !roomName.isEmpty else {
             return
         }
         
-        performSegue(withIdentifier: "roomNameVCToVideoVC", sender: roomName)
+        if !encryptionTextField.stringValue.isEmpty {
+            let encryptionText = encryptionTextField.stringValue
+            settings.encryptionType = encryptionType
+            settings.encryptionType?.updateText(encryptionText)
+        } else {
+            settings.encryptionType = nil
+        }
+        
+        settings.roomName = roomName
+        joinButton.image = NSImage(named: "icon-join")
+        performSegue(withIdentifier: "mainVCToRoomVC", sender: nil)
     }
 }
 
 extension MainViewController: SettingsVCDelegate {
-    func settingsVC(_ settingsVC: SettingsViewController, closeWithDimension dimension: CGSize) {
-        self.dimension = dimension
-        settingsVC.view.window?.contentViewController = self
+    func settingsVC(_ vc: SettingsViewController, didUpdate settings: Settings) {
+        self.settings = settings
+    }
+    
+    func settingsVCNeedClose(_ vc: SettingsViewController) {
+        vc.view.window?.contentViewController = self
+    }
+}
+
+extension MainViewController: SettingsVCDataSource {
+    func settingsVCNeedAgoraKit() -> AgoraRtcEngineKit {
+        return agoraKit
+    }
+    
+    func settingsVCNeedSettings() -> Settings {
+        return settings
+    }
+}
+
+extension MainViewController: LastmileVCDelegate {
+    func lastmileVCNeedClose(_ lastmileVC: LastmileViewController) {
+        lastmileVC.view.window?.contentViewController = self
+    }
+}
+
+extension MainViewController: LastmileVCDataSource {
+    func lastmileVCNeedAgoraKit() -> AgoraRtcEngineKit {
+        return agoraKit
     }
 }
 
@@ -150,45 +200,29 @@ extension MainViewController: RoomVCDelegate {
             window.toggleFullScreen(nil)
         }
         
-        window.styleMask.insert([.fullSizeContentView, .miniaturizable])
+        if window.styleMask.contains(.resizable) {
+            window.styleMask.remove(.resizable)
+        }
+        
         window.delegate = nil
         window.collectionBehavior = NSWindow.CollectionBehavior()
 
         window.contentViewController = self
         
-        let size = CGSize(width: 720, height: 600)
+        let size = CGSize(width: 750, height: 500)
         window.minSize = size
         window.setContentSize(size)
         window.maxSize = size
-        
-        agoraKit.delegate = self
     }
 }
 
-extension MainViewController: AgoraRtcEngineDelegate {
-    func rtcEngine(_ engine: AgoraRtcEngineKit, reportAudioVolumeIndicationOfSpeakers speakers: [AgoraRtcAudioVolumeInfo], totalVolume: Int) {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: VolumeChangeNotificationKey), object: NSNumber(value: totalVolume as Int))
+extension MainViewController: RoomVCDataSource {
+    func roomVCNeedSettings() -> Settings {
+        return settings
     }
     
-    func rtcEngine(_ engine: AgoraRtcEngineKit, device deviceId: String, type deviceType: AgoraMediaDeviceType, stateChanged state: Int) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: DeviceListChangeNotificationKey), object: NSNumber(value: deviceType.rawValue))
-    }
-    
-    func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
-        qualityLabel.stringValue = "quality: " + quality.description()
-        qualityLabel.isHidden = false
-    }
-    
-    func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileProbeTest result: AgoraLastmileProbeResult) {
-        rttLabel.stringValue = "rtt: \(result.rtt)"
-        rttLabel.isHidden = false
-        uplinkLabel.stringValue = "up: \(result.uplinkReport.description())"
-        uplinkLabel.isHidden = false
-        downlinkLabel.stringValue = "down: \(result.downlinkReport.description())"
-        downlinkLabel.isHidden = false
-        
-        agoraKit.stopLastmileProbeTest()
-        isLastmileProbeTesting = false
+    func roomVCNeedAgoraKit() -> AgoraRtcEngineKit {
+        return agoraKit
     }
 }
 
@@ -201,27 +235,5 @@ extension MainViewController: NSControlTextEditingDelegate {
         
         let legalString = MediaCharacter.updateToLegalMediaString(from: field.stringValue)
         field.stringValue = legalString
-    }
-}
-
-extension AgoraNetworkQuality {
-    func description() -> String {
-        switch self {
-        case .excellent: return "excellent"
-        case .good:      return "good"
-        case .poor:      return "poor"
-        case .bad:       return "bad"
-        case .vBad:      return "very bad"
-        case .down:      return "down"
-        case .unknown:   return "unknown"
-        case .unsupported: return "unsupported"
-        case .detecting: return "detecting"
-        }
-    }
-}
-
-extension AgoraLastmileProbeOneWayResult {
-    func description() -> String {
-        return "packetLoss: \(packetLossRate), jitter: \(jitter), availableBandwidth: \(availableBandwidth)"
     }
 }
