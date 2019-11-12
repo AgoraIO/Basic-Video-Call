@@ -49,6 +49,7 @@
 		A7E4DBC6234C7E65001C20F7 /* AGEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E4DBC3234C7E65001C20F7 /* AGEError.swift */; };
 		A7E4DBCC234CBAB2001C20F7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E4DBCB234CBAB2001C20F7 /* Settings.swift */; };
 		A7E4DBCE234CBD9B001C20F7 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E4DBCD234CBD9B001C20F7 /* AgoraExtension.swift */; };
+		A7E888AA237A9B3900F0D271 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A7E888A9237A9B3900F0D271 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		A7E4DBC3234C7E65001C20F7 /* AGEError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEError.swift; sourceTree = "<group>"; };
 		A7E4DBCB234CBAB2001C20F7 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A7E4DBCD234CBD9B001C20F7 /* AgoraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraExtension.swift; sourceTree = "<group>"; };
+		A7E888A9237A9B3900F0D271 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		07C2CFAB1D6C26F300C84349 = {
 			isa = PBXGroup;
 			children = (
+				A7E888A9237A9B3900F0D271 /* README.md */,
 				07C2CFB61D6C26F300C84349 /* OpenVideoCall */,
 				07C2CFB51D6C26F300C84349 /* Products */,
 				389D99B021885C1C00BFD852 /* Frameworks */,
@@ -285,6 +288,7 @@
 			files = (
 				07C2CFBC1D6C26F300C84349 /* Assets.xcassets in Resources */,
 				A742402B23794C0600794648 /* WindowItem.xib in Resources */,
+				A7E888AA237A9B3900F0D271 /* README.md in Resources */,
 				07C2CFBF1D6C26F300C84349 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
