@@ -73,6 +73,7 @@ class Window {
 
 class WindowList {
     var items = [ImageBrowserItem]()
+    
     fileprivate var list = [Window]() {
         didSet {
             var items = [ImageBrowserItem]()
@@ -97,7 +98,6 @@ class WindowList {
                         list.append(window)
                     }
                 }
-                
             }
         }
         
