@@ -6,14 +6,14 @@
 //  Copyright © 2016年 Agora. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 enum MessageType {
-    case chat, alert
+    case info, alert
     
     func color() -> NSColor {
         switch self {
-        case .chat: return NSColor(hex: 0x444444, alpha: 0.6)
+        case .info: return NSColor(hex: 0x444444, alpha: 0.6)
         case .alert: return NSColor(hex: 0xff3c32, alpha: 0.6)
         }
     }
@@ -21,7 +21,7 @@ enum MessageType {
 
 struct Message {
     var text: String!
-    var type: MessageType = .chat
+    var type: MessageType = .info
     
     init(text: String, type: MessageType) {
         self.text = text
