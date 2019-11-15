@@ -15,6 +15,8 @@ extern CAgoraConfig gAgoraConfig;
 #include <QVariant>
 #include <IAgoraRtcEngine.h>
 #include <IAgoraMediaEngine.h>
+#include <AgoraBase.h>
+using namespace agora;
 using namespace agora::rtc;
 
 typedef QMap<QString,QString> qSSMap;
@@ -54,6 +56,7 @@ public:
     BOOL setRecordingIndex(int nIndex);
     BOOL setPlayoutIndex(int nIndex);
     BOOL setVideoIndex(int nIndex);
+    BOOL SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath);
 
 signals:
     void sender_videoStopped();

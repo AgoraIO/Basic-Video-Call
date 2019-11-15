@@ -1,4 +1,4 @@
-#ifndef AVDEVICE_H
+﻿#ifndef AVDEVICE_H
 #define AVDEVICE_H
 
 #include <qevent.h>
@@ -39,6 +39,8 @@ private slots:
     void on_btn_min_clicked();
 
     void on_cb_solution_activated(const QString &arg1);
+
+    void on_cb_log_activated(int index);
 
 private:
     const int lnGapWidth = 18;

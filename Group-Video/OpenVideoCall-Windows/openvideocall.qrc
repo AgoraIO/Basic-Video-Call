@@ -41,5 +41,9 @@
         <file>uiresource/allmute.png</file>
         <file>uiresource/mutevideo remote.png</file>
         <file>uiresource/mutevideo.png</file>
+        <file>uiresource/box-01.png</file>
+        <file>uiresource/dropdow-01.png</file>
+        <file>uiresource/dropdown-02.png</file>
+        <file>uiresource/dropdown-03.png</file>
     </qresource>
 </RCC>

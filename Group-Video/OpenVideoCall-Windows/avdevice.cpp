@@ -1,4 +1,4 @@
-#include "avdevice.h"
+﻿#include "avdevice.h"
 #include "ui_avdevice.h"
 #include "agoraobject.h"
 #include "agorawindowmanager.h"
@@ -92,6 +92,17 @@ void AVDevice::initCtrl()
     for(qSSMap::iterator it = devicelist.begin(); devicelist.end() != it; it++) {
         ui->cb_video->addItem(it.key());
     }
+
+    //log filter
+    ui->cb_log->clear();
+    ui->cb_log->addItem("OFF");
+    ui->cb_log->addItem("DEBUG");
+    ui->cb_log->addItem("INFO");
+    ui->cb_log->addItem("WARN");
+    ui->cb_log->addItem("ERROR");
+    ui->cb_log->addItem("CRITICAL");
+    ui->cb_log->addItem("MASK");
+    ui->cb_log->setCurrentIndex(2);
 }
 
 
@@ -193,4 +204,21 @@ void AVDevice::on_cb_solution_activated(const QString &arg1)
     int nWidth,nHeight = 0;
     sscanf(arg1.toUtf8().data(),"%dx%d", &nWidth, &nHeight);
     CAgoraObject::getInstance()->setVideoProfile(nWidth, nHeight);
+}
+
+void AVDevice::on_cb_log_activated(int index)
+{
+    LOG_FILTER_TYPE	logFilterType = LOG_FILTER_OFF;
+    switch (index)
+    {
+    case 0:logFilterType = LOG_FILTER_OFF; break;
+    case 1:logFilterType = LOG_FILTER_DEBUG;break;
+    case 2:logFilterType = LOG_FILTER_INFO; break;
+    case 3:logFilterType = LOG_FILTER_WARN; break;
+    case 4:logFilterType = LOG_FILTER_ERROR; break;
+    case 5:logFilterType = LOG_FILTER_CRITICAL; break;
+    case 6:logFilterType = LOG_FILTER_MASK; break;
+    default:break;
+    }
+   CAgoraObject::getInstance()->SetLogFilter(logFilterType,L"");
 }

@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">image: url(:/uiresource/OVC-win-config.png);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="whatsThis">
@@ -24,7 +24,9 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/uiresource/OVC-win-config.png);</string>
+    <string notr="true">QWidget#centralwidget {
+image: url(:/uiresource/OVC-win-config.png);
+}</string>
    </property>
    <widget class="QPushButton" name="btn_back">
     <property name="geometry">
@@ -110,11 +112,71 @@ border-image: url(:/uiresource/icon-close hover.png);
       <height>22</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>-1</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">font-size:14px;
-font-family:HelveticaNeue;
-color:rgba(51,51,51,1);
-line-height:18px;</string>
+     <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="text_name">
@@ -147,10 +209,62 @@ line-height:18px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:14px;
-font-family:HelveticaNeue;
-color:rgba(51,51,51,1);
-line-height:18px;</string>
+     <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cb_video">
@@ -163,10 +277,62 @@ line-height:18px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:14px;
-font-family:HelveticaNeue;
-color:rgba(51,51,51,1);
-line-height:18px;</string>
+     <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cb_speaker">
@@ -179,17 +345,69 @@ line-height:18px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:14px;
-font-family:HelveticaNeue;
-color:rgba(51,51,51,1);
-line-height:18px;</string>
+     <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_audio">
     <property name="geometry">
      <rect>
-      <x>474</x>
-      <y>372</y>
+      <x>477</x>
+      <y>429</y>
       <width>50</width>
       <height>30</height>
      </rect>
@@ -210,7 +428,7 @@ image: url(:/uiresource/switch-open.png);
     <property name="geometry">
      <rect>
       <x>684</x>
-      <y>372</y>
+      <y>429</y>
       <width>50</width>
       <height>30</height>
      </rect>
@@ -254,6 +472,74 @@ line-height:18px;</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cb_log">
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>390</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
     </property>
    </widget>
   </widget>

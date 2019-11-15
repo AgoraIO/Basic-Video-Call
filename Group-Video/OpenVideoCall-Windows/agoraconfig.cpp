@@ -1,9 +1,8 @@
-﻿#include "stdafx.h"
-#include "agoraconfig.h"
+﻿#include "agoraconfig.h"
 
 CAgoraConfig::CAgoraConfig()
 {
-   m_spConfig = std::make_shared<QSettings>("AgoraConfigOpenLive.ini",QSettings::IniFormat);
+   m_spConfig = std::make_shared<QSettings>("AgoraConfigOpenVideoCall.ini",QSettings::IniFormat);
 }
 
 void CAgoraConfig::setAppId(const QString &str)

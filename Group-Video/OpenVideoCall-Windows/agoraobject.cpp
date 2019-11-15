@@ -427,9 +427,29 @@ BOOL CAgoraObject::MuteLocalAudio(BOOL bMute)
 BOOL CAgoraObject::SetEncryptionMode(const char* secret,const char* secretMode)
 {
     int nRet = 0;
-    if(secret != NULL && strlen(secret) > 0 && secretMode != NULL) {
+    if(secret != nullptr && strlen(secret) > 0 && secretMode != nullptr) {
         nRet = m_rtcEngine->setEncryptionSecret(secret);
         nRet = m_rtcEngine->setEncryptionMode(secretMode);
+    }
+
+    return nRet == 0 ? TRUE : FALSE;
+}
+
+BOOL CAgoraObject::SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath)
+{
+    int nRet = 0;
+    RtcEngineParameters rep(*m_rtcEngine);
+
+    nRet = rep.setLogFilter(logFilterType);
+
+    if (lpLogPath != Q_NULLPTR) {
+#ifdef UNICODE
+        CHAR szFilePath[MAX_PATH];
+        ::WideCharToMultiByte(CP_ACP, 0, lpLogPath, -1, szFilePath, MAX_PATH, nullptr, nullptr);
+        nRet |= rep.setLogFile(szFilePath);
+#else
+        nRet |= rep.setLogFile(lpLogPath);
+#endif
     }
 
     return nRet == 0 ? TRUE : FALSE;
