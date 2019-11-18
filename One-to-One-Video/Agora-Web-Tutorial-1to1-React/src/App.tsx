@@ -387,6 +387,7 @@ function App() {
             )}
             {remoteStreamList.map((stream: any) => (
               <StreamPlayer
+                key={stream.getId()}
                 stream={stream}
                 fit="contain"
                 label={stream.getId()}
