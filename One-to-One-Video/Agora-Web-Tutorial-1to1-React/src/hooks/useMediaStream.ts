@@ -12,10 +12,7 @@ const useMediaStream = (client: any, filter?: (streamId: number) => boolean): an
         return;
       }
       const { stream } = evt;
-      setRemoteStreamList(streamList => {
-        streamList.push(stream);
-        return streamList;
-      });
+      setRemoteStreamList(streamList => [...streamList, stream]);
     };
     // remove stream
     const removeRemote = (evt: any) => {
