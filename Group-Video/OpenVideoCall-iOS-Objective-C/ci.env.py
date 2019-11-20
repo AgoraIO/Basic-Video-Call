@@ -4,8 +4,10 @@ import re
 import os
 
 def main():
-    #if need reset
-    SDK_URL = "https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v2_9_1_FULL.zip?_ga=2.77403094.2116723707.1570875325-5559409.1503304822"
+    SDK_URL = ""
+    if "SDK_URL" in os.environ:
+        SDK_URL = os.environ["SDK_URL"]
+        
     TARGET_LIBS_ZIP = "agora_sdk.zip"
     TARGET_INTERNAL_FOLDER = "agora_sdk"
 
