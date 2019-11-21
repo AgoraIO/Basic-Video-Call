@@ -11,7 +11,7 @@ def main():
     TARGET_LIBS_ZIP = "agora_sdk.zip"
     TARGET_INTERNAL_FOLDER = "agora_sdk"
     ZIP_STRUCTURE_FOLDER = "Agora_Native_SDK_for_iOS_FULL/libs"
-    FRAMEWORK_NAME = "AgoraRtcEngineKit.framework"
+    FRAMEWORK_NAME = "AgoraRtcKit.framework"
     APP_NAME = "Agora iOS Tutorial Objective-C"
 
     wget = "wget -q " + SDK_URL + " -O " + TARGET_LIBS_ZIP

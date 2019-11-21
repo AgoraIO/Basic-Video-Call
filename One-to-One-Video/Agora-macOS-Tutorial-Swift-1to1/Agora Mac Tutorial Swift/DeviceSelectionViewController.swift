@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 class DeviceSelectionViewController: NSViewController {
     @IBOutlet weak var microphoneSelection: NSPopUpButton!

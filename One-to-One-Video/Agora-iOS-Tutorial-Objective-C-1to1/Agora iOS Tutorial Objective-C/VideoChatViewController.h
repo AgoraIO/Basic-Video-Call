@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 #import "AppID.h"
 
 @interface VideoChatViewController : UIViewController <AgoraRtcEngineDelegate>

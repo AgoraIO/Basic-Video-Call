@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 protocol VideoChatDelegate: NSObjectProtocol {
     func VideoChatNeedClose(_ VideoChat: VideoChatViewController)

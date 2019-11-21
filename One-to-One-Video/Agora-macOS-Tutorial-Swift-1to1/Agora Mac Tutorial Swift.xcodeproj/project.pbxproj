@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033FF37922C993B50080AE6A /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033FF37622C993B50080AE6A /* AgoraRtcEngineKit.framework */; };
 		1A0466241D5E75A2004987C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0466231D5E75A2004987C6 /* AppDelegate.swift */; };
 		1A0466261D5E75A2004987C6 /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */; };
 		1A0466281D5E75A2004987C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0466271D5E75A2004987C6 /* Assets.xcassets */; };
@@ -21,18 +20,34 @@
 		389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99812188170C00BFD852 /* Accelerate.framework */; };
 		389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99832188174900BFD852 /* SystemConfiguration.framework */; };
 		38EF7E9A236827E500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E99236827E500A6A483 /* README.md */; };
+		A76C26A4238677290047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A3238677290047E150 /* AgoraRtcKit.framework */; };
+		A76C26A5238677290047E150 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A3238677290047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A76C26A8238677310047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A7238677310047E150 /* AgoraRtcKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A76C26A6238677290047E150 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A76C26A5238677290047E150 /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		033FF37622C993B50080AE6A /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		1A0466201D5E75A2004987C6 /* Agora Mac Tutorial Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora Mac Tutorial Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0466231D5E75A2004987C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoChatViewController.swift; path = VideoChat/VideoChatViewController.swift; sourceTree = "<group>"; };
+		1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoChatViewController.swift; sourceTree = "<group>"; };
 		1A0466271D5E75A2004987C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A04662A1D5E75A2004987C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A04662C1D5E75A2004987C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A04664B1D5E7892004987C6 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppID.swift; path = VideoChat/AppID.swift; sourceTree = "<group>"; };
-		1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceSelectionViewController.swift; path = VideoChat/DeviceSelectionViewController.swift; sourceTree = "<group>"; };
+		1A04664B1D5E7892004987C6 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppID.swift; sourceTree = "<group>"; };
+		1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSelectionViewController.swift; sourceTree = "<group>"; };
 		389D9977218816CE00BFD852 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		389D997B218816E700BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		389D997D218816F300BFD852 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
@@ -40,6 +55,8 @@
 		389D99812188170C00BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		389D99832188174900BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		38EF7E99236827E500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A76C26A3238677290047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = "Agora Mac Tutorial Swift/AgoraRtcKit.framework"; sourceTree = "<group>"; };
+		A76C26A7238677310047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,10 +64,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				033FF37922C993B50080AE6A /* AgoraRtcEngineKit.framework in Frameworks */,
 				389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */,
+				A76C26A4238677290047E150 /* AgoraRtcKit.framework in Frameworks */,
 				389D9980218816F900BFD852 /* CoreWLAN.framework in Frameworks */,
 				389D997C218816E700BFD852 /* libc++.tbd in Frameworks */,
+				A76C26A8238677310047E150 /* AgoraRtcKit.framework in Frameworks */,
 				389D9978218816CE00BFD852 /* libresolv.9.tbd in Frameworks */,
 				389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */,
 				389D997E218816F300BFD852 /* VideoToolbox.framework in Frameworks */,
@@ -81,12 +99,12 @@
 		1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */ = {
 			isa = PBXGroup;
 			children = (
-				033FF37622C993B50080AE6A /* AgoraRtcEngineKit.framework */,
-				1A04664A1D5E7728004987C6 /* Video Chat */,
-				1A0466231D5E75A2004987C6 /* AppDelegate.swift */,
+				1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */,
+				1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */,
+				1A04664B1D5E7892004987C6 /* AppID.swift */,
 				1A0466291D5E75A2004987C6 /* Main.storyboard */,
-				1A0466271D5E75A2004987C6 /* Assets.xcassets */,
-				1A04662C1D5E75A2004987C6 /* Info.plist */,
+				A76C26A9238677A50047E150 /* Supporting Files */,
+				A76C26A7238677310047E150 /* AgoraRtcKit.framework */,
 			);
 			path = "Agora Mac Tutorial Swift";
 			sourceTree = "<group>";
@@ -94,6 +112,7 @@
 		1A0466491D5E7718004987C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A76C26A3238677290047E150 /* AgoraRtcKit.framework */,
 				389D99832188174900BFD852 /* SystemConfiguration.framework */,
 				389D99812188170C00BFD852 /* Accelerate.framework */,
 				389D997F218816F900BFD852 /* CoreWLAN.framework */,
@@ -104,14 +123,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1A04664A1D5E7728004987C6 /* Video Chat */ = {
+		A76C26A9238677A50047E150 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */,
-				1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */,
-				1A04664B1D5E7892004987C6 /* AppID.swift */,
+				1A0466231D5E75A2004987C6 /* AppDelegate.swift */,
+				1A0466271D5E75A2004987C6 /* Assets.xcassets */,
+				1A04662C1D5E75A2004987C6 /* Info.plist */,
 			);
-			name = "Video Chat";
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +143,7 @@
 				1A04661C1D5E75A2004987C6 /* Sources */,
 				1A04661D1D5E75A2004987C6 /* Frameworks */,
 				1A04661E1D5E75A2004987C6 /* Resources */,
+				A76C26A6238677290047E150 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +347,8 @@
 					"$(PROJECT_DIR)/libs",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 				);
 				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -355,6 +377,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",
+					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 				);
