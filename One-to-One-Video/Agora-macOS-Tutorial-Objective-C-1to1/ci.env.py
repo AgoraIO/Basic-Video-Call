@@ -31,7 +31,7 @@ def main():
     token = ""
 
     #if need reset
-    f = open("./Agora Mac Tutorial Objective-C/VideoChat/AppID.m", 'r+')
+    f = open("./Agora Mac Tutorial Objective-C/AppID.m", 'r+')
     content = f.read()
 
     #if need reset

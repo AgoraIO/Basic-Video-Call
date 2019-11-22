@@ -28,7 +28,7 @@ def main():
         appId = os.environ["AGORA_APP_ID"]
     token = ""
 
-    f = open("./Agora Mac Tutorial Swift/VideoChat/AppID.swift", 'r+')
+    f = open("./Agora Mac Tutorial Swift/AppID.swift", 'r+')
     content = f.read()
     appString = "\"" + appId + "\""
     tokenString = "\"" + token + "\""
