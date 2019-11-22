@@ -48,6 +48,7 @@
     self.agoraKit.delegate = self;
     self.agoraKit.delegate = self;
     self.isLastmileProbeTesting = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)dealloc {
@@ -66,21 +67,23 @@
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileQuality:(AgoraNetworkQuality)quality {
     NSString *string;
     switch (quality) {
-        case AgoraNetworkQualityExcellent:  string = @"excellent"; break;
-        case AgoraNetworkQualityGood:       string = @"good";      break;
-        case AgoraNetworkQualityPoor:       string = @"poor";      break;
-        case AgoraNetworkQualityBad:        string = @"bad";       break;
-        case AgoraNetworkQualityVBad:       string = @"very bad";  break;
-        case AgoraNetworkQualityDown:       string = @"down";      break;
-        case AgoraNetworkQualityUnknown:    string = @"unknown";   break;
+        case AgoraNetworkQualityExcellent:      string = @"excellent";   break;
+        case AgoraNetworkQualityGood:           string = @"good";        break;
+        case AgoraNetworkQualityPoor:           string = @"poor";        break;
+        case AgoraNetworkQualityBad:            string = @"bad";         break;
+        case AgoraNetworkQualityVBad:           string = @"very bad";    break;
+        case AgoraNetworkQualityDown:           string = @"down";        break;
+        case AgoraNetworkQualityUnknown:        string = @"unknown";     break;
+        case AgoraNetworkQualityDetecting:      string = @"detecting";   break;
+        case AgoraNetworkQualityUnsupported:    string = @"unsupported"; break;
     }
     self.qualityLabel.text = string;
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileProbeTestResult:(AgoraLastmileProbeResult *)result {
-    self.rttLabel.text = [NSString stringWithFormat:@"%lu", result.rtt];
-    self.uplinkLabel.text = [NSString stringWithFormat:@"%lu", result.uplinkReport.packetLossRate];
-    self.downlinkLabel.text = [NSString stringWithFormat:@"%lu", result.downlinkReport.packetLossRate];
+    self.rttLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)result.rtt];
+    self.uplinkLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)result.uplinkReport.packetLossRate];
+    self.downlinkLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)result.downlinkReport.packetLossRate];
     self.isLastmileProbeTesting = NO;
 }
 @end

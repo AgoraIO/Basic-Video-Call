@@ -5,7 +5,7 @@
 //  Copyright © 2019 Agora. All rights reserved.
 //
 
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 extension AgoraErrorCode {
     var description: String {

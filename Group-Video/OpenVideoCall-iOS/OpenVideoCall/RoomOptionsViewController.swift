@@ -36,6 +36,12 @@ class RoomOptionsViewController: UITableViewController {
         debugSwitch.isOn = options.isDebugMode
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 229.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 1)
+        return view
+    }
+    
     @IBAction func doDebugPressed(_ sender: UISwitch) {
         let debugMode = sender.isOn
         delegate?.roomOptionsVC(self, debugModeDid: debugMode)

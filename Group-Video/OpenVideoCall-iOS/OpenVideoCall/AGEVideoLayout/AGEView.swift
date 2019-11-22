@@ -88,6 +88,19 @@ class AGEScrollView: NSScrollView {
             self.contentViewBoundsObserver = nil
         }
     }
+    
+    func scrollToTop() {
+        guard let documentView = self.documentView else {
+            return
+        }
+        
+        if documentView.isFlipped {
+            documentView.scroll(.zero)
+        } else {
+            let maxHeight = max(bounds.height, documentView.bounds.height)
+            documentView.scroll(NSPoint(x: 0, y: maxHeight))
+        }
+    }
 }
 #endif
 
@@ -100,6 +113,10 @@ private extension AGEScrollView {
         alwaysBounceVertical = false
         showsVerticalScrollIndicator = false
         #else
+        self.wantsLayer = true
+        self.layer?.backgroundColor = NSColor.clear.cgColor
+        self.drawsBackground = false
+        
         let view = NSView(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
         self.documentView = view
         verticalScrollElasticity = .automatic

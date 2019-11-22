@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 protocol LastmileVCDelegate: NSObjectProtocol {
     func lastmileVCNeedClose(_ lastmileVC: LastmileViewController)

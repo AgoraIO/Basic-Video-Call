@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 class MainViewController: UIViewController {
     
@@ -96,6 +96,16 @@ private extension MainViewController {
         // view elements initialization
         self.encryptionButton.layer.borderColor = UIColor.AGGray.cgColor    
         self.testNetworkButton.layer.borderColor = UIColor.AGGray.cgColor
+        
+        let placeholderColor = UIColor(red: 196.0 / 255.0, green: 196.0 / 255.0, blue: 198.0 / 255.0, alpha: 1)
+        let attributes = [NSAttributedString.Key.foregroundColor : placeholderColor]
+        let roomNamePlaceholder = "Channel Name"
+        let encryptionPlaceholder = "Encryption Key"
+        
+        self.roomNameTextField.attributedPlaceholder = NSAttributedString(string: roomNamePlaceholder,
+                                                                          attributes: attributes)
+        self.encryptionTextField.attributedPlaceholder = NSAttributedString(string: encryptionPlaceholder,
+        attributes: attributes)
     }
     
     func enter(roomName: String?) {

@@ -1,6 +1,6 @@
 variables:
-  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v2_9_1_FULL.zip?_ga=2.77403094.2116723707.1570875325-5559409.1503304822'
-  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v2_9_1_FULL.zip?_ga=2.144511669.1414964891.1571043871-5559409.1503304822'
+  iOSRTCSDK: 'https://release.agoralab.co/disk/v3.0.0_IOS_SO/AgoraSDK/iOS/Agora_Native_SDK_for_iOS_v3_0_0_FULL_20191119_1479.zip'
+  MacRTCSDK: 'https://release.agoralab.co/disk/v3.0.0_IOS_SO/AgoraSDK/Mac/Agora_Native_SDK_for_Mac_v3_0_0_FULL_20191119_822.zip'
   
 jobs:
   # android open video call  

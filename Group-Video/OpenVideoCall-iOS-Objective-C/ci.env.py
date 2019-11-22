@@ -14,8 +14,7 @@ def main():
     #if need reset
     ZIP_STRUCTURE_FOLDER = "Agora_Native_SDK_for_iOS_FULL/libs"
     CRY_FRAMEWORK_NAME = "AgoraRtcCryptoLoader.framework"
-    CRY_LIB_NAME = "libcrypto.a"
-    FRAMEWORK_NAME = "AgoraRtcEngineKit.framework"
+    FRAMEWORK_NAME = "AgoraRtcKit.framework"
     APP_NAME = "OpenVideoCall"
 
     wget = "wget -q " + SDK_URL + " -O " + TARGET_LIBS_ZIP
@@ -29,9 +28,6 @@ def main():
 
     mv_ecy = "mv -f " + TARGET_INTERNAL_FOLDER + "/" + ZIP_STRUCTURE_FOLDER + "/" + CRY_FRAMEWORK_NAME + " \"" + APP_NAME +"\""
     os.system(mv_ecy)
-
-    mv_lib = "mv -f " + TARGET_INTERNAL_FOLDER + "/" + ZIP_STRUCTURE_FOLDER + "/" + CRY_LIB_NAME + " \"" + APP_NAME +"\""
-    os.system(mv_lib)
 
     appId = ""
     if "AGORA_APP_ID" in os.environ:

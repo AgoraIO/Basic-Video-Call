@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Agora. All rights reserved.
 //
 
+import Foundation
+
 struct MediaCharacter {
     
     fileprivate static let legalMediaCharacterSet: NSCharacterSet = {

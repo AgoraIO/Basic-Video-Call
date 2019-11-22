@@ -13,7 +13,7 @@ def main():
     
     #if need reset
     ZIP_STRUCTURE_FOLDER = "Agora_Native_SDK_for_Mac_FULL/libs"
-    FRAMEWORK_NAME = "AgoraRtcEngineKit.framework"
+    FRAMEWORK_NAME = "AgoraRtcKit.framework"
     APP_NAME = "Agora Mac Tutorial Objective-C"
 
     wget = "wget -q " + SDK_URL + " -O " + TARGET_LIBS_ZIP

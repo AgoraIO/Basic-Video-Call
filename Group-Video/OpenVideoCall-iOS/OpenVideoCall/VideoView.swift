@@ -11,25 +11,13 @@ import UIKit
 class VideoView: UIView {
     
     fileprivate(set) var videoView: UIView!
-    fileprivate var screenShareImageView: UIView?
     
     fileprivate var infoView: UIView!
     fileprivate var infoLabel: UILabel!
     
     var isVideoMuted = false {
         didSet {
-            videoView?.isHidden = isVideoMuted || isScreenSharing
-        }
-    }
-    fileprivate var isScreenSharing = false {
-        didSet {
-            removeScreenShareImageView()
-            
-            if isScreenSharing {
-                addScreenShareImageView()
-            }
-            
-            videoView.isHidden = isVideoMuted || isScreenSharing
+            videoView?.isHidden = isVideoMuted
         }
     }
     
@@ -48,13 +36,7 @@ class VideoView: UIView {
 }
 
 extension VideoView {
-    func switchToScreenShare(_ isScreenShare: Bool) {
-        isScreenSharing = isScreenShare
-    }
-}
-
-extension VideoView {
-    func update(with info: MediaInfo) {
+    func update(with info: StatisticsInfo) {
         infoLabel?.text = info.description()
     }
 }
@@ -78,7 +60,7 @@ private extension VideoView {
         
         addSubview(infoView)
         let infoViewH = NSLayoutConstraint.constraints(withVisualFormat: "H:|[info]|", options: [], metrics: nil, views: ["info": infoView])
-        let infoViewV = NSLayoutConstraint.constraints(withVisualFormat: "V:|[info(==135)]", options: [], metrics: nil, views: ["info": infoView])
+        let infoViewV = NSLayoutConstraint.constraints(withVisualFormat: "V:[info(==140)]|", options: [], metrics: nil, views: ["info": infoView])
         NSLayoutConstraint.activate(infoViewH + infoViewV)
         
         func createInfoLabel() -> UILabel {
@@ -106,29 +88,5 @@ private extension VideoView {
         let labelH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(\(left))-[info]", options: [], metrics: nil, views: ["info": infoLabel])
         NSLayoutConstraint.activate(labelV)
         NSLayoutConstraint.activate(labelH)
-    }
-    
-    //MARK: - screen share
-    func addScreenShareImageView() {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 144, height: 144))
-        imageView.image = UIImage(named: "icon_sharing_desktop")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
-        
-        let avatarH = NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-        let avatarV = NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        let avatarRatio = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 1, constant: 0)
-        let avatarLeft = NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .greaterThanOrEqual, toItem: self, attribute: .left, multiplier: 1, constant: 10)
-        let avatarTop = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .greaterThanOrEqual, toItem: self, attribute: .top, multiplier: 1, constant: 10)
-        NSLayoutConstraint.activate([avatarH, avatarV, avatarRatio, avatarLeft, avatarTop])
-        
-        screenShareImageView = imageView
-    }
-    
-    func removeScreenShareImageView() {
-        if let imageView = screenShareImageView {
-            imageView.removeFromSuperview()
-            self.screenShareImageView = nil
-        }
     }
 }

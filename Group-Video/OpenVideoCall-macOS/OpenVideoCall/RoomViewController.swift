@@ -8,7 +8,7 @@
 
 import Cocoa
 import Quartz.ImageKit
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 protocol RoomVCDelegate: class {
     func roomVCNeedClose(_ roomVC: RoomViewController)
@@ -105,8 +105,6 @@ class RoomViewController: NSViewController {
             
             windowSharingButton.layer?.backgroundColor = (screenSharingStatus == .sharing) ? blueColor : grayColor
             
-//            screenSharingButton?.image = NSImage(named: (screenSharingStatus == .sharing) ? "btn_screen_sharing_blue" : "btn_screen_sharing")
-            
             if oldValue == .sharing {
                 stopShareWindow()
             }
@@ -186,11 +184,6 @@ class RoomViewController: NSViewController {
 //MARK: - Private UI
 private extension RoomViewController {
     func updateViews() {
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor.red.cgColor
-        self.containerView.wantsLayer = true
-        self.containerView.layer?.backgroundColor = NSColor.blue.cgColor
-        
         let opacity: CGFloat = 0.3
         let layerColor = NSColor(red: 0, green: 0, blue: 0, alpha: opacity).cgColor
         
@@ -291,9 +284,9 @@ private extension RoomViewController {
         
         let itemWidth = CGFloat(1.0) / CGFloat(rank)
         let itemHeight = CGFloat(1.0) / CGFloat(row)
+        let itemSize = CGSize(width: itemWidth, height: itemHeight)
         let layout = AGEVideoLayout(level: 0)
-            .itemSize(width: itemWidth,
-                      height: itemHeight)
+            .itemSize(.scale(itemSize))
         
         containerView
             .listCount { [unowned self] (_) -> Int in
@@ -302,7 +295,8 @@ private extension RoomViewController {
                 return self.videoSessions[index.item].hostingView
         }
         
-        containerView.setLayouts([layout], animated: false)
+        containerView.setLayouts([layout])
+        containerView.reload(level: 0)
     }
     
     func getSession(of uid: UInt) -> VideoSession? {
