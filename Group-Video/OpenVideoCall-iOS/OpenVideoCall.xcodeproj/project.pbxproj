@@ -21,21 +21,15 @@
 		07C2CF6B1D6AF13300C84349 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF661D6AF13300C84349 /* VideoView.swift */; };
 		07C2CF721D6AF34800C84349 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF701D6AF34800C84349 /* CommonExtensions.swift */; };
 		07C2CF771D6AF3F400C84349 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CF761D6AF3F400C84349 /* KeyCenter.swift */; };
-		07D29C591E9E1E0A00C3583C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C581E9E1E0A00C3583C /* libresolv.tbd */; };
 		07F52EB51D62F39D006DDCD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F52EB41D62F39D006DDCD4 /* AppDelegate.swift */; };
 		07F52EBA1D62F39D006DDCD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F52EB81D62F39D006DDCD4 /* Main.storyboard */; };
 		07F52EBC1D62F39D006DDCD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F52EBB1D62F39D006DDCD4 /* Assets.xcassets */; };
 		07F52EBF1D62F39D006DDCD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F52EBD1D62F39D006DDCD4 /* LaunchScreen.storyboard */; };
-		0F2747D11FB45D05005D3DBA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2747D01FB45D00005D3DBA /* SystemConfiguration.framework */; };
 		3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA5A227FC56200E50E69 /* FileCenter.swift */; };
-		385F30962123D0D1005D5301 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F30952123D0D1005D5301 /* Accelerate.framework */; };
 		389D3890230BD19D00704A8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 389D388F230BD19D00704A8F /* README.md */; };
-		38D619342250BC4A004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619332250BC4A004A6C87 /* CoreML.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		A76C26BA2386829F0047E150 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B82386829F0047E150 /* AgoraRtcCryptoLoader.framework */; };
 		A76C26BB2386829F0047E150 /* AgoraRtcCryptoLoader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B82386829F0047E150 /* AgoraRtcCryptoLoader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A76C26BC2386829F0047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; };
 		A76C26BD2386829F0047E150 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A76C26C2238683670047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C0238683660047E150 /* AgoraRtcKit.framework */; };
 		A76C26C3238683670047E150 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */; };
 		A76C26F523878C8F0047E150 /* AGEVideoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26F023878C8F0047E150 /* AGEVideoLayout.swift */; };
 		A76C26F623878C8F0047E150 /* AGEVideoConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26F123878C8F0047E150 /* AGEVideoConstraints.swift */; };
@@ -115,13 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76C26BC2386829F0047E150 /* AgoraRtcKit.framework in Frameworks */,
-				A76C26C2238683670047E150 /* AgoraRtcKit.framework in Frameworks */,
-				385F30962123D0D1005D5301 /* Accelerate.framework in Frameworks */,
-				0F2747D11FB45D05005D3DBA /* SystemConfiguration.framework in Frameworks */,
-				07D29C591E9E1E0A00C3583C /* libresolv.tbd in Frameworks */,
 				A76C26C3238683670047E150 /* AgoraRtcCryptoLoader.framework in Frameworks */,
-				A76C26BA2386829F0047E150 /* AgoraRtcCryptoLoader.framework in Frameworks */,
-				38D619342250BC4A004A6C87 /* CoreML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

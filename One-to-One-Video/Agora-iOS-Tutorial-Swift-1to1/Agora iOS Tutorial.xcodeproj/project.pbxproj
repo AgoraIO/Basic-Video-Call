@@ -13,19 +13,11 @@
 		1ABDEE471D383BE4007DE451 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE451D383BE4007DE451 /* Main.storyboard */; };
 		1ABDEE491D383BE4007DE451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE481D383BE4007DE451 /* Assets.xcassets */; };
 		1ABDEE4C1D383BE4007DE451 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */; };
-		389D999B218825B200BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999A218825B200BFD852 /* Accelerate.framework */; };
-		389D999D218825BE00BFD852 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999C218825BE00BFD852 /* VideoToolbox.framework */; };
-		389D999F218825C300BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D999E218825C300BFD852 /* libresolv.9.tbd */; };
-		389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A0218825C700BFD852 /* libc++.tbd */; };
-		389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A2218825DB00BFD852 /* SystemConfiguration.framework */; };
-		389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99A4218825EC00BFD852 /* CoreTelephony.framework */; };
-		38D619302250B7AB004A6C87 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D6192F2250B7AB004A6C87 /* CoreML.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38EF7E962368277700A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E952368277700A6A483 /* README.md */; };
 		A72BB7DE22F2B67E008F563D /* Log.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72BB7DC22F2B67E008F563D /* Log.storyboard */; };
 		A72BB7DF22F2B67E008F563D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BB7DD22F2B67E008F563D /* LogViewController.swift */; };
 		A76C2696238675B40047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C2695238675B40047E150 /* AgoraRtcKit.framework */; };
 		A76C2697238675B40047E150 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C2695238675B40047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A76C269A2386762F0047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26992386762F0047E150 /* AgoraRtcKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,15 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76C269A2386762F0047E150 /* AgoraRtcKit.framework in Frameworks */,
 				A76C2696238675B40047E150 /* AgoraRtcKit.framework in Frameworks */,
-				389D999B218825B200BFD852 /* Accelerate.framework in Frameworks */,
-				389D99A5218825EC00BFD852 /* CoreTelephony.framework in Frameworks */,
-				38D619302250B7AB004A6C87 /* CoreML.framework in Frameworks */,
-				389D99A1218825C700BFD852 /* libc++.tbd in Frameworks */,
-				389D999F218825C300BFD852 /* libresolv.9.tbd in Frameworks */,
-				389D99A3218825DB00BFD852 /* SystemConfiguration.framework in Frameworks */,
-				389D999D218825BE00BFD852 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +373,7 @@
 					"$(PROJECT_DIR)/Agora\\ iOS\\ Tutorial",
 				);
 				INFOPLIST_FILE = "Agora iOS Tutorial/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -422,7 +406,7 @@
 					"$(PROJECT_DIR)/Agora\\ iOS\\ Tutorial",
 				);
 				INFOPLIST_FILE = "Agora iOS Tutorial/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

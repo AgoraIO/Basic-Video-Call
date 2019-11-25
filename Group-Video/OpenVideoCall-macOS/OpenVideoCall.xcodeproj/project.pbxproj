@@ -27,12 +27,6 @@
 		07C2CFF41D6C299400C84349 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFF01D6C299400C84349 /* VideoView.swift */; };
 		07C2D0001D6C2DD900C84349 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFFF1D6C2DD900C84349 /* Message.swift */; };
 		3832FA63227FCDCA00E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA62227FCDCA00E50E69 /* FileCenter.swift */; };
-		389D99B221885C1D00BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B121885C1D00BFD852 /* libresolv.9.tbd */; };
-		389D99B421885C2500BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B321885C2500BFD852 /* libc++.tbd */; };
-		389D99B621885C4000BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B521885C4000BFD852 /* Accelerate.framework */; };
-		389D99B821885C4600BFD852 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B721885C4600BFD852 /* CoreWLAN.framework */; };
-		389D99BA21885C4D00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99B921885C4D00BFD852 /* SystemConfiguration.framework */; };
-		389D99BC21885C5200BFD852 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99BB21885C5200BFD852 /* VideoToolbox.framework */; };
 		A74240122375441600794648 /* AGEAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74240112375441600794648 /* AGEAlert.swift */; };
 		A7424014237550C400794648 /* AGEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7424013237550C400794648 /* AGEButton.swift */; };
 		A74240172375639F00794648 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74240162375639F00794648 /* StatisticsInfo.swift */; };
@@ -127,14 +121,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				389D99B621885C4000BFD852 /* Accelerate.framework in Frameworks */,
 				A76C26D123868C190047E150 /* AgoraRtcKit.framework in Frameworks */,
-				389D99B821885C4600BFD852 /* CoreWLAN.framework in Frameworks */,
-				389D99B421885C2500BFD852 /* libc++.tbd in Frameworks */,
 				A76C26D523868C220047E150 /* AgoraRtcKit.framework in Frameworks */,
-				389D99B221885C1D00BFD852 /* libresolv.9.tbd in Frameworks */,
-				389D99BA21885C4D00BFD852 /* SystemConfiguration.framework in Frameworks */,
-				389D99BC21885C5200BFD852 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,16 +13,9 @@
 		1A04662B1D5E75A2004987C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0466291D5E75A2004987C6 /* Main.storyboard */; };
 		1A04664C1D5E7892004987C6 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664B1D5E7892004987C6 /* AppID.swift */; };
 		1A04664F1D5EA139004987C6 /* DeviceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */; };
-		389D9978218816CE00BFD852 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D9977218816CE00BFD852 /* libresolv.9.tbd */; };
-		389D997C218816E700BFD852 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997B218816E700BFD852 /* libc++.tbd */; };
-		389D997E218816F300BFD852 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997D218816F300BFD852 /* VideoToolbox.framework */; };
-		389D9980218816F900BFD852 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D997F218816F900BFD852 /* CoreWLAN.framework */; };
-		389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99812188170C00BFD852 /* Accelerate.framework */; };
-		389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D99832188174900BFD852 /* SystemConfiguration.framework */; };
 		38EF7E9A236827E500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E99236827E500A6A483 /* README.md */; };
 		A76C26A4238677290047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A3238677290047E150 /* AgoraRtcKit.framework */; };
 		A76C26A5238677290047E150 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A3238677290047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A76C26A8238677310047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A7238677310047E150 /* AgoraRtcKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,14 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				389D998B218817E200BFD852 /* Accelerate.framework in Frameworks */,
 				A76C26A4238677290047E150 /* AgoraRtcKit.framework in Frameworks */,
-				389D9980218816F900BFD852 /* CoreWLAN.framework in Frameworks */,
-				389D997C218816E700BFD852 /* libc++.tbd in Frameworks */,
-				A76C26A8238677310047E150 /* AgoraRtcKit.framework in Frameworks */,
-				389D9978218816CE00BFD852 /* libresolv.9.tbd in Frameworks */,
-				389D998C218817ED00BFD852 /* SystemConfiguration.framework in Frameworks */,
-				389D997E218816F300BFD852 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
