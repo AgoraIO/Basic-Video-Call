@@ -28,7 +28,7 @@ extension AGEVideoContainerDelegate {
 class AGEVideoContainer: AGEView {
     
     class AGELog: NSObject {
-        static var currentNeedLog: AGELogType? = AGELogType.updateLayoutConstraints
+        static var currentNeedLog: AGELogType? = nil
         
         static var separator: String = "----------------"
         
@@ -147,19 +147,21 @@ extension AGEVideoContainer {
             return
         }
         
-        let view = levelItem.viewType.view
-        
-        guard let itemsConstraints = updateItemViewsConstrains(layoutView: view, layout: levelItem.layout) else {
-            return
-        }
+        let layoutView = levelItem.viewType.view
+        layoutView.removeAllItemViews()
+            
+        let itemsConstraints = updateItemViewsConstrains(layoutView: layoutView,
+                                                         layout: levelItem.layout)
         
         if let olds = levelItem.itemsConstraints {
             NSLayoutConstraint.deactivate(olds)
         }
         
-        levelItem.itemsConstraints = itemsConstraints
-        NSLayoutConstraint.activate(itemsConstraints)
-        
+        if let news = itemsConstraints {
+            levelItem.itemsConstraints = itemsConstraints
+            NSLayoutConstraint.activate(news)
+        }
+       
         if animated {
             #if os(iOS)
             AGEView.animate(withDuration: animationTime) { [weak self] in
@@ -205,6 +207,14 @@ extension AGEVideoContainer {
         }
     }
     
+    func removeAllLayouts() {
+        let allLevels = levels.keys
+        
+        for level in allLevels {
+            removeLayout(level: level)
+        }
+    }
+    
     func removeLayout(level: Int) {
         guard let levelItem = levels[level] else {
            return
@@ -213,9 +223,14 @@ extension AGEVideoContainer {
         if let itemsConstraints = levelItem.itemsConstraints {
             NSLayoutConstraint.deactivate(itemsConstraints)
         }
-        let view = levelItem.viewType.view
-        view.removeFromSuperview()
+        let layoutView = levelItem.viewType.view
+        layoutView.removeAllItemViews()
+        layoutView.removeFromSuperview()
         levels.removeValue(forKey: level)
+    }
+    
+    func setup(logLevel: AGELog.AGELogType) {
+        AGEVideoContainer.AGELog.currentNeedLog = logLevel
     }
     
     @discardableResult func listCount(_ block: ListCountBlock) -> AGEVideoContainer {
@@ -243,7 +258,7 @@ private extension AGEVideoContainer {
                 levelItem.layout = layout
                 levels[layout.level] = levelItem
                 
-                let view = levelItem.viewType.view
+                let layoutView = levelItem.viewType.view
                 
                 var newConstraints = [NSLayoutConstraint]()
                 
@@ -253,14 +268,15 @@ private extension AGEVideoContainer {
                                           .itemSize,
                                           .scrollType]) {
                     
-                    view.contentOffset = CGPoint.zero
+                    layoutView.removeAllItemViews()
+                    layoutView.contentOffset = CGPoint.zero
                                         
                     if let olds = levelItem.itemsConstraints {
                         NSLayoutConstraint.deactivate(olds)
                         AGELog.log("old itemsConstraints count: \(olds.count)", type: .updateLayoutConstraints)
                     }
                     
-                    if let itemsConstraints = updateItemViewsConstrains(layoutView: view, layout: layout) {
+                    if let itemsConstraints = updateItemViewsConstrains(layoutView: layoutView, layout: layout) {
                         AGELog.log("new itemsConstraints count: \(itemsConstraints.count)", type: .updateLayoutConstraints)
                         levelItem.itemsConstraints = itemsConstraints
                         newConstraints.append(contentsOf: itemsConstraints)
@@ -274,7 +290,7 @@ private extension AGEVideoContainer {
                     let olds = levelItem.layoutConstraints
                     NSLayoutConstraint.deactivate(olds)
                     
-                    let layoutConstraints = updateLayoutViewConstraints(view, layout: layout)
+                    let layoutConstraints = updateLayoutViewConstraints(layoutView, layout: layout)
                     levelItem.layoutConstraints = layoutConstraints
                     
                     newConstraints.append(contentsOf: layoutConstraints)
@@ -282,34 +298,17 @@ private extension AGEVideoContainer {
                 
                 NSLayoutConstraint.activate(newConstraints)
                 
-                if animated {
-                    #if os(iOS)
-                    AGEView.animate(withDuration: animationTime) { [weak self] in
-                        self?.layoutIfNeeded()
-                    }
-                    #else
-                    if #available(OSX 10.12, *) {
-                        NSAnimationContext.runAnimationGroup { [weak self] (context) in
-                            guard let strongSelf = self else {
-                                return
-                            }
-                            
-                            context.duration = strongSelf.animationTime
-                            context.allowsImplicitAnimation = true
-                            strongSelf.layoutIfNeeded()
-                        }
-                    }
-                    #endif
-                }
+                // Animation
+                layoutAnimation(animated)
                 
                 levels[layout.level] = levelItem
             }
         } else {
-            createSingalLayout(layout)
+            createSingalLayout(layout, animated: animated)
         }
     }
     
-    func createSingalLayout(_ layout: AGEVideoLayout) {
+    func createSingalLayout(_ layout: AGEVideoLayout, animated: Bool = false) {
         // layoutView
         let layoutView = AGEScrollView()
         let layoutConstraints = updateLayoutViewConstraints(layoutView, layout: layout)
@@ -331,12 +330,35 @@ private extension AGEVideoContainer {
 
             if let constraints = itemsConstraints {
                 NSLayoutConstraint.activate(constraints)
+                strongSelf.layoutAnimation(animated)
             }
         }
     }
 }
 
 private extension AGEVideoContainer {
+    func layoutAnimation(_ animated: Bool) {
+        if animated {
+            #if os(iOS)
+            AGEView.animate(withDuration: animationTime) { [weak self] in
+                self?.layoutIfNeeded()
+            }
+            #else
+            if #available(OSX 10.12, *) {
+                NSAnimationContext.runAnimationGroup { [weak self] (context) in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    
+                    context.duration = strongSelf.animationTime
+                    context.allowsImplicitAnimation = true
+                    strongSelf.layoutIfNeeded()
+                }
+            }
+            #endif
+        }
+    }
+    
     func updateLayoutViewConstraints(_ view: AGEView, layout: AGEVideoLayout) -> [NSLayoutConstraint] {
         let startPoint = layout.startPoint
         let layoutConstraints = AGEVideoConstraints.add(for: view,

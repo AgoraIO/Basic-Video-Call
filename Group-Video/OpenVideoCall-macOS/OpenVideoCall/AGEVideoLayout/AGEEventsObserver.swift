@@ -27,6 +27,12 @@ protocol AGEEventsObserverDataSource: NSObjectProtocol {
 class AGEEventsObserver: NSObject {
     weak var delegate: AGEEventsObserverDelegate?
     weak var dataSource: AGEEventsObserverDataSource?
+    
+    #if os(macOS)
+    deinit {
+        NSEvent.removeMonitor(self)
+    }
+    #endif
 }
 
 #if os(macOS)

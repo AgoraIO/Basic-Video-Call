@@ -14,9 +14,11 @@ import Cocoa
 
 #if os(iOS)
 typealias AGEView = UIView
+typealias AGEColor = UIColor
 typealias AGESize = CGSize
 #else
 typealias AGEView = NSView
+typealias AGEColor = NSColor
 typealias AGESize = NSSize
 #endif
 
@@ -24,6 +26,29 @@ extension AGEView {
     #if os(macOS)
     func layoutIfNeeded() {
         self.layoutSubtreeIfNeeded()
+    }
+    
+    var backgroundColor: AGEColor {
+        set {
+            if self.layer == nil {
+                self.wantsLayer = true
+            }
+            
+            self.layer?.backgroundColor = newValue.cgColor
+        }
+        
+        get {
+            var color: AGEColor?
+            if let layerColor = self.layer?.backgroundColor {
+                color = AGEColor(cgColor: layerColor)
+            }
+            
+            if let value = color {
+                return value
+            } else {
+                return AGEColor.clear
+            }
+        }
     }
     #endif
 }
@@ -103,6 +128,24 @@ class AGEScrollView: NSScrollView {
     }
 }
 #endif
+
+extension AGEScrollView {
+    func removeAllItemViews() {
+        #if os(iOS)
+        for subView in self.subviews {
+            subView.removeFromSuperview()
+        }
+        #else
+        guard let view = self.documentView else {
+            return
+        }
+        
+        for subView in view.subviews {
+            subView.removeFromSuperview()
+        }
+        #endif
+    }
+}
 
 private extension AGEScrollView {
     func doInitSettings() {
