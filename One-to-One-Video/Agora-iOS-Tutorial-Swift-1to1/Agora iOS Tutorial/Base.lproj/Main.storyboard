@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,6 +19,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9u-fT-DFZ" userLabel="remoteVideo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.28264099359512329" green="0.25691255927085876" blue="0.34382003545761108" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="big_logo" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-5L-xeZ" userLabel="remoteVideoMutedIndicator">
                                 <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
@@ -30,15 +29,18 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4vp-RG-lNX" userLabel="localVideo">
-                                <rect key="frame" x="265" y="56" width="85" height="113.5"/>
+                                <rect key="frame" x="265" y="36" width="85" height="113.5"/>
                                 <color key="backgroundColor" red="0.51017522811889648" green="0.48047775030136108" blue="0.57149040699005127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="URX-FV-Xyu"/>
                                     <constraint firstAttribute="width" secondItem="4vp-RG-lNX" secondAttribute="height" multiplier="3:4" id="ywd-ga-BGz"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="I3D-AK-gJA" appends="YES" id="90K-HP-D1b"/>
+                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riT-8m-B10">
-                                <rect key="frame" x="265" y="56" width="85" height="113.5"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="riT-8m-B10">
+                                <rect key="frame" x="265" y="36" width="85" height="113.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-8C-oeg" userLabel="localVideoMutedIndicator">
                                         <rect key="frame" x="24.5" y="38.5" width="36" height="36"/>
@@ -129,14 +131,20 @@
                     </view>
                     <connections>
                         <outlet property="cameraButton" destination="5x4-q9-Nuw" id="dxl-mh-8NQ"/>
-                        <outlet property="localVideo" destination="4vp-RG-lNX" id="Clh-yM-Jto"/>
+                        <outlet property="localContainer" destination="4vp-RG-lNX" id="dHE-iz-ESR"/>
                         <outlet property="localVideoMutedIndicator" destination="riT-8m-B10" id="JMU-hc-efr"/>
                         <outlet property="micButton" destination="7Wh-nG-1kC" id="Re9-h7-ykU"/>
-                        <outlet property="remoteVideo" destination="U9u-fT-DFZ" id="vMV-ZP-M0L"/>
+                        <outlet property="remoteContainer" destination="U9u-fT-DFZ" id="Z12-jR-svL"/>
                         <outlet property="remoteVideoMutedIndicator" destination="LZg-5L-xeZ" id="mmM-KM-ixK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="I3D-AK-gJA">
+                    <connections>
+                        <action selector="didClickLocalContainer:" destination="BYZ-38-t0r" id="fC2-xt-0lA"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="5Cq-7c-CZh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-759.20000000000005" y="117.39130434782609"/>
         </scene>

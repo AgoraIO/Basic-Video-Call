@@ -11,16 +11,18 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import io.agora.uikit.logger.LoggerRecyclerView;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
+import io.agora.uikit.logger.LoggerRecyclerView;
 
 public class VideoChatViewActivity extends AppCompatActivity {
     private static final String TAG = VideoChatViewActivity.class.getSimpleName();
@@ -42,8 +44,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     private FrameLayout mLocalContainer;
     private RelativeLayout mRemoteContainer;
-    private SurfaceView mLocalView;
-    private SurfaceView mRemoteView;
+    private VideoCanvas mLocalVideo;
+    private VideoCanvas mRemoteVideo;
 
     private ImageView mCallBtn;
     private ImageView mMuteBtn;
@@ -85,44 +87,37 @@ public class VideoChatViewActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     mLogView.logI("User offline, uid: " + (uid & 0xFFFFFFFFL));
-                    onRemoteUserLeft();
+                    onRemoteUserLeft(uid);
                 }
             });
         }
     };
 
     private void setupRemoteVideo(int uid) {
+        ViewGroup parent = mRemoteContainer;
+        if (parent.indexOfChild(mLocalVideo.view) > -1) {
+            parent = mLocalContainer;
+        }
+
         // Only one remote video view is available for this
         // tutorial. Here we check if there exists a surface
         // view tagged as this uid.
-        int count = mRemoteContainer.getChildCount();
-        View view = null;
-        for (int i = 0; i < count; i++) {
-            View v = mRemoteContainer.getChildAt(i);
-            if (v.getTag() instanceof Integer && ((int) v.getTag()) == uid) {
-                view = v;
-            }
-        }
-
-        if (view != null) {
+        if (mRemoteVideo != null) {
             return;
         }
 
-        mRemoteView = RtcEngine.CreateRendererView(getBaseContext());
-        mRemoteContainer.addView(mRemoteView);
-        mRtcEngine.setupRemoteVideo(new VideoCanvas(mRemoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
-        mRemoteView.setTag(uid);
+        SurfaceView view = RtcEngine.CreateRendererView(getBaseContext());
+        view.setZOrderMediaOverlay(parent == mLocalContainer);
+        parent.addView(view);
+        mRemoteVideo = new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid);
+        mRtcEngine.setupRemoteVideo(mRemoteVideo);
     }
 
-    private void onRemoteUserLeft() {
-        removeRemoteVideo();
-    }
-
-    private void removeRemoteVideo() {
-        if (mRemoteView != null) {
-            mRemoteContainer.removeView(mRemoteView);
+    private void onRemoteUserLeft(int uid) {
+        if (mRemoteVideo != null && mRemoteVideo.uid == uid) {
+            removeFromParent(mRemoteVideo);
+            mRemoteVideo = null;
         }
-        mRemoteView = null;
     }
 
     @Override
@@ -174,7 +169,6 @@ public class VideoChatViewActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
-
         if (requestCode == PERMISSION_REQ_ID) {
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED ||
                     grantResults[1] != PackageManager.PERMISSION_GRANTED ||
@@ -241,10 +235,11 @@ public class VideoChatViewActivity extends AppCompatActivity {
         // Our server will assign one and return the uid via the event
         // handler callback function (onJoinChannelSuccess) after
         // joining the channel successfully.
-        mLocalView = RtcEngine.CreateRendererView(getBaseContext());
-        mLocalView.setZOrderMediaOverlay(true);
-        mLocalContainer.addView(mLocalView);
-        mRtcEngine.setupLocalVideo(new VideoCanvas(mLocalView, VideoCanvas.RENDER_MODE_HIDDEN, 0));
+        SurfaceView view = RtcEngine.CreateRendererView(getBaseContext());
+        view.setZOrderMediaOverlay(true);
+        mLocalContainer.addView(view);
+        mLocalVideo = new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, 0);
+        mRtcEngine.setupLocalVideo(mLocalVideo);
     }
 
     private void joinChannel() {
@@ -303,21 +298,44 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void endCall() {
-        removeLocalVideo();
-        removeRemoteVideo();
+        removeFromParent(mLocalVideo);
+        mLocalVideo = null;
+        removeFromParent(mRemoteVideo);
+        mRemoteVideo = null;
         leaveChannel();
-    }
-
-    private void removeLocalVideo() {
-        if (mLocalView != null) {
-            mLocalContainer.removeView(mLocalView);
-        }
-        mLocalView = null;
     }
 
     private void showButtons(boolean show) {
         int visibility = show ? View.VISIBLE : View.GONE;
         mMuteBtn.setVisibility(visibility);
         mSwitchCameraBtn.setVisibility(visibility);
+    }
+
+    private ViewGroup removeFromParent(VideoCanvas canvas) {
+        if (canvas != null) {
+            ViewParent parent = canvas.view.getParent();
+            if (parent != null) {
+                ViewGroup group = (ViewGroup) parent;
+                group.removeView(canvas.view);
+                return group;
+            }
+        }
+        return null;
+    }
+
+    private void switchView(VideoCanvas canvas) {
+        ViewGroup parent = removeFromParent(canvas);
+        if (parent == mLocalContainer) {
+            canvas.view.setZOrderMediaOverlay(false);
+            mRemoteContainer.addView(canvas.view);
+        } else if (parent == mRemoteContainer) {
+            canvas.view.setZOrderMediaOverlay(true);
+            mLocalContainer.addView(canvas.view);
+        }
+    }
+
+    public void onLocalContainerClick(View view) {
+        switchView(mLocalVideo);
+        switchView(mRemoteVideo);
     }
 }
