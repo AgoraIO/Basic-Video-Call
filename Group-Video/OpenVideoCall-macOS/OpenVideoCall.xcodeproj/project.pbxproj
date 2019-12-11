@@ -34,7 +34,6 @@
 		A742402B23794C0600794648 /* WindowItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A742402923794C0600794648 /* WindowItem.xib */; };
 		A76C26D123868C190047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26D023868C190047E150 /* AgoraRtcKit.framework */; };
 		A76C26D223868C190047E150 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26D023868C190047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A76C26D523868C220047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26D423868C220047E150 /* AgoraRtcKit.framework */; };
 		A76C26DC23868CEF0047E150 /* AGEVideoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26D723868CEF0047E150 /* AGEVideoLayout.swift */; };
 		A76C26DD23868CEF0047E150 /* AGEVideoConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26D823868CEF0047E150 /* AGEVideoConstraints.swift */; };
 		A76C26DE23868CEF0047E150 /* AGEEventsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26D923868CEF0047E150 /* AGEEventsObserver.swift */; };
@@ -122,7 +121,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76C26D123868C190047E150 /* AgoraRtcKit.framework in Frameworks */,
-				A76C26D523868C220047E150 /* AgoraRtcKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
