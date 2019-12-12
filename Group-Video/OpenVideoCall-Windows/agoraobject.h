@@ -8,7 +8,7 @@
 extern CAgoraConfig gAgoraConfig;
 
 //Specify your APP ID here
-#define APPID ""
+#define APPID "aab8b8f5a8cd4469a63042fcfafe7063"
 #define APP_TOKEN   ""
 
 #include <QString>
@@ -58,6 +58,7 @@ public:
     BOOL setVideoIndex(int nIndex);
     BOOL SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath);
 
+	bool setBeautyEffectOptions(bool enabled, BeautyOptions& options);
 signals:
     void sender_videoStopped();
     void sender_joinedChannelSuccess(const QString &qsChannel, unsigned int uid, int elapsed);
