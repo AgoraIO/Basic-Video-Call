@@ -58,6 +58,7 @@ public:
     BOOL setVideoIndex(int nIndex);
     BOOL SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath);
 
+	bool setBeautyEffectOptions(bool enabled, BeautyOptions& options);
 signals:
     void sender_videoStopped();
     void sender_joinedChannelSuccess(const QString &qsChannel, unsigned int uid, int elapsed);

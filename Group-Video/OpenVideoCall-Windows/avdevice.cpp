@@ -2,21 +2,37 @@
 #include "ui_avdevice.h"
 #include "agoraobject.h"
 #include "agorawindowmanager.h"
-
+#include <QtWidgets/QScrollbar>
 AVDevice::AVDevice(QMainWindow* pLastWnd,const QString &qsChanne,QWidget *parent) :
     QMainWindow(parent),
     m_lastWnd(pLastWnd),
     ui(new Ui::AVDevice),
     m_bEnableAudio(true),
     m_bEnableVideo(true),
+	m_bEnableBeauty(false),
     m_strChannel(qsChanne)
 {
     ui->setupUi(this);
+	ui->scrollArea->verticalScrollBar()->setStyleSheet(QLatin1String(""
+		"QScrollBar:vertical {border: none;background-color: rgb(255,255,255);width: 10px;margin: 0px 0 0px 0;}"
+		" QScrollBar::handle:vertical { background:  rgba(240, 240, 240, 255); min-height: 20px;width: 6px;border: 1px solid  rgba(240, 240, 240, 255);border-radius: 3px;margin-left:2px;margin-right:2px;}"
+		" QScrollBar::add-line:vertical {background-color: rgb(255,255,255);height: 4px;}"
+		" QScrollBar::sub-line:vertical {background-color: rgb(255,255,255);height: 4px;}"
+		" QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {height: 0px;}"
+		" QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}"));
+
+	m_bEnableBeauty = gAgoraConfig.getEnableBeauty();
+	m_bEnableAudio  = gAgoraConfig.getEnableAudio();
+	m_bEnableVideo  = gAgoraConfig.getEnableVideo();
+	connect(ui->horizontalSlider_Redness, &QSlider::valueChanged, this, &AVDevice::on_valueChanged_horizontalSlider_Redness);
+	connect(ui->horizontalSlider_Smoothness, &QSlider::valueChanged, this, &AVDevice::on_valueChanged_horizontalSlider_Smoothness);
+	connect(ui->horizontalSliderLightening, &QSlider::valueChanged, this, &AVDevice::on_valueChanged_horizontalSlider_Lightening);
 
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
 
     initCtrl();
+
     AgoraWindowManager::getInstance()->insertItem(qWndType_AvDevice,this);
 }
 
@@ -103,6 +119,46 @@ void AVDevice::initCtrl()
     ui->cb_log->addItem("CRITICAL");
     ui->cb_log->addItem("MASK");
     ui->cb_log->setCurrentIndex(2);
+   
+	m_bEnableBeauty = gAgoraConfig.getEnableBeauty();
+
+	if (!m_bEnableBeauty) {
+        QString str = "QPushButton:!hover {\
+                border-image: url(:/uiresource/switch-off.png);\
+                background-image: url(:/uiresource/switch-off.png);\
+                }\
+                \
+                QPushButton:hover {\
+                border-image: url(:/uiresource/switch-off.png);\
+                background-image: url(:/uiresource/switch-off.png);\
+                }";
+
+        ui->optVideo_Beauty->setStyleSheet(str);
+    }
+    else {
+        QString str = "QPushButton:!hover {\
+                border-image: url(:/uiresource/switch-open.png);\
+                background-image: url(:/uiresource/switch-open.png);\
+                }\
+                \
+                QPushButton:hover {\
+                border-image: url(:/uiresource/switch-open.png);\
+                background-image: url(:/uiresource/switch-open.png);\
+                }";
+
+		ui->optVideo_Beauty->setStyleSheet(str);
+    }
+	//beauty
+	ui->cbContrastLevel->clear();
+	ui->cbContrastLevel->addItem(QString("Lightening Contrast Low"));
+	ui->cbContrastLevel->addItem(QString("Lightening Contrast Normal"));
+	ui->cbContrastLevel->addItem(QString("Lightening Contrast High"));
+
+	ui->cbContrastLevel->setCurrentIndex(gAgoraConfig.getLigtheningContrastLevel());
+
+	ui->horizontalSlider_Redness->setValue(gAgoraConfig.getRedness());
+	ui->horizontalSliderLightening->setValue(gAgoraConfig.getLightenging());
+	ui->horizontalSlider_Smoothness->setValue(gAgoraConfig.getSmoothness());
 }
 
 
@@ -115,6 +171,12 @@ void AVDevice::setStyleSheet_audio(bool bEnable)
                 height:30px;\
                 border-radius:19px;\
                 image: url(:/uiresource/switch-open.png)\
+                }" \
+				"QPushButton:pressed {\
+                width:50px;\
+                height:30px;\
+                border-radius:19px;\
+                image: url(:/uiresource/switch-open.png)\
                 }";
     }
     else {
@@ -123,7 +185,14 @@ void AVDevice::setStyleSheet_audio(bool bEnable)
                 height:30px;\
                 border-radius:19px;\
                 image: url(:/uiresource/switch-off.png)\
+                }"\
+				"QPushButton:pressed {\
+                width:50px;\
+                height:30px;\
+                border-radius:19px;\
+                image: url(:/uiresource/switch-off.png)\
                 }";
+
     }
 
     ui->btn_audio->setStyleSheet(qsStyle);
@@ -138,7 +207,13 @@ void AVDevice::setStyleSheet_video(bool bEnable)
                height:30px;\
                border-radius:19px;\
                image: url(:/uiresource/switch-open.png)\
-               }";
+               }"\
+			   "QPushButton:pressed {\
+                width:50px;\
+                height:30px;\
+                border-radius:19px;\
+                image: url(:/uiresource/switch-open.png)\
+                }";
     }
     else {
         qsStyle = "QPushButton:!pressed {\
@@ -146,9 +221,60 @@ void AVDevice::setStyleSheet_video(bool bEnable)
                 height:30px;\
                 border-radius:19px;\
                 image: url(:/uiresource/switch-off.png)\
+                }"\
+				"QPushButton:pressed {\
+                width:50px;\
+                height:30px;\
+                border-radius:19px;\
+                image: url(:/uiresource/switch-off.png)\
                 }";
     }
     ui->btn_video->setStyleSheet(qsStyle);
+}
+
+
+void AVDevice::enableVideoBeutyControl(bool bEnable)
+{
+	ui->cbContrastLevel->setDisabled(bEnable);
+	ui->horizontalSliderLightening->setDisabled(bEnable);
+	ui->horizontalSlider_Redness->setDisabled(bEnable);
+	ui->horizontalSlider_Smoothness->setDisabled(bEnable);
+}
+
+void AVDevice::on_optVideo_Beauty_clicked()
+{
+	m_bEnableBeauty = !m_bEnableBeauty;
+	enableVideoBeutyControl(!m_bEnableBeauty);
+	updateBeautyOptions();
+	if (!m_bEnableBeauty) {
+        QString str = "QPushButton:!hover {\
+                border-image: url(:/uiresource/switch-off.png);\
+                background-image: url(:/uiresource/switch-off.png);\
+                }\
+                \
+                QPushButton:hover {\
+                border-image: url(:/uiresource/switch-off.png);\
+                background-image: url(:/uiresource/switch-off.png);\
+                }";
+
+        ui->optVideo_Beauty->setStyleSheet(str);
+	
+    }
+    else {
+        QString str = "QPushButton:!hover {\
+                border-image: url(:/uiresource/switch-open.png);\
+                background-image: url(:/uiresource/switch-open.png);\
+                }\
+                \
+                QPushButton:hover {\
+                border-image: url(:/uiresource/switch-open.png);\
+                background-image: url(:/uiresource/switch-open.png);\
+                }";
+
+		ui->optVideo_Beauty->setStyleSheet(str);
+    }
+
+	gAgoraConfig.setEnableBeauty(m_bEnableBeauty);
 }
 
 void AVDevice::on_btn_back_clicked()
@@ -181,12 +307,14 @@ void AVDevice::on_btn_audio_clicked()
 {
     m_bEnableAudio = !m_bEnableAudio;
     setStyleSheet_audio(m_bEnableAudio);
+	gAgoraConfig.setEnableAudio(m_bEnableAudio);
 }
 
 void AVDevice::on_btn_video_clicked()
 {
     m_bEnableVideo = !m_bEnableVideo;
     setStyleSheet_video(m_bEnableVideo);
+	gAgoraConfig.setEnableVideo(m_bEnableVideo);
 }
 
 void AVDevice::on_btn_close_clicked()
@@ -221,4 +349,47 @@ void AVDevice::on_cb_log_activated(int index)
     default:break;
     }
    CAgoraObject::getInstance()->SetLogFilter(logFilterType,L"");
+}
+
+void AVDevice::updateBeautyOptions()
+{
+	BeautyOptions options;
+	options.lighteningContrastLevel = (BeautyOptions::LIGHTENING_CONTRAST_LEVEL)ui->cbContrastLevel->currentIndex();
+	options.lighteningLevel = ui->horizontalSliderLightening->value() / 100.0f;
+	options.rednessLevel = ui->horizontalSlider_Redness->value() / 100.0f;
+	options.smoothnessLevel = ui->horizontalSlider_Smoothness->value() / 100.0f;
+
+	CAgoraObject::getInstance()->setBeautyEffectOptions(m_bEnableBeauty, options);
+}
+
+void AVDevice::on_cbContrastLevel_activated(int index)
+{
+	updateBeautyOptions();
+}
+
+void AVDevice::on_valueChanged_horizontalSlider_Redness(int value)
+{
+	QString redness;
+	redness.sprintf("Redness(%.02f)", value / 100.0f);
+	ui->labelRedness->setText(redness);
+	gAgoraConfig.setRedness(value);
+	updateBeautyOptions();
+}
+
+void AVDevice::on_valueChanged_horizontalSlider_Smoothness(int value)
+{
+	QString smooth;
+	smooth.sprintf("Smoothness(%.02f)", value / 100.0f);
+	ui->labelSmoothness->setText(smooth);
+	gAgoraConfig.setSmoothness(value);
+	updateBeautyOptions();
+}
+
+void AVDevice::on_valueChanged_horizontalSlider_Lightening(int value)
+{
+	QString lightening;
+	lightening.sprintf("Lightening(%.02f)", value / 100.0f);
+	ui->labelLightening->setText(lightening);
+	gAgoraConfig.setLightenging(value);
+	updateBeautyOptions();
 }

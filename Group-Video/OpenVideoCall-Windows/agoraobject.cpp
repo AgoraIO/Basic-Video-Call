@@ -454,3 +454,12 @@ BOOL CAgoraObject::SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath
 
     return nRet == 0 ? TRUE : FALSE;
 }
+
+
+bool CAgoraObject::setBeautyEffectOptions(bool enabled, BeautyOptions& options)
+{
+	int nRet = 0;
+
+	nRet = m_rtcEngine->setBeautyEffectOptions(enabled, options);
+	return nRet == 0 ? true : false;
+}

@@ -45,5 +45,6 @@
         <file>uiresource/dropdow-01.png</file>
         <file>uiresource/dropdown-02.png</file>
         <file>uiresource/dropdown-03.png</file>
+        <file>uiresource/slider.png</file>
     </qresource>
 </RCC>
