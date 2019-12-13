@@ -34,6 +34,8 @@ private slots:
     void on_btn_audio_clicked();
     void on_btn_video_clicked();
 
+	void on_optVideo_Beauty_clicked();
+
     void on_btn_close_clicked();
 
     void on_btn_min_clicked();
@@ -42,7 +44,14 @@ private slots:
 
     void on_cb_log_activated(int index);
 
+	void on_cbContrastLevel_activated(int index);
+	void on_valueChanged_horizontalSlider_Redness(int value);
+	void on_valueChanged_horizontalSlider_Smoothness(int value);
+	void on_valueChanged_horizontalSlider_Lightening(int value);
 private:
+	void enableVideoBeutyControl(bool bEnable);
+	void updateBeautyOptions();
+
     const int lnGapWidth = 18;
     const int lnGapHeight = 12;
     const int lnTitleWidth = 718;
@@ -56,6 +65,7 @@ private:
     QString m_strChannel;
     bool    m_bEnableVideo;
     bool    m_bEnableAudio;
+	bool    m_bEnableBeauty;
 };
 
 #endif // AVDEVICE_H
