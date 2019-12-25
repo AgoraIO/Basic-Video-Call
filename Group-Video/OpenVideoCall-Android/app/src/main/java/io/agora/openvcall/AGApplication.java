@@ -67,7 +67,6 @@ public class AGApplication extends Application {
         mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
         mRtcEngine.enableVideo();
         mRtcEngine.enableAudioVolumeIndication(200, 3, false);
-        mRtcEngine.setParameters("{\"rtc.log_filter\":65535}");
 
         mConfig = new EngineConfig();
     }
