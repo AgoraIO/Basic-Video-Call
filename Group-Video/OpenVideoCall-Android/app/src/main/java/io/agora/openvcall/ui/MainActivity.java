@@ -22,7 +22,6 @@ import io.agora.openvcall.R;
 import io.agora.openvcall.model.ConstantApp;
 
 public class MainActivity extends BaseActivity {
-
     private final static Logger log = LoggerFactory.getLogger(MainActivity.class);
 
     @Override
@@ -146,9 +145,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void workerThreadReady() {
+    public void permissionGranted() {
 
     }
-
-
 }

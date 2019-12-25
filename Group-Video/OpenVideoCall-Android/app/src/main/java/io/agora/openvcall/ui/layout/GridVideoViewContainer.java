@@ -101,4 +101,7 @@ public class GridVideoViewContainer extends RecyclerView {
         return mGridVideoViewContainerAdapter.getItem(position);
     }
 
+    public void notifyDataSetChanged() {
+        mGridVideoViewContainerAdapter.notifyDataSetChanged();
+    }
 }

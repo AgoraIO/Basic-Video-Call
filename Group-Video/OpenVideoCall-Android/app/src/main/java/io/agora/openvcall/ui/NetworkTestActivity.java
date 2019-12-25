@@ -17,7 +17,6 @@ import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.internal.LastmileProbeConfig;
 
 public class NetworkTestActivity extends BaseActivity implements BeforeCallEventHandler {
-
     private final static Logger log = LoggerFactory.getLogger(NetworkTestActivity.class);
 
     @Override
@@ -34,7 +33,7 @@ public class NetworkTestActivity extends BaseActivity implements BeforeCallEvent
 
     @Override
     protected void initUIandEvent() {
-        event().addEventHandler(this);
+        addEventHandler(this);
 
         ((TextView) findViewById(R.id.ovc_page_title)).setText(R.string.label_network_testing);
 
@@ -49,7 +48,7 @@ public class NetworkTestActivity extends BaseActivity implements BeforeCallEvent
     @Override
     protected void deInitUIandEvent() {
         rtcEngine().stopLastmileProbeTest();
-        event().removeEventHandler(this);
+        removeEventHandler(this);
     }
 
     @Override
