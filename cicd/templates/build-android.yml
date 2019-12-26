@@ -5,8 +5,13 @@ parameters:
 jobs:
   - job: ${{ parameters.displayName }}_Build
     displayName: ${{ parameters.displayName }}
+    
     pool:
       vmImage: 'macOS-10.13'
+      
+    variables:
+      - group: AgoraKeys
+      
     steps:
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
