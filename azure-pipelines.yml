@@ -3,17 +3,16 @@ variables:
   MacRTCSDK: 'https://release.agoralab.co/disk/v3.0.0_IOS_SO/AgoraSDK/Mac/Agora_Native_SDK_for_Mac_v3_0_0_FULL_20191119_822.zip'
   
 jobs:
-  # android open video call  
-  # - template: cicd/templates/build-android.yml
-  #   parameters:
-  #     displayName: 'AndroidOpenVideoCall'
-  #     workingDirectory: 'Group-Video/OpenVideoCall-Android'
 
-  # android 1 to 1 tutorial
-#  - template: cicd/templates/build-android.yml
-#    parameters:
-#      displayName: 'AndroidTutorial'
-#      workingDirectory: 'One-to-One-Video/Agora-Android-Tutorial-1to1'
+  - template: cicd/templates/build-android.yml
+    parameters:
+      displayName: 'AndroidOpenVideoCall'
+      workingDirectory: 'Group-Video/OpenVideoCall-Android'
+
+  - template: cicd/templates/build-android.yml
+    parameters:
+      displayName: 'AndroidTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-Android-Tutorial-1to1'
 
   - template: cicd/templates/build-ios.yml
     parameters:
