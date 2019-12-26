@@ -14,51 +14,51 @@ jobs:
       displayName: 'AndroidTutorial'
       workingDirectory: 'One-to-One-Video/Agora-Android-Tutorial-1to1'
 
-  # - template: cicd/templates/build-ios.yml
-  #   parameters:
-  #     displayName: 'iOSSwiftTutorial'
-  #     workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1'
-  #     scheme: 'Agora iOS Tutorial'
-  #     sdkurl: $(iOSRTCSDK)
+  - template: cicd/templates/build-ios.yml
+    parameters:
+      displayName: 'iOSSwiftTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1'
+      scheme: 'Agora iOS Tutorial'
+      sdkurl: $(iOSRTCSDK)
   
-  # - template: cicd/templates/build-ios.yml
-  #   parameters:
-  #     displayName: 'iOSOCTutorial'
-  #     workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Objective-C-1to1'
-  #     scheme: 'Agora iOS Tutorial Objective-C'
-  #     sdkurl: $(iOSRTCSDK)
+  - template: cicd/templates/build-ios.yml
+    parameters:
+      displayName: 'iOSOCTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Objective-C-1to1'
+      scheme: 'Agora iOS Tutorial Objective-C'
+      sdkurl: $(iOSRTCSDK)
 
-  # - template: cicd/templates/build-ios.yml
-  #   parameters:
-  #     displayName: 'iOSSwiftOpenVideoCall'
-  #     workingDirectory: 'Group-Video/OpenVideoCall-iOS'
-  #     scheme: 'OpenVideoCall'
-  #     sdkurl: $(iOSRTCSDK)
+  - template: cicd/templates/build-ios.yml
+    parameters:
+      displayName: 'iOSSwiftOpenVideoCall'
+      workingDirectory: 'Group-Video/OpenVideoCall-iOS'
+      scheme: 'OpenVideoCall'
+      sdkurl: $(iOSRTCSDK)
 
-  # - template: cicd/templates/build-ios.yml
-  #   parameters:
-  #     displayName: 'iOSOCOpenVideoCall'
-  #     workingDirectory: 'Group-Video/OpenVideoCall-iOS-Objective-C'
-  #     scheme: 'OpenVideoCall'
-  #     sdkurl: $(iOSRTCSDK)
+  - template: cicd/templates/build-ios.yml
+    parameters:
+      displayName: 'iOSOCOpenVideoCall'
+      workingDirectory: 'Group-Video/OpenVideoCall-iOS-Objective-C'
+      scheme: 'OpenVideoCall'
+      sdkurl: $(iOSRTCSDK)
 
-  # - template: cicd/templates/build-mac.yml
-  #   parameters:
-  #     displayName: 'MacSwiftTutorial'
-  #     workingDirectory: 'One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1'
-  #     scheme: 'Agora Mac Tutorial Swift'
-  #     sdkurl: $(MacRTCSDK)
+  - template: cicd/templates/build-mac.yml
+    parameters:
+      displayName: 'MacSwiftTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1'
+      scheme: 'Agora Mac Tutorial Swift'
+      sdkurl: $(MacRTCSDK)
 
-  # - template: cicd/templates/build-mac.yml
-  #   parameters:
-  #     displayName: 'MacOCTutorial'
-  #     workingDirectory: 'One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1'
-  #     scheme: 'Agora Mac Tutorial Objective-C'
-  #     sdkurl: $(MacRTCSDK)
+  - template: cicd/templates/build-mac.yml
+    parameters:
+      displayName: 'MacOCTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1'
+      scheme: 'Agora Mac Tutorial Objective-C'
+      sdkurl: $(MacRTCSDK)
 
-  # - template: cicd/templates/build-mac.yml
-  #   parameters:
-  #     displayName: 'MacOpenVideoCall'
-  #     workingDirectory: 'Group-Video/OpenVideoCall-macOS'
-  #     scheme: 'OpenVideoCall'
-  #     sdkurl: $(MacRTCSDK)
+  - template: cicd/templates/build-mac.yml
+    parameters:
+      displayName: 'MacOpenVideoCall'
+      workingDirectory: 'Group-Video/OpenVideoCall-macOS'
+      scheme: 'OpenVideoCall'
+      sdkurl: $(MacRTCSDK)
