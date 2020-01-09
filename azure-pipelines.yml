@@ -27,6 +27,13 @@ jobs:
       workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Objective-C-1to1'
       scheme: 'Agora iOS Tutorial Objective-C'
       sdkurl: $(iOSRTCSDK)
+      
+  - template: cicd/templates/build-ios.yml
+    parameters:
+      displayName: 'iOSSwiftUITutorial'
+      workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-SwiftUI-1to1'
+      scheme: 'Agora-iOS-Tutorial-SwiftUI-1to1'
+      sdkurl: $(iOSRTCSDK)
 
   - template: cicd/templates/build-ios.yml
     parameters:
