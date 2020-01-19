@@ -13,9 +13,9 @@
 		1A04662B1D5E75A2004987C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0466291D5E75A2004987C6 /* Main.storyboard */; };
 		1A04664C1D5E7892004987C6 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664B1D5E7892004987C6 /* AppID.swift */; };
 		1A04664F1D5EA139004987C6 /* DeviceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */; };
+		38B9A0D423D47BFA00CE8C27 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A7238677310047E150 /* AgoraRtcKit.framework */; };
+		38B9A0D523D47BFA00CE8C27 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A7238677310047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		38EF7E9A236827E500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E99236827E500A6A483 /* README.md */; };
-		A76C26A4238677290047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A3238677290047E150 /* AgoraRtcKit.framework */; };
-		A76C26A5238677290047E150 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A3238677290047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +25,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A76C26A5238677290047E150 /* AgoraRtcKit.framework in Embed Frameworks */,
+				38B9A0D523D47BFA00CE8C27 /* AgoraRtcKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,14 +41,7 @@
 		1A04662C1D5E75A2004987C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A04664B1D5E7892004987C6 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppID.swift; sourceTree = "<group>"; };
 		1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSelectionViewController.swift; sourceTree = "<group>"; };
-		389D9977218816CE00BFD852 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
-		389D997B218816E700BFD852 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		389D997D218816F300BFD852 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		389D997F218816F900BFD852 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
-		389D99812188170C00BFD852 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		389D99832188174900BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		38EF7E99236827E500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		A76C26A3238677290047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = "Agora Mac Tutorial Swift/AgoraRtcKit.framework"; sourceTree = "<group>"; };
 		A76C26A7238677310047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76C26A4238677290047E150 /* AgoraRtcKit.framework in Frameworks */,
+				38B9A0D423D47BFA00CE8C27 /* AgoraRtcKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,13 +91,6 @@
 		1A0466491D5E7718004987C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A76C26A3238677290047E150 /* AgoraRtcKit.framework */,
-				389D99832188174900BFD852 /* SystemConfiguration.framework */,
-				389D99812188170C00BFD852 /* Accelerate.framework */,
-				389D997F218816F900BFD852 /* CoreWLAN.framework */,
-				389D997D218816F300BFD852 /* VideoToolbox.framework */,
-				389D997B218816E700BFD852 /* libc++.tbd */,
-				389D9977218816CE00BFD852 /* libresolv.9.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -147,12 +133,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
 					1A04661F1D5E75A2004987C6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -323,17 +309,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libs",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 				);
 				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
@@ -347,7 +329,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -355,17 +337,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libs",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 				);
 				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
@@ -379,7 +357,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
