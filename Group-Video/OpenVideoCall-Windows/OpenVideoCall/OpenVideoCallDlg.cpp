@@ -161,6 +161,7 @@ void COpenVideoCallDlg::InitChildDialog()
 	m_dlgSetup.MoveWindow(110, 70, 500, 450, TRUE);
 
 	m_dlgEnterChannel.ShowWindow(SW_SHOW);
+	m_dlgEnterChannel.SetCtrlPos();
 	m_lpCurDialog = &m_dlgEnterChannel;
 
     m_dlgEnterChannel.SetVideoString(m_dlgSetup.GetVideoSolutionDes());
