@@ -32,6 +32,7 @@ using namespace agora::rtc;
 #define APP_ID _T("")
 #define APP_TOKEN ""
 
+
 class CAgoraObject
 {
 public:
