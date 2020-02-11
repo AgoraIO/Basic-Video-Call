@@ -227,3 +227,20 @@ void CEnterChannelDlg::CleanEncryptionSecret()
 {
     m_ctrEncKey.SetWindowText(_T(""));
 }
+
+
+void CEnterChannelDlg::SetCtrlPos()
+{
+	CRect ClientRect;
+
+	GetClientRect(&ClientRect);
+
+	m_ctrChannel.MoveWindow(ClientRect.Width() / 2 - 160, 128, 320, 22, TRUE);
+	m_ctrEncKey.MoveWindow(ClientRect.Width() / 2 - 160, 176, 140, 22, TRUE);
+	m_cmbEncType.MoveWindow(ClientRect.Width() / 2 + 50, 173, 120, 22, TRUE);
+
+	int height = 36;
+	m_btnJoin.MoveWindow(ClientRect.Width() / 2 - 180, 310, 360, height, TRUE);
+	m_btnTest.MoveWindow(ClientRect.Width() / 2 - 180, 355, 108, height, TRUE);
+	m_btnSetup.MoveWindow(ClientRect.Width() / 2 - 60, 355, 240, height, TRUE);
+}

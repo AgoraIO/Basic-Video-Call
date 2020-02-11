@@ -70,7 +70,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>copy ..\sdk\dll\*.dll ..\Debug\</Command>
+      <Command>if exist ..\sdk (copy ..\sdk\dll\*.dll ..\$(Configuration)\) else if exist ..\..\..\sdk (copy ..\..\..\sdk\dll\*.dll ..\$(Configuration)\)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -103,6 +103,9 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>if exist ..\sdk (copy ..\sdk\dll\*.dll ..\$(Configuration)\) else if exist ..\..\..\sdk (copy ..\..\..\sdk\dll\*.dll ..\$(Configuration)\)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AGEngineEventHandler.h" />
