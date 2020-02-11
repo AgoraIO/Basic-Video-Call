@@ -19,7 +19,7 @@ public:
 
 	void SetVideoString(LPCTSTR lpVideoString);
     void CleanEncryptionSecret();
-
+	void SetCtrlPos();
 // 对话框数据
 	enum { IDD = IDD_ENTERCHANNEL_DIALOG };
 
