@@ -99,9 +99,9 @@ Import the sample application into **IntelliJ IDEA** as a gradle project.
 ## Contract Us
 
 - [FAQ](https://docs.agora.io/cn/faq)
-- [Agora SDK](Github:https://github.com/AgoraIO)
-- [Agora Use Case](Github:https://github.com/AgoraIO-usecase)
-- [Agora Community](Github:https://github.com/AgoraIO-Community)
+- [Agora SDK](https://github.com/AgoraIO)
+- [Agora Use Case](https://github.com/AgoraIO-usecase)
+- [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
 - If you encounter problems during integration, you can ask question in [Developer Forum](https://rtcdeveloper.com/)
 - You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
