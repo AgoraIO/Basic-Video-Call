@@ -11,8 +11,8 @@ With this sample app, you can:
 
 ## Prerequisites
 
-- Chrome 50+
-- NodeJS 8+
+- Node.js 6.9.1+
+- A web server that supports SSL (https)
 
 ## Quick Start
 
