@@ -5,12 +5,11 @@
 This tutorial enables you to quickly get started in your development efforts to create an Android app with real-time video calls, voice calls, and interactive broadcasting.
 
 With this sample app, you can:
-- Join and leave a channel.
-- Mute and unmute audio.
-- Enable or disable video.
-- Choose between the front or rear camera.
 
-A more complete demo can be found [here](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Android).
+- Join / leave channel
+- Mute / unmute audio
+- Switch camera
+- Setup resolution, frame rate and bit rate
 
 ## Prerequisites
 
@@ -52,7 +51,7 @@ The SDK must be integrated into the sample project before it can opened and buil
   ...
   dependencies {
       ...
-      implementation 'io.agora.rtc:full-sdk:2.4.1'
+      implementation 'io.agora.rtc:full-sdk:3.0.0'
   }
   ```
 
@@ -78,10 +77,15 @@ Open project with Android Studio, connect your Android device, build and run.
 Or use `Gradle` to build and run.
 
 
-## Resources
+## Contract Us
 
+- [FAQ](https://docs.agora.io/cn/faq)
+- [Agora SDK](Github:https://github.com/AgoraIO)
+- [Agora Use Case](Github:https://github.com/AgoraIO-usecase)
+- [Agora Community](Github:https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://rtcdeveloper.com/)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 

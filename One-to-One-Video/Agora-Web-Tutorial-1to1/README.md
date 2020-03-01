@@ -4,9 +4,15 @@
 
 This tutorial shows you how to quickly create an basic video communication using the Agora sample app.
 
+With this sample app, you can:
+
+- Join/Leave a realtime video call
+- Select Camera/Microphone to use
+
 ## Prerequisites
 
-- A web browser
+- Chrome 50+
+- NodeJS 8+
 
 ## Quick Start
 
@@ -23,7 +29,7 @@ To build and run the sample application, get an App ID:
 
 ### Integrate Agora Video SDK
 
-Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.8.0.js**
+Download SDK into **assets** path and rename file name as **AgoraRTCSDK.js**
 
 ### Run Web-Server
 
@@ -35,12 +41,17 @@ Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.8.0.js
     ```
     live-server .
     ```
-3. Enter Valid APPID, Token, Channel, UID and click **Join Room**
+3. Enter Valid APPID, Token, Channel and click **JOIN**
 
 ## Resources
 
+- [FAQ](https://docs.agora.io/cn/faq)
+- [Agora SDK](Github:https://github.com/AgoraIO)
+- [Agora Use Case](Github:https://github.com/AgoraIO-usecase)
+- [Agora Community](Github:https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://rtcdeveloper.com/)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 
