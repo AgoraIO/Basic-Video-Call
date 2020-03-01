@@ -67,9 +67,9 @@
 
 ## 联系我们
 
-- [FAQ](https://docs.agora.io/cn/faq)
-- [官方SDK](https://github.com/AgoraIO)
-- [官方案例](https://github.com/AgoraIO-usecase)
+- [常见问题](https://docs.agora.io/cn/faq)
+- [官方SDK示例](https://github.com/AgoraIO)
+- [官方场景案例](https://github.com/AgoraIO-usecase)
 - [社区](https://github.com/AgoraIO-Community)
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
 - 如果在集成中遇到问题，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问

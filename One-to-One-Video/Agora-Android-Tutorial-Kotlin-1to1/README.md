@@ -99,7 +99,7 @@ Import the sample application into **IntelliJ IDEA** as a gradle project.
 ## Contract Us
 
 - [FAQ](https://docs.agora.io/cn/faq)
-- [Agora SDK](https://github.com/AgoraIO)
+- [Agora SDK Samples](https://github.com/AgoraIO)
 - [Agora Use Case](https://github.com/AgoraIO-usecase)
 - [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)

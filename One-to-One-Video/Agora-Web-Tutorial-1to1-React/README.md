@@ -46,7 +46,7 @@ To build and run the sample application, get an App ID:
 ## Resources
 
 - [FAQ](https://docs.agora.io/cn/faq)
-- [Agora SDK](https://github.com/AgoraIO)
+- [Agora SDK Samples](https://github.com/AgoraIO)
 - [Agora Use Case](https://github.com/AgoraIO-usecase)
 - [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
