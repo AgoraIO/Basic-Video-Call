@@ -38,12 +38,13 @@
 
 ### 集成 Agora 视频 SDK
 
-在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹下的 
+1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到本项目的 Agora Mac Tutorial Objective-C 文件夹下。
+
   - AgoraRtcEngineKit.framework
   - AgoraRtcCryptoLoader.framework
   - libcrypto.a
-三个文件复制到本项目的 Agora Mac Tutorial Objective-C 文件夹下。
-最后使用 XCode 打开 Agora Mac Tutorial Objective-C.xcodeproj，设置有效的开发者签名后即可运行。
+  
+2. 打开 Xcode 后，运行本项目。
 
 ## 联系我们
 

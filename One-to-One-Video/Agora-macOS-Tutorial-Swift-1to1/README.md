@@ -43,7 +43,7 @@ To build and run the sample application, get an App ID:
     - `AgoraRtcCryptoLoader.framework`
     - `libcrypto.a`
   
-2. Ensure a valid provisioning profile is applied or your project will not run.
+2. Open Xcode and run this project.
 
 ## Contract Us
 

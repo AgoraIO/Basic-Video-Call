@@ -45,7 +45,6 @@ To build and run the sample application, get an App ID:
   
 2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
-
 ## Contract Us
 
 - For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
