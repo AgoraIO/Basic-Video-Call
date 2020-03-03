@@ -5,19 +5,20 @@
 This tutorial describes how to add video chat to your iOS applications using Swift and the Agora Video SDK.
 
 With this sample app, you can:
+
 - Join/leave a channel
 - Mute/unmute audio
 - Enable/disable video
 - Switch camera views
-- Send a message to a channel
-- Set up the resolution, the frame rate, and the bit rate display
-- Enable encryption
-- Enable/disable the black-and-white filter
+- Enable/disable image enhancement
+- Play/stop music
+- Set up the resolution, the frame rate display
 
 ## Prerequisites
 
 - Xcode 10.0+
 - Physical iOS device (iPhone or iPad)
+- iOS simulator is NOT supported
 
 ## Quick Start
 
@@ -41,7 +42,6 @@ To build and run the sample application, get an App ID:
 
 ### Integrate the Agora Video SDK
 
-
 1. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `OpenVideoCall` folder.
     - `AograRtcEngineKit.framework`
     - `AgoraRtcCryptoLoader.framework`
@@ -49,11 +49,15 @@ To build and run the sample application, get an App ID:
   
 2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
+## Contract Us
 
-## Resources
-
+- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 
