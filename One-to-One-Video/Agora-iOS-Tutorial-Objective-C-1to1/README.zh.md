@@ -23,16 +23,17 @@
 
 ### 创建Agora账号并获取AppId
 
-在编译和启动实例程序前，您需要首先获取一个可用的App ID:
+在编译和启动实例程序前，您需要首先获取一个可用的App Id:
+
 1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
-3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+3. 复制后台的 **App Id** 并备注，稍后启动应用时会用到它
 4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
 5. 将 AppID 和 Token 填写进 AppID.m
 
     ```
-    NSString *const appID = @"<#Your App ID#>";
+    NSString *const appID = @"<#Your App Id#>";
     // 如果你没有打开Token功能，token可以直接给nil
     NSString *const token = @"<#Temp Token#>";
     ```
