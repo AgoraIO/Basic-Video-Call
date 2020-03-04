@@ -13,34 +13,39 @@ This tutorial enables you to quickly get started developing a Windows app with v
 - Visual Studio 2013 or higher
 - Windows 7 or higher
 
-## Quick Start
+## Running the sample program
 
-This section shows you how to prepare, build, and run the sample application.
+First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. define the APP_ID with your App ID.
 
-### Obtain an App ID
-
-To build and run the sample application, get an App ID:
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
-2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
-3. Save the **App ID** from the Dashboard for later use.
-4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
-
-4. Define the APP_ID with your App ID.
-
-    ```
     #define APP_ID _T("Your App ID")
-    ```
 
-### Integrate the Agora Video SDK
+If you don't want to modify the code part, you can create an AppId.ini file under Debug/Release. Modify the appId value to the App ID you just applied.
 
-1. Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/). Unzip the downloaded SDK package and copy the **sdk** to the `AgoraTutorial` folder in project（the old one may be over written.
-2. Open AgoraTutorial.sln, build the solution and run.
+    [AppID]
+    AppID=xxxxxxxxxxxxxxxxxxx
+
+Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the **sdk** to the project folder(the old one may be over written).
+
+Finally, Open AgoraTutorial.sln with your VC++ 2013(or higher) and build all solution and run.
+    
+
+**Note：**
+
+  1. After the program is compiled, if the program "xxx\xxx\xxx\Debug\Language\English.dll" cannot be started when running the program, 
+      please select the OpenLive project in the Solution Explorer and right click. In the pop-up menu bar, select "Set as startup project" to solve. Then run the program again.
+  2. You may encounter crash when running this demo under debug mode. Please run this demo under release mode.
+
 
 
 ## Resources
 
+- For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Would like to see how Agora SDK is used in more complicated real use case? Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase)
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
 - You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- If you encounter problems during integration, you can ask question in [Developer Forum](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 
