@@ -44,7 +44,8 @@ To build and run the sample application, get an App Id:
 ### Integrate the Agora Video SDK
 
 1. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `OpenVideoCall` folder.
-    - `AograRtcEngineKit.framework`
+
+    - `AograRtcKit.framework`
     - `AgoraRtcCryptoLoader.framework`
     - `libcrypto.a`
   

@@ -25,6 +25,7 @@ This section shows you how to prepare, build, and run the sample application.
 ### Obtain an App Id
 
 To build and run the sample application, get an App Id:
+
 1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
 2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
 3. Save the **App Id** from the Dashboard for later use.
@@ -41,6 +42,7 @@ To build and run the sample application, get an App Id:
 ### Integrate the Agora Video SDK
 
 1. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `Agora iOS Tutorial` folder.
+
     - `AograRtcEngineKit.framework`
     - `AgoraRtcCryptoLoader.framework`
     - `libcrypto.a`
