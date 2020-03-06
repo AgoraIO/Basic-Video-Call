@@ -1,6 +1,6 @@
 variables:
-  iOSRTCSDK: 'https://release.agoralab.co/disk/v3.0.0_IOS_SO/AgoraSDK/iOS/Agora_Native_SDK_for_iOS_v3_0_0_FULL_20191119_1479.zip'
-  MacRTCSDK: 'https://release.agoralab.co/disk/v3.0.0_IOS_SO/AgoraSDK/Mac/Agora_Native_SDK_for_Mac_v3_0_0_FULL_20191119_822.zip'
+  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_0_FULL.zip?_ga=2.79185814.368877217.1583320605-5559409.1503304822'
+  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_0_0_FULL.zip?_ga=2.78400662.368877217.1583320605-5559409.1503304822'
   
 jobs:
 
@@ -18,16 +18,16 @@ jobs:
     parameters:
       displayName: 'iOSSwiftTutorial'
       workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Swift-1to1'
-      scheme: 'Agora iOS Tutorial'
+      scheme: 'Agora-iOS-Tutorial'
       sdkurl: $(iOSRTCSDK)
   
   - template: cicd/templates/build-ios.yml
     parameters:
       displayName: 'iOSOCTutorial'
       workingDirectory: 'One-to-One-Video/Agora-iOS-Tutorial-Objective-C-1to1'
-      scheme: 'Agora iOS Tutorial Objective-C'
+      scheme: 'Agora-iOS-Tutorial-Objective-C'
       sdkurl: $(iOSRTCSDK)
-      
+
   - template: cicd/templates/build-ios.yml
     parameters:
       displayName: 'iOSSwiftUITutorial'
@@ -53,14 +53,14 @@ jobs:
     parameters:
       displayName: 'MacSwiftTutorial'
       workingDirectory: 'One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1'
-      scheme: 'Agora Mac Tutorial Swift'
+      scheme: 'Agora-Mac-Tutorial-Swift'
       sdkurl: $(MacRTCSDK)
 
   - template: cicd/templates/build-mac.yml
     parameters:
       displayName: 'MacOCTutorial'
       workingDirectory: 'One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1'
-      scheme: 'Agora Mac Tutorial Objective-C'
+      scheme: 'Agora-Mac-Tutorial-Objective-C'
       sdkurl: $(MacRTCSDK)
 
   - template: cicd/templates/build-mac.yml

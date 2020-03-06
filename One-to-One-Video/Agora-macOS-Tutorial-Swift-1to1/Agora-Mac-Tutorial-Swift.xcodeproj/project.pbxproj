@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A0466201D5E75A2004987C6 /* Agora Mac Tutorial Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora Mac Tutorial Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0466201D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-Mac-Tutorial-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0466231D5E75A2004987C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoChatViewController.swift; sourceTree = "<group>"; };
 		1A0466271D5E75A2004987C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				38EF7E99236827E500A6A483 /* README.md */,
-				1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */,
+				1A0466221D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */,
 				1A0466491D5E7718004987C6 /* Frameworks */,
 				1A0466211D5E75A2004987C6 /* Products */,
 			);
@@ -73,12 +73,12 @@
 		1A0466211D5E75A2004987C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A0466201D5E75A2004987C6 /* Agora Mac Tutorial Swift.app */,
+				1A0466201D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */ = {
+		1A0466221D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */ = {
 			isa = PBXGroup;
 			children = (
 				1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */,
@@ -88,7 +88,7 @@
 				A76C26A9238677A50047E150 /* Supporting Files */,
 				A76C26A7238677310047E150 /* AgoraRtcKit.framework */,
 			);
-			path = "Agora Mac Tutorial Swift";
+			path = "Agora-Mac-Tutorial-Swift";
 			sourceTree = "<group>";
 		};
 		1A0466491D5E7718004987C6 /* Frameworks */ = {
@@ -117,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A04661F1D5E75A2004987C6 /* Agora Mac Tutorial Swift */ = {
+		1A04661F1D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A04662F1D5E75A2004987C6 /* Build configuration list for PBXNativeTarget "Agora Mac Tutorial Swift" */;
+			buildConfigurationList = 1A04662F1D5E75A2004987C6 /* Build configuration list for PBXNativeTarget "Agora-Mac-Tutorial-Swift" */;
 			buildPhases = (
 				1A04661C1D5E75A2004987C6 /* Sources */,
 				1A04661D1D5E75A2004987C6 /* Frameworks */,
@@ -129,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = "Agora Mac Tutorial Swift";
+			name = "Agora-Mac-Tutorial-Swift";
 			productName = "Agora Mac Tutorial Swift";
-			productReference = 1A0466201D5E75A2004987C6 /* Agora Mac Tutorial Swift.app */;
+			productReference = 1A0466201D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -151,7 +151,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1A04661B1D5E75A2004987C6 /* Build configuration list for PBXProject "Agora Mac Tutorial Swift" */;
+			buildConfigurationList = 1A04661B1D5E75A2004987C6 /* Build configuration list for PBXProject "Agora-Mac-Tutorial-Swift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -164,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A04661F1D5E75A2004987C6 /* Agora Mac Tutorial Swift */,
+				1A04661F1D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */,
 			);
 		};
 /* End PBXProject section */
@@ -324,13 +324,13 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Swift",
 				);
-				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
+				INFOPLIST_FILE = "Agora-Mac-Tutorial-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Swift",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,13 +352,13 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Swift",
 				);
-				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
+				INFOPLIST_FILE = "Agora-Mac-Tutorial-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Swift",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -372,7 +372,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A04661B1D5E75A2004987C6 /* Build configuration list for PBXProject "Agora Mac Tutorial Swift" */ = {
+		1A04661B1D5E75A2004987C6 /* Build configuration list for PBXProject "Agora-Mac-Tutorial-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A04662D1D5E75A2004987C6 /* Debug */,
@@ -381,7 +381,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A04662F1D5E75A2004987C6 /* Build configuration list for PBXNativeTarget "Agora Mac Tutorial Swift" */ = {
+		1A04662F1D5E75A2004987C6 /* Build configuration list for PBXNativeTarget "Agora-Mac-Tutorial-Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A0466301D5E75A2004987C6 /* Debug */,

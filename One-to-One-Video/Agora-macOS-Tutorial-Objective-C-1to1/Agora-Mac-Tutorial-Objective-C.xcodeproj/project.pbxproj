@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A2BC66C1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora Mac Tutorial Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-Mac-Tutorial-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2BC66F1D5A9C2100C9AD11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A2BC6731D5A9C2100C9AD11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				38EF7E972368278500A6A483 /* README.md */,
-				1A2BC66E1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */,
+				1A2BC66E1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */,
 				1A2BC66D1D5A9C2100C9AD11 /* Products */,
 				A7733D362407988500483870 /* Frameworks */,
 			);
@@ -79,12 +79,12 @@
 		1A2BC66D1D5A9C2100C9AD11 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A2BC66C1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C.app */,
+				1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1A2BC66E1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */ = {
+		1A2BC66E1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */ = {
 			isa = PBXGroup;
 			children = (
 				1A2BC6751D5A9C2100C9AD11 /* VideoChatViewController.h */,
@@ -97,7 +97,7 @@
 				1A2BC6721D5A9C2100C9AD11 /* Supporting Files */,
 				A76C26A1238676D50047E150 /* AgoraRtcKit.framework */,
 			);
-			path = "Agora Mac Tutorial Objective-C";
+			path = "Agora-Mac-Tutorial-Objective-C";
 			sourceTree = "<group>";
 		};
 		1A2BC6721D5A9C2100C9AD11 /* Supporting Files */ = {
@@ -128,9 +128,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A2BC66B1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */ = {
+		1A2BC66B1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A2BC6801D5A9C2100C9AD11 /* Build configuration list for PBXNativeTarget "Agora Mac Tutorial Objective-C" */;
+			buildConfigurationList = 1A2BC6801D5A9C2100C9AD11 /* Build configuration list for PBXNativeTarget "Agora-Mac-Tutorial-Objective-C" */;
 			buildPhases = (
 				1A2BC6681D5A9C2100C9AD11 /* Sources */,
 				1A2BC6691D5A9C2100C9AD11 /* Frameworks */,
@@ -140,9 +140,9 @@
 			);
 			dependencies = (
 			);
-			name = "Agora Mac Tutorial Objective-C";
+			name = "Agora-Mac-Tutorial-Objective-C";
 			productName = "Agora Mac Tutorial Objective-C";
-			productReference = 1A2BC66C1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C.app */;
+			productReference = 1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -161,7 +161,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1A2BC6671D5A9C2100C9AD11 /* Build configuration list for PBXProject "Agora Mac Tutorial Objective-C" */;
+			buildConfigurationList = 1A2BC6671D5A9C2100C9AD11 /* Build configuration list for PBXProject "Agora-Mac-Tutorial-Objective-C" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -174,7 +174,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A2BC66B1D5A9C2100C9AD11 /* Agora Mac Tutorial Objective-C */,
+				1A2BC66B1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */,
 			);
 		};
 /* End PBXProject section */
@@ -333,13 +333,13 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Objective-C",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
 				);
-				INFOPLIST_FILE = "Agora Mac Tutorial Objective-C/Info.plist";
+				INFOPLIST_FILE = "Agora-Mac-Tutorial-Objective-C/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Objective-C",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Objective-C";
@@ -359,13 +359,13 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Objective-C",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
 				);
-				INFOPLIST_FILE = "Agora Mac Tutorial Objective-C/Info.plist";
+				INFOPLIST_FILE = "Agora-Mac-Tutorial-Objective-C/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Objective-C",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Objective-C";
@@ -377,7 +377,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A2BC6671D5A9C2100C9AD11 /* Build configuration list for PBXProject "Agora Mac Tutorial Objective-C" */ = {
+		1A2BC6671D5A9C2100C9AD11 /* Build configuration list for PBXProject "Agora-Mac-Tutorial-Objective-C" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A2BC67E1D5A9C2100C9AD11 /* Debug */,
@@ -386,7 +386,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A2BC6801D5A9C2100C9AD11 /* Build configuration list for PBXNativeTarget "Agora Mac Tutorial Objective-C" */ = {
+		1A2BC6801D5A9C2100C9AD11 /* Build configuration list for PBXNativeTarget "Agora-Mac-Tutorial-Objective-C" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A2BC6811D5A9C2100C9AD11 /* Debug */,

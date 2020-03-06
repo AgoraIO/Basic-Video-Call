@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1ABDEE3D1D383BE4007DE451"
-               BuildableName = "Agora iOS Tutorial.app"
-               BlueprintName = "Agora iOS Tutorial"
-               ReferencedContainer = "container:Agora iOS Tutorial.xcodeproj">
+               BuildableName = "Agora-iOS-Tutorial.app"
+               BlueprintName = "Agora-iOS-Tutorial"
+               ReferencedContainer = "container:Agora-iOS-Tutorial.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,19 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1ABDEE3D1D383BE4007DE451"
-            BuildableName = "Agora iOS Tutorial.app"
-            BlueprintName = "Agora iOS Tutorial"
-            ReferencedContainer = "container:Agora iOS Tutorial.xcodeproj">
+            BuildableName = "Agora-iOS-Tutorial.app"
+            BlueprintName = "Agora-iOS-Tutorial"
+            ReferencedContainer = "container:Agora-iOS-Tutorial.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,13 +54,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1ABDEE3D1D383BE4007DE451"
-            BuildableName = "Agora iOS Tutorial.app"
-            BlueprintName = "Agora iOS Tutorial"
-            ReferencedContainer = "container:Agora iOS Tutorial.xcodeproj">
+            BuildableName = "Agora-iOS-Tutorial.app"
+            BlueprintName = "Agora-iOS-Tutorial"
+            ReferencedContainer = "container:Agora-iOS-Tutorial.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1ABDEE3D1D383BE4007DE451"
-            BuildableName = "Agora iOS Tutorial.app"
-            BlueprintName = "Agora iOS Tutorial"
-            ReferencedContainer = "container:Agora iOS Tutorial.xcodeproj">
+            BuildableName = "Agora-iOS-Tutorial.app"
+            BlueprintName = "Agora-iOS-Tutorial"
+            ReferencedContainer = "container:Agora-iOS-Tutorial.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

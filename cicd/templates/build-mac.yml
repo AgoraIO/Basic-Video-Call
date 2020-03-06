@@ -15,6 +15,8 @@ jobs:
       - group: AgoraKeys
 
     steps:
+      - script: cd cicd/scripts && chmod +x sdkdownload.sh && ./sdkdownload.sh ${{ parameters.sdkurl }} ${{ parameters.workingDirectory}}/${{ parameters.scheme }}
+    
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
           AGORA_APP_ID: $(agora.appId)
