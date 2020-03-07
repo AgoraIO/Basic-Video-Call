@@ -24,11 +24,11 @@ jobs:
       
       - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
 
-      - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.app app && mv *.xcarchive app 
+      - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.app app && mv *.xcarchive app && zip ${{ parameters.displayName }}.zip app
 
       - task: PublishBuildArtifacts@1
         inputs:
-          PathtoPublish: ${{ parameters.workingDirectory }}/app
+          PathtoPublish: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
           ArtifactName: ${{ parameters.displayName }}
 
       - template: github-release.yml
