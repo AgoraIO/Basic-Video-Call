@@ -24,7 +24,7 @@ jobs:
       
       - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
 
-      - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.app app && mv *.xcarchive app && zip ${{ parameters.displayName }}.zip app
+      - script: cd ${{ parameters.workingDirectory }} && mkdir app && mv *.app app && mv *.xcarchive app && zip -r ${{ parameters.displayName }}.zip app
 
       - task: PublishBuildArtifacts@1
         inputs:
