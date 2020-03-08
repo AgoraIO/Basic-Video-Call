@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>InRoom</class>
+ <widget class="QMainWindow" name="InRoom">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1366</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color:#999999;</string>
+   </property>
+   <widget class="QWidget" name="widget_r1" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>94</y>
+      <width>200</width>
+      <height>150</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/uiresource/allmute remote.png);
+border-color: #D8D8D8;
+border-size:1px;
+border-radius:2px;</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_r2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>254</y>
+      <width>200</width>
+      <height>150</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/uiresource/allmute remote.png);
+border-color: #D8D8D8;
+border-size:1px;
+border-radius:2px;</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_r3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>414</y>
+      <width>200</width>
+      <height>150</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/uiresource/allmute remote.png);
+border-color: #D8D8D8;
+border-size:1px;
+border-radius:2px;</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_l" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1366</width>
+      <height>768</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>543</x>
+       <y>228</y>
+       <width>280</width>
+       <height>280</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/uiresource/allmute.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

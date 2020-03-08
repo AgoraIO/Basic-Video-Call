@@ -1,0 +1,12 @@
+Win32/
+sdk/
+debug/
+release/
+*.sdf
+*.opensdf
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.ini
+ui_*

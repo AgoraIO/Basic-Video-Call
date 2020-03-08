@@ -1,35 +1,78 @@
 package io.agora.openvcall;
 
 import android.app.Application;
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import io.agora.openvcall.model.AGEventHandler;
 import io.agora.openvcall.model.CurrentUserSettings;
-import io.agora.openvcall.model.WorkerThread;
+import io.agora.openvcall.model.EngineConfig;
+import io.agora.openvcall.model.MyEngineEventHandler;
+import io.agora.rtc.Constants;
+import io.agora.rtc.RtcEngine;
 
 public class AGApplication extends Application {
+    private CurrentUserSettings mVideoSettings = new CurrentUserSettings();
 
-    private WorkerThread mWorkerThread;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private RtcEngine mRtcEngine;
+    private EngineConfig mConfig;
+    private MyEngineEventHandler mEventHandler;
 
-    public synchronized void initWorkerThread() {
-        if (mWorkerThread == null) {
-            mWorkerThread = new WorkerThread(getApplicationContext());
-            mWorkerThread.start();
+    public RtcEngine rtcEngine() {
+        return mRtcEngine;
+    }
 
-            mWorkerThread.waitForReady();
+    public EngineConfig config() {
+        return mConfig;
+    }
+
+    public CurrentUserSettings userSettings() {
+        return mVideoSettings;
+    }
+
+    public void addEventHandler(AGEventHandler handler) {
+        mEventHandler.addEventHandler(handler);
+    }
+
+    public void remoteEventHandler(AGEventHandler handler) {
+        mEventHandler.removeEventHandler(handler);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        createRtcEngine();
+    }
+
+    private void createRtcEngine() {
+        Context context = getApplicationContext();
+        String appId = context.getString(R.string.agora_app_id);
+        if (TextUtils.isEmpty(appId)) {
+            throw new RuntimeException("NEED TO use your App ID, get your own ID at https://dashboard.agora.io/");
         }
-    }
 
-    public synchronized WorkerThread getWorkerThread() {
-        return mWorkerThread;
-    }
-
-    public synchronized void deInitWorkerThread() {
-        mWorkerThread.exit();
+        mEventHandler = new MyEngineEventHandler();
         try {
-            mWorkerThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            mRtcEngine = RtcEngine.create(context, appId, mEventHandler);
+        } catch (Exception e) {
+            log.error(Log.getStackTraceString(e));
+            throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
         }
-        mWorkerThread = null;
+
+        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION);
+        mRtcEngine.enableVideo();
+        mRtcEngine.enableAudioVolumeIndication(200, 3, false);
+
+        mConfig = new EngineConfig();
     }
 
-    public static final CurrentUserSettings mVideoSettings = new CurrentUserSettings();
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 }

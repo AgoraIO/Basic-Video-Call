@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 protocol SettingsVCDataSource: NSObjectProtocol {
     func settingsVCNeedSettings() -> Settings
@@ -59,6 +59,12 @@ class SettingsViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
             doFrameRatePressed()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 229.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 1)
+        return view
     }
     
     deinit {
@@ -127,6 +133,13 @@ extension SettingsViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return frameRateList[row].description
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        frameRatePickerView.subviews[1].backgroundColor = UIColor.lightGray
+        frameRatePickerView.subviews[2].backgroundColor = UIColor.lightGray
+        let frameRate = frameRateList[row].description
+        return NSAttributedString(string: frameRate, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
 }
 

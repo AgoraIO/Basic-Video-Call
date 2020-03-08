@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 struct StatisticsInfo {
     struct LocalInfo {

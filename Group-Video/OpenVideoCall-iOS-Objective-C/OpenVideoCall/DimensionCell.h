@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 @interface DimensionCell : UICollectionViewCell
 - (void)updateWithDimension:(CGSize)dimension isSelected:(BOOL)isSelected;

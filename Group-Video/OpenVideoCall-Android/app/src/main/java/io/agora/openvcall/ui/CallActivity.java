@@ -117,13 +117,9 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
     @Override
     protected void initUIandEvent() {
-        event().addEventHandler(this);
+        addEventHandler(this);
+        String channelName = getIntent().getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME);
 
-        Intent i = getIntent();
-
-        String channelName = i.getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME);
-
-        // programmatically show channel name
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             TextView channelNameView = ((TextView) findViewById(R.id.ovc_page_title));
@@ -142,7 +138,6 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container);
         mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
-
             @Override
             public void onItemClick(View view, int position) {
                 onBigVideoViewClicked(view, position);
@@ -150,6 +145,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
             @Override
             public void onItemLongClick(View view, int position) {
+
             }
 
             @Override
@@ -159,27 +155,24 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
         });
 
         SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
-        rtcEngine().setupLocalVideo(new VideoCanvas(surfaceV, VideoCanvas.RENDER_MODE_HIDDEN, 0));
+        preview(true, surfaceV, 0);
         surfaceV.setZOrderOnTop(false);
         surfaceV.setZOrderMediaOverlay(false);
 
         mUidsList.put(0, surfaceV); // get first surface view
 
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
-        worker().preview(true, surfaceV, 0);
 
         initMessageList();
-
         notifyMessageChanged(new Message(new User(0, null), "start join " + channelName + " as " + (config().mUid & 0xFFFFFFFFL)));
 
-        worker().joinChannel(channelName, config().mUid);
+        joinChannel(channelName, config().mUid);
 
         optional();
     }
 
     private void onBigVideoViewClicked(View view, int position) {
         log.debug("onItemClick " + view + " " + position + " " + mLayoutType);
-
         toggleFullscreen();
     }
 
@@ -314,7 +307,6 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
         log.debug("onClickHideIME " + view);
 
         closeIME(findViewById(R.id.msg_content));
-
         findViewById(R.id.msg_input_container).setVisibility(View.GONE);
         findViewById(R.id.bottom_action_container).setVisibility(View.VISIBLE);
     }
@@ -332,9 +324,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
     private void notifyMessageChanged(Message msg) {
         mMsgList.add(msg);
-
         int MAX_MESSAGE_COUNT = 16;
-
         if (mMsgList.size() > MAX_MESSAGE_COUNT) {
             int toRemove = mMsgList.size() - MAX_MESSAGE_COUNT;
             for (int i = 0; i < toRemove; i++) {
@@ -383,8 +373,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
     private void doConfigEngine(String encryptionKey, String encryptionMode) {
         VideoEncoderConfiguration.VideoDimensions videoDimension = ConstantApp.VIDEO_DIMENSIONS[getVideoEncResolutionIndex()];
         VideoEncoderConfiguration.FRAME_RATE videoFps = ConstantApp.VIDEO_FPS[getVideoEncFpsIndex()];
-
-        worker().configEngine(videoDimension, videoFps, encryptionKey, encryptionMode);
+        configEngine(videoDimension, videoFps, encryptionKey, encryptionMode);
     }
 
     public void onSwitchCameraClicked(View view) {
@@ -401,10 +390,10 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
         Constant.BEAUTY_EFFECT_ENABLED = !Constant.BEAUTY_EFFECT_ENABLED;
 
         if (Constant.BEAUTY_EFFECT_ENABLED) {
-            worker().setBeautyEffectParameters(Constant.BEAUTY_EFFECT_DEFAULT_LIGHTNESS, Constant.BEAUTY_EFFECT_DEFAULT_SMOOTHNESS, Constant.BEAUTY_EFFECT_DEFAULT_REDNESS);
-            worker().enablePreProcessor();
+            setBeautyEffectParameters(Constant.BEAUTY_EFFECT_DEFAULT_LIGHTNESS, Constant.BEAUTY_EFFECT_DEFAULT_SMOOTHNESS, Constant.BEAUTY_EFFECT_DEFAULT_REDNESS);
+            enablePreProcessor();
         } else {
-            worker().disablePreProcessor();
+            disablePreProcessor();
         }
 
         ImageView iv = (ImageView) view;
@@ -415,16 +404,14 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
     @Override
     protected void deInitUIandEvent() {
         optionalDestroy();
-
         doLeaveChannel();
-        event().removeEventHandler(this);
-
+        removeEventHandler(this);
         mUidsList.clear();
     }
 
     private void doLeaveChannel() {
-        worker().leaveChannel(config().mChannel);
-        worker().preview(false, null, 0);
+        leaveChannel(config().mChannel);
+        preview(false, null, 0);
     }
 
     public void onHangupClicked(View view) {
@@ -585,37 +572,16 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
     @Override
     public void onJoinChannelSuccess(String channel, final int uid, int elapsed) {
         log.debug("onJoinChannelSuccess " + channel + " " + (uid & 0xFFFFFFFFL) + " " + elapsed);
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (isFinishing()) {
-                    return;
-                }
-
-                notifyMessageChanged(new Message(new User(0, null), "join " + channel + " success as " + (uid & 0xFFFFFFFFL) + " in " + elapsed + "ms"));
-
-                SurfaceView local = mUidsList.remove(0);
-
-                if (local == null) {
-                    return;
-                }
-
-                mUidsList.put(uid, local);
-            }
-        });
     }
 
     @Override
     public void onUserOffline(int uid, int reason) {
         log.debug("onUserOffline " + (uid & 0xFFFFFFFFL) + " " + reason);
-
         doRemoveRemoteUi(uid);
     }
 
     @Override
     public void onExtraCallback(final int type, final Object... data) {
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

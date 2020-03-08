@@ -22,29 +22,30 @@
 
 ### 创建Agora账号并获取AppId
 
-在编译和启动实例程序前，您需要首先获取一个可用的App ID:
+在编译和启动实例程序前，您需要首先获取一个可用的App Id:
+
 1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
-3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
+3. 复制后台的 **App Id** 并备注，稍后启动应用时会用到它
 4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
 5. 将 AppID 和 Token 填写进 AppID.swift
 
     ```
-    let AppID: String = <#Your App ID#>
+    let AppID: String = <#Your App Id#>
     // 如果你没有打开Token功能，token可以直接给nil
     let Token: String? = <#Temp Token#>
     ```
 
 ### 集成 Agora 视频 SDK
 
-在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹下的 
+1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到本项目的 Agora Mac Tutorial Swift 文件夹下。
+
   - AgoraRtcEngineKit.framework
   - AgoraRtcCryptoLoader.framework
   - libcrypto.a
-三个文件复制到本项目的 Agora Mac Tutorial Swift 文件夹下。
-最后使用 XCode 打开 Agora Mac Tutorial Swift.xcodeproj，设置有效的开发者签名后即可运行。
 
+2. 打开 Xcode 后，运行本项目。
 
 ## 联系我们
 

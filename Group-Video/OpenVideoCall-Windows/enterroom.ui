@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>wgEnterRoom</class>
+ <widget class="QWidget" name="wgEnterRoom">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1366</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	width:1366px;
+	height:768px;
+}</string>
+  </property>
+  <widget class="QLabel" name="lbChannel">
+   <property name="geometry">
+    <rect>
+     <x>618</x>
+     <y>20</y>
+     <width>200</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>HelveticaNeue</family>
+     <pointsize>-1</pointsize>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	width:200px;
+	height:44px;
+
+	font-size:16px;
+	font-family:HelveticaNeue;
+	color:rgba(255,255,255,1);
+	line-height:18px;
+}</string>
+   </property>
+   <property name="text">
+    <string>baluoteliz</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbParam">
+   <property name="geometry">
+    <rect>
+     <x>1024</x>
+     <y>37</y>
+     <width>264</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	width:264px;
+	height:32px;
+	
+	image: url(:/uiresource/Groupparam.png);
+	border-radius:4px;
+	opacity:0.4;
+	font-size:12px;
+	font-family:HelveticaNeue;
+	color:rgba(238,238,238,1);
+	line-height:18px;
+}</string>
+   </property>
+   <property name="text">
+    <string>SD-RTN: 10000ms. Video: 15fps 640x480</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="rbCamera">
+   <property name="geometry">
+    <rect>
+     <x>1296</x>
+     <y>558</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator{
+	width:50px;
+	height:50px;
+}
+
+QCheckBox:indicator:unchecked:!hover {
+	image: url(:/uiresource/icon-camera.png);
+}
+QCheckBox:indicator:unchecked:hover {
+	image: url(:/uiresource/icon-camera on.png);
+}
+
+QCheckBox:indicator:checked:!hover {
+	image: url(:/uiresource/icon-camera off.png);
+}
+QCheckBox:indicator:checked:hover {
+	image: url(:/uiresource/icon-camera off.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>RadioButton</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="rbMic">
+   <property name="geometry">
+    <rect>
+     <x>1296</x>
+     <y>628</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator{
+	width:50px;
+	height:50px;
+}
+
+QCheckBox:indicator:unchecked:!hover {
+	image: url(:/uiresource/icon-micorophone.png);
+}
+QCheckBox:indicator:unchecked:hover {
+	image: url(:/uiresource/icon-micorophone on.png);
+}
+
+QCheckBox:indicator:checked:!hover {
+	image: url(:/uiresource/icon-micorophone off.png);
+}
+QCheckBox:indicator:checked:hover {
+	image: url(:/uiresource/icon-micorophone off.png);
+}</string>
+   </property>
+   <property name="text">
+    <string>RadioButton</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_count">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>574</y>
+     <width>200</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">width:200px;
+height:32px;
+image: url(:/uiresource/count.png);
+border-radius:4px;
+opacity:0.4;
+font-size:14px;
+font-family:HelveticaNeue;
+color:#ffffff;
+line-height:16px;</string>
+   </property>
+   <property name="text">
+    <string>Total 7 Person</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_r1">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>214</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">width:83px;
+height:20px;
+image: url(:/uiresource/remoteuid.png);
+border-radius:10px;
+font-size:12px;
+font-family:HelveticaNeue;
+color:#ffffff;
+line-height:14px;</string>
+   </property>
+   <property name="text">
+    <string>   uid:r1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_r3">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>534</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">width:83px;
+height:20px;
+image: url(:/uiresource/remoteuid.png);
+border-radius:10px;
+font-size:12px;
+font-family:HelveticaNeue;
+color:#ffffff;
+line-height:14px;</string>
+   </property>
+   <property name="text">
+    <string>   uid:r3</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lb_r2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>374</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">width:83px;
+height:20px;
+image: url(:/uiresource/remoteuid.png);
+border-radius:10px;
+font-size:12px;
+font-family:HelveticaNeue;
+color:#ffffff;
+line-height:14px;</string>
+   </property>
+   <property name="text">
+    <string>   uid:r2</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnLeave">
+   <property name="geometry">
+    <rect>
+     <x>1296</x>
+     <y>698</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:!hover{
+	border-image: url(:/uiresource/icon-hang up hover.png);
+}
+QPushButton:hover{
+	border-image: url(:/uiresource/icon-hang up.png);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

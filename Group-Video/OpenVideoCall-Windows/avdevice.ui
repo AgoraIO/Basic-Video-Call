@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AVDevice</class>
+ <widget class="QMainWindow" name="AVDevice">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+image: url(:/uiresource/OVC-win-config.png);
+}</string>
+   </property>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>25</y>
+      <width>36</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+width:36px;
+height:36px;
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}
+QPushButton:hover{
+width:36px;
+height:36px;
+border-image: url(:/uiresource/icon-back hover.png);
+image: url(:/uiresource/icon-back hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_min">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+image: url(:/uiresource/icon-min default.png);
+border-image: url(:/uiresource/icon-min default.png);
+}
+
+QPushButton:hover {
+image: url(:/uiresource/icon-min hover.png);
+border-image: url(:/uiresource/icon-min hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>726</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+image: url(:/uiresource/icon-close default.png);
+border-image: url(:/uiresource/icon-close default.png);
+}
+
+QPushButton:hover {
+image: url(:/uiresource/icon-close hover.png);
+border-image: url(:/uiresource/icon-close hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="text_name">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>425</x>
+      <y>103</y>
+      <width>317</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/uiresource/edit1.png);
+font-size:16px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>80</y>
+      <width>350</width>
+      <height>426</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollArea{
+	background-color: rgb(255, 255, 255);
+    border:none;
+};</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-141</y>
+       <width>340</width>
+       <height>567</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayoutName">
+        <item>
+         <widget class="QLabel" name="label_Name">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lb_channel">
+          <property name="font">
+           <font>
+            <family>HelveticaNeue</family>
+            <pointsize>-1</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/uiresource/edit1.png);
+image: url(:/uiresource/edit1.png);
+font-size:16px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:18px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_Name">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayoutResolution">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px;
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Resolution</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cb_solution">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>-1</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_resolution">
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="horizontalLayout_AudioDevice">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Audio Device</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cb_audio">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_AudioDevice">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_VideoDeice">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Video Device</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cb_video">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_VideoDevice">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_Speaker">
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Speaker</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cb_speaker">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_Speaker">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_Audio">
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 14px; 
+
+};</string>
+          </property>
+          <property name="text">
+           <string>Audio</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_audio">
+          <property name="styleSheet">
+           <string notr="true">QPushButton:!pressed {
+width:50px;
+height:30px;
+border-radius:19px;
+image: url(:/uiresource/switch-open.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 14px; 
+};</string>
+          </property>
+          <property name="text">
+           <string>Video</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_video">
+          <property name="styleSheet">
+           <string notr="true">QPushButton:!pressed {
+width:50px;
+height:30px;
+border-radius:19px;
+image: url(:/uiresource/switch-open.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_Audio">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_Video">
+        <item>
+         <widget class="QLabel" name="label_LogFilter">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144); 
+};</string>
+          </property>
+          <property name="text">
+           <string>Log Filter</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cb_log">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_Video">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_Beauty">
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Beauty Effect</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="optVideo_Beauty">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton:!hover {
+border-image: url(:/uiresource/switch-off.png);
+background-image: url(:/uiresource/switch-off.png);
+}
+
+QPushButton:hover {
+border-image: url(:/uiresource/switch-off.png);
+background-image: url(:/uiresource/switch-off.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayoutResolution_2">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Contrast Level</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cbContrastLevel">
+          <property name="minimumSize">
+           <size>
+            <width>194</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>194</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:hover {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox:pressed {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+padding: 3px 0x 3px 5px;
+border-image: url(:/uiresource/box-01.png);
+}
+
+QComboBox::drop-down {
+subcontrol-origin: padding; 
+subcontrol-position: top right; width: 30 px; 
+border: 0px;
+}
+
+QComboBox::down-arrow::!on {
+image: url(:/uiresource/dropdow-01.png);
+}
+QComboBox::down-arrow::hover {
+image: url(:/uiresource/dropdown-02.png);
+}
+QComboBox::down-arrow::on {
+image: url(:/uiresource/dropdown-03.png);
+}
+
+QListView {
+font-family: &quot;微软雅黑&quot;; 
+font-size: 13px; 
+outline: 0px;
+background-image: url(:/uiresource/list.png);
+border-image: url(:/uiresource/list.png);
+image: url(:/uiresource/list.png);
+}
+
+QListView::item {
+padding: 3px 0x 3px 5px; 
+border-width: 0px;
+}
+
+QListView::item:selected {
+background-color: rgb(74, 144, 226);
+}
+
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_Lightening">
+        <item>
+         <widget class="QLabel" name="labelLightening">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Lightening(0.00)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="horizontalSliderLightening">
+          <property name="styleSheet">
+           <string notr="true">QSlider::groove:horizontal {                           
+     border:1px;
+     border-color: rgba(240,240,240,255);
+     border-radius:3px;                  
+     height: 6px;                                     
+     margin: 0px 0;                                   
+     left: 4px; right: 4px;
+     background: rgba(240,240,240,255);                   
+ }     
+QSlider::handle:horizontal { 
+  
+	background-image: url(:/uiresource/slider.png);
+    background-repeat: none; background-position: center;
+    width: 20px;
+    height: 20px;
+    margin: -9px 0;
+}
+QSlider::sub-page:horizontal{   
+     border:1px;
+     border-color: #44A2FC;
+    border-radius:3px;                    
+    background:  #44A2FC;
+};</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="pageStep">
+           <number>10</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_Smooth">
+        <item>
+         <widget class="QLabel" name="labelSmoothness">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Smoothness(0.00)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="horizontalSlider_Smoothness">
+          <property name="styleSheet">
+           <string notr="true">QSlider::groove:horizontal {                           
+     border:1px;
+     border-color: rgba(240,240,240,255);
+     border-radius:3px;                  
+     height: 6px;                                     
+     margin: 0px 0;                                   
+     left: 4px; right: 4px;
+     background: rgba(240,240,240,255);                   
+ }     
+QSlider::handle:horizontal { 
+  
+	background-image: url(:/uiresource/slider.png);
+    background-repeat: none; background-position: center;
+    width: 20px;
+    height: 20px;
+    margin: -9px 0;
+}
+QSlider::sub-page:horizontal{   
+     border:1px;
+     border-color: #44A2FC;
+    border-radius:3px;                    
+    background:  #44A2FC;
+};</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="pageStep">
+           <number>10</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_Redness">
+        <item>
+         <widget class="QLabel" name="labelRedness">
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+font-family: &quot;Arial&quot;; 
+font-size: 12px; 
+color:rgb(144,144,144);
+};</string>
+          </property>
+          <property name="text">
+           <string>Redness(0.00)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="horizontalSlider_Redness">
+          <property name="styleSheet">
+           <string notr="true">QSlider::groove:horizontal {                           
+     border:1px;
+     border-color: rgba(240,240,240,255);
+     border-radius:3px;                  
+     height: 6px;                                     
+     margin: 0px 0;                                   
+     left: 4px; right: 4px;
+     background: rgba(240,240,240,255);                   
+ }     
+QSlider::handle:horizontal { 
+  
+	background-image: url(:/uiresource/slider.png);
+    background-repeat: none; background-position: center;
+    width: 20px;
+    height: 20px;
+    margin: -9px 0;
+}
+QSlider::sub-page:horizontal{   
+     border:1px;
+     border-color: #44A2FC;
+    border-radius:3px;                    
+    background:  #44A2FC;
+};</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="pageStep">
+           <number>10</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_BeautyEnd">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-top: 1px solid rgb(234, 234, 234);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

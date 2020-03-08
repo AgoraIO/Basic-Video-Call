@@ -57,6 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self agoraKit];
+    [self updateViews];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -112,6 +113,16 @@
     // view elements initialization
     self.encryptionButton.layer.borderColor = UIColor.AGGray.CGColor;
     self.testNetworkButton.layer.borderColor = UIColor.AGGray.CGColor;
+    
+    UIColor *placeholderColor = [UIColor colorWithRed:196.0 / 255.0 green:196.0 / 255.0 blue:198.0 / 255.0 alpha:1];
+    NSDictionary *attributes = @{NSForegroundColorAttributeName : placeholderColor};
+    NSString *roomNamePlaceholder = @"Channel Name";
+    NSString *encryptionPlaceholder = @"Encryption Key";
+    
+    self.roomNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:roomNamePlaceholder
+                                                                                   attributes:attributes];
+    self.encryptionTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:encryptionPlaceholder
+                                                                                     attributes:attributes];
 }
 
 - (void)enterRoom {

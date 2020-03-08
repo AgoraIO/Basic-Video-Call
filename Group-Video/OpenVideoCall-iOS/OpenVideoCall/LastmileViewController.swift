@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 protocol LastmileVCDataSource: NSObjectProtocol {
     func lastmileVCNeedAgoraKit() -> AgoraRtcEngineKit
@@ -52,8 +52,9 @@ class LastmileViewController: UITableViewController {
         addActivityView()
         agoraKit.delegate = self
         isLastmileProbeTesting = true
+        view.backgroundColor = UIColor.white
     }
-    
+       
     deinit {
         isLastmileProbeTesting = false
     }
@@ -78,22 +79,6 @@ extension LastmileViewController {
         let rightItem = UIBarButtonItem(customView: activityView)
         navigationItem.rightBarButtonItem = rightItem
         self.activityView = activityView
-    }
-}
-
-extension AgoraNetworkQuality {
-    func description() -> String {
-        switch self {
-        case .excellent:   return "excellent"
-        case .good:        return "good"
-        case .poor:        return "poor"
-        case .bad:         return "bad"
-        case .vBad:        return "very bad"
-        case .down:        return "down"
-        case .unsupported: return "unsupported"
-        case .detecting:   return "detecting"
-        case .unknown:     return "unknown"
-        }
     }
 }
 
