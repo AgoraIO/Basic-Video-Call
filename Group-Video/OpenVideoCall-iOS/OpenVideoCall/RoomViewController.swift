@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AgoraRtcEngineKit
+import AgoraRtcKit
+import AgoraRtcCryptoLoader
 
 protocol RoomVCDataSource: NSObjectProtocol {
     func roomVCNeedAgoraKit() -> AgoraRtcEngineKit
@@ -16,7 +17,7 @@ protocol RoomVCDataSource: NSObjectProtocol {
 
 class RoomViewController: UIViewController {
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerView: AGEVideoContainer!
     @IBOutlet weak var messageTableContainerView: UIView!
     
     @IBOutlet weak var cameraButton: UIButton!
@@ -129,21 +130,12 @@ class RoomViewController: UIViewController {
     
     private var videoSessions = [VideoSession]() {
         didSet {
-            // videoSessions and videoViewLayouter manage all render views
-            let animation = videoSessions.count > 0 ? true : false
-            updateInterface(with: self.videoSessions, targetSize: containerView.frame.size, animation: animation)
+            updateBroadcastersView()
         }
     }
     
-    private var doubleClickFullSession: VideoSession? {
-        didSet {
-            if videoSessions.count >= 3 && doubleClickFullSession != oldValue {
-                updateInterface(with: videoSessions, targetSize: containerView.frame.size, animation: true)
-            }
-        }
-    }
+    private let maxVideoSession = 4
     
-    private let videoViewLayouter = VideoViewLayouter()
     private let cryptoLoader = AgoraRtcCryptoLoader()
     
     private weak var optionsVC: RoomOptionsViewController?
@@ -203,17 +195,6 @@ class RoomViewController: UIViewController {
     @IBAction func doCameraPressed(_ sender: UIButton) {
         isSwitchCamera.toggle()
     }
-    
-    @IBAction func doBackDoubleTapped(_ sender: UITapGestureRecognizer) {
-        if doubleClickFullSession == nil {
-            // full screen display after be double clicked
-            if let tappedIndex = videoViewLayouter.reponseViewIndex(of: sender.location(in: containerView)) {
-                doubleClickFullSession = videoSessions[tappedIndex]
-            }
-        } else {
-            doubleClickFullSession = nil
-        }
-    }
 }
 
 // MARK: - AgoraRtcEngineKit
@@ -254,11 +235,9 @@ private extension RoomViewController {
     
     func addLocalSession() {
         let localSession = VideoSession.localSession()
+        localSession.updateInfo(fps: settings.frameRate.rawValue)
         videoSessions.append(localSession)
         agoraKit.setupLocalVideo(localSession.canvas)
-        
-        let mediaInfo = MediaInfo(dimension: settings.dimension, fps: settings.frameRate.rawValue)
-        localSession.mediaInfo = mediaInfo
     }
     
     func leaveChannel() {
@@ -299,20 +278,19 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     
     // first remote video frame
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid: UInt, size: CGSize, elapsed: Int) {
+        guard videoSessions.count <= maxVideoSession else {
+            return
+        }
+        
         let userSession = videoSession(of: uid)
-        let sie = size.fixedSize(with: containerView.bounds.size)
-        userSession.size = sie
-        userSession.updateMediaInfo(resolution: size)
+        userSession.updateInfo(resolution: size)
         agoraKit.setupRemoteVideo(userSession.canvas)
     }
     
     // first local video frame
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstLocalVideoFrameWith size: CGSize, elapsed: Int) {
         if let selfSession = videoSessions.first {
-            let fixedSize = size.fixedSize(with: containerView.bounds.size)
-            selfSession.size = fixedSize
-            updateInterface(with: videoSessions, targetSize: containerView.frame.size, animation: false)
-            info(string: "local video dimension: \(size.width) x \(size.height)")
+            selfSession.updateInfo(resolution: size)
         }
     }
     
@@ -327,9 +305,6 @@ extension RoomViewController: AgoraRtcEngineDelegate {
         if let indexToDelete = indexToDelete {
             let deletedSession = videoSessions.remove(at: indexToDelete)
             deletedSession.hostingView.removeFromSuperview()
-            if let doubleClickFullSession = doubleClickFullSession , doubleClickFullSession == deletedSession {
-                self.doubleClickFullSession = nil
-            }
             
             // release canvas's view
             deletedSession.canvas.view = nil
@@ -343,8 +318,8 @@ extension RoomViewController: AgoraRtcEngineDelegate {
     
     // remote stat
     func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStats stats: AgoraRtcRemoteVideoStats) {
-        if let session = fetchSession(of: stats.uid) {
-            session.updateMediaInfo(resolution: CGSize(width: CGFloat(stats.width), height: CGFloat(stats.height)), fps: Int(stats.rendererOutputFrameRate))
+        if let session = getSession(of: stats.uid) {
+            session.updateVideoStats(stats)
         }
     }
     
@@ -370,48 +345,45 @@ extension RoomViewController: RoomOptionsVCDataSource {
 // MARK: - Private
 private extension RoomViewController {
     // Update views
-    func updateInterface(with sessions: [VideoSession], targetSize: CGSize, animation: Bool) {
-        if animation {
-            UIView.animate(withDuration: 0.3, delay: 0, options: .beginFromCurrentState, animations: {[weak self] () -> Void in
-                self?.updateInterface(with: sessions, targetSize: targetSize)
-                self?.view.layoutIfNeeded()
-                }, completion: nil)
+    func updateBroadcastersView() {
+        // video views layout
+        if videoSessions.count == maxVideoSession {
+            containerView.reload(level: 0, animated: true)
         } else {
-            updateInterface(with: sessions, targetSize: targetSize)
+            var rank: Int
+            var row: Int
+            
+            if videoSessions.count == 0 {
+                return
+            } else if videoSessions.count == 1 {
+                rank = 1
+                row = 1
+            } else if videoSessions.count == 2 {
+                rank = 1
+                row = 2
+            } else {
+                rank = 2
+                row = Int(ceil(Double(videoSessions.count) / Double(rank)))
+            }
+            
+            let itemWidth = CGFloat(1.0) / CGFloat(rank)
+            let itemHeight = CGFloat(1.0) / CGFloat(row)
+            let itemSize = CGSize(width: itemWidth, height: itemHeight)
+            let layout = AGEVideoLayout(level: 0)
+                        .itemSize(.scale(itemSize))
+            
+            containerView
+                .listCount { [unowned self] (_) -> Int in
+                    return self.videoSessions.count
+                }.listItem { [unowned self] (index) -> UIView in
+                    return self.videoSessions[index.item].hostingView
+                }
+            
+            containerView.setLayouts([layout], animated: true)
         }
     }
     
-    func updateInterface(with sessions: [VideoSession], targetSize: CGSize) {
-        guard !sessions.isEmpty else {
-            return
-        }
-        
-        let selfSession = sessions.first!
-        videoViewLayouter.selfView = selfSession.hostingView
-        videoViewLayouter.selfSize = selfSession.size
-        videoViewLayouter.targetSize = targetSize
-        var peerVideoViews = [VideoView]()
-        for i in 1..<sessions.count {
-            peerVideoViews.append(sessions[i].hostingView)
-        }
-        videoViewLayouter.videoViews = peerVideoViews
-        videoViewLayouter.fullView = doubleClickFullSession?.hostingView
-        videoViewLayouter.containerView = containerView
-        
-        videoViewLayouter.layoutVideoViews()
-        
-        updateSelfViewVisiable()
-        
-        // Only three people or more can switch the layout
-        if sessions.count >= 3 {
-            backgroundDoubleTap.isEnabled = true
-        } else {
-            backgroundDoubleTap.isEnabled = false
-            doubleClickFullSession = nil
-        }
-    }
-    
-    func fetchSession(of uid: UInt) -> VideoSession? {
+    func getSession(of uid: UInt) -> VideoSession? {
         for session in videoSessions {
             if session.uid == uid {
                 return session
@@ -421,7 +393,7 @@ private extension RoomViewController {
     }
     
     func videoSession(of uid: UInt) -> VideoSession {
-        if let fetchedSession = fetchSession(of: uid) {
+        if let fetchedSession = getSession(of: uid) {
             return fetchedSession
         } else {
             let newSession = VideoSession(uid: uid)
@@ -443,7 +415,7 @@ private extension RoomViewController {
     }
     
     func setVideoMuted(_ muted: Bool, forUid uid: UInt) {
-        fetchSession(of: uid)?.isVideoMuted = muted
+        getSession(of: uid)?.isVideoMuted = muted
     }
     
     func setIdleTimerActive(_ active: Bool) {
@@ -465,29 +437,3 @@ private extension RoomViewController {
         messageVC?.append(alert: string)
     }
 }
-
-extension RoomViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.orientation = .all
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.orientation = .portrait
-        }
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        for session in videoSessions {
-            if let sessionSize = session.size {
-                session.size = sessionSize.fixedSize(with: size)
-            }
-        }
-        updateInterface(with: videoSessions, targetSize: size, animation: true)
-    }
-}
-

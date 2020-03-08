@@ -1,0 +1,401 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A2BC6711D5A9C2100C9AD11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */; };
+		1A2BC6741D5A9C2100C9AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6731D5A9C2100C9AD11 /* main.m */; };
+		1A2BC6771D5A9C2100C9AD11 /* VideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */; };
+		1A2BC6791D5A9C2100C9AD11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2BC6781D5A9C2100C9AD11 /* Assets.xcassets */; };
+		1A2BC69D1D5A9E6700C9AD11 /* AppID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69C1D5A9E6700C9AD11 /* AppID.m */; };
+		1A2BC6A01D5B05A800C9AD11 /* DeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */; };
+		1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A309D611D5CE05500021BB8 /* Main.storyboard */; };
+		38B9A0D723D47CB300CE8C27 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A1238676D50047E150 /* AgoraRtcKit.framework */; };
+		38EF7E982368278500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E972368278500A6A483 /* README.md */; };
+		A7733D382407988500483870 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D372407988500483870 /* Accelerate.framework */; };
+		A7733D3A2407989500483870 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D392407989500483870 /* CoreWLAN.framework */; };
+		A7733D3C240798A300483870 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D3B2407989D00483870 /* libc++.tbd */; };
+		A7733D3E240798B100483870 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D3D240798AB00483870 /* libresolv.tbd */; };
+		A7733D40240798C600483870 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D3F240798C600483870 /* SystemConfiguration.framework */; };
+		A7733D42240798CD00483870 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D41240798CD00483870 /* VideoToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-Mac-Tutorial-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2BC66F1D5A9C2100C9AD11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1A2BC6731D5A9C2100C9AD11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A2BC6751D5A9C2100C9AD11 /* VideoChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoChatViewController.h; sourceTree = "<group>"; };
+		1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoChatViewController.m; sourceTree = "<group>"; };
+		1A2BC6781D5A9C2100C9AD11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A2BC67D1D5A9C2100C9AD11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A2BC69B1D5A9E5400C9AD11 /* AppID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppID.h; sourceTree = "<group>"; };
+		1A2BC69C1D5A9E6700C9AD11 /* AppID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppID.m; sourceTree = "<group>"; };
+		1A2BC69E1D5B058C00C9AD11 /* DeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSelectionViewController.h; sourceTree = "<group>"; };
+		1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSelectionViewController.m; sourceTree = "<group>"; };
+		1A309D621D5CE05500021BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		38EF7E972368278500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A76C26A1238676D50047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
+		A7733D372407988500483870 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		A7733D392407989500483870 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		A7733D3B2407989D00483870 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A7733D3D240798AB00483870 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		A7733D3F240798C600483870 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A7733D41240798CD00483870 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A2BC6691D5A9C2100C9AD11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7733D3A2407989500483870 /* CoreWLAN.framework in Frameworks */,
+				A7733D42240798CD00483870 /* VideoToolbox.framework in Frameworks */,
+				38B9A0D723D47CB300CE8C27 /* AgoraRtcKit.framework in Frameworks */,
+				A7733D3E240798B100483870 /* libresolv.tbd in Frameworks */,
+				A7733D3C240798A300483870 /* libc++.tbd in Frameworks */,
+				A7733D40240798C600483870 /* SystemConfiguration.framework in Frameworks */,
+				A7733D382407988500483870 /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A2BC6631D5A9C2100C9AD11 = {
+			isa = PBXGroup;
+			children = (
+				38EF7E972368278500A6A483 /* README.md */,
+				1A2BC66E1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */,
+				1A2BC66D1D5A9C2100C9AD11 /* Products */,
+				A7733D362407988500483870 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1A2BC66D1D5A9C2100C9AD11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A2BC66E1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				1A2BC6751D5A9C2100C9AD11 /* VideoChatViewController.h */,
+				1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */,
+				1A2BC69E1D5B058C00C9AD11 /* DeviceSelectionViewController.h */,
+				1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */,
+				1A2BC69B1D5A9E5400C9AD11 /* AppID.h */,
+				1A2BC69C1D5A9E6700C9AD11 /* AppID.m */,
+				1A309D611D5CE05500021BB8 /* Main.storyboard */,
+				1A2BC6721D5A9C2100C9AD11 /* Supporting Files */,
+				A76C26A1238676D50047E150 /* AgoraRtcKit.framework */,
+			);
+			path = "Agora-Mac-Tutorial-Objective-C";
+			sourceTree = "<group>";
+		};
+		1A2BC6721D5A9C2100C9AD11 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A2BC66F1D5A9C2100C9AD11 /* AppDelegate.h */,
+				1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */,
+				1A2BC6781D5A9C2100C9AD11 /* Assets.xcassets */,
+				1A2BC67D1D5A9C2100C9AD11 /* Info.plist */,
+				1A2BC6731D5A9C2100C9AD11 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7733D362407988500483870 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7733D41240798CD00483870 /* VideoToolbox.framework */,
+				A7733D3F240798C600483870 /* SystemConfiguration.framework */,
+				A7733D3D240798AB00483870 /* libresolv.tbd */,
+				A7733D3B2407989D00483870 /* libc++.tbd */,
+				A7733D392407989500483870 /* CoreWLAN.framework */,
+				A7733D372407988500483870 /* Accelerate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A2BC66B1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2BC6801D5A9C2100C9AD11 /* Build configuration list for PBXNativeTarget "Agora-Mac-Tutorial-Objective-C" */;
+			buildPhases = (
+				1A2BC6681D5A9C2100C9AD11 /* Sources */,
+				1A2BC6691D5A9C2100C9AD11 /* Frameworks */,
+				1A2BC66A1D5A9C2100C9AD11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Agora-Mac-Tutorial-Objective-C";
+			productName = "Agora Mac Tutorial Objective-C";
+			productReference = 1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A2BC6641D5A9C2100C9AD11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Agora.io;
+				TargetAttributes = {
+					1A2BC66B1D5A9C2100C9AD11 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 48TB6ZZL5S;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 1A2BC6671D5A9C2100C9AD11 /* Build configuration list for PBXProject "Agora-Mac-Tutorial-Objective-C" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A2BC6631D5A9C2100C9AD11;
+			productRefGroup = 1A2BC66D1D5A9C2100C9AD11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A2BC66B1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A2BC66A1D5A9C2100C9AD11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38EF7E982368278500A6A483 /* README.md in Resources */,
+				1A2BC6791D5A9C2100C9AD11 /* Assets.xcassets in Resources */,
+				1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A2BC6681D5A9C2100C9AD11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2BC6771D5A9C2100C9AD11 /* VideoChatViewController.m in Sources */,
+				1A2BC69D1D5A9E6700C9AD11 /* AppID.m in Sources */,
+				1A2BC6A01D5B05A800C9AD11 /* DeviceSelectionViewController.m in Sources */,
+				1A2BC6741D5A9C2100C9AD11 /* main.m in Sources */,
+				1A2BC6711D5A9C2100C9AD11 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A309D611D5CE05500021BB8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A309D621D5CE05500021BB8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A2BC67E1D5A9C2100C9AD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1A2BC67F1D5A9C2100C9AD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1A2BC6811D5A9C2100C9AD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
+				);
+				INFOPLIST_FILE = "Agora-Mac-Tutorial-Objective-C/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Objective-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		1A2BC6821D5A9C2100C9AD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
+				);
+				INFOPLIST_FILE = "Agora-Mac-Tutorial-Objective-C/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-Mac-Tutorial-Objective-C",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-Mac-Tutorial-Objective-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A2BC6671D5A9C2100C9AD11 /* Build configuration list for PBXProject "Agora-Mac-Tutorial-Objective-C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2BC67E1D5A9C2100C9AD11 /* Debug */,
+				1A2BC67F1D5A9C2100C9AD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A2BC6801D5A9C2100C9AD11 /* Build configuration list for PBXNativeTarget "Agora-Mac-Tutorial-Objective-C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2BC6811D5A9C2100C9AD11 /* Debug */,
+				1A2BC6821D5A9C2100C9AD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A2BC6641D5A9C2100C9AD11 /* Project object */;
+}

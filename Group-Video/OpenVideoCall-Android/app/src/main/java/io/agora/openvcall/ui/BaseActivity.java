@@ -6,21 +6,23 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.Toast;
 import io.agora.openvcall.AGApplication;
-import io.agora.openvcall.BuildConfig;
+import io.agora.openvcall.R;
 import io.agora.openvcall.model.*;
 import io.agora.propeller.Constant;
 import io.agora.rtc.RtcEngine;
+import io.agora.rtc.video.VideoCanvas;
+import io.agora.rtc.video.VideoEncoderConfiguration;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void deInitUIandEvent();
 
-    protected void workerThreadReady() {
+    protected void permissionGranted() {
     }
 
     @Override
@@ -93,26 +95,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         v.clearFocus();
     }
 
-    public final void closeIMEWithoutFocus(View v) {
-        InputMethodManager mgr = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        mgr.hideSoftInputFromWindow(v.getWindowToken(), 0); // 0 force close IME
-    }
-
-    public void openIME(final EditText v) {
-        final boolean focus = v.requestFocus();
-        if (v.hasFocus()) {
-            final Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    InputMethodManager mgr = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                    boolean result = mgr.showSoftInput(v, InputMethodManager.SHOW_FORCED);
-                    log.debug("openIME " + focus + " " + result);
-                }
-            });
-        }
-    }
-
     public boolean checkSelfPermission(String permission, int requestCode) {
         log.debug("checkSelfPermission " + permission + " " + requestCode);
         if (ContextCompat.checkSelfPermission(this,
@@ -126,26 +108,33 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         if (Manifest.permission.CAMERA.equals(permission)) {
-            ((AGApplication) getApplication()).initWorkerThread();
-            workerThreadReady();
+            permissionGranted();
         }
         return true;
     }
 
+    protected AGApplication application() {
+        return (AGApplication) getApplication();
+    }
+
     protected RtcEngine rtcEngine() {
-        return ((AGApplication) getApplication()).getWorkerThread().getRtcEngine();
+        return application().rtcEngine();
     }
 
-    protected final WorkerThread worker() {
-        return ((AGApplication) getApplication()).getWorkerThread();
+    protected EngineConfig config() {
+        return application().config();
     }
 
-    protected final EngineConfig config() {
-        return ((AGApplication) getApplication()).getWorkerThread().getEngineConfig();
+    protected void addEventHandler(AGEventHandler handler) {
+        application().addEventHandler(handler);
     }
 
-    protected final MyEngineEventHandler event() {
-        return ((AGApplication) getApplication()).getWorkerThread().eventHandler();
+    protected void removeEventHandler(AGEventHandler handler) {
+        application().remoteEventHandler(handler);
+    }
+
+    protected CurrentUserSettings vSettings() {
+        return application().userSettings();
     }
 
     public final void showLongToast(final String msg) {
@@ -175,8 +164,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, ConstantApp.PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
-                    ((AGApplication) getApplication()).initWorkerThread();
-                    workerThreadReady();
+                    permissionGranted();
                 } else {
                     finish();
                 }
@@ -191,10 +179,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 break;
             }
         }
-    }
-
-    protected CurrentUserSettings vSettings() {
-        return AGApplication.mVideoSettings;
     }
 
     protected int virtualKeyHeight() {
@@ -275,10 +259,62 @@ public abstract class BaseActivity extends AppCompatActivity {
         return actionBarHeight;
     }
 
-    protected void initVersionInfo() {
-        String version = "V " + BuildConfig.VERSION_NAME + "(Build: " + BuildConfig.VERSION_CODE
-                + ", " + ConstantApp.APP_BUILD_DATE + ", SDK: " + Constant.MEDIA_SDK_VERSION + ")";
-//        TextView textVersion = (TextView) findViewById(R.id.app_version);
-//        textVersion.setText(version);
+    protected void preview(boolean start, SurfaceView view, int uid) {
+        if (start) {
+            rtcEngine().setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid));
+            rtcEngine().startPreview();
+        } else {
+            rtcEngine().stopPreview();
+        }
+    }
+
+    public final void joinChannel(final String channel, int uid) {
+        String accessToken = getApplicationContext().getString(R.string.agora_access_token);
+        if (TextUtils.equals(accessToken, "") || TextUtils.equals(accessToken, "<#YOUR ACCESS TOKEN#>")) {
+            accessToken = null; // default, no token
+        }
+
+        rtcEngine().joinChannel(accessToken, channel, "OpenVCall", uid);
+        config().mChannel = channel;
+        enablePreProcessor();
+        log.debug("joinChannel " + channel + " " + uid);
+    }
+
+    public final void leaveChannel(String channel) {
+        log.debug("leaveChannel " + channel);
+        config().mChannel = null;
+        disablePreProcessor();
+        rtcEngine().leaveChannel();
+        config().reset();
+    }
+
+    protected void enablePreProcessor() {
+        if (Constant.BEAUTY_EFFECT_ENABLED) {
+            rtcEngine().setBeautyEffectOptions(true, Constant.BEAUTY_OPTIONS);
+        }
+    }
+
+    public final void setBeautyEffectParameters(float lightness, float smoothness, float redness) {
+        Constant.BEAUTY_OPTIONS.lighteningLevel = lightness;
+        Constant.BEAUTY_OPTIONS.smoothnessLevel = smoothness;
+        Constant.BEAUTY_OPTIONS.rednessLevel = redness;
+    }
+
+    protected void disablePreProcessor() {
+        // do not support null when setBeautyEffectOptions to false
+        rtcEngine().setBeautyEffectOptions(false, Constant.BEAUTY_OPTIONS);
+    }
+
+    protected void configEngine(VideoEncoderConfiguration.VideoDimensions videoDimension, VideoEncoderConfiguration.FRAME_RATE fps, String encryptionKey, String encryptionMode) {
+        if (!TextUtils.isEmpty(encryptionKey)) {
+            rtcEngine().setEncryptionMode(encryptionMode);
+            rtcEngine().setEncryptionSecret(encryptionKey);
+        }
+
+        log.debug("configEngine " + videoDimension + " " + fps + " " + encryptionMode);
+        rtcEngine().setVideoEncoderConfiguration(new VideoEncoderConfiguration(videoDimension,
+                fps,
+                VideoEncoderConfiguration.STANDARD_BITRATE,
+                VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT));
     }
 }

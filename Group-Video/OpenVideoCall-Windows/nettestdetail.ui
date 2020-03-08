@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetTestDetail</class>
+ <widget class="QMainWindow" name="NetTestDetail">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">image: url(:/uiresource/OVC-win-netdetail.png);</string>
+   </property>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>25</y>
+      <width>36</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}
+
+QPushButton:hover:!pressed{
+border-image: url(:/uiresource/icon-back hover.png);
+image: url(:/uiresource/icon-back hover.png);
+}
+
+QPushButton:!hover:pressed{
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_min">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+	border-image: url(:/uiresource/icon-min default.png);
+	image: url(:/uiresource/icon-min default.png);
+}
+
+QPushButton:hover:!pressed{
+	border-image: url(:/uiresource/icon-min hover.png);
+	image: url(:/uiresource/icon-min hover.png);
+}
+
+QPushButton:!hover:pressed{
+	border-image: url(:/uiresource/icon-min default.png);
+	image: url(:/uiresource/icon-min default.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>726</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+	border-image: url(:/uiresource/icon-close default.png);
+	image: url(:/uiresource/icon-close default.png);
+}
+
+QPushButton:hover:!pressed{
+	border-image: url(:/uiresource/icon-close hover.png);
+	image: url(:/uiresource/icon-close hover.png);
+}
+
+QPushButton:!hover:pressed{
+	border-image: url(:/uiresource/icon-close default.png);
+	image: url(:/uiresource/icon-close default.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_rtt_up">
+    <property name="geometry">
+     <rect>
+      <x>528</x>
+      <y>87</y>
+      <width>64</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:PingFangSC-Regular,PingFangSC;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:20px;
+image: url(:/uiresource/edit1.png);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_rtt_down">
+    <property name="geometry">
+     <rect>
+      <x>676</x>
+      <y>87</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:PingFangSC-Regular,PingFangSC;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:20px;
+image: url(:/uiresource/edit1.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_lost_down">
+    <property name="geometry">
+     <rect>
+      <x>676</x>
+      <y>133</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:PingFangSC-Regular,PingFangSC;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:20px;
+image: url(:/uiresource/edit1.png);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_lost_up">
+    <property name="geometry">
+     <rect>
+      <x>528</x>
+      <y>133</y>
+      <width>64</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:PingFangSC-Regular,PingFangSC;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:20px;
+image: url(:/uiresource/edit1.png);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_bandwidth_up">
+    <property name="geometry">
+     <rect>
+      <x>528</x>
+      <y>179</y>
+      <width>119</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:PingFangSC-Regular,PingFangSC;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:20px;
+border-image: url(:/uiresource/edit4.png);
+image: url(:/uiresource/edit4.png);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_bandwidth_down">
+    <property name="geometry">
+     <rect>
+      <x>676</x>
+      <y>179</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:14px;
+font-family:PingFangSC-Regular,PingFangSC;
+font-weight:400;
+color:rgba(102,102,102,1);
+line-height:20px;
+image: url(:/uiresource/edit1.png);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_ok">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>437</y>
+      <width>325</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:!pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(255,255,255,1);
+line-height:20px;
+background:rgba(0,106,216,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit2.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

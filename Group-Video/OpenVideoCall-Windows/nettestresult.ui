@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetTestResult</class>
+ <widget class="QMainWindow" name="NetTestResult">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">image: url(:/uiresource/OVC-win-netresult.png);</string>
+   </property>
+   <widget class="QPushButton" name="btn_back">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>25</y>
+      <width>36</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}
+
+QPushButton:hover:!pressed{
+border-image: url(:/uiresource/icon-back hover.png);
+image: url(:/uiresource/icon-back hover.png);
+}
+
+QPushButton:!hover:pressed{
+border-image: url(:/uiresource/icon-back.png);
+image: url(:/uiresource/icon-back.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_min">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+	border-image: url(:/uiresource/icon-min default.png);
+	image: url(:/uiresource/icon-min default.png);
+}
+
+QPushButton:hover:!pressed{
+	border-image: url(:/uiresource/icon-min hover.png);
+	image: url(:/uiresource/icon-min hover.png);
+}
+
+QPushButton:!hover:pressed{
+	border-image: url(:/uiresource/icon-min default.png);
+	image: url(:/uiresource/icon-min default.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>726</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover{
+	border-image: url(:/uiresource/icon-close default.png);
+	image: url(:/uiresource/icon-close default.png);
+}
+
+QPushButton:hover:!pressed{
+	border-image: url(:/uiresource/icon-close hover.png);
+	image: url(:/uiresource/icon-close hover.png);
+}
+
+QPushButton:!hover:pressed{
+	border-image: url(:/uiresource/icon-close default.png);
+	image: url(:/uiresource/icon-close default.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_status">
+    <property name="geometry">
+     <rect>
+      <x>531</x>
+      <y>157</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/uiresource/pic-good.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_detail">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>378</y>
+      <width>325</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:!pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(255,255,255,1);
+line-height:20px;
+background:rgba(0,106,216,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit2.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>Detail</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_ok">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>437</y>
+      <width>325</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:!pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(255,255,255,1);
+line-height:20px;
+background:rgba(0,106,216,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit2.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_status_desc">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>280</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/uiresource/edit1.png);
+image: url(:/uiresource/edit1.png);
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(51,51,51,1);
+line-height:20px;</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

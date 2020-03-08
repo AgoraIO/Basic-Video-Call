@@ -1,0 +1,50 @@
+<RCC>
+    <qresource prefix="/">
+        <file>uiresource/icon-back hover.png</file>
+        <file>uiresource/icon-back.png</file>
+        <file>uiresource/icon-camera off.png</file>
+        <file>uiresource/icon-camera.png</file>
+        <file>uiresource/icon-close hover.png</file>
+        <file>uiresource/icon-hang up hover.png</file>
+        <file>uiresource/icon-hang up.png</file>
+        <file>uiresource/icon-loading.png</file>
+        <file>uiresource/icon-micorophone off.png</file>
+        <file>uiresource/icon-micorophone.png</file>
+        <file>uiresource/icon-setting hover.png</file>
+        <file>uiresource/icon-setting.png</file>
+        <file>uiresource/OVC-win-03.jpg</file>
+        <file>uiresource/OVC-win-config.png</file>
+        <file>uiresource/OVC-win-home.png</file>
+        <file>uiresource/OVC-win-more users.jpg</file>
+        <file>uiresource/OVC-win-netdetail.png</file>
+        <file>uiresource/OVC-win-netresult.png</file>
+        <file>uiresource/OVC-win-nettest.png</file>
+        <file>uiresource/gray.png</file>
+        <file>uiresource/icon-close default.png</file>
+        <file>uiresource/icon-min default.png</file>
+        <file>uiresource/icon-min hover.png</file>
+        <file>uiresource/edit.png</file>
+        <file>uiresource/edit1.png</file>
+        <file>uiresource/edit2.png</file>
+        <file>uiresource/switch-off.png</file>
+        <file>uiresource/switch-open.png</file>
+        <file>uiresource/edit3.png</file>
+        <file>uiresource/loading.gif</file>
+        <file>uiresource/pic-bad.png</file>
+        <file>uiresource/pic-good.png</file>
+        <file>uiresource/pic-poor.png</file>
+        <file>uiresource/edit4.png</file>
+        <file>uiresource/edit5.png</file>
+        <file>uiresource/icon-camera on.png</file>
+        <file>uiresource/icon-micorophone on.png</file>
+        <file>uiresource/allmute remote.png</file>
+        <file>uiresource/allmute.png</file>
+        <file>uiresource/mutevideo remote.png</file>
+        <file>uiresource/mutevideo.png</file>
+        <file>uiresource/box-01.png</file>
+        <file>uiresource/dropdow-01.png</file>
+        <file>uiresource/dropdown-02.png</file>
+        <file>uiresource/dropdown-03.png</file>
+        <file>uiresource/slider.png</file>
+    </qresource>
+</RCC>

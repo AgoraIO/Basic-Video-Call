@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "DimensionCell.h"
-#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 @interface SettingsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *dimensionCollectionView;
@@ -77,6 +77,12 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor colorWithRed:229.0 / 255.0 green:229.0 / 255.0 blue:229.0 / 255.0 alpha:1];
+    return view;
+}
+
 #pragma mark - Private
 - (void)doFrameRatePressed {
     self.frameRatePickerView.hidden = !self.frameRatePickerView.hidden;
@@ -130,6 +136,14 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [self descriptionOfFrameRate:[self.frameRateList[row] integerValue]];
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    self.frameRatePickerView.subviews[1].backgroundColor = [UIColor lightGrayColor];
+    self.frameRatePickerView.subviews[2].backgroundColor = [UIColor lightGrayColor];
+    NSString *frameRate = [self descriptionOfFrameRate:[self.frameRateList[row] integerValue]];
+    return [[NSAttributedString alloc] initWithString:frameRate
+                                           attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
 }
 
 #pragma mark - Others

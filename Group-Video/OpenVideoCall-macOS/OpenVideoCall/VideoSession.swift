@@ -8,7 +8,7 @@
 
 import Cocoa
 
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 class VideoSession: NSObject {
     enum SessionType {
