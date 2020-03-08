@@ -2,7 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
+<<<<<<< HEAD
       "filename" : "button03.pdf"
+=======
+<<<<<<< HEAD:Group-Video/OpenVideoCall-macOS/OpenVideoCall/Assets.xcassets/icon-join-hover.imageset/Contents.json
+      "filename" : "button03-hover.pdf"
+=======
+      "filename" : "button03.pdf"
+>>>>>>> dev/3.0.0:Group-Video/OpenVideoCall-macOS/OpenVideoCall/Assets.xcassets/icon-join.imageset/Contents.json
+>>>>>>> dev/3.0.0
     }
   ],
   "info" : {

@@ -25,10 +25,10 @@ To build and run the sample application, get an App ID:
 
     **Note:** Place the App ID/Token within single or double quotes.
 
-    ```xml
-    export const APP_ID = <#YOUR APP ID#>;
+    ```javascript
+    export const APP_ID = "<#YOUR APP ID HERE#>";
 
-    // Assign Token to null if you have not enabled app certificate
+    // If you have not enabled app certificate, make sure to set the Token to null
     export const Token = "<#YOUR TEMP TOKEN HERE#>";
     ```
 

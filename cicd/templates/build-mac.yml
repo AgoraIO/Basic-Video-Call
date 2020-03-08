@@ -20,7 +20,6 @@ jobs:
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
           AGORA_APP_ID: $(agora.appId)
-          SDK_URL: ${{ parameters.sdkurl }}
       
       - script: cd ${{ parameters.workingDirectory }} && chmod +x build.sh && ./build.sh
 

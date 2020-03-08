@@ -3,21 +3,24 @@
     {
       "idiom" : "universal",
 <<<<<<< HEAD
+      "filename" : "icon_normal.pdf"
+=======
 <<<<<<< HEAD:Group-Video/OpenVideoCall-macOS/OpenVideoCall/Assets.xcassets/icon-join-pressed.imageset/Contents.json
       "filename" : "button03-pressed.pdf"
 =======
       "filename" : "icon_normal.pdf"
 >>>>>>> dev/3.0.0:Group-Video/OpenVideoCall-macOS/OpenVideoCall/Assets.xcassets/icon_normal.imageset/Contents.json
-=======
-      "filename" : "button03-pressed.pdf"
 >>>>>>> dev/3.0.0
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+<<<<<<< HEAD
+=======
   },
   "properties" : {
     "template-rendering-intent" : "original"
+>>>>>>> dev/3.0.0
   }
 }

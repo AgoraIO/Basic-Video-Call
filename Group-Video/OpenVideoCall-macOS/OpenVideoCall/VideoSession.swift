@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-
 import AgoraRtcKit
 
 class VideoSession: NSObject {
