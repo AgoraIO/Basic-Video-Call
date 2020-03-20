@@ -1,7 +1,8 @@
 variables:
   iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_0_FULL.zip?_ga=2.79185814.368877217.1583320605-5559409.1503304822'
   MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_0_0_FULL.zip?_ga=2.78400662.368877217.1583320605-5559409.1503304822'
-  
+  WindowsRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(x86)_v3_0_0_FULL.zip?_ga=2.264657869.391401122.1584692818-113887004.1555555580'
+  WindowsRTCSDKX64: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(x64)_v3_0_0_FULL.zip?_ga=2.97917021.391401122.1584692818-113887004.1555555580'
 jobs:
 
   - template: cicd/templates/build-android.yml
@@ -69,3 +70,13 @@ jobs:
       workingDirectory: 'Group-Video/OpenVideoCall-macOS'
       scheme: 'OpenVideoCall'
       sdkurl: $(MacRTCSDK)
+
+#Windows demo
+  - template: cicd/templates/build-Windows.yml
+    parameters:
+      displayName: 'WindowsTutorial'
+      workingDirectory: 'One-to-One-Video/Agora-Windows-Tutorial-1to1'
+      scheme: 'Agora-Windows-Tutorial-1to1'
+      sdkurl: $(WindowsRTCSDK)
+      solutionName: 'AgoraTutorial.sln'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
