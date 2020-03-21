@@ -10,6 +10,8 @@ parameters:
   sdkurl: ''
   solutionName: ''
   sdkunzipPath: ''
+  Machine: ''
+  ReleasePath: ''
 jobs:
   - job: ${{ parameters.displayName }}Build
     displayName: ${{ parameters.displayName }}
@@ -19,7 +21,7 @@ jobs:
 
     variables:
       solution: '${{ parameters.workingDirectory }}/${{ parameters.solutionName }}'
-      buildPlatform: 'win32'
+      buildPlatform: ${{ parameters.Machine }}
       buildConfiguration: 'Release'
    
     steps:
@@ -46,11 +48,10 @@ jobs:
           msbuildArchitecture: 'x86'
 
       - script: cd ${{ parameters.workingDirectory }} && ls
-      - script: cd ${{ parameters.workingDirectory }}/AgoraTutorial/Release && ls
 
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: '${{ parameters.workingDirectory }}/Release/'
+          rootFolderOrFile: '${{ parameters.workingDirectory }}/${{ parameters.ReleasePath }}/'
           includeRootFolder: true 
           archiveType: 'zip'
           archiveFile: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
@@ -63,6 +64,3 @@ jobs:
         inputs:
           PathtoPublish: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
           ArtifactName: ${{ parameters.displayName }}
-      - template: github-release.yml
-        parameters:
-          displayName: ${{ parameters.displayName }}
