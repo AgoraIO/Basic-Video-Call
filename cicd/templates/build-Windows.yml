@@ -64,3 +64,6 @@ jobs:
         inputs:
           PathtoPublish: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
           ArtifactName: ${{ parameters.displayName }}
+      - template: github-release.yml
+        parameters:
+          displayName: ${{ parameters.displayName }}
