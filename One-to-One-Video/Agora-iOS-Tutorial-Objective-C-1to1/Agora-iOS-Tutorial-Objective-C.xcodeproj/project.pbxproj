@@ -15,7 +15,6 @@
 		1A8E8D481D396CAA002FA67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A8E8D471D396CAA002FA67C /* Assets.xcassets */; };
 		1A8E8D4B1D396CAA002FA67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A8E8D491D396CAA002FA67C /* LaunchScreen.storyboard */; };
 		38B9A0D123D47AA600CE8C27 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C269B2386764D0047E150 /* AgoraRtcKit.framework */; };
-		38B9A0D223D47AA600CE8C27 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C269B2386764D0047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		38EF7E942368276A00A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E932368276A00A6A483 /* README.md */; };
 		A758117C24078CD7007EDAD3 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A758117B24078CD7007EDAD3 /* libresolv.tbd */; };
 		A758117E24078CE0007EDAD3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A758117D24078CE0007EDAD3 /* libc++.tbd */; };
@@ -29,20 +28,6 @@
 		A758118E24078D1E007EDAD3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A758118D24078D1E007EDAD3 /* AVFoundation.framework */; };
 		A758119024078D24007EDAD3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A758118F24078D24007EDAD3 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		A76C2694238674600047E150 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				38B9A0D223D47AA600CE8C27 /* AgoraRtcKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A2655D61D3F3AF700BDBA68 /* AppID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppID.h; sourceTree = "<group>"; };
@@ -168,7 +153,6 @@
 				1A8E8D341D396CAA002FA67C /* Sources */,
 				1A8E8D351D396CAA002FA67C /* Frameworks */,
 				1A8E8D361D396CAA002FA67C /* Resources */,
-				A76C2694238674600047E150 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
