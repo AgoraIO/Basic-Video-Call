@@ -13,3 +13,9 @@ install:
   - 7z x AgoraSDK.zip -oAgoraSDK
   - set QTDIR32=C:\Qt\5.14.1\msvc2017
   - set QTDIR64=C:\Qt\5.14.1\msvc2017_64
+  - set VS2017_vcvarsall=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
+
+build_script:
+  - call build_release.bat %VS2017_vcvarsall% %QTDIR32% x86
+  - call build_release.bat %VS2017_vcvarsall% %QTDIR64% x64
+
