@@ -8,9 +8,11 @@ set VCINSTALLDIR=%~1
 set QTDIR=%~2
 ::x86;x64
 set Machine=%~3
+set PROJDIR=%~4
 echo vsdir: %VCINSTALLDIR%
 echo qtdir:%QTDIR%
 echo machine:%Machine%
+echo projectdir:%PROJDIR%
 
 set PATH=%VCINSTALLDIR%\bin;%QTDIR%\bin;C:\Program Files\7-Zip;%PATH%
 
@@ -18,7 +20,7 @@ set PATH=%VCINSTALLDIR%\bin;%QTDIR%\bin;C:\Program Files\7-Zip;%PATH%
 set vsdevpath=%VCINSTALLDIR%\vcvarsall.bat
 echo vsdevpath:%vsdevpath%
 call "%VCINSTALLDIR%\vcvarsall.bat" %Machine%
-%QTDIR%\qmake OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
+%QTDIR%\qmake %PROJDIR%\OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
 
-cd release
+cd %PROJDIR%\release
 %QTDIR%windeployqt OpenVideoCall.exe
