@@ -13,12 +13,12 @@ echo qtdir:%QTDIR%
 echo machine:%Machine%
 
 set PATH=%VCINSTALLDIR%\bin;%QTDIR%\bin;C:\Program Files\7-Zip;%PATH%
-
+echo PATH: %PATH%
 ::shadow build
 set vsdevpath=%VCINSTALLDIR%\vcvarsall.bat
 echo vsdevpath:%vsdevpath%
 call "%VCINSTALLDIR%\vcvarsall.bat" %Machine%
 %QTDIR%\qmake OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
-
+nmake
 cd release
 %QTDIR%\windeployqt OpenVideoCall.exe
