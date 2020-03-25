@@ -18,7 +18,7 @@ set PATH=%VCINSTALLDIR%\bin;%QTDIR%\bin;C:\Program Files\7-Zip;%PATH%
 set vsdevpath=%VCINSTALLDIR%\vcvarsall.bat
 echo vsdevpath:%vsdevpath%
 call "%VCINSTALLDIR%\vcvarsall.bat" %Machine%
-qmake OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
+%QTDIR%\qmake OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
 nmake
 cd release
-windeployqt OpenVideoCall.exe
+%QTDIR%\windeployqt OpenVideoCall.exe
