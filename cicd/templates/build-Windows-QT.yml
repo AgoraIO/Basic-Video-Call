@@ -1,0 +1,57 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+parameters:
+  displayName: ''
+  workingDirectory: ''
+  scheme: ''
+  sdkurl: ''
+  solutionName: ''
+  sdkunzipPath: ''
+jobs:
+  - job: ${{ parameters.displayName }}Build
+    displayName: ${{ parameters.displayName }}
+
+    pool: 'Default'
+
+    variables:
+      solution: '${{ parameters.workingDirectory }}/${{ parameters.solutionName }}'
+      buildPlatform: 'win32'
+      buildConfiguration: 'Release'
+      
+    steps:
+      - script: echo "${{ parameters.sdkurl }}"
+      - powershell: cicd/scripts/downloadsdk.ps1 "${{ parameters.sdkurl }}"
+   
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: 'AgoraSDK.zip' 
+          destinationFolder: 'AgoraSDK'
+          
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: ${{ parameters.sdkunzipPath }}/sdk
+          targetFolder: ${{ parameters.workingDirectory }}/sdk
+
+      - script: cd ${{ parameters.workingDirectory }} 
+      - script: ${{ parameters.workingDirectory }}/build_azure_pipeline.bat ${{ parameters.workingDirectory }}
+      - script: ls 
+      - script: cd ${{ parameters.workingDirectory }} && ls
+
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '${{ parameters.workingDirectory }}/Win32/Release/'
+          includeRootFolder: true 
+          archiveType: 'zip'
+          archiveFile: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
+          replaceExistingArchive: true
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
+          ArtifactName: ${{ parameters.displayName }}
+      - template: github-release.yml
+        parameters:
+          displayName: ${{ parameters.displayName }}
