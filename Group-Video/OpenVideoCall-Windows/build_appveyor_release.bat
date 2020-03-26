@@ -4,7 +4,8 @@ title qmake and nmake build prompt
 set SDKVersion=%~1
 set SDKFolderVersion=%~2
 set Machine=%~3
-
+echo %SDKVersion%
+echo %SDKFolderVersion%
 curl -fsSL -o AgoraSDK.zip https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKFolderVersion%_FULL.zip
 if exist AgoraSDK.zip (
   7z x AgoraSDK.zip -oAgoraSDK
