@@ -57,3 +57,4 @@ mkdir %Machine%
 xcopy /S /I ..\Release\*.* %Machine% /y
 xcopy /S /I ..\sdk\dll\*.* %Machine% /y
 cd ..
+rmdir /S /Q Release
