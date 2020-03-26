@@ -5,3 +5,5 @@ curl -fsSL -o AgoraSDK.zip https://download.agora.io/sdk/release/Agora_Native_SD
 7z x AgoraSDK.zip -oAgoraSDK
 mkdir sdk
 xcopy /S /I AgoraSDK\Agora_Native_SDK_for_Windows_v3.0.0_FULL\sdk sdk
+
+call appveryor_build_release.bat %FolderVersion% %Machine%
