@@ -34,6 +34,7 @@ if exist release(
   del *.h
   del *.cpp
   del *.obj
+		%QTDIR%\bin\windeployqt OpenVideoCall.exe
+		cd ..
+  7z a -tzip -r OpenVideoCall_Win_v%SDKVersion%(%Machine%).zip release
 )
-%QTDIR%\bin\windeployqt OpenVideoCall.exe
-7z a -tzip -r OpenVideoCall_Win_v%SDKVersion%(%Machine%).zip
