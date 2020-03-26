@@ -1,11 +1,22 @@
 version: 1.0.{build}
-skip_branch_with_pr: true
-build: off
-
-environment:
-  WindowsAgoraRTCSDK: https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(x86)_v3_0_0_FULL.zip
+branches:
+  only:
+  - master
+skip_tags: true
+image: Visual Studio 2017
 install:
-  - ps: (new-object net.webclient).DownloadFile($emv:WindowsAgoraRTCSDK, 'AgoraSDK.zip')
-  - 7z x AgoraSDK.zip -oAgoraSDK
-  - set QTDIR32=C:\Qt\5.14.1\msvc2017
-  - set QTDIR64=C:\Qt\5.14.1\msvc2017_64
+- cmd: >-
+    cd Group-Video\OpenVideoCall-Windows
+    set SDKVersion=3_0_0
+    set SDKFolderVersion=3.0.0
+    set ProjName=OpenVideoCall
+build_script:
+- cmd: >-
+    call build_appveyor_release.bat %SDKVersion% %SDKFolderVersion% x86 %ProjName%
+
+    call build_appveyor_release.bat %SDKVersion% %SDKFolderVersion% x64 %ProjName%
+
+    7z a -tzip -r OpenVideoCall_Win_v%SDKFolderVersion%.zip %ProjName%_Win_v%SDKFolderVersion%
+artifacts:
+- path: Group-Video\OpenVideoCall-Windows\OpenVideoCall_Win_v*.zip
+  name: OpenVideoCall-Windows
