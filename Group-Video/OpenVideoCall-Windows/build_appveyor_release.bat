@@ -4,19 +4,19 @@ title qmake and nmake build prompt
 set SDKVersion=%~1
 set SDKFolderVersion=%~2
 set Machine=%~3
-echo %SDKVersion%
-echo %SDKFolderVersion%
-curl -fsSL -o AgoraSDK.zip https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKFolderVersion%_FULL.zip
+echo SDKVersion: %SDKVersion%
+echo SDKFolderVersion: %SDKFolderVersion%
+curl -fsSL -o AgoraSDK.zip https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKVersion%_FULL.zip
 if exist AgoraSDK.zip (
   7z x AgoraSDK.zip -oAgoraSDK
 ) else (
   echo "download sdk failed"
-		echo "https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKFolderVersion%_FULL.zip"
+		echo "https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKVersion%_FULL.zip"
 	 exit
 )
 
 if not exist sdk (mkdir sdk)
-xcopy /S /I AgoraSDK\Agora_Native_SDK_for_Windows_v%SDKVersion%_FULL\sdk sdk /y
+xcopy /S /I AgoraSDK\Agora_Native_SDK_for_Windows_v%SDKFolderVersion%_FULL\sdk sdk /y
 
 if exist AgoraSDK (rmdir /S /Q AgoraSDK)
 
@@ -46,7 +46,7 @@ del *.obj
 %QTDIR%\bin\windeployqt OpenVideoCall.exe
 cd ..
 
-set PackageDIR=OpenVideoCall_Win_v%SDKVersion%
+set PackageDIR=OpenVideoCall_Win_v%SDKFolderVersion%
 if not exist %PackageDIR% (
 	 mkdir %PackageDIR%
 )
@@ -54,5 +54,3 @@ cd %PackageDIR%
 mkdir %Machine%
 xcopy /S /I ..\Release\*.* %Machine% /y
 cd ..
-
-7z a -tzip -r OpenVideoCall_Win_v%SDKVersion%(%Machine%).zip release
