@@ -8,6 +8,10 @@ set Machine=%~3
 curl -fsSL -o AgoraSDK.zip https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKFolderVersion%_FULL.zip
 if exist AgoraSDK.zip (
   7z x AgoraSDK.zip -oAgoraSDK
+) else (
+  echo "download sdk failed"
+		echo "https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKFolderVersion%_FULL.zip"
+	 exit
 )
 
 if not exist sdk (mkdir sdk)
@@ -40,4 +44,14 @@ del *.cpp
 del *.obj
 %QTDIR%\bin\windeployqt OpenVideoCall.exe
 cd ..
+
+set PackageDIR=OpenVideoCall_Win_v%SDKVersion%
+if not exist %PackageDIR% (
+	 mkdir %PackageDIR%
+)
+cd %PackageDIR%
+mkdir %Machine%
+xcopy /S /I ..\Release\*.* %Machine% /y
+cd ..
+
 7z a -tzip -r OpenVideoCall_Win_v%SDKVersion%(%Machine%).zip release
