@@ -4,8 +4,10 @@ title qmake and nmake build prompt
 set SDKVersion=%~1
 set SDKFolderVersion=%~2
 set Machine=%~3
+set ProjName=%~4
 echo SDKVersion: %SDKVersion%
 echo SDKFolderVersion: %SDKFolderVersion%
+echo ProjName:%ProjName%
 curl -fsSL -o AgoraSDK.zip https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(%Machine%)_v%SDKVersion%_FULL.zip
 if exist AgoraSDK.zip (
   7z x AgoraSDK.zip -oAgoraSDK
@@ -31,7 +33,7 @@ if %Machine% == x86 (
 set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
 
 call "%VCINSTALLDIR%\vcvarsall.bat" %Machine%
-%QTDIR%\bin\qmake.exe OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
+%QTDIR%\bin\qmake.exe %ProjName%.pro "CONFIG+=release" "CONFIG+=qml_release"
 nmake
 
 if not exist release (
@@ -43,10 +45,10 @@ cd release
 del *.h
 del *.cpp
 del *.obj
-%QTDIR%\bin\windeployqt OpenVideoCall.exe
+%QTDIR%\bin\windeployqt %ProjName%.exe
 cd ..
 
-set PackageDIR=OpenVideoCall_Win_v%SDKFolderVersion%
+set PackageDIR=%ProjName%_Win_v%SDKFolderVersion%
 if not exist %PackageDIR% (
 	 mkdir %PackageDIR%
 )
