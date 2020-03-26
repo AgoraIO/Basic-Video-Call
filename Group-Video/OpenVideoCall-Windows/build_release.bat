@@ -21,8 +21,10 @@ set vsdevpath=%VCINSTALLDIR%\vcvarsall.bat
 echo vsdevpath:%vsdevpath%
 call "%VCINSTALLDIR%\vcvarsall.bat" %Machine%
 
-if exist %QTDIR%\qmake.exe (echo qmake)
-
-if exist %PROJDIR%\OpenVideoCall.pro(echo OpenVideoCall)
-
 %QTDIR%\qmake %PROJDIR%\OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
+
+cd %PROJDIR%\release
+%QTDIR%windeployqt OpenVideoCall.exe
+call build_release.bat "%VCINSTALLDIR%" "%QTDIR32%" x86
+call "%VCINSTALLDIR%\vcvarsall.bat" x86
+%QTDIR%\qmake OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
