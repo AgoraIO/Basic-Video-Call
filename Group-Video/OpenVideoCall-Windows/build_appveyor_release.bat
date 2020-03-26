@@ -55,4 +55,5 @@ if not exist %PackageDIR% (
 cd %PackageDIR%
 mkdir %Machine%
 xcopy /S /I ..\Release\*.* %Machine% /y
+xcopy /S /I ..\sdk\dll\*.* %Machine% /y
 cd ..
