@@ -25,7 +25,7 @@ if %Machine% == x86 (
 
 set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
 
-call "%VCINSTALLDIR%\vcvarsall.bat" if %Machine%
+call "%VCINSTALLDIR%\vcvarsall.bat" %Machine%
 %QTDIR%\bin\qmake.exe OpenVideoCall.pro "CONFIG+=release" "CONFIG+=qml_release"
 nmake
 
