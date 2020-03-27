@@ -24,15 +24,6 @@ const cssLoader = {
   ],
 };
 
-const scssLoader = {
-  test: /\.scss$/,
-  use: [
-    styleLoader,
-    "css-loader",
-    "sass-loader",
-  ]
-}
-
 const fileLoader = {
   test: /\.(png|svg|jpg|gif)$/,
   use: "file-loader",
@@ -46,7 +37,6 @@ const fontLoader = {
 module.exports = {
   rules: [
     cssLoader,
-    scssLoader,
     fileLoader,
     fontLoader,
     babelLoader

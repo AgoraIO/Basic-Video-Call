@@ -1,6 +1,6 @@
 import RTCClient from './rtc-client';
 import {getDevices, serializeFormData, validator, resolutions} from './common';
-import "./assets/style.scss";
+import "./assets/style.css";
 import * as M from 'materialize-css';
 import {setFormData, parseFromSearch} from './searchParam';
 
