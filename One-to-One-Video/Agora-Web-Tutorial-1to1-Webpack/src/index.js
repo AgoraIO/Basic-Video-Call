@@ -1,8 +1,9 @@
 import RTCClient from './rtc-client';
-import {getDevices, serializeFormData, validator, resolutions} from './common';
+import 'jquery' 
+import {getDevices, Toast, serializeFormData, validator, resolutions} from './common';
 import "./assets/style.css";
 import * as M from 'materialize-css';
-import {setFormData, parseFromSearch} from './searchParam';
+// import {setFormData, parseFromSearch} from './searchParam';
 
 $(() => {  
   getDevices(function (devices) {

@@ -1,6 +1,6 @@
 import AgoraRTC from 'agora-rtc-sdk';
 import * as M from 'materialize-css';
-import { replaceSearchString, stringify } from './searchParam'
+// import { replaceSearchString, stringify } from './searchParam'
 
 export const resolutions = [
   {
@@ -133,8 +133,8 @@ export function getDevices (next) {
         });
       }
       if ('audioinput' == item.kind) {
-        var name = item.label;
-        var value = item.deviceId;
+        let name = item.label;
+        let value = item.deviceId;
         if (!name) {
           name = "microphone-" + audios.length;
         }

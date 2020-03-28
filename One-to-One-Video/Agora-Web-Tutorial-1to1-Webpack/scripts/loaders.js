@@ -16,6 +16,14 @@ const babelLoader = {
   }
 };
 
+const eslintLoader = {
+  test: /\.js$/,
+  include: /src/,
+  use: {
+    loader: 'eslint-loader'
+  }
+};
+
 const cssLoader = {
   test: /\.css$/,
   use: [
@@ -39,6 +47,7 @@ module.exports = {
     cssLoader,
     fileLoader,
     fontLoader,
-    babelLoader
+    babelLoader,
+    eslintLoader,
   ],
 };

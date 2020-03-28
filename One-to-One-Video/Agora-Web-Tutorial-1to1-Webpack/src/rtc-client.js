@@ -29,7 +29,7 @@ export default class RTCClient {
       console.log('peer-leave', id);
     })
     // Occurs when the local stream is _published.
-    this._client.on("stream-published", (evt) => {
+    this._client.on("stream-published", () => {
       Toast.notice("stream published success")
       console.log("stream-published");
     })
@@ -82,7 +82,7 @@ export default class RTCClient {
   }
 
   join (data) {
-    return new Promise((resolve, reject) => {    
+    return new Promise((resolve) => {    
       if (this._joined) {
         Toast.error("Your already joined");
         return;

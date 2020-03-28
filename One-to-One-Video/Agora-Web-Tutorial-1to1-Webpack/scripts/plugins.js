@@ -16,7 +16,7 @@ const plugins = [
       messages: ["You application is running here http://localhost:8080"],
       notes: ["Some additionnal notes to be displayed upon successful compilation"],
     },
-    onErrors: function(severity, errors) {},
+    // onErrors: function(severity, errors) {},
     clearConsole: true,
     additionalFormatters: [],
     additionalTransformers: [],
