@@ -5,6 +5,7 @@ module.exports = {
         "node": true,
         "jquery": true,
     },
+    // "parser": "babel-eslint",
     "extends": "eslint:recommended",
     "globals": {
         "Atomics": "readonly",
@@ -15,5 +16,8 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "semi": ["warn", "never"],
+        "quotes": [1, "double"],
+        "no-unused-vars": "warn",
     }
 };

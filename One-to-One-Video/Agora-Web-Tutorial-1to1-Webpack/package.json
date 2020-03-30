@@ -13,10 +13,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts --mode development",
-    "build": "cross-env NODE_ENV=production webpack --config ./scripts --mode production"
+    "build": "cross-env NODE_ENV=production webpack --config ./scripts --mode production",
+    "lint-fix": "eslint --fix src/ "
   },
   "dependencies": {
-    "agora-rtc-sdk": "^2.8.0",
+    "agora-rtc-sdk": "^3.0.2",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0"
   },
@@ -30,8 +31,8 @@
     "css-loader": "^2.1.1",
     "ejs-render-loader": "^1.0.0",
     "eslint": "^6.8.0",
-    "eslint-loader": "^3.0.3",
     "eslint-config-standard": "^14.1.1",
+    "eslint-loader": "^3.0.3",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",

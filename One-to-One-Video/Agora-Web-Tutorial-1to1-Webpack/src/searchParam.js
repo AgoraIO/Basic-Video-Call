@@ -11,7 +11,7 @@ export const parseFromSearch = () => {
 export const stringify = (obj) => {
   const str = Object.entries(obj).reduce((pre, cur) => {
     return pre + `${cur[0]}=${cur[1]}&`
-  }, '?')
+  }, "?")
   return str.slice(0, -1)
 }
 
@@ -26,10 +26,10 @@ export const setFormData = (obj) => {
 
 export const replaceSearchString = (searchStr) => {
   if (window.history.pushState) {
-    const newURL = new URL(window.location.href);
-    newURL.search = searchStr;
-    window.history.pushState({ path: newURL.href }, "", newURL.href);
+    const newURL = new URL(window.location.href)
+    newURL.search = searchStr
+    window.history.pushState({ path: newURL.href }, "", newURL.href)
   } else {
-    console.warn('`history.pushState` is not supported')
+    console.warn("`history.pushState` is not supported")
   }
 }
