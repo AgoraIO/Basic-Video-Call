@@ -35,7 +35,7 @@
 
 1. 安装live-server
     ```
-    npm i live-server -g
+    npx serve .
     ```
 2. 在工作目录通过以下命令启动live-server服务器,
     ```
