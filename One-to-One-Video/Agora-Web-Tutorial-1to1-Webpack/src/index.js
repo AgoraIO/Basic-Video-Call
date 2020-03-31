@@ -1,5 +1,4 @@
 import RTCClient from "./rtc-client"
-import "jquery" 
 import {getDevices, Toast, serializeFormData, validator, resolutions} from "./common"
 import "./assets/style.css"
 import * as M from "materialize-css"
