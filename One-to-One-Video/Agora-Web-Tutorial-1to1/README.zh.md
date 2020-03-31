@@ -33,15 +33,11 @@
 
 ### 启动Web-Server
 
-1. 安装live-server
+1. 在工作目录通过以下命令启动live-server服务器,
     ```
     npx serve .
     ```
-2. 在工作目录通过以下命令启动live-server服务器,
-    ```
-    live-server .
-    ```
-3. 在对应的输入框里正确输入 APPID, Token, Channel。点击**JOIN**即可。
+2. 在对应的输入框里正确输入 APPID, Token, Channel。点击**JOIN**即可。
 
 ## 联系我们
 
