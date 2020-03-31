@@ -26,7 +26,7 @@ export default class RTCClient {
       let peerStream = this._remoteStreams.find(e => id === e.getId())
       peerStream && peerStream.stop()
       this._remoteStreams = streams
-      if (id != this._params.uid) {
+      if (id !== this._params.uid) {
         removeView(id)
       }
       Toast.notice("peer leave")
