@@ -1,6 +1,6 @@
-import {Toast, addView, removeView} from "./common"
+import {Toast, addView, removeView} from './common'
 
-console.log("agora sdk version: " + AgoraRTC.VERSION + " compatible: " + AgoraRTC.checkSystemRequirements())
+console.log('agora sdk version: ' + AgoraRTC.VERSION + ' compatible: ' + AgoraRTC.checkSystemRequirements())
 
 export default class RTCClient {
   constructor () {
@@ -16,126 +16,126 @@ export default class RTCClient {
   }
 
   handleEvents() {
-    this._client.on("error", (err) => {
+    this._client.on('error', (err) => {
       console.log(err)
     })
-    this._client.on("first-audio-frame-decode", (e) => {
+    this._client.on('first-audio-frame-decode', (e) => {
       const streamID = e.stream.getId()
       if (!this._rtsStreamProfile[`${streamID}`]) {
         this._rtsStreamProfile[`${streamID}`] = {}
       }
-      this._rtsStreamProfile[`${streamID}`]["first-audio-frame-decode"] = `${e.time}`
+      this._rtsStreamProfile[`${streamID}`]['first-audio-frame-decode'] = `${e.time}`
     })
   
-    this._client.on("first-video-frame-decode", (e) => {
+    this._client.on('first-video-frame-decode', (e) => {
       const streamID = e.stream.getId()
       if (!this._rtsStreamProfile[`${streamID}`]) {
         this._rtsStreamProfile[`${streamID}`] = {}
       }
-      this._rtsStreamProfile[`${streamID}`]["first-video-frame-decode"] = `${e.time}`
+      this._rtsStreamProfile[`${streamID}`]['first-video-frame-decode'] = `${e.time}`
     }) 
   
-    this._client.on("first-video-frame-rendered", (e) => {
+    this._client.on('first-video-frame-rendered', (e) => {
       const streamID = e.stream.getId()
       if (!this._rtsStreamProfile[`${streamID}`]) {
         this._rtsStreamProfile[`${streamID}`] = {}
       }
-      this._rtsStreamProfile[`${streamID}`]["first-video-frame-rendered"] = `${e.time}`
+      this._rtsStreamProfile[`${streamID}`]['first-video-frame-rendered'] = `${e.time}`
     }) 
   
-    this._client.on("mute-video", function(e) {
+    this._client.on('mute-video', function(e) {
       Toast.notice(`mute-video: ${e.stream.getId()}`)
     }) 
   
-    this._client.on("mute-audio", function(e) {
+    this._client.on('mute-audio', function(e) {
       Toast.notice(`mute-audio: ${e.stream.getId()}`)
     }) 
   
-    this._client.on("unmute-video", function(e) {
+    this._client.on('unmute-video', function(e) {
       Toast.notice(`unmute-video: ${e.stream.getId()}`)
     }) 
   
-    this._client.on("unmute-audio", function(e) {
+    this._client.on('unmute-audio', function(e) {
       Toast.notice(`unmute-audio: ${e.stream.getId()}`)
     }) 
   
-    this._client.on("stream-updated", function(e) {
-      console.trace("stream updated: ", e.stream.getId())
+    this._client.on('stream-updated', function(e) {
+      console.trace('stream updated: ', e.stream.getId())
     }) 
   
-    this._client.on("exception", function(e) {
-      console.log("exception: ",e.code, e.msg, e.uid)
+    this._client.on('exception', function(e) {
+      console.log('exception: ',e.code, e.msg, e.uid)
     }) 
     // Occurs when the stream type changed
-    this._client.on("stream-type-changed", function (e) {
-      console.log("stream-type-changed", e)
+    this._client.on('stream-type-changed', function (e) {
+      console.log('stream-type-changed', e)
     })
     // Occurs when the peer user leaves the channel; for example, the peer user calls Client.leave.
-    this._client.on("peer-leave", (evt) => {
+    this._client.on('peer-leave', (evt) => {
       const id = evt.uid
       if (id != this._params.uid) {
         removeView(id)
       }
-      Toast.notice("peer leave")
-      console.log("peer-leave", id)
+      Toast.notice('peer leave')
+      console.log('peer-leave', id)
     })
     // Occurs when the local stream is _published.
-    this._client.on("stream-published", (evt) => {
-      Toast.notice("stream published success")
-      console.log("stream-published")
+    this._client.on('stream-published', (evt) => {
+      Toast.notice('stream published success')
+      console.log('stream-published')
     })
     // Occurs when the remote stream is added.
-    this._client.on("stream-added", (evt) => {  
+    this._client.on('stream-added', (evt) => {  
       const remoteStream = evt.stream
       const id = remoteStream.getId()
-      Toast.info("stream-added uid: " + id)
+      Toast.info('stream-added uid: ' + id)
       if (id !== this._params.uid) {
         this._client.subscribe(remoteStream, (err) => {
-          console.log("stream subscribe failed", err)
+          console.log('stream subscribe failed', err)
         })
       }
-      console.log("stream-added remote-uid: ", id)
+      console.log('stream-added remote-uid: ', id)
     })
     // Occurs when a user subscribes to a remote stream.
-    this._client.on("stream-subscribed", (evt) => {
+    this._client.on('stream-subscribed', (evt) => {
       const remoteStream = evt.stream
       const id = remoteStream.getId()
       this._remoteStreams.push(remoteStream)
       addView(id, this._showProfile)
-      remoteStream.play("remote_video_" + id, {fit: "cover"})
-      Toast.info("stream-subscribed remote-uid: " + id)
-      console.log("stream-subscribed remote-uid: ", id)
+      remoteStream.play('remote_video_' + id, {fit: 'cover'})
+      Toast.info('stream-subscribed remote-uid: ' + id)
+      console.log('stream-subscribed remote-uid: ', id)
     })
     // Occurs when the remote stream is removed; for example, a peer user calls Client.unpublish.
-    this._client.on("stream-removed", (evt) => {
+    this._client.on('stream-removed', (evt) => {
       const remoteStream = evt.stream
       const id = remoteStream.getId()
-      Toast.info("stream-removed uid: " + id)
+      Toast.info('stream-removed uid: ' + id)
       remoteStream.stop()
       this._remoteStreams = this._remoteStreams.filter((stream) => {
         return stream.getId() !== id
       })
       removeView(id)
-      console.log("stream-removed remote-uid: ", id)
+      console.log('stream-removed remote-uid: ', id)
     })
-    this._client.on("onTokenPrivilegeWillExpire", () => {
+    this._client.on('onTokenPrivilegeWillExpire', () => {
       // After requesting a new token
       // this._client.renewToken(token);
-      Toast.info("onTokenPrivilegeWillExpire")
-      console.log("onTokenPrivilegeWillExpire")
+      Toast.info('onTokenPrivilegeWillExpire')
+      console.log('onTokenPrivilegeWillExpire')
     })
-    this._client.on("onTokenPrivilegeDidExpire", () => {
+    this._client.on('onTokenPrivilegeDidExpire', () => {
       // After requesting a new token
       // client.renewToken(token);
-      Toast.info("onTokenPrivilegeDidExpire")
-      console.log("onTokenPrivilegeDidExpire")
+      Toast.info('onTokenPrivilegeDidExpire')
+      console.log('onTokenPrivilegeDidExpire')
     })
   }
 
   join (data) {
     return new Promise((resolve, reject) => {    
       if (this._joined) {
-        Toast.error("Your already joined")
+        Toast.error('Your already joined')
         return
       }
     
@@ -146,13 +146,13 @@ export default class RTCClient {
        *    Ensure that you set these properties before calling Client.join.
        *  You could find more detail here. https://docs.agora.io/en/Video/API%20Reference/web/interfaces/agorartc.clientconfig.html
       **/
-     this._client = AgoraRTC.createClient({mode: data.mode, codec: data.codec})
+      this._client = AgoraRTC.createClient({mode: data.mode, codec: data.codec})
       AgoraRTS.init(AgoraRTC, {
-        wasmDecoderPath: "AgoraRTS.wasm",
-        asmDecoderPath: "AgoraRTS.asm",
+        wasmDecoderPath: 'AgoraRTS.wasm',
+        asmDecoderPath: 'AgoraRTS.asm',
       }).catch(e => {
-        if (e === "LOAD_DECODER_FAILED") {
-          console.log("Codec load failed！")
+        if (e === 'LOAD_DECODER_FAILED') {
+          console.log('Codec load failed！')
         }
       })
       AgoraRTS.proxy(this._client)
@@ -163,7 +163,7 @@ export default class RTCClient {
     
       // init client
       this._client.init(data.appID, () => {
-        console.log("init success")
+        console.log('init success')
     
         /**
          * Joins an AgoraRTC Channel
@@ -187,8 +187,8 @@ export default class RTCClient {
         **/
         this._client.join(data.token ? data.token : null, data.channel, data.uid ? +data.uid : null, (uid) => {
           this._params.uid = uid
-          Toast.notice("join channel: " + data.channel + " success, uid: " + uid)
-          console.log("join channel: " + data.channel + " success, uid: " + uid)
+          Toast.notice('join channel: ' + data.channel + ' success, uid: ' + uid)
+          console.log('join channel: ' + data.channel + ' success, uid: ' + uid)
           this._joined = true
     
           // start stream interval stats
@@ -212,37 +212,37 @@ export default class RTCClient {
             cameraId: data.cameraId
           })
 
-          if ($("#local_rect").hasClass("hide")) {
-            $("#local_rect").removeClass("hide")
+          if ($('#local_rect').hasClass('hide')) {
+            $('#local_rect').removeClass('hide')
           }
 
-          this._localStream.on("player-status-change", (evt) => {
-            console.log("player status change", evt)
+          this._localStream.on('player-status-change', (evt) => {
+            console.log('player status change', evt)
           })
 
-          if (data.cameraResolution && data.cameraResolution != "default") {
+          if (data.cameraResolution && data.cameraResolution != 'default') {
             // set local video resolution
             this._localStream.setVideoProfile(data.cameraResolution)
           }
     
           // init local stream
           this._localStream.init(() => {
-            console.log("init local stream success")
+            console.log('init local stream success')
             // play stream with html element id "local_stream"
-            this._localStream.play("local_stream", {fit: "cover"})
+            this._localStream.play('local_stream', {fit: 'cover'})
     
             // run callback
             resolve()
           }, (err) =>  {
-            Toast.error("stream init failed, please open console see more detail")
-            console.error("init local stream failed ", err)
+            Toast.error('stream init failed, please open console see more detail')
+            console.error('init local stream failed ', err)
           })
         }, function(err) {
-          Toast.error("client join failed, please open console see more detail")
-          console.error("client join failed", err)
+          Toast.error('client join failed, please open console see more detail')
+          console.error('client join failed', err)
         })
       }, (err) => {
-        Toast.error("client init failed, please open console see more detail")
+        Toast.error('client init failed, please open console see more detail')
         console.error(err)
       })
     })
@@ -250,11 +250,11 @@ export default class RTCClient {
 
   publish () {
     if (!this._client) {
-      Toast.error("Please Join First")
+      Toast.error('Please Join First')
       return
     }
     if (this._published) {
-      Toast.error("Your already published")
+      Toast.error('Your already published')
       return
     }
     const oldState = this._published
@@ -262,41 +262,41 @@ export default class RTCClient {
     // publish localStream
     this._client.publish(this._localStream, (err) => {
       this._published = oldState
-      console.log("publish failed")
-      Toast.error("publish failed")
+      console.log('publish failed')
+      Toast.error('publish failed')
       console.error(err)
     })
-    Toast.info("publish")
+    Toast.info('publish')
     this._published = true
   }
 
   unpublish () {
     if (!this._client) {
-      Toast.error("Please Join First")
+      Toast.error('Please Join First')
       return
     }
     if (!this._published) {
-      Toast.error("Your didn't publish")
+      Toast.error('Your didn\'t publish')
       return
     }
     const oldState = this._published
     this._client.unpublish(this._localStream, (err) => {
       this._published = oldState
-      console.log("unpublish failed")
-      Toast.error("unpublish failed")
+      console.log('unpublish failed')
+      Toast.error('unpublish failed')
       console.error(err)
     })
-    Toast.info("unpublish")
+    Toast.info('unpublish')
     this._published = false
   }
 
   leave () {
     if (!this._client) {
-      Toast.error("Please Join First!")
+      Toast.error('Please Join First!')
       return
     }
     if (!this._joined) {
-      Toast.error("You are not in channel")
+      Toast.error('You are not in channel')
       return
     }
     // leave channel
@@ -304,7 +304,7 @@ export default class RTCClient {
       // close stream
       this._localStream.close()
 
-      $("#local_video_info").addClass("hide")
+      $('#local_video_info').addClass('hide')
       // stop stream
       this._localStream.stop()
       while (this._remoteStreams.length > 0) {
@@ -316,13 +316,13 @@ export default class RTCClient {
       this._localStream = null
       this._remoteStreams = []
       this._client = null
-      console.log("client leaves channel success")
+      console.log('client leaves channel success')
       this._published = false
       this._joined = false
-      Toast.notice("leave success")
+      Toast.notice('leave success')
     }, (err) => {
-      console.log("channel leave failed")
-      Toast.error("leave success")
+      console.log('channel leave failed')
+      Toast.error('leave success')
       console.error(err)
     })
   }
@@ -338,37 +338,37 @@ export default class RTCClient {
   _updateVideoInfo () {
     this._localStream && this._localStream.getStats((stats) => {
       const localStreamProfile = [
-        ["Uid: ", this._localStream.getId()].join(""),
-        ["SDN access delay: ", stats.accessDelay, "ms"].join(""),
-        ["Video send: ", stats.videoSendFrameRate, "fps ", stats.videoSendResolutionWidth + "x" + stats.videoSendResolutionHeight].join(""),
-      ].join("<br/>")
-      $("#local_video_info")[0].innerHTML = localStreamProfile
+        ['Uid: ', this._localStream.getId()].join(''),
+        ['SDN access delay: ', stats.accessDelay, 'ms'].join(''),
+        ['Video send: ', stats.videoSendFrameRate, 'fps ', stats.videoSendResolutionWidth + 'x' + stats.videoSendResolutionHeight].join(''),
+      ].join('<br/>')
+      $('#local_video_info')[0].innerHTML = localStreamProfile
     })
 
     if (this._remoteStreams.length > 0) {
       for (let remoteStream of this._remoteStreams) {
         remoteStream.getStats((stats) => {
           const remoteStreamProfile = [
-            ["Uid: ", remoteStream.getId()].join(""),
-            ["Video recv: ", stats.videoReceiveFrameRate, "fps ", stats.videoReceiveResolutionWidth + "x" + stats.videoReceiveResolutionHeight].join(""),
+            ['Uid: ', remoteStream.getId()].join(''),
+            ['Video recv: ', stats.videoReceiveFrameRate, 'fps ', stats.videoReceiveResolutionWidth + 'x' + stats.videoReceiveResolutionHeight].join(''),
           ]
           const rtsStreamProfile = this._rtsStreamProfile[remoteStream.getId()]
           if (rtsStreamProfile) {
-            rtsStreamProfile["first-audio-frame-decode"] &&
+            rtsStreamProfile['first-audio-frame-decode'] &&
             remoteStreamProfile.push([
-              ["First audio frame decode ", `${rtsStreamProfile["first-audio-frame-decode"]}ms`].join("")
+              ['First audio frame decode ', `${rtsStreamProfile['first-audio-frame-decode']}ms`].join('')
             ])
-            rtsStreamProfile["first-video-frame-decode"] &&
+            rtsStreamProfile['first-video-frame-decode'] &&
             remoteStreamProfile.push([
-              ["First video frame decode ", `${rtsStreamProfile["first-video-frame-decode"]}ms`].join("")
+              ['First video frame decode ', `${rtsStreamProfile['first-video-frame-decode']}ms`].join('')
             ])
-            rtsStreamProfile["first-video-frame-rendered"] &&
+            rtsStreamProfile['first-video-frame-rendered'] &&
             remoteStreamProfile.push([
-              ["First video frame rendered ", `${rtsStreamProfile["first-video-frame-rendered"]}ms`].join("")
+              ['First video frame rendered ', `${rtsStreamProfile['first-video-frame-rendered']}ms`].join('')
             ])
           }
-          if ($("#remote_video_info_"+remoteStream.getId())[0]) {
-            $("#remote_video_info_"+remoteStream.getId())[0].innerHTML = remoteStreamProfile.join("<br/>")
+          if ($('#remote_video_info_'+remoteStream.getId())[0]) {
+            $('#remote_video_info_'+remoteStream.getId())[0].innerHTML = remoteStreamProfile.join('<br/>')
           }
         })
       }
@@ -377,7 +377,7 @@ export default class RTCClient {
 
   setNetworkQualityAndStreamStats (enable) {
     this._showProfile = enable
-    this._showProfile ? $(".video-profile").removeClass("hide") : $(".video-profile").addClass("hide")
+    this._showProfile ? $('.video-profile').removeClass('hide') : $('.video-profile').addClass('hide')
   }
 }
 
