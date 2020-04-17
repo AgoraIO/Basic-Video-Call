@@ -259,6 +259,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         return actionBarHeight;
     }
 
+    /**
+     *
+     * Starts/Stops the local video preview
+     *
+     * Before calling this method, you must:
+     * Call the enableVideo method to enable the video.
+     *
+     * @param start Whether to start/stop the local preview
+     * @param view The SurfaceView in which to render the preview
+     * @param uid User ID.
+     */
     protected void preview(boolean start, SurfaceView view, int uid) {
         if (start) {
             rtcEngine().setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid));
@@ -268,6 +279,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Allows a user to join a channel.
+     *
+     * Users in the same channel can talk to each other, and multiple users in the same channel can start a group chat. Users with different App IDs cannot call each other.
+     *
+     * You must call the leaveChannel method to exit the current call before joining another channel.
+     *
+     * A successful joinChannel method call triggers the following callbacks:
+     *
+     * The local client: onJoinChannelSuccess.
+     * The remote client: onUserJoined, if the user joining the channel is in the Communication profile, or is a BROADCASTER in the Live Broadcast profile.
+     *
+     * When the connection between the client and Agora's server is interrupted due to poor
+     * network conditions, the SDK tries reconnecting to the server. When the local client
+     * successfully rejoins the channel, the SDK triggers the onRejoinChannelSuccess callback
+     * on the local client.
+     *
+     * @param channel The unique channel name for the AgoraRTC session in the string format.
+     * @param uid User ID.
+     */
     public final void joinChannel(final String channel, int uid) {
         String accessToken = getApplicationContext().getString(R.string.agora_access_token);
         if (TextUtils.equals(accessToken, "") || TextUtils.equals(accessToken, "<#YOUR ACCESS TOKEN#>")) {
@@ -280,6 +311,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         log.debug("joinChannel " + channel + " " + uid);
     }
 
+    /**
+     * Allows a user to leave a channel.
+     *
+     * After joining a channel, the user must call the leaveChannel method to end the call before
+     * joining another channel. This method returns 0 if the user leaves the channel and releases
+     * all resources related to the call. This method call is asynchronous, and the user has not
+     * exited the channel when the method call returns. Once the user leaves the channel,
+     * the SDK triggers the onLeaveChannel callback.
+     *
+     * A successful leaveChannel method call triggers the following callbacks:
+     *
+     * The local client: onLeaveChannel.
+     * The remote client: onUserOffline, if the user leaving the channel is in the
+     * Communication channel, or is a BROADCASTER in the Live Broadcast profile.
+     *
+     * @param channel Channel Name
+     */
     public final void leaveChannel(String channel) {
         log.debug("leaveChannel " + channel);
         config().mChannel = null;
@@ -288,6 +336,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         config().reset();
     }
 
+    /**
+     * Enables image enhancement and sets the options.
+     */
     protected void enablePreProcessor() {
         if (Constant.BEAUTY_EFFECT_ENABLED) {
             rtcEngine().setBeautyEffectOptions(true, Constant.BEAUTY_OPTIONS);
@@ -300,6 +351,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         Constant.BEAUTY_OPTIONS.rednessLevel = redness;
     }
 
+
+    /**
+     * Disables image enhancement.
+     */
     protected void disablePreProcessor() {
         // do not support null when setBeautyEffectOptions to false
         rtcEngine().setBeautyEffectOptions(false, Constant.BEAUTY_OPTIONS);
@@ -312,6 +367,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         log.debug("configEngine " + videoDimension + " " + fps + " " + encryptionMode);
+        // Set the Resolution, FPS. Bitrate and Orientation of the video
         rtcEngine().setVideoEncoderConfiguration(new VideoEncoderConfiguration(videoDimension,
                 fps,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
