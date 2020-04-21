@@ -51,12 +51,17 @@ class VideoChatViewController: NSViewController {
         localVideo.layer?.backgroundColor = NSColor.clear.cgColor
     }
     
+    /// Create the agora instance.
     func initializeAgoraEngine() {
         AgoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: AppID, delegate: self)
     }
     
     func setupVideo() {
         AgoraKit.enableVideo()  // Default mode is disableVideo
+        
+        // Set video configuration
+        // Please go to this page for detailed explanation
+        // https://docs.agora.io/en/Video/video_profile_apple?platform=macOS
         let configuration = AgoraVideoEncoderConfiguration(size: AgoraVideoDimension960x720,
                                                            frameRate: .fps15,
                                                            bitrate: AgoraVideoBitrateStandard,
@@ -65,6 +70,13 @@ class VideoChatViewController: NSViewController {
     }
     
     func setupLocalVideo() {
+        // This is used to set a local preview.
+        // The steps setting local and remote view are very similar.
+        // But note that if the local user do not have a uid or do
+        // not care what the uid is, he can set his uid as ZERO.
+        // Our server will assign one and return the uid via the block
+        // callback (joinSuccessBlock) after
+        // joining the channel successfully.
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = 0
         videoCanvas.view = localVideo
@@ -73,6 +85,10 @@ class VideoChatViewController: NSViewController {
     }
     
     func joinChannel() {
+        // 1. Users can only see each other after they join the
+        // same channel successfully using the same app id.
+        // 2. One token is only valid for the channel name that
+        // you use to generate this token.
         AgoraKit.joinChannel(byToken: Token, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
             // did join channel "demoChannel1"
         }
@@ -83,6 +99,7 @@ class VideoChatViewController: NSViewController {
     }
     
     func leaveChannel() {
+        // leave channel and end chat
         AgoraKit.leaveChannel(nil)
         AgoraKit.setupLocalVideo(nil)
         remoteVideo.removeFromSuperview()
@@ -129,6 +146,7 @@ class VideoChatViewController: NSViewController {
     
     @IBAction func didClickMuteButton(_ sender: NSButton) {
         muteAudio = !muteAudio
+        // mute local audio
         AgoraKit.muteLocalAudioStream(muteAudio)
     
         if (muteAudio) {
@@ -140,6 +158,7 @@ class VideoChatViewController: NSViewController {
     
     @IBAction func didClickVideoMuteButton(_ sender: NSButton) {
         muteVideo = !muteVideo
+        // mute local video
         AgoraKit.muteLocalVideoStream(muteVideo)
     
         if (muteVideo) {
@@ -171,17 +190,26 @@ class VideoChatViewController: NSViewController {
         screenShare = !screenShare
         if (screenShare) {
             sender.image = NSImage(named:"screenShareButtonSelected")
+            // Start the screen capture with default parameters
             AgoraKit.startScreenCapture(byDisplayId: UInt(CGMainDisplayID()),
                                         rectangle: CGRect.zero,
                                         parameters: AgoraScreenCaptureParameters())
         } else {
             sender.image = NSImage(named:"screenShareButton")
+            // Stop the screen capture
             AgoraKit.stopScreenCapture()
         }
     }
 }
 
 extension VideoChatViewController: AgoraRtcEngineDelegate {
+    
+    /// Callback to handle the event when the first frame of a remote video stream is decoded on the device.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - uid: user id
+    ///   - size: the height and width of the video frame
+    ///   - elapsed: Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
         if (remoteVideo.isHidden) {
             remoteVideo.isHidden = false
@@ -193,10 +221,20 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         AgoraKit.setupRemoteVideo(videoCanvas)
     }
     
+    /// Occurs when a remote user (Communication)/host (Live Broadcast) leaves a channel.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - uid: ID of the user or host who leaves a channel or goes offline.
+    ///   - reason: Reason why the user goes offline
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraUserOfflineReason) {
         self.remoteVideo.isHidden = true
     }
     
+    /// Occurs when a remote user’s video stream playback pauses/resumes.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - muted: YES for paused, NO for resumed.
+    ///   - byUid: User ID of the remote user.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didVideoMuted muted:Bool, byUid:UInt) {
         remoteVideo.isHidden = muted
         remoteVideoMutedIndicator.isHidden = !muted
