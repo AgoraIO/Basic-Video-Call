@@ -1,2 +1,5 @@
 **/*.*~
 .vscode/
+Agora-Web-Tutorial-1to1/assets/*.js
+Agora-Web-RTS-Tutorial-1to1-Webpack/static/*.wasm
+Agora-Web-RTS-Tutorial-1to1-Webpack/static/*.asm
