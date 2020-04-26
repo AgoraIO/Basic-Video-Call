@@ -34,20 +34,20 @@ CString CAgoraObject::LoadAppID()
 	::GetModuleFileName(NULL, szFilePath, MAX_PATH);
 	LPTSTR lpLastSlash = _tcsrchr(szFilePath, _T('\\'));
 
-	if (lpLastSlash == NULL)
-		return strAppID;
+	  if (!PathFileExists(szFilePath)) {
+        HANDLE handle = CreateFile(szFilePath, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_NEW, 0, NULL);
+        CloseHandle(handle);
+    }
+   
+    TCHAR szAppid[MAX_PATH] = { 0 };
+    ::GetPrivateProfileString(_T("AppID"), _T("AppID"), NULL, szAppid, MAX_PATH, szFilePath);
+    if (_tcslen(szAppid) == 0) {
+        ::WritePrivateProfileString(_T("AppID"), _T("AppID"), _T(""), szFilePath);
+        ::ShellExecute(NULL, _T("open"), szFilePath, NULL, NULL, SW_MAXIMIZE);
+    }
 
-	SIZE_T nNameLen = MAX_PATH - (lpLastSlash - szFilePath + 1);
-	_tcscpy_s(lpLastSlash + 1, nNameLen, _T("AppID.ini"));
+    strAppID = szAppid;
 
-	if (::GetFileAttributes(szFilePath) == INVALID_FILE_ATTRIBUTES)
-		return strAppID;
-
-	CString strResolution;
-
-	::GetPrivateProfileString(_T("AppID"), _T("AppID"), NULL, strAppID.GetBuffer(MAX_PATH), MAX_PATH, szFilePath);
-
-	strAppID.ReleaseBuffer();
 
 	return strAppID;
 }
