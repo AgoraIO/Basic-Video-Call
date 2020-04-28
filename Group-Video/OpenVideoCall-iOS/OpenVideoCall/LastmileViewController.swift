@@ -61,10 +61,15 @@ class LastmileViewController: UITableViewController {
 }
 
 extension LastmileViewController: AgoraRtcEngineDelegate {
+    /// Reports the last mile network quality of the local user once every two seconds before the user joins a channel.
+    /// - Parameters:
+    ///   - engine: the Agora engine
+    ///   - quality: An enum describing the network quality. Possible values are: Unknown = 0, Excellent = 1, Good = 2, Poor = 3, Bad = 4, VBad = 5, Down = 6, Unsupported = 7, Detecting = 8.
     func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
         qualityLabel.text = quality.description()
     }
     
+    /// Reports the last-mile network probe result.
     func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileProbeTest result: AgoraLastmileProbeResult) {
         rttLabel.text = "\(result.rtt) ms"
         uplinkLabel.text = result.uplinkReport.description()
