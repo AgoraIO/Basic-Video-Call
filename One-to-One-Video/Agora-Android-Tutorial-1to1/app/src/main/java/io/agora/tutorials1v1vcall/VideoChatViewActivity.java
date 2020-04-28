@@ -58,6 +58,15 @@ public class VideoChatViewActivity extends AppCompatActivity {
      * engine deals with the events in a separate thread.
      */
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+        /**
+         * Occurs when the local user joins a specified channel.
+         * The channel name assignment is based on channelName specified in the joinChannel method.
+         * If the uid is not specified when joinChannel is called, the server automatically assigns a uid.
+         *
+         * @param channel Channel name.
+         * @param uid User ID.
+         * @param elapsed Time elapsed (ms) from the user calling joinChannel until this callback is triggered.
+         */
         @Override
         public void onJoinChannelSuccess(String channel, final int uid, int elapsed) {
             runOnUiThread(new Runnable() {
@@ -68,6 +77,22 @@ public class VideoChatViewActivity extends AppCompatActivity {
             });
         }
 
+        /**
+         * Occurs when the first remote video frame is received and decoded.
+         * This callback is triggered in either of the following scenarios:
+         *
+         *     The remote user joins the channel and sends the video stream.
+         *     The remote user stops sending the video stream and re-sends it after 15 seconds. Possible reasons include:
+         *         The remote user leaves channel.
+         *         The remote user drops offline.
+         *         The remote user calls the muteLocalVideoStream method.
+         *         The remote user calls the disableVideo method.
+         *
+         * @param uid User ID of the remote user sending the video streams.
+         * @param width Width (pixels) of the video stream.
+         * @param height Height (pixels) of the video stream.
+         * @param elapsed Time elapsed (ms) from the local user calling the joinChannel method until this callback is triggered.
+         */
         @Override
         public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
             runOnUiThread(new Runnable() {
@@ -79,6 +104,28 @@ public class VideoChatViewActivity extends AppCompatActivity {
             });
         }
 
+        /**
+         * Occurs when a remote user (Communication)/host (Live Broadcast) leaves the channel.
+         *
+         * There are two reasons for users to become offline:
+         *
+         *     Leave the channel: When the user/host leaves the channel, the user/host sends a
+         *     goodbye message. When this message is received, the SDK determines that the
+         *     user/host leaves the channel.
+         *
+         *     Drop offline: When no data packet of the user or host is received for a certain
+         *     period of time (20 seconds for the communication profile, and more for the live
+         *     broadcast profile), the SDK assumes that the user/host drops offline. A poor
+         *     network connection may lead to false detections, so we recommend using the
+         *     Agora RTM SDK for reliable offline detection.
+         *
+         * @param uid ID of the user or host who leaves the channel or goes offline.
+         * @param reason Reason why the user goes offline:
+         *
+         *     USER_OFFLINE_QUIT(0): The user left the current channel.
+         *     USER_OFFLINE_DROPPED(1): The SDK timed out and the user dropped offline because no data packet was received within a certain period of time. If a user quits the call and the message is not passed to the SDK (due to an unreliable channel), the SDK assumes the user dropped offline.
+         *     USER_OFFLINE_BECOME_AUDIENCE(2): (Live broadcast only.) The client role switched from the host to the audience.
+         */
         @Override
         public void onUserOffline(final int uid, int reason) {
             runOnUiThread(new Runnable() {
@@ -108,8 +155,16 @@ public class VideoChatViewActivity extends AppCompatActivity {
             return;
         }
 
+        /*
+          Creates the video renderer view.
+          CreateRendererView returns the SurfaceView type. The operation and layout of the view
+          are managed by the app, and the Agora SDK renders the view provided by the app.
+          The video display view must be created using this method instead of directly
+          calling SurfaceView.
+         */
         mRemoteView = RtcEngine.CreateRendererView(getBaseContext());
         mRemoteContainer.addView(mRemoteView);
+        // Initializes the video view of a remote user.
         mRtcEngine.setupRemoteVideo(new VideoCanvas(mRemoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
         mRemoteView.setTag(uid);
     }
@@ -122,6 +177,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         if (mRemoteView != null) {
             mRemoteContainer.removeView(mRemoteView);
         }
+        // Destroys remote view
         mRemoteView = null;
     }
 
@@ -244,6 +300,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mLocalView = RtcEngine.CreateRendererView(getBaseContext());
         mLocalView.setZOrderMediaOverlay(true);
         mLocalContainer.addView(mLocalView);
+        // Initializes the local video view.
+        // RENDER_MODE_HIDDEN: Uniformly scale the video until it fills the visible boundaries. One dimension of the video may have clipped contents.
         mRtcEngine.setupLocalVideo(new VideoCanvas(mLocalView, VideoCanvas.RENDER_MODE_HIDDEN, 0));
     }
 
@@ -265,6 +323,12 @@ public class VideoChatViewActivity extends AppCompatActivity {
         if (!mCallEnd) {
             leaveChannel();
         }
+        /*
+          Destroys the RtcEngine instance and releases all resources used by the Agora SDK.
+
+          This method is useful for apps that occasionally make voice or video calls,
+          to free up resources for other operations when not making calls.
+         */
         RtcEngine.destroy();
     }
 
@@ -274,12 +338,14 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     public void onLocalAudioMuteClicked(View view) {
         mMuted = !mMuted;
+        // Stops/Resumes sending the local audio stream.
         mRtcEngine.muteLocalAudioStream(mMuted);
         int res = mMuted ? R.drawable.btn_mute : R.drawable.btn_unmute;
         mMuteBtn.setImageResource(res);
     }
 
     public void onSwitchCameraClicked(View view) {
+        // Switches between front and rear cameras.
         mRtcEngine.switchCamera();
     }
 
