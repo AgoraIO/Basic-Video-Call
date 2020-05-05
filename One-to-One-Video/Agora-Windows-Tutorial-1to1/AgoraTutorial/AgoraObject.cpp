@@ -20,6 +20,9 @@ CAgoraObject::~CAgoraObject(void)
 {
 }
 
+/**
+   gets current SDK version number string 
+*/
 CString CAgoraObject::GetSDKVersion()
 {
 	int nBuildNumber = 0;
@@ -35,6 +38,9 @@ CString CAgoraObject::GetSDKVersion()
 	return strEngineVer;
 }
 
+/** 
+    gets the Agora Engine instance 
+*/
 IRtcEngine *CAgoraObject::GetEngine()
 {
 	if(m_lpAgoraEngine == NULL)
@@ -43,6 +49,9 @@ IRtcEngine *CAgoraObject::GetEngine()
 	return m_lpAgoraEngine;
 }
 
+/** 
+    create or return existing AgoraObject 
+*/
 CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpAppId)
 {
 	if (m_lpAgoraObject == NULL)
@@ -71,6 +80,9 @@ CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpAppId)
 	return m_lpAgoraObject;
 }
 
+/** 
+    clean up the AgoraObject 
+*/
 void CAgoraObject::CloseAgoraObject()
 {
 	if(m_lpAgoraEngine != NULL)
@@ -83,16 +95,33 @@ void CAgoraObject::CloseAgoraObject()
 	m_lpAgoraObject = NULL;
 }
 
+/**
+  Setting Message Handler 
+
+Parameters:
+    @param hWnd     A handle to the handler
+ */
 void CAgoraObject::SetMsgHandlerWnd(HWND hWnd)
 {
 	m_EngineEventHandler.SetMsgReceiver(hWnd);
 }
 
+/** 
+    retrieve the handle of the message handler
+*/
 HWND CAgoraObject::GetMsgHandlerWnd()
 {
 	return m_EngineEventHandler.GetMsgReceiver();
 }
 
+/**
+   Join a channel for streaming or communication.
+
+Parameters:
+@param lpChannelName    name of the channel to join
+@param uUID     User ID
+@param lpToken  token key
+*/
 BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 {
 	int nRet = 0;
@@ -121,6 +150,9 @@ BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 	return nRet == 0 ? TRUE : FALSE;
 }
 
+/**
+    Leave the channel
+*/
 BOOL CAgoraObject::LeaveChannel()
 {
 	m_lpAgoraEngine->stopPreview();
@@ -129,11 +161,19 @@ BOOL CAgoraObject::LeaveChannel()
 	return nRet == 0 ? TRUE : FALSE;
 }
 
+/**
+    get current channel name
+*/
 CString CAgoraObject::GetChanelName()
 {
 	return m_strChannelName;
 }
 
+/**
+    turn video on/off
+ Parameters:
+    @param bEnable true if turn on else turn off
+*/
 BOOL CAgoraObject::EnableVideo(BOOL bEnable)
 {
 	int nRet = 0;
@@ -149,11 +189,18 @@ BOOL CAgoraObject::EnableVideo(BOOL bEnable)
 	return nRet == 0 ? TRUE : FALSE;
 }
 
+/**
+    check if video enabled
+*/
 BOOL CAgoraObject::IsVideoEnabled()
 {
 	return m_bVideoEnable;
 }
-
+/**
+    mute local audio on/off
+ Parameters:
+    @param bMuted true if muted else not muted
+*/
 BOOL CAgoraObject::MuteLocalAudio(BOOL bMuted)
 {
 	ASSERT(m_lpAgoraEngine != NULL);
@@ -167,12 +214,19 @@ BOOL CAgoraObject::MuteLocalAudio(BOOL bMuted)
 	return ret == 0 ? TRUE : FALSE;
 }
 
+/** 
+    check if local audio is muted
+*/
 BOOL CAgoraObject::IsLocalAudioMuted()
 {
 	return m_bLocalAudioMuted;
 }
 
-
+/**
+    mute local video on/off
+ Parameters:
+    @param bMuted true if muted else not muted
+*/
 BOOL CAgoraObject::MuteLocalVideo(BOOL bMuted)
 {
 	ASSERT(m_lpAgoraEngine != NULL);
@@ -185,7 +239,9 @@ BOOL CAgoraObject::MuteLocalVideo(BOOL bMuted)
 
 	return ret == 0 ? TRUE : FALSE;
 }
-
+/** 
+    check if local video is muted
+*/
 BOOL CAgoraObject::IsLocalVideoMuted()
 {
 	return m_bLocalVideoMuted;
