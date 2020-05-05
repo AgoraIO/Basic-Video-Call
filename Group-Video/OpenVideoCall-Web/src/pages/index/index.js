@@ -11,6 +11,8 @@ import { RESOLUTION_ARR } from "@/utils/Settings";
 import Polyfill from "@/utils/Polyfill";
 import Validator from "@/utils/Validate";
 
+// Parses the query params from the url
+
 const getParameterByName = (name, url) => {
   if (!url) {
     url = window.location.href;
@@ -23,6 +25,8 @@ const getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
+
+// Intializes the ui with necessary video profile options. (resolution, framerate, bitrate etc.)
 const uiInit = () => {
   document.querySelector(
     ".login-title"
@@ -73,6 +77,8 @@ const uiInit = () => {
   }
 };
 
+// Channel name validator
+
 const validate = channelName => {
   if (Validator.isNonEmpty(channelName)) {
     return "Cannot be empty!";
@@ -89,6 +95,8 @@ const validate = channelName => {
 
   return "";
 };
+
+
 
 const subscribeMouseEvent = () => {
   // Click Join and go to the meeting room
@@ -112,6 +120,7 @@ const subscribeMouseEvent = () => {
     $("#channel").addClass("is-success");
     validateIcon.append(`<i class="ag-icon icon-correct"></i>`);
 
+    // This config data is added to the cookies to be used in other pages.
     let postData = {
       baseMode: document.querySelector("#baseMode").dataset.value,
       transcode: $('input[name="transcode"]:checked').val(),
