@@ -9,6 +9,18 @@
 import SwiftUI
 import AgoraRtcKit
 
+struct HomeView : View {
+    var body: some View{
+        NavigationView {
+            VStack {
+                NavigationLink(destination: ContentView()) {
+                    Text("Join")
+                }
+            }.navigationBarTitle("Agora Tutorial", displayMode: .inline)
+        }
+    }
+}
+
 struct ContentView : View {
     @State var isLocalInSession = false
     @State var isLocalAudioMuted = false
