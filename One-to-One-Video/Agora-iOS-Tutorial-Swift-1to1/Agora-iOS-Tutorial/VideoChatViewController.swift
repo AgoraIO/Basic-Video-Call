@@ -112,7 +112,6 @@ class VideoChatViewController: UIViewController {
             self.isLocalVideoRender = true
             self.logVC?.log(type: .info, content: "did join channel")
         }
-        
         isStartCalling = true
         UIApplication.shared.isIdleTimerDisabled = true
     }
@@ -150,7 +149,13 @@ class VideoChatViewController: UIViewController {
 }
 
 extension VideoChatViewController: AgoraRtcEngineDelegate {
-    // first remote video frame
+    
+    /// Callback to handle the event when the first frame of a remote video stream is decoded on the device.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - uid: user id
+    ///   - size: the height and width of the video frame
+    ///   - elapsed: Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
         isRemoteVideoRender = true
         
@@ -164,18 +169,36 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         agoraKit.setupRemoteVideo(videoCanvas)
     }
     
+    /// Occurs when a remote user (Communication)/host (Live Broadcast) leaves a channel.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - uid: ID of the user or host who leaves a channel or goes offline.
+    ///   - reason: Reason why the user goes offline
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraUserOfflineReason) {
         isRemoteVideoRender = false
     }
     
+    /// Occurs when a remote user’s video stream playback pauses/resumes.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - muted: YES for paused, NO for resumed.
+    ///   - byUid: User ID of the remote user.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didVideoMuted muted:Bool, byUid:UInt) {
         isRemoteVideoRender = !muted
     }
     
+    /// Reports a warning during SDK runtime.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - warningCode: Warning code
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {
         logVC?.log(type: .warning, content: "did occur warning, code: \(warningCode.rawValue)")
     }
     
+    /// Reports an error during SDK runtime.
+    /// - Parameters:
+    ///   - engine: RTC engine instance
+    ///   - errorCode: Error code
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
         logVC?.log(type: .error, content: "did occur error, code: \(errorCode.rawValue)")
     }

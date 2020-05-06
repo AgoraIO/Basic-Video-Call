@@ -36,6 +36,8 @@ const globalLog = logger.init("global", "blue");
 const shareLog = logger.init("share", "yellow");
 const localLog = logger.init("local", "green");
 
+// Initialize the options from cookies (set from index.js and precall.js)
+
 const optionsInit = () => {
   let options = {
     videoProfile: Cookies.get("videoProfile").split(",")[0] || "480p_4",
@@ -59,6 +61,8 @@ const optionsInit = () => {
 
   return options;
 };
+
+// Initalizes the User Interface
 
 const uiInit = options => {
   document.querySelector(
@@ -92,11 +96,17 @@ const uiInit = options => {
   }
 };
 
+// Intializes the Agora client object
+
 const clientInit = (client, options) => {
   return new Promise((resolve, reject) => {
+    // Initialize the agora client object with appid
     client.init(options.key, () => {
       globalLog("AgoraRTC client initialized");
+      // Set low stream parameter
+      // Read more here https://docs.agora.io/en/Video/API%20Reference/web/interfaces/agorartc.client.html#setlowstreamparameter
       let lowStreamParam = RESOLUTION_ARR[options.videoProfileLow];
+      // Join the channel
       client.join(
         options.token,
         options.channel,
@@ -122,8 +132,8 @@ const clientInit = (client, options) => {
 };
 
 /**
- *
- * @param {*} uid
+ * @description Initializes the local stream
+ * @param {*} uid User Id
  * @param {*} options global option
  * @param {*} config stream config
  */
@@ -135,6 +145,7 @@ const streamInit = (uid, options, config) => {
     screen: false
   };
 
+  // Modify default config based on attendee mode
   switch (options.attendeeMode) {
     case "audio-only":
       defaultConfig.video = false;
@@ -147,12 +158,15 @@ const streamInit = (uid, options, config) => {
     case "video":
       break;
   }
+  // Create an Agora stream using the above parameters
   // eslint-disable-next-line
   let stream = AgoraRTC.createStream(merge(defaultConfig, config));
+  // Set the selected video profile
   stream.setVideoProfile(options.videoProfile);
   return stream;
 };
 
+// A function to stop and reset screen sharing related features.
 const shareEnd = () => {
   try {
     shareClient && shareClient.unpublish(shareStream);
@@ -172,16 +186,26 @@ const shareEnd = () => {
   }
 };
 
+
+// Start screen sharing
 const shareStart = () => {
   ButtonControl.disable(".shareScreenBtn");
+
+  // Create a new client for the screen sharing stream.
+
   // eslint-disable-next-line
   shareClient = AgoraRTC.createClient({
     mode: options.transcode
   });
+
+  // Create a new options object for screen sharing.
   let shareOptions = merge(options, {
     uid: SHARE_ID
   });
+
+  // Initalializes the client with the screen sharing options.
   clientInit(shareClient, shareOptions).then(uid => {
+    // New config for screen sharing stream
     let config = {
       screen: true,
       video: false,
@@ -189,9 +213,11 @@ const shareStart = () => {
       extensionId: "minllpmhdgpndnkomcoccfekfegnlikg",
       mediaSource: "application"
     };
+    // Intialize the screen sharing stream with the necessary parameters.
     shareStream = streamInit(uid, shareOptions, config);
     shareStream.init(
       () => {
+        // Once the stream is intialized, update the relevant ui and publish the stream.
         ButtonControl.enable(".shareScreenBtn");
         shareStream.on("stopScreenSharing", () => {
           shareEnd();
@@ -203,6 +229,7 @@ const shareStart = () => {
         });
       },
       err => {
+        // Appropriate error handling if screen sharing doesn't work.
         ButtonControl.enable(".shareScreenBtn");
         shareLog("getUserMedia failed", err);
         shareEnd();
@@ -221,6 +248,7 @@ const shareStart = () => {
   });
 };
 
+// Relevant code if you are using the screen sharing extension for previous versions of chrome.
 window.installSuccess = (...args) => {
   globalLog(...args);
 };
@@ -233,6 +261,7 @@ window.installError = (...args) => {
   );
 };
 
+// Helper function to remove stream from UI
 const removeStream = id => {
   streamList.map((item, index) => {
     if (item.getId() === id) {
@@ -249,6 +278,7 @@ const removeStream = id => {
   Renderer.customRender(streamList, options.displayMode, mainId);
 };
 
+// Helper function to add stream to UI
 const addStream = (stream, push = false) => {
   let id = stream.getId();
   // Check for redundant
@@ -267,12 +297,14 @@ const addStream = (stream, push = false) => {
   Renderer.customRender(streamList, options.displayMode, mainId);
 };
 
+// Helper function to fetch video streams from the data structure
 const getStreamById = id => {
   return streamList.filter(item => {
     return item.getId() === id;
   })[0];
 };
 
+// enable dual stream
 const enableDualStream = () => {
   client.enableDualStream(
     function() {
@@ -284,6 +316,7 @@ const enableDualStream = () => {
   );
 };
 
+// for setting the high stream in dual stream configuration.
 const setHighStream = (prev, next) => {
   if (prev === next) {
     return;
@@ -306,6 +339,7 @@ const setHighStream = (prev, next) => {
   // Set next stream to high
   nextStream && client.setRemoteVideoStreamType(nextStream, 0);
 };
+
 /**
  * Add callback for client event to control streams
  * @param {*} client
@@ -341,6 +375,7 @@ const subscribeStreamEvents = () => {
     });
   });
 
+  // When a peer leaves
   client.on("peer-leave", function(evt) {
     let id = evt.uid;
     localLog("Peer has left: " + id);
@@ -362,6 +397,7 @@ const subscribeStreamEvents = () => {
     removeStream(evt.uid);
   });
 
+  // when a stream is subscribed
   client.on("stream-subscribed", function(evt) {
     let stream = evt.stream;
     localLog("Got stream-subscribed event");
@@ -370,6 +406,7 @@ const subscribeStreamEvents = () => {
     addStream(stream);
   });
 
+  // when a stream is removed
   client.on("stream-removed", function(evt) {
     let stream = evt.stream;
     let id = stream.getId();
@@ -393,6 +430,7 @@ const subscribeStreamEvents = () => {
   });
 };
 
+// Subscribe the various mouse events in the UI like clicks
 const subscribeMouseEvents = () => {
   $(".displayModeBtn").on("click", function(e) {
     if (
@@ -522,6 +560,7 @@ const subscribeMouseEvents = () => {
   });
 };
 
+// Get various scheduled network stats
 const infoDetectSchedule = () => {
   let no = streamList.length;
   for (let i = 0; i < no; i++) {

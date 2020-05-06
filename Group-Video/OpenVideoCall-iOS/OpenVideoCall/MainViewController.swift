@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var encryptionButton: UIButton!
     @IBOutlet weak var testNetworkButton: UIButton!
     
+    // The agora engine
     private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
         engine.setLogFilter(AgoraLogFilter.info.rawValue)
