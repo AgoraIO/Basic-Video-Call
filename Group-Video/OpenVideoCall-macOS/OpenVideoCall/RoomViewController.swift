@@ -52,6 +52,7 @@ class RoomViewController: NSViewController {
     private var audioMuted = false {
         didSet {
             muteAudioButton?.image = NSImage(named: audioMuted ? "icon-micorophone off" : "icon-micorophone")
+            // mute local audio
             agoraKit.muteLocalAudioStream(audioMuted)
         }
     }
@@ -59,6 +60,7 @@ class RoomViewController: NSViewController {
     private var videoMuted = false {
         didSet {
             muteVideoButton?.image = NSImage(named: videoMuted ? "icon-camera off" : "icon-camera")
+            // mute local video
             agoraKit.muteLocalVideoStream(videoMuted)
             setVideoMuted(videoMuted, forUid: 0)
         }
@@ -440,18 +442,28 @@ private extension RoomViewController {
 
 //MARK: - AgoraRtcEngineDelegate
 extension RoomViewController: AgoraRtcEngineDelegate {
+    
+    /// Occurs when the local user joins a specified channel.
+    /// - Parameters:
+    ///   - engine: the Agora engine
+    ///   - channel: channel name
+    ///   - uid: User ID. If the uid is specified in the joinChannelByToken method, the specified user ID is returned. If the user ID is not specified when the joinChannel method is called, the server automatically assigns a uid.
+    ///   - elapsed: Time elapsed (ms) from the user calling the joinChannelByToken method until the SDK triggers this callback.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {
         info(string: "Join channel: \(channel)")
     }
     
+    /// Occurs when the connection between the SDK and the server is interrupted.
     func rtcEngineConnectionDidInterrupted(_ engine: AgoraRtcEngineKit) {
         alert(string: "RTC Connection Interrupted")
     }
     
+    /// Occurs when the SDK cannot reconnect to Agora’s edge server 10 seconds after its connection to the server is interrupted.
     func rtcEngineConnectionDidLost(_ engine: AgoraRtcEngineKit) {
         alert(string: "RTC Connection Lost")
     }
     
+    /// Reports an error during SDK runtime.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
         alert(string: "RTC ErrorCode \(errorCode.description)")
     }
