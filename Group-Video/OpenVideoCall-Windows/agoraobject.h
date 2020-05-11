@@ -16,6 +16,7 @@ extern CAgoraConfig gAgoraConfig;
 #include <IAgoraRtcEngine.h>
 #include <IAgoraMediaEngine.h>
 #include <AgoraBase.h>
+#include "agoraqtjson.h"
 using namespace agora;
 using namespace agora::rtc;
 
@@ -52,13 +53,15 @@ public:
     int setPlayoutDevice(const QString& guid);
     int setVideoDevice(const QString& guid);
 
-    BOOL setVideoProfile(int nWidth,int nHeight);
+    BOOL setVideoProfile(int nWidth,int nHeight, FRAME_RATE fps, int bitrate);
     BOOL setRecordingIndex(int nIndex);
     BOOL setPlayoutIndex(int nIndex);
     BOOL setVideoIndex(int nIndex);
     BOOL SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath);
 
-	bool setBeautyEffectOptions(bool enabled, BeautyOptions& options);
+    bool setBeautyEffectOptions(bool enabled, BeautyOptions& options);
+    bool SetCustomVideoProfile();
+    void SetDefaultParameters();
 signals:
     void sender_videoStopped();
     void sender_joinedChannelSuccess(const QString &qsChannel, unsigned int uid, int elapsed);
@@ -84,6 +87,7 @@ private:
 
     agora::rtc::IRtcEngine* m_rtcEngine;
     std::unique_ptr<agora::rtc::IRtcEngineEventHandler> m_eventHandler;
+    AgoraQtJson m_agoraJson;
 };
 
 #endif // CAGORAOBJECT_H

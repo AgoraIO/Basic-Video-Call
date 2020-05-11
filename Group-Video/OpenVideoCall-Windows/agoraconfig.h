@@ -32,6 +32,13 @@ public:
 
 	void setSmoothness(int smooth);
 	int getSmoothness();
+
+    void getVideoResolution(int& width, int height);
+    int getFPS();
+    int getBitrate();
+    bool isCustomFPS();
+    bool isCustomBitrate();
+    bool isCustomResolution();
 private:
     std::shared_ptr<QSettings>  m_spConfig;
 };

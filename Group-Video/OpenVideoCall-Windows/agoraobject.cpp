@@ -1,7 +1,7 @@
 ﻿#include "agoraobject.h"
 #include <qmessagebox.h>
 #include <cassert>
-
+#include <qprocess>
 CAgoraConfig gAgoraConfig;
 
 class AgoraRtcEngineEvent : public agora::rtc::IRtcEngineEventHandler
@@ -87,6 +87,9 @@ CAgoraObject::CAgoraObject(QObject *parent):
         context.appId = APPID;
     else {
         QString strAppId = gAgoraConfig.getAppId();
+        if(strAppId.length()== 0){
+            gAgoraConfig.setAppId(QString(""));
+        }
         temp = strAppId.toUtf8();
         context.appId = const_cast<const char*>(temp.data());
     }
@@ -94,6 +97,9 @@ CAgoraObject::CAgoraObject(QObject *parent):
     {
         QMessageBox::critical(nullptr, ("AgoraOpenLive"),
                                        ("You must specify APP ID before using the demo"));
+        QProcess process;
+        process.startDetached("notepad.exe", {"AgoraConfigOpenVideoCall.ini"}, "");
+        ExitProcess(0);
     }
     m_rtcEngine->initialize(context);
 }
@@ -336,11 +342,21 @@ int CAgoraObject::setVideoDevice(const QString& guid)
     return videoDeviceManager->setDevice(guid.toUtf8().data());
 }
 
-BOOL CAgoraObject::setVideoProfile(int nWidth,int nHeight)
+BOOL CAgoraObject::setVideoProfile(int nWidth,int nHeight, FRAME_RATE fps, int bitrate)
 {
     int res = 0;
     VideoEncoderConfiguration vec;
-    vec = VideoEncoderConfiguration(nWidth,nHeight,FRAME_RATE_FPS_15,500,ORIENTATION_MODE_FIXED_LANDSCAPE);
+
+    if(gAgoraConfig.isCustomFPS())
+        fps = (FRAME_RATE)gAgoraConfig.getFPS();
+
+    if(gAgoraConfig.isCustomBitrate())
+        bitrate = gAgoraConfig.getBitrate();
+
+     if(gAgoraConfig.isCustomResolution())
+         gAgoraConfig.getVideoResolution(nWidth, nHeight);
+
+    vec = VideoEncoderConfiguration(nWidth,nHeight,FRAME_RATE_FPS_15,bitrate,ORIENTATION_MODE_FIXED_LANDSCAPE);
     res = m_rtcEngine->setVideoEncoderConfiguration(vec);
 
     return res ==0 ? TRUE : FALSE;
@@ -462,4 +478,44 @@ bool CAgoraObject::setBeautyEffectOptions(bool enabled, BeautyOptions& options)
 
 	nRet = m_rtcEngine->setBeautyEffectOptions(enabled, options);
 	return nRet == 0 ? true : false;
+}
+
+bool CAgoraObject::SetCustomVideoProfile()
+{
+    FRAME_RATE customFPS = FRAME_RATE_FPS_15;
+    int customBitrate    = STANDARD_BITRATE;
+    int nWidth = 640, nHeight = 360;
+
+    return setVideoProfile(nWidth, nHeight, customFPS, customBitrate);
+}
+
+void CAgoraObject::CAgoraObject::SetDefaultParameters()
+{
+    std::map<std::string, std::string> mapStringParamsters;
+    std::map<std::string, bool> mapBoolParameters;
+    std::map<std::string, int> mapIntParameters;
+    std::map<std::string, std::string> mapObjectParamsters;
+    if(m_agoraJson.GetParameters(mapStringParamsters,
+                                 mapBoolParameters,
+                                 mapIntParameters,
+                                 mapObjectParamsters)){
+        AParameter apm(m_rtcEngine);
+        for (auto iter = mapBoolParameters.begin();
+            iter != mapBoolParameters.end(); ++iter) {
+            apm->setBool(iter->first.c_str(), iter->second);
+        }
+        for (auto iter = mapStringParamsters.begin();
+            iter != mapStringParamsters.end(); ++iter) {
+            apm->setString(iter->first.c_str(), iter->second.c_str());
+        }
+        for (auto iter = mapIntParameters.begin();
+            iter != mapIntParameters.end(); ++iter) {
+            apm->setInt(iter->first.c_str(), iter->second);
+        }
+
+        for (auto iter = mapObjectParamsters.begin();
+            iter != mapObjectParamsters.end(); ++iter) {
+            apm->setObject(iter->first.c_str(), iter->second.c_str());
+        }
+    }
 }

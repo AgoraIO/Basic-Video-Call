@@ -106,7 +106,7 @@ public:
 	static BOOL EnableWhiteboardVer(BOOL bEnable);
 	static BOOL EnableWhiteboardFeq(BOOL bEnable);
 
-    
+    void SetDefaultParameters();
 
 protected:
 	CAgoraObject(void);

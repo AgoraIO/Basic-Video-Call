@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     nettestdetail.cpp \
     agorawindowmanager.cpp \
     enterroom.cpp \
-    inroom.cpp
+    inroom.cpp \
+    agoraqtjson.cpp
 
 HEADERS  += \
     agoraconfig.h \
@@ -34,7 +35,8 @@ HEADERS  += \
     nettestdetail.h \
     agorawindowmanager.h \
     enterroom.h \
-    inroom.h
+    inroom.h \
+    agoraqtjson.h
 
 FORMS    += \
     openvideocall.ui \

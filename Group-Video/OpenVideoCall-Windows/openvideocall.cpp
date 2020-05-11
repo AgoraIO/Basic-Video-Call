@@ -100,6 +100,14 @@ void OpenVideoCall::on_btn_join_clicked()
     //to do joinchannel.
     QString qsClassId = ui->led_classid->text();
     this->hide();
+    QString qsChannel = ui->led_classid->text();
+
+    CAgoraObject::getInstance()->SetDefaultParameters();
+
+    if(m_upAvDevice)
+        m_upAvDevice->SetCustomVideoProfile();
+    else
+        CAgoraObject::getInstance()->SetCustomVideoProfile();
 
     QString qsEncrypSecret = ui->led_key->text();
     QString qsEncrypMode = ui->com_encryp->currentText();
@@ -114,3 +122,5 @@ void OpenVideoCall::on_com_encryp_currentIndexChanged(const QString &arg1)
     QString qsEncrypSecret = ui->led_key->text();
     CAgoraObject::getInstance()->SetEncryptionMode(qsEncrypSecret.toUtf8().data(),arg1.toUtf8().data());
 }
+
+

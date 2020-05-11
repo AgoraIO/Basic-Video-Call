@@ -219,6 +219,7 @@
     <ClInclude Include="AGEdit.h" />
     <ClInclude Include="AGEngineEventHandler.h" />
     <ClInclude Include="AGHyperLink.h" />
+    <ClInclude Include="AGJson.h" />
     <ClInclude Include="AGLinkCtrl.h" />
     <ClInclude Include="AGMessage.h" />
     <ClInclude Include="AgoraAudInputManager.h" />
@@ -226,6 +227,7 @@
     <ClInclude Include="AgoraPlayoutManager.h" />
     <ClInclude Include="AgoraObject.h" />
     <ClInclude Include="DskcapsetDlg.h" />
+    <ClInclude Include="json_tool.h" />
     <ClInclude Include="OpenVideoCall.h" />
     <ClInclude Include="OpenVideoCallDlg.h" />
     <ClInclude Include="AGResourceVisitor.h" />
@@ -253,12 +255,16 @@
     <ClCompile Include="AGEdit.cpp" />
     <ClCompile Include="AGEngineEventHandler.cpp" />
     <ClCompile Include="AGHyperLink.cpp" />
+    <ClCompile Include="AGJson.cpp" />
     <ClCompile Include="AGLinkCtrl.cpp" />
     <ClCompile Include="AgoraAudInputManager.cpp" />
     <ClCompile Include="AgoraCameraManager.cpp" />
     <ClCompile Include="AgoraPlayoutManager.cpp" />
     <ClCompile Include="AgoraObject.cpp" />
     <ClCompile Include="DskcapsetDlg.cpp" />
+    <ClCompile Include="json_reader.cpp" />
+    <ClCompile Include="json_value.cpp" />
+    <ClCompile Include="json_writer.cpp" />
     <ClCompile Include="OpenVideoCall.cpp" />
     <ClCompile Include="OpenVideoCallDlg.cpp" />
     <ClCompile Include="AGResourceVisitor.cpp" />
