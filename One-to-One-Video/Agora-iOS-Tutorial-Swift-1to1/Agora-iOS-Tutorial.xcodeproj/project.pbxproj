@@ -371,6 +371,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Agora-iOS-Tutorial",
+					"$(PROJECT_DIR)/../../libs",
 				);
 				INFOPLIST_FILE = "Agora-iOS-Tutorial/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -400,6 +401,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Agora-iOS-Tutorial",
+					"$(PROJECT_DIR)/../../libs",
 				);
 				INFOPLIST_FILE = "Agora-iOS-Tutorial/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

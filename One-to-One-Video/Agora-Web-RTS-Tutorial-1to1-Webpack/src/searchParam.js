@@ -26,9 +26,9 @@ export const setFormData = (obj) => {
 
 export const replaceSearchString = (searchStr) => {
   if (window.history.pushState) {
-    const newURL = new URL(window.location.href);
-    newURL.search = searchStr;
-    window.history.pushState({ path: newURL.href }, "", newURL.href);
+    const newURL = new URL(window.location.href)
+    newURL.search = searchStr
+    window.history.pushState({ path: newURL.href }, '', newURL.href)
   } else {
     console.warn('`history.pushState` is not supported')
   }

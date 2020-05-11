@@ -33,15 +33,11 @@ Download SDK into **assets** path and rename file name as **AgoraRTCSDK.js**
 
 ### Run Web-Server
 
-1. Install live-server globally via npm
+1. Launch server via following commands in working folder,
     ```
-    npm i live-server -g
+    npx serve .
     ```
-2. Launch server via following commands in working folder,
-    ```
-    live-server .
-    ```
-3. Enter Valid APPID, Token, Channel and click **JOIN**
+2. Enter Valid APPID, Token, Channel and click **JOIN**
 
 ## Resources
 
