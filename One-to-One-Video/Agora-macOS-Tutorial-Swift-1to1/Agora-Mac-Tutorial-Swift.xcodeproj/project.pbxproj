@@ -64,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				38EF7E99236827E500A6A483 /* README.md */,
-				1A0466221D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */,
+				1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */,
 				1A0466491D5E7718004987C6 /* Frameworks */,
 				1A0466211D5E75A2004987C6 /* Products */,
 			);
@@ -78,7 +78,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1A0466221D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */ = {
+		1A0466221D5E75A2004987C6 /* Agora Mac Tutorial Swift */ = {
 			isa = PBXGroup;
 			children = (
 				1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */,
@@ -88,7 +88,7 @@
 				A76C26A9238677A50047E150 /* Supporting Files */,
 				A76C26A7238677310047E150 /* AgoraRtcKit.framework */,
 			);
-			path = "Agora-Mac-Tutorial-Swift";
+			path = "Agora Mac Tutorial Swift";
 			sourceTree = "<group>";
 		};
 		1A0466491D5E7718004987C6 /* Frameworks */ = {
