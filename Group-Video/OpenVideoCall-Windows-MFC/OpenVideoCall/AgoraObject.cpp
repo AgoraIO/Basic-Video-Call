@@ -656,3 +656,29 @@ void CAgoraObject::SetDefaultParameters()
         }
     }
 }
+
+
+std::string CAgoraObject::GetToken()
+{
+    std::string token(APP_TOKEN);
+    if (!token.empty())
+        return token;
+
+    TCHAR szFilePath[MAX_PATH];
+    ::GetModuleFileName(NULL, szFilePath, MAX_PATH);
+    LPTSTR lpLastSlash = _tcsrchr(szFilePath, _T('\\'));
+
+    if (lpLastSlash == NULL)
+        return token;
+
+    SIZE_T nNameLen = MAX_PATH - (lpLastSlash - szFilePath + 1);
+    _tcscpy_s(lpLastSlash + 1, nNameLen, _T("AppID.ini"));
+
+
+    TCHAR szToken[MAX_PATH] = { 0 };
+    char temp[MAX_PATH] = { 0 };
+    ::GetPrivateProfileString(_T("AppID"), _T("AppToken"), NULL, szToken, MAX_PATH, szFilePath);
+    ::WideCharToMultiByte(CP_UTF8, 0, szToken, -1, temp, 128, NULL, NULL);
+
+    return temp;
+}

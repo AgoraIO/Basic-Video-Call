@@ -114,7 +114,10 @@ void OpenVideoCall::on_btn_join_clicked()
     CAgoraObject::getInstance()->SetEncryptionMode(qsEncrypSecret.toUtf8().data(),qsEncrypMode.toUtf8().data());
 
     m_upInRoom.reset(new InRoom());
-    m_upInRoom->joinchannel(qsClassId,APP_TOKEN,0);
+    QString token = APP_TOKEN;
+    if(token.isEmpty())
+        token = CAgoraObject::getInstance()->GetAppToken();
+    m_upInRoom->joinchannel(qsClassId,token,0);
 }
 
 void OpenVideoCall::on_com_encryp_currentIndexChanged(const QString &arg1)

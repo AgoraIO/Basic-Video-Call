@@ -519,3 +519,11 @@ void CAgoraObject::CAgoraObject::SetDefaultParameters()
         }
     }
 }
+
+QString CAgoraObject::GetAppToken()
+{
+    QString strAppToken = APP_TOKEN;
+    if(!strAppToken.isEmpty())
+        return strAppToken;
+    return gAgoraConfig.getAppToken();
+}

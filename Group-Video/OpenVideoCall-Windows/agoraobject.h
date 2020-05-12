@@ -62,6 +62,7 @@ public:
     bool setBeautyEffectOptions(bool enabled, BeautyOptions& options);
     bool SetCustomVideoProfile();
     void SetDefaultParameters();
+    QString GetAppToken();
 signals:
     void sender_videoStopped();
     void sender_joinedChannelSuccess(const QString &qsChannel, unsigned int uid, int elapsed);

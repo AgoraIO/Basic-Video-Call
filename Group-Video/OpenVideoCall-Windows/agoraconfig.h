@@ -39,6 +39,7 @@ public:
     bool isCustomFPS();
     bool isCustomBitrate();
     bool isCustomResolution();
+    QString getAppToken();
 private:
     std::shared_ptr<QSettings>  m_spConfig;
 };

@@ -15,6 +15,11 @@ QString CAgoraConfig::getAppId()
     return m_spConfig->value("/BaseInfo/AppId").toString();
 }
 
+QString CAgoraConfig::getAppToken()
+{
+    return m_spConfig->value("/BaseInfo/AppToken").toString();
+}
+
 void CAgoraConfig::setChannelName(const QString &str)
 {
     return m_spConfig->setValue("/BaseInfo/CameraName",str);

@@ -2,7 +2,7 @@
 
 #include <IAgoraRtcEngine.h>
 #include "AGEngineEventHandler.h"
-
+#include <string>
 #define AVC_VER _T("V1.12.0, Build234, 08/14/2017, SDK1.12 .0")
 
 using namespace agora::rtc;
@@ -107,7 +107,7 @@ public:
 	static BOOL EnableWhiteboardFeq(BOOL bEnable);
 
     void SetDefaultParameters();
-
+    std::string GetToken();
 protected:
 	CAgoraObject(void);
 
