@@ -92,3 +92,26 @@ jobs:
       sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
       Machine: 'x64'
       ReleasePath: 'x64/Release'
+#Group Video
+  - template: cicd/templates/build-Windows.yml
+    parameters:
+      displayName: 'WindowsOpenVideoCallMFC'
+      workingDirectory: 'Group-Video/OpenVideoCall-Windows'
+      scheme: 'OpenVideoCall-Windows-MFC'
+      sdkurl: $(WindowsRTCSDK)
+      solutionName: 'OpenVideoCall.sln'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
+      Machine: 'win32'
+      ReleasePath: 'Release'
+
+  - template: cicd/templates/build-Windows.yml
+    parameters:
+      displayName: 'WindowsOpenVideoCallMFC64'
+      workingDirectory: 'Group-Video/OpenVideoCall-Windows-MFC'
+      scheme: 'OpenVideoCall-Windows'
+      sdkurl: $(WindowsRTCSDK)
+      solutionName: 'OpenVideoCall.sln'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
+      Machine: 'x64'
+      ReleasePath: 'x64/Release'
+  - template: cicd/templates/build-Windows.yml 
