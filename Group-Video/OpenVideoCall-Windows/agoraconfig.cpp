@@ -103,28 +103,28 @@ int CAgoraConfig::getSmoothness()
 
 void CAgoraConfig::getVideoResolution(int& width, int height)
 {
-    width  = m_spConfig->value("/VideoInfo/Width").toInt();
-    height = m_spConfig->value("/VideoInfo/Height").toInt();
+    width  = m_spConfig->value("/VideoConfig/Width").toInt();
+    height = m_spConfig->value("/VideoConfig/Height").toInt();
 }
 
 int CAgoraConfig::getFPS()
 {
-    return m_spConfig->value("/VideoInfo/FPS").toInt();
+    return m_spConfig->value("/VideoConfig/FPS").toInt();
 }
 
 int CAgoraConfig::getBitrate()
 {
-    return m_spConfig->value("/VideoInfo/Bitrate").toInt();
+    return m_spConfig->value("/VideoConfig/Bitrate").toInt();
 }
 bool CAgoraConfig::isCustomFPS()
 {
-    return m_spConfig->value("/VideoInfo/CustomFPS").toBool();
+    return m_spConfig->value("/VideoConfig/CustomFPS").toBool();
 }
 bool CAgoraConfig::isCustomBitrate()
 {
-    return m_spConfig->value("/VideoInfo/CustomBitrate").toBool();
+    return m_spConfig->value("/VideoConfig/CustomBitrate").toBool();
 }
 bool CAgoraConfig::isCustomResolution()
 {
-    return m_spConfig->value("/VideoInfo/CustomResolution").toBool();
+    return m_spConfig->value("/VideoConfig/CustomResolution").toBool();
 }
