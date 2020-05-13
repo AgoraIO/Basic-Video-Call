@@ -14,6 +14,7 @@ Q_DECLARE_METATYPE(RemoteVideoStats)
 Q_DECLARE_METATYPE(RtcStats)
 Q_DECLARE_METATYPE(LastmileProbeResult)
 
+// Start of the application
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
