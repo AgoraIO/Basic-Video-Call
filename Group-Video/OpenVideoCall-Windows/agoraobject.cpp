@@ -356,7 +356,7 @@ BOOL CAgoraObject::setVideoProfile(int nWidth,int nHeight, FRAME_RATE fps, int b
      if(gAgoraConfig.isCustomResolution())
          gAgoraConfig.getVideoResolution(nWidth, nHeight);
 
-    vec = VideoEncoderConfiguration(nWidth,nHeight,FRAME_RATE_FPS_15,bitrate,ORIENTATION_MODE_FIXED_LANDSCAPE);
+    vec = VideoEncoderConfiguration(nWidth,nHeight,fps,bitrate,ORIENTATION_MODE_FIXED_LANDSCAPE);
     res = m_rtcEngine->setVideoEncoderConfiguration(vec);
 
     return res ==0 ? TRUE : FALSE;

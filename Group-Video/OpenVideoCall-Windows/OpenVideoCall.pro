@@ -73,7 +73,7 @@ CONFIG(debug, debug|release) {
  QMAKE_POST_LINK +=  copy .\sdk\dll\*.dll .\Debug
 } else {
  QMAKE_POST_LINK +=  copy .\sdk\dll\*.dll .\Release
- QMAKE_POST_LINK  += && windeployqt Release\Open⁯VideoCall.exe
+ QMAKE_POST_LINK  += && windeployqt Release\OpenVideoCall.exe
 }
 }
 

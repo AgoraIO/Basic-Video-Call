@@ -93,7 +93,7 @@ void AVDevice::initCtrl()
     ui->cb_solution->addItem("1280x720");
     ui->cb_solution->addItem("1920x1080");
     ui->cb_solution->addItem("3840x2160");
-    ui->cb_solution->setCurrentIndex(3);
+    ui->cb_solution->setCurrentIndex(4);
 
     ui->cb_FPS->clear();
     ui->cb_FPS->addItem("FRAME_RATE_FPS_7");
