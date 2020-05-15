@@ -100,7 +100,7 @@ jobs:
       scheme: 'OpenVideoCall-Windows-MFC'
       sdkurl: $(WindowsRTCSDK)
       solutionName: 'OpenVideoCall.sln'
-      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0.2_FULL'
       Machine: 'win32'
       ReleasePath: 'Release'
 
@@ -111,7 +111,6 @@ jobs:
       scheme: 'OpenVideoCall-Windows'
       sdkurl: $(WindowsRTCSDK)
       solutionName: 'OpenVideoCall.sln'
-      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0.2_FULL'
       Machine: 'x64'
       ReleasePath: 'x64/Release'
-  - template: cicd/templates/build-Windows.yml 
