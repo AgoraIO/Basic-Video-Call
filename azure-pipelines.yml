@@ -79,7 +79,7 @@ jobs:
       scheme: 'Agora-Windows-Tutorial-1to1'
       sdkurl: $(WindowsRTCSDK)
       solutionName: 'AgoraTutorial.sln'
-      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0.2_FULL'
       Machine: 'win32'
       ReleasePath: 'Release'
   - template: cicd/templates/build-Windows.yml
@@ -89,14 +89,14 @@ jobs:
       scheme: 'Agora-Windows-Tutorial-1to1'
       sdkurl: $(WindowsRTCSDKX64)
       solutionName: 'AgoraTutorial.sln'
-      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0.2_FULL'
       Machine: 'x64'
       ReleasePath: 'x64/Release'
 #Group Video
   - template: cicd/templates/build-Windows.yml
     parameters:
       displayName: 'WindowsOpenVideoCallMFC'
-      workingDirectory: 'Group-Video/OpenVideoCall-Windows'
+      workingDirectory: 'Group-Video/OpenVideoCall-Windows-MFC'
       scheme: 'OpenVideoCall-Windows-MFC'
       sdkurl: $(WindowsRTCSDK)
       solutionName: 'OpenVideoCall.sln'
@@ -108,7 +108,7 @@ jobs:
     parameters:
       displayName: 'WindowsOpenVideoCallMFC64'
       workingDirectory: 'Group-Video/OpenVideoCall-Windows-MFC'
-      scheme: 'OpenVideoCall-Windows'
+      scheme: 'OpenVideoCall-Windows-MFC'
       sdkurl: $(WindowsRTCSDK)
       solutionName: 'OpenVideoCall.sln'
       sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0.2_FULL'
