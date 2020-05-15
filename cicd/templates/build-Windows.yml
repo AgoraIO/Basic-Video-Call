@@ -11,6 +11,7 @@ parameters:
   solutionName: ''
   sdkunzipPath: ''
   Machine: ''
+  architecture: ''
   ReleasePath: ''
 jobs:
   - job: ${{ parameters.displayName }}Build
@@ -45,7 +46,7 @@ jobs:
           platform: '$(buildPlatform)'
           configuration: '$(buildConfiguration)'
           vsVersion: '15.0'
-          msbuildArchitecture: 'x86'
+          msbuildArchitecture: ${{ parameters.architecture }}
 
       - script: cd ${{ parameters.workingDirectory }} && ls
 
