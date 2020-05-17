@@ -22,10 +22,23 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+
+// Declarative Stream Player for React 
+// Wrapped around native HTML video and audio tag with added Agora features
 import StreamPlayer from "agora-stream-player";
+
 import { SnackbarProvider, useSnackbar } from "notistack";
 
+// These customs hooks let any components in the application 
+// to directly use the required parameters and create clean functional components.
+// useCamera hook returns a list of cameras when the hook is called
+// useMicrophone hook returns a list of microphones when the hook is called
+// useMediaStream hook returns localStream, a list of remote streams and 
+// a contatenated list of localstream and remote streams when the hook is called
 import { useCamera, useMicrophone, useMediaStream } from "./hooks";
+
+// This is an enhanced Web SDK. The enhancement basically converts the callback syntax into promises.
+// Rest of the code will use async/await syntax in conjuction with these promises.
 import AgoraRTC from "./utils/AgoraEnhancer";
 
 const useStyles = makeStyles(theme => ({
@@ -113,6 +126,7 @@ const reducer = (
 };
 
 function App() {
+  // Declaring different states used by our application.
   const classes = useStyles();
   const [isJoined, setisJoined] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
@@ -120,9 +134,12 @@ function App() {
   const [state, dispatch] = useReducer(reducer, defaultState);
   const [agoraClient, setClient] = useState<any>(undefined)
   // const agoraClient = AgoraRTC.createClient({ mode: state.mode, codec: state.codec });
+
+  // All hooks are called to get the necessary data
   const cameraList = useCamera();
   const microphoneList = useMicrophone();
   let [localStream, remoteStreamList, streamList] = useMediaStream(agoraClient);
+
   const { enqueueSnackbar } = useSnackbar();
 
   const update = (actionType: string) => (e: React.ChangeEvent<unknown>) => {
@@ -132,23 +149,40 @@ function App() {
     });
   };
 
+  // Starts the video call
   const join = async () => {
+    // Creates a new agora client with given parameters.
+    // mode can be 'rtc' for real time communications or 'live' for live broadcasting.
     const client = AgoraRTC.createClient({ mode: state.mode, codec: state.codec })
+    // Loads client into the state
     setClient(client)
     setIsLoading(true);
     try {
       const uid = isNaN(Number(state.uid)) ? null : Number(state.uid);
+      
+      // initializes the client with appId
       await client.init(state.appId);
+
+      // joins a channel with a token, channel, user id
       await client.join(state.token, state.channel, uid);
+      
+      // create a ne stream
       const stream = AgoraRTC.createStream({
         streamID: uid || 12345,
         video: true,
         audio: true,
         screen: false
       });
+
       // stream.setVideoProfile('480p_4')
+
+      // Initalize the stream
       await stream.init();
+
+      // Publish the stream to the channel.
       await client.publish(stream);
+
+      // Set the state appropriately
       setIsPublished(true);
       setisJoined(true);
       enqueueSnackbar(`Joined channel ${state.channel}`, { variant: "info" });
@@ -159,10 +193,13 @@ function App() {
     }
   };
 
+  // Publish function to publish the stream to Agora. No need to invoke this after join.
+  // This is to be invoke only after an unpublish
   const publish = async () => {
     setIsLoading(true);
     try {
       if (localStream) {
+        // Publish the stream to the channel.
         await agoraClient.publish(localStream);
         setIsPublished(true);
       }
@@ -174,13 +211,17 @@ function App() {
     }
   };
 
+  // Leaves the channel on invoking the function call.
   const leave = async () => {
     setIsLoading(true);
     try {
       if (localStream) {
+        // Closes the local stream. This de-allocates the resources and turns off the camera light
         localStream.close();
+        // unpublish the stream from the client
         agoraClient.unpublish(localStream);
       }
+      // leave the channel
       await agoraClient.leave();
       setIsPublished(false);
       setisJoined(false);
@@ -192,8 +233,10 @@ function App() {
     }
   };
 
+  // Used to unpublish the stream.
   const unpublish = () => {
     if (localStream) {
+      // unpublish the stream from the client
       agoraClient.unpublish(localStream);
       setIsPublished(false);
       enqueueSnackbar("Stream unpublished", { variant: "info" });

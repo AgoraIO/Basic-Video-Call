@@ -378,11 +378,18 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
     public void onSwitchCameraClicked(View view) {
         RtcEngine rtcEngine = rtcEngine();
+        // Switches between front and rear cameras.
         rtcEngine.switchCamera();
     }
 
     public void onSwitchSpeakerClicked(View view) {
         RtcEngine rtcEngine = rtcEngine();
+        /*
+          Enables/Disables the audio playback route to the speakerphone.
+          This method sets whether the audio is routed to the speakerphone or earpiece.
+          After calling this method, the SDK returns the onAudioRouteChanged callback
+          to indicate the changes.
+         */
         rtcEngine.setEnableSpeakerphone(mAudioRouting != Constants.AUDIO_ROUTE_SPEAKERPHONE);
     }
 
@@ -545,6 +552,13 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                     return;
                 }
 
+                /*
+                  Creates the video renderer view.
+                  CreateRendererView returns the SurfaceView type. The operation and layout of the
+                  view are managed by the app, and the Agora SDK renders the view provided by the
+                  app. The video display view must be created using this method instead of
+                  directly calling SurfaceView.
+                 */
                 SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
                 mUidsList.put(uid, surfaceV);
 
@@ -553,6 +567,11 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                 surfaceV.setZOrderOnTop(true);
                 surfaceV.setZOrderMediaOverlay(true);
 
+                /*
+                  Initializes the video view of a remote user.
+                  This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees.
+                  Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.
+                 */
                 rtcEngine().setupRemoteVideo(new VideoCanvas(surfaceV, VideoCanvas.RENDER_MODE_HIDDEN, uid));
 
                 if (useDefaultLayout) {

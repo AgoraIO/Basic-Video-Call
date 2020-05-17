@@ -63,6 +63,7 @@ public:
     }
 };
 
+
 CAgoraObject* CAgoraObject::getInstance(QObject *parent)
 {
     std::lock_guard<std::mutex> autoLock(m_mutex);
@@ -80,9 +81,12 @@ CAgoraObject::CAgoraObject(QObject *parent):
     m_rtcEngine(createAgoraRtcEngine()),
     m_eventHandler(new AgoraRtcEngineEvent(*this))
 {
+    // Declare a RTC engine context
     agora::rtc::RtcEngineContext context;
+    // Retrieve event handler
     context.eventHandler = m_eventHandler.get();
     QByteArray temp;
+    // Pass appId to the context
     if(strlen(APPID))
         context.appId = APPID;
     else {
@@ -101,14 +105,18 @@ CAgoraObject::CAgoraObject(QObject *parent):
         process.startDetached("notepad.exe", {"AgoraConfigOpenVideoCall.ini"}, "");
         ExitProcess(0);
     }
+    // initialize the RtcEngine with the context
     m_rtcEngine->initialize(context);
 }
 
 CAgoraObject::~CAgoraObject()
 {
+    // release the RTC engine inside the destructor
     if(m_rtcEngine)
         m_rtcEngine->release();
 }
+
+// Join Channel method joins the given channel.
 
 int CAgoraObject::joinChannel(const QString& key, const QString& channel, uint uid)
 {
@@ -116,16 +124,19 @@ int CAgoraObject::joinChannel(const QString& key, const QString& channel, uint u
         QMessageBox::warning(nullptr,("AgoraHighSound"),("channelname is empty"));
         return -1;
     }
-
+    // Strarts local video preview
     m_rtcEngine->startPreview();
+    // Parameters are: token channelId, optionalInfo, uid
+    // https://docs.agora.io/en/Video/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab
     int r = m_rtcEngine->joinChannel(key.toUtf8().data(), channel.toUtf8().data(), nullptr, uid);
-
     return r;
 }
 
 int CAgoraObject::leaveChannel()
 {
+    // Stops the local video preview
     m_rtcEngine->stopPreview();
+    // Leaves the channel
     int r = m_rtcEngine->leaveChannel();
     return r;
 }
@@ -133,9 +144,11 @@ int CAgoraObject::leaveChannel()
 int CAgoraObject::muteLocalAudioStream(bool muted)
 {
     RtcEngineParameters rep(*m_rtcEngine);
+    // mutes or unmutes baed on the bpassed in muted boolean
     return rep.muteLocalAudioStream(muted);
 }
 
+// Plays the local video
 BOOL CAgoraObject::LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn, RENDER_MODE_TYPE renderType/* = RENDER_MODE_TYPE::RENDER_MODE_FIT*/)
 {
     int nRet = 0;
@@ -156,6 +169,7 @@ BOOL CAgoraObject::LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn, RENDER_MOD
     return nRet == 0 ? TRUE : FALSE;
 }
 
+// Plays the remote video
 BOOL CAgoraObject::RemoteVideoRender(uid_t uid, HWND hVideoWnd, RENDER_MODE_TYPE renderType/* = RENDER_MODE_TYPE::RENDER_MODE_HIDDEN*/)
 {
     int nRet = 0;
@@ -171,6 +185,7 @@ BOOL CAgoraObject::RemoteVideoRender(uid_t uid, HWND hVideoWnd, RENDER_MODE_TYPE
     return nRet == 0 ? TRUE : FALSE;
 }
 
+// Measues the network statistics
 BOOL CAgoraObject::startLastMileProbeTest(bool enable)
 {
     int nres = 0;
@@ -190,16 +205,19 @@ BOOL CAgoraObject::startLastMileProbeTest(bool enable)
     return nres == 0? TRUE : FALSE;
 }
 
+// Enables video functionalities
 int CAgoraObject::enableVideo(bool enabled)
 {
     return enabled ? m_rtcEngine->enableVideo() : m_rtcEngine->disableVideo();
 }
 
+// Enables audio functionalities
 int CAgoraObject::enableAudio(bool enabled)
 {
     return enabled ? m_rtcEngine->enableAudio() : m_rtcEngine->disableAudio();
 }
 
+// Sets the directory for storing the logs
 BOOL CAgoraObject::setLogPath(const QString &strDir)
 {
     int ret = 0;
@@ -210,6 +228,8 @@ BOOL CAgoraObject::setLogPath(const QString &strDir)
     return ret == 0 ? TRUE : FALSE;
 }
 
+// Sets the profile for the channel based on the passed in string
+// More info here https://docs.agora.io/en/Video/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aab53788c74da25080bad61f0525d12ae
 BOOL CAgoraObject::SetChannelProfile(CHANNEL_PROFILE_TYPE channelType)
 {
     int ret = 0;
@@ -218,15 +238,15 @@ BOOL CAgoraObject::SetChannelProfile(CHANNEL_PROFILE_TYPE channelType)
     return ret == 0 ? TRUE : FALSE;
 }
 
+// Set the client role Broadcaster or Audience
 BOOL CAgoraObject::SetClientRole(CLIENT_ROLE_TYPE roleType)
 {
     int ret = 0;
-
     ret = m_rtcEngine->setClientRole(roleType);
-
     return ret == 0 ? TRUE : FALSE;
 }
 
+// This method enables the native application to send video to/ recieve video from Web SDK
 BOOL CAgoraObject::EnableWebSdkInteroperability(BOOL bEnable)
 {
     RtcEngineParameters rep(*m_rtcEngine);
@@ -236,6 +256,7 @@ BOOL CAgoraObject::EnableWebSdkInteroperability(BOOL bEnable)
     return nRet == 0 ? TRUE : FALSE;
 }
 
+// Generates the list of recording devices available on the computer
 qSSMap CAgoraObject::getRecordingDeviceList()
 {
     qSSMap devices;
@@ -261,6 +282,7 @@ qSSMap CAgoraObject::getRecordingDeviceList()
     return devices;
 }
 
+// Generate the list of playout devices available in the computer (like speaker)
 qSSMap CAgoraObject::getPlayoutDeviceList()
 {
     qSSMap devices;
@@ -286,6 +308,7 @@ qSSMap CAgoraObject::getPlayoutDeviceList()
     return devices;
 }
 
+// Get the list of all video devices available in the computer (like webcams)
 qSSMap CAgoraObject::getVideoDeviceList()
 {
 	m_rtcEngine->enableVideo();
@@ -312,6 +335,7 @@ qSSMap CAgoraObject::getVideoDeviceList()
     return devices;
 }
 
+// This method sets the Recording device (mic) to the one passed in the parameter
 int CAgoraObject::setRecordingDevice(const QString& guid)
 {
     if (guid.isEmpty())
@@ -322,6 +346,7 @@ int CAgoraObject::setRecordingDevice(const QString& guid)
     return audioDeviceManager->setRecordingDevice(guid.toUtf8().data());
 }
 
+// This method sets the Playout device (speaker) to the one passed in the parameter
 int CAgoraObject::setPlayoutDevice(const QString& guid)
 {
     if (guid.isEmpty())
@@ -332,6 +357,7 @@ int CAgoraObject::setPlayoutDevice(const QString& guid)
     return audioDeviceManager->setPlaybackDevice(guid.toUtf8().data());
 }
 
+// This method sets the Video device (webcam) to the one passed in the parameter
 int CAgoraObject::setVideoDevice(const QString& guid)
 {
     if (guid.isEmpty())
@@ -420,6 +446,7 @@ BOOL CAgoraObject::setVideoIndex(int nIndex)
     return res == 0 ? TRUE : FALSE;
 }
 
+// Mutes the local video stream of the client
 BOOL CAgoraObject::MuteLocalVideo(BOOL bMute)
 {
      int nRet = 0;
@@ -430,6 +457,7 @@ BOOL CAgoraObject::MuteLocalVideo(BOOL bMute)
     return nRet == 0 ? TRUE : FALSE;
 }
 
+// Mutes the local audio Stream of the client
 BOOL CAgoraObject::MuteLocalAudio(BOOL bMute)
 {
     int nRet = 0;
@@ -440,6 +468,7 @@ BOOL CAgoraObject::MuteLocalAudio(BOOL bMute)
     return nRet == 0 ? TRUE : FALSE;
 }
 
+// Sets the encryption mode for the packets of video data aes-128-xts, aes-128-ecb or aes-256-xts
 BOOL CAgoraObject::SetEncryptionMode(const char* secret,const char* secretMode)
 {
     int nRet = 0;
@@ -451,6 +480,7 @@ BOOL CAgoraObject::SetEncryptionMode(const char* secret,const char* secretMode)
     return nRet == 0 ? TRUE : FALSE;
 }
 
+// Sets the type of log that are allowed [Debug, Info, warning, error, critical]
 BOOL CAgoraObject::SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath)
 {
     int nRet = 0;
@@ -471,7 +501,7 @@ BOOL CAgoraObject::SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath
     return nRet == 0 ? TRUE : FALSE;
 }
 
-
+// sets the beauty options like contrast, brightness, smoothness, redness
 bool CAgoraObject::setBeautyEffectOptions(bool enabled, BeautyOptions& options)
 {
 	int nRet = 0;

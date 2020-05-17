@@ -59,7 +59,7 @@ The SDK must be integrated into the sample project before it can opened and buil
 
 1. Download the Agora Video SDK from [Agora.io SDK](https://www.agora.io/en/download/).
 2. Unzip the downloaded SDK package.
-3. Copy the following files from from the **libs** folder of the downloaded SDK package:
+3. Copy the following files from the **libs** folder of the downloaded SDK package:
 
 Copy from SDK|Copy to Project Folder
 ---|---

@@ -8,5 +8,4 @@ release/
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
-*.ini
 ui_*
