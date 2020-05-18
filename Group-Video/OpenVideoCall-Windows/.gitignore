@@ -9,3 +9,4 @@ release/
 *.vcxproj.filters
 *.vcxproj.user
 ui_*
+*.pro.user
