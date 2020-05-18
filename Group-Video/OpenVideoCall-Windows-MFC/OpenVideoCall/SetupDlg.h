@@ -5,6 +5,11 @@
 #include "afxwin.h"
 
 #include "AGConfig.h"
+#include <unordered_map>
+#include "AGConfig.h"
+
+#define RESOLUTION_COUNT 19
+#define FPS_COUNT 7
 // CSetupDlg ¶Ô»°¿ò
 
 class CSetupDlg : public CDialogEx
@@ -19,7 +24,10 @@ public:
     void SetVideoSolution(int nIndex);
     int GetVideoSolution();
     CString GetVideoSolutionDes();
-
+    SIZE GetVideoResolution();
+    int GetFPS();
+    int GetBirate();
+   
     void SetWHSwap(BOOL bSwap);
     BOOL IsWHSwap();
 
@@ -48,7 +56,7 @@ protected:
 	void InitCtrls();
 	void InitData();
 	void DrawClient(CDC *lpDC);
-
+    void InitData2();
 private:
     CAGButton       m_btnCancel;
 	CAGButton		m_btnConfirm;
@@ -56,6 +64,8 @@ private:
     CButton			m_ckSaveSettings;
 
 	CAGComboBox		m_cbxVideoProfile;
+    CAGComboBox     m_cbxFPS;
+    CAGComboBox     m_cbxBitrate;
 
 	CFont			m_ftHead;		// title
 	CFont			m_ftDes;		// text in ctrl
@@ -65,6 +75,14 @@ private:
     LPTSTR			    m_szProfileDes[64];
     int					m_nProfileValue[64];
     AGNET_RATE_RANGE	m_agRateRange[13];
+
+    LPTSTR              m_szFPS[7];//1 7 10 15 24 30 60
+    int                 m_nFPS[7];
+
+    LPTSTR              m_szBitrate[3];
+    int                 m_nBitrate[3];
+
+    std::unordered_map<int, SIZE> m_mapResolition;
 
 private:
 	CAGConfig		m_agConfig;

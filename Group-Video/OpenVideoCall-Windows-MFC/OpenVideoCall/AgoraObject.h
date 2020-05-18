@@ -2,7 +2,7 @@
 
 #include <IAgoraRtcEngine.h>
 #include "AGEngineEventHandler.h"
-
+#include <string>
 #define AVC_VER _T("V1.12.0, Build234, 08/14/2017, SDK1.12 .0")
 
 using namespace agora::rtc;
@@ -29,7 +29,7 @@ using namespace agora::rtc;
     Leave this value empty if Security keys/Token is not enabled for your project
     APP_TOKEN "<YOUR TOKEN>"
 */
-#define APP_ID _T("aab8b8f5a8cd4469a63042fcfafe7063")
+#define APP_ID _T("")
 #define APP_TOKEN ""
 
 class CAgoraObject
@@ -106,8 +106,8 @@ public:
 	static BOOL EnableWhiteboardVer(BOOL bEnable);
 	static BOOL EnableWhiteboardFeq(BOOL bEnable);
 
-    
-
+    void SetDefaultParameters();
+    std::string GetToken();
 protected:
 	CAgoraObject(void);
 

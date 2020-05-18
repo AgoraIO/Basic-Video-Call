@@ -309,6 +309,7 @@ LRESULT COpenVideoCallDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 {
 	IRtcEngine		*lpRtcEngine = CAgoraObject::GetEngine();
 	CAgoraObject	*lpAgoraObject = CAgoraObject::GetAgoraObject();
+    lpAgoraObject->SetDefaultParameters();
 
 	CString strChannelName = m_dlgEnterChannel.GetChannelName();
     if (strChannelName.GetLength() == 0)
@@ -326,14 +327,22 @@ LRESULT COpenVideoCallDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 
 	//cancel setVideoProfile bitrate since version 2.1.0
     m_nVideoSolution = m_dlgSetup.GetVideoSolution();
-    lpRtcEngine->setVideoProfile((VIDEO_PROFILE_TYPE)m_nVideoSolution, m_dlgSetup.IsWHSwap());
+   // lpRtcEngine->setVideoProfile((VIDEO_PROFILE_TYPE)m_nVideoSolution, m_dlgSetup.IsWHSwap());
     lpAgoraObject->EnableVideo(TRUE);
+
+    VideoEncoderConfiguration config;
+    config.bitrate = m_dlgSetup.GetBirate();
+    config.frameRate = (FRAME_RATE)m_dlgSetup.GetFPS();
+    SIZE resolution = m_dlgSetup.GetVideoResolution();
+    config.dimensions.width = resolution.cx;
+    config.dimensions.height = resolution.cy;
+    lpRtcEngine->setVideoEncoderConfiguration(config);
 
 	m_dlgVideo.SetWindowText(strChannelName);
 	lpRtcEngine->setupLocalVideo(vc);
 	lpRtcEngine->startPreview();
-	
-	lpAgoraObject->JoinChannel(strChannelName,0, strlen(APP_TOKEN) > 0 ? APP_TOKEN:NULL);
+    std::string token = lpAgoraObject->GetToken();
+    lpAgoraObject->JoinChannel(strChannelName, 0, token.length() > 0 ? token.c_str() : NULL);
 	lpAgoraObject->SetMsgHandlerWnd(m_dlgVideo.GetSafeHwnd());
 
 	return 0;
