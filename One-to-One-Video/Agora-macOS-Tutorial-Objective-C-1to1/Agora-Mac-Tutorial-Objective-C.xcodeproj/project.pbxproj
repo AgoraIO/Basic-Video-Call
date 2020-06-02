@@ -14,15 +14,24 @@
 		1A2BC69D1D5A9E6700C9AD11 /* AppID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69C1D5A9E6700C9AD11 /* AppID.m */; };
 		1A2BC6A01D5B05A800C9AD11 /* DeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */; };
 		1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A309D611D5CE05500021BB8 /* Main.storyboard */; };
-		38B9A0D723D47CB300CE8C27 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A1238676D50047E150 /* AgoraRtcKit.framework */; };
 		38EF7E982368278500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E972368278500A6A483 /* README.md */; };
-		A7733D382407988500483870 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D372407988500483870 /* Accelerate.framework */; };
-		A7733D3A2407989500483870 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D392407989500483870 /* CoreWLAN.framework */; };
-		A7733D3C240798A300483870 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D3B2407989D00483870 /* libc++.tbd */; };
-		A7733D3E240798B100483870 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D3D240798AB00483870 /* libresolv.tbd */; };
-		A7733D40240798C600483870 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D3F240798C600483870 /* SystemConfiguration.framework */; };
-		A7733D42240798CD00483870 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D41240798CD00483870 /* VideoToolbox.framework */; };
+		A7911492246D122100E77A35 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A1238676D50047E150 /* AgoraRtcKit.framework */; };
+		A7911493246D122100E77A35 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A1238676D50047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A7911494246D122100E77A35 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A7911493246D122100E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-Mac-Tutorial-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,13 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7733D3A2407989500483870 /* CoreWLAN.framework in Frameworks */,
-				A7733D42240798CD00483870 /* VideoToolbox.framework in Frameworks */,
-				38B9A0D723D47CB300CE8C27 /* AgoraRtcKit.framework in Frameworks */,
-				A7733D3E240798B100483870 /* libresolv.tbd in Frameworks */,
-				A7733D3C240798A300483870 /* libc++.tbd in Frameworks */,
-				A7733D40240798C600483870 /* SystemConfiguration.framework in Frameworks */,
-				A7733D382407988500483870 /* Accelerate.framework in Frameworks */,
+				A7911492246D122100E77A35 /* AgoraRtcKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +138,7 @@
 				1A2BC6681D5A9C2100C9AD11 /* Sources */,
 				1A2BC6691D5A9C2100C9AD11 /* Frameworks */,
 				1A2BC66A1D5A9C2100C9AD11 /* Resources */,
+				A7911494246D122100E77A35 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

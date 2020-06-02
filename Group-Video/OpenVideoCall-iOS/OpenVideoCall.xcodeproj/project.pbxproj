@@ -27,8 +27,6 @@
 		07F52EBF1D62F39D006DDCD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F52EBD1D62F39D006DDCD4 /* LaunchScreen.storyboard */; };
 		3832FA5B227FC56200E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA5A227FC56200E50E69 /* FileCenter.swift */; };
 		389D3890230BD19D00704A8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 389D388F230BD19D00704A8F /* README.md */; };
-		A76C26BC2386829F0047E150 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; };
-		A76C26C3238683670047E150 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */; };
 		A76C26F523878C8F0047E150 /* AGEVideoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26F023878C8F0047E150 /* AGEVideoLayout.swift */; };
 		A76C26F623878C8F0047E150 /* AGEVideoConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26F123878C8F0047E150 /* AGEVideoConstraints.swift */; };
 		A76C26F723878C8F0047E150 /* AGEEventsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26F223878C8F0047E150 /* AGEEventsObserver.swift */; };
@@ -37,22 +35,29 @@
 		A76C26FB2387964B0047E150 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26FA2387964A0047E150 /* StatisticsInfo.swift */; };
 		A76C26FD2387B7130047E150 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26FC2387B7130047E150 /* AgoraExtension.swift */; };
 		A76C27012387C2D80047E150 /* Them.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A76C27002387C2D70047E150 /* Them.mp3 */; };
-		A7733D5024079AE200483870 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D4F24079AD600483870 /* libcrypto.a */; };
-		A7733D5124079AFF00483870 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385F30952123D0D1005D5301 /* Accelerate.framework */; };
-		A7733D5324079B0B00483870 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5224079B0B00483870 /* AudioToolbox.framework */; };
-		A7733D5524079B1100483870 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5424079B1100483870 /* VideoToolbox.framework */; };
-		A7733D5724079B1600483870 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5624079B1600483870 /* AVFoundation.framework */; };
-		A7733D5924079B1F00483870 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5824079B1F00483870 /* CoreMedia.framework */; };
-		A7733D5A24079B2700483870 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D619332250BC4A004A6C87 /* CoreML.framework */; };
-		A7733D5C24079B3000483870 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5B24079B3000483870 /* CoreMotion.framework */; };
-		A7733D5E24079B3900483870 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5D24079B3900483870 /* CoreTelephony.framework */; };
-		A7733D6024079B4900483870 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7733D5F24079B4300483870 /* libc++.tbd */; };
-		A7733D6124079B5200483870 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D29C581E9E1E0A00C3583C /* libresolv.tbd */; };
-		A7733D6224079B5B00483870 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2747D01FB45D00005D3DBA /* SystemConfiguration.framework */; };
+		A7911498246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */; };
+		A7911499246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A791149B246D125800E77A35 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; };
+		A791149C246D125800E77A35 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7A3C65A228ACFB4005BB816 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3C659228ACFB4005BB816 /* Settings.swift */; };
 		A7FC1EF12295701500F850F2 /* RoomOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF02295701500F850F2 /* RoomOptionsViewController.swift */; };
 		A7FC1EF522963CA200F850F2 /* LastmileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FC1EF422963CA200F850F2 /* LastmileViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A791149A246D125700E77A35 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A791149C246D125800E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
+				A7911499246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		070275CD1D66A9DC00ABBC23 /* MediaCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCharacter.swift; sourceTree = "<group>"; };
@@ -111,20 +116,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7733D5924079B1F00483870 /* CoreMedia.framework in Frameworks */,
-				A76C26BC2386829F0047E150 /* AgoraRtcKit.framework in Frameworks */,
-				A7733D5124079AFF00483870 /* Accelerate.framework in Frameworks */,
-				A7733D5E24079B3900483870 /* CoreTelephony.framework in Frameworks */,
-				A7733D5C24079B3000483870 /* CoreMotion.framework in Frameworks */,
-				A7733D6124079B5200483870 /* libresolv.tbd in Frameworks */,
-				A7733D5524079B1100483870 /* VideoToolbox.framework in Frameworks */,
-				A7733D6024079B4900483870 /* libc++.tbd in Frameworks */,
-				A7733D6224079B5B00483870 /* SystemConfiguration.framework in Frameworks */,
-				A7733D5324079B0B00483870 /* AudioToolbox.framework in Frameworks */,
-				A76C26C3238683670047E150 /* AgoraRtcCryptoLoader.framework in Frameworks */,
-				A7733D5724079B1600483870 /* AVFoundation.framework in Frameworks */,
-				A7733D5024079AE200483870 /* libcrypto.a in Frameworks */,
-				A7733D5A24079B2700483870 /* CoreML.framework in Frameworks */,
+				A791149B246D125800E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				A7911498246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +253,7 @@
 				07F52EAD1D62F39D006DDCD4 /* Sources */,
 				07F52EAE1D62F39D006DDCD4 /* Frameworks */,
 				07F52EAF1D62F39D006DDCD4 /* Resources */,
+				A791149A246D125700E77A35 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
