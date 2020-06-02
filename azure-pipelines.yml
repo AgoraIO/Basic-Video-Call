@@ -1,19 +1,22 @@
 variables:
-  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_1_FULL.zip?_ga=2.221010776.137256141.1591066658-1092626666.1590549971'
-  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_0_1_FULL.zip?_ga=2.6061939.137256141.1591066658-1092626666.1590549971'
-  WindowsRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_0_1_FULL.zip?_ga=2.6061939.137256141.1591066658-1092626666.1590549971'
-  WindowsRTCSDKX64: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_0_1_FULL.zip?_ga=2.216815830.137256141.1591066658-1092626666.1590549971'
+  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_0_FULL.zip?_ga=2.79185814.368877217.1583320605-5559409.1503304822'
+  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_0_0_FULL.zip?_ga=2.78400662.368877217.1583320605-5559409.1503304822'
+  WindowsRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(x86)_v3_0_0_2_FULL.zip'
+  WindowsRTCSDKX64: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows(x64)_v3_0_0_2_FULL.zip'
+  AndroidRTCSDKVer: '3.0.1'
 jobs:
 
   - template: cicd/templates/build-android.yml
     parameters:
       displayName: 'AndroidOpenVideoCall'
       workingDirectory: 'Group-Video/OpenVideoCall-Android'
+      sdkver: $(AndroidRTCSDKVer)
 
   - template: cicd/templates/build-android.yml
     parameters:
       displayName: 'AndroidTutorial'
       workingDirectory: 'One-to-One-Video/Agora-Android-Tutorial-1to1'
+      sdkver: $(AndroidRTCSDKVer)
 
   - template: cicd/templates/build-ios.yml
     parameters:
