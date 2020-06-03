@@ -52,7 +52,6 @@
 
   - AgoraRtcKit.framework
   - AgoraRtcCryptoLoader.framework
-  - libcrypto.a
   
 2. 打开 Xcode 后，运行本项目。
 
