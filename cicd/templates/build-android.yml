@@ -1,6 +1,7 @@
 parameters:
   displayName: ''
   workingDirectory: ''
+  sdkver: ''
 
 jobs:
   - job: ${{ parameters.displayName }}_Build
@@ -16,6 +17,7 @@ jobs:
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
           AGORA_APP_ID: $(agora.appId)
+          AGORA_RTC_SDK_VER: ${{ parameters.sdkver }}
 
       - task: Gradle@2
         inputs:

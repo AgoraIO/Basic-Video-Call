@@ -52,7 +52,6 @@ To build and run the sample application, get an App Id:
 
     - `AograRtcKit.framework`
     - `AgoraRtcCryptoLoader.framework`
-    - `libcrypto.a`
   
 2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
