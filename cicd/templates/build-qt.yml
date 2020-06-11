@@ -8,10 +8,9 @@ parameters:
   workingDirectory: ''
   scheme: ''
   sdkurl: ''
-  solutionName: ''
-  Machine: ''
   architecture: ''
   ReleasePath: ''
+  QtDir: ''
 jobs:
   - job: ${{ parameters.displayName }}Build
     displayName: ${{ parameters.displayName }}
@@ -20,7 +19,6 @@ jobs:
       vmImage: 'vs2017-win2016'
 
     variables:
-      solution: '${{ parameters.workingDirectory }}/${{ parameters.solutionName }}'
       buildPlatform: ${{ parameters.Machine }}
       buildConfiguration: 'Release'
       sdkpathname: 'libs'
@@ -40,13 +38,11 @@ jobs:
           targetFolder: ${{ parameters.workingDirectory }}/$(sdkpathname)
       - script: cd ${{ parameters.workingDirectory }}/ && ls
               
-      - task: VSBuild@1
-        inputs:
-          solution: '$(solution)'
-          platform: '$(buildPlatform)'
-          configuration: '$(buildConfiguration)'
-          vsVersion: '15.0'
-          msbuildArchitecture: ${{ parameters.architecture }}
+      - script: cicd/scripts/install-qt-win.cmd ${{ parameters.architecture }}
+        displayName: 'Install QT'
+    
+      - script: call ${{ parameters.workingDirectory }}/build_azure_release.bat 3.0.1 ${{ parameters.architecture }}
+        displayName: 'build OpenVideoCall-Windows'
 
       - script: cd ${{ parameters.workingDirectory }} && ls
 
