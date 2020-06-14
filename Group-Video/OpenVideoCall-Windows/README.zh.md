@@ -27,39 +27,26 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 
 ## 环境准备
 
-- Visual Studio 2013 或更高版本
-- Windows 7 或更高版本
+* VS++ 2013(或更高版本)
+* QT5.6(或更高版本)
+* Windows 7(或更高版本)
 
 ## 运行示例程序
-
-这个段落主要讲解了如何编译和运行实例程序。
-
-### 创建Agora账号并获取AppId
-
-在编译和启动实例程序前，您需要首先获取一个可用的App ID:
-1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
-2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
-3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
-4. 将 AppID 内容替换至 APP_ID 宏定义中
-
-    ```
-    #define APP_ID _T("Your App ID")
-    ```
-
-### 集成 Agora 视频 SDK
-
-1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 复制到本项目的 `OpenVideoCall` 文件夹下（并覆盖同名旧目录）。
-
-2. 使用 VC++2013 打开 OpenVideoCall.sln，编译整个解决方案
+首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 App ID。将 APP_ID宏定义内容改为刚才申请的 App ID
 
 
-### 常见问题
+* #define APP_ID _T("Your App ID")
 
-1. 程序编译后，在运行程序时如若出现：无法启动程序 "xxx\xxx\xxx\Debug\Language\English.dll" 的错误提示， 请在解决方案资源管理器中选中 OpenVideoCall 项目，并右击，在弹出的菜单栏中选择 "设为启动项目"，即可解决。之后重新运行程序即可。
+然后在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 复制到本项目目录下（并覆盖原有旧目录）。
+最后使用 QT5.6 打开 OpenVideoCall.pro，编译整个解决方案即可运行
 
-2. sdk/dll 文件下的 dll 库也需要放在相应的执行路径下。
+* 如果不在代码里填写appid，也可以在运行目录下放置一个AgoraConfigOpenVideoCall.ini文件，文件内容：
 
-温馨提示：此案例教程中已经为您配置好相关的 dll 库，若用户想自己使用 agora 提供的接口进行相关开发，则需按上述提示将 dll 库放入相应的执行路径下。
+    [BaseInfo]
+    AppId=xxxx
+
+**注意：**如果代码里指定了appid就不会使用ini文件的appid。
+
 
 ## 联系我们
 
@@ -68,6 +55,17 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 - 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方Q群 12742516 提问
 - 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
 - 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+
+
+## 联系我们
+
+- 如果你遇到了困难，可以先参阅[常见问题](https://docs.agora.io/cn/faq)
+- 如果你想了解更多官方示例，可以参考[官方SDK示例](https://github.com/AgoraIO)
+- 如果你想了解声网SDK在复杂场景下的应用，可以参考[官方场景案例](https://github.com/AgoraIO-usecase)
+- 如果你想了解声网的一些社区开发者维护的项目，可以查看[社区](https://github.com/AgoraIO-Community)
+- 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
+- 若遇到问题需要开发者帮助，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问
+- 如果发现了示例代码的 bug，欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## 代码许可
 

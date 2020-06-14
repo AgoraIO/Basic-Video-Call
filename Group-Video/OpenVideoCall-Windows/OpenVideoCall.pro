@@ -8,6 +8,18 @@ QT       += core gui quickwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+SDKPATHNAME=libs
+SDKLIBPATHNAME=x86
+SDKDLLPATHNAME=x86
+
+!contains(QMAKE_TARGET.arch, x86_64) {
+  SDKLIBPATHNAME=x86
+  SDKDLLPATHNAME=x86
+} else {
+  SDKLIBPATHNAME=x86_64
+  SDKDLLPATHNAME=x86_64
+}
+
 TARGET = OpenVideoCall
 TEMPLATE = app
 
@@ -65,20 +77,24 @@ DISTFILES += \
     uiresource/icon-setting hover.png \
     openvideocall.rc
 
-win32: {
-INCLUDEPATH += $$PWD/sdk/include
-LIBS += -L$$PWD/sdk/lib/ -lagora_rtc_sdk
-LIBS += User32.LIB
-CONFIG(debug, debug|release) {
- QMAKE_POST_LINK +=  copy .\sdk\dll\*.dll .\Debug
+exists( $$PWD/$${SDKPATHNAME}) {
+  AGORASDKPATH = $$PWD/$${SDKPATHNAME}
+  AGORASDKDLLPATH = .\\$${SDKPATHNAME}\\$${SDKDLLPATHNAME}
 } else {
- QMAKE_POST_LINK +=  copy .\sdk\dll\*.dll .\Release
- QMAKE_POST_LINK  += && windeployqt Release\Open⁯VideoCall.exe
-}
+  AGORASDKPATH = $$PWD/../../$${SDKPATHNAME}
+  AGORASDKDLLPATH =..\\..\\$${SDKPATHNAME}\\$${SDKDLLPATHNAME}
 }
 
-win64: {
-INCLUDEPATH += $$PWD/sdk/include
-LIBS += -L$$PWD/sdk/lib/ -lagora_rtc_sdk
+win32: {
+INCLUDEPATH += $${AGORASDKPATH}/include
+LIBS += -L$${AGORASDKPATH}/$${SDKLIBPATHNAME} -lagora_rtc_sdk
 LIBS += User32.LIB
+
+CONFIG(debug, debug|release) {
+  QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll .\Debug
+} else {
+  QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll .\Release
+  QMAKE_POST_LINK += && windeployqt Release\OpenLive.exe
+}
+
 }

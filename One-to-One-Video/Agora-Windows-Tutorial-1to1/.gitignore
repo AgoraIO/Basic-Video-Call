@@ -353,3 +353,4 @@ ASALocalRun/
 *.out
 *.app
 sdk/
+libs/
