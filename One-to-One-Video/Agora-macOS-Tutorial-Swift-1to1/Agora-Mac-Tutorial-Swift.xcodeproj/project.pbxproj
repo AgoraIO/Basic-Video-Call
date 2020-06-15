@@ -326,7 +326,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 				);
-				INFOPLIST_FILE = "Agora-Mac-Tutorial-Swift/Info.plist";
+				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -354,7 +354,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Agora\\ Mac\\ Tutorial\\ Swift",
 				);
-				INFOPLIST_FILE = "Agora-Mac-Tutorial-Swift/Info.plist";
+				INFOPLIST_FILE = "Agora Mac Tutorial Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
