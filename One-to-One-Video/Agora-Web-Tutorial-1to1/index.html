@@ -120,7 +120,7 @@
   <script src="vendor/materialize.min.js"></script>
   <script src="assets/AgoraRTCSDK.js"></script>
   <script>
-    console.log("agora sdk version: " + AgoraRTC.VERSION + " compatible: " + AgoraRTC.checkSystemRequirements())
+    console.log("agora sdk version: " + AgoraRTC.VERSION + " compatible: " + AgoraRTC.checkSystemRequirements());
     var resolutions = [
       {
         name: "default",
@@ -419,7 +419,7 @@
             cameraId: option.cameraId
           })
 
-          // init local stream
+          // initialize local stream. Callback function executed after intitialization is done
           rtc.localStream.init(function () {
             console.log("init local stream success")
             // play stream with html element id "local_stream"
@@ -525,7 +525,9 @@
       })
     }
 
+    // This function automatically executes when a document is ready.
     $(function () {
+      // This will fetch all the devices and will populate the UI for every device. (Audio and Video)
       getDevices(function (devices) {
         devices.audios.forEach(function (audio) {
           $("<option/>", {
@@ -539,6 +541,7 @@
             text: video.name,
           }).appendTo("#cameraId")
         })
+        // To populate UI with different camera resolutions
         resolutions.forEach(function (resolution) {
           $("<option/>", {
             value: resolution.value,
@@ -550,15 +553,16 @@
 
       var fields = ["appID", "channel"]
 
+      // This will start the join functions with all the configuration selected by the user.
       $("#join").on("click", function (e) {
         console.log("join")
-        e.preventDefault()
-        var params = serializeformData()
+        e.preventDefault();
+        var params = serializeformData(); // Data is feteched and serilized from the form element.
         if (validator(params, fields)) {
           join(rtc, params)
         }
       })
-
+      // This publishes the video feed to Agora
       $("#publish").on("click", function (e) {
         console.log("publish")
         e.preventDefault()
@@ -566,8 +570,8 @@
         if (validator(params, fields)) {
           publish(rtc)
         }
-      })
-
+      });
+      // Unpublishes the video feed from Agora
       $("#unpublish").on("click", function (e) {
         console.log("unpublish")
         e.preventDefault()
@@ -575,8 +579,8 @@
         if (validator(params, fields)) {
           unpublish(rtc)
         }
-      })
-
+      });
+      // Leeaves the chanenl if someone clicks the leave button
       $("#leave").on("click", function (e) {
         console.log("leave")
         e.preventDefault()

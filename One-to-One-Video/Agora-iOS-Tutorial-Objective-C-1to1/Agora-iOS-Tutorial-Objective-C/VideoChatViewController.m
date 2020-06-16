@@ -46,6 +46,7 @@
     [self.agoraKit enableVideo];
     // Default mode is disableVideo
     
+    // Set up the configuration such as dimension, frame rate, bit rate and orientation
     AgoraVideoEncoderConfiguration *encoderConfiguration =
     [[AgoraVideoEncoderConfiguration alloc] initWithSize:AgoraVideoDimension640x360
                                                frameRate:AgoraVideoFrameRateFps15
@@ -75,6 +76,12 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
+
+/// Callback to handle the event such when the first frame of a remote video stream is decoded on the device.
+/// @param engine - RTC engine instance
+/// @param uid - user id
+/// @param size - the height and width of the video frame
+/// @param elapsed - lapsed Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size: (CGSize)size elapsed:(NSInteger)elapsed {
     if (self.remoteVideo.hidden) {
         self.remoteVideo.hidden = NO;
@@ -94,6 +101,9 @@
     [self leaveChannel];
 }
 
+
+
+///  Leave the channel and handle UI change when it is done.
 - (void)leaveChannel {
     [self.agoraKit leaveChannel:^(AgoraChannelStats *stat) {
         [self hideControlButtons];
@@ -103,6 +113,11 @@
     }];
 }
 
+
+/// Callback to handle an user offline event.
+/// @param engine - RTC engine instance
+/// @param uid - user id
+/// @param reason - why is the user offline
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
     self.remoteVideo.hidden = true;
 }
@@ -145,6 +160,11 @@
     [self resetHideButtonsTimer];
 }
 
+
+/// A callback to handle muting of the audio
+/// @param engine  - RTC engine instance
+/// @param muted  - YES if muted; NO otherwise
+/// @param uid  - user id
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
     self.remoteVideo.hidden = muted;
     self.remoteVideoMutedIndicator.hidden = !muted;

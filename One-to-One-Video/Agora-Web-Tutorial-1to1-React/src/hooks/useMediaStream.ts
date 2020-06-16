@@ -71,6 +71,7 @@ const useMediaStream = (client: any, filter?: (streamId: number) => boolean): an
     return () => {
       mounted = false;
       if (client) {
+        // Maintains the list of users based on the various network events.
         client.gatewayClient.removeEventListener("stream-published", addLocal);
         client.gatewayClient.removeEventListener("stream-added", doSub);
         client.gatewayClient.removeEventListener("stream-subscribed", addRemote);

@@ -48,7 +48,6 @@ static var Token: String? = <#Temp Access Token#>
 
   - AgoraRtcKit.framework
   - AgoraRtcCryptoLoader.framework
-  - libcrypto.a
 
 2. 最后使用 Xcode 打开 OpenVideoCall.xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
 

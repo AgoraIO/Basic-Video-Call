@@ -9,8 +9,8 @@ parameters:
   scheme: ''
   sdkurl: ''
   solutionName: ''
-  sdkunzipPath: ''
   Machine: ''
+  architecture: ''
   ReleasePath: ''
 jobs:
   - job: ${{ parameters.displayName }}Build
@@ -23,7 +23,8 @@ jobs:
       solution: '${{ parameters.workingDirectory }}/${{ parameters.solutionName }}'
       buildPlatform: ${{ parameters.Machine }}
       buildConfiguration: 'Release'
-   
+      sdkpathname: 'libs'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_FULL'
     steps:
       - script: echo "${{ parameters.sdkurl }}" && ls
       - powershell: cicd/scripts/downloadsdk.ps1 "${{ parameters.sdkurl }}"
@@ -35,8 +36,8 @@ jobs:
           
       - task: CopyFiles@2
         inputs:
-          sourceFolder: ${{ parameters.sdkunzipPath }}/sdk
-          targetFolder: ${{ parameters.workingDirectory }}/sdk
+          sourceFolder: $(sdkunzipPath)/$(sdkpathname)
+          targetFolder: ${{ parameters.workingDirectory }}/$(sdkpathname)
       - script: cd ${{ parameters.workingDirectory }}/ && ls
               
       - task: VSBuild@1
@@ -45,7 +46,7 @@ jobs:
           platform: '$(buildPlatform)'
           configuration: '$(buildConfiguration)'
           vsVersion: '15.0'
-          msbuildArchitecture: 'x86'
+          msbuildArchitecture: ${{ parameters.architecture }}
 
       - script: cd ${{ parameters.workingDirectory }} && ls
 

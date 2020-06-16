@@ -260,18 +260,28 @@ private extension RoomViewController {
 
 // MARK: - AgoraRtcEngineDelegate
 extension RoomViewController: AgoraRtcEngineDelegate {
+    
+    /// Occurs when the local user joins a specified channel.
+    /// - Parameters:
+    ///   - engine: the Agora engine
+    ///   - channel: channel name
+    ///   - uid: User ID. If the uid is specified in the joinChannelByToken method, the specified user ID is returned. If the user ID is not specified when the joinChannel method is called, the server automatically assigns a uid.
+    ///   - elapsed: Time elapsed (ms) from the user calling the joinChannelByToken method until the SDK triggers this callback.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {
         info(string: "Join channel: \(channel)")
     }
     
+    /// Occurs when the connection between the SDK and the server is interrupted.
     func rtcEngineConnectionDidInterrupted(_ engine: AgoraRtcEngineKit) {
         alert(string: "Connection Interrupted")
     }
     
+    /// Occurs when the SDK cannot reconnect to Agora’s edge server 10 seconds after its connection to the server is interrupted.
     func rtcEngineConnectionDidLost(_ engine: AgoraRtcEngineKit) {
         alert(string: "Connection Lost")
     }
     
+    /// Reports an error during SDK runtime.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
         alert(string: "Occur error: \(errorCode.rawValue)")
     }
@@ -354,6 +364,7 @@ private extension RoomViewController {
             var row: Int
             
             if videoSessions.count == 0 {
+                containerView.removeLayout(level: 0)
                 return
             } else if videoSessions.count == 1 {
                 rank = 1

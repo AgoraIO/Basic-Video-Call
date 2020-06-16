@@ -5,13 +5,16 @@ import os
 
 
 def main():
-#    f = open("./app/build.gradle", 'r+')
-#    content = f.read()
-#    x = re.sub(
-#        r'(dependencies {$)(.*)', r"\1\n    implementation 'io.agora.rtc:full-sdk:2.4.1'\2", content, flags=re.M)
-#    f.seek(0)
-#    f.write(x)
-#    f.truncate()
+    f = open("./app/build.gradle", 'r+')
+    content = f.read()
+    sdkver = ""
+    if "AGORA_RTC_SDK_VER" in os.environ:
+      sdkver = os.environ["AGORA_RTC_SDK_VER"]
+    x = re.sub(
+        r'(dependencies {$)(.*)', r"\1\n    implementation 'io.agora.rtc:full-sdk:"+sdkver+r"'\2", content, flags=re.M)
+    f.seek(0)
+    f.write(x)
+    f.truncate()
 
     appId = ""
     if "AGORA_APP_ID" in os.environ:

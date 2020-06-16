@@ -15,7 +15,7 @@ class AVDevice : public QMainWindow
 public:
     explicit AVDevice(QMainWindow* pLastWnd,const QString &qsChanne,QWidget *parent = 0);
     ~AVDevice();
-
+    bool SetCustomVideoProfile();
 protected:
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
@@ -34,7 +34,7 @@ private slots:
     void on_btn_audio_clicked();
     void on_btn_video_clicked();
 
-	void on_optVideo_Beauty_clicked();
+     void on_optVideo_Beauty_clicked();
 
     void on_btn_close_clicked();
 
@@ -44,14 +44,16 @@ private slots:
 
     void on_cb_log_activated(int index);
 
-	void on_cbContrastLevel_activated(int index);
-	void on_valueChanged_horizontalSlider_Redness(int value);
-	void on_valueChanged_horizontalSlider_Smoothness(int value);
-	void on_valueChanged_horizontalSlider_Lightening(int value);
+     void on_cbContrastLevel_activated(int index);
+     void on_valueChanged_horizontalSlider_Redness(int value);
+     void on_valueChanged_horizontalSlider_Smoothness(int value);
+     void on_valueChanged_horizontalSlider_Lightening(int value);
+    void on_cb_bitrate_currentIndexChanged(int index);
+    void on_cb_FPS_currentIndexChanged(int index);
 private:
-	void enableVideoBeutyControl(bool bEnable);
-	void updateBeautyOptions();
-
+     void enableVideoBeutyControl(bool bEnable);
+     void updateBeautyOptions();
+    void setVideoProfile();
     const int lnGapWidth = 18;
     const int lnGapHeight = 12;
     const int lnTitleWidth = 718;
@@ -65,7 +67,9 @@ private:
     QString m_strChannel;
     bool    m_bEnableVideo;
     bool    m_bEnableAudio;
-	bool    m_bEnableBeauty;
+    bool    m_bEnableBeauty;
+    int fps[5];
+    int bitrate[3];
 };
 
 #endif // AVDEVICE_H

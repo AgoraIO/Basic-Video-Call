@@ -15,7 +15,7 @@ jobs:
       - group: AgoraKeys
 
     steps:
-      - script: cd cicd/scripts && chmod +x sdkdownload.sh && ./sdkdownload.sh ${{ parameters.sdkurl }} ${{ parameters.workingDirectory}}/${{ parameters.scheme }}
+      - script: cd cicd/scripts && chmod +x sdkdownload.sh && ./sdkdownload.sh ${{ parameters.sdkurl }} ${{ parameters.workingDirectory}}/${{ parameters.scheme }} Static
     
       - script: echo `pwd` && cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
