@@ -105,6 +105,7 @@ export default class RTCClient {
         }
         // Close the local stream
         this.localStream.close()
+        this.client = null
         resolve()
         console.log("client leaves channel success");
       }, (err) => {
