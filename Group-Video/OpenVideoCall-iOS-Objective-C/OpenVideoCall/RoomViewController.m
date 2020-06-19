@@ -401,6 +401,8 @@
         
         // release canvas's view
         deleteSession.canvas.view = nil;
+        
+        [self.agoraKit setupRemoteVideo:deleteSession];
     }
 }
 
