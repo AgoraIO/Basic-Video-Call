@@ -318,6 +318,8 @@ extension RoomViewController: AgoraRtcEngineDelegate {
             
             // release canvas's view
             deletedSession.canvas.view = nil
+            
+            agoraKit.setupRemoteVideo(deletedSession.canvas)
         }
     }
     
