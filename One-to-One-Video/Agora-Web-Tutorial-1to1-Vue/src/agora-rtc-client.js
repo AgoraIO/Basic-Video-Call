@@ -35,7 +35,7 @@ export default class RTCClient {
           console.error("client join failed", err)
         })
       }, (err) => {
-        reject()
+        reject(err)
         console.error(err)
       })
       console.log("[agora-vue] appId", option.appid)
@@ -54,14 +54,14 @@ export default class RTCClient {
       // Initialize the local stream
       this.localStream.init(() => {
         console.log("init local stream success") 
-        resolve()
+        resolve(this.localStream)
         // Publish the local stream
         this.client.publish(this.localStream, (err) =>  {
           console.log("publish failed")
           console.error(err)
         })
       }, (err) => {
-        reject()
+        reject(err)
         console.error("init local stream failed ", err)
       })
     })
@@ -109,7 +109,7 @@ export default class RTCClient {
         resolve()
         console.log("client leaves channel success");
       }, (err) => {
-        reject()
+        reject(err)
         console.log("channel leave failed");
         console.error(err);
       })
