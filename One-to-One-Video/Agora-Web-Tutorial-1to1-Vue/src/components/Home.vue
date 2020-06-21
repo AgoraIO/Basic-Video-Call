@@ -5,22 +5,20 @@
     </div>
     <div class='agora-box'>
       <div class="agora-input">
-        <div class="text-agora">* Appid</div>
-        <el-input v-model="option.appid" placeholder="Appid" clearable style="width: 320px"></el-input>
+        <div class="agora-text">* Appid</div>
+        <el-input v-model="option.appid" placeholder="Appid" clearable></el-input>
       </div>
       <div class="agora-input">
-        <div class="text-agora">Token</div>
-        <el-input v-model="option.token" placeholder="Token" clearable style="width: 320px"></el-input>
+        <div class="agora-text">Token</div>
+        <el-input v-model="option.token" placeholder="Token" clearable></el-input>
       </div>
       <div class="agora-input">
-        <div class="text-agora">* Channel Name</div>
-        <el-input v-model="option.channel" placeholder="Channel Name" clearable style="width: 320px"></el-input>
+        <div class="agora-text">* Channel Name</div>
+        <el-input v-model="option.channel" placeholder="Channel Name" clearable></el-input>
       </div>
       <div class="agora-button">
-        <el-row>
-          <el-button type="primary" @click="joinEvent" :disabled='showJoin' style="width: 90px; margin: 10px">join</el-button>
-          <el-button type="primary" @click='leaveEvent' plain :disabled='!showJoin' style="width: 90px; margin: 10px">leave</el-button>
-        </el-row>
+        <el-button type="primary" @click="joinEvent" :disabled='disableJoin'>join</el-button>
+        <el-button type="primary" @click='leaveEvent' plain :disabled='!disableJoin'>leave</el-button>
       </div>
     </div> 
     <div class="agora-view">
@@ -51,7 +49,7 @@ export default {
         uid: null,
         channel: '',
       },
-      showJoin: false,
+      disableJoin: false,
       localStream: null,
       remoteStreams: [],
     }
@@ -75,12 +73,12 @@ export default {
           message: 'Join Success',
           type: 'success'
         });
-        this.rtc.publishStream().then(() => {
+        this.rtc.publishStream().then((stream) => {
           this.$message({
             message: 'Publish Success',
             type: 'success'
           });
-          this.localStream = this.rtc.localStream
+          this.localStream = stream
         }).catch((err) => {
           this.$message.error('Publish Failure');
           log('publish local error', err)
@@ -89,10 +87,10 @@ export default {
         this.$message.error('Join Failure');
         log('join channel error', err)
       })
-      this.showJoin = true
+      this.disableJoin = true
     },
     leaveEvent () {
-      this.showJoin = false
+      this.disableJoin = false
       this.rtc.leaveChannel().then(() => {
         this.$message({
           message: 'Leave Success',
@@ -136,6 +134,15 @@ export default {
       log('[agora] [stream-removed] stream-removed', stream.getId())
       this.remoteStreams = this.remoteStreams.filter((it) => it.getId() !== stream.getId())
     }) 
+
+    rtc.on('peer-online', (evt) => {
+      this.$message(`Peer ${evt.uid} is online`)
+    }) 
+
+    rtc.on('peer-leave', (evt) => {
+      this.$message(`Peer ${evt.uid} already leave`)
+      this.remoteStreams = this.remoteStreams.filter((it) => it.getId() !== evt.uid)
+    }) 
   }
  }
 </script>
@@ -154,6 +161,7 @@ export default {
   }
   .agora-view {
     display: flex;
+    flex-wrap: wrap;
   }
   .agora-video {
     width: 320px;
@@ -162,6 +170,7 @@ export default {
   }
   .agora-input {
     margin: 20px;
+    width: 320px;
   }
   .agora-text {
     margin: 5px;
@@ -169,13 +178,13 @@ export default {
     font-weight: bold;
   }
   .agora-button {
-    margin-left: 10px;
+    display: flex;
+    width: 160px;
+    justify-content: space-between;
+    margin: 20px;
   }
   .agora-video {
     width: 320px;
     height: 240px;
-  }
-  .text-agora {
-    font-weight: bold;
   }
 </style>
