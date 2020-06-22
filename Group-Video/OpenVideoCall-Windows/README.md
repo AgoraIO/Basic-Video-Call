@@ -1,4 +1,4 @@
-``# Open Video Call Windows
+# Open Video Call Windows
 
 *English | [中文](README.zh.md)*
 
