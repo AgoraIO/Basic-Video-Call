@@ -352,3 +352,7 @@ ASALocalRun/
 *.exe
 *.out
 *.app
+sdk/
+libs/
+Makefile*
+ui_*

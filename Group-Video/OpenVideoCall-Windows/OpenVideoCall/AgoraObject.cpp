@@ -3,7 +3,7 @@
 #include "AGResourceVisitor.h"
 
 #include <stdio.h>
-
+#include "AGJson.h"
 
 CAgoraObject *CAgoraObject::m_lpAgoraObject = NULL;
 IRtcEngine *CAgoraObject::m_lpAgoraEngine = NULL;
@@ -28,23 +28,25 @@ CAgoraObject::~CAgoraObject(void)
 
 CString CAgoraObject::LoadAppID()
 {
-	TCHAR szFilePath[MAX_PATH];
-	CString strAppID(APP_ID);
+    TCHAR szFilePath[MAX_PATH];
+    CString strAppID(APP_ID);
+    if (!strAppID.IsEmpty())
+        return strAppID;
 
-	::GetModuleFileName(NULL, szFilePath, MAX_PATH);
-	LPTSTR lpLastSlash = _tcsrchr(szFilePath, _T('\\'));
+    ::GetModuleFileName(NULL, szFilePath, MAX_PATH);
+    LPTSTR lpLastSlash = _tcsrchr(szFilePath, _T('\\'));
 
-	if (lpLastSlash == NULL)
-		return strAppID;
+    if (lpLastSlash == NULL)
+        return strAppID;
 
-	SIZE_T nNameLen = MAX_PATH - (lpLastSlash - szFilePath + 1);
-	_tcscpy_s(lpLastSlash + 1, nNameLen, _T("AppID.ini"));
+    SIZE_T nNameLen = MAX_PATH - (lpLastSlash - szFilePath + 1);
+    _tcscpy_s(lpLastSlash + 1, nNameLen, _T("AppID.ini"));
 
     if (!PathFileExists(szFilePath)) {
         HANDLE handle = CreateFile(szFilePath, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_NEW, 0, NULL);
         CloseHandle(handle);
     }
-   
+
     TCHAR szAppid[MAX_PATH] = { 0 };
     ::GetPrivateProfileString(_T("AppID"), _T("AppID"), NULL, szAppid, MAX_PATH, szFilePath);
     if (_tcslen(szAppid) == 0) {
@@ -54,7 +56,7 @@ CString CAgoraObject::LoadAppID()
 
     strAppID = szAppid;
 
-	return strAppID;
+    return strAppID;
 }
 
 
@@ -623,4 +625,60 @@ BOOL CAgoraObject::EnableWhiteboardFeq(BOOL bEnable)
 	::RegCloseKey(hKey);
 
 	return lStatus == ERROR_SUCCESS ? TRUE : FALSE;
+}
+
+
+void CAgoraObject::SetDefaultParameters()
+{
+    CAGJson m_agJson;
+    std::map<std::string, std::string> mapStringParamsters;
+    std::map<std::string, bool> mapBoolParameters;
+    std::map<std::string, int> mapIntParameters;
+    std::map<std::string, std::string> mapObjectParameters;
+    if (m_agJson.GetParameters(mapStringParamsters, mapBoolParameters, mapIntParameters, mapObjectParameters)) {
+        AParameter apm(m_lpAgoraEngine);
+        for (auto iter = mapBoolParameters.begin();
+            iter != mapBoolParameters.end(); ++iter) {
+            apm->setBool(iter->first.c_str(), iter->second);
+        }
+        for (auto iter = mapStringParamsters.begin();
+            iter != mapStringParamsters.end(); ++iter) {
+            apm->setString(iter->first.c_str(), iter->second.c_str());
+        }
+        for (auto iter = mapIntParameters.begin();
+            iter != mapIntParameters.end(); ++iter) {
+            apm->setInt(iter->first.c_str(), iter->second);
+        }
+
+        for (auto iter = mapObjectParameters.begin();
+            iter != mapObjectParameters.end(); ++iter) {
+            apm->setObject(iter->first.c_str(), iter->second.c_str());
+        }
+    }
+}
+
+
+std::string CAgoraObject::GetToken()
+{
+    std::string token(APP_TOKEN);
+    if (!token.empty())
+        return token;
+
+    TCHAR szFilePath[MAX_PATH];
+    ::GetModuleFileName(NULL, szFilePath, MAX_PATH);
+    LPTSTR lpLastSlash = _tcsrchr(szFilePath, _T('\\'));
+
+    if (lpLastSlash == NULL)
+        return token;
+
+    SIZE_T nNameLen = MAX_PATH - (lpLastSlash - szFilePath + 1);
+    _tcscpy_s(lpLastSlash + 1, nNameLen, _T("AppID.ini"));
+
+
+    TCHAR szToken[MAX_PATH] = { 0 };
+    char temp[MAX_PATH] = { 0 };
+    ::GetPrivateProfileString(_T("AppID"), _T("AppToken"), NULL, szToken, MAX_PATH, szFilePath);
+    ::WideCharToMultiByte(CP_UTF8, 0, szToken, -1, temp, 128, NULL, NULL);
+
+    return temp;
 }

@@ -35,6 +35,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="AgoraObject\Config\Json">
+      <UniqueIdentifier>{9c26a29f-fa92-4dc6-9132-76291c93adac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -136,6 +139,12 @@
     <ClInclude Include="AGDesktopCaptureDlg.h">
       <Filter>UI\Dialog</Filter>
     </ClInclude>
+    <ClInclude Include="json_tool.h">
+      <Filter>AgoraObject\Config\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="AGJson.h">
+      <Filter>AgoraObject\Config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -224,6 +233,18 @@
     </ClCompile>
     <ClCompile Include="AGDesktopCaptureDlg.cpp">
       <Filter>UI\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="json_reader.cpp">
+      <Filter>AgoraObject\Config\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="json_value.cpp">
+      <Filter>AgoraObject\Config\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="json_writer.cpp">
+      <Filter>AgoraObject\Config\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="AGJson.cpp">
+      <Filter>AgoraObject\Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

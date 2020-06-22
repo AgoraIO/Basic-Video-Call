@@ -105,6 +105,7 @@ void CVideoDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
+	// TODO:
 	if (m_btnMin.GetSafeHwnd() != NULL)
 		m_btnMin.MoveWindow(cx - 72, 0, 24, 24, TRUE);
 	if (m_btnRst.GetSafeHwnd() != NULL)
@@ -116,6 +117,7 @@ void CVideoDlg::OnSize(UINT nType, int cx, int cy)
 	m_rcVideoArea.top += 24;
 	m_rcVideoArea.bottom -= 72;
 
+	//
 	m_rcChildVideoArea.top = m_rcVideoArea.top + 10;
 	m_rcChildVideoArea.bottom = m_rcChildVideoArea.top + 144;
 	m_rcChildVideoArea.right = m_rcVideoArea.right - 14;
@@ -247,8 +249,11 @@ void CVideoDlg::AdjustSizeVideoMulti(int cx, int cy)
 	}
 }
 
+
 void CVideoDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
+	// TODO:
+
 	CDialogEx::OnMouseMove(nFlags, point);
 }
 
@@ -1057,6 +1062,7 @@ BOOL CVideoDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
+	// TODO:
 	m_dlgDevice.Create(CDeviceDlg::IDD, this);
 	m_dlgDevice.EnableDeviceTest(FALSE);
 

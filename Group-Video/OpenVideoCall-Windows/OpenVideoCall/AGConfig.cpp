@@ -153,3 +153,87 @@ BOOL CAGConfig::IsAutoSaveEnabled()
 
 	return (_ttoi(strSaveSetting) == 1) ? TRUE : FALSE;
 }
+
+
+BOOL CAGConfig::IsCustomFPS()
+{
+    CString str;
+
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("CustomFPS"), _T("0"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+
+    str.ReleaseBuffer();
+
+    return (_ttoi(str) == 1) ? TRUE : FALSE;
+}
+
+BOOL CAGConfig::IsCustomBitrate()
+{
+    CString str;
+
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("CustomBitrate"), _T("0"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+
+    str.ReleaseBuffer();
+
+    return (_ttoi(str) == 1) ? TRUE : FALSE;
+}
+
+BOOL CAGConfig::IsCustomRsolution()
+{
+    CString str;
+
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("CustomRsolution"), _T("0"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+    str.ReleaseBuffer();
+
+    return (_ttoi(str) == 1) ? TRUE : FALSE;
+}
+
+void CAGConfig::SetCustomFPS(int fps)
+{
+    CString str = _itot(fps, NULL, 10);
+
+    ::WritePrivateProfileString(_T("VideoConfig"), _T("FPS"), str, m_szConfigFile);
+}
+
+int  CAGConfig::GetCustomFPS()
+{
+    CString str;
+
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("FPS"), _T("15"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+
+    str.ReleaseBuffer();
+
+    return _ttoi(str);
+}
+
+void CAGConfig::SetResolution(int w, int h)
+{
+
+}
+
+BOOL CAGConfig::GetResolution(int& w, int& h)
+{
+    CString str;
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("Width"), _T("640"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+    w = _ttoi(str);
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("Height"), _T("480"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+    h = _ttoi(str);
+    str.ReleaseBuffer();
+
+    return TRUE;
+}
+
+void CAGConfig::SetCustomBitrate(int bitrate)
+{
+
+}
+
+int  CAGConfig::GetCustomBitrate()
+{
+    CString str;
+
+    ::GetPrivateProfileString(_T("VideoConfig"), _T("Bitrate"), _T("800"), str.GetBuffer(MAX_PATH), MAX_PATH, m_szConfigFile);
+
+    str.ReleaseBuffer();
+
+    return _ttoi(str);
+}

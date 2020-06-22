@@ -152,7 +152,7 @@ void CAgoraAudInputManager::TestAudInputDevice(HWND hMsgWnd, BOOL bTestOn)
 
 		IRtcEngine *lpRtcEngine = CAgoraObject::GetEngine();
 		RtcEngineParameters rep(*lpRtcEngine);
-		rep.enableAudioVolumeIndication(1000, 10,true);
+		rep.enableAudioVolumeIndication(1000, 10, false);
 		(*m_ptrDeviceManager)->startRecordingDeviceTest(1000);
 	}
 	else if (!bTestOn && m_bTestingOn){
