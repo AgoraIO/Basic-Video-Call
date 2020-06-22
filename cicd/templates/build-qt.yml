@@ -21,8 +21,8 @@ jobs:
     variables:
       buildPlatform: ${{ parameters.Machine }}
       buildConfiguration: 'Release'
-      sdkpathname: 'libs'
-      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_FULL'
+      sdkpathname: 'sdk'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_v3.0.0_FULL'
     steps:
       - script: echo "${{ parameters.sdkurl }}" && ls
       - powershell: cicd/scripts/downloadsdk.ps1 "${{ parameters.sdkurl }}"
@@ -41,7 +41,7 @@ jobs:
       - script: cicd/scripts/install-qt-win.cmd ${{ parameters.architecture }}
         displayName: 'Install QT'
     
-      - script: call ${{ parameters.workingDirectory }}/build_azure_release.bat 3.0.1 ${{ parameters.architecture }}
+      - script: call ${{ parameters.workingDirectory }}/build_azure_release.bat 3.0.0 ${{ parameters.architecture }}
         displayName: 'build OpenVideoCall-Windows'
 
       - script: cd ${{ parameters.workingDirectory }} && ls
