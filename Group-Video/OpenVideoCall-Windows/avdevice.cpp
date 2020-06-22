@@ -12,6 +12,16 @@ AVDevice::AVDevice(QMainWindow* pLastWnd,const QString &qsChanne,QWidget *parent
 	m_bEnableBeauty(false),
     m_strChannel(qsChanne)
 {
+    int i = 0;
+    fps[i++] = FRAME_RATE_FPS_7;
+    fps[i++] = FRAME_RATE_FPS_10;
+    fps[i++] = FRAME_RATE_FPS_15;
+    fps[i++] = FRAME_RATE_FPS_24;
+    fps[i++] = FRAME_RATE_FPS_30;
+
+    bitrate[0] = STANDARD_BITRATE;
+    bitrate[1] = COMPATIBLE_BITRATE;
+    bitrate[2] = DEFAULT_MIN_BITRATE;
     ui->setupUi(this);
 	ui->scrollArea->verticalScrollBar()->setStyleSheet(QLatin1String(""
 		"QScrollBar:vertical {border: none;background-color: rgb(255,255,255);width: 10px;margin: 0px 0 0px 0;}"
@@ -85,7 +95,19 @@ void AVDevice::initCtrl()
     ui->cb_solution->addItem("3840x2160");
     ui->cb_solution->setCurrentIndex(3);
 
-    //microphone.
+    ui->cb_FPS->clear();
+    ui->cb_FPS->addItem("FRAME_RATE_FPS_7");
+    ui->cb_FPS->addItem("FRAME_RATE_FPS_10");
+    ui->cb_FPS->addItem("FRAME_RATE_FPS_15");
+    ui->cb_FPS->addItem("FRAME_RATE_FPS_24");
+    ui->cb_FPS->addItem("FRAME_RATE_FPS_30");
+    ui->cb_FPS->setCurrentIndex(2);
+
+    ui->cb_bitrate->clear();
+    ui->cb_bitrate->addItem("STANDARD_BITRATE");
+    ui->cb_bitrate->addItem("COMPATIBLE_BITRATE");
+    ui->cb_bitrate->addItem("DEFAULT_MIN_BITRATE");
+    ui->cb_bitrate->setCurrentIndex(0);
     ui->cb_audio->clear();
     QString qDeviceName;
     qSSMap devicelist = CAgoraObject::getInstance()->getRecordingDeviceList();
@@ -327,11 +349,19 @@ void AVDevice::on_btn_min_clicked()
     this->showMinimized();
 }
 
-void AVDevice::on_cb_solution_activated(const QString &arg1)
+void AVDevice::setVideoProfile()
 {
     int nWidth,nHeight = 0;
-    sscanf(arg1.toUtf8().data(),"%dx%d", &nWidth, &nHeight);
-    CAgoraObject::getInstance()->setVideoProfile(nWidth, nHeight);
+    QString argResolution = ui->cb_bitrate->currentText();
+    sscanf(argResolution.toUtf8().data(),"%dx%d", &nWidth, &nHeight);
+    int index = ui->cb_FPS->currentIndex();
+    int idx   = ui->cb_bitrate->currentIndex();
+    CAgoraObject::getInstance()->setVideoProfile(nWidth, nHeight, (FRAME_RATE)fps[index], bitrate[idx]);
+}
+
+void AVDevice::on_cb_solution_activated(const QString &arg1)
+{
+   setVideoProfile();
 }
 
 void AVDevice::on_cb_log_activated(int index)
@@ -392,4 +422,51 @@ void AVDevice::on_valueChanged_horizontalSlider_Lightening(int value)
 	ui->labelLightening->setText(lightening);
 	gAgoraConfig.setLightenging(value);
 	updateBeautyOptions();
+}
+
+void AVDevice::on_cb_bitrate_currentIndexChanged(int index)
+{
+    setVideoProfile();
+}
+
+void AVDevice::on_cb_FPS_currentIndexChanged(int index)
+{
+    setVideoProfile();
+}
+
+bool AVDevice::SetCustomVideoProfile()
+{
+    int nRet = 0;
+    FRAME_RATE customFPS = FRAME_RATE_FPS_15;
+    int customBitrate    = STANDARD_BITRATE;
+    int nWidth = 640, nHeight = 360;
+
+    if(ui && ui->cb_bitrate){
+        QString argResolution = ui->cb_bitrate->currentText();
+        sscanf(argResolution.toUtf8().data(),"%dx%d", &nWidth, &nHeight);
+    }
+
+    if(ui && ui->cb_FPS){
+        int idx   = ui->cb_FPS->currentIndex();
+        customFPS = (FRAME_RATE)fps[idx];
+    }
+
+    if(ui && ui->cb_bitrate){
+        int idx   = ui->cb_bitrate->currentIndex();
+        customBitrate = bitrate[idx];
+    }
+
+    if(gAgoraConfig.isCustomFPS()){
+        customFPS = (FRAME_RATE)gAgoraConfig.getFPS();
+    }
+
+    if(gAgoraConfig.isCustomBitrate()){
+        customBitrate = gAgoraConfig.getBitrate();
+    }
+
+    if(gAgoraConfig.isCustomResolution())
+         gAgoraConfig.getVideoResolution(nWidth, nHeight);
+
+    CAgoraObject::getInstance()->setVideoProfile(nWidth, nHeight, customFPS, customBitrate);
+    return true;
 }

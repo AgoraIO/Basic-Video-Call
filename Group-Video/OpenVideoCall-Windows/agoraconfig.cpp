@@ -15,6 +15,11 @@ QString CAgoraConfig::getAppId()
     return m_spConfig->value("/BaseInfo/AppId").toString();
 }
 
+QString CAgoraConfig::getAppToken()
+{
+    return m_spConfig->value("/BaseInfo/AppToken").toString();
+}
+
 void CAgoraConfig::setChannelName(const QString &str)
 {
     return m_spConfig->setValue("/BaseInfo/CameraName",str);
@@ -94,4 +99,32 @@ void CAgoraConfig::setSmoothness(int smooth)
 int CAgoraConfig::getSmoothness()
 {
 	return m_spConfig->value("/Beauty/Smoothness").toInt();
+}
+
+void CAgoraConfig::getVideoResolution(int& width, int height)
+{
+    width  = m_spConfig->value("/VideoInfo/Width").toInt();
+    height = m_spConfig->value("/VideoInfo/Height").toInt();
+}
+
+int CAgoraConfig::getFPS()
+{
+    return m_spConfig->value("/VideoInfo/FPS").toInt();
+}
+
+int CAgoraConfig::getBitrate()
+{
+    return m_spConfig->value("/VideoInfo/Bitrate").toInt();
+}
+bool CAgoraConfig::isCustomFPS()
+{
+    return m_spConfig->value("/VideoInfo/CustomFPS").toBool();
+}
+bool CAgoraConfig::isCustomBitrate()
+{
+    return m_spConfig->value("/VideoInfo/CustomBitrate").toBool();
+}
+bool CAgoraConfig::isCustomResolution()
+{
+    return m_spConfig->value("/VideoInfo/CustomResolution").toBool();
 }
