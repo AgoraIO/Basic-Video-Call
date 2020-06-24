@@ -1,5 +1,7 @@
 # Basic Video Call
 
+_Other Languages: [简体中文](README.zh.md)_
+
 Agora provides a set of sample applications demonstrating how to integrate the Agora Video SDK for:
 
 - [1-to-1 video calls](#1-to-1-video-calls)
