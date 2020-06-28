@@ -77,9 +77,8 @@ command:
 - 如果你想了解声网的一些社区开发者维护的项目，可以查看 [社区](https://github.com/AgoraIO-Community)
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
 - 若遇到问题需要开发者帮助，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问
-- 如果有售前咨询问题，可以拨打 400 632 6626
-- 如果需要售后技术支持，你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的bug，欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
+- 如果发现了示例代码的 bug，欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## 代码许可
 
