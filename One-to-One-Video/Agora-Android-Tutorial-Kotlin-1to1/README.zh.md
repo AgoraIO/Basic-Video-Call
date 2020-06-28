@@ -65,6 +65,23 @@
 
 也可以使用 `Gradle` 直接编译运行。
 
+#### 方法1：使用 Android Studio 运行（推荐）
+
+1. 在 Android Studio 中打开实例程序。
+2. 选择 **File** > **Sync Project with Gradle Files**。
+3. 编译并运行实例项目。此时应该能够在你的设备上显示该应用。
+
+**注意：** 如果你的应用没有在 Android Studio 中进行编译，检查 **Build Error** 窗口来解决问题：
+- 你可能需要安装额外的 Android SDK 支持文件。
+- 你可能需要更新在应用根目录的 build.gradle 文件中的 Kotlin 版本号 `ext.kotlin_version` 。
+
+#### 方法2：使用 IntelliJ IDEA
+
+将实例应用作为 Gradle 项目导入到 **IntelliJ IDEA** 中。
+
+1. 在主菜单中选择 **File** > **Open** 。
+2. 在打开的对话中，选择包含实例应用的目录，并且点击 **OK** 。
+3. 编译并运行示例项目。此时应该能够在你的设备上显示该应用。
 
 ## 联系我们
 

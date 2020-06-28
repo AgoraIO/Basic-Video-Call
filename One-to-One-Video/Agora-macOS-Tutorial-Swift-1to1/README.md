@@ -46,7 +46,7 @@ To build and run the sample application, get an App Id:
   
 2. Open Xcode and run this project.
 
-## Contract Us
+## Contact Us
 
 - For potential issues, you may take a look at our [FAQ](https://docs.agora.io/en/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials

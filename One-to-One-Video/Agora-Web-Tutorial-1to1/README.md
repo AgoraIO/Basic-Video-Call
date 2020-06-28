@@ -39,7 +39,7 @@ Download SDK into **assets** path and rename file name as **AgoraRTCSDK.js**
     ```
 2. Enter Valid APPID, Token, Channel and click **JOIN**
 
-## Resources
+## Contact Us
 
 - For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
