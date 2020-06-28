@@ -1,4 +1,4 @@
-``# Open Video Call Windows
+# Open Video Call Windows
 
 *English | [中文](README.zh.md)*
 
@@ -48,7 +48,7 @@ Finally, Open OpenVideoCall.pro with your Qt5.6(or higher) and build current pro
 
 **Note：**If you fill appid in the code file, appid in ini file will be omitted.
 
-## Connect Us
+## Contact Us
 
 - For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials

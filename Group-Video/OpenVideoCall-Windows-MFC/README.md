@@ -1,4 +1,4 @@
-# Open Video Call Windows
+# Open Video Call Windows MFC
 
 *English | [中文](README.zh.md)*
 
@@ -61,7 +61,7 @@ To build and run the sample application, get an App ID:
 please select the OpenVideoCall project in the Solution Explorer and right click. In the pop-up menu bar, select "Set as active project" to solve. Then run the program again.
 
 
-## Resources
+## Contact Us
 
 - For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials

@@ -55,7 +55,7 @@ To build and run the sample application, get an App ID:
     **Note:** In some cases, you may need to open a browser and enter `http://localhost:8080` as the URL.
 
 
-## Resources
+## Contact Us
 
 - For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
