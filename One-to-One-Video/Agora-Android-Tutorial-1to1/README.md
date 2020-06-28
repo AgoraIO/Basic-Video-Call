@@ -77,7 +77,7 @@ Open project with Android Studio, connect your Android device, build and run.
 Or use `Gradle` to build and run.
 
 
-## Contract Us
+## Contact Us
 
 - For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
