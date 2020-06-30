@@ -35,11 +35,7 @@ export default class RTCClient {
           console.error("client join failed", err)
         })
       }, (err) => {
-<<<<<<< HEAD
         reject()
-=======
-        reject(err)
->>>>>>> ffdfdea54221fef1e3023a846eff5753209d62c7
         console.error(err)
       })
       console.log("[agora-vue] appId", option.appid)
@@ -58,22 +54,14 @@ export default class RTCClient {
       // Initialize the local stream
       this.localStream.init(() => {
         console.log("init local stream success") 
-<<<<<<< HEAD
         resolve()
-=======
-        resolve(this.localStream)
->>>>>>> ffdfdea54221fef1e3023a846eff5753209d62c7
         // Publish the local stream
         this.client.publish(this.localStream, (err) =>  {
           console.log("publish failed")
           console.error(err)
         })
       }, (err) => {
-<<<<<<< HEAD
         reject()
-=======
-        reject(err)
->>>>>>> ffdfdea54221fef1e3023a846eff5753209d62c7
         console.error("init local stream failed ", err)
       })
     })
@@ -117,18 +105,10 @@ export default class RTCClient {
         }
         // Close the local stream
         this.localStream.close()
-<<<<<<< HEAD
         resolve()
         console.log("client leaves channel success");
       }, (err) => {
         reject()
-=======
-        this.client = null
-        resolve()
-        console.log("client leaves channel success");
-      }, (err) => {
-        reject(err)
->>>>>>> ffdfdea54221fef1e3023a846eff5753209d62c7
         console.log("channel leave failed");
         console.error(err);
       })
