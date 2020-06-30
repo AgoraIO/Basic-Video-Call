@@ -1,6 +1,6 @@
 {
   "name": "basic-video-call",
-  "version": "0.1.0",
+  "version": "3.1.1",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
