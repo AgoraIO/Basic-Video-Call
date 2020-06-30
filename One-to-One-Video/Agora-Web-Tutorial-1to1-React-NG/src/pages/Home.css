@@ -1,0 +1,128 @@
+@import '~antd/dist/antd.css';
+
+
+.title-box {
+  width: 100%;
+  height: 75px;
+  background-color: dodgerblue;
+  margin-bottom: 30px;
+}
+
+#title-agora {
+  font-size: 25px;
+  color: white;
+  font-family: 'HelveticaNeue';
+  display: flex;
+  justify-content: center;
+  transform: translateY(40%);
+}
+
+.home-box {
+  
+}
+
+.github { 
+  cursor: pointer;
+  background-repeat: no-repeat;
+  position: absolute;
+  background-image: url(".././assets/github.png");
+  background-size: 50px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+  border-radius: 28px;
+  transform: translateY(-40px);
+  -webkit-box-reflect: below;
+  -webkit-box-reflect:below 2px 
+  -webkit-linear-gradient(90deg, rgba(0,0,0,0) 15%,rgba(0,0,0,0.5));
+ }
+
+ .aperture {
+  /* display: inline-block; */
+  width: 58px !important;
+  height: 58px !important;
+  position: absolute;
+  right: 100px;
+  top: 41px;
+  z-index: 1999;
+}
+
+.aperture::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -24px;
+  left: 16px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px #fff06a, inset 4px 0 16px #f0f, inset -4px 0 16px #0ff, inset 4px 0 16px #f0f, inset -4px 0 16px #0ff, 0 0 10px #fff06a, -6px 0 36px #f0f, 6px 0 36px #0ff;
+  -webkit-animation: rotate 3s infinite linear;
+  animation: rotate 3s infinite linear;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+.message-box {
+  margin-left: 30px;
+}
+
+.text-agora {
+  font-weight: bold;
+  font-size: 14px;
+  /* margin-left: 10px; */
+  
+}
+
+.input-box {
+  width: 320px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.click-box {
+  display: flex;
+  margin-top: 20px;
+}
+
+.joinButton {
+  margin-right: 30px;
+}
+
+.leaveButton {
+  margin-left: 10px;
+}
+
+.video-agora-box {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  margin: 20px;
+}
+
+#video-agora-local {
+  width: 320px;
+  height: 240px;
+  margin-right: 75px;
+}
