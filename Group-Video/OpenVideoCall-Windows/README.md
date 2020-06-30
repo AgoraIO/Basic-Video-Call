@@ -1,4 +1,4 @@
-``# Open Video Call Windows
+# Open Video Call Windows
 
 *English | [中文](README.zh.md)*
 
@@ -37,7 +37,7 @@ First, create a developer account at [Agora.io](https://dashboard.agora.io/signi
 
 * #define APP_ID _T("Your App ID")
 
-Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the **libs** to the project folder(the old one may be over written).
+Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the **sdk** to the project folder(the old one may be over written).
 
 Finally, Open OpenVideoCall.pro with your Qt5.6(or higher) and build current project and run.
 
