@@ -1,5 +1,7 @@
 # Basic Video Call
 
+_Other Languages: [简体中文](README.zh.md)_
+
 Agora provides a set of sample applications demonstrating how to integrate the Agora Video SDK for:
 
 - [1-to-1 video calls](#1-to-1-video-calls)
@@ -54,9 +56,15 @@ Project Folder Name|Platform|Description
 [OpenVideoCall-Windows](./Group-Video/OpenVideoCall-Windows)|Windows|Windows tutorial for group video calls
 [OpenVideoCall-Linux](./Group-Video/OpenVideoCall-Linux)|Linux|Linux tutorial for group video calls
 
-## Resources
+## Contact Us
 
-Full API documentation is available in the [Document Center](https://docs.agora.io/en/).
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- You can find full API documentation at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 
 ## License

@@ -96,9 +96,9 @@ Import the sample application into **IntelliJ IDEA** as a gradle project.
 3. Build and run the sample project. This should display the application on your device.
 
 
-## Contract Us
+## Contact Us
 
-- For potential issues, take a look at our [FAQ](https://docs.agora.io/cn/faq) first
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
 - Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
 - Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
 - Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)

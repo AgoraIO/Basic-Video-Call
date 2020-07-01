@@ -38,34 +38,49 @@ configue parameters in run.sh.
 Using 'make' command to build the demo. Using ./run.sh to run demo
 openVideoCall is a commandline demo. Commands as follows:
 - open
+
   open video call
 - close
+
   close video call
 - enable_video
+
   enable/disable video, 'enable_video 0' means disable video, 'enable_video 1' means enable video
 - enable_audio
+
   enable/disable audio, 'enable_audio 0' means disable audio, 'enable_audio 1' means enable audio
 - enable_local_video
+
   enable/disable local video, 'enable_local_video 0' means disable local video(local camera), 'enable_local_video 1' means enable local video
 - mute_local_video
+
   mute/unmute local video, 'mute_local_video 0' means unmute local video(local camera), 'mute_local_video 1' means mute local video
 - mute_local_audio
+
   mute/unmute local audio, 'mute_local_audio 0' means unmute local audio(local audio device), 'mute_local_audio 1' means mute local audio
 - print_device_info
+
   print video and audio device info
 - set_cur_camera
+
   set current carmera,'set_cur_camera deviceId' you can get deviceID by print_device_info
 - exit
+
   exit app
 
 ## Developer Environment Requirements
 * VC2013 or higher
 * WIN7 or higher
 
-## Connect Us
+## Contact Us
 
-- You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can fire bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- You can find full API documentation at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 
