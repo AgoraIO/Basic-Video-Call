@@ -37,6 +37,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A77E577324ADDBE300DD7670"
+               BuildableName = "Agora-iOS-Tutorial-Tests.xctest"
+               BlueprintName = "Agora-iOS-Tutorial-Tests"
+               ReferencedContainer = "container:Agora-iOS-Tutorial.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
