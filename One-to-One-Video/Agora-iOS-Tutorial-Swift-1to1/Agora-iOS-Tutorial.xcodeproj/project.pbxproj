@@ -16,9 +16,21 @@
 		38EF7E962368277700A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E952368277700A6A483 /* README.md */; };
 		A72BB7DE22F2B67E008F563D /* Log.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72BB7DC22F2B67E008F563D /* Log.storyboard */; };
 		A72BB7DF22F2B67E008F563D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BB7DD22F2B67E008F563D /* LogViewController.swift */; };
-		A791148C246D114F00E77A35 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26992386762F0047E150 /* AgoraRtcKit.framework */; };
-		A791148D246D114F00E77A35 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26992386762F0047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A77E577724ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E577624ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift */; };
+		A77E578024ADE01400DD7670 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BB7DD22F2B67E008F563D /* LogViewController.swift */; };
+		A7AD0EFD24AEF9B7008FFD5B /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AD0EFC24AEF9B7008FFD5B /* AgoraRtcKit.framework */; };
+		A7AD0EFE24AEF9B7008FFD5B /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7AD0EFC24AEF9B7008FFD5B /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A77E577924ADDBE300DD7670 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1ABDEE361D383BE4007DE451 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1ABDEE3D1D383BE4007DE451;
+			remoteInfo = "Agora-iOS-Tutorial";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A791148E246D114F00E77A35 /* Embed Frameworks */ = {
@@ -27,7 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A791148D246D114F00E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
+				A7AD0EFE24AEF9B7008FFD5B /* AgoraRtcKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,18 +58,10 @@
 		38EF7E952368277700A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A72BB7DC22F2B67E008F563D /* Log.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Log.storyboard; sourceTree = "<group>"; };
 		A72BB7DD22F2B67E008F563D /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
-		A7581192240790EA007EDAD3 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
-		A7581194240790FE007EDAD3 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		A758119524079113007EDAD3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		A75811982407912E007EDAD3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		A758119A24079136007EDAD3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		A758119C24079147007EDAD3 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		A758119E2407914F007EDAD3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A75811A02407915A007EDAD3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		A75811A224079167007EDAD3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		A75811A42407916F007EDAD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		A75811A724079181007EDAD3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		A76C26992386762F0047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
+		A77E577424ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agora-iOS-Tutorial-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A77E577624ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agora_iOS_Tutorial_Tests.swift; sourceTree = "<group>"; };
+		A77E577824ADDBE300DD7670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7AD0EFC24AEF9B7008FFD5B /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = "Agora-iOS-Tutorial/AgoraRtcKit.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +69,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A791148C246D114F00E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				A7AD0EFD24AEF9B7008FFD5B /* AgoraRtcKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A77E577124ADDBE300DD7670 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +88,7 @@
 			children = (
 				38EF7E952368277700A6A483 /* README.md */,
 				1ABDEE401D383BE4007DE451 /* Agora-iOS-Tutorial */,
+				A77E577524ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests */,
 				1ABDEE3F1D383BE4007DE451 /* Products */,
 				A7581191240790EA007EDAD3 /* Frameworks */,
 			);
@@ -86,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				1ABDEE3E1D383BE4007DE451 /* Agora-iOS-Tutorial.app */,
+				A77E577424ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,7 +113,6 @@
 				1ABDEE451D383BE4007DE451 /* Main.storyboard */,
 				A72BB7DC22F2B67E008F563D /* Log.storyboard */,
 				A72BB7D922F2B5F4008F563D /* Supporting Files */,
-				A76C26992386762F0047E150 /* AgoraRtcKit.framework */,
 			);
 			path = "Agora-iOS-Tutorial";
 			sourceTree = "<group>";
@@ -118,19 +130,18 @@
 		A7581191240790EA007EDAD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A75811A724079181007EDAD3 /* Accelerate.framework */,
-				A75811A42407916F007EDAD3 /* AVFoundation.framework */,
-				A75811A224079167007EDAD3 /* CoreMedia.framework */,
-				A75811A02407915A007EDAD3 /* CoreMotion.framework */,
-				A758119E2407914F007EDAD3 /* AudioToolbox.framework */,
-				A758119C24079147007EDAD3 /* VideoToolbox.framework */,
-				A758119A24079136007EDAD3 /* CoreTelephony.framework */,
-				A75811982407912E007EDAD3 /* SystemConfiguration.framework */,
-				A758119524079113007EDAD3 /* libc++.tbd */,
-				A7581194240790FE007EDAD3 /* libresolv.tbd */,
-				A7581192240790EA007EDAD3 /* CoreML.framework */,
+				A7AD0EFC24AEF9B7008FFD5B /* AgoraRtcKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A77E577524ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A77E577624ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift */,
+				A77E577824ADDBE300DD7670 /* Info.plist */,
+			);
+			path = "Agora-iOS-Tutorial-Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,13 +165,31 @@
 			productReference = 1ABDEE3E1D383BE4007DE451 /* Agora-iOS-Tutorial.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A77E577324ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A77E577D24ADDBE300DD7670 /* Build configuration list for PBXNativeTarget "Agora-iOS-Tutorial-Tests" */;
+			buildPhases = (
+				A77E577024ADDBE300DD7670 /* Sources */,
+				A77E577124ADDBE300DD7670 /* Frameworks */,
+				A77E577224ADDBE300DD7670 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A77E577A24ADDBE300DD7670 /* PBXTargetDependency */,
+			);
+			name = "Agora-iOS-Tutorial-Tests";
+			productName = "Agora-iOS-Tutorial-Tests";
+			productReference = A77E577424ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1ABDEE361D383BE4007DE451 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Agora.io;
 				TargetAttributes = {
@@ -174,6 +203,12 @@
 								enabled = 1;
 							};
 						};
+					};
+					A77E577324ADDBE300DD7670 = {
+						CreatedOnToolsVersion = 11.5;
+						DevelopmentTeam = URLGNR2V35;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1ABDEE3D1D383BE4007DE451;
 					};
 				};
 			};
@@ -191,6 +226,7 @@
 			projectRoot = "";
 			targets = (
 				1ABDEE3D1D383BE4007DE451 /* Agora-iOS-Tutorial */,
+				A77E577324ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -208,6 +244,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A77E577224ADDBE300DD7670 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -222,7 +265,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A77E577024ADDBE300DD7670 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A77E577724ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift in Sources */,
+				A77E578024ADE01400DD7670 /* LogViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A77E577A24ADDBE300DD7670 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1ABDEE3D1D383BE4007DE451 /* Agora-iOS-Tutorial */;
+			targetProxy = A77E577924ADDBE300DD7670 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1ABDEE451D383BE4007DE451 /* Main.storyboard */ = {
@@ -412,6 +472,74 @@
 			};
 			name = Release;
 		};
+		A77E577B24ADDBE300DD7670 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = URLGNR2V35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-iOS-Tutorial",
+					"$(PROJECT_DIR)/../../libs",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Agora-iOS-Tutorial-Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "CavanSu.Agora-iOS-Tutorial-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agora-iOS-Tutorial.app/Agora-iOS-Tutorial";
+			};
+			name = Debug;
+		};
+		A77E577C24ADDBE300DD7670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = URLGNR2V35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agora-iOS-Tutorial",
+					"$(PROJECT_DIR)/../../libs",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Agora-iOS-Tutorial-Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "CavanSu.Agora-iOS-Tutorial-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agora-iOS-Tutorial.app/Agora-iOS-Tutorial";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -429,6 +557,15 @@
 			buildConfigurations = (
 				1ABDEE671D383BE4007DE451 /* Debug */,
 				1ABDEE681D383BE4007DE451 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A77E577D24ADDBE300DD7670 /* Build configuration list for PBXNativeTarget "Agora-iOS-Tutorial-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A77E577B24ADDBE300DD7670 /* Debug */,
+				A77E577C24ADDBE300DD7670 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
