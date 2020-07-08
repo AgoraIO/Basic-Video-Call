@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from 'react'
+import React, {useState}  from 'react'
 import { log } from '../utils/utils'
 import "./Home.css";
 import { Button , notification} from 'antd';
@@ -69,7 +69,7 @@ export default function Home() {
     <div className='home-box'>
       <div className='title-box'>
         <span id='title-agora'>Agora Basic Video Call</span>
-        <a href="https://github.com/AgoraIO/API-Examples" className="aperture">
+        <a href="https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1-React-NG" className="aperture">
         <span className="github"></span>
         </a>
       </div>
