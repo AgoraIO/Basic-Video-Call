@@ -46,7 +46,7 @@ Finally, Open OpenVideoCall.pro with your Qt5.6(or higher) and build current pro
     [BaseInfo]
     AppId=xxxx
 
-**Note：**If you fill appid in the code file, appid in ini file will be omitted.
+**Note：** If you fill appid in the code file, appid in ini file will be omitted.
 
 ## Contact Us
 
