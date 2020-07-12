@@ -69,8 +69,10 @@ openVideoCall is a commandline demo. Commands as follows:
   exit app
 
 ## Developer Environment Requirements
-* VC2013 or higher
-* WIN7 or higher
+* Ubuntu 12.04 x64 or higher
+* CentOS 7 or higher
+* gcc 4.8 or higher
+
 
 ## Contact Us
 
