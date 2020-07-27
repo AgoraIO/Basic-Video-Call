@@ -27,7 +27,7 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 
 ## 环境准备
 
-* VS++ 2013(或更高版本)
+* VS 2013(或更高版本)或者qt creator
 * QT5.6(或更高版本)
 * Windows 7(或更高版本)
 
@@ -35,7 +35,7 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 首先在 [Agora.io 注册](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 App ID。将 APP_ID宏定义内容改为刚才申请的 App ID
 
 
-* #define APP_ID _T("Your App ID")
+* #define APPID ""
 
 然后在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，并解压SDK包，将 **libs** 文件夹复制到项目文件夹（旧文件夹可能会被覆盖）。最后使用 QT5.6 打开 OpenVideoCall.pro，编译整个解决方案即可运行
 
