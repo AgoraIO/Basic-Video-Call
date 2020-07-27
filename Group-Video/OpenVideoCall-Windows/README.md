@@ -27,7 +27,7 @@ Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos
 
 ## Prerequisites
 
-* VS 2013(or higher)
+* VS 2013(or higher)or qt creator
 * QT5.6(or higher)
 * Windows 7(or higher)
 
@@ -35,7 +35,7 @@ Agora Video SDK supports iOS / Android / Windows / macOS etc. You can find demos
 ## Running the App
 First, create a developer account at [Agora.io](https://dashboard.agora.io/signin/), and obtain an App ID. define the APP_ID with your App ID.
 
-* #define APP_ID _T("Your App ID")
+* #define APPID ""
 
 Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the **sdk** to the project folder(the old one may be over written).
 
