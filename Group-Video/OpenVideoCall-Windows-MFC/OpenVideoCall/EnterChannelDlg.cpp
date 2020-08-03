@@ -107,6 +107,8 @@ void CEnterChannelDlg::InitCtrls()
     m_cmbEncType.SetFaceColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF));
     m_cmbEncType.InsertString(0, LANG_STR("IDS_CHN_AES128XTS"));
     m_cmbEncType.InsertString(1, LANG_STR("IDS_CHN_AES256XTS"));
+	m_cmbEncType.InsertString(2, LANG_STR("AES_128_ECB"));
+	m_cmbEncType.InsertString(3, LANG_STR("SM4_128_ECB"));
     m_cmbEncType.SetCurSel(0);
 
     m_btnJoin.MoveWindow(ClientRect.Width() / 2 - 180, 212, 360, 36, TRUE);
@@ -196,7 +198,17 @@ void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 
 	m_ctrEncKey.GetWindowText(strKey);
 	if (strKey.GetLength() > 0)
-		CAgoraObject::GetAgoraObject()->SetEncryptionSecret(strKey, m_cmbEncType.GetCurSel());
+	{
+		m_cmbEncType.GetCurSel();
+		// configuration of encrypt
+		EncryptionConfig config;
+		// set encrypt mode
+		config.encryptionMode = m_cmbEncType.GetCurSel();
+		// set encrypt key
+		config.encryptionKey = strKey;
+		// EnableEncryption of engine.
+		CAgoraObject::GetAgoraObject()->EnableEncryption(true, config);
+	}
 	GetParent()->SendMessage(WM_JOINCHANNEL, 0, 0);
 }
 

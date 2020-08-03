@@ -93,6 +93,8 @@ public:
 
     BOOL SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType = 0);
 
+	BOOL EnableEncryption(bool enabled, const EncryptionConfig& config);
+
     BOOL EnableLocalRender(BOOL bEnable);
 
     int CreateMessageStream();
