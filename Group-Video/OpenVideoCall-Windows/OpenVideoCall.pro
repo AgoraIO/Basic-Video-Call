@@ -94,7 +94,7 @@ CONFIG(debug, debug|release) {
   QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll .\Debug
 } else {
   QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll .\Release
-  QMAKE_POST_LINK += && windeployqt Release\OpenLive.exe
+  QMAKE_POST_LINK += && windeployqt Release\OpenVideoCall.exe
 }
 
 }

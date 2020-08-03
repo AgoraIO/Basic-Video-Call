@@ -6,6 +6,7 @@
 //  Copyright © 2016年 Agora. All rights reserved.
 //
 
+import AgoraRtcKit
 
 enum EncryptionType {
     case xts128(String?), xts256(String?)
@@ -32,6 +33,15 @@ enum EncryptionType {
         switch self {
         case .xts128: return "aes-128-xts"
         case .xts256: return "aes-256-xts"
+        }
+    }
+    
+    func modeValue() -> AgoraEncryptionMode {
+        switch self {
+        case .xts128:
+            return .AES128XTS
+        case .xts256:
+            return .AES256XTS
         }
     }
     
