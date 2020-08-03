@@ -270,8 +270,10 @@
     
     // Step 4, enable encryption mode
     if (self.settings.encryption.type != EncryptionTypeNone && self.settings.encryption.secret.length) {
-        [self.agoraKit setEncryptionMode:self.settings.encryption.modeString];
-        [self.agoraKit setEncryptionSecret:self.settings.encryption.secret];
+        AgoraEncryptionConfig* config = [AgoraEncryptionConfig new];
+        config.encryptionMode = self.settings.encryption.modeValue;
+        config.encryptionKey = self.settings.encryption.secret;
+        [self.agoraKit enableEncryption:true encryptionConfig:config];
     }
     
     // Step 5, join channel and start group chat
