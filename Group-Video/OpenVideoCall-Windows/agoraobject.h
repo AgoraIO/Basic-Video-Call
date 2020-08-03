@@ -39,6 +39,7 @@ public:
     BOOL MuteLocalVideo(BOOL bMute);
     BOOL MuteLocalAudio(BOOL bMute);
     BOOL SetEncryptionMode(const char* secret,const char* secretMode);
+    BOOL EnableEncryption(bool enabled, const EncryptionConfig& config);
 
     BOOL setLogPath(const QString &strDir);
     BOOL SetChannelProfile(CHANNEL_PROFILE_TYPE channelType);
