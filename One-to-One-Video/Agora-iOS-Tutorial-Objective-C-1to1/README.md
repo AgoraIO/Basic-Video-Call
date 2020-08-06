@@ -43,7 +43,6 @@ To build and run the sample application, get an App ID:
 1. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the following files from the SDK `libs` folder into the sample application `Agora iOS Tutorial Objective-C` folder.
     - `AograRtcEngineKit.framework`
     - `AgoraRtcCryptoLoader.framework`
-    - `libcrypto.a`
   
 2. Connect your iPhone or iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
