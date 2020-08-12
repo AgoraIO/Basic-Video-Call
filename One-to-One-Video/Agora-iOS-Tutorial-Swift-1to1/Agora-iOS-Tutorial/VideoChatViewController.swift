@@ -150,23 +150,26 @@ class VideoChatViewController: UIViewController {
 
 extension VideoChatViewController: AgoraRtcEngineDelegate {
     
-    /// Callback to handle the event when the first frame of a remote video stream is decoded on the device.
+    /// Callback to handle the event when the remote video state changed
     /// - Parameters:
     ///   - engine: RTC engine instance
     ///   - uid: user id
-    ///   - size: the height and width of the video frame
+    ///   - state: The state of the remote video
+    ///   - reason: The reason of the remote video state change
     ///   - elapsed: Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
-    func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
-        isRemoteVideoRender = true
-        
-        // Only one remote video view is available for this
-        // tutorial. Here we check if there exists a surface
-        // view tagged as this uid.
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = uid
-        videoCanvas.view = remoteVideo
-        videoCanvas.renderMode = .hidden
-        agoraKit.setupRemoteVideo(videoCanvas)
+    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStateChangedOfUid uid: UInt, state: AgoraVideoRemoteState, reason: AgoraVideoRemoteStateReason, elapsed: Int) {
+        if(state == .starting) {
+            isRemoteVideoRender = true
+            
+            // Only one remote video view is available for this
+            // tutorial. Here we check if there exists a surface
+            // view tagged as this uid.
+            let videoCanvas = AgoraRtcVideoCanvas()
+            videoCanvas.uid = uid
+            videoCanvas.view = remoteVideo
+            videoCanvas.renderMode = .hidden
+            agoraKit.setupRemoteVideo(videoCanvas)
+        }
     }
     
     /// Occurs when a remote user (Communication)/host (Live Broadcast) leaves a channel.

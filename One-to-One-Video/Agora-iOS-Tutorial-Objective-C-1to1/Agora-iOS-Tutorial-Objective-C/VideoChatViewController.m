@@ -76,7 +76,13 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
-/// Callback to handle the event such when the first frame of a remote video stream is decoded on the device.
+/// Callback to handle the event when the remote video state changed
+/// - Parameters:
+///   - engine: RTC engine instance
+///   - uid: user id
+///   - state: The state of the remote video
+///   - reason: The reason of the remote video state change
+///   - elapsed: Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteStateReason)reason elapsed:(NSInteger)elapsed
 {
     if(state == AgoraVideoRemoteStateStarting) {
