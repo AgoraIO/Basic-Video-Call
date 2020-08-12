@@ -76,23 +76,25 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
+
 /// Callback to handle the event such when the first frame of a remote video stream is decoded on the device.
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteStateReason)reason elapsed:(NSInteger)elapsed
-{
-    if(state == AgoraVideoRemoteStateStarting) {
-        if (self.remoteVideo.hidden) {
-            self.remoteVideo.hidden = NO;
-        }
-        
-        AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
-        videoCanvas.uid = uid;
-        // Since we are making a simple 1:1 video chat app, for simplicity sake, we are not storing the UIDs. You could use a mechanism such as an array to store the UIDs in a channel.
-        
-        videoCanvas.view = self.remoteVideo;
-        videoCanvas.renderMode = AgoraVideoRenderModeHidden;
-        [self.agoraKit setupRemoteVideo:videoCanvas];
-        // Bind remote video stream to view
+/// @param engine - RTC engine instance
+/// @param uid - user id
+/// @param size - the height and width of the video frame
+/// @param elapsed - lapsed Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size: (CGSize)size elapsed:(NSInteger)elapsed {
+    if (self.remoteVideo.hidden) {
+        self.remoteVideo.hidden = NO;
     }
+    
+    AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
+    videoCanvas.uid = uid;
+    // Since we are making a simple 1:1 video chat app, for simplicity sake, we are not storing the UIDs. You could use a mechanism such as an array to store the UIDs in a channel.
+    
+    videoCanvas.view = self.remoteVideo;
+    videoCanvas.renderMode = AgoraVideoRenderModeHidden;
+    [self.agoraKit setupRemoteVideo:videoCanvas];
+    // Bind remote video stream to view
 }
 
 - (IBAction)hangUpButton:(UIButton *)sender {
