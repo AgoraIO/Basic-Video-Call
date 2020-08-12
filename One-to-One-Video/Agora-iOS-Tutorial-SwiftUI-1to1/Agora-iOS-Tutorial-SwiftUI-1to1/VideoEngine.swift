@@ -32,24 +32,17 @@ extension VideoEngine: AgoraRtcEngineDelegate {
         contentView?.isRemoteInSession = false
     }
     
-    func rtcEngine(_ engine: AgoraRtcEngineKit, remoteVideoStateChangedOfUid uid: UInt, state: AgoraVideoRemoteState, reason: AgoraVideoRemoteStateReason, elapsed: Int) {
-        if(state == .starting){
-
-            // Only one remote video view is available for this
-            // tutorial. Here we check if there exists a surface
-            // view tagged as this uid.
-            let videoCanvas = AgoraRtcVideoCanvas()
-            videoCanvas.view = contentView?.remoteCanvas.rendererView
-            videoCanvas.renderMode = .hidden
-            videoCanvas.uid = uid
-            agoraEngine.setupRemoteVideo(videoCanvas)
-
-            contentView?.isRemoteVideoMuted = false
-        }
-    }
-    
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid: UInt, size: CGSize, elapsed: Int) {
-        
+        // Only one remote video view is available for this
+        // tutorial. Here we check if there exists a surface
+        // view tagged as this uid.
+        let videoCanvas = AgoraRtcVideoCanvas()
+        videoCanvas.view = contentView?.remoteCanvas.rendererView
+        videoCanvas.renderMode = .hidden
+        videoCanvas.uid = uid
+        agoraEngine.setupRemoteVideo(videoCanvas)
+
+        contentView?.isRemoteVideoMuted = false
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didVideoMuted muted:Bool, byUid:UInt) {
