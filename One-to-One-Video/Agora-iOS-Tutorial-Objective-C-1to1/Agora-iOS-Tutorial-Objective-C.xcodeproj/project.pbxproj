@@ -354,7 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Qianze Zhang (GM72UGLGZW)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_BITCODE = YES;
@@ -379,7 +379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Qianze Zhang (GM72UGLGZW)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_BITCODE = YES;
