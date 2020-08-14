@@ -1,8 +1,8 @@
 variables:
-  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_1_FULL.zip?_ga=2.217080854.1429354637.1591107319-5559409.1503304822'
-  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_0_1_FULL.zip?_ga=2.45223076.1429354637.1591107319-5559409.1503304822'
-  WindowsRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_0_1_FULL.zip'
-  AndroidRTCSDKVer: '3.0.1'
+  iOSRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_0_FULL.zip?_ga=2.221003672.1493357375.1597372715-269570672.1596526126'
+  MacRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_1_0_FULL.zip?_ga=2.221003672.1493357375.1597372715-269570672.1596526126'
+  WindowsRTCSDK: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_1_0_FULL.zip?_ga=2.221003672.1493357375.1597372715-269570672.1596526126'
+  AndroidRTCSDKVer: '3.1.0'
   
 jobs:
 

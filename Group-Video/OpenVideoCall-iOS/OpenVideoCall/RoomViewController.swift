@@ -222,8 +222,10 @@ private extension RoomViewController {
         
         // Step 4, enable encryption mode
         if let type = settings.encryptionType, let text = type.text, !text.isEmpty {
-            agoraKit.setEncryptionMode(type.modeString())
-            agoraKit.setEncryptionSecret(text)
+            let config = AgoraEncryptionConfig()
+            config.encryptionKey = text
+            config.encryptionMode = type.modeValue()
+            agoraKit.enableEncryption(true, encryptionConfig: config)
         }
         
         // Step 5, join channel and start group chat

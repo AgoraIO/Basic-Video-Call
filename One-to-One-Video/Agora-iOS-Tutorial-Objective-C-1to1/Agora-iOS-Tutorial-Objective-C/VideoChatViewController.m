@@ -97,6 +97,11 @@
     // Bind remote video stream to view
 }
 
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteStateReason)reason elapsed:(NSInteger)elapsed
+{
+    NSLog(@"remoteVideoStateChangedOfUid %@ %@ %@", @(uid), @(state), @(reason));
+}
+
 - (IBAction)hangUpButton:(UIButton *)sender {
     [self leaveChannel];
 }

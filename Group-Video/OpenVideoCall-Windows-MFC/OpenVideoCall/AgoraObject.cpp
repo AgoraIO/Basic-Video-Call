@@ -541,6 +541,12 @@ BOOL CAgoraObject::SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType)
 	return nRet == 0 ? TRUE : FALSE;
 }
 
+BOOL CAgoraObject::EnableEncryption(bool enabled, const EncryptionConfig & config)
+{
+	int nRet = m_lpAgoraEngine->enableEncryption(enabled, config);
+	return nRet == 0 ? TRUE : FALSE;
+}
+
 BOOL CAgoraObject::EnableLocalRender(BOOL bEnable)
 {
     int nRet = 0;

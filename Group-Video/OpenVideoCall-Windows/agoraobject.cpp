@@ -480,6 +480,12 @@ BOOL CAgoraObject::SetEncryptionMode(const char* secret,const char* secretMode)
     return nRet == 0 ? TRUE : FALSE;
 }
 
+BOOL CAgoraObject::EnableEncryption(bool enabled, const EncryptionConfig & config)
+{
+    int nRet = m_lpAgoraEngine->enableEncryption(enabled, config);
+    return nRet == 0 ? TRUE : FALSE;
+}
+
 // Sets the type of log that are allowed [Debug, Info, warning, error, critical]
 BOOL CAgoraObject::SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath)
 {

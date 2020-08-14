@@ -33,9 +33,10 @@ void OpenVideoCall::initWindow()
     CAgoraObject::getInstance()->EnableWebSdkInteroperability(true);
     CAgoraObject::getInstance()->SetChannelProfile(CHANNEL_PROFILE_COMMUNICATION);
 
-    ui->com_encryp->addItem("aes-128-xts");
-    ui->com_encryp->addItem("aes-128-ecb");
-    ui->com_encryp->addItem("aes-256-xts");
+    ui->com_encryp->addItem("AES-128-XTS");
+    ui->com_encryp->addItem("AES-256-XTS");
+    ui->com_encryp->addItem("AES-128-ECB");
+    ui->com_encryp->addItem("SM4-128-ECB");
     ui->com_encryp->setCurrentIndex(0);
 }
 
@@ -111,8 +112,15 @@ void OpenVideoCall::on_btn_join_clicked()
 
     QString qsEncrypSecret = ui->led_key->text();
     QString qsEncrypMode = ui->com_encryp->currentText();
-    CAgoraObject::getInstance()->SetEncryptionMode(qsEncrypSecret.toUtf8().data(),qsEncrypMode.toUtf8().data());
 
+    // configuration of encrypt
+    EncryptionConfig config;
+    // set encrypt mode
+    config.encryptionMode = ui->com_encryp->currentIndex();
+    // set encrypt key
+    config.encryptionKey = qsEncrypSecret.toUtf8().data();
+    // EnableEncryption of engine.
+    CAgoraObject::getInstance()->EnableEncryption(true, config);
     m_upInRoom.reset(new InRoom());
     QString token = APP_TOKEN;
     if(token.isEmpty())
@@ -123,7 +131,14 @@ void OpenVideoCall::on_btn_join_clicked()
 void OpenVideoCall::on_com_encryp_currentIndexChanged(const QString &arg1)
 {
     QString qsEncrypSecret = ui->led_key->text();
-    CAgoraObject::getInstance()->SetEncryptionMode(qsEncrypSecret.toUtf8().data(),arg1.toUtf8().data());
+    // configuration of encrypt
+    EncryptionConfig config;
+    // set encrypt mode
+    config.encryptionMode = ui->com_encryp->currentIndex();
+    // set encrypt key
+    config.encryptionKey = qsEncrypSecret.toUtf8().data();
+    // EnableEncryption of engine.
+    CAgoraObject::getInstance()->EnableEncryption(true, config);
 }
 
 
