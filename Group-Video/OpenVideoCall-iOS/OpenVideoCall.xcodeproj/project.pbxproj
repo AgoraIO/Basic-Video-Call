@@ -276,7 +276,7 @@
 				TargetAttributes = {
 					07F52EB01D62F39D006DDCD4 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SW3CA7M752;
+						DevelopmentTeam = GM72UGLGZW;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -492,7 +492,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Qianze Zhang (3C9KJFP729)";
-				DEVELOPMENT_TEAM = SW3CA7M752;
+				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,7 +508,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.OpenVideoCall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
+				PROVISIONING_PROFILE_SPECIFIER = App;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -524,7 +524,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Qianze Zhang (3C9KJFP729)";
-				DEVELOPMENT_TEAM = SW3CA7M752;
+				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -540,7 +540,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.OpenVideoCall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
+				PROVISIONING_PROFILE_SPECIFIER = App;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
