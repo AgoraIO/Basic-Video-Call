@@ -202,9 +202,11 @@ void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 		// configuration of encrypt
 		EncryptionConfig config;
 		// set encrypt mode
-		config.encryptionMode = m_cmbEncType.GetCurSel();
+		config.encryptionMode = ENCRYPTION_MODE(m_cmbEncType.GetCurSel() + 1);
 		// set encrypt key
-		config.encryptionKey = strKey;
+        char szKey[520] = { 0 };
+        WideCharToMultiByte(CP_UTF8, 0, strKey.GetBuffer(0), strKey.GetLength(), szKey, 520, NULL, NULL);
+        config.encryptionKey = szKey;
 		// EnableEncryption of engine.
 		CAgoraObject::GetAgoraObject()->EnableEncryption(true, config);
 	}
