@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 typedef NS_ENUM(int, EncryptionType) {
     EncryptionTypeXTS128,
@@ -16,7 +17,7 @@ typedef NS_ENUM(int, EncryptionType) {
 
 @interface Encryption : NSObject
 @property (nonatomic, copy, readonly) NSString *modeString;
-@property (nonatomic, copy, readonly) AgoraEncryptionMode modeValue;
+@property (nonatomic, readonly) AgoraEncryptionMode modeValue;
 @property (nonatomic, copy, readonly) NSString *description;
 @property (nonatomic, assign) EncryptionType type;
 @property (nonatomic, copy) NSString *secret;

@@ -223,7 +223,7 @@ private extension RoomViewController {
         // Step 4, enable encryption mode
         if let type = settings.encryptionType, let text = type.text, !text.isEmpty {
             let config = AgoraEncryptionConfig()
-            config.encryptionKey = NSString(utf8String: text)
+            config.encryptionKey = text
             config.encryptionMode = type.modeValue()
             agoraKit.enableEncryption(true, encryptionConfig: config)
         }

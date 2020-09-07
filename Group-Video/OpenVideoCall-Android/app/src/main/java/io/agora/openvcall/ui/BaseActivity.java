@@ -20,6 +20,7 @@ import io.agora.openvcall.R;
 import io.agora.openvcall.model.*;
 import io.agora.propeller.Constant;
 import io.agora.rtc.RtcEngine;
+import io.agora.rtc.internal.EncryptionConfig;
 import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 
@@ -361,9 +362,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void configEngine(VideoEncoderConfiguration.VideoDimensions videoDimension, VideoEncoderConfiguration.FRAME_RATE fps, String encryptionKey, String encryptionMode) {
+        EncryptionConfig config = new EncryptionConfig();
         if (!TextUtils.isEmpty(encryptionKey)) {
-            rtcEngine().setEncryptionMode(encryptionMode);
-            rtcEngine().setEncryptionSecret(encryptionKey);
+            config.encryptionKey = encryptionKey;
+
+            if(TextUtils.equals(encryptionMode, "AES-128-XTS")) {
+                config.encryptionMode = EncryptionConfig.EncryptionMode.AES_128_XTS;
+            } else if(TextUtils.equals(encryptionMode, "AES-256-XTS")) {
+                config.encryptionMode = EncryptionConfig.EncryptionMode.AES_256_XTS;
+            }
+            rtcEngine().enableEncryption(true, config);
+        } else {
+            rtcEngine().enableEncryption(false, config);
         }
 
         log.debug("configEngine " + videoDimension + " " + fps + " " + encryptionMode);

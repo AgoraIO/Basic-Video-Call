@@ -44,7 +44,6 @@
 
   - AgoraRtcEngineKit.framework
   - AgoraRtcCryptoLoader.framework
-  - libcrypto.a
 
 2. 最后使用 Xcode 打开 Agora iOS Tutorial.xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
 
