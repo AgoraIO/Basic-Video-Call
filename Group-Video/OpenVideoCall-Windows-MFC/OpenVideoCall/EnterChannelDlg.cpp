@@ -77,7 +77,7 @@ BOOL CEnterChannelDlg::OnInitDialog()
 	InitCtrls();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// 异常:  OCX 属性页应返回 FALSE
+
 }
 
 void CEnterChannelDlg::InitCtrls()
@@ -184,7 +184,6 @@ void CEnterChannelDlg::DrawClient(CDC *lpDC)
 
 void CEnterChannelDlg::OnBnClickedBtntestChannel()
 {
-	// TODO:  在此添加控件通知处理程序代码
 	m_dlgDevice.ShowWindow(SW_SHOW);
 	m_dlgDevice.CenterWindow();
 }
@@ -192,19 +191,21 @@ void CEnterChannelDlg::OnBnClickedBtntestChannel()
 
 void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 {
-	// TODO:  在此添加控件通知处理程序代码
 //	CString str = CAgoraObject::GetAgoraObject()->GetCallID();
 	CString strKey;
 
 	m_ctrEncKey.GetWindowText(strKey);
 	if (strKey.GetLength() > 0)
 	{
+
+		char szEncryptKey[2 * MAX_PATH] = { 0 };
+		WideCharToMultiByte(CP_UTF8, 0, strKey.GetBuffer(0), strKey.GetLength(), szEncryptKey, 2 * MAX_PATH, NULL, NULL);
 		// configuration of encrypt
 		EncryptionConfig config;
 		// set encrypt mode
-		config.encryptionMode = m_cmbEncType.GetCurSel();
+		config.encryptionMode = (agora::rtc::ENCRYPTION_MODE)m_cmbEncType.GetCurSel();
 		// set encrypt key
-		config.encryptionKey = strKey;
+		config.encryptionKey = szEncryptKey;
 		// EnableEncryption of engine.
 		CAgoraObject::GetAgoraObject()->EnableEncryption(true, config);
 	}
@@ -214,7 +215,6 @@ void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 
 void CEnterChannelDlg::OnBnClickedBtnsetChannel()
 {
-	// TODO:  在此添加控件通知处理程序代码
 //	SHORT sKeyStat = ::GetAsyncKeyState(VK_CONTROL);
 
 	GetParent()->SendMessage(WM_GONEXT, 0, 0);
