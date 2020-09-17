@@ -9,6 +9,13 @@ This tutorial enables you to quickly get started in your development efforts wit
 - Mute and unmute audio.
 - Switch between the front and rear cameras.
 
+## Problem
+After users upgrade their iOS devices to iOS 14.0, and use an app that integrates the Agora RTC SDK for iOS for the first time, users see a prompt for finding local network devices. The following picture shows the pop-up prompt:
+
+![](../../pictures/ios_14_privacy.png)
+
+**Solution**: [https://docs.agora.io/en/faq/local_network_privacy]()
+
 ## Prerequisites
 
 - Xcode 11.0+
