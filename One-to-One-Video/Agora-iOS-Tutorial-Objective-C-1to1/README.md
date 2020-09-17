@@ -16,7 +16,7 @@ After users upgrade their iOS devices to iOS 14.0, and use an app that integrate
 
 ![](../../pictures/ios_14_privacy.png)
 
-**Solution**: [https://docs.agora.io/en/faq/local_network_privacy]()
+[Solution](https://docs.agora.io/en/faq/local_network_privacy)
 
 ## Prerequisites
 

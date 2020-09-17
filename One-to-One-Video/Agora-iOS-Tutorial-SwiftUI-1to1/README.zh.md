@@ -15,7 +15,7 @@ iOS 系统版本升级至 14.0 版本后，用户首次使用集成了声网 iOS
 
 ![](../../pictures/ios_14_privacy_zh.png)
 
-**解决方案**: [https://docs.agora.io/cn/faq/local_network_privacy]()
+[解决方案](https://docs.agora.io/cn/faq/local_network_privacy)
 
 ## 环境准备
 
