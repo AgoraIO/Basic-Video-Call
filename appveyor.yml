@@ -1,0 +1,22 @@
+version: 1.0.{build}
+branches:
+  only:
+  - master
+skip_tags: true
+image: Visual Studio 2017
+install:
+- cmd: >-
+    cd Group-Video\OpenVideoCall-Windows
+    set SDKVersion=3_0_0
+    set SDKFolderVersion=3.0.0
+    set ProjName=OpenVideoCall
+build_script:
+- cmd: >-
+    call build_appveyor_release.bat %SDKVersion% %SDKFolderVersion% x86 %ProjName%
+
+    call build_appveyor_release.bat %SDKVersion% %SDKFolderVersion% x64 %ProjName%
+
+    7z a -tzip -r OpenVideoCall_Win_v%SDKFolderVersion%.zip %ProjName%_Win_v%SDKFolderVersion%
+artifacts:
+- path: Group-Video\OpenVideoCall-Windows\OpenVideoCall_Win_v*.zip
+  name: OpenVideoCall-Windows

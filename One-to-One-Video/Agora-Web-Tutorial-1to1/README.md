@@ -4,9 +4,15 @@
 
 This tutorial shows you how to quickly create an basic video communication using the Agora sample app.
 
+With this sample app, you can:
+
+- Join/Leave a realtime video call
+- Select Camera/Microphone to use
+
 ## Prerequisites
 
-- A web browser
+- Node.js 6.9.1+
+- A web server that supports SSL (https)
 
 ## Quick Start
 
@@ -23,24 +29,25 @@ To build and run the sample application, get an App ID:
 
 ### Integrate Agora Video SDK
 
-Download SDK into **assets** path and rename file name as **AgoraRTCSDK-2.8.0.js**
+Download SDK into **assets** path and rename file name as **AgoraRTCSDK.js**
 
 ### Run Web-Server
 
-1. Install live-server globally via npm
+1. Launch server via following commands in working folder,
     ```
-    npm i live-server -g
+    npx serve .
     ```
-2. Launch server via following commands in working folder,
-    ```
-    live-server .
-    ```
-3. Enter Valid APPID, Token, Channel, UID and click **Join Room**
+2. Enter Valid APPID, Token, Channel and click **JOIN**
 
-## Resources
+## Contact Us
 
-- You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- You can find full API documentation at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 

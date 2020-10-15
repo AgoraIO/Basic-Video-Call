@@ -1,16 +1,23 @@
 parameters:
   displayName: ''
   workingDirectory: ''
+  sdkver: ''
 
 jobs:
   - job: ${{ parameters.displayName }}_Build
     displayName: ${{ parameters.displayName }}
+    
     pool:
-      vmImage: 'macOS-10.13'
+      vmImage: 'macOS-10.14'
+      
+    variables:
+      - group: AgoraKeys
+      
     steps:
       - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
         env:
           AGORA_APP_ID: $(agora.appId)
+          AGORA_RTC_SDK_VER: ${{ parameters.sdkver }}
 
       - task: Gradle@2
         inputs:
@@ -25,10 +32,12 @@ jobs:
         inputs:
           Contents: '**/*.apk'
           TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      
+      - script: cd $(Build.ArtifactStagingDirectory) && zip -r ${{ parameters.displayName }}.zip .
 
       - task: PublishBuildArtifacts@1
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)/${{ parameters.displayName }}.zip'
           ArtifactName: ${{ parameters.displayName }}
 
       - template: github-release.yml

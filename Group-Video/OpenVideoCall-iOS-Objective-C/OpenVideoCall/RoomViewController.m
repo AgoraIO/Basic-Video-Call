@@ -270,8 +270,10 @@
     
     // Step 4, enable encryption mode
     if (self.settings.encryption.type != EncryptionTypeNone && self.settings.encryption.secret.length) {
-        [self.agoraKit setEncryptionMode:self.settings.encryption.modeString];
-        [self.agoraKit setEncryptionSecret:self.settings.encryption.secret];
+        AgoraEncryptionConfig* config = [AgoraEncryptionConfig new];
+        config.encryptionMode = self.settings.encryption.modeValue;
+        config.encryptionKey = self.settings.encryption.secret;
+        [self.agoraKit enableEncryption:true encryptionConfig:config];
     }
     
     // Step 5, join channel and start group chat
@@ -308,30 +310,65 @@
 }
 
 #pragma mark - <AgoraRtcEngineDelegate>
+
+///  Occurs when the local user joins a specified channel.
+/// @param engine - RTC engine instance
+/// @param channel  - Channel name
+/// @param uid - User ID of the remote user sending the video stream.
+/// @param elapsed - Time elapsed (ms) from the local user calling the joinChannelByToken method until the SDK triggers this callback.
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinChannel:(NSString *)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
     [self info:[NSString stringWithFormat:@"Join channel: %@", channel]];
 }
 
+
+/// Occurs when the connection between the SDK and the server is interrupted.
+/// The SDK triggers this callback when it loses connection with the server for more than four seconds after a connection is established.
+/// After triggering this callback, the SDK tries reconnecting to the server. You can use this callback to implement pop-up reminders.
+/// @param engine - RTC engine instance
 - (void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit *)engine {
     [self alert:@"Connection Interrupted"];
 }
 
+/// Occurs when the SDK cannot reconnect to Agora’s edge server 10 seconds after its connection to the server is interrupted.
+/// @param engine - RTC engine instance
 - (void)rtcEngineConnectionDidLost:(AgoraRtcEngineKit *)engine {
     [self alert:@"Connection Lost"];
 }
 
+
+/// Reports an error during SDK runtime.
+/// @param engine - RTC engine instance
+/// @param errorCode - see complete list on this page
+///         https://docs.agora.io/en/Video/API%20Reference/oc/Constants/AgoraErrorCode.html
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOccurError:(AgoraErrorCode)errorCode {
     [self alert:[NSString stringWithFormat:@"Occur error: %ld", errorCode]];
 }
 
-// first remote video frame
+/// First remote video frame,Occurs when the first remote video frame is received and decoded.
+/// This callback is triggered in either of the following scenarios:
+///   * The remote user joins the channel and sends the video stream.
+///   * The remote user stops sending the video stream and re-sends it after 15 seconds. Possible reasons include:
+///   * The remote user leaves channel.
+///   * The remote user drops offline.
+///   * The remote user calls muteLocalVideoStream.
+///   * The remote user calls disableVideo.
+///
+/// @param engine - RTC engine instance
+/// @param uid - User ID of the remote user sending the video stream.
+/// @param size - Size of the first local video frame (width and height).
+/// @param elapsed - Time elapsed (ms) from the local user calling the joinChannelByToken method until the SDK triggers this callback.
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed {
     VideoSession *userSession = [self videoSessionOfUid:uid];
     userSession.size = size;
     [self.agoraKit setupRemoteVideo:userSession.canvas];
 }
 
-// first local video frame
+/// First local video frame - occurs when the first local video frame is displayed/rendered on the local video view.
+/// @param engine - RTC engine instance
+/// @param size - Size of the first local video frame (width and height).
+/// @param elapsed - Time elapsed (ms) from the local user calling the joinChannelByToken method until the SDK calls this callback.
+///             If the startPreview method is called before the joinChannelByToken method, then elapsed is the time elapsed from
+///             calling the startPreview method until the SDK triggers this callback.
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed {
     if (self.videoSessions.count) {
         VideoSession *selfSession = self.videoSessions.firstObject;
@@ -341,7 +378,11 @@
     }
 }
 
-// user offline
+/// Occurs when a remote user (Communication)/host (Live Broadcast) leaves a channel.
+/// @param engine - RTC engine instance
+/// @param uid - User ID of the remote user sending the video stream.
+/// @param reason - reason why user went offline, see complete list of the reasons:
+///         https://docs.agora.io/en/Video/API%20Reference/oc/Constants/AgoraUserOfflineReason.html
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason {
     VideoSession *deleteSession;
     for (VideoSession *session in self.videoSessions) {
@@ -362,21 +403,30 @@
         
         // release canvas's view
         deleteSession.canvas.view = nil;
+        
+        [self.agoraKit setupRemoteVideo:deleteSession];
     }
 }
 
-// video muted
+/// Occurs when a remote user’s video stream playback pauses/resumes.
+/// @param engine - RTC engine instance
+/// @param muted - true if muted; false otherwise
+/// @param uid - User ID of the remote user sending the video stream.
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didVideoMuted:(BOOL)muted byUid:(NSUInteger)uid {
     [self setVideoMuted:muted forUid:uid];
 }
 
-// remote stat
+/// Reports the statistics of the video stream from each remote user/host.
+/// @param engine - RTC engine instance
+/// @param stats - Statistics of the received remote video streams. See complete listing at
+///         https://docs.agora.io/en/Video/API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStats:(AgoraRtcRemoteVideoStats *)stats {
     VideoSession *session = [self fetchSessionOfUid:stats.uid];
     [session updateMediaInfo:CGSizeMake(stats.width, stats.height) fps:stats.rendererOutputFrameRate];
 }
 
-// audio mixing
+/// Occurs when the audio mixing file playback finishes.
+/// @param engine - RTC engine instance
 - (void)rtcEngineLocalAudioMixingDidFinish:(AgoraRtcEngineKit *)engine {
     self.isAudioMixing = NO;
 }

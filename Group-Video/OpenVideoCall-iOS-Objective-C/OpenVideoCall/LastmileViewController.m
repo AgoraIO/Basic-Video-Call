@@ -8,7 +8,10 @@
 
 #import "LastmileViewController.h"
 
+/// LastmileViewController implements various last mille related delegate functions for AgoraRtcEngine.
+/// "Last mile" refers to the connection between the local device and Agora's edge server.
 @interface LastmileViewController () <AgoraRtcEngineDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *qualityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rttLabel;
 @property (weak, nonatomic) IBOutlet UILabel *uplinkLabel;
@@ -48,6 +51,7 @@
     self.agoraKit.delegate = self;
     self.agoraKit.delegate = self;
     self.isLastmileProbeTesting = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)dealloc {
@@ -63,24 +67,35 @@
 }
 
 #pragma mark - AgoraRtcEngineDelegate
+
+/// Reports the last mile network quality of the local user once every two seconds before the user joins a channel.
+/// @param engine - RTC engine instance
+/// @param quality -The last mile network quality based on the uplink and dowlink packet loss rate and jitter. See list at:
+///  https://docs.agora.io/en/Video/API%20Reference/oc/Constants/AgoraNetworkQuality.html
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileQuality:(AgoraNetworkQuality)quality {
     NSString *string;
     switch (quality) {
-        case AgoraNetworkQualityExcellent:  string = @"excellent"; break;
-        case AgoraNetworkQualityGood:       string = @"good";      break;
-        case AgoraNetworkQualityPoor:       string = @"poor";      break;
-        case AgoraNetworkQualityBad:        string = @"bad";       break;
-        case AgoraNetworkQualityVBad:       string = @"very bad";  break;
-        case AgoraNetworkQualityDown:       string = @"down";      break;
-        case AgoraNetworkQualityUnknown:    string = @"unknown";   break;
+        case AgoraNetworkQualityExcellent:      string = @"excellent";   break;
+        case AgoraNetworkQualityGood:           string = @"good";        break;
+        case AgoraNetworkQualityPoor:           string = @"poor";        break;
+        case AgoraNetworkQualityBad:            string = @"bad";         break;
+        case AgoraNetworkQualityVBad:           string = @"very bad";    break;
+        case AgoraNetworkQualityDown:           string = @"down";        break;
+        case AgoraNetworkQualityUnknown:        string = @"unknown";     break;
+        case AgoraNetworkQualityDetecting:      string = @"detecting";   break;
+        case AgoraNetworkQualityUnsupported:    string = @"unsupported"; break;
     }
     self.qualityLabel.text = string;
 }
 
+/// Reports the last-mile network probe result.
+/// @param engine - RTC engine instance
+/// @param result - The uplink and downlink last-mile network probe test result, see list here:
+///   https://docs.agora.io/en/Video/API%20Reference/oc/Classes/AgoraLastmileProbeResult.html
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine lastmileProbeTestResult:(AgoraLastmileProbeResult *)result {
-    self.rttLabel.text = [NSString stringWithFormat:@"%lu", result.rtt];
-    self.uplinkLabel.text = [NSString stringWithFormat:@"%lu", result.uplinkReport.packetLossRate];
-    self.downlinkLabel.text = [NSString stringWithFormat:@"%lu", result.downlinkReport.packetLossRate];
+    self.rttLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)result.rtt];
+    self.uplinkLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)result.uplinkReport.packetLossRate];
+    self.downlinkLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)result.downlinkReport.packetLossRate];
     self.isLastmileProbeTesting = NO;
 }
 @end

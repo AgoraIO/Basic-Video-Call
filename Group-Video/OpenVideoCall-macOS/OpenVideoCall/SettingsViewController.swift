@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 protocol SettingsVCDataSource: NSObjectProtocol {
     func settingsVCNeedSettings() -> Settings

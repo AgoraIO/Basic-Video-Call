@@ -8,7 +8,7 @@
 
 import Cocoa
 
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 class VideoSession: NSObject {
     enum SessionType {
@@ -41,6 +41,7 @@ class VideoSession: NSObject {
         hostingView = VideoView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         hostingView.translatesAutoresizingMaskIntoConstraints = false
         
+        // Setup the canvas to show an agora video stream.
         canvas = AgoraRtcVideoCanvas()
         canvas.uid = uid
         canvas.view = hostingView.videoView

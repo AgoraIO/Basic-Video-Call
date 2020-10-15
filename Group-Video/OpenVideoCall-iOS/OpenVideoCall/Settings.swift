@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 struct Settings {
     var roomName: String?

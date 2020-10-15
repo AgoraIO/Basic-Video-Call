@@ -7,6 +7,7 @@
 //
 
 #import "Encryption.h"
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 @implementation Encryption
 - (NSString *)modeString {
@@ -14,6 +15,18 @@
         case EncryptionTypeXTS128: return @"aes-128-xts"; break;
         case EncryptionTypeXTS256: return @"aes-256-xts"; break;
         case EncryptionTypeNone:   return nil;
+    }
+}
+
+- (AgoraEncryptionMode)modeValue {
+    switch (_type) {
+        case EncryptionTypeXTS128:
+            return AgoraEncryptionModeAES128XTS;
+            break;
+        case EncryptionTypeXTS256:
+            return AgoraEncryptionModeAES256XTS;
+        default:
+            return AgoraEncryptionModeAES128XTS;
     }
 }
 

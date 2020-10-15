@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 struct Settings {
     enum DeviceType {

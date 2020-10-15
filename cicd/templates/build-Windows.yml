@@ -1,0 +1,70 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+parameters:
+  displayName: ''
+  workingDirectory: ''
+  scheme: ''
+  sdkurl: ''
+  solutionName: ''
+  Machine: ''
+  architecture: ''
+  ReleasePath: ''
+jobs:
+  - job: ${{ parameters.displayName }}Build
+    displayName: ${{ parameters.displayName }}
+
+    pool:
+      vmImage: 'vs2017-win2016'
+
+    variables:
+      solution: '${{ parameters.workingDirectory }}/${{ parameters.solutionName }}'
+      buildPlatform: ${{ parameters.Machine }}
+      buildConfiguration: 'Release'
+      sdkpathname: 'libs'
+      sdkunzipPath: 'AgoraSDK/Agora_Native_SDK_for_Windows_FULL'
+    steps:
+      - script: echo "${{ parameters.sdkurl }}" && ls
+      - powershell: cicd/scripts/downloadsdk.ps1 "${{ parameters.sdkurl }}"
+   
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: 'AgoraSDK.zip' 
+          destinationFolder: 'AgoraSDK'
+          
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: $(sdkunzipPath)/$(sdkpathname)
+          targetFolder: ${{ parameters.workingDirectory }}/$(sdkpathname)
+      - script: cd ${{ parameters.workingDirectory }}/ && ls
+              
+      - task: VSBuild@1
+        inputs:
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+          vsVersion: '15.0'
+          msbuildArchitecture: ${{ parameters.architecture }}
+
+      - script: cd ${{ parameters.workingDirectory }} && ls
+
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '${{ parameters.workingDirectory }}/${{ parameters.ReleasePath }}/'
+          includeRootFolder: true 
+          archiveType: 'zip'
+          archiveFile: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
+          replaceExistingArchive: true
+          
+      - script: ls 
+      - script: cd ${{ parameters.workingDirectory }} && ls
+      
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: ${{ parameters.workingDirectory }}/${{ parameters.displayName }}.zip
+          ArtifactName: ${{ parameters.displayName }}
+      - template: github-release.yml
+        parameters:
+          displayName: ${{ parameters.displayName }}

@@ -1,3 +1,8 @@
+include
+*.so
+agora-rtc-sdk.jar
+.settings
+
 # built application files
 *.apk
 *.ap_

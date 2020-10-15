@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 class MainViewController: NSViewController {
     
@@ -20,6 +20,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var encryptionLineView: NSView!
     @IBOutlet weak var testNetworkButton: AGEButton!
     
+    // The agora engine
     private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
         engine.setLogFilter(AgoraLogFilter.info.rawValue)
@@ -83,6 +84,7 @@ class MainViewController: NSViewController {
     
     // MARK: - user actions
     @IBAction func doJoinClicked(_ sender: NSButton) {
+        // start join room when join button pressed
         enter(roomName: roomInputTextField.stringValue)
     }
     

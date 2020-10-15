@@ -9,6 +9,6 @@ public class EngineConfig {
         mChannel = null;
     }
 
-    EngineConfig() {
+    public EngineConfig() {
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AgoraRtcEngineKit/AgoraRtcEngineKit.h>
+#import <AgoraRtcKit/AgoraRtcEngineKit.h>
 
 @class LastmileViewController;
 @protocol LastmileVCDataSource <NSObject>

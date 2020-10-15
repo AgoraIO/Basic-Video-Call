@@ -6,10 +6,11 @@ This tutorial enables you to quickly get started in your development efforts to 
 
 With this sample app you can:
 
-- [Join](#join-a-channel) and [leave](#hang-up-and-end-the-call) a channel.
-- [Mute and unmute audio](#mute-audio-and-video).
-- [Enable or disable video](#mute-audio-and-video).
-- [Choose between the front or rear camera](#toggle-cameras).
+- Join / leave channel
+- Mute / unmute audio
+- Enable / disable video
+- Switch camera
+- Setup resolution, frame rate and bit rate
 
 **Note:** This sample is written in [Kotlin](https://kotlinlang.org), a language officially supported by Android.
 
@@ -95,10 +96,15 @@ Import the sample application into **IntelliJ IDEA** as a gradle project.
 3. Build and run the sample project. This should display the application on your device.
 
 
-## Resources
+## Contact Us
 
-- You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- For potential issues, take a look at our [FAQ](https://docs.agora.io/en/faq) first
+- Dive into [Agora SDK Samples](https://github.com/AgoraIO) to see more tutorials
+- Take a look at [Agora Use Case](https://github.com/AgoraIO-usecase) for more complicated real use case
+- Repositories managed by developer communities can be found at [Agora Community](https://github.com/AgoraIO-Community)
+- You can find full API documentation at [Document Center](https://docs.agora.io/en/)
+- If you encounter problems during integration, you can ask question in [Stack Overflow](https://stackoverflow.com/questions/tagged/agora.io)
+- You can file bugs about this sample at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## License
 

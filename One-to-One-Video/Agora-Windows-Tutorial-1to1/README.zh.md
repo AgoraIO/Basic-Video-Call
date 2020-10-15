@@ -32,7 +32,6 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 ### 创建Agora账号并获取AppId
 
 在编译和启动实例程序前，您需要首先获取一个可用的App ID:
-在编译和启动实例程序前，您需要首先获取一个可用的App ID:
 1. 在[agora.io](https://dashboard.agora.io/signin/)创建一个开发者账号
 2. 前往后台页面，点击左部导航栏的 **项目 > 项目列表** 菜单
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
@@ -46,18 +45,21 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 
 ### 集成 Agora 视频 SDK
 
-1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中的 **sdk** 复制到本项目的 `AgoraTutorial` 文件夹下（并覆盖同名旧目录）。
+1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将 libs\include 中的文件，复制到 **Agora-Windows-Tutorial-1to1** 下的 **sdk\include** 文件夹下（如无该文件夹需新建）。并将 **libs\x86** 下的 **dll** 和 **lib** 文件分别复制到 **sdk\dll** 和 **sdk\lib** 文件夹下。
 
 2. 使用 VC++2013 打开 AgoraTutorial.sln，编译整个解决方案
 
 
 ## 联系我们
 
+- 如果你遇到了困难，可以先参阅 [常见问题](https://docs.agora.io/cn/faq)
+- 如果你想了解更多官方示例，可以参考 [官方SDK示例](https://github.com/AgoraIO)
+- 如果你想了解声网SDK在复杂场景下的应用，可以参考 [官方场景案例](https://github.com/AgoraIO-usecase)
+- 如果你想了解声网的一些社区开发者维护的项目，可以查看 [社区](https://github.com/AgoraIO-Community)
 - 完整的 API 文档见 [文档中心](https://docs.agora.io/cn/)
-- 如果在集成中遇到问题, 你可以到 [开发者社区](https://dev.agora.io/cn/) 提问
-- 如果有售前咨询问题, 可以拨打 400 632 6626，或加入官方Q群 12742516 提问
+- 若遇到问题需要开发者帮助，你可以到 [开发者社区](https://rtcdeveloper.com/) 提问
 - 如果需要售后技术支持, 你可以在 [Agora Dashboard](https://dashboard.agora.io) 提交工单
-- 如果发现了示例代码的 bug, 欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
+- 如果发现了示例代码的 bug，欢迎提交 [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
 
 ## 代码许可
 

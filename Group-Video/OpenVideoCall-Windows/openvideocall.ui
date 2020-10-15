@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OpenVideoCall</class>
+ <widget class="QMainWindow" name="OpenVideoCall">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>536</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">image: url(:/uiresource/OVC-win-home.png);</string>
+   </property>
+   <widget class="QPushButton" name="btn_close">
+    <property name="geometry">
+     <rect>
+      <x>726</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+image: url(:/uiresource/icon-close default.png);
+border-image: url(:/uiresource/icon-close default.png);
+}
+
+QPushButton:hover {
+image: url(:/uiresource/icon-close hover.png);
+border-image: url(:/uiresource/icon-close hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_config">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>25</y>
+      <width>36</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+border-image: url(:/uiresource/icon-setting.png);
+image: url(:/uiresource/icon-setting.png);
+}
+
+QPushButton:hover {
+border-image: url(:/uiresource/icon-setting hover.png);
+image: url(:/uiresource/icon-setting hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_min">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>34</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+image: url(:/uiresource/icon-min default.png);
+border-image: url(:/uiresource/icon-min default.png);
+}
+
+QPushButton:hover {
+image: url(:/uiresource/icon-min hover.png);
+border-image: url(:/uiresource/icon-min hover.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="led_classid">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>152</y>
+      <width>325</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">width:325px;
+height:40px;
+border-radius:2px;
+image: url(:/uiresource/edit1.png);
+font-size:14px;
+font-family:HelveticaNeue;
+color:rgba(153,153,153,1);
+line-height:16px;
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>Input Name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="led_key">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>216</y>
+      <width>205</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">width:205px;
+height:40px;
+border-radius:2px;
+image: url(:/uiresource/edit1.png);
+font-size:14px;
+font-family:HelveticaNeue;
+color:rgba(153,153,153,1);
+line-height:16px;
+</string>
+    </property>
+    <property name="placeholderText">
+     <string>Encryption key</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_test_network">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>378</y>
+      <width>325</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:!pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(255,255,255,1);
+line-height:20px;
+background:rgba(0,106,216,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit2.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>Test your Network</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_join">
+    <property name="geometry">
+     <rect>
+      <x>418</x>
+      <y>437</y>
+      <width>325</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:!hover {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+QPushButton:hover:pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;
+background:rgba(255,255,255,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit1.png);
+}
+
+QPushButton:hover:!pressed {
+font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(255,255,255,1);
+line-height:20px;
+background:rgba(0,106,216,1);
+border-radius:2px;
+border:1px solid rgba(204,204,204,1);
+image: url(:/uiresource/edit2.png);
+}</string>
+    </property>
+    <property name="text">
+     <string>joinChannel</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="com_encryp">
+    <property name="geometry">
+     <rect>
+      <x>634</x>
+      <y>216</y>
+      <width>110</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:17px;
+font-family:HelveticaNeue;
+color:rgba(0,106,216,1);
+line-height:20px;</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
