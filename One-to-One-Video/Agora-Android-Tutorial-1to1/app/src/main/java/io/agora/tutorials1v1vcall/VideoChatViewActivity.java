@@ -171,10 +171,9 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private void onRemoteUserLeft(int uid) {
         if (mRemoteVideo != null && mRemoteVideo.uid == uid) {
             removeFromParent(mRemoteVideo);
+            // Destroys remote view
             mRemoteVideo = null;
         }
-        // Destroys remote view
-        mRemoteView = null;
     }
 
     @Override
@@ -393,10 +392,14 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private void switchView(VideoCanvas canvas) {
         ViewGroup parent = removeFromParent(canvas);
         if (parent == mLocalContainer) {
-            canvas.view.setZOrderMediaOverlay(false);
+            if (canvas.view instanceof SurfaceView) {
+                ((SurfaceView) canvas.view).setZOrderMediaOverlay(false);
+            }
             mRemoteContainer.addView(canvas.view);
         } else if (parent == mRemoteContainer) {
-            canvas.view.setZOrderMediaOverlay(true);
+            if (canvas.view instanceof SurfaceView) {
+                ((SurfaceView) canvas.view).setZOrderMediaOverlay(true);
+            }
             mLocalContainer.addView(canvas.view);
         }
     }
