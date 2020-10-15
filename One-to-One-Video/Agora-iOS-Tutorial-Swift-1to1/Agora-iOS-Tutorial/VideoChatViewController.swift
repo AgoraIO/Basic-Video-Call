@@ -10,8 +10,8 @@ import UIKit
 import AgoraRtcKit
 
 class VideoChatViewController: UIViewController {
-    @IBOutlet weak var localVideo: UIView!
-    @IBOutlet weak var remoteVideo: UIView!
+    @IBOutlet weak var localContainer: UIView!
+    @IBOutlet weak var remoteContainer: UIView!
     @IBOutlet weak var remoteVideoMutedIndicator: UIImageView!
     @IBOutlet weak var localVideoMutedIndicator: UIView!
     @IBOutlet weak var micButton: UIButton!
@@ -19,17 +19,31 @@ class VideoChatViewController: UIViewController {
     
     weak var logVC: LogViewController?
     var agoraKit: AgoraRtcEngineKit!
+    var localVideo: AgoraRtcVideoCanvas?
+    var remoteVideo: AgoraRtcVideoCanvas?
     
     var isRemoteVideoRender: Bool = true {
         didSet {
-            remoteVideoMutedIndicator.isHidden = isRemoteVideoRender
-            remoteVideo.isHidden = !isRemoteVideoRender
+            if let it = localVideo, let view = it.view {
+                if view.superview == localContainer {
+                    remoteVideoMutedIndicator.isHidden = isRemoteVideoRender
+                    remoteContainer.isHidden = !isRemoteVideoRender
+                } else if view.superview == remoteContainer {
+                    localVideoMutedIndicator.isHidden = isRemoteVideoRender
+                }
+            }
         }
     }
     
     var isLocalVideoRender: Bool = false {
         didSet {
-            localVideoMutedIndicator.isHidden = isLocalVideoRender
+            if let it = localVideo, let view = it.view {
+                if view.superview == localContainer {
+                    localVideoMutedIndicator.isHidden = isLocalVideoRender
+                } else if view.superview == remoteContainer {
+                    remoteVideoMutedIndicator.isHidden = isLocalVideoRender
+                }
+            }
         }
     }
     
@@ -92,11 +106,13 @@ class VideoChatViewController: UIViewController {
         // Our server will assign one and return the uid via the block
         // callback (joinSuccessBlock) after
         // joining the channel successfully.
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = 0
-        videoCanvas.view = localVideo
-        videoCanvas.renderMode = .hidden
-        agoraKit.setupLocalVideo(videoCanvas)
+        let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: localContainer.frame.size))
+        localVideo = AgoraRtcVideoCanvas()
+        localVideo!.view = view
+        localVideo!.renderMode = .hidden
+        localVideo!.uid = 0
+        localContainer.addSubview(localVideo!.view!)
+        agoraKit.setupLocalVideo(localVideo)
     }
     
     func joinChannel() {
@@ -131,7 +147,12 @@ class VideoChatViewController: UIViewController {
         sender.isSelected.toggle()
         if sender.isSelected {
             leaveChannel()
+            removeFromParent(localVideo)
+            localVideo = nil
+            removeFromParent(remoteVideo)
+            remoteVideo = nil
         } else {
+            setupLocalVideo()
             joinChannel()
         }
     }
@@ -146,6 +167,33 @@ class VideoChatViewController: UIViewController {
         sender.isSelected.toggle()
         agoraKit.switchCamera()
     }
+    
+    @IBAction func didClickLocalContainer(_ sender: Any) {
+        switchView(localVideo)
+        switchView(remoteVideo)
+    }
+    
+    func removeFromParent(_ canvas: AgoraRtcVideoCanvas?) -> UIView? {
+        if let it = canvas, let view = it.view {
+            let parent = view.superview
+            if parent != nil {
+                view.removeFromSuperview()
+                return parent
+            }
+        }
+        return nil
+    }
+    
+    func switchView(_ canvas: AgoraRtcVideoCanvas?) {
+        let parent = removeFromParent(canvas)
+        if parent == localContainer {
+            canvas!.view!.frame.size = remoteContainer.frame.size
+            remoteContainer.addSubview(canvas!.view!)
+        } else if parent == remoteContainer {
+            canvas!.view!.frame.size = localContainer.frame.size
+            localContainer.addSubview(canvas!.view!)
+        }
+    }
 }
 
 extension VideoChatViewController: AgoraRtcEngineDelegate {
@@ -159,14 +207,27 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
         isRemoteVideoRender = true
         
+        var parent: UIView = remoteContainer
+        if let it = localVideo, let view = it.view {
+            if view.superview == parent {
+                parent = localContainer
+            }
+        }
+        
         // Only one remote video view is available for this
         // tutorial. Here we check if there exists a surface
         // view tagged as this uid.
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = uid
-        videoCanvas.view = remoteVideo
-        videoCanvas.renderMode = .hidden
-        agoraKit.setupRemoteVideo(videoCanvas)
+        if remoteVideo != nil {
+            return
+        }
+        
+        let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: parent.frame.size))
+        remoteVideo = AgoraRtcVideoCanvas()
+        remoteVideo!.view = view
+        remoteVideo!.renderMode = .hidden
+        remoteVideo!.uid = uid
+        parent.addSubview(remoteVideo!.view!)
+        agoraKit.setupRemoteVideo(remoteVideo!)
     }
     
     /// Occurs when a remote user (Communication)/host (Live Broadcast) leaves a channel.
@@ -176,6 +237,10 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
     ///   - reason: Reason why the user goes offline
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraUserOfflineReason) {
         isRemoteVideoRender = false
+        if let it = remoteVideo, it.uid == uid {
+            removeFromParent(it)
+            remoteVideo = nil
+        }
     }
     
     /// Occurs when a remote user’s video stream playback pauses/resumes.
