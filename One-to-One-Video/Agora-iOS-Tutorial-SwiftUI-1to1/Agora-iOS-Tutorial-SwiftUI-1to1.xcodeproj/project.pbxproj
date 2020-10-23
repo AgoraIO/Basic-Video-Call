@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03CE90BB25435E18009945C0 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90B525435E14009945C0 /* Agorafdkaac.framework */; };
+		03CE90BC25435E18009945C0 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90B525435E14009945C0 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE90BD25435E19009945C0 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90B625435E14009945C0 /* Agoraffmpeg.framework */; };
+		03CE90BE25435E19009945C0 /* Agoraffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90B625435E14009945C0 /* Agoraffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE90BF25435E1B009945C0 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90B725435E14009945C0 /* AgoraSoundTouch.framework */; };
+		03CE90C025435E1B009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE90B725435E14009945C0 /* AgoraSoundTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		38101C5D2386AA55005484F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38101C5C2386AA55005484F9 /* AppDelegate.swift */; };
 		38101C5F2386AA55005484F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38101C5E2386AA55005484F9 /* SceneDelegate.swift */; };
 		38101C632386AA57005484F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38101C622386AA57005484F9 /* Assets.xcassets */; };
@@ -30,6 +36,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A7911490246D120300E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
+				03CE90BE25435E19009945C0 /* Agoraffmpeg.framework in Embed Frameworks */,
+				03CE90BC25435E18009945C0 /* Agorafdkaac.framework in Embed Frameworks */,
+				03CE90C025435E1B009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +46,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03CE90B525435E14009945C0 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agorafdkaac.framework; sourceTree = "<group>"; };
+		03CE90B625435E14009945C0 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agoraffmpeg.framework; sourceTree = "<group>"; };
+		03CE90B725435E14009945C0 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSoundTouch.framework; sourceTree = "<group>"; };
 		38101C592386AA55005484F9 /* Agora-iOS-Tutorial-SwiftUI-1to1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-iOS-Tutorial-SwiftUI-1to1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38101C5C2386AA55005484F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38101C5E2386AA55005484F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +81,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03CE90BD25435E19009945C0 /* Agoraffmpeg.framework in Frameworks */,
 				A791148F246D120300E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				03CE90BB25435E18009945C0 /* Agorafdkaac.framework in Frameworks */,
+				03CE90BF25435E1B009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +112,9 @@
 		38101C5B2386AA55005484F9 /* Agora-iOS-Tutorial-SwiftUI-1to1 */ = {
 			isa = PBXGroup;
 			children = (
+				03CE90B525435E14009945C0 /* Agorafdkaac.framework */,
+				03CE90B625435E14009945C0 /* Agoraffmpeg.framework */,
+				03CE90B725435E14009945C0 /* AgoraSoundTouch.framework */,
 				38101C712386AADD005484F9 /* ContentView.swift */,
 				38101C8D2386C8D2005484F9 /* VideoEngine.swift */,
 				38101C732386AADD005484F9 /* VideoSessionView.swift */,
