@@ -6,7 +6,6 @@
 //  Copyright © 2016年 Agora. All rights reserved.
 //
 
-#import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
 #import "RoomOptionsViewController.h"
 #import "MessageViewController.h"
 #import "RoomViewController.h"
@@ -30,7 +29,6 @@
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *backgroundDoubleTap;
 
 @property (weak, nonatomic) AgoraRtcEngineKit *agoraKit;
-@property (strong, nonatomic) AgoraRtcCryptoLoader *agoraLoader;
 
 @property (assign, nonatomic) BOOL isSwitchCamera;
 @property (assign, nonatomic) BOOL isAudioMixing;
@@ -149,13 +147,6 @@
 
 - (AgoraRtcEngineKit *)agoraKit {
     return [self.dataSource roomVCNeedAgoraKit];
-}
-
-- (AgoraRtcCryptoLoader *)agoraLoader {
-    if (!_agoraLoader) {
-        _agoraLoader = [[AgoraRtcCryptoLoader alloc] init];
-    }
-    return _agoraLoader;
 }
 
 // videoViewLayouter and videoSessions manage all render views

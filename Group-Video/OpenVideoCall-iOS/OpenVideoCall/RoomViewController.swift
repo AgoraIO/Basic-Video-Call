@@ -8,7 +8,6 @@
 
 import UIKit
 import AgoraRtcKit
-import AgoraRtcCryptoLoader
 
 protocol RoomVCDataSource: NSObjectProtocol {
     func roomVCNeedAgoraKit() -> AgoraRtcEngineKit
@@ -135,8 +134,6 @@ class RoomViewController: UIViewController {
     }
     
     private let maxVideoSession = 4
-    
-    private let cryptoLoader = AgoraRtcCryptoLoader()
     
     private weak var optionsVC: RoomOptionsViewController?
     private lazy var options = RoomOptions(isDebugMode: false)

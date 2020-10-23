@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03CE911B25436295009945C0 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE91162543626F009945C0 /* Agorafdkaac.framework */; };
+		03CE911C25436295009945C0 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE91162543626F009945C0 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE911D25436296009945C0 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE91172543626F009945C0 /* Agoraffmpeg.framework */; };
+		03CE911E25436296009945C0 /* Agoraffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE91172543626F009945C0 /* Agoraffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE911F25436297009945C0 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE91152543626F009945C0 /* AgoraSoundTouch.framework */; };
+		03CE912025436297009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE91152543626F009945C0 /* AgoraSoundTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07C2CFB81D6C26F300C84349 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFB71D6C26F300C84349 /* AppDelegate.swift */; };
 		07C2CFBC1D6C26F300C84349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C2CFBB1D6C26F300C84349 /* Assets.xcassets */; };
 		07C2CFBF1D6C26F300C84349 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C2CFBD1D6C26F300C84349 /* Main.storyboard */; };
@@ -57,6 +63,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A79114A3246D12A400E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
+				03CE911E25436296009945C0 /* Agoraffmpeg.framework in Embed Frameworks */,
+				03CE911C25436295009945C0 /* Agorafdkaac.framework in Embed Frameworks */,
+				03CE912025436297009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +73,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03CE91152543626F009945C0 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSoundTouch.framework; sourceTree = "<group>"; };
+		03CE91162543626F009945C0 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agorafdkaac.framework; sourceTree = "<group>"; };
+		03CE91172543626F009945C0 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agoraffmpeg.framework; sourceTree = "<group>"; };
 		07C2CFB41D6C26F300C84349 /* OpenVideoCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenVideoCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C2CFB71D6C26F300C84349 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07C2CFBB1D6C26F300C84349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,7 +133,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03CE911D25436296009945C0 /* Agoraffmpeg.framework in Frameworks */,
+				03CE911B25436295009945C0 /* Agorafdkaac.framework in Frameworks */,
 				A79114A2246D12A400E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				03CE911F25436297009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +164,9 @@
 		07C2CFB61D6C26F300C84349 /* OpenVideoCall */ = {
 			isa = PBXGroup;
 			children = (
+				03CE91162543626F009945C0 /* Agorafdkaac.framework */,
+				03CE91172543626F009945C0 /* Agoraffmpeg.framework */,
+				03CE91152543626F009945C0 /* AgoraSoundTouch.framework */,
 				07C2CFEC1D6C292400C84349 /* Controllers */,
 				07C2CFED1D6C294900C84349 /* Views */,
 				07C2CFF61D6C29A100C84349 /* Models */,
