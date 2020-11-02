@@ -1,7 +1,7 @@
 package io.agora.openvcall.model;
 
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +9,42 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+
+import io.agora.rtc.IRtcEngineEventHandler;
+import io.agora.rtc.RtcEngine;
+
 
 public class MyEngineEventHandler extends IRtcEngineEventHandler {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final ConcurrentHashMap<AGEventHandler, Integer> mEventHandlerList = new ConcurrentHashMap<>();
+    private RtcEngine engine = null;
+    private String channel;
+    private int uid;
+    public Consumer<String> updateTokenCallback;
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void updateToken() {
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                String newToken = AgoraTokenRequester.fetchToken(
+                        AgoraTokenRequester.tokenURL,
+                        channel,
+                        uid
+                );
+                 updateTokenCallback.accept(newToken);
+            }
+        });
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void addEventHandler(AGEventHandler handler) {
         this.mEventHandlerList.put(handler, 0);
@@ -136,6 +168,22 @@ public class MyEngineEventHandler extends IRtcEngineEventHandler {
             if (handler instanceof DuringCallEventHandler) {
                 ((DuringCallEventHandler) handler).onExtraCallback(AGEventHandler.EVENT_TYPE_ON_USER_VIDEO_MUTED, uid, muted);
             }
+        }
+    }
+
+    @Override
+    public void onTokenPrivilegeWillExpire(String s) {
+        super.onTokenPrivilegeWillExpire(s);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            updateToken();
+        }
+    }
+
+    @Override
+    public void onRequestToken() {
+        super.onRequestToken();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            updateToken();
         }
     }
 

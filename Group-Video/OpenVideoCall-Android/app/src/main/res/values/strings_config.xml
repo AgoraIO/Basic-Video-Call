@@ -10,7 +10,7 @@
     <!-- Please leave it if not enable App Certificate -->
     <!-- You can generate a temporary token at https://dashboard.agora.io/projects -->
     <string name="agora_access_token"><#YOUR ACCESS TOKEN#></string>
-
+    <string name="token_server_url">http://10.0.2.2:8080</string>
     <string-array name="encryption_mode_values">
         <item>AES-128-XTS</item>
         <item>AES-256-XTS</item>

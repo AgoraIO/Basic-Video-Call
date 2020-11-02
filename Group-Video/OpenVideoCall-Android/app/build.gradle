@@ -53,6 +53,7 @@ dependencies {
     }
 
     implementation 'io.agora.rtc:full-sdk:3.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.6.3'
 }

@@ -2,6 +2,7 @@ package io.agora.openvcall.ui;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import io.agora.openvcall.AGApplication;
 import io.agora.openvcall.R;
 import io.agora.openvcall.model.*;
 import io.agora.propeller.Constant;
+import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.internal.EncryptionConfig;
 import io.agora.rtc.video.VideoCanvas;
@@ -31,7 +33,8 @@ import java.util.Arrays;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private final static Logger log = LoggerFactory.getLogger(BaseActivity.class);
-
+    private String lastChannel;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -301,15 +304,54 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param uid User ID.
      */
     public final void joinChannel(final String channel, int uid) {
-        String accessToken = getApplicationContext().getString(R.string.agora_access_token);
-        if (TextUtils.equals(accessToken, "") || TextUtils.equals(accessToken, "<#YOUR ACCESS TOKEN#>")) {
-            accessToken = null; // default, no token
-        }
+        Thread thread = new Thread(new Runnable() {
 
-        rtcEngine().joinChannel(accessToken, channel, "OpenVCall", uid);
-        config().mChannel = channel;
-        enablePreProcessor();
-        log.debug("joinChannel " + channel + " " + uid);
+            @Override
+            public void run() {
+                String accessToken;
+                log.error(channel);
+                if (channel != "test" && channel != lastChannel) {
+                    // if we are connecting to new channel, haven't connected anywhere yet, and not connecting to "test" channel
+                    // then request a new token
+                    accessToken = AgoraTokenRequester.fetchToken(
+                            getApplicationContext().getString(R.string.token_server_url),
+                            channel,
+                            0
+                    );
+                    if (!accessToken.isEmpty()) {
+                        lastChannel = channel;
+                    }
+                } else {
+                    accessToken = getApplicationContext().getString(R.string.agora_access_token);
+                }
+
+                if (TextUtils.equals(accessToken, "") || TextUtils.equals(accessToken, "<#YOUR ACCESS TOKEN#>")) {
+                    accessToken = null; // default, no token
+                }
+
+                rtcEngine().joinChannel(accessToken, channel, "OpenVCall", uid);
+                config().mChannel = channel;
+                enablePreProcessor();
+                log.debug("joinChannel " + channel + " " + uid);
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public final void updateToken(String newToken) {
+//        switch (rtcEngine().getConnectionState()) {
+//            case Constants.CONNECTION_STATE_CONNECTED:
+//                rtcEngine().renewToken(newToken);
+//            default:
+//                this.joinChannel(R.);
+//        }
+//        rtcEngine().getConnectionState()
+        rtcEngine().renewToken(newToken);
     }
 
     /**

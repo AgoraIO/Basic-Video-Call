@@ -13,6 +13,7 @@
     <application
         android:name=".AGApplication"
         android:icon="@drawable/ic_launcher"
+        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

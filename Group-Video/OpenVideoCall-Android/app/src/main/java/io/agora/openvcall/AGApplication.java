@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.agora.openvcall.model.AGEventHandler;
+import io.agora.openvcall.model.AgoraTokenRequester;
 import io.agora.openvcall.model.CurrentUserSettings;
 import io.agora.openvcall.model.EngineConfig;
 import io.agora.openvcall.model.MyEngineEventHandler;
@@ -55,7 +56,7 @@ public class AGApplication extends Application {
         if (TextUtils.isEmpty(appId)) {
             throw new RuntimeException("NEED TO use your App ID, get your own ID at https://dashboard.agora.io/");
         }
-
+        AgoraTokenRequester.tokenURL = getApplicationContext().getResources().getString(R.string.token_server_url);
         mEventHandler = new MyEngineEventHandler();
         try {
             // Creates an RtcEngine instance
@@ -64,6 +65,7 @@ public class AGApplication extends Application {
             log.error(Log.getStackTraceString(e));
             throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
         }
+        mEventHandler.updateTokenCallback = this::renewToken;
 
         /*
           Sets the channel profile of the Agora RtcEngine.
@@ -86,8 +88,13 @@ public class AGApplication extends Application {
         mConfig = new EngineConfig();
     }
 
+    public void renewToken(String newToken) {
+        mRtcEngine.renewToken(newToken);
+    }
+
     @Override
     public void onTerminate() {
         super.onTerminate();
     }
+
 }
