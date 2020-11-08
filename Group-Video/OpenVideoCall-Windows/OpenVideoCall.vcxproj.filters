@@ -130,39 +130,12 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    
-    
-    
-    
-    
-    
-    
-    
-    
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="avdevice.ui">
@@ -338,6 +311,18 @@
     <None Include="users.jpg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="uiresource\OVC-win-more" />
+    <None Include="hover.png" />
+    <None Include="uiresource\icon-back" />
+    <None Include="uiresource\icon-camera" />
+    <None Include="uiresource\icon-close" />
+    <None Include="uiresource\icon-hang" />
+    <None Include="uiresource\icon-micorophone" />
+    <None Include="uiresource\icon-setting" />
+    <None Include="off.png" />
+    <None Include="up.png" />
+    <None Include="up" />
+    <None Include="users.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="uiresource\OVC-win-more">
