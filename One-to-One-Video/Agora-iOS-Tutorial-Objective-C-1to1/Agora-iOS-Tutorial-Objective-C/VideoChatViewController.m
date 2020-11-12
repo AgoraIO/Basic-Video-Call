@@ -95,6 +95,7 @@
     videoCanvas.renderMode = AgoraVideoRenderModeHidden;
     [self.agoraKit setupRemoteVideo:videoCanvas];
     // Bind remote video stream to view
+    [self.agoraKit startPreview];
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteStateReason)reason elapsed:(NSInteger)elapsed
