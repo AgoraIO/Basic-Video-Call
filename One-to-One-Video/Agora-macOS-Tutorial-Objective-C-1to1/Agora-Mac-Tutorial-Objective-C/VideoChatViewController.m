@@ -74,6 +74,7 @@
     videoCanvas.renderMode = AgoraVideoRenderModeHidden;
     [self.agoraKit setupLocalVideo:videoCanvas];
     // Bind local video stream to view
+    [self.agoraKit startPreview];
 }
 
 - (void)joinChannel {
