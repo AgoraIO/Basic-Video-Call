@@ -276,7 +276,7 @@ export default class RTCClient {
   _updateVideoInfo () {
     this._localStream && this._localStream.getStats((stats) => {
       const localStreamProfile = [
-        ['Uid: ', this._localStream.getId()].join(''),
+        ['Uid: ', this._localStream && this._localStream.getId()].join(''),
         ['SDN access delay: ', stats.accessDelay, 'ms'].join(''),
         ['Video send: ', stats.videoSendFrameRate, 'fps ', stats.videoSendResolutionWidth + 'x' + stats.videoSendResolutionHeight].join(''),
       ].join('<br/>')
