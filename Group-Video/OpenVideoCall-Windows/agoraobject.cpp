@@ -482,7 +482,7 @@ BOOL CAgoraObject::SetEncryptionMode(const char* secret,const char* secretMode)
 
 BOOL CAgoraObject::EnableEncryption(bool enabled, const EncryptionConfig & config)
 {
-    int nRet = m_lpAgoraEngine->enableEncryption(enabled, config);
+    int nRet = m_rtcEngine->enableEncryption(enabled, config);
     return nRet == 0 ? TRUE : FALSE;
 }
 

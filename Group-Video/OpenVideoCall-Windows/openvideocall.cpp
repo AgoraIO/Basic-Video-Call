@@ -116,7 +116,7 @@ void OpenVideoCall::on_btn_join_clicked()
     // configuration of encrypt
     EncryptionConfig config;
     // set encrypt mode
-    config.encryptionMode = ui->com_encryp->currentIndex();
+    config.encryptionMode = (ENCRYPTION_MODE)(ui->com_encryp->currentIndex()+1);
     // set encrypt key
     config.encryptionKey = qsEncrypSecret.toUtf8().data();
     // EnableEncryption of engine.
@@ -134,7 +134,7 @@ void OpenVideoCall::on_com_encryp_currentIndexChanged(const QString &arg1)
     // configuration of encrypt
     EncryptionConfig config;
     // set encrypt mode
-    config.encryptionMode = ui->com_encryp->currentIndex();
+    config.encryptionMode = (ENCRYPTION_MODE)(ui->com_encryp->currentIndex() + 1);
     // set encrypt key
     config.encryptionKey = qsEncrypSecret.toUtf8().data();
     // EnableEncryption of engine.
