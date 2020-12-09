@@ -113,6 +113,7 @@ class VideoChatViewController: UIViewController {
         localVideo!.uid = 0
         localContainer.addSubview(localVideo!.view!)
         agoraKit.setupLocalVideo(localVideo)
+        agoraKit.startPreview()
     }
     
     func joinChannel() {

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03CE90A125435CD5009945C0 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE909925435CCD009945C0 /* Agorafdkaac.framework */; };
+		03CE90A225435CD5009945C0 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE909925435CCD009945C0 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE90A325435CD6009945C0 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE909A25435CCD009945C0 /* Agoraffmpeg.framework */; };
+		03CE90A425435CD6009945C0 /* Agoraffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE909A25435CCD009945C0 /* Agoraffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE90A525435CD8009945C0 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE909C25435CCD009945C0 /* AgoraSoundTouch.framework */; };
+		03CE90A625435CD8009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE909C25435CCD009945C0 /* AgoraSoundTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A2BC6711D5A9C2100C9AD11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */; };
 		1A2BC6741D5A9C2100C9AD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6731D5A9C2100C9AD11 /* main.m */; };
 		1A2BC6771D5A9C2100C9AD11 /* VideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */; };
@@ -27,6 +33,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A7911493246D122100E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
+				03CE90A425435CD6009945C0 /* Agoraffmpeg.framework in Embed Frameworks */,
+				03CE90A225435CD5009945C0 /* Agorafdkaac.framework in Embed Frameworks */,
+				03CE90A625435CD8009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,6 +43,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03CE909925435CCD009945C0 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agorafdkaac.framework; sourceTree = "<group>"; };
+		03CE909A25435CCD009945C0 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agoraffmpeg.framework; sourceTree = "<group>"; };
+		03CE909C25435CCD009945C0 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSoundTouch.framework; sourceTree = "<group>"; };
 		1A2BC66C1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-Mac-Tutorial-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A2BC66F1D5A9C2100C9AD11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A2BC6701D5A9C2100C9AD11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,7 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03CE90A325435CD6009945C0 /* Agoraffmpeg.framework in Frameworks */,
+				03CE90A125435CD5009945C0 /* Agorafdkaac.framework in Frameworks */,
 				A7911492246D122100E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				03CE90A525435CD8009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +105,9 @@
 		1A2BC66E1D5A9C2100C9AD11 /* Agora-Mac-Tutorial-Objective-C */ = {
 			isa = PBXGroup;
 			children = (
+				03CE909925435CCD009945C0 /* Agorafdkaac.framework */,
+				03CE909A25435CCD009945C0 /* Agoraffmpeg.framework */,
+				03CE909C25435CCD009945C0 /* AgoraSoundTouch.framework */,
 				1A2BC6751D5A9C2100C9AD11 /* VideoChatViewController.h */,
 				1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */,
 				1A2BC69E1D5B058C00C9AD11 /* DeviceSelectionViewController.h */,

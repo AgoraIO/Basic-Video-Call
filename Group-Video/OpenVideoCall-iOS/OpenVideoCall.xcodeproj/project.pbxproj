@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03CE910F254361F0009945C0 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE910A254361EC009945C0 /* Agorafdkaac.framework */; };
+		03CE9110254361F0009945C0 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE910A254361EC009945C0 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE9111254361F1009945C0 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE910B254361EC009945C0 /* Agoraffmpeg.framework */; };
+		03CE9112254361F1009945C0 /* Agoraffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE910B254361EC009945C0 /* Agoraffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03CE9113254361F2009945C0 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE9109254361EC009945C0 /* AgoraSoundTouch.framework */; };
+		03CE9114254361F2009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03CE9109254361EC009945C0 /* AgoraSoundTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		070275CE1D66A9DC00ABBC23 /* MediaCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070275CD1D66A9DC00ABBC23 /* MediaCharacter.swift */; };
 		073BDB5A1D64742A00B62E14 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073BDB591D64742A00B62E14 /* MainViewController.swift */; };
 		073BDB5C1D64743C00B62E14 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073BDB5B1D64743C00B62E14 /* SettingsViewController.swift */; };
@@ -35,8 +41,6 @@
 		A76C26FB2387964B0047E150 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26FA2387964A0047E150 /* StatisticsInfo.swift */; };
 		A76C26FD2387B7130047E150 /* AgoraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76C26FC2387B7130047E150 /* AgoraExtension.swift */; };
 		A76C27012387C2D80047E150 /* Them.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A76C27002387C2D70047E150 /* Them.mp3 */; };
-		A7911498246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */; };
-		A7911499246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A791149B246D125800E77A35 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; };
 		A791149C246D125800E77A35 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26B92386829F0047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7A3C65A228ACFB4005BB816 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3C659228ACFB4005BB816 /* Settings.swift */; };
@@ -52,7 +56,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A791149C246D125800E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
-				A7911499246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Embed Frameworks */,
+				03CE9112254361F1009945C0 /* Agoraffmpeg.framework in Embed Frameworks */,
+				03CE9110254361F0009945C0 /* Agorafdkaac.framework in Embed Frameworks */,
+				03CE9114254361F2009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +66,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03CE9109254361EC009945C0 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSoundTouch.framework; sourceTree = "<group>"; };
+		03CE910A254361EC009945C0 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agorafdkaac.framework; sourceTree = "<group>"; };
+		03CE910B254361EC009945C0 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agoraffmpeg.framework; sourceTree = "<group>"; };
 		070275CD1D66A9DC00ABBC23 /* MediaCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCharacter.swift; sourceTree = "<group>"; };
 		073BDB591D64742A00B62E14 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		073BDB5B1D64743C00B62E14 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +98,6 @@
 		A76C26B82386829F0047E150 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcCryptoLoader.framework; path = OpenVideoCall/AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		A76C26B92386829F0047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = OpenVideoCall/AgoraRtcKit.framework; sourceTree = "<group>"; };
 		A76C26C0238683660047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
-		A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcCryptoLoader.framework; sourceTree = "<group>"; };
 		A76C26F023878C8F0047E150 /* AGEVideoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoLayout.swift; sourceTree = "<group>"; };
 		A76C26F123878C8F0047E150 /* AGEVideoConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEVideoConstraints.swift; sourceTree = "<group>"; };
 		A76C26F223878C8F0047E150 /* AGEEventsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGEEventsObserver.swift; sourceTree = "<group>"; };
@@ -116,8 +124,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03CE9111254361F1009945C0 /* Agoraffmpeg.framework in Frameworks */,
+				03CE910F254361F0009945C0 /* Agorafdkaac.framework in Frameworks */,
 				A791149B246D125800E77A35 /* AgoraRtcKit.framework in Frameworks */,
-				A7911498246D125700E77A35 /* AgoraRtcCryptoLoader.framework in Frameworks */,
+				03CE9113254361F2009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,12 +218,14 @@
 		07F52EB31D62F39D006DDCD4 /* OpenVideoCall */ = {
 			isa = PBXGroup;
 			children = (
+				03CE910A254361EC009945C0 /* Agorafdkaac.framework */,
+				03CE910B254361EC009945C0 /* Agoraffmpeg.framework */,
+				03CE9109254361EC009945C0 /* AgoraSoundTouch.framework */,
 				07C2CFA81D6C211700C84349 /* Controllers */,
 				07C2CFAA1D6C214100C84349 /* Views */,
 				07C2CFA91D6C213100C84349 /* Models */,
 				A76C26EF23878C8F0047E150 /* AGEVideoLayout */,
 				A76C26BF2386832F0047E150 /* Supporting Files */,
-				A76C26C1238683670047E150 /* AgoraRtcCryptoLoader.framework */,
 				A76C26C0238683660047E150 /* AgoraRtcKit.framework */,
 			);
 			path = OpenVideoCall;

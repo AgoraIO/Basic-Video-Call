@@ -82,6 +82,7 @@ class VideoChatViewController: NSViewController {
         videoCanvas.view = localVideo
         videoCanvas.renderMode = .hidden
         AgoraKit.setupLocalVideo(videoCanvas)
+        AgoraKit.startPreview()
     }
     
     func joinChannel() {
