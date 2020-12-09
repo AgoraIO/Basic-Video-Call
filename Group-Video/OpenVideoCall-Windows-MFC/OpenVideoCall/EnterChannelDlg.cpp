@@ -1,4 +1,4 @@
-// EnterChannelDlg.cpp : ÊµÏÖÎÄ¼þ
+// EnterChannelDlg.cpp : å®žçŽ°æ–‡ä»¶
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "afxdialogex.h"
 
 
-// CEnterChannelDlg ¶Ô»°¿ò
+// CEnterChannelDlg å¯¹è¯æ¡†
 
 IMPLEMENT_DYNAMIC(CEnterChannelDlg, CDialogEx)
 
@@ -43,7 +43,7 @@ BEGIN_MESSAGE_MAP(CEnterChannelDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CEnterChannelDlg ÏûÏ¢´¦Àí³ÌÐò
+// CEnterChannelDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 BOOL CEnterChannelDlg::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN){
@@ -63,7 +63,7 @@ BOOL CEnterChannelDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯
+	// TODO:  åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–
     m_ftEncy.CreateFont(17, 0, 0, 0, FW_BOLD, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
     m_ftHead.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
 	m_ftDesc.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
@@ -77,7 +77,7 @@ BOOL CEnterChannelDlg::OnInitDialog()
 	InitCtrls();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// Òì³£:  OCX ÊôÐÔÒ³Ó¦·µ»Ø FALSE
+
 }
 
 void CEnterChannelDlg::InitCtrls()
@@ -184,7 +184,6 @@ void CEnterChannelDlg::DrawClient(CDC *lpDC)
 
 void CEnterChannelDlg::OnBnClickedBtntestChannel()
 {
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 	m_dlgDevice.ShowWindow(SW_SHOW);
 	m_dlgDevice.CenterWindow();
 }
@@ -192,10 +191,8 @@ void CEnterChannelDlg::OnBnClickedBtntestChannel()
 
 void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 {
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 //	CString str = CAgoraObject::GetAgoraObject()->GetCallID();
 	CString strKey;
-
 	m_ctrEncKey.GetWindowText(strKey);
 	if (strKey.GetLength() > 0)
 	{
@@ -204,9 +201,9 @@ void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 		// set encrypt mode
 		config.encryptionMode = ENCRYPTION_MODE(m_cmbEncType.GetCurSel() + 1);
 		// set encrypt key
-        char szKey[520] = { 0 };
-        WideCharToMultiByte(CP_UTF8, 0, strKey.GetBuffer(0), strKey.GetLength(), szKey, 520, NULL, NULL);
-        config.encryptionKey = szKey;
+    char szKey[520] = { 0 };
+    WideCharToMultiByte(CP_UTF8, 0, strKey.GetBuffer(0), strKey.GetLength(), szKey, 520, NULL, NULL);
+    config.encryptionKey = szKey;
 		// EnableEncryption of engine.
 		CAgoraObject::GetAgoraObject()->EnableEncryption(true, config);
 	}
@@ -216,7 +213,6 @@ void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 
 void CEnterChannelDlg::OnBnClickedBtnsetChannel()
 {
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 //	SHORT sKeyStat = ::GetAsyncKeyState(VK_CONTROL);
 
 	GetParent()->SendMessage(WM_GONEXT, 0, 0);
