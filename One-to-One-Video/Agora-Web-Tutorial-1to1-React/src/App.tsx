@@ -138,7 +138,7 @@ function App() {
   // All hooks are called to get the necessary data
   const cameraList = useCamera();
   const microphoneList = useMicrophone();
-  let [localStream, remoteStreamList, streamList] = useMediaStream(agoraClient);
+  let [localStream, remoteStreamList] = useMediaStream(agoraClient);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -163,6 +163,9 @@ function App() {
       // initializes the client with appId
       await client.init(state.appId);
 
+      // TBC: some errors in client.join might be caught without throwing the error again
+      // e.g invalid token
+      // which causing error handling in this function not working
       // joins a channel with a token, channel, user id
       await client.join(state.token, state.channel, uid);
       
