@@ -21,6 +21,12 @@
 		1A2BC6A01D5B05A800C9AD11 /* DeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */; };
 		1A309D631D5CE05500021BB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A309D611D5CE05500021BB8 /* Main.storyboard */; };
 		38EF7E982368278500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E972368278500A6A483 /* README.md */; };
+		8B5C64C825ADF3A100FE3779 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64C225ADF3A000FE3779 /* Agoraffmpeg.framework */; };
+		8B5C64C925ADF3A100FE3779 /* AgoraCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64C325ADF3A000FE3779 /* AgoraCore.framework */; };
+		8B5C64CA25ADF3A100FE3779 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64C425ADF3A000FE3779 /* AgoraRtcKit.framework */; };
+		8B5C64CB25ADF3A100FE3779 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64C525ADF3A000FE3779 /* Agorafdkaac.framework */; };
+		8B5C64CC25ADF3A100FE3779 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64C625ADF3A100FE3779 /* AgoraSoundTouch.framework */; };
+		8B5C64CD25ADF3A100FE3779 /* av1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64C725ADF3A100FE3779 /* av1.framework */; };
 		A7911492246D122100E77A35 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A1238676D50047E150 /* AgoraRtcKit.framework */; };
 		A7911493246D122100E77A35 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A76C26A1238676D50047E150 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -60,6 +66,12 @@
 		1A2BC69F1D5B05A800C9AD11 /* DeviceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSelectionViewController.m; sourceTree = "<group>"; };
 		1A309D621D5CE05500021BB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38EF7E972368278500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8B5C64C225ADF3A000FE3779 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agoraffmpeg.framework; sourceTree = "<group>"; };
+		8B5C64C325ADF3A000FE3779 /* AgoraCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraCore.framework; sourceTree = "<group>"; };
+		8B5C64C425ADF3A000FE3779 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
+		8B5C64C525ADF3A000FE3779 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agorafdkaac.framework; sourceTree = "<group>"; };
+		8B5C64C625ADF3A100FE3779 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSoundTouch.framework; sourceTree = "<group>"; };
+		8B5C64C725ADF3A100FE3779 /* av1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = av1.framework; sourceTree = "<group>"; };
 		A76C26A1238676D50047E150 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
 		A7733D372407988500483870 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A7733D392407989500483870 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
@@ -75,8 +87,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				03CE90A325435CD6009945C0 /* Agoraffmpeg.framework in Frameworks */,
+				8B5C64CD25ADF3A100FE3779 /* av1.framework in Frameworks */,
+				8B5C64CA25ADF3A100FE3779 /* AgoraRtcKit.framework in Frameworks */,
 				03CE90A125435CD5009945C0 /* Agorafdkaac.framework in Frameworks */,
 				A7911492246D122100E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				8B5C64C825ADF3A100FE3779 /* Agoraffmpeg.framework in Frameworks */,
+				8B5C64CB25ADF3A100FE3779 /* Agorafdkaac.framework in Frameworks */,
+				8B5C64C925ADF3A100FE3779 /* AgoraCore.framework in Frameworks */,
+				8B5C64CC25ADF3A100FE3779 /* AgoraSoundTouch.framework in Frameworks */,
 				03CE90A525435CD8009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,8 +124,14 @@
 			isa = PBXGroup;
 			children = (
 				03CE909925435CCD009945C0 /* Agorafdkaac.framework */,
+				8B5C64C325ADF3A000FE3779 /* AgoraCore.framework */,
+				8B5C64C525ADF3A000FE3779 /* Agorafdkaac.framework */,
 				03CE909A25435CCD009945C0 /* Agoraffmpeg.framework */,
 				03CE909C25435CCD009945C0 /* AgoraSoundTouch.framework */,
+				8B5C64C225ADF3A000FE3779 /* Agoraffmpeg.framework */,
+				8B5C64C425ADF3A000FE3779 /* AgoraRtcKit.framework */,
+				8B5C64C625ADF3A100FE3779 /* AgoraSoundTouch.framework */,
+				8B5C64C725ADF3A100FE3779 /* av1.framework */,
 				1A2BC6751D5A9C2100C9AD11 /* VideoChatViewController.h */,
 				1A2BC6761D5A9C2100C9AD11 /* VideoChatViewController.m */,
 				1A2BC69E1D5B058C00C9AD11 /* DeviceSelectionViewController.h */,
