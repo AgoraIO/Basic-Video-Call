@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -35,7 +35,7 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 // useMicrophone hook returns a list of microphones when the hook is called
 // useMediaStream hook returns localStream, a list of remote streams and 
 // a contatenated list of localstream and remote streams when the hook is called
-import { useCamera, useMicrophone, useMediaStream } from "./hooks";
+import { useCamera, useMicrophone, useMediaStream, usePermission } from "./hooks";
 
 // This is an enhanced Web SDK. The enhancement basically converts the callback syntax into promises.
 // Rest of the code will use async/await syntax in conjuction with these promises.
@@ -136,9 +136,10 @@ function App() {
   // const agoraClient = AgoraRTC.createClient({ mode: state.mode, codec: state.codec });
 
   // All hooks are called to get the necessary data
+  const permission = usePermission()
   const cameraList = useCamera();
   const microphoneList = useMicrophone();
-  let [localStream, remoteStreamList, streamList] = useMediaStream(agoraClient);
+  let [localStream, remoteStreamList] = useMediaStream(agoraClient);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -149,13 +150,49 @@ function App() {
     });
   };
 
+  const changeCamera = async (e: React.ChangeEvent<unknown>) => {
+    let cameraId = (e.target as HTMLInputElement).value;
+    if (cameraId == state.cameraId) {
+      return
+    } else {
+      update("setCamera")(e);
+      if (localStream) {
+        const stream = AgoraRTC.createStream({
+          audio: false,
+          video: true,
+          cameraId: cameraId,
+        });
+        await stream.init();
+        localStream.replaceTrack(stream.getVideoTrack())
+      }
+    }
+  }
+
+  const changeMicrophone = async (e: React.ChangeEvent<unknown>) => {
+    let microphoneId = (e.target as HTMLInputElement).value;
+    if (microphoneId == state.microphoneId) {
+      return
+    } else {
+      update("setMicrophone")(e);
+      if (localStream) {
+        const stream = AgoraRTC.createStream({
+          video: false,
+          audio: true,
+          microphoneId: microphoneId,
+        });
+        await stream.init();
+        localStream.replaceTrack(stream.getAudioTrack())
+      }
+    }
+  }
+
   // Starts the video call
   const join = async () => {
     // Creates a new agora client with given parameters.
     // mode can be 'rtc' for real time communications or 'live' for live broadcasting.
-    const client = AgoraRTC.createClient({ mode: state.mode, codec: state.codec })
+    const client = AgoraRTC.createClient({ mode: state.mode, codec: state.codec });
     // Loads client into the state
-    setClient(client)
+    setClient(client);
     setIsLoading(true);
     try {
       const uid = isNaN(Number(state.uid)) ? null : Number(state.uid);
@@ -171,7 +208,9 @@ function App() {
         streamID: uid || 12345,
         video: true,
         audio: true,
-        screen: false
+        screen: false,
+        cameraId: state.cameraId,
+        microphoneId: state.microphoneId,
       });
 
       // stream.setVideoProfile('480p_4')
@@ -348,7 +387,7 @@ function App() {
                     <TextField
                       id="cameraId"
                       value={state.cameraId}
-                      onChange={update("setCamera")}
+                      onChange={changeCamera}
                       select
                       label="Camera"
                       helperText="Please select your camera"
@@ -364,7 +403,7 @@ function App() {
                     <TextField
                       id="microphoneId"
                       value={state.microphoneId}
-                      onChange={update("setMicrophone")}
+                      onChange={changeMicrophone}
                       select
                       label="Microphone"
                       helperText="Please select your microphone"
