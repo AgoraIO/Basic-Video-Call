@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -35,7 +35,7 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 // useMicrophone hook returns a list of microphones when the hook is called
 // useMediaStream hook returns localStream, a list of remote streams and 
 // a contatenated list of localstream and remote streams when the hook is called
-import { useCamera, useMicrophone, useMediaStream } from "./hooks";
+import { useCamera, useMicrophone, useMediaStream, usePermission } from "./hooks";
 
 // This is an enhanced Web SDK. The enhancement basically converts the callback syntax into promises.
 // Rest of the code will use async/await syntax in conjuction with these promises.
@@ -136,9 +136,10 @@ function App() {
   // const agoraClient = AgoraRTC.createClient({ mode: state.mode, codec: state.codec });
 
   // All hooks are called to get the necessary data
+  const permission = usePermission()
   const cameraList = useCamera();
   const microphoneList = useMicrophone();
-  let [localStream, remoteStreamList, streamList] = useMediaStream(agoraClient);
+  let [localStream, remoteStreamList] = useMediaStream(agoraClient);
 
   const { enqueueSnackbar } = useSnackbar();
 
