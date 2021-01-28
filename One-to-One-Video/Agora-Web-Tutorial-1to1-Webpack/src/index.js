@@ -1,30 +1,35 @@
 import RTCClient from './rtc-client'
-import {getDevices, Toast, serializeFormData, validator, resolutions} from './common'
+import {requestPermission, getDevices, Toast, serializeFormData, validator, resolutions} from './common'
 import './assets/style.css'
 import * as M from 'materialize-css'
 // import {setFormData, parseFromSearch} from './searchParam';
 
-$(() => {  
-  getDevices(function (devices) {
-    devices.audios.forEach(function (audio) {
-      $('<option/>', {
-        value: audio.value,
-        text: audio.name,
-      }).appendTo('#microphoneId')
+$(() => {
+  requestPermission(function (hasPermission) {
+    if (!hasPermission) {
+      Toast.error('no camera or microphone permission!')
+    }
+    getDevices(function (devices) {
+      devices.audios.forEach(function (audio) {
+        $('<option/>', {
+          value: audio.value,
+          text: audio.name,
+        }).appendTo('#microphoneId')
+      })
+      devices.videos.forEach(function (video) {
+        $('<option/>', {
+          value: video.value,
+          text: video.name,
+        }).appendTo('#cameraId')
+      })
+      resolutions.forEach(function (resolution) {
+        $('<option/>', {
+          value: resolution.value,
+          text: resolution.name
+        }).appendTo('#cameraResolution')
+      })
+      M.AutoInit()
     })
-    devices.videos.forEach(function (video) {
-      $('<option/>', {
-        value: video.value,
-        text: video.name,
-      }).appendTo('#cameraId')
-    })
-    resolutions.forEach(function (resolution) {
-      $('<option/>', {
-        value: resolution.value,
-        text: resolution.name
-      }).appendTo('#cameraResolution')
-    })
-    M.AutoInit()
   })
 
   const fields = ['appID', 'channel']
