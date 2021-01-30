@@ -104,6 +104,19 @@ export function removeView (id) {
   }
 }
 
+export function requestPermission(next) {
+  const tempAudioVideoStream = AgoraRTC.createStream({ audio: true, video: true })
+  const callback = function (hasPermission) {
+    tempAudioVideoStream.close()
+    next(hasPermission)
+  }
+  tempAudioVideoStream.init(function () {
+    callback(true)
+  }, function () {
+    callback(false)
+  })
+}
+
 export function getDevices (next) {
   AgoraRTC.getDevices(function (items) {
     items.filter(function (item) {
