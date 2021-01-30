@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const useMediaStream = (client: any, filter?: (streamId: number) => boolean): any[] => {
   const [localStream, setLocalStream] = useState<any>(undefined);
@@ -16,14 +16,16 @@ const useMediaStream = (client: any, filter?: (streamId: number) => boolean): an
     };
     // remove stream
     const removeRemote = (evt: any) => {
-      const { stream } = evt;
-      if (stream) {
-        const id = stream.getId();
-        const index = remoteStreamList.findIndex(item => item.getId() === id);
+      const { stream, uid } = evt;
+      // when "peer-leave", stream is undefined
+      const targetId = stream ? stream.getId() : uid;
+      if (targetId) {
+        const index = remoteStreamList.findIndex(item => item.getId() === targetId);
         if (index !== -1) {
           setRemoteStreamList(streamList => {
             streamList.splice(index, 1);
-            return streamList;
+            // a new reference in order to re-render
+            return [...streamList];
           });
         }
       }
@@ -79,9 +81,11 @@ const useMediaStream = (client: any, filter?: (streamId: number) => boolean): an
         client.gatewayClient.removeEventListener("stream-removed", removeRemote);
       }
     };
-  }, [client, filter]);
+  // a missing dependency
+  }, [client, filter, remoteStreamList]);
 
-  return [localStream, remoteStreamList, [localStream].concat(remoteStreamList)];
+  // memorization for better performance
+  return useMemo(() => [localStream, remoteStreamList], [localStream, remoteStreamList]);
 };
 
 export default useMediaStream;
