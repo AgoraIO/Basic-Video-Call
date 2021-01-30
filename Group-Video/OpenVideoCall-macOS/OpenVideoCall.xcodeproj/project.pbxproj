@@ -33,6 +33,10 @@
 		07C2CFF41D6C299400C84349 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFF01D6C299400C84349 /* VideoView.swift */; };
 		07C2D0001D6C2DD900C84349 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C2CFFF1D6C2DD900C84349 /* Message.swift */; };
 		3832FA63227FCDCA00E50E69 /* FileCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3832FA62227FCDCA00E50E69 /* FileCenter.swift */; };
+		8B1FBBBE25ADF1CF004A08DF /* AgoraCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1FBBBB25ADF1C8004A08DF /* AgoraCore.framework */; };
+		8B1FBBBF25ADF1CF004A08DF /* AgoraCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1FBBBB25ADF1C8004A08DF /* AgoraCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B1FBBC025ADF1D1004A08DF /* av1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1FBBBA25ADF1C8004A08DF /* av1.framework */; };
+		8B1FBBC125ADF1D1004A08DF /* av1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1FBBBA25ADF1C8004A08DF /* av1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A74240122375441600794648 /* AGEAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74240112375441600794648 /* AGEAlert.swift */; };
 		A7424014237550C400794648 /* AGEButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7424013237550C400794648 /* AGEButton.swift */; };
 		A74240172375639F00794648 /* StatisticsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74240162375639F00794648 /* StatisticsInfo.swift */; };
@@ -65,7 +69,9 @@
 				A79114A3246D12A400E77A35 /* AgoraRtcKit.framework in Embed Frameworks */,
 				03CE911E25436296009945C0 /* Agoraffmpeg.framework in Embed Frameworks */,
 				03CE911C25436295009945C0 /* Agorafdkaac.framework in Embed Frameworks */,
+				8B1FBBC125ADF1D1004A08DF /* av1.framework in Embed Frameworks */,
 				03CE912025436297009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */,
+				8B1FBBBF25ADF1CF004A08DF /* AgoraCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +111,8 @@
 		389D99B721885C4600BFD852 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		389D99B921885C4D00BFD852 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		389D99BB21885C5200BFD852 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		8B1FBBBA25ADF1C8004A08DF /* av1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = av1.framework; sourceTree = "<group>"; };
+		8B1FBBBB25ADF1C8004A08DF /* AgoraCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraCore.framework; sourceTree = "<group>"; };
 		A74240112375441600794648 /* AGEAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGEAlert.swift; sourceTree = "<group>"; };
 		A7424013237550C400794648 /* AGEButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGEButton.swift; sourceTree = "<group>"; };
 		A74240162375639F00794648 /* StatisticsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsInfo.swift; sourceTree = "<group>"; };
@@ -136,6 +144,8 @@
 				03CE911D25436296009945C0 /* Agoraffmpeg.framework in Frameworks */,
 				03CE911B25436295009945C0 /* Agorafdkaac.framework in Frameworks */,
 				A79114A2246D12A400E77A35 /* AgoraRtcKit.framework in Frameworks */,
+				8B1FBBC025ADF1D1004A08DF /* av1.framework in Frameworks */,
+				8B1FBBBE25ADF1CF004A08DF /* AgoraCore.framework in Frameworks */,
 				03CE911F25436297009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +174,8 @@
 		07C2CFB61D6C26F300C84349 /* OpenVideoCall */ = {
 			isa = PBXGroup;
 			children = (
+				8B1FBBBB25ADF1C8004A08DF /* AgoraCore.framework */,
+				8B1FBBBA25ADF1C8004A08DF /* av1.framework */,
 				03CE91162543626F009945C0 /* Agorafdkaac.framework */,
 				03CE91172543626F009945C0 /* Agoraffmpeg.framework */,
 				03CE91152543626F009945C0 /* AgoraSoundTouch.framework */,
@@ -505,6 +517,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenVideoCall",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OpenVideoCall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -527,6 +540,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OpenVideoCall",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OpenVideoCall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

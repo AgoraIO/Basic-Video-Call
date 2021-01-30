@@ -21,6 +21,14 @@
 		1A04664C1D5E7892004987C6 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664B1D5E7892004987C6 /* AppID.swift */; };
 		1A04664F1D5EA139004987C6 /* DeviceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */; };
 		38EF7E9A236827E500A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E99236827E500A6A483 /* README.md */; };
+		8B1BE76F25AFEDD300AD49DB /* AgoraCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64B725ADF37600FE3779 /* AgoraCore.framework */; };
+		8B1BE77025AFEDD300AD49DB /* AgoraCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64B725ADF37600FE3779 /* AgoraCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B1BE77125AFEDD400AD49DB /* av1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64BA25ADF37700FE3779 /* av1.framework */; };
+		8B1BE77225AFEDD400AD49DB /* av1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64BA25ADF37700FE3779 /* av1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B5C64BC25ADF37700FE3779 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64B625ADF37600FE3779 /* Agorafdkaac.framework */; };
+		8B5C64BE25ADF37700FE3779 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64B825ADF37600FE3779 /* Agoraffmpeg.framework */; };
+		8B5C64BF25ADF37700FE3779 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64B925ADF37700FE3779 /* AgoraRtcKit.framework */; };
+		8B5C64C125ADF37700FE3779 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5C64BB25ADF37700FE3779 /* AgoraSoundTouch.framework */; };
 		A77E578824ADFE5900DD7670 /* Agora_Mac_Tutorial_Swift_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E578724ADFE5900DD7670 /* Agora_Mac_Tutorial_Swift_Tests.swift */; };
 		A77E578F24AE00E200DD7670 /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */; };
 		A77E579024AE00E500DD7670 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04664B1D5E7892004987C6 /* AppID.swift */; };
@@ -48,7 +56,9 @@
 				A7AD0F0124AEFA00008FFD5B /* AgoraRtcKit.framework in Embed Frameworks */,
 				03CE90B225435DA3009945C0 /* Agoraffmpeg.framework in Embed Frameworks */,
 				03CE90B025435DA2009945C0 /* Agorafdkaac.framework in Embed Frameworks */,
+				8B1BE77225AFEDD400AD49DB /* av1.framework in Embed Frameworks */,
 				03CE90B425435DA4009945C0 /* AgoraSoundTouch.framework in Embed Frameworks */,
+				8B1BE77025AFEDD300AD49DB /* AgoraCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +79,12 @@
 		1A04664B1D5E7892004987C6 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppID.swift; sourceTree = "<group>"; };
 		1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSelectionViewController.swift; sourceTree = "<group>"; };
 		38EF7E99236827E500A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8B5C64B625ADF37600FE3779 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agorafdkaac.framework; sourceTree = "<group>"; };
+		8B5C64B725ADF37600FE3779 /* AgoraCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraCore.framework; sourceTree = "<group>"; };
+		8B5C64B825ADF37600FE3779 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Agoraffmpeg.framework; sourceTree = "<group>"; };
+		8B5C64B925ADF37700FE3779 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
+		8B5C64BA25ADF37700FE3779 /* av1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = av1.framework; sourceTree = "<group>"; };
+		8B5C64BB25ADF37700FE3779 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraSoundTouch.framework; sourceTree = "<group>"; };
 		A77E578524ADFE5900DD7670 /* Agora-Mac-Tutorial-Swift-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agora-Mac-Tutorial-Swift-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77E578724ADFE5900DD7670 /* Agora_Mac_Tutorial_Swift_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agora_Mac_Tutorial_Swift_Tests.swift; sourceTree = "<group>"; };
 		A77E578924ADFE5900DD7670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,9 +96,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B1BE76F25AFEDD300AD49DB /* AgoraCore.framework in Frameworks */,
+				8B5C64BF25ADF37700FE3779 /* AgoraRtcKit.framework in Frameworks */,
+				8B1BE77125AFEDD400AD49DB /* av1.framework in Frameworks */,
+				8B5C64BE25ADF37700FE3779 /* Agoraffmpeg.framework in Frameworks */,
+				8B5C64C125ADF37700FE3779 /* AgoraSoundTouch.framework in Frameworks */,
 				03CE90AD25435D9F009945C0 /* AgoraRtcKit.framework in Frameworks */,
 				03CE90B325435DA4009945C0 /* AgoraSoundTouch.framework in Frameworks */,
 				A7AD0F0024AEFA00008FFD5B /* AgoraRtcKit.framework in Frameworks */,
+				8B5C64BC25ADF37700FE3779 /* Agorafdkaac.framework in Frameworks */,
 				03CE90B125435DA3009945C0 /* Agoraffmpeg.framework in Frameworks */,
 				03CE90AF25435DA2009945C0 /* Agorafdkaac.framework in Frameworks */,
 			);
@@ -121,10 +143,16 @@
 		1A0466221D5E75A2004987C6 /* Agora-Mac-Tutorial-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				8B5C64B725ADF37600FE3779 /* AgoraCore.framework */,
 				03CE90A725435D9F009945C0 /* Agorafdkaac.framework */,
 				03CE90AA25435D9F009945C0 /* Agoraffmpeg.framework */,
 				03CE90A925435D9F009945C0 /* AgoraRtcKit.framework */,
 				03CE90A825435D9F009945C0 /* AgoraSoundTouch.framework */,
+				8B5C64B625ADF37600FE3779 /* Agorafdkaac.framework */,
+				8B5C64B825ADF37600FE3779 /* Agoraffmpeg.framework */,
+				8B5C64B925ADF37700FE3779 /* AgoraRtcKit.framework */,
+				8B5C64BB25ADF37700FE3779 /* AgoraSoundTouch.framework */,
+				8B5C64BA25ADF37700FE3779 /* av1.framework */,
 				1A0466251D5E75A2004987C6 /* VideoChatViewController.swift */,
 				1A04664E1D5EA139004987C6 /* DeviceSelectionViewController.swift */,
 				1A04664B1D5E7892004987C6 /* AppID.swift */,
