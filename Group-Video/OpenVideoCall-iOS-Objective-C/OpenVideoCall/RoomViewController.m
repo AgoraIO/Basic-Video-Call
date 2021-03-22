@@ -351,6 +351,10 @@
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed {
     VideoSession *userSession = [self videoSessionOfUid:uid];
     userSession.size = size;
+}
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
+    VideoSession *userSession = [self videoSessionOfUid:uid];
     [self.agoraKit setupRemoteVideo:userSession.canvas];
 }
 

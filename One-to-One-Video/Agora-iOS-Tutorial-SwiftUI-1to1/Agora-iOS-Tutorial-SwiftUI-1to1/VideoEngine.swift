@@ -25,14 +25,6 @@ extension VideoEngine: AgoraRtcEngineDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
-        contentView?.isRemoteInSession = true
-    }
-    
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
-        contentView?.isRemoteInSession = false
-    }
-    
-    func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid: UInt, size: CGSize, elapsed: Int) {
         // Only one remote video view is available for this
         // tutorial. Here we check if there exists a surface
         // view tagged as this uid.
@@ -43,8 +35,13 @@ extension VideoEngine: AgoraRtcEngineDelegate {
         agoraEngine.setupRemoteVideo(videoCanvas)
 
         contentView?.isRemoteVideoMuted = false
+        contentView?.isRemoteInSession = true
     }
     
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
+        contentView?.isRemoteInSession = false
+    }
+
     func rtcEngine(_ engine: AgoraRtcEngineKit, didVideoMuted muted:Bool, byUid:UInt) {
         contentView?.isRemoteVideoMuted = muted
     }

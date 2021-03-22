@@ -524,6 +524,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
     @Override
     public void onUserJoined(int uid) {
         log.debug("onUserJoined " + (uid & 0xFFFFFFFFL));
+        doRenderRemoteUi(uid);
 
         runOnUiThread(new Runnable() {
             @Override
@@ -537,7 +538,6 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
         log.debug("onFirstRemoteVideoDecoded " + (uid & 0xFFFFFFFFL) + " " + width + " " + height + " " + elapsed);
 
-        doRenderRemoteUi(uid);
     }
 
     private void doRenderRemoteUi(final int uid) {

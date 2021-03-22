@@ -198,30 +198,24 @@ class VideoChatViewController: UIViewController {
 }
 
 extension VideoChatViewController: AgoraRtcEngineDelegate {
-    
-    /// Callback to handle the event when the first frame of a remote video stream is decoded on the device.
-    /// - Parameters:
-    ///   - engine: RTC engine instance
-    ///   - uid: user id
-    ///   - size: the height and width of the video frame
-    ///   - elapsed: Time elapsed (ms) from the local user calling JoinChannel method until the SDK triggers this callback.
-    func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
+
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
         isRemoteVideoRender = true
-        
+
         var parent: UIView = remoteContainer
         if let it = localVideo, let view = it.view {
             if view.superview == parent {
                 parent = localContainer
             }
         }
-        
+
         // Only one remote video view is available for this
         // tutorial. Here we check if there exists a surface
         // view tagged as this uid.
         if remoteVideo != nil {
             return
         }
-        
+
         let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: parent.frame.size))
         remoteVideo = AgoraRtcVideoCanvas()
         remoteVideo!.view = view
