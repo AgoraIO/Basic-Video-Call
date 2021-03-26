@@ -356,38 +356,6 @@ void CAGEngineEventHandler::onFirstLocalVideoFrame(int width, int height, int el
 }
 
 /**
-This callback is triggered in either of the following scenarios:
-
-The remote user joins the channel and sends the video stream.
-The remote user stops sending the video stream and re-sends it after 15 seconds. Reasons for such an interruption include:
-The remote user leaves the channel.
-The remote user drops offline.
-The remote user calls the muteLocalVideoStream method to stop sending the video stream.
-The remote user calls the disableVideo method to disable video.
-The application can configure the user view settings in this callback.
-
-Parameters
-@param uid	User ID of the remote user sending the video stream.
-@param width	Width (px) of the video stream.
-@param height	Height (px) of the video stream.
-@param elapsed	Time elapsed (ms) from the local user calling the joinChannel method until the SDK triggers this callback.
-*/
-void CAGEngineEventHandler::onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed)
-{
-	if (m_hMainWnd == NULL)
-		return;
-
-	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = new AGE_FIRST_REMOTE_VIDEO_DECODED;
-
-	lpData->uid = uid;
-	lpData->width = width;
-	lpData->height = height;
-	lpData->elapsed = elapsed;
-
-	::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), (WPARAM)lpData, 0);
-}
-
-/**
 Occurs when the first remote video frame is rendered.
 
 The SDK triggers this callback when the first frame of the remote video is displayed in the user's video window. The application can retrieve the time elapsed from a user joining the channel until the first video frame is displayed.

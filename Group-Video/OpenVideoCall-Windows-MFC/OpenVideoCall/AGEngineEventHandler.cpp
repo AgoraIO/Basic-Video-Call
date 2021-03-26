@@ -180,20 +180,6 @@ void CAGEngineEventHandler::onFirstLocalVideoFrame(int width, int height, int el
 
 }
 
-void CAGEngineEventHandler::onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed)
-{
-	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = new AGE_FIRST_REMOTE_VIDEO_DECODED;
-
-	lpData->uid = uid;
-	lpData->width = width;
-	lpData->height = height;
-	lpData->elapsed = elapsed;
-
-	if(m_hMainWnd != NULL)
-		::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), (WPARAM)lpData, 0);
-
-}
-
 void CAGEngineEventHandler::onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed)
 {
 	LPAGE_FIRST_REMOTE_VIDEO_FRAME lpData = new AGE_FIRST_REMOTE_VIDEO_FRAME;

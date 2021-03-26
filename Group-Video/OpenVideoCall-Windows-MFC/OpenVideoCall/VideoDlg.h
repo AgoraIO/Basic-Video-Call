@@ -83,7 +83,7 @@ protected:
 	afx_msg LRESULT OnEIDReJoinChannelSuccess(WPARAM wParam, LPARAM lParam);
 	
 	afx_msg LRESULT OnEIDFirstLocalFrame(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnEIDFirstRemoteFrameDecoded(WPARAM wParam, LPARAM lParam);
+	
 	afx_msg LRESULT OnEIDUserJoined(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnEIDUserOffline(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnEIDConnectionLost(WPARAM wParam, LPARAM lParam);

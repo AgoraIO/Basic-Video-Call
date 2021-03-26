@@ -29,7 +29,7 @@ protected:
 	afx_msg void OnBnClickedBtnmutelocaud();
 
 	// ENGINE EVENT MESSAGE
-	afx_msg LRESULT OnFirstRemoteVideoDecoded(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnEIDUserJoined(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 
 private:
