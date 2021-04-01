@@ -80,7 +80,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onUserJoined(int uid) {
+        public void onUserJoined(final int uid, int elapsed) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
