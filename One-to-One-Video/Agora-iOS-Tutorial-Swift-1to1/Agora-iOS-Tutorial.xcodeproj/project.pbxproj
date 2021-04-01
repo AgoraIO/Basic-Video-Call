@@ -16,14 +16,10 @@
 		38EF7E962368277700A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E952368277700A6A483 /* README.md */; };
 		8B6FA1342614730900A4E4C3 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */; };
 		8B6FA1352614730900A4E4C3 /* Agoraffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8B6FA1362614730900A4E4C3 /* AgoraDav1dExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12C2614730900A4E4C3 /* AgoraDav1dExtension.framework */; };
-		8B6FA1372614730900A4E4C3 /* AgoraDav1dExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12C2614730900A4E4C3 /* AgoraDav1dExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA1382614730900A4E4C3 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */; };
 		8B6FA1392614730900A4E4C3 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA13A2614730900A4E4C3 /* AgoraCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */; };
 		8B6FA13B2614730900A4E4C3 /* AgoraCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8B6FA13C2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12F2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework */; };
-		8B6FA13D2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12F2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA13E2614730900A4E4C3 /* AgoraJNDExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1302614730900A4E4C3 /* AgoraJNDExtension.framework */; };
 		8B6FA13F2614730900A4E4C3 /* AgoraJNDExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1302614730900A4E4C3 /* AgoraJNDExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA1402614730900A4E4C3 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */; };
@@ -57,8 +53,6 @@
 			files = (
 				8B6FA1392614730900A4E4C3 /* Agorafdkaac.framework in Embed Frameworks */,
 				8B6FA1412614730900A4E4C3 /* AgoraRtcKit.framework in Embed Frameworks */,
-				8B6FA1372614730900A4E4C3 /* AgoraDav1dExtension.framework in Embed Frameworks */,
-				8B6FA13D2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework in Embed Frameworks */,
 				8B6FA13B2614730900A4E4C3 /* AgoraCore.framework in Embed Frameworks */,
 				8B6FA13F2614730900A4E4C3 /* AgoraJNDExtension.framework in Embed Frameworks */,
 				8B6FA1352614730900A4E4C3 /* Agoraffmpeg.framework in Embed Frameworks */,
@@ -103,8 +97,6 @@
 			files = (
 				8B6FA1382614730900A4E4C3 /* Agorafdkaac.framework in Frameworks */,
 				8B6FA1402614730900A4E4C3 /* AgoraRtcKit.framework in Frameworks */,
-				8B6FA1362614730900A4E4C3 /* AgoraDav1dExtension.framework in Frameworks */,
-				8B6FA13C2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework in Frameworks */,
 				8B6FA13A2614730900A4E4C3 /* AgoraCore.framework in Frameworks */,
 				8B6FA13E2614730900A4E4C3 /* AgoraJNDExtension.framework in Frameworks */,
 				8B6FA1342614730900A4E4C3 /* Agoraffmpeg.framework in Frameworks */,
@@ -488,6 +480,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
@@ -519,6 +512,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};
