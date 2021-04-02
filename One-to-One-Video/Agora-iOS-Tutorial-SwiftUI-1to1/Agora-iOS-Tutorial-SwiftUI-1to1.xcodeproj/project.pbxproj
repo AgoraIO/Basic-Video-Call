@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,22 +18,15 @@
 		38101C792386AB0C005484F9 /* AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38101C782386AB0C005484F9 /* AppID.swift */; };
 		38101C8E2386C8D2005484F9 /* VideoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38101C8D2386C8D2005484F9 /* VideoEngine.swift */; };
 		38101C902386CC84005484F9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38101C8F2386CC84005484F9 /* README.md */; };
-		8BF7443325A580A7007A0793 /* Agorafdkaac.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7442E25A580A7007A0793 /* Agorafdkaac.xcframework */; };
-		8BF7443425A580A7007A0793 /* AgoraCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7442F25A580A7007A0793 /* AgoraCore.xcframework */; };
-		8BF7443525A580A7007A0793 /* Agoraffmpeg.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7443025A580A7007A0793 /* Agoraffmpeg.xcframework */; };
-		8BF7443725A580A7007A0793 /* AgoraSoundTouch.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7443225A580A7007A0793 /* AgoraSoundTouch.xcframework */; };
-		8BF7443825A580AE007A0793 /* AgoraRtcKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7443125A580A7007A0793 /* AgoraRtcKit.xcframework */; };
-		8BF7443925A580AE007A0793 /* AgoraRtcKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7443125A580A7007A0793 /* AgoraRtcKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A7911491246D120300E77A35 /* Embed Frameworks */ = {
+		8BC30CBB25EBE865009E2E1B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8BF7443925A580AE007A0793 /* AgoraRtcKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,11 +47,6 @@
 		38101C782386AB0C005484F9 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppID.swift; sourceTree = "<group>"; };
 		38101C8D2386C8D2005484F9 /* VideoEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEngine.swift; sourceTree = "<group>"; };
 		38101C8F2386CC84005484F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8BF7442E25A580A7007A0793 /* Agorafdkaac.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Agorafdkaac.xcframework; sourceTree = "<group>"; };
-		8BF7442F25A580A7007A0793 /* AgoraCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AgoraCore.xcframework; sourceTree = "<group>"; };
-		8BF7443025A580A7007A0793 /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Agoraffmpeg.xcframework; sourceTree = "<group>"; };
-		8BF7443125A580A7007A0793 /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AgoraRtcKit.xcframework; sourceTree = "<group>"; };
-		8BF7443225A580A7007A0793 /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
 		A75811AA2407950B007EDAD3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A75811AC24079513007EDAD3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A7733D242407952F00483870 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
@@ -77,11 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF7443525A580A7007A0793 /* Agoraffmpeg.xcframework in Frameworks */,
-				8BF7443325A580A7007A0793 /* Agorafdkaac.xcframework in Frameworks */,
-				8BF7443825A580AE007A0793 /* AgoraRtcKit.xcframework in Frameworks */,
-				8BF7443725A580A7007A0793 /* AgoraSoundTouch.xcframework in Frameworks */,
-				8BF7443425A580A7007A0793 /* AgoraCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,11 +92,6 @@
 		38101C5B2386AA55005484F9 /* Agora-iOS-Tutorial-SwiftUI-1to1 */ = {
 			isa = PBXGroup;
 			children = (
-				8BF7442F25A580A7007A0793 /* AgoraCore.xcframework */,
-				8BF7442E25A580A7007A0793 /* Agorafdkaac.xcframework */,
-				8BF7443025A580A7007A0793 /* Agoraffmpeg.xcframework */,
-				8BF7443125A580A7007A0793 /* AgoraRtcKit.xcframework */,
-				8BF7443225A580A7007A0793 /* AgoraSoundTouch.xcframework */,
 				38101C712386AADD005484F9 /* ContentView.swift */,
 				38101C8D2386C8D2005484F9 /* VideoEngine.swift */,
 				38101C732386AADD005484F9 /* VideoSessionView.swift */,
@@ -173,7 +151,7 @@
 				38101C552386AA55005484F9 /* Sources */,
 				38101C562386AA55005484F9 /* Frameworks */,
 				38101C572386AA55005484F9 /* Resources */,
-				A7911491246D120300E77A35 /* Embed Frameworks */,
+				8BC30CBB25EBE865009E2E1B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -378,10 +356,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Agora-iOS-Tutorial-SwiftUI-1to1/Preview Content\"";
-				DEVELOPMENT_TEAM = GM72UGLGZW;
+				DEVELOPMENT_TEAM = 5459N9W32M;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,9 +371,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial-SwiftUI-1to1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.medialab.Agora-iOS-Tutorial-SwiftUI-1to1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = App;
+				PROVISIONING_PROFILE_SPECIFIER = medialab_develop;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -405,10 +383,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Agora-iOS-Tutorial-SwiftUI-1to1/Preview Content\"";
-				DEVELOPMENT_TEAM = GM72UGLGZW;
+				DEVELOPMENT_TEAM = 5459N9W32M;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,9 +398,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial-SwiftUI-1to1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.medialab.Agora-iOS-Tutorial-SwiftUI-1to1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = App;
+				PROVISIONING_PROFILE_SPECIFIER = medialab_develop;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -60,7 +60,7 @@ BEGIN_MESSAGE_MAP(CAgoraTutorialDlg, CDialog)
 	ON_BN_CLICKED(IDC_BTNDISVID, &CAgoraTutorialDlg::OnBnClickedBtndisvid)
 	ON_BN_CLICKED(IDC_BTNMUTELOCAUD, &CAgoraTutorialDlg::OnBnClickedBtnmutelocaud)
 
-	ON_MESSAGE(WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), &CAgoraTutorialDlg::OnFirstRemoteVideoDecoded)
+	ON_MESSAGE(WM_MSGID(EID_USER_JOINED), &CAgoraTutorialDlg::OnEIDUserJoined)
 END_MESSAGE_MAP()
 
 BOOL CAgoraTutorialDlg::OnInitDialog()
@@ -177,9 +177,9 @@ void CAgoraTutorialDlg::OnBnClickedBtndisvid()
 	m_lpAgoraObject->MuteLocalVideo(bStatValue);
 }
 
-LRESULT CAgoraTutorialDlg::OnFirstRemoteVideoDecoded(WPARAM wParam, LPARAM lParam)
+LRESULT CAgoraTutorialDlg::OnEIDUserJoined(WPARAM wParam, LPARAM lParam)
 {
-	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = (LPAGE_FIRST_REMOTE_VIDEO_DECODED)wParam;
+	LPAGE_USER_JOINED lpData = (LPAGE_USER_JOINED)wParam;
 
 	VideoCanvas vc;
 

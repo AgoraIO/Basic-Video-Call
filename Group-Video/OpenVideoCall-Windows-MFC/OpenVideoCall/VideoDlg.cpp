@@ -56,7 +56,6 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 	ON_MESSAGE(WM_MSGID(EID_REJOINCHANNEL_SUCCESS), &CVideoDlg::OnEIDReJoinChannelSuccess)
 	ON_MESSAGE(WM_MSGID(EID_FIRST_LOCAL_VIDEO_FRAME), &CVideoDlg::OnEIDFirstLocalFrame)
 
-	ON_MESSAGE(WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), &CVideoDlg::OnEIDFirstRemoteFrameDecoded)
 	ON_MESSAGE(WM_MSGID(EID_USER_OFFLINE), &CVideoDlg::OnEIDUserOffline)
 	
 	ON_MESSAGE(WM_MSGID(EID_REMOTE_VIDEO_STAT), &CVideoDlg::OnRemoteVideoStat)
@@ -724,9 +723,9 @@ LRESULT CVideoDlg::OnEIDFirstLocalFrame(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-LRESULT CVideoDlg::OnEIDFirstRemoteFrameDecoded(WPARAM wParam, LPARAM lParam)
+LRESULT CVideoDlg::OnEIDUserJoined(WPARAM wParam, LPARAM lParam)
 {
-	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = (LPAGE_FIRST_REMOTE_VIDEO_DECODED)wParam;
+    LPAGE_USER_JOINED lpData = (LPAGE_USER_JOINED)wParam;
 	BOOL bFound = FALSE;
 
 	POSITION pos = m_listWndInfo.GetHeadPosition();
@@ -742,26 +741,15 @@ LRESULT CVideoDlg::OnEIDFirstRemoteFrameDecoded(WPARAM wParam, LPARAM lParam)
 		AGVIDEO_WNDINFO agvWndInfo;
 		memset(&agvWndInfo, 0, sizeof(AGVIDEO_WNDINFO));
 		agvWndInfo.nUID = lpData->uid;
-		agvWndInfo.nWidth = lpData->width;
-		agvWndInfo.nHeight = lpData->height;
+		agvWndInfo.nWidth = 0;
+		agvWndInfo.nHeight = 0;
 
 		m_listWndInfo.AddTail(agvWndInfo);
 	}
 
 	RebindVideoWnd();
-
-	delete lpData;
-
-	return 0;
-}
-
-LRESULT CVideoDlg::OnEIDUserJoined(WPARAM wParam, LPARAM lParam)
-{
-    CString str;
-    LPAGE_USER_JOINED lpData = (LPAGE_USER_JOINED)wParam;
-
-    str.Format(_T("%d joined the channel"), lpData->uid);
-    MessageBox(str);
+   
+   
 	return 0;
 }
 

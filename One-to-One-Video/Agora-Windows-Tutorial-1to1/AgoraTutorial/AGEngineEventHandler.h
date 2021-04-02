@@ -28,7 +28,6 @@ public:
 
 	virtual void onLastmileQuality(int quality);
 	virtual void onFirstLocalVideoFrame(int width, int height, int elapsed);
-	virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed);
 	virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed);
 	virtual void onUserJoined(uid_t uid, int elapsed);
 	virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason);
