@@ -38,6 +38,10 @@ To build and run the sample application, get an App ID:
   <string name="agora_access_token"><#YOUR TOKEN#></string>
   ```
 
+> To ensure communication security, Agora uses tokens (dynamic keys) to authenticate users joining a channel.
+>
+> Temporary tokens are for demonstration and testing purposes only and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. See [Generate a Token](https://docs.agora.io/en/Interactive Broadcast/token_server)for details.
+
 ### Integrate the Agora Video SDK
 
 The SDK must be integrated into the sample project before it can opened and built. There are two methods for integrating the Agora Video SDK into the sample project. The first method uses JCenter to automatically integrate the SDK files. The second method requires you to manually copy the SDK files to the project.
@@ -68,7 +72,7 @@ Copy from SDK|Copy to Project Folder
 **x86** folder|**/app/src/main/jniLibs** folder
 **armeabi-v7a** folder|**/app/src/main/jniLibs** folder
 
-    
+​    
 
 ### Run the Application
 

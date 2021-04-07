@@ -45,13 +45,17 @@ iOS 系统版本升级至 14.0 版本后，用户首次使用集成了声网 iOS
     NSString *const token = @"<#Temp Token#>";
     ```
 
+> 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
+>
+> 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](https://docs.agora.io/cn/Interactive Broadcast/token_server)。
+
 ### 集成 Agora 视频 SDK
 
 1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到本项目的 Agora iOS Tutorial Objective-C 文件夹下。
 
   - AgoraRtcEngineKit.framework
   - AgoraRtcCryptoLoader.framework
-  
+
 2. 最后使用 XCode 打开 Agora iOS Tutorial Objective-C.xcodeproj，连接 iPhone／iPad 测试设备，设置有效的开发者签名后即可运行。
 
 ## 联系我们

@@ -37,6 +37,10 @@ Agora 视频 SDK 支持 iOS / Android / Windows / macOS 等多个平台，你可
 
 * #define APP_ID _T("Your App ID")
 
+> 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
+>
+> 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](https://docs.agora.io/cn/Interactive Broadcast/token_server)。
+
 然后在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**，并解压SDK包，将 **libs** 文件夹复制到项目文件夹（旧文件夹可能会被覆盖）。最后使用 QT5.6 打开 OpenVideoCall.pro，编译整个解决方案即可运行
 
 * 如果不在代码里填写appid，也可以在运行目录下放置一个AgoraConfigOpenVideoCall.ini文件，文件内容：

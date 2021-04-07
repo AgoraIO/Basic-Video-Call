@@ -26,6 +26,9 @@ This section shows you how to prepare, and run the sample application.
 3. 复制后台的 **App ID** 并备注，稍后启动应用时会用到它
 4. 在项目页面生成临时 **Access Token** (24小时内有效)并备注，注意生成的Token只能适用于对应的频道名。
 
+> 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
+>
+> 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](https://docs.agora.io/cn/Interactive Broadcast/token_server)。
 
 ### 集成 Agora 视频 SDK
 

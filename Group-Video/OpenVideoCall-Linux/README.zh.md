@@ -26,6 +26,10 @@ Agora视频SDK支持 iOS / Android / Windows / macOS/ Linux 等多个平台，�
 --appId "your app ID"
 ```
 
+> 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
+>
+> 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](https://docs.agora.io/cn/Interactive Broadcast/token_server)。
+
 然后在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹下的 
 
 - libagora_rtc_sdk.so
@@ -57,7 +61,7 @@ command:
 
 - exit
   退出程序
-  
+
 ## 系统运行环境
 * OS:
   - Ubuntu 12.04 x64 或更高版本
