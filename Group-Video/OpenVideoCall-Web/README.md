@@ -32,6 +32,10 @@ To build and run the sample application, get an App ID:
     export const Token = "<#YOUR TEMP TOKEN HERE#>";
     ```
 
+> To ensure communication security, Agora uses tokens (dynamic keys) to authenticate users joining a channel.
+>
+> Temporary tokens are for demonstration and testing purposes only and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. See [Generate a Token](https://docs.agora.io/en/Interactive Broadcast/token_server)for details.
+
 ### Install dependencies and integrate the Agora Video SDK
 
 
