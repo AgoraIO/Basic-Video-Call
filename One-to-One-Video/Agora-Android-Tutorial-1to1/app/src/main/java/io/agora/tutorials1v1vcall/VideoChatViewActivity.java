@@ -34,8 +34,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     // logs to external sdcard.
     private static final String[] REQUESTED_PERMISSIONS = {
             Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.CAMERA
     };
 
     private RtcEngine mRtcEngine;
@@ -214,7 +213,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
                     grantResults[1] != PackageManager.PERMISSION_GRANTED ||
                     grantResults[2] != PackageManager.PERMISSION_GRANTED) {
                 showLongToast("Need permissions " + Manifest.permission.RECORD_AUDIO +
-                        "/" + Manifest.permission.CAMERA + "/" + Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                        "/" + Manifest.permission.CAMERA);
                 finish();
                 return;
             }
