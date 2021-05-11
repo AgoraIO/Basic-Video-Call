@@ -20,8 +20,6 @@
 		8B6FA1392614730900A4E4C3 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA13A2614730900A4E4C3 /* AgoraCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */; };
 		8B6FA13B2614730900A4E4C3 /* AgoraCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8B6FA13E2614730900A4E4C3 /* AgoraJNDExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1302614730900A4E4C3 /* AgoraJNDExtension.framework */; };
-		8B6FA13F2614730900A4E4C3 /* AgoraJNDExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1302614730900A4E4C3 /* AgoraJNDExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA1402614730900A4E4C3 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */; };
 		8B6FA1412614730900A4E4C3 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6FA1422614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1322614730900A4E4C3 /* AgoraAIDenoiseExtension.framework */; };
@@ -54,7 +52,6 @@
 				8B6FA1392614730900A4E4C3 /* Agorafdkaac.framework in Embed Frameworks */,
 				8B6FA1412614730900A4E4C3 /* AgoraRtcKit.framework in Embed Frameworks */,
 				8B6FA13B2614730900A4E4C3 /* AgoraCore.framework in Embed Frameworks */,
-				8B6FA13F2614730900A4E4C3 /* AgoraJNDExtension.framework in Embed Frameworks */,
 				8B6FA1352614730900A4E4C3 /* Agoraffmpeg.framework in Embed Frameworks */,
 				8B6FA1452614730900A4E4C3 /* AgoraSoundTouch.framework in Embed Frameworks */,
 				8B6FA1432614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Embed Frameworks */,
@@ -98,7 +95,6 @@
 				8B6FA1382614730900A4E4C3 /* Agorafdkaac.framework in Frameworks */,
 				8B6FA1402614730900A4E4C3 /* AgoraRtcKit.framework in Frameworks */,
 				8B6FA13A2614730900A4E4C3 /* AgoraCore.framework in Frameworks */,
-				8B6FA13E2614730900A4E4C3 /* AgoraJNDExtension.framework in Frameworks */,
 				8B6FA1342614730900A4E4C3 /* Agoraffmpeg.framework in Frameworks */,
 				8B6FA1442614730900A4E4C3 /* AgoraSoundTouch.framework in Frameworks */,
 				8B6FA1422614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Frameworks */,
