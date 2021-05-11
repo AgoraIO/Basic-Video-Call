@@ -80,7 +80,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private boolean checkSelfPermissions() {
         return checkSelfPermission(Manifest.permission.RECORD_AUDIO, ConstantApp.PERMISSION_REQ_ID_RECORD_AUDIO) &&
-                checkSelfPermission(Manifest.permission.CAMERA, ConstantApp.PERMISSION_REQ_ID_CAMERA)
+                checkSelfPermission(Manifest.permission.CAMERA, ConstantApp.PERMISSION_REQ_ID_CAMERA);
     }
 
     @Override
