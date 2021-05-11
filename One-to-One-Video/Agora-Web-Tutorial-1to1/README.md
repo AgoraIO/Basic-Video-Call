@@ -26,6 +26,9 @@ To build and run the sample application, get an App ID:
 3. Save the **App ID** from the Dashboard for later use.
 4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
 
+> To ensure communication security, Agora uses tokens (dynamic keys) to authenticate users joining a channel.
+>
+> Temporary tokens are for demonstration and testing purposes only and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. See [Generate a Token](https://docs.agora.io/en/Interactive Broadcast/token_server)for details.
 
 ### Integrate Agora Video SDK
 

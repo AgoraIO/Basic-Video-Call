@@ -28,8 +28,13 @@ First, create a developer account at [Agora.io](https://dashboard.agora.io/signi
 --appId "Your app ID"
 ```
 
+> To ensure communication security, Agora uses tokens (dynamic keys) to authenticate users joining a channel.
+>
+> Temporary tokens are for demonstration and testing purposes only and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. See [Generate a Token](https://docs.agora.io/en/Interactive Broadcast/token_server)for details.
+
 Next, download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/).
 Unzip the downloaded SDK package and copy
+
 - libagora_rtc_sdk.so
 
 to the "OpenVideoCall/libs" folder in project（the old one may be over written）.

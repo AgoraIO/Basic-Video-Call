@@ -37,6 +37,10 @@
     NSString *const token = @"<#Temp Token#>";
     ```
 
+> 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
+>
+> 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](https://docs.agora.io/cn/Interactive Broadcast/token_server)。
+
 ### 集成 Agora 视频 SDK
 
 1. 在 [Agora.io SDK](https://www.agora.io/cn/blog/download/) 下载 **视频通话 + 直播 SDK**，解压后将其中**libs**文件夹中的下列文件拷贝到本项目的 Agora Mac Tutorial Objective-C 文件夹下。
@@ -44,7 +48,7 @@
   - AgoraRtcEngineKit.framework
   - AgoraRtcCryptoLoader.framework
   - libcrypto.a
-  
+
 2. 打开 Xcode 后，运行本项目。
 
 ## 联系我们

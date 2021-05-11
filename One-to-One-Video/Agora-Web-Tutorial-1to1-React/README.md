@@ -17,9 +17,16 @@ This section shows you how to prepare, and run the sample application.
 
 To build and run the sample application, get an App ID:
 1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
+
 2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
+
 3. Save the **App ID** from the Dashboard for later use.
+
 4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
+
+   > To ensure communication security, Agora uses tokens (dynamic keys) to authenticate users joining a channel.
+   >
+   > Temporary tokens are for demonstration and testing purposes only and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. See [Generate a Token](https://docs.agora.io/en/Interactive Broadcast/token_server)for details.
 
 
 ### Install dependencies and integrate the Agora Video SDK

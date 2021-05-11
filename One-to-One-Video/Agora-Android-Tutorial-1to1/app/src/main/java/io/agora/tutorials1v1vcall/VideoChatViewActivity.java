@@ -34,8 +34,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     // logs to external sdcard.
     private static final String[] REQUESTED_PERMISSIONS = {
             Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.CAMERA
     };
 
     private RtcEngine mRtcEngine;
@@ -79,24 +78,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
             });
         }
 
-        /**
-         * Occurs when the first remote video frame is received and decoded.
-         * This callback is triggered in either of the following scenarios:
-         *
-         *     The remote user joins the channel and sends the video stream.
-         *     The remote user stops sending the video stream and re-sends it after 15 seconds. Possible reasons include:
-         *         The remote user leaves channel.
-         *         The remote user drops offline.
-         *         The remote user calls the muteLocalVideoStream method.
-         *         The remote user calls the disableVideo method.
-         *
-         * @param uid User ID of the remote user sending the video streams.
-         * @param width Width (pixels) of the video stream.
-         * @param height Height (pixels) of the video stream.
-         * @param elapsed Time elapsed (ms) from the local user calling the joinChannel method until this callback is triggered.
-         */
         @Override
-        public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
+        public void onUserJoined(final int uid, int elapsed) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -230,7 +213,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
                     grantResults[1] != PackageManager.PERMISSION_GRANTED ||
                     grantResults[2] != PackageManager.PERMISSION_GRANTED) {
                 showLongToast("Need permissions " + Manifest.permission.RECORD_AUDIO +
-                        "/" + Manifest.permission.CAMERA + "/" + Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                        "/" + Manifest.permission.CAMERA);
                 finish();
                 return;
             }

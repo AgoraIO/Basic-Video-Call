@@ -25,22 +25,18 @@ class VideoChatViewActivity : AppCompatActivity() {
     private var mRtcEngine: RtcEngine? = null
     private val mRtcEventHandler = object : IRtcEngineEventHandler() {
         /**
-         * Occurs when the first remote video frame is received and decoded.
+         * Occurs when a remote user (Communication)/ host (Live Broadcast) joins the channel.
          * This callback is triggered in either of the following scenarios:
          *
-         *     The remote user joins the channel and sends the video stream.
-         *     The remote user stops sending the video stream and re-sends it after 15 seconds. Possible reasons include:
-         *         The remote user leaves channel.
-         *         The remote user drops offline.
-         *         The remote user calls the muteLocalVideoStream method.
-         *         The remote user calls the disableVideo method.
+         * A remote user/host joins the channel by calling the joinChannel method.
+         * A remote user switches the user role to the host by calling the setClientRole method after joining the channel.
+         * A remote user/host rejoins the channel after a network interruption.
+         * The host injects an online media stream into the channel by calling the addInjectStreamUrl method.
          *
          * @param uid User ID of the remote user sending the video streams.
-         * @param width Width (pixels) of the video stream.
-         * @param height Height (pixels) of the video stream.
          * @param elapsed Time elapsed (ms) from the local user calling the joinChannel method until this callback is triggered.
          */
-        override fun onFirstRemoteVideoDecoded(uid: Int, width: Int, height: Int, elapsed: Int) {
+        override fun onUserJoined(uid: Int, elapsed: Int) {
             runOnUiThread { setupRemoteVideo(uid) }
         }
 
