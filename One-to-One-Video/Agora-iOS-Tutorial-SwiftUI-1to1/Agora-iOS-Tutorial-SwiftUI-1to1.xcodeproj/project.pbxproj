@@ -356,10 +356,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Agora-iOS-Tutorial-SwiftUI-1to1/Preview Content\"";
-				DEVELOPMENT_TEAM = 5459N9W32M;
+				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,9 +371,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.medialab.Agora-iOS-Tutorial-SwiftUI-1to1";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial-SwiftUI-1to1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = medialab_develop;
+				PROVISIONING_PROFILE_SPECIFIER = App;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -383,10 +383,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Agora-iOS-Tutorial-SwiftUI-1to1/Preview Content\"";
-				DEVELOPMENT_TEAM = 5459N9W32M;
+				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,9 +398,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.medialab.Agora-iOS-Tutorial-SwiftUI-1to1";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial-SwiftUI-1to1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = medialab_develop;
+				PROVISIONING_PROFILE_SPECIFIER = App;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

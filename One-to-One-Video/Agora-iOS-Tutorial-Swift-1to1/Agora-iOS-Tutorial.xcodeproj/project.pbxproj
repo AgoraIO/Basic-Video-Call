@@ -14,12 +14,22 @@
 		1ABDEE491D383BE4007DE451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE481D383BE4007DE451 /* Assets.xcassets */; };
 		1ABDEE4C1D383BE4007DE451 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDEE4A1D383BE4007DE451 /* LaunchScreen.storyboard */; };
 		38EF7E962368277700A6A483 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 38EF7E952368277700A6A483 /* README.md */; };
-		42113FDC844DFC4C0F1E3FF2 /* Pods_Agora_iOS_Tutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFE8364099B031A52B33C5 /* Pods_Agora_iOS_Tutorial.framework */; };
+		8B6FA1342614730900A4E4C3 /* Agoraffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */; };
+		8B6FA1352614730900A4E4C3 /* Agoraffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B6FA1382614730900A4E4C3 /* Agorafdkaac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */; };
+		8B6FA1392614730900A4E4C3 /* Agorafdkaac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B6FA13A2614730900A4E4C3 /* AgoraCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */; };
+		8B6FA13B2614730900A4E4C3 /* AgoraCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B6FA1402614730900A4E4C3 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */; };
+		8B6FA1412614730900A4E4C3 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B6FA1422614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1322614730900A4E4C3 /* AgoraAIDenoiseExtension.framework */; };
+		8B6FA1432614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1322614730900A4E4C3 /* AgoraAIDenoiseExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B6FA1442614730900A4E4C3 /* AgoraSoundTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1332614730900A4E4C3 /* AgoraSoundTouch.framework */; };
+		8B6FA1452614730900A4E4C3 /* AgoraSoundTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6FA1332614730900A4E4C3 /* AgoraSoundTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A72BB7DE22F2B67E008F563D /* Log.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72BB7DC22F2B67E008F563D /* Log.storyboard */; };
 		A72BB7DF22F2B67E008F563D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BB7DD22F2B67E008F563D /* LogViewController.swift */; };
 		A77E577724ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E577624ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift */; };
 		A77E578024ADE01400DD7670 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72BB7DD22F2B67E008F563D /* LogViewController.swift */; };
-		ED82F2621274B7B2238DF36B /* Pods_Agora_iOS_Tutorial_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD46661B882CA905F5262982 /* Pods_Agora_iOS_Tutorial_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +42,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8BF7442C25A58040007A0793 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8B6FA1392614730900A4E4C3 /* Agorafdkaac.framework in Embed Frameworks */,
+				8B6FA1412614730900A4E4C3 /* AgoraRtcKit.framework in Embed Frameworks */,
+				8B6FA13B2614730900A4E4C3 /* AgoraCore.framework in Embed Frameworks */,
+				8B6FA1352614730900A4E4C3 /* Agoraffmpeg.framework in Embed Frameworks */,
+				8B6FA1452614730900A4E4C3 /* AgoraSoundTouch.framework in Embed Frameworks */,
+				8B6FA1432614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		196E8E01B1F4AAA1190EF154 /* Pods-Agora-iOS-Tutorial-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agora-iOS-Tutorial-Tests.release.xcconfig"; path = "Target Support Files/Pods-Agora-iOS-Tutorial-Tests/Pods-Agora-iOS-Tutorial-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1A2655D41D3F35E700BDBA68 /* AppID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppID.swift; sourceTree = "<group>"; };
 		1ABDEE3E1D383BE4007DE451 /* Agora-iOS-Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agora-iOS-Tutorial.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABDEE411D383BE4007DE451 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,9 +70,7 @@
 		1ABDEE481D383BE4007DE451 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ABDEE4B1D383BE4007DE451 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ABDEE4D1D383BE4007DE451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F234B16F3A3DBBF8F2A3961 /* Pods-Agora-iOS-Tutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agora-iOS-Tutorial.debug.xcconfig"; path = "Target Support Files/Pods-Agora-iOS-Tutorial/Pods-Agora-iOS-Tutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		38EF7E952368277700A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		56DFE8364099B031A52B33C5 /* Pods_Agora_iOS_Tutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agora_iOS_Tutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agoraffmpeg.framework; path = ../../libs/Agoraffmpeg.framework; sourceTree = "<group>"; };
 		8B6FA12C2614730900A4E4C3 /* AgoraDav1dExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraDav1dExtension.framework; path = ../../libs/AgoraDav1dExtension.framework; sourceTree = "<group>"; };
 		8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agorafdkaac.framework; path = ../../libs/Agorafdkaac.framework; sourceTree = "<group>"; };
@@ -59,9 +85,6 @@
 		A77E577424ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agora-iOS-Tutorial-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77E577624ADDBE300DD7670 /* Agora_iOS_Tutorial_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agora_iOS_Tutorial_Tests.swift; sourceTree = "<group>"; };
 		A77E577824ADDBE300DD7670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD46661B882CA905F5262982 /* Pods_Agora_iOS_Tutorial_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agora_iOS_Tutorial_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5BE92A98949B5B96B5E3BE8 /* Pods-Agora-iOS-Tutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agora-iOS-Tutorial.release.xcconfig"; path = "Target Support Files/Pods-Agora-iOS-Tutorial/Pods-Agora-iOS-Tutorial.release.xcconfig"; sourceTree = "<group>"; };
-		F85E409D60F3972CF48FD8DC /* Pods-Agora-iOS-Tutorial-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agora-iOS-Tutorial-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Agora-iOS-Tutorial-Tests/Pods-Agora-iOS-Tutorial-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +92,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42113FDC844DFC4C0F1E3FF2 /* Pods_Agora_iOS_Tutorial.framework in Frameworks */,
+				8B6FA1382614730900A4E4C3 /* Agorafdkaac.framework in Frameworks */,
+				8B6FA1402614730900A4E4C3 /* AgoraRtcKit.framework in Frameworks */,
+				8B6FA13A2614730900A4E4C3 /* AgoraCore.framework in Frameworks */,
+				8B6FA1342614730900A4E4C3 /* Agoraffmpeg.framework in Frameworks */,
+				8B6FA1442614730900A4E4C3 /* AgoraSoundTouch.framework in Frameworks */,
+				8B6FA1422614730900A4E4C3 /* AgoraAIDenoiseExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,24 +105,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED82F2621274B7B2238DF36B /* Pods_Agora_iOS_Tutorial_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		102CF69CDE9657558B419253 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2F234B16F3A3DBBF8F2A3961 /* Pods-Agora-iOS-Tutorial.debug.xcconfig */,
-				E5BE92A98949B5B96B5E3BE8 /* Pods-Agora-iOS-Tutorial.release.xcconfig */,
-				F85E409D60F3972CF48FD8DC /* Pods-Agora-iOS-Tutorial-Tests.debug.xcconfig */,
-				196E8E01B1F4AAA1190EF154 /* Pods-Agora-iOS-Tutorial-Tests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		1ABDEE351D383BE4007DE451 = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +119,6 @@
 				A77E577524ADDBE300DD7670 /* Agora-iOS-Tutorial-Tests */,
 				1ABDEE3F1D383BE4007DE451 /* Products */,
 				A7581191240790EA007EDAD3 /* Frameworks */,
-				102CF69CDE9657558B419253 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,8 +167,6 @@
 				8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */,
 				8B6FA1332614730900A4E4C3 /* AgoraSoundTouch.framework */,
 				8B6FA12F2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework */,
-				56DFE8364099B031A52B33C5 /* Pods_Agora_iOS_Tutorial.framework */,
-				AD46661B882CA905F5262982 /* Pods_Agora_iOS_Tutorial_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,11 +187,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1ABDEE661D383BE4007DE451 /* Build configuration list for PBXNativeTarget "Agora-iOS-Tutorial" */;
 			buildPhases = (
-				B877609C2FC1495E859B38B8 /* [CP] Check Pods Manifest.lock */,
 				1ABDEE3A1D383BE4007DE451 /* Sources */,
 				1ABDEE3B1D383BE4007DE451 /* Frameworks */,
 				1ABDEE3C1D383BE4007DE451 /* Resources */,
-				424ACB996C028C133B330175 /* [CP] Embed Pods Frameworks */,
+				8BF7442C25A58040007A0793 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,7 +205,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A77E577D24ADDBE300DD7670 /* Build configuration list for PBXNativeTarget "Agora-iOS-Tutorial-Tests" */;
 			buildPhases = (
-				5F4D89D931E7A5338E95F628 /* [CP] Check Pods Manifest.lock */,
 				A77E577024ADDBE300DD7670 /* Sources */,
 				A77E577124ADDBE300DD7670 /* Frameworks */,
 				A77E577224ADDBE300DD7670 /* Resources */,
@@ -220,7 +231,7 @@
 				TargetAttributes = {
 					1ABDEE3D1D383BE4007DE451 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = JDPG69R49Z;
+						DevelopmentTeam = GM72UGLGZW;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -277,85 +288,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		424ACB996C028C133B330175 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agora-iOS-Tutorial/Pods-Agora-iOS-Tutorial-frameworks.sh",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCore.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraDav1dExtension.framework",
-				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraJNDExtension.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAIDenoiseExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1dExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraJNDExtension.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agora-iOS-Tutorial/Pods-Agora-iOS-Tutorial-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F4D89D931E7A5338E95F628 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Agora-iOS-Tutorial-Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B877609C2FC1495E859B38B8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Agora-iOS-Tutorial-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1ABDEE3A1D383BE4007DE451 /* Sources */ = {
@@ -518,12 +450,11 @@
 		};
 		1ABDEE671D383BE4007DE451 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F234B16F3A3DBBF8F2A3961 /* Pods-Agora-iOS-Tutorial.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Haifeng Hong (MJP2F92AG6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haifeng Hong (MJP2F92AG6)";
-				DEVELOPMENT_TEAM = JDPG69R49Z;
+				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Qianze Zhang (3C9KJFP729)";
+				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -540,8 +471,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraLab2020;
-				SWIFT_INCLUDE_PATHS = "";
+				PROVISIONING_PROFILE_SPECIFIER = App;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -551,12 +481,11 @@
 		};
 		1ABDEE681D383BE4007DE451 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5BE92A98949B5B96B5E3BE8 /* Pods-Agora-iOS-Tutorial.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Haifeng Hong (MJP2F92AG6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haifeng Hong (MJP2F92AG6)";
-				DEVELOPMENT_TEAM = JDPG69R49Z;
+				CODE_SIGN_IDENTITY = "Apple Development: Qianze Zhang (3C9KJFP729)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Qianze Zhang (3C9KJFP729)";
+				DEVELOPMENT_TEAM = GM72UGLGZW;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -573,8 +502,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.agora.Agora-iOS-Tutorial";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AgoraLab2020;
-				SWIFT_INCLUDE_PATHS = "";
+				PROVISIONING_PROFILE_SPECIFIER = App;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -584,7 +512,6 @@
 		};
 		A77E577B24ADDBE300DD7670 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F85E409D60F3972CF48FD8DC /* Pods-Agora-iOS-Tutorial-Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -620,7 +547,6 @@
 		};
 		A77E577C24ADDBE300DD7670 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 196E8E01B1F4AAA1190EF154 /* Pods-Agora-iOS-Tutorial-Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
