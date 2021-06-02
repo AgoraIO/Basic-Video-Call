@@ -169,8 +169,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         // This is just an example set of permissions. Other permissions
         // may be needed, and please refer to our online documents.
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
-                checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID) &&
-                checkSelfPermission(REQUESTED_PERMISSIONS[2], PERMISSION_REQ_ID)) {
+                checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
             initEngineAndJoinChannel();
         }
     }
