@@ -68,15 +68,6 @@
 		1ABDEE4B1D383BE4007DE451 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ABDEE4D1D383BE4007DE451 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38EF7E952368277700A6A483 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agoraffmpeg.framework; path = ../../libs/Agoraffmpeg.framework; sourceTree = "<group>"; };
-		8B6FA12C2614730900A4E4C3 /* AgoraDav1dExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraDav1dExtension.framework; path = ../../libs/AgoraDav1dExtension.framework; sourceTree = "<group>"; };
-		8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agorafdkaac.framework; path = ../../libs/Agorafdkaac.framework; sourceTree = "<group>"; };
-		8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraCore.framework; path = ../../libs/AgoraCore.framework; sourceTree = "<group>"; };
-		8B6FA12F2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraSuperResolutionExtension.framework; path = ../../libs/AgoraSuperResolutionExtension.framework; sourceTree = "<group>"; };
-		8B6FA1302614730900A4E4C3 /* AgoraJNDExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraJNDExtension.framework; path = ../../libs/AgoraJNDExtension.framework; sourceTree = "<group>"; };
-		8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcKit.framework; path = ../../libs/AgoraRtcKit.framework; sourceTree = "<group>"; };
-		8B6FA1322614730900A4E4C3 /* AgoraAIDenoiseExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAIDenoiseExtension.framework; path = ../../libs/AgoraAIDenoiseExtension.framework; sourceTree = "<group>"; };
-		8B6FA1332614730900A4E4C3 /* AgoraSoundTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraSoundTouch.framework; path = ../../libs/AgoraSoundTouch.framework; sourceTree = "<group>"; };
 		8BB9138026A1B33B00EBA0EA /* Agoraffmpeg.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Agoraffmpeg.xcframework; path = ../../libs/Agoraffmpeg.xcframework; sourceTree = "<group>"; };
 		8BB9138126A1B33B00EBA0EA /* AgoraRtcKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraRtcKit.xcframework; path = ../../libs/AgoraRtcKit.xcframework; sourceTree = "<group>"; };
 		8BB9138226A1B33B00EBA0EA /* AgoraSoundTouch.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraSoundTouch.xcframework; path = ../../libs/AgoraSoundTouch.xcframework; sourceTree = "<group>"; };
@@ -164,15 +155,6 @@
 				8BB9138026A1B33B00EBA0EA /* Agoraffmpeg.xcframework */,
 				8BB9138126A1B33B00EBA0EA /* AgoraRtcKit.xcframework */,
 				8BB9138226A1B33B00EBA0EA /* AgoraSoundTouch.xcframework */,
-				8B6FA1322614730900A4E4C3 /* AgoraAIDenoiseExtension.framework */,
-				8B6FA12E2614730900A4E4C3 /* AgoraCore.framework */,
-				8B6FA12C2614730900A4E4C3 /* AgoraDav1dExtension.framework */,
-				8B6FA12D2614730900A4E4C3 /* Agorafdkaac.framework */,
-				8B6FA12B2614730900A4E4C3 /* Agoraffmpeg.framework */,
-				8B6FA1302614730900A4E4C3 /* AgoraJNDExtension.framework */,
-				8B6FA1312614730900A4E4C3 /* AgoraRtcKit.framework */,
-				8B6FA1332614730900A4E4C3 /* AgoraSoundTouch.framework */,
-				8B6FA12F2614730900A4E4C3 /* AgoraSuperResolutionExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
