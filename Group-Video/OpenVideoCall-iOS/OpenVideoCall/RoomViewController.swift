@@ -285,20 +285,6 @@ extension RoomViewController: AgoraRtcEngineDelegate {
         alert(string: "Occur error: \(errorCode.rawValue)")
     }
     
-    /// callback when a remote user is leaving the channel, note audience in live broadcast mode will NOT trigger this event
-    /// @param uid uid of remote joined user
-    /// @param reason reason why this user left, note this event may be triggered when the remote user
-    /// become an audience in live broadcasting profile
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
-        guard videoSessions.count <= maxVideoSession else {
-            return
-        }
-        
-        let userSession = videoSession(of: uid)
-        userSession.updateInfo(resolution: size)
-        agoraKit.setupRemoteVideo(userSession.canvas)
-    }
-    
     // first local video frame
     func rtcEngine(_ engine: AgoraRtcEngineKit, firstLocalVideoFrameWith size: CGSize, elapsed: Int) {
         if let selfSession = videoSessions.first {
