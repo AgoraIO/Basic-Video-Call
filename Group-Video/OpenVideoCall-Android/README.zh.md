@@ -50,7 +50,7 @@
   - 通过JCenter集成：
     - 在项目对应的模块的 `app/build.gradle` 文件的依赖属性中加入通过 JCenter 自动集成 Agora 视频 SDK 的地址：
       ```
-      implementation 'io.agora.rtc:full-sdk:3.0.0'
+      implementation 'io.agora.rtc:full-sdk:3.+'
       ```
   - 手动集成：
     - 在 [Agora.io SDK](https://www.agora.io/cn/download/) 下载 **视频通话 + 直播 SDK**并解压，按以下对应关系将 **libs** 目录的内容复制到项目内。
