@@ -192,9 +192,7 @@ class VideoChatViewController: NSViewController {
         if (screenShare) {
             sender.image = NSImage(named:"screenShareButtonSelected")
             // Start the screen capture with default parameters
-            AgoraKit.startScreenCapture(byDisplayId: UInt(CGMainDisplayID()),
-                                        rectangle: CGRect.zero,
-                                        parameters: AgoraScreenCaptureParameters())
+            AgoraKit.startScreenCapture(byWindowId: UInt(CGMainDisplayID()), rectangle: CGRect.zero, parameters: AgoraScreenCaptureParameters())
         } else {
             sender.image = NSImage(named:"screenShareButton")
             // Stop the screen capture
