@@ -778,7 +778,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                     rtcEngine().setRemoteUserPriority(uid, Constants.USER_PRIORITY_HIGH);
                     log.debug("setRemoteUserPriority USER_PRIORITY_HIGH " + mUidsList.size() + " " + (uid & 0xFFFFFFFFL));
                 } else {
-                    rtcEngine().setRemoteUserPriority(uid, Constants.USER_PRIORITY_NORANL);
+                    rtcEngine().setRemoteUserPriority(uid, Constants.USER_PRIORITY_NORMAL);
                     log.debug("setRemoteUserPriority USER_PRIORITY_NORANL " + mUidsList.size() + " " + (uid & 0xFFFFFFFFL));
                 }
             }
@@ -865,7 +865,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                     rtcEngine().setRemoteUserPriority(tempUid, Constants.USER_PRIORITY_HIGH);
                     log.debug("setRemoteUserPriority USER_PRIORITY_HIGH " + mUidsList.size() + " " + (tempUid & 0xFFFFFFFFL));
                 } else {
-                    rtcEngine().setRemoteUserPriority(tempUid, Constants.USER_PRIORITY_NORANL);
+                    rtcEngine().setRemoteUserPriority(tempUid, Constants.USER_PRIORITY_NORMAL);
                     log.debug("setRemoteUserPriority USER_PRIORITY_NORANL " + mUidsList.size() + " " + (tempUid & 0xFFFFFFFFL));
                 }
             }
