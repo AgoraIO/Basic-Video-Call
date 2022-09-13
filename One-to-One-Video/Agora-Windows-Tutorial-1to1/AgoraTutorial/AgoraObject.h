@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../sdk/include/IAgoraRtcEngine.h"
+#include "IAgoraRtcEngine.h"
 #include "AGEngineEventHandler.h"
 
 // #define ENABLE_CODEC	1

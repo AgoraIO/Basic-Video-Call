@@ -61,6 +61,7 @@ BEGIN_MESSAGE_MAP(CAgoraTutorialDlg, CDialog)
 	ON_BN_CLICKED(IDC_BTNMUTELOCAUD, &CAgoraTutorialDlg::OnBnClickedBtnmutelocaud)
 
 	ON_MESSAGE(WM_MSGID(EID_FIRST_REMOTE_VIDEO_DECODED), &CAgoraTutorialDlg::OnFirstRemoteVideoDecoded)
+	ON_MESSAGE(WM_MSGID(EID_USER_OFFLINE), &CAgoraTutorialDlg::OnUserOffline)
 END_MESSAGE_MAP()
 
 BOOL CAgoraTutorialDlg::OnInitDialog()
@@ -101,7 +102,7 @@ BOOL CAgoraTutorialDlg::OnInitDialog()
 
 	vc.uid = 0;
 	vc.view = m_wndLocal.GetSafeHwnd();
-	vc.renderMode = RENDER_MODE_FIT;
+	vc.renderMode = agora::media::base::RENDER_MODE_TYPE::RENDER_MODE_FIT;
 
 	m_lpAgoraObject->GetEngine()->setupLocalVideo(vc);
 
@@ -155,14 +156,17 @@ void CAgoraTutorialDlg::OnBnClickedBtnjoin()
 
 	if (m_strChannelName.IsEmpty())
 		MessageBox(_T("Channel name must not be empty"), _T("Notice"), MB_OK | MB_ICONERROR);
-	else
-		m_lpAgoraObject->JoinChannel(m_strChannelName,0,MEDIA_TOKEN);
+	else {
+		m_lpAgoraObject->JoinChannel(m_strChannelName, 0, MEDIA_TOKEN);
+	}
+		
 }
 
 
 void CAgoraTutorialDlg::OnBnClickedBtnleave()
 {
 	m_lpAgoraObject->LeaveChannel();
+	m_remoteUid = 0;
 }
 
 void CAgoraTutorialDlg::OnBnClickedBtnmutelocaud()
@@ -173,7 +177,7 @@ void CAgoraTutorialDlg::OnBnClickedBtnmutelocaud()
 
 void CAgoraTutorialDlg::OnBnClickedBtndisvid()
 {
-	BOOL bStatValue = !m_lpAgoraObject->IsVideoEnabled();
+	BOOL bStatValue = !m_lpAgoraObject->IsLocalVideoMuted();
 	m_lpAgoraObject->MuteLocalVideo(bStatValue);
 }
 
@@ -181,13 +185,40 @@ LRESULT CAgoraTutorialDlg::OnFirstRemoteVideoDecoded(WPARAM wParam, LPARAM lPara
 {
 	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = (LPAGE_FIRST_REMOTE_VIDEO_DECODED)wParam;
 
+	if (m_remoteUid != 0) {
+		return 0;
+	}
+
+	m_remoteUid = lpData->uid;
+
 	VideoCanvas vc;
 
-	vc.renderMode = RENDER_MODE_FIT;
+	vc.renderMode = agora::media::base::RENDER_MODE_TYPE::RENDER_MODE_FIT;
 	vc.uid = lpData->uid;
 	vc.view = m_wndRemote.GetSafeHwnd();
 
 	m_lpAgoraObject->GetEngine()->setupRemoteVideo(vc);
+
+	delete lpData;
+
+	return 0;
+}
+
+LRESULT CAgoraTutorialDlg::OnUserOffline(WPARAM wParam, LPARAM lParam)
+{
+	LPAGE_FIRST_REMOTE_VIDEO_DECODED lpData = (LPAGE_FIRST_REMOTE_VIDEO_DECODED)wParam;
+
+	if (m_remoteUid != lpData->uid) {
+		return 0;
+	}
+
+	VideoCanvas vc;
+
+	vc.uid = lpData->uid;
+	vc.view = NULL;
+
+	m_lpAgoraObject->GetEngine()->setupRemoteVideo(vc);
+	m_remoteUid = 0;
 
 	delete lpData;
 

@@ -37,7 +37,7 @@ To build and run the sample application, get an App ID:
 
 ### Integrate the Agora Video SDK
 
-1. Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/). Unzip the downloaded SDK package and copy the files under **libs\include**, to the project folder **Agora-Windows-Tutorial-1to1\sdk\include** （create if not exist）. Then copy the **dll** file and **lib** file under **libs\x86**, to **sdk\dll** and **sdk\lib** respectively.
+1. Download the **Agora Video SDK** from [Agora.io SDK](https://www.agora.io/en/blog/download/). Unzip the downloaded SDK package and copy the files under **sdk**, to the project folder **Agora-Windows-Tutorial-1to1\sdk** （create if not exist）. 
 2. Open AgoraTutorial.sln, build the solution and run.
 
 

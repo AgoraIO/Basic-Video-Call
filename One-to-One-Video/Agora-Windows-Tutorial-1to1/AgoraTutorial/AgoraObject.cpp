@@ -77,6 +77,9 @@ CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpAppId)
 
 	m_lpAgoraEngine->initialize(ctx);
 
+	m_lpAgoraEngine->enableVideo();
+	m_lpAgoraEngine->enableAudio();
+
 	return m_lpAgoraObject;
 }
 
@@ -133,10 +136,14 @@ BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 	char szToken[128];
 	::WideCharToMultiByte(CP_UTF8, 0, lpToken, -1, szToken, 128, NULL, NULL);
 
+	ChannelMediaOptions options;
+	options.channelProfile = agora::CHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
+	options.clientRoleType = CLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER;
+
 	if(0 == _tcslen(lpToken))
-		nRet = m_lpAgoraEngine->joinChannel(NULL, szChannelName, NULL, nUID); 
+		nRet = m_lpAgoraEngine->joinChannel(NULL, szChannelName, nUID, options);
 	else
-		nRet = m_lpAgoraEngine->joinChannel(szToken, szChannelName, NULL, nUID);
+		nRet = m_lpAgoraEngine->joinChannel(szToken, szChannelName,  nUID, options);
 #else
 	if(0 == _tcslen(lpToken))
 		nRet = m_lpAgoraEngine->joinChannel(NULL, lpChannelName, NULL, nUID);
@@ -146,6 +153,8 @@ BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 
 	if (nRet == 0)
 		m_strChannelName = lpChannelName;
+
+	m_lpAgoraEngine->startPreview();
 
 	return nRet == 0 ? TRUE : FALSE;
 }
@@ -205,9 +214,7 @@ BOOL CAgoraObject::MuteLocalAudio(BOOL bMuted)
 {
 	ASSERT(m_lpAgoraEngine != NULL);
 
-	RtcEngineParameters rep(*m_lpAgoraEngine);
-
-	int ret = rep.muteLocalAudioStream((bool)bMuted);
+	int ret =  m_lpAgoraEngine->muteLocalAudioStream((bool)bMuted);
 	if (ret == 0)
 		m_bLocalAudioMuted = bMuted;
 
@@ -231,9 +238,7 @@ BOOL CAgoraObject::MuteLocalVideo(BOOL bMuted)
 {
 	ASSERT(m_lpAgoraEngine != NULL);
 
-	RtcEngineParameters rep(*m_lpAgoraEngine);
-
-	int ret = rep.muteLocalVideoStream((bool)bMuted);
+	int ret =  m_lpAgoraEngine->muteLocalVideoStream((bool)bMuted);
 	if (ret == 0)
 		m_bLocalVideoMuted = bMuted;
 

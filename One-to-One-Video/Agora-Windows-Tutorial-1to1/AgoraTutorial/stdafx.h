@@ -26,14 +26,7 @@
 
 #include <afxcontrolbars.h>
 
-#include "../sdk/include/IAgoraRtcEngine.h"
-
-#pragma comment(lib, "../sdk/lib/agora_rtc_sdk.lib")
-
-
-
-
-
+#include "IAgoraRtcEngine.h"
 
 #ifdef _UNICODE
 #if defined _M_IX86

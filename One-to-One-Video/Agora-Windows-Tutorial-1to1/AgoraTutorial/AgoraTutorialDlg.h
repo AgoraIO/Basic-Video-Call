@@ -30,6 +30,7 @@ protected:
 
 	// ENGINE EVENT MESSAGE
 	afx_msg LRESULT OnFirstRemoteVideoDecoded(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnUserOffline(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 
 private:
@@ -39,4 +40,6 @@ private:
 
 	CStatic		m_wndRemote;
 	CStatic		m_wndLocal;
+	
+	int m_remoteUid = 0;
 };
