@@ -67,6 +67,8 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 
     ON_MESSAGE(WM_MSGID(EID_STREAM_MESSAGE), &CVideoDlg::OnStreamMessage)
 
+	ON_MESSAGE(WM_MSGID(EID_SCREEN_STATUS_CHANGE), &CVideoDlg::OnScreenStatusChanged)
+
 
 	ON_BN_CLICKED(IDC_BTNMIN_VIDEO, &CVideoDlg::OnBnClickedBtnmin)
 	ON_BN_CLICKED(IDC_BTNCLOSE_VIDEO, &CVideoDlg::OnBnClickedBtnclose)
@@ -341,6 +343,28 @@ LRESULT CVideoDlg::OnNcHitTest(CPoint point)
 	return lResult;
 }
 
+void CVideoDlg::switchLocalPreview(BOOL bScreen) {
+
+	if (bScreen) {
+		m_wndLocal.Invalidate();
+		CAgoraObject::GetAgoraObject()->LocalVideoPreview(nullptr, FALSE);
+		SendMessageCallback(m_wndLocal, WM_USER + 10000, 0, 0,
+			[](HWND wnd, UINT _, ULONG_PTR __, LRESULT ___)  -> void {
+				CAgoraObject::GetAgoraObject()->LocalScreenPreview(wnd, TRUE);
+			},
+			0);
+	}
+	else {
+		m_wndLocal.Invalidate();
+		CAgoraObject::GetAgoraObject()->LocalScreenPreview(nullptr, FALSE);
+		SendMessageCallback(m_wndLocal, WM_USER + 10001, 0, 0,
+			[](HWND wnd, UINT _, ULONG_PTR __, LRESULT ___)  -> void {
+				CAgoraObject::GetAgoraObject()->LocalVideoPreview(wnd, TRUE);
+			},
+			0);
+	}
+}
+
 void CVideoDlg::OnBnClickedBtnmin()
 {
 	ShowWindow(SW_MINIMIZE);
@@ -520,8 +544,10 @@ void CVideoDlg::OnBnClickedBtnScreenCapture()
 		m_btnScrCap.SwitchButtonStatus(CAGButton::AGBTN_NORMAL);
         CAgoraObject::GetAgoraObject()->EnableLocalRender(TRUE);
 	}
-	else
+	else {
 		CreateScreenShareMenu();
+	}
+		
 
 	Invalidate();
 }
@@ -855,6 +881,12 @@ LRESULT CVideoDlg::OnStreamMessage(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
+LRESULT CVideoDlg::OnScreenStatusChanged(WPARAM wParam, LPARAM lParam) {
+	BOOL isScreenOn = wParam > 0;
+	switchLocalPreview(isScreenOn);
+	return 0;
+}
+
 void CVideoDlg::DrawHead(CDC *pDC)
 {
 	CRect rcTitle;
@@ -1096,7 +1128,7 @@ void CVideoDlg::RebindVideoWnd()
 
 	VideoCanvas canvas;
 
-	canvas.renderMode = RENDER_MODE_FIT;
+	canvas.renderMode = agora::media::base::RENDER_MODE_TYPE::RENDER_MODE_FIT;
 
 	POSITION pos = m_listWndInfo.GetHeadPosition();
 	for (int nIndex = 0; nIndex < 4; nIndex++) {
@@ -1189,7 +1221,6 @@ LRESULT CVideoDlg::OnWindowShareStart(WPARAM wParam, LPARAM lParam)
 
 	CAgoraObject::GetAgoraObject()->EnableScreenCapture((HWND)wParam, 15, NULL, TRUE);
 	m_btnScrCap.SwitchButtonStatus(CAGButton::AGBTN_PUSH);
-
 	return 0;
 }
 

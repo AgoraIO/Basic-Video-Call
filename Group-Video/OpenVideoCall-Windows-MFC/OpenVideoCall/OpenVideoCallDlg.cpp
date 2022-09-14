@@ -319,12 +319,6 @@ LRESULT COpenVideoCallDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 	m_dlgVideo.ShowWindow(SW_SHOW);
 	m_dlgVideo.CenterWindow();
 
-	VideoCanvas vc;
-
-	vc.uid = 0;
-	vc.view = m_dlgVideo.GetLocalVideoWnd();
-	vc.renderMode = RENDER_MODE_TYPE::RENDER_MODE_FIT;
-
 	//cancel setVideoProfile bitrate since version 2.1.0
     m_nVideoSolution = m_dlgSetup.GetVideoSolution();
    // lpRtcEngine->setVideoProfile((VIDEO_PROFILE_TYPE)m_nVideoSolution, m_dlgSetup.IsWHSwap());
@@ -339,8 +333,8 @@ LRESULT COpenVideoCallDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
     lpRtcEngine->setVideoEncoderConfiguration(config);
 
 	m_dlgVideo.SetWindowText(strChannelName);
-	lpRtcEngine->setupLocalVideo(vc);
-	lpRtcEngine->startPreview();
+	lpAgoraObject->LocalVideoPreview(m_dlgVideo.GetLocalVideoWnd(), true);
+
     std::string token = lpAgoraObject->GetToken();
     lpAgoraObject->JoinChannel(strChannelName, 0, token.length() > 0 ? token.c_str() : NULL);
 	lpAgoraObject->SetMsgHandlerWnd(m_dlgVideo.GetSafeHwnd());

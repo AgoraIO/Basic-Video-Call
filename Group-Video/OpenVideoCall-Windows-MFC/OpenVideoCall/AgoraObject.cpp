@@ -134,6 +134,8 @@ CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpVendorKey)
 	if (lpVendorKey != NULL)
 		m_strVendorKey = lpVendorKey;
 
+	m_lpAgoraEngine->enableVideo();
+
 	return m_lpAgoraObject;
 }
 
@@ -234,7 +236,6 @@ BOOL CAgoraObject::SetLogFilePath(LPCTSTR lpLogPath)
 	CHAR szLogPathTrans[MAX_PATH];
 
 	int ret = 0;
-	RtcEngineParameters rep(*m_lpAgoraEngine);
 
 	if (::GetFileAttributes(lpLogPath) == INVALID_FILE_ATTRIBUTES) {
 		::GetModuleFileNameA(NULL, szLogPathA, MAX_PATH);
@@ -251,7 +252,7 @@ BOOL CAgoraObject::SetLogFilePath(LPCTSTR lpLogPath)
 
 	CAGResourceVisitor::TransWinPathA(szLogPathA, szLogPathTrans, MAX_PATH);
 
-	ret = rep.setLogFile(szLogPathTrans);
+	ret = m_lpAgoraEngine->setLogFile(szLogPathTrans);
 
 	return ret == 0 ? TRUE : FALSE;
 }
@@ -261,13 +262,17 @@ BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID, LPCSTR lpChanne
 	int nRet = 0;
 
 //	m_lpAgoraEngine->setVideoProfile(VIDEO_PROFILE_720P);
+
+	ChannelMediaOptions options;
+	options.channelProfile = agora::CHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
+	options.clientRoleType = CLIENT_ROLE_BROADCASTER;
 #ifdef UNICODE
 	CHAR szChannelName[128];
 
 	::WideCharToMultiByte(CP_ACP, 0, lpChannelName, -1, szChannelName, 128, NULL, NULL);
-	nRet = m_lpAgoraEngine->joinChannel(lpChannelToken, szChannelName, NULL, nUID);
+	nRet = m_lpAgoraEngine->joinChannel(lpChannelToken, szChannelName,nUID, options);
 #else
-	nRet = m_lpAgoraEngine->joinChannel(lpChannelToken, lpChannelName, NULL, nUID);
+	nRet = m_lpAgoraEngine->joinChannel(lpChannelToken, lpChannelName, nUID, options);
 #endif
 
 	if (nRet == 0)
@@ -331,7 +336,6 @@ BOOL CAgoraObject::EnableScreenCapture(HWND hWnd, int nCapFPS, LPCRECT lpCapRect
 	ASSERT(m_lpAgoraEngine != NULL);
 
 	int ret = 0;
-	RtcEngineParameters rep(*m_lpAgoraEngine);
 
 	agora::rtc::Rectangle rcCap;
 	ScreenCaptureParameters capParam;
@@ -354,7 +358,7 @@ BOOL CAgoraObject::EnableScreenCapture(HWND hWnd, int nCapFPS, LPCRECT lpCapRect
 				capParam.dimensions.height = rc.bottom - rc.top;
 				ret = m_lpAgoraEngine->startScreenCaptureByScreenRect(screenRegion, rcCap, capParam);
 			}
-			//startScreenCapture(hWnd, nCapFPS, NULL, nBitrate);
+		
 		}
 		else {
 			capParam.dimensions.width = lpCapRect->right - lpCapRect->left;
@@ -373,9 +377,18 @@ BOOL CAgoraObject::EnableScreenCapture(HWND hWnd, int nCapFPS, LPCRECT lpCapRect
 				ret = m_lpAgoraEngine->startScreenCaptureByScreenRect(screenRegion, rcCap, capParam);
 			}
 		}
+		ChannelMediaOptions option;
+		option.publishScreenTrack = true;
+		option.publishCameraTrack = false;
+		m_lpAgoraEngine->updateChannelMediaOptions(option);
 	}
-	else
+	else {
 		ret = m_lpAgoraEngine->stopScreenCapture();
+		ChannelMediaOptions option;
+		option.publishScreenTrack = false;
+		option.publishCameraTrack = true;
+		m_lpAgoraEngine->updateChannelMediaOptions(option);
+	}
 
 	if (ret == 0)
 		m_bScreenCapture = bEnable;
@@ -392,9 +405,7 @@ BOOL CAgoraObject::MuteLocalAudio(BOOL bMuted)
 {
 	ASSERT(m_lpAgoraEngine != NULL);
 
-	RtcEngineParameters rep(*m_lpAgoraEngine);
-
-	int ret = rep.muteLocalAudioStream((bool)bMuted);
+	int ret = m_lpAgoraEngine->muteLocalAudioStream((bool)bMuted);
 	if (ret == 0)
 		m_bLocalAudioMuted = bMuted;
 
@@ -411,9 +422,8 @@ BOOL CAgoraObject::MuteLocalVideo(BOOL bMuted)
 {
 	ASSERT(m_lpAgoraEngine != NULL);
 
-	RtcEngineParameters rep(*m_lpAgoraEngine);
 
-	int ret = rep.muteLocalVideoStream((bool)bMuted);
+	int ret = m_lpAgoraEngine->muteLocalVideoStream((bool)bMuted);
 	if (ret == 0)
 		m_bLocalVideoMuted = bMuted;
 
@@ -430,19 +440,17 @@ BOOL CAgoraObject::EnableAudioRecording(BOOL bEnable, LPCTSTR lpFilePath)
 {
 	int ret = 0;
 
-	RtcEngineParameters rep(*m_lpAgoraEngine);
-
 	if (bEnable) {
 #ifdef UNICODE
 		CHAR szFilePath[MAX_PATH];
 		::WideCharToMultiByte(CP_ACP, 0, lpFilePath, -1, szFilePath, MAX_PATH, NULL, NULL);
-		ret = rep.startAudioRecording(szFilePath, AUDIO_RECORDING_QUALITY_HIGH);
+		ret = m_lpAgoraEngine->startAudioRecording(szFilePath, AUDIO_RECORDING_QUALITY_HIGH);
 #else
 		ret = rep.startAudioRecording(lpFilePath);
 #endif
 	}
 	else
-		ret = rep.stopAudioRecording();
+		ret = m_lpAgoraEngine->stopAudioRecording();
 
 	return ret == 0 ? TRUE : FALSE;
 }
@@ -452,10 +460,16 @@ BOOL CAgoraObject::EnableNetworkTest(BOOL bEnable)
 	int ret = 0;
 
 	
-	if (bEnable)
-		ret = m_lpAgoraEngine->enableLastmileTest();
+	if (bEnable) {
+		LastmileProbeConfig config;
+		config.expectedDownlinkBitrate = 100000;
+		config.expectedUplinkBitrate = 100000;
+		config.probeDownlink = true;
+		config.probeUplink = true;
+		ret = m_lpAgoraEngine->startLastmileProbeTest(config);
+	}
 	else
-		ret = m_lpAgoraEngine->disableLastmileTest();
+		ret = m_lpAgoraEngine->stopLastmileProbeTest();
 
 	return ret == 0 ? TRUE : FALSE;
 }
@@ -479,18 +493,41 @@ BOOL CAgoraObject::LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn)
 {
 	int nRet = 0;
 
+	VideoCanvas vc;
+	vc.uid = 0;
+	vc.view = hVideoWnd;
+	vc.renderMode = agora::media::base::RENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
+	vc.mirrorMode = VIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
+	m_lpAgoraEngine->setupLocalVideo(vc);
+
 	if (bPreviewOn) {
-		VideoCanvas vc;
-
-		vc.uid = 0;
-		vc.view = hVideoWnd;
-		vc.renderMode = RENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
-
-		m_lpAgoraEngine->setupLocalVideo(vc);
-		nRet = m_lpAgoraEngine->startPreview();
+		nRet = m_lpAgoraEngine->startPreview(VIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA);
 	}
-	else
-		nRet = m_lpAgoraEngine->stopPreview();
+	else {
+		nRet = m_lpAgoraEngine->stopPreview(VIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA);
+	}
+
+	return nRet == 0 ? TRUE : FALSE;
+}
+
+BOOL CAgoraObject::LocalScreenPreview(HWND hVideoWnd, BOOL bPreviewOn)
+{
+	int nRet = 0;
+
+	VideoCanvas vc;
+	vc.uid = 0;
+	vc.view = hVideoWnd;
+	vc.sourceType = VIDEO_SOURCE_TYPE::VIDEO_SOURCE_SCREEN;
+	vc.mirrorMode = VIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
+	vc.renderMode = agora::media::base::RENDER_MODE_TYPE::RENDER_MODE_FIT;
+	m_lpAgoraEngine->setupLocalVideo(vc);
+
+	if (bPreviewOn) {
+		nRet = m_lpAgoraEngine->startPreview(VIDEO_SOURCE_SCREEN);
+	}
+	else {
+		nRet = m_lpAgoraEngine->stopPreview(VIDEO_SOURCE_SCREEN);
+	}
 
 	return nRet == 0 ? TRUE : FALSE;
 }
@@ -498,16 +535,14 @@ BOOL CAgoraObject::LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn)
 BOOL CAgoraObject::SetLogFilter(UINT logFilterType, LPCTSTR lpLogPath)
 {
 	int nRet = 0;
-	RtcEngineParameters rep(*m_lpAgoraEngine);
-
-	nRet = rep.setLogFilter(logFilterType);
+	nRet = m_lpAgoraEngine->setLogFilter(logFilterType);
 
 #ifdef UNICODE
 	CHAR szFilePath[MAX_PATH];
 	::WideCharToMultiByte(CP_ACP, 0, lpLogPath, -1, szFilePath, MAX_PATH, NULL, NULL);
-	nRet |= rep.setLogFile(szFilePath);
+	nRet |= m_lpAgoraEngine->setLogFile(szFilePath);
 #else
-	nRet |= rep.setLogFile(lpLogPath);
+	nRet |= m_lpAgoraEngine->setLogFile(lpLogPath);
 #endif
 
 	return nRet == 0 ? TRUE : FALSE;
@@ -641,26 +676,26 @@ void CAgoraObject::SetDefaultParameters()
     std::map<std::string, bool> mapBoolParameters;
     std::map<std::string, int> mapIntParameters;
     std::map<std::string, std::string> mapObjectParameters;
-    if (m_agJson.GetParameters(mapStringParamsters, mapBoolParameters, mapIntParameters, mapObjectParameters)) {
-        AParameter apm(m_lpAgoraEngine);
-        for (auto iter = mapBoolParameters.begin();
-            iter != mapBoolParameters.end(); ++iter) {
-            apm->setBool(iter->first.c_str(), iter->second);
-        }
-        for (auto iter = mapStringParamsters.begin();
-            iter != mapStringParamsters.end(); ++iter) {
-            apm->setString(iter->first.c_str(), iter->second.c_str());
-        }
-        for (auto iter = mapIntParameters.begin();
-            iter != mapIntParameters.end(); ++iter) {
-            apm->setInt(iter->first.c_str(), iter->second);
-        }
+	/*if (m_agJson.GetParameters(mapStringParamsters, mapBoolParameters, mapIntParameters, mapObjectParameters)) {
+		AParameter apm(m_lpAgoraEngine);
+		for (auto iter = mapBoolParameters.begin();
+			iter != mapBoolParameters.end(); ++iter) {
+			apm->setBool(iter->first.c_str(), iter->second);
+		}
+		for (auto iter = mapStringParamsters.begin();
+			iter != mapStringParamsters.end(); ++iter) {
+			apm->setString(iter->first.c_str(), iter->second.c_str());
+		}
+		for (auto iter = mapIntParameters.begin();
+			iter != mapIntParameters.end(); ++iter) {
+			apm->setInt(iter->first.c_str(), iter->second);
+		}
 
-        for (auto iter = mapObjectParameters.begin();
-            iter != mapObjectParameters.end(); ++iter) {
-            apm->setObject(iter->first.c_str(), iter->second.c_str());
-        }
-    }
+		for (auto iter = mapObjectParameters.begin();
+			iter != mapObjectParameters.end(); ++iter) {
+			apm->setObject(iter->first.c_str(), iter->second.c_str());
+		}
+	}*/
 }
 
 

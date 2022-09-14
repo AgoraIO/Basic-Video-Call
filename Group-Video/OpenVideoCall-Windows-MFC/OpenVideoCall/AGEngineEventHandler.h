@@ -14,7 +14,6 @@ public:
 
 	virtual void onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed) override;
 	virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed) override;
-	virtual void onWarning(int warn, const char* msg) override;
 	virtual void onError(int err, const char* msg) override;
 	virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) override;
 	virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume) override;
@@ -26,7 +25,7 @@ public:
 	virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) override;
 
 	virtual void onLastmileQuality(int quality) override;
-	virtual void onFirstLocalVideoFrame(int width, int height, int elapsed) override;
+	virtual void onFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed) override;
 	virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) override;
 	virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed) override;
 	virtual void onUserJoined(uid_t uid, int elapsed) override;
@@ -35,9 +34,9 @@ public:
 	virtual void onUserMuteVideo(uid_t uid, bool muted) override;
 	virtual void onApiCallExecuted(int err, const char* api, const char* result) override;
 
-    virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length) override;
+	virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) override;
 	
-    virtual void onLocalVideoStats(const LocalVideoStats& stats) override;
+	virtual void onLocalVideoStats(VIDEO_SOURCE_TYPE source, const LocalVideoStats& stats) override;
 	virtual void onRemoteVideoStats(const RemoteVideoStats& stats) override;
 	virtual void onCameraReady() override;
 	virtual void onVideoStopped() override;
@@ -45,6 +44,8 @@ public:
 	virtual void onConnectionInterrupted() override;
 
 	virtual void onUserEnableVideo(uid_t uid, bool enabled) override;
+
+	virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) override;
 
 private:
 	HWND		m_hMainWnd;

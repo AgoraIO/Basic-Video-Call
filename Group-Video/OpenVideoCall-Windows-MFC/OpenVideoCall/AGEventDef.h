@@ -244,4 +244,7 @@ typedef struct _AGE_STREAM_MESSAGE
 
 #define EID_STREAM_MESSAGE                  0x00000021
 
+
+#define EID_SCREEN_STATUS_CHANGE            0x00000022
+
 #endif

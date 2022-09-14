@@ -46,12 +46,6 @@ void CAGEngineEventHandler::onRejoinChannelSuccess(const char* channel, uid_t ui
 
 }
 
-void CAGEngineEventHandler::onWarning(int warn, const char* msg)
-{
-	CString str;
-
-	str = _T("onWarning");
-}
 
 void CAGEngineEventHandler::onError(int err, const char* msg)
 {
@@ -167,7 +161,7 @@ void CAGEngineEventHandler::onLastmileQuality(int quality)
 
 }
 
-void CAGEngineEventHandler::onFirstLocalVideoFrame(int width, int height, int elapsed)
+void CAGEngineEventHandler::onFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed)
 {
 	LPAGE_FIRST_LOCAL_VIDEO_FRAME lpData = new AGE_FIRST_LOCAL_VIDEO_FRAME;
 
@@ -175,10 +169,12 @@ void CAGEngineEventHandler::onFirstLocalVideoFrame(int width, int height, int el
 	lpData->height = height;
 	lpData->elapsed = elapsed;
 
-	if(m_hMainWnd != NULL)
+	if (m_hMainWnd != NULL)
 		::PostMessage(m_hMainWnd, WM_MSGID(EID_FIRST_LOCAL_VIDEO_FRAME), (WPARAM)lpData, 0);
 
 }
+
+
 
 void CAGEngineEventHandler::onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed)
 {
@@ -254,11 +250,11 @@ void CAGEngineEventHandler::onUserMuteVideo(uid_t uid, bool muted)
 
 }
 
-void CAGEngineEventHandler::onStreamMessage(uid_t uid, int streamId, const char* data, size_t length)
+void CAGEngineEventHandler::onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs)
 {
     LPAGE_STREAM_MESSAGE lpData = new AGE_STREAM_MESSAGE;
 
-    lpData->uid = uid;
+    lpData->uid = userId;
     lpData->streamId = streamId;
     lpData->data = new char[length];
     lpData->length = length;
@@ -275,7 +271,7 @@ void CAGEngineEventHandler::onApiCallExecuted(int err, const char* api, const ch
 	
 }
 
-void CAGEngineEventHandler::onLocalVideoStats(const LocalVideoStats& stats)
+void CAGEngineEventHandler::onLocalVideoStats(VIDEO_SOURCE_TYPE source, const LocalVideoStats& stats)
 {
 	LPAGE_LOCAL_VIDEO_STAT lpData = new AGE_LOCAL_VIDEO_STAT;
 
@@ -333,6 +329,22 @@ void CAGEngineEventHandler::onUserEnableVideo(uid_t uid, bool enabled)
 {
 //	if (m_hMainWnd != NULL)
 //		::PostMessage(m_hMainWnd, WM_MSGID(EID_CONNECTION_LOST), 0, 0);
+
+}
+
+void CAGEngineEventHandler::onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) {
+
+	if (source == VIDEO_SOURCE_SCREEN) {
+		if (state == LOCAL_VIDEO_STREAM_STATE::LOCAL_VIDEO_STREAM_STATE_CAPTURING) {
+			if (m_hMainWnd != NULL)
+				::PostMessage(m_hMainWnd, WM_MSGID(EID_SCREEN_STATUS_CHANGE), 1, 0);
+		}
+		else if (state == LOCAL_VIDEO_STREAM_STATE::LOCAL_VIDEO_STREAM_STATE_STOPPED) {
+			if (m_hMainWnd != NULL)
+				::PostMessage(m_hMainWnd, WM_MSGID(EID_SCREEN_STATUS_CHANGE), 0, 0);
+		}
+	}
+	
 
 }
 

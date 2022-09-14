@@ -96,6 +96,8 @@ protected:
 	
     afx_msg LRESULT OnStreamMessage(WPARAM wParam, LPARAM lParam);
 
+    afx_msg LRESULT OnScreenStatusChanged(WPARAM wParam, LPARAM lParam);
+
 	DECLARE_MESSAGE_MAP()
 
 protected:
@@ -118,6 +120,8 @@ protected:
 	void AdjustSizeVideo1(int cx, int cy);
 	void AdjustSizeVideo4(int cx, int cy);
 	void AdjustSizeVideoMulti(int cx, int cy);
+
+	void switchLocalPreview(BOOL bScreen);
 
 private:
 	CBrush			m_brHead;

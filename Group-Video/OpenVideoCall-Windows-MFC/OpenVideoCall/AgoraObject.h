@@ -89,6 +89,8 @@ public:
 
 	BOOL LocalVideoPreview(HWND hVideoWnd, BOOL bPreviewOn = TRUE);
 
+	BOOL LocalScreenPreview(HWND hVideoWnd, BOOL bPreviewOn = TRUE);
+
 	BOOL SetLogFilter(UINT logFilterType, LPCTSTR lpLogPath);
 
     BOOL SetEncryptionSecret(LPCTSTR lpKey, int nEncryptType = 0);
