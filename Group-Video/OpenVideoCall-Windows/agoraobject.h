@@ -19,6 +19,8 @@ extern CAgoraConfig gAgoraConfig;
 #include "agoraqtjson.h"
 using namespace agora;
 using namespace agora::rtc;
+using namespace agora::media::base;
+using namespace agora::commons;
 
 typedef QMap<QString,QString> qSSMap;
 

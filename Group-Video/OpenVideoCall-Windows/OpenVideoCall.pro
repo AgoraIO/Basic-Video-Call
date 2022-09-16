@@ -8,7 +8,7 @@ QT       += core gui quickwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-SDKPATHNAME=libs
+SDKPATHNAME=sdk
 SDKLIBPATHNAME=x86
 SDKDLLPATHNAME=x86
 
@@ -86,15 +86,15 @@ exists( $$PWD/$${SDKPATHNAME}) {
 }
 
 win32: {
-INCLUDEPATH += $${AGORASDKPATH}/include
-LIBS += -L$${AGORASDKPATH}/$${SDKLIBPATHNAME} -lagora_rtc_sdk
+INCLUDEPATH += $${AGORASDKPATH}/high_level_api/include
+LIBS += -L$${AGORASDKPATH}/$${SDKLIBPATHNAME} -lagora_rtc_sdk.dll
 LIBS += User32.LIB
 
 CONFIG(debug, debug|release) {
-  QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll .\Debug
+  QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll $${DESTDIR}
 } else {
-  QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll .\Release
-  QMAKE_POST_LINK += && windeployqt Release\OpenVideoCall.exe
+  QMAKE_POST_LINK +=  copy $${AGORASDKDLLPATH}\*.dll $${DESTDIR}
+  QMAKE_POST_LINK += && windeployqt $${DESTDIR}\OpenVideoCall.exe
 }
 
 }

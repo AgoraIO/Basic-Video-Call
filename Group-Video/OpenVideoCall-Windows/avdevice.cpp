@@ -389,7 +389,7 @@ void AVDevice::updateBeautyOptions()
 	options.rednessLevel = ui->horizontalSlider_Redness->value() / 100.0f;
 	options.smoothnessLevel = ui->horizontalSlider_Smoothness->value() / 100.0f;
 
-	CAgoraObject::getInstance()->setBeautyEffectOptions(m_bEnableBeauty, options);
+    CAgoraObject::getInstance()->setBeautyEffectOptions(m_bEnableBeauty, options);
 }
 
 void AVDevice::on_cbContrastLevel_activated(int index)
@@ -400,7 +400,7 @@ void AVDevice::on_cbContrastLevel_activated(int index)
 void AVDevice::on_valueChanged_horizontalSlider_Redness(int value)
 {
 	QString redness;
-	redness.sprintf("Redness(%.02f)", value / 100.0f);
+    redness.asprintf("Redness(%.02f)", value / 100.0f);
 	ui->labelRedness->setText(redness);
 	gAgoraConfig.setRedness(value);
 	updateBeautyOptions();
@@ -409,7 +409,7 @@ void AVDevice::on_valueChanged_horizontalSlider_Redness(int value)
 void AVDevice::on_valueChanged_horizontalSlider_Smoothness(int value)
 {
 	QString smooth;
-	smooth.sprintf("Smoothness(%.02f)", value / 100.0f);
+    smooth.asprintf("Smoothness(%.02f)", value / 100.0f);
 	ui->labelSmoothness->setText(smooth);
 	gAgoraConfig.setSmoothness(value);
 	updateBeautyOptions();
@@ -418,7 +418,7 @@ void AVDevice::on_valueChanged_horizontalSlider_Smoothness(int value)
 void AVDevice::on_valueChanged_horizontalSlider_Lightening(int value)
 {
 	QString lightening;
-	lightening.sprintf("Lightening(%.02f)", value / 100.0f);
+    lightening.asprintf("Lightening(%.02f)", value / 100.0f);
 	ui->labelLightening->setText(lightening);
 	gAgoraConfig.setLightenging(value);
 	updateBeautyOptions();

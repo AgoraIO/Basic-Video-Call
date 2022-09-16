@@ -29,7 +29,8 @@ public:
     {
         emit m_pInstance.sender_userOffline(uid, reason);
     }
-    virtual void onFirstLocalVideoFrame(int width, int height, int elapsed) override
+
+    virtual void onFirstLocalVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE source, int width, int height, int elapsed) override
     {
         emit m_pInstance.sender_firstLocalVideoFrame(width, height, elapsed);
     }
@@ -41,7 +42,7 @@ public:
     {
        emit m_pInstance.sender_firstRemoteVideoFrameDrawn(uid, width, height, elapsed);
     }
-    virtual void onLocalVideoStats(const LocalVideoStats &stats) override
+    virtual void onLocalVideoStats(agora::rtc::VIDEO_SOURCE_TYPE source, const LocalVideoStats& stats) override
     {
         emit m_pInstance.sender_localVideoStats(stats);
     }
@@ -124,11 +125,16 @@ int CAgoraObject::joinChannel(const QString& key, const QString& channel, uint u
         QMessageBox::warning(nullptr,("AgoraHighSound"),("channelname is empty"));
         return -1;
     }
-    // Strarts local video preview
-    m_rtcEngine->startPreview();
     // Parameters are: token channelId, optionalInfo, uid
     // https://docs.agora.io/en/Video/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab
-    int r = m_rtcEngine->joinChannel(key.toUtf8().data(), channel.toUtf8().data(), nullptr, uid);
+    ChannelMediaOptions option;
+    option.channelProfile = CHANNEL_PROFILE_TYPE::CHANNEL_PROFILE_LIVE_BROADCASTING;
+    option.clientRoleType = CLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER;
+    option.publishCameraTrack = true;
+    option.publishMicrophoneTrack = true;
+    option.autoSubscribeVideo = true;
+    option.autoSubscribeAudio = true;
+    int r = m_rtcEngine->joinChannel(key.toUtf8().data(), channel.toUtf8().data(), uid, option);
     return r;
 }
 
@@ -143,9 +149,8 @@ int CAgoraObject::leaveChannel()
 
 int CAgoraObject::muteLocalAudioStream(bool muted)
 {
-    RtcEngineParameters rep(*m_rtcEngine);
     // mutes or unmutes baed on the bpassed in muted boolean
-    return rep.muteLocalAudioStream(muted);
+    return m_rtcEngine->muteLocalAudioStream(muted);
 }
 
 // Plays the local video
@@ -222,8 +227,7 @@ BOOL CAgoraObject::setLogPath(const QString &strDir)
 {
     int ret = 0;
 
-    RtcEngineParameters rep(*m_rtcEngine);
-    ret = rep.setLogFile(strDir.toUtf8().data());
+    ret = m_rtcEngine->setLogFile(strDir.toUtf8().data());
 
     return ret == 0 ? TRUE : FALSE;
 }
@@ -249,9 +253,8 @@ BOOL CAgoraObject::SetClientRole(CLIENT_ROLE_TYPE roleType)
 // This method enables the native application to send video to/ recieve video from Web SDK
 BOOL CAgoraObject::EnableWebSdkInteroperability(BOOL bEnable)
 {
-    RtcEngineParameters rep(*m_rtcEngine);
 
-    int	nRet = rep.enableWebSdkInteroperability(static_cast<bool>(bEnable));
+    int	nRet = m_rtcEngine->enableWebSdkInteroperability(static_cast<bool>(bEnable));
 
     return nRet == 0 ? TRUE : FALSE;
 }
@@ -451,8 +454,7 @@ BOOL CAgoraObject::MuteLocalVideo(BOOL bMute)
 {
      int nRet = 0;
 
-    RtcEngineParameters rep(*m_rtcEngine);
-    nRet = rep.enableLocalVideo(!bMute);
+    nRet = m_rtcEngine->enableLocalVideo(!bMute);
 
     return nRet == 0 ? TRUE : FALSE;
 }
@@ -461,8 +463,6 @@ BOOL CAgoraObject::MuteLocalVideo(BOOL bMute)
 BOOL CAgoraObject::MuteLocalAudio(BOOL bMute)
 {
     int nRet = 0;
-
-    RtcEngineParameters rep(*m_rtcEngine);
     nRet = m_rtcEngine->enableLocalAudio(!bMute);
 
     return nRet == 0 ? TRUE : FALSE;
@@ -490,17 +490,16 @@ BOOL CAgoraObject::EnableEncryption(bool enabled, const EncryptionConfig & confi
 BOOL CAgoraObject::SetLogFilter(LOG_FILTER_TYPE logFilterType, LPCTSTR lpLogPath)
 {
     int nRet = 0;
-    RtcEngineParameters rep(*m_rtcEngine);
 
-    nRet = rep.setLogFilter(logFilterType);
+    nRet = m_rtcEngine->setLogFilter(logFilterType);
 
     if (lpLogPath != Q_NULLPTR) {
 #ifdef UNICODE
         CHAR szFilePath[MAX_PATH];
         ::WideCharToMultiByte(CP_ACP, 0, lpLogPath, -1, szFilePath, MAX_PATH, nullptr, nullptr);
-        nRet |= rep.setLogFile(szFilePath);
+        nRet |= m_rtcEngine->setLogFile(szFilePath);
 #else
-        nRet |= rep.setLogFile(lpLogPath);
+        nRet |= m_rtcEngine->setLogFile(lpLogPath);
 #endif
     }
 
@@ -535,24 +534,24 @@ void CAgoraObject::CAgoraObject::SetDefaultParameters()
                                  mapBoolParameters,
                                  mapIntParameters,
                                  mapObjectParamsters)){
-        AParameter apm(m_rtcEngine);
-        for (auto iter = mapBoolParameters.begin();
-            iter != mapBoolParameters.end(); ++iter) {
-            apm->setBool(iter->first.c_str(), iter->second);
-        }
-        for (auto iter = mapStringParamsters.begin();
-            iter != mapStringParamsters.end(); ++iter) {
-            apm->setString(iter->first.c_str(), iter->second.c_str());
-        }
-        for (auto iter = mapIntParameters.begin();
-            iter != mapIntParameters.end(); ++iter) {
-            apm->setInt(iter->first.c_str(), iter->second);
-        }
+//        AParameter apm(m_rtcEngine);
+//        for (auto iter = mapBoolParameters.begin();
+//            iter != mapBoolParameters.end(); ++iter) {
+//            apm->setBool(iter->first.c_str(), iter->second);
+//        }
+//        for (auto iter = mapStringParamsters.begin();
+//            iter != mapStringParamsters.end(); ++iter) {
+//            apm->setString(iter->first.c_str(), iter->second.c_str());
+//        }
+//        for (auto iter = mapIntParameters.begin();
+//            iter != mapIntParameters.end(); ++iter) {
+//            apm->setInt(iter->first.c_str(), iter->second);
+//        }
 
-        for (auto iter = mapObjectParamsters.begin();
-            iter != mapObjectParamsters.end(); ++iter) {
-            apm->setObject(iter->first.c_str(), iter->second.c_str());
-        }
+//        for (auto iter = mapObjectParamsters.begin();
+//            iter != mapObjectParamsters.end(); ++iter) {
+//            apm->setObject(iter->first.c_str(), iter->second.c_str());
+//        }
     }
 }
 

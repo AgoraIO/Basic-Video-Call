@@ -94,7 +94,7 @@ int EnterRoom::getR3()
 void EnterRoom::switchUidText(const QString &qsSrc,const QString &qsDest,int nIndex)
 {
     QString qsInfo1;
-    qsInfo1.sprintf("%s,%s,%d",qsSrc.toStdString().c_str(),qsDest.toStdString().c_str(),nIndex);
+    qsInfo1.asprintf("%s,%s,%d",qsSrc.toStdString().c_str(),qsDest.toStdString().c_str(),nIndex);
     //qDebug(qsInfo1.toStdString().c_str());
     ui->lbChannel->setText(qsSrc);
     if(1 == nIndex)
@@ -130,7 +130,7 @@ void EnterRoom::setAllRAtt(int nRCount)
 
    if(nRCount >= 1) {
         QString qsText;
-        qsText.sprintf("  uid:%u",m_uidr1);
+        qsText.asprintf("  uid:%u",m_uidr1);
         ui->lb_r1->setText(qsText);
         ui->lb_r1->setVisible(true);
 
@@ -143,7 +143,7 @@ void EnterRoom::setAllRAtt(int nRCount)
    }
    if(nRCount >= 2) {
         QString qsText;
-        qsText.sprintf("  uid:%u",m_uidr2);
+        qsText.asprintf("  uid:%u",m_uidr2);
         ui->lb_r2->setText(qsText);
         ui->lb_r2->setVisible(true);
 
@@ -155,7 +155,7 @@ void EnterRoom::setAllRAtt(int nRCount)
    }
    if(nRCount >= 3) {
        QString qsText;
-       qsText.sprintf("  uid:%u",m_uidr3);
+       qsText.asprintf("  uid:%u",m_uidr3);
        ui->lb_r3->setText(qsText);
        ui->lb_r3->setVisible(true);
 
@@ -167,7 +167,7 @@ void EnterRoom::setAllRAtt(int nRCount)
    }
 
     QString qsCount;
-    qsCount.sprintf("Total %d Person",nRCount + 1);
+    qsCount.asprintf("Total %d Person",nRCount + 1);
     ui->lb_count->setText(qsCount);
 }
 

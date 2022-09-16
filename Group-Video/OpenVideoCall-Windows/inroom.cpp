@@ -148,7 +148,7 @@ void InRoom::receive_joinedChannelSuccess(const QString &qsChannel, unsigned int
 
     QString qsChannelInfo;
     m_qsChannel = qsChannel;
-    qsChannelInfo.sprintf("%s %u",qsChannel.toStdString().c_str(),uid);
+    qsChannelInfo.asprintf("%s %u",qsChannel.toStdString().c_str(),uid);
     m_uper->setChannelName(qsChannelInfo);
     m_bigUid = uid;
     m_timer_fps->start(2000);
@@ -236,7 +236,7 @@ void InRoom::receive_timer_pfs()
     if(m_qivs.contains(m_bigUid)) {
         QString qsFps;
         auto it = m_qivs.value(m_bigUid);
-        qsFps.sprintf("SD-RTN: %dms.  Video: %dfps %dx%d",it.nLastmileDelay,it.nFps,it.nWidth,it.nHeight);
+        qsFps.asprintf("SD-RTN: %dms.  Video: %dfps %dx%d",it.nLastmileDelay,it.nFps,it.nWidth,it.nHeight);
         m_uper->setParam(qsFps);
     }
 }
@@ -263,7 +263,7 @@ void InRoom::adjustPos()
             ui->widget_l->setGeometry(0,0,1366,768);
             ui->widget_l->lower();
             QString qsChannelInfo;
-            qsChannelInfo.sprintf("%s %u",m_qsChannel.toStdString().c_str(),m_uid);
+            qsChannelInfo.asprintf("%s %u",m_qsChannel.toStdString().c_str(),m_uid);
             m_uper->setChannelName(qsChannelInfo);
         }
         else {
@@ -377,8 +377,8 @@ bool InRoom::eventFilter(QObject *watched,QEvent *event)
         m_qivs[vsbig.uid].nIndex = nIndex;
 
         QString qsSrc,qsDest;
-        qsSrc.sprintf("%s %u",m_qsChannel.toStdString().c_str(),vsr.uid);
-        qsDest.sprintf("  uid:%u",vsbig.uid);
+        qsSrc.asprintf("%s %u",m_qsChannel.toStdString().c_str(),vsr.uid);
+        qsDest.asprintf("  uid:%u",vsbig.uid);
         m_uper->switchUidText(qsSrc,qsDest,nIndex);
 		
 		m_bigUid = vsr.uid;
