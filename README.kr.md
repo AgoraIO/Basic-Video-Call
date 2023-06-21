@@ -1,4 +1,4 @@
-# Basic Video Call
+# 영상 통화
 
 _언어 : [English](README.md)_ | _[简体中文](README.zh.md)_
 
