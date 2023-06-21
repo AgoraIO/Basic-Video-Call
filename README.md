@@ -1,6 +1,6 @@
 # Basic Video Call
 
-_Other Languages: [简体中文](README.zh.md)_
+_Other Languages: [简体中文](README.zh.md)_ | _[한글](README.kr.md)_
 
 Agora provides a set of sample applications demonstrating how to integrate the Agora Video SDK for:
 

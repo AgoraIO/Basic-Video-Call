@@ -1,6 +1,6 @@
 # 视频通话
 
-_其他语言：[English](README.md)_
+_其他语言：[English](README.md)_ | _[한글](README.kr.md)_
 
 Agora 提供一系列的示例应用，展示如何集成 Agora 视频 SDK。
 
