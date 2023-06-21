@@ -68,4 +68,4 @@ Agora에서는 Agora Video SDK 통합 방법을 보여주는 다양한 샘플 �
 
 ## 라이선스
 
-모든 샘플 애플리케이션은 MIT 라이선스(MIT)를 따릅니다. [라이선스](LICENSE.md).
+모든 샘플 애플리케이션은 MIT 라이선스(MIT)를 따릅니다. [라이선스 내용](LICENSE.md).
