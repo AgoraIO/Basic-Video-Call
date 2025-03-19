@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
-
+    compileSdk 35
+    namespace "io.agora.uikit.logger"
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 35
+        targetSdkVersion 35
         versionCode 1
         versionName "1.0"
 
