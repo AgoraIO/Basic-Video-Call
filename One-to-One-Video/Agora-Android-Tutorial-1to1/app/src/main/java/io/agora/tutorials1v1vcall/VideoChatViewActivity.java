@@ -18,10 +18,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-import io.agora.rtc.video.VideoEncoderConfiguration;
+import io.agora.rtc2.IRtcEngineEventHandler;
+import io.agora.rtc2.RtcEngine;
+import io.agora.rtc2.video.VideoCanvas;
+import io.agora.rtc2.video.VideoEncoderConfiguration;
 import io.agora.uikit.logger.LoggerRecyclerView;
 
 public class VideoChatViewActivity extends AppCompatActivity {
@@ -143,7 +143,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
           The video display view must be created using this method instead of directly
           calling SurfaceView.
          */
-        SurfaceView view = RtcEngine.CreateRendererView(getBaseContext());
+        // SurfaceView view = RtcEngine.CreateRendererView(getBaseContext());
+        SurfaceView view = new SurfaceView(getBaseContext());
         view.setZOrderMediaOverlay(parent == mLocalContainer);
         parent.addView(view);
         mRemoteVideo = new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid);
@@ -272,13 +273,17 @@ public class VideoChatViewActivity extends AppCompatActivity {
         // Our server will assign one and return the uid via the event
         // handler callback function (onJoinChannelSuccess) after
         // joining the channel successfully.
-        SurfaceView view = RtcEngine.CreateRendererView(getBaseContext());
+        // SurfaceView view = RtcEngine.CreateRendererView(getBaseContext());
+        SurfaceView view = new SurfaceView(getBaseContext());
         view.setZOrderMediaOverlay(true);
         mLocalContainer.addView(view);
         // Initializes the local video view.
         // RENDER_MODE_HIDDEN: Uniformly scale the video until it fills the visible boundaries. One dimension of the video may have clipped contents.
         mLocalVideo = new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, 0);
         mRtcEngine.setupLocalVideo(mLocalVideo);
+
+        // Start local preview.
+        mRtcEngine.startPreview();
     }
 
     private void joinChannel() {

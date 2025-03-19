@@ -18,6 +18,7 @@
         <activity
             android:name=".VideoChatViewActivity"
             android:screenOrientation="sensorPortrait"
+            android:exported="true"
             android:theme="@style/FullScreenVideoTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
