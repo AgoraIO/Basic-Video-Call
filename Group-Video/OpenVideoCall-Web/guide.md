@@ -136,7 +136,7 @@ Create the first part of the login section:
 
 #### Create the Login Type Menu
 
-The Login type menu is comprised of two main sections:
+The Login type menu comprises two main sections:
 * A basic login type menu within a `<div>` element whose ID is `baseModeDropdown`.
 * An advanced login type menu within a `<div>` element whose ID is `advanceProfileDropdown`.
 
@@ -162,7 +162,7 @@ The Login type menu is comprised of two main sections:
 
 ##### Create the Basic Login Type Menu
 
-The basic login type dropdown menu is comprised of:
+The basic login type dropdown menu is composed of:
 
 - A menu selector within a `div` element whose class is `dropdown-trigger`.
 - Menu options within a `div` element whose class is `dropdown-menu` and whose ID is `baseModeOptions`.
@@ -230,7 +230,7 @@ Property|Value|Description
 
 ##### Create the Advanced Login Type Menu
 
-The advanced login type dropdown menu is comprised of:
+The advanced login type dropdown menu is composed of:
 
 - The menu selector defined within the `div` element whose class is `dropdown-trigger`.
 - The menu options defined within the `div` element whose class is `dropdown-menu` and whose ID is `advancedOptions`.
